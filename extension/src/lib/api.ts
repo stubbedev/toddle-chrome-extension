@@ -66,7 +66,10 @@ export async function gql<T>(
     body: JSON.stringify({ query, variables }),
   });
   if (!res.ok) {
-    throw new Error(`toddle API ${res.status} ${res.statusText}`);
+    const body = await res.text().catch(() => "");
+    throw new Error(
+      `toddle API ${res.status} ${res.statusText}${body ? `: ${body.slice(0, 500)}` : ""}`,
+    );
   }
   return (await res.json()) as GqlResponse<T>;
 }

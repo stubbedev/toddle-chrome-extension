@@ -69,13 +69,13 @@ export async function fetchYearGroups(
   orgId: string,
 ): Promise<YearGroup[]> {
   const data = requireData(
-    await gql<{ node?: { yearGroups?: { edges?: { node: YearGroup }[] } } }>(
+    await gql<{ node?: { yearGroups?: YearGroup[] } }>(
       token,
       YEAR_GROUPS_QUERY,
       { orgId },
     ),
   );
-  return data.node?.yearGroups?.edges?.map((e) => e.node) ?? [];
+  return data.node?.yearGroups ?? [];
 }
 
 export async function fetchYearGroupStudents(
@@ -322,7 +322,7 @@ export interface AttendanceRecord {
   isHomeroomAttendance: boolean;
   value: { label: string; status: string; color: string } | null;
   course: { title: string } | null;
-  period: { uid: string; time: string } | null;
+  period: { label: string; startTime: string } | null;
 }
 
 export async function fetchStudentRecords(

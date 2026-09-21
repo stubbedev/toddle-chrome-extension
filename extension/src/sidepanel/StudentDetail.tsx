@@ -165,7 +165,7 @@ function RecordsCard(props: { records: AttendanceRecord[] }) {
       <CardContent className="space-y-1.5">
         {sorted.slice(0, 40).map((record, index) => (
           <div
-            key={`${record.date}-${record.period?.uid ?? "day"}-${index}`}
+            key={`${record.date}-${record.period?.label ?? record.period?.startTime ?? "day"}-${index}`}
             className="flex items-center justify-between gap-2 text-xs"
           >
             <span className="text-muted-foreground">{record.date}</span>
@@ -188,7 +188,7 @@ function RecordsCard(props: { records: AttendanceRecord[] }) {
                 {record.period && (
                   <span className="text-muted-foreground">
                     {" · "}
-                    {record.period.time}
+                    {record.period.label ?? record.period.startTime}
                   </span>
                 )}
               </span>

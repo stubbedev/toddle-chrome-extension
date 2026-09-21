@@ -23,16 +23,13 @@ export const YEAR_GROUPS_QUERY = /* GraphQL */ `
     node(id: $orgId, type: ORGANIZATION) {
       id
       ... on Organization {
+        id
         yearGroups {
-          edges {
-            node {
-              id
-              name
-              grade {
-                id
-                name
-              }
-            }
+          id
+          name
+          grade {
+            id
+            name
           }
         }
       }
@@ -223,8 +220,8 @@ export const STUDENT_RECORDS_QUERY = /* GraphQL */ `
                 title
               }
               period {
-                uid
-                time
+                label
+                startTime
               }
             }
           }
