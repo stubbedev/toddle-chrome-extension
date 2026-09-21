@@ -144,6 +144,7 @@ export function AttendanceOverview({ auth, reloadKey, onSelectStudent }: Props) 
       const students = await fetchYearGroupStudents(auth.token, yearGroupId);
       const data = await fetchAttendanceRows(
         auth.token,
+        yearGroupId,
         students,
         range,
         categories,

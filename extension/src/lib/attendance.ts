@@ -28,6 +28,8 @@ export interface DateRange {
  * StudentAttendanceFilters as the web client builds it. Only keys the client
  * actually sends — invented keys (e.g. periodIds) fail variable coercion.
  */
+/** Filter for the overAllPresenceFilter/attendanceV2 variables — the
+ * client sends the same full key set for both. */
 function rangeFilters(
   range: DateRange,
   academicYearIds: string[] | null,
@@ -39,21 +41,6 @@ function rangeFilters(
     isPeriodByAttendance: false,
     courseIds: [],
     showFullDateAttendance: true,
-    academicYearIds,
-    curriculumProgramIds: [],
-    ...(layers ? { layerTypes: ["DERIVED"] } : {}),
-  };
-}
-
-/** Minimal filter the client passes as overAllPresenceFilter. */
-function presenceFilters(
-  range: DateRange,
-  academicYearIds: string[] | null,
-  layers: boolean,
-): Record<string, unknown> {
-  return {
-    startDate: range.startDate,
-    endDate: range.endDate,
     academicYearIds,
     curriculumProgramIds: [],
     ...(layers ? { layerTypes: ["DERIVED"] } : {}),
@@ -271,17 +258,24 @@ async function detectLayersMode(
   academicYearIds: string[] | null,
 ): Promise<boolean> {
   if (cachedLayersMode !== null) return cachedLayersMode;
-  const ok = async (query: string, pick: (v2: Record<string, unknown>) => unknown, layers: boolean) => {
-    const res = await gql<{ node?: { attendanceV2?: Record<string, unknown> | null } }>(
-      token,
-      query,
-      { id: studentId, f: presenceFilters(range, academicYearIds, layers) },
-    );
-    if (res.errors?.length) return false;
-    return pick(res.data?.node?.attendanceV2 ?? {}) !== null;
+  const probe = async (query: string, layers: boolean) => {
+    const res = await gql<{
+      node?: {
+        attendanceV2?: {
+          presenceOverview?: { totalCount: number } | null;
+          attendanceMetric?: { totalCount: number } | null;
+        } | null;
+      };
+    }>(token, query, {
+      id: studentId,
+      f: rangeFilters(range, academicYearIds, layers),
+    });
+    if (res.errors?.length) return null;
+    return res.data?.node?.attendanceV2 ?? null;
   };
   try {
-    if (await ok(PROBE_CLASSIC, (v2) => v2.presenceOverview ?? null, false)) {
+    const classic = await probe(PROBE_CLASSIC, false);
+    if (classic?.presenceOverview) {
       cachedLayersMode = false;
       return false;
     }
@@ -289,7 +283,10 @@ async function detectLayersMode(
     // classic probe crashed; try layers
   }
   try {
-    if (await ok(PROBE_LAYERS, (v2) => v2.attendanceMetric ?? null, true)) {
+    const layered = await probe(PROBE_LAYERS, true);
+    // attendanceMetric exists in every org's schema and can return an empty
+    // object in classic orgs — only real counts prove a layered org
+    if ((layered?.attendanceMetric?.totalCount ?? 0) > 0) {
       cachedLayersMode = true;
       return true;
     }
@@ -344,6 +341,7 @@ const BATCH_CHUNK = 40;
 
 export async function fetchAttendanceRows(
   token: string,
+  yearGroupId: string,
   students: StudentRef[],
   range: DateRange,
   categories: ResolvedCategories,
@@ -352,8 +350,10 @@ export async function fetchAttendanceRows(
   const tokenKey = token.slice(-12);
   const yearKey = (academicYearIds ?? []).join(",");
   const catKey = `${categories.lateIds.join(",")}|${categories.absentIds.join(",")}`;
-  return cached(`rows:${tokenKey}:${yearKey}:${catKey}:${range.startDate}:${range.endDate}`, () =>
-    loadAttendanceRows(token, students, range, categories, academicYearIds),
+  return cached(
+    `rows:${tokenKey}:${yearGroupId}:${yearKey}:${catKey}:${range.startDate}:${range.endDate}`,
+    () =>
+      loadAttendanceRows(token, students, range, categories, academicYearIds),
   );
 }
 
@@ -379,7 +379,7 @@ async function loadAttendanceRows(
       buildBatchStatsQuery(chunk.map((s) => s.id)),
       {
         filters: rangeFilters(range, academicYearIds, layers),
-        overAllPresenceFilter: presenceFilters(range, academicYearIds, layers),
+        overAllPresenceFilter: rangeFilters(range, academicYearIds, layers),
         layers,
       },
     );
@@ -476,7 +476,7 @@ async function loadStudentDetailStats(
     }>(token, OPS.studentStatsV2, {
       studentId,
       filters: rangeFilters(range, academicYearIds, layers),
-      overAllPresenceFilter: presenceFilters(range, academicYearIds, layers),
+      overAllPresenceFilter: rangeFilters(range, academicYearIds, layers),
       isAttendanceLayersEnabled: layers,
     }),
   );
