@@ -28,21 +28,42 @@ export interface DateRange {
  * StudentAttendanceFilters as the web client builds it. Only keys the client
  * actually sends — invented keys (e.g. periodIds) fail variable coercion.
  */
-/** Filter for the overAllPresenceFilter/attendanceV2 variables — the
- * client sends the same full key set for both. */
+/**
+ * StudentAttendanceFilters rebuilt field-for-field from the web client's
+ * attendance-summary builder. academicYearIds and curriculumProgramIds are
+ * passed as SCALARS (the client passes the selected year/program id
+ * directly); the stats resolvers crash on arrays.
+ */
 function rangeFilters(
   range: DateRange,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
   layers: boolean,
 ): Record<string, unknown> {
   return {
     startDate: range.startDate,
     endDate: range.endDate,
     isPeriodByAttendance: false,
-    courseIds: [],
-    showFullDateAttendance: true,
-    academicYearIds,
-    curriculumProgramIds: [],
+    courseIds: null,
+    periodIds: null,
+    showFullDateAttendance: false,
+    curriculumProgramIds: year?.curriculumProgramId ?? null,
+    academicYearIds: year?.id ?? null,
+    onlyHomeroomAttendance: false,
+    ...(layers ? { layerTypes: ["DERIVED"] } : {}),
+  };
+}
+
+/** The minimal overAllPresenceFilter the client builds for presence counts. */
+function presenceFilters(
+  range: DateRange,
+  year: AcademicYear | null,
+  layers: boolean,
+): Record<string, unknown> {
+  return {
+    startDate: range.startDate,
+    endDate: range.endDate,
+    curriculumProgramIds: year?.curriculumProgramId ?? null,
+    academicYearIds: year?.id ?? null,
     ...(layers ? { layerTypes: ["DERIVED"] } : {}),
   };
 }
@@ -166,6 +187,7 @@ async function loadResolvedCategories(
 
 export interface AcademicYear {
   id: string;
+  curriculumProgramId: string | null;
   startDate: string;
   endDate: string;
   isCurrentAcademicYear: boolean;
@@ -186,14 +208,19 @@ async function loadAcademicYears(
   const data = requireData(
     await gql<{
       node?: {
-        curriculumPrograms?: { academicYears?: AcademicYear[] }[];
+        curriculumPrograms?: {
+          id: string;
+          academicYears?: Omit<AcademicYear, "curriculumProgramId">[];
+        }[];
       };
     }>(token, OPS.academicYears, { id: orgId, curriculumIds: null }),
   );
   const seen = new Map<string, AcademicYear>();
   for (const program of data.node?.curriculumPrograms ?? []) {
     for (const year of program.academicYears ?? []) {
-      if (!seen.has(year.id)) seen.set(year.id, year);
+      if (!seen.has(year.id)) {
+        seen.set(year.id, { ...year, curriculumProgramId: program.id });
+      }
     }
   }
   return [...seen.values()];
@@ -255,7 +282,7 @@ async function detectLayersMode(
   token: string,
   studentId: string,
   range: DateRange,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
 ): Promise<boolean> {
   if (cachedLayersMode !== null) return cachedLayersMode;
   const probe = async (query: string, layers: boolean) => {
@@ -268,7 +295,7 @@ async function detectLayersMode(
       };
     }>(token, query, {
       id: studentId,
-      f: rangeFilters(range, academicYearIds, layers),
+      f: rangeFilters(range, year, layers),
     });
     if (res.errors?.length) return null;
     return res.data?.node?.attendanceV2 ?? null;
@@ -345,15 +372,15 @@ export async function fetchAttendanceRows(
   students: StudentRef[],
   range: DateRange,
   categories: ResolvedCategories,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
 ): Promise<StudentAttendanceRow[]> {
   const tokenKey = token.slice(-12);
-  const yearKey = (academicYearIds ?? []).join(",");
+  const yearKey = year?.id ?? "none";
   const catKey = `${categories.lateIds.join(",")}|${categories.absentIds.join(",")}`;
   return cached(
     `rows:${tokenKey}:${yearGroupId}:${yearKey}:${catKey}:${range.startDate}:${range.endDate}`,
     () =>
-      loadAttendanceRows(token, students, range, categories, academicYearIds),
+      loadAttendanceRows(token, students, range, categories, year),
   );
 }
 
@@ -362,15 +389,10 @@ async function loadAttendanceRows(
   students: StudentRef[],
   range: DateRange,
   categories: ResolvedCategories,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
 ): Promise<StudentAttendanceRow[]> {
   if (!students.length) return [];
-  const layers = await detectLayersMode(
-    token,
-    students[0].id,
-    range,
-    academicYearIds,
-  );
+  const layers = await detectLayersMode(token, students[0].id, range, year);
   const rows: StudentAttendanceRow[] = [];
   for (let offset = 0; offset < students.length; offset += BATCH_CHUNK) {
     const chunk = students.slice(offset, offset + BATCH_CHUNK);
@@ -378,8 +400,8 @@ async function loadAttendanceRows(
       token,
       buildBatchStatsQuery(chunk.map((s) => s.id)),
       {
-        filters: rangeFilters(range, academicYearIds, layers),
-        overAllPresenceFilter: rangeFilters(range, academicYearIds, layers),
+        filters: rangeFilters(range, year, layers),
+        overAllPresenceFilter: presenceFilters(range, year, layers),
         layers,
       },
     );
@@ -434,11 +456,11 @@ export async function fetchStudentDetailStats(
   token: string,
   studentId: string,
   range: DateRange,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
 ): Promise<StudentDetailStats> {
-  const yearKey = (academicYearIds ?? []).join(",");
+  const yearKey = year?.id ?? "none";
   return cached(`sds:${token.slice(-12)}:${studentId}:${yearKey}:${range.startDate}:${range.endDate}`, () =>
-    loadStudentDetailStats(token, studentId, range, academicYearIds),
+    loadStudentDetailStats(token, studentId, range, year),
   );
 }
 
@@ -446,9 +468,9 @@ async function loadStudentDetailStats(
   token: string,
   studentId: string,
   range: DateRange,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
 ): Promise<StudentDetailStats> {
-  const layers = await detectLayersMode(token, studentId, range, academicYearIds);
+  const layers = await detectLayersMode(token, studentId, range, year);
   const data = requireData(
     await gql<{
       node?: {
@@ -475,8 +497,8 @@ async function loadStudentDetailStats(
       };
     }>(token, OPS.studentStatsV2, {
       studentId,
-      filters: rangeFilters(range, academicYearIds, layers),
-      overAllPresenceFilter: rangeFilters(range, academicYearIds, layers),
+      filters: rangeFilters(range, year, layers),
+      overAllPresenceFilter: presenceFilters(range, year, layers),
       isAttendanceLayersEnabled: layers,
     }),
   );
@@ -527,12 +549,12 @@ export async function fetchStudentRecords(
   token: string,
   studentId: string,
   range: DateRange,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
   first = 100,
 ): Promise<AttendanceRecord[]> {
-  const yearKey = (academicYearIds ?? []).join(",");
+  const yearKey = year?.id ?? "none";
   return cached(`rec:${token.slice(-12)}:${studentId}:${yearKey}:${range.startDate}:${range.endDate}:${first}`, () =>
-    loadStudentRecords(token, studentId, range, academicYearIds, first),
+    loadStudentRecords(token, studentId, range, year, first),
   );
 }
 
@@ -540,10 +562,10 @@ async function loadStudentRecords(
   token: string,
   studentId: string,
   range: DateRange,
-  academicYearIds: string[] | null,
+  year: AcademicYear | null,
   first: number,
 ): Promise<AttendanceRecord[]> {
-  const layers = await detectLayersMode(token, studentId, range, academicYearIds);
+  const layers = await detectLayersMode(token, studentId, range, year);
   const data = requireData(
     await gql<{
       node?: {
@@ -552,7 +574,7 @@ async function loadStudentRecords(
     }>(token, OPS.studentRecords, {
       id: studentId,
       first,
-      filters: rangeFilters(range, academicYearIds, layers),
+      filters: rangeFilters(range, year, layers),
     }),
   );
   return data.node?.attendanceV2?.edges?.map((e) => e.node) ?? [];

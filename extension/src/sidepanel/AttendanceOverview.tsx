@@ -76,7 +76,7 @@ interface Props {
   onSelectStudent: (
     studentId: string,
     range: DateRange,
-    academicYearIds: string[] | null,
+    academicYear: AcademicYear | null,
   ) => void;
 }
 
@@ -99,7 +99,7 @@ export function AttendanceOverview({ auth, reloadKey, onSelectStudent }: Props) 
     isDateRange,
   );
   const [rows, setRows] = useState<StudentAttendanceRow[] | null>(null);
-  const [academicYearIds, setAcademicYearIds] = useState<string[] | null>(null);
+  const [academicYear, setAcademicYear] = useState<AcademicYear | null>(null);
   const [sort, setSort] = usePersistentState<SortState>(
     "sort",
     { key: "late", dir: "desc" },
@@ -140,7 +140,7 @@ export function AttendanceOverview({ auth, reloadKey, onSelectStudent }: Props) 
         auth.orgId ?? "",
       );
       const year = pickAcademicYear(years);
-      setAcademicYearIds(year ? [year.id] : null);
+      setAcademicYear(year);
       const students = await fetchYearGroupStudents(auth.token, yearGroupId);
       const data = await fetchAttendanceRows(
         auth.token,
@@ -148,7 +148,7 @@ export function AttendanceOverview({ auth, reloadKey, onSelectStudent }: Props) 
         students,
         range,
         categories,
-        year ? [year.id] : null,
+        year,
       );
       if (!cancelled) setRows(data);
     })().catch((e: unknown) => !cancelled && setError(String(e)));
@@ -234,7 +234,7 @@ export function AttendanceOverview({ auth, reloadKey, onSelectStudent }: Props) 
           sort={sort}
           onSort={setSort}
           onSelectStudent={(studentId) =>
-            onSelectStudent(studentId, range, academicYearIds)
+            onSelectStudent(studentId, range, academicYear)
           }
         />
       )}

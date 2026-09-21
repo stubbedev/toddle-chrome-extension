@@ -23,6 +23,7 @@ import {
   fetchStudentDetailStats,
   fetchStudentRecords,
   studentDisplayName,
+  type AcademicYear,
   type AttendanceRecord,
   type DateRange,
   type StudentDetailStats,
@@ -34,11 +35,11 @@ interface Props {
   auth: ToddleAuth;
   studentId: string;
   range: DateRange;
-  academicYearIds: string[] | null;
+  academicYear: AcademicYear | null;
   onBack: () => void;
 }
 
-export function StudentDetail({ auth, studentId, range, academicYearIds, onBack }: Props) {
+export function StudentDetail({ auth, studentId, range, academicYear, onBack }: Props) {
   const [stats, setStats] = useState<StudentDetailStats | null>(null);
   const [records, setRecords] = useState<AttendanceRecord[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -50,10 +51,10 @@ export function StudentDetail({ auth, studentId, range, academicYearIds, onBack 
     setRecords(null);
     (async () => {
       const [stats, records, statsError, recordsError] = await Promise.all([
-        fetchStudentDetailStats(auth.token, studentId, range, academicYearIds)
+        fetchStudentDetailStats(auth.token, studentId, range, academicYear)
           .then((v) => [v, null] as const)
           .catch((e: unknown) => [null, String(e)] as const),
-        fetchStudentRecords(auth.token, studentId, range, academicYearIds)
+        fetchStudentRecords(auth.token, studentId, range, academicYear)
           .then((v) => [v, null] as const)
           .catch((e: unknown) => [null, String(e)] as const),
       ]).then(([s, r]) => [s[0], r[0], s[1], r[1]] as const);
@@ -65,7 +66,7 @@ export function StudentDetail({ auth, studentId, range, academicYearIds, onBack 
     return () => {
       cancelled = true;
     };
-  }, [auth.token, studentId, range, academicYearIds]);
+  }, [auth.token, studentId, range, academicYear]);
 
   return (
     <div className="space-y-3">
