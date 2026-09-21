@@ -36,6 +36,12 @@
     build-schema.exec = ''
       python scripts/build_schema.py out/web/graphql graphql/schema.graphql
     '';
+    ext-build.exec = ''
+      cd extension && npm run build
+    '';
+    ext-dev.exec = ''
+      cd extension && npm run dev
+    '';
   };
 
   enterShell = ''
@@ -44,5 +50,6 @@
     echo "  extract-graphql <strings.jsonl> <outdir>    pull graphql docs from strings"
     echo "  extract-docnodes                            re-extract web graphql documents"
     echo "  build-schema                                rebuild graphql/schema.graphql"
+    echo "  ext-build / ext-dev                         build/watch the chrome extension"
   '';
 }

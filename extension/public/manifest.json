@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Toddle Educator Companion",
+  "version": "0.1.0",
+  "description": "Power tools for toddle educators: attendance, absences and overviews.",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Toggle Toddle Companion"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": ["sidePanel", "cookies", "storage", "tabs", "scripting"],
+  "host_permissions": [
+    "https://*.toddleapp.com/*",
+    "https://*.toddleapp.cn/*"
+  ]
+}
