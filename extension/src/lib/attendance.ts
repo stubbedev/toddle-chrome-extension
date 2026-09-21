@@ -70,32 +70,59 @@ function requireData<T>(res: GqlResponse<T>): T {
   return res.data;
 }
 
+// ---------- cache ----------
+
+const CACHE_TTL_MS = 5 * 60 * 1000;
+const REFERENCE_TTL_MS = 10 * 60 * 1000;
+const cache = new Map<string, { expires: number; value: unknown }>();
+
+/** Memoize a loader; failures are not cached. */
+async function cached<T>(
+  key: string,
+  loader: () => Promise<T>,
+  ttl: number = CACHE_TTL_MS,
+): Promise<T> {
+  const hit = cache.get(key);
+  const now = Date.now();
+  if (hit && hit.expires > now) return hit.value as T;
+  const value = await loader();
+  cache.set(key, { expires: now + ttl, value });
+  return value;
+}
+
+/** Bypass the cache (header refresh button). */
+export function clearAttendanceCache(): void {
+  cache.clear();
+}
+
 // ---------- year groups & students ----------
 
 export async function fetchYearGroups(
   token: string,
   orgId: string,
 ): Promise<YearGroup[]> {
-  const data = requireData(
-    await gql<{ node?: { yearGroups?: YearGroup[] } }>(
-      token,
-      OPS.yearGroups,
-      { id: orgId },
-    ),
+  return cached(`yg:${orgId}`, async () =>
+    requireData(
+      await gql<{ node?: { yearGroups?: YearGroup[] } }>(
+        token,
+        OPS.yearGroups,
+        { id: orgId },
+      ),
+    ).node?.yearGroups ?? [],
   );
-  return data.node?.yearGroups ?? [];
 }
 
 export async function fetchYearGroupStudents(
   token: string,
   yearGroupId: string,
 ): Promise<StudentRef[]> {
-  const data = requireData(
-    await gql<{
-      node?: { students?: { edges?: { node: StudentRef }[] } };
-    }>(token, OPS.yearGroupStudents, { id: yearGroupId }),
+  return cached(`ygs:${yearGroupId}`, async () =>
+    requireData(
+      await gql<{
+        node?: { students?: { edges?: { node: StudentRef }[] } };
+      }>(token, OPS.yearGroupStudents, { id: yearGroupId }),
+    ).node?.students?.edges?.map((e) => e.node) ?? [],
   );
-  return data.node?.students?.edges?.map((e) => e.node) ?? [];
 }
 
 // ---------- categories ----------
@@ -115,6 +142,13 @@ const ABSENT_RE = /absent/i;
  * categoryV2Ids filters for edgeInfo.categoryFilteredCount.
  */
 export async function fetchResolvedCategories(
+  token: string,
+  orgId: string,
+): Promise<ResolvedCategories> {
+  return cached(`cat:${orgId}`, () => loadResolvedCategories(token, orgId));
+}
+
+async function loadResolvedCategories(
   token: string,
   orgId: string,
 ): Promise<ResolvedCategories> {
@@ -152,6 +186,13 @@ export interface AcademicYear {
 }
 
 export async function fetchAcademicYears(
+  token: string,
+  orgId: string,
+): Promise<AcademicYear[]> {
+  return cached(`ay:${orgId}`, () => loadAcademicYears(token, orgId), REFERENCE_TTL_MS);
+}
+
+async function loadAcademicYears(
   token: string,
   orgId: string,
 ): Promise<AcademicYear[]> {
@@ -308,6 +349,21 @@ export async function fetchAttendanceRows(
   categories: ResolvedCategories,
   academicYearIds: string[] | null,
 ): Promise<StudentAttendanceRow[]> {
+  const tokenKey = token.slice(-12);
+  const yearKey = (academicYearIds ?? []).join(",");
+  const catKey = `${categories.lateIds.join(",")}|${categories.absentIds.join(",")}`;
+  return cached(`rows:${tokenKey}:${yearKey}:${catKey}:${range.startDate}:${range.endDate}`, () =>
+    loadAttendanceRows(token, students, range, categories, academicYearIds),
+  );
+}
+
+async function loadAttendanceRows(
+  token: string,
+  students: StudentRef[],
+  range: DateRange,
+  categories: ResolvedCategories,
+  academicYearIds: string[] | null,
+): Promise<StudentAttendanceRow[]> {
   if (!students.length) return [];
   const layers = await detectLayersMode(
     token,
@@ -375,6 +431,18 @@ export interface StudentDetailStats {
 }
 
 export async function fetchStudentDetailStats(
+  token: string,
+  studentId: string,
+  range: DateRange,
+  academicYearIds: string[] | null,
+): Promise<StudentDetailStats> {
+  const yearKey = (academicYearIds ?? []).join(",");
+  return cached(`sds:${token.slice(-12)}:${studentId}:${yearKey}:${range.startDate}:${range.endDate}`, () =>
+    loadStudentDetailStats(token, studentId, range, academicYearIds),
+  );
+}
+
+async function loadStudentDetailStats(
   token: string,
   studentId: string,
   range: DateRange,
@@ -461,6 +529,19 @@ export async function fetchStudentRecords(
   range: DateRange,
   academicYearIds: string[] | null,
   first = 100,
+): Promise<AttendanceRecord[]> {
+  const yearKey = (academicYearIds ?? []).join(",");
+  return cached(`rec:${token.slice(-12)}:${studentId}:${yearKey}:${range.startDate}:${range.endDate}:${first}`, () =>
+    loadStudentRecords(token, studentId, range, academicYearIds, first),
+  );
+}
+
+async function loadStudentRecords(
+  token: string,
+  studentId: string,
+  range: DateRange,
+  academicYearIds: string[] | null,
+  first: number,
 ): Promise<AttendanceRecord[]> {
   const layers = await detectLayersMode(token, studentId, range, academicYearIds);
   const data = requireData(

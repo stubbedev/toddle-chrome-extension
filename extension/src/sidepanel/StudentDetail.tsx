@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,6 +11,14 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   fetchStudentDetailStats,
   fetchStudentRecords,
@@ -163,56 +173,101 @@ function Stat(props: {
   );
 }
 
+const PAGE_SIZE = 10;
+
 function RecordsCard(props: { records: AttendanceRecord[] }) {
   const { records } = props;
-  const sorted = [...records].sort((a, b) => b.date.localeCompare(a.date));
+  const [page, setPage] = useState(0);
+  useEffect(() => {
+    setPage(0);
+  }, [records]);
+  const sorted = useMemo(
+    () => [...records].sort((a, b) => b.date.localeCompare(a.date)),
+    [records],
+  );
+  const pageCount = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const safePage = Math.min(page, pageCount - 1);
+  const slice = sorted.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
   return (
     <Card>
       <CardHeader>
         <CardTitle className="text-sm">Records ({sorted.length})</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-1.5">
-        {sorted.slice(0, 40).map((record, index) => (
-          <div
-            key={`${record.date}-${record.period?.label ?? "day"}-${index}`}
-            className="flex items-center justify-between gap-2 text-xs"
-          >
-            <span className="text-muted-foreground">{record.date}</span>
-            <span className="flex items-center gap-1 truncate">
-              {record.value && (
-                <span
-                  className="inline-block size-2 shrink-0 rounded-full"
-                  style={{ backgroundColor: record.value.color || undefined }}
-                  aria-hidden
-                />
-              )}
-              <span className="truncate">
-                {record.value?.label ?? "—"}
-                {record.course && (
-                  <span className="text-muted-foreground">
-                    {" · "}
-                    {record.course.title}
+      <CardContent className="px-2 pb-3">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="h-8 text-xs">Date</TableHead>
+              <TableHead className="h-8 text-xs">Status</TableHead>
+              <TableHead className="h-8 text-xs">Course</TableHead>
+              <TableHead className="h-8 text-xs">Period</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {slice.map((record, index) => (
+              <TableRow
+                key={`${record.date}-${record.period?.label ?? "day"}-${index}`}
+                title={record.remark ?? undefined}
+              >
+                <TableCell className="whitespace-nowrap py-1.5 pr-2 text-xs text-muted-foreground">
+                  {record.date}
+                </TableCell>
+                <TableCell className="py-1.5 pr-2 text-xs">
+                  <span className="inline-flex items-center gap-1.5">
+                    {record.value && (
+                      <span
+                        className="inline-block size-2 shrink-0 rounded-full"
+                        style={{
+                          backgroundColor: record.value.color || undefined,
+                        }}
+                        aria-hidden
+                      />
+                    )}
+                    <span className="truncate">{record.value?.label ?? "—"}</span>
                   </span>
-                )}
-                {record.period && (
-                  <span className="text-muted-foreground">
-                    {" · "}
-                    {record.period.label}
-                  </span>
-                )}
-              </span>
+                </TableCell>
+                <TableCell className="max-w-28 truncate py-1.5 pr-2 text-xs text-muted-foreground">
+                  {record.course?.title ?? "—"}
+                </TableCell>
+                <TableCell className="whitespace-nowrap py-1.5 text-xs text-muted-foreground">
+                  {record.period?.label ?? "—"}
+                </TableCell>
+              </TableRow>
+            ))}
+            {sorted.length === 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={4}
+                  className="py-4 text-center text-xs text-muted-foreground"
+                >
+                  No attendance records in this period
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        {pageCount > 1 && (
+          <div className="mt-2 flex items-center justify-between">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={safePage === 0}
+              onClick={() => setPage(safePage - 1)}
+            >
+              <ChevronLeft className="size-4" /> Prev
+            </Button>
+            <span className="text-xs text-muted-foreground">
+              {safePage + 1} / {pageCount}
             </span>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={safePage >= pageCount - 1}
+              onClick={() => setPage(safePage + 1)}
+            >
+              Next <ChevronRight className="size-4" />
+            </Button>
           </div>
-        ))}
-        {sorted.length === 0 && (
-          <p className="text-xs text-muted-foreground">
-            No attendance records in this period
-          </p>
-        )}
-        {sorted.length > 40 && (
-          <p className="text-[10px] text-muted-foreground">
-            Showing latest 40 of {sorted.length}
-          </p>
         )}
       </CardContent>
     </Card>

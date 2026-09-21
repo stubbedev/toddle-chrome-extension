@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getToddleAuth, TODDLE_LOGIN_URL, type ToddleAuth } from "@/lib/auth";
-import type { DateRange } from "@/lib/attendance";
+import { clearAttendanceCache, type DateRange } from "@/lib/attendance";
 import {
   AttendanceOverview,
   RefreshButton,
@@ -28,8 +28,11 @@ type View =
 export function App() {
   const [state, setState] = useState<AuthState>({ status: "checking" });
   const [view, setView] = useState<View>({ name: "overview" });
+  const [reloadKey, setReloadKey] = useState(0);
 
   const refresh = async () => {
+    clearAttendanceCache();
+    setReloadKey((k) => k + 1);
     setState({ status: "checking" });
     const auth = await getToddleAuth();
     setState(auth ? { status: "logged-in", auth } : { status: "logged-out" });
@@ -60,6 +63,7 @@ export function App() {
         (view.name === "overview" ? (
           <AttendanceOverview
             auth={state.auth}
+            reloadKey={reloadKey}
             onSelectStudent={(studentId, range, academicYearIds) =>
               setView({ name: "student", studentId, range, academicYearIds })
             }

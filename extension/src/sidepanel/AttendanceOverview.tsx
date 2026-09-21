@@ -1,5 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, CalendarDays, RefreshCw } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowUp,
+  ArrowUpDown,
+  CalendarDays,
+  RefreshCw,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,7 +22,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -41,13 +47,37 @@ import {
   type StudentAttendanceRow,
   type YearGroup,
 } from "@/lib/attendance";
+import { isRecord, usePersistentState } from "@/lib/persist";
 import type { ToddleAuth } from "@/lib/auth";
 
-type SortKey = "name" | "late" | "absent" | "presence";
+const SORT_KEYS = ["name", "late", "absent", "presence"] as const;
+
+type SortKey = (typeof SORT_KEYS)[number];
+
+interface SortState {
+  key: SortKey;
+  dir: "asc" | "desc";
+}
+
+const isDateRange = (value: unknown): value is DateRange =>
+  isRecord(value) &&
+  typeof value.startDate === "string" &&
+  typeof value.endDate === "string";
+
+const isSortState = (value: unknown): value is SortState =>
+  isRecord(value) &&
+  typeof value.key === "string" &&
+  (SORT_KEYS as readonly string[]).includes(value.key) &&
+  (value.dir === "asc" || value.dir === "desc");
 
 interface Props {
   auth: ToddleAuth;
-  onSelectStudent: (studentId: string, range: DateRange, academicYearIds: string[] | null) => void;
+  reloadKey: number;
+  onSelectStudent: (
+    studentId: string,
+    range: DateRange,
+    academicYearIds: string[] | null,
+  ) => void;
 }
 
 function defaultRange(): DateRange {
@@ -56,13 +86,25 @@ function defaultRange(): DateRange {
   return { startDate: toDateInput(start), endDate: toDateInput(now) };
 }
 
-export function AttendanceOverview({ auth, onSelectStudent }: Props) {
+export function AttendanceOverview({ auth, reloadKey, onSelectStudent }: Props) {
   const [yearGroups, setYearGroups] = useState<YearGroup[] | null>(null);
-  const [yearGroupId, setYearGroupId] = useState<string>("");
-  const [range, setRange] = useState<DateRange>(defaultRange);
+  const [yearGroupId, setYearGroupId] = usePersistentState(
+    "grade",
+    "",
+    (value): value is string => typeof value === "string",
+  );
+  const [range, setRange] = usePersistentState(
+    "range",
+    defaultRange(),
+    isDateRange,
+  );
   const [rows, setRows] = useState<StudentAttendanceRow[] | null>(null);
   const [academicYearIds, setAcademicYearIds] = useState<string[] | null>(null);
-  const [sortKey, setSortKey] = useState<SortKey>("late");
+  const [sort, setSort] = usePersistentState<SortState>(
+    "sort",
+    { key: "late", dir: "desc" },
+    isSortState,
+  );
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -73,13 +115,15 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
       .then((groups) => {
         if (cancelled) return;
         setYearGroups(groups);
-        setYearGroupId(groups[0]?.id ?? "");
+        setYearGroupId((current) =>
+          groups.some((yg) => yg.id === current) ? current : groups[0]?.id ?? "",
+        );
       })
       .catch((e: unknown) => !cancelled && setError(String(e)));
     return () => {
       cancelled = true;
     };
-  }, [auth.token, auth.orgId]);
+  }, [auth.token, auth.orgId, setYearGroupId]);
 
   useEffect(() => {
     if (!yearGroupId) return;
@@ -91,7 +135,10 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
         auth.token,
         auth.orgId ?? "",
       );
-      const years: AcademicYear[] = await fetchAcademicYears(auth.token, auth.orgId ?? "");
+      const years: AcademicYear[] = await fetchAcademicYears(
+        auth.token,
+        auth.orgId ?? "",
+      );
       const year = pickAcademicYear(years);
       setAcademicYearIds(year ? [year.id] : null);
       const students = await fetchYearGroupStudents(auth.token, yearGroupId);
@@ -107,21 +154,68 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [auth.token, auth.orgId, yearGroupId, range]);
+  }, [auth.token, auth.orgId, yearGroupId, range, reloadKey]);
 
-  const sorted = useMemo(() => sortRows(rows ?? [], sortKey), [rows, sortKey]);
+  const sorted = useMemo(() => sortRows(rows ?? [], sort), [rows, sort]);
+  const selectedGroup =
+    yearGroups?.find((yg) => yg.id === yearGroupId) ?? null;
+  const selectedLabel = selectedGroup
+    ? [selectedGroup.grade?.name, selectedGroup.name].filter(Boolean).join(" · ")
+    : null;
 
   return (
     <div className="space-y-3">
-      <Filters
-        yearGroups={yearGroups}
-        yearGroupId={yearGroupId}
-        onYearGroupChange={setYearGroupId}
-        range={range}
-        onRangeChange={setRange}
-        sortKey={sortKey}
-        onSortKeyChange={setSortKey}
-      />
+      <Card>
+        <CardContent className="space-y-2.5 pt-4">
+          <div className="space-y-1">
+            <Label htmlFor="grade">Grade level</Label>
+            <Select
+              value={yearGroupId}
+              onValueChange={(id) => id && setYearGroupId(id)}
+              disabled={!yearGroups}
+            >
+              <SelectTrigger id="grade" className="w-full">
+                <span className="truncate">
+                  {selectedLabel ?? (yearGroups ? "Select grade" : "Loading…")}
+                </span>
+              </SelectTrigger>
+              <SelectContent>
+                {(yearGroups ?? []).map((yg) => (
+                  <SelectItem key={yg.id} value={yg.id}>
+                    {[yg.grade?.name, yg.name].filter(Boolean).join(" · ")}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-1">
+              <Label htmlFor="from">
+                <CalendarDays className="mr-1 inline size-3" /> From
+              </Label>
+              <Input
+                id="from"
+                type="date"
+                value={range.startDate}
+                onChange={(e) =>
+                  setRange((r) => ({ ...r, startDate: e.target.value }))
+                }
+              />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="to">To</Label>
+              <Input
+                id="to"
+                type="date"
+                value={range.endDate}
+                onChange={(e) =>
+                  setRange((r) => ({ ...r, endDate: e.target.value }))
+                }
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
       {error && (
         <Card>
           <CardHeader>
@@ -136,103 +230,14 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
       {rows !== null && (
         <StudentTable
           rows={sorted}
+          sort={sort}
+          onSort={setSort}
           onSelectStudent={(studentId) =>
             onSelectStudent(studentId, range, academicYearIds)
           }
         />
       )}
     </div>
-  );
-}
-
-function Filters(props: {
-  yearGroups: YearGroup[] | null;
-  yearGroupId: string;
-  onYearGroupChange: (id: string) => void;
-  range: DateRange;
-  onRangeChange: (range: DateRange) => void;
-  sortKey: SortKey;
-  onSortKeyChange: (key: SortKey) => void;
-}) {
-  const {
-    yearGroups,
-    yearGroupId,
-    onYearGroupChange,
-    range,
-    onRangeChange,
-    sortKey,
-    onSortKeyChange,
-  } = props;
-  const setRangePart = useCallback(
-    (part: keyof DateRange, value: string) =>
-      onRangeChange({ ...range, [part]: value }),
-    [range, onRangeChange],
-  );
-  return (
-    <Card>
-      <CardContent className="space-y-2.5 pt-4">
-        <div className="space-y-1">
-          <Label htmlFor="grade">Grade level</Label>
-          <Select
-            value={yearGroupId}
-            onValueChange={(id) => id && onYearGroupChange(id)}
-            disabled={!yearGroups}
-          >
-            <SelectTrigger id="grade" className="w-full">
-              <SelectValue
-                placeholder={yearGroups ? "Select grade" : "Loading…"}
-              />
-            </SelectTrigger>
-            <SelectContent>
-              {(yearGroups ?? []).map((yg) => (
-                <SelectItem key={yg.id} value={yg.id}>
-                  {[yg.grade?.name, yg.name].filter(Boolean).join(" · ")}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="space-y-1">
-            <Label htmlFor="from">
-              <CalendarDays className="mr-1 inline size-3" /> From
-            </Label>
-            <Input
-              id="from"
-              type="date"
-              value={range.startDate}
-              onChange={(e) => setRangePart("startDate", e.target.value)}
-            />
-          </div>
-          <div className="space-y-1">
-            <Label htmlFor="to">To</Label>
-            <Input
-              id="to"
-              type="date"
-              value={range.endDate}
-              onChange={(e) => setRangePart("endDate", e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="space-y-1">
-          <Label>Sort by</Label>
-          <Select
-            value={sortKey}
-            onValueChange={(v) => v && onSortKeyChange(v as SortKey)}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="late">Late (most first)</SelectItem>
-              <SelectItem value="absent">Absences (most first)</SelectItem>
-              <SelectItem value="presence">Presence % (lowest first)</SelectItem>
-              <SelectItem value="name">Name</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
 
@@ -248,41 +253,107 @@ function TableSkeleton() {
   );
 }
 
-function sortRows(rows: StudentAttendanceRow[], key: SortKey) {
-  const copy = [...rows];
-  copy.sort((a, b) => {
-    switch (key) {
+function sortRows(rows: StudentAttendanceRow[], sort: SortState) {
+  const dir = sort.dir === "asc" ? 1 : -1;
+  const value = (row: StudentAttendanceRow): number | string => {
+    switch (sort.key) {
       case "name":
-        return studentDisplayName(a.student).localeCompare(
-          studentDisplayName(b.student),
-        );
+        return studentDisplayName(row.student);
       case "absent":
-        return (b.absentCount ?? 0) - (a.absentCount ?? 0);
+        return row.absentCount ?? 0;
       case "presence":
-        return (a.presencePercentage ?? 101) - (b.presencePercentage ?? 101);
+        return row.presencePercentage ?? 0;
       case "late":
       default:
-        return (b.lateCount ?? 0) - (a.lateCount ?? 0);
+        return row.lateCount ?? 0;
     }
+  };
+  const copy = [...rows].sort((a, b) => {
+    const va = value(a);
+    const vb = value(b);
+    if (typeof va === "string" || typeof vb === "string") {
+      return String(va).localeCompare(String(vb)) * dir;
+    }
+    return (va - vb) * dir;
   });
   return copy;
 }
 
+function SortableHead(props: {
+  label: string;
+  column: SortKey;
+  sort: SortState;
+  onSort: (sort: SortState) => void;
+  className?: string;
+}) {
+  const { label, column, sort, onSort, className } = props;
+  const active = sort.key === column;
+  const Icon = !active
+    ? ArrowUpDown
+    : sort.dir === "desc"
+      ? ArrowDown
+      : ArrowUp;
+  const toggle = () => {
+    if (active) {
+      onSort({ key: column, dir: sort.dir === "asc" ? "desc" : "asc" });
+    } else {
+      onSort({ key: column, dir: column === "name" ? "asc" : "desc" });
+    }
+  };
+  return (
+    <TableHead className={`h-8 text-xs ${className ?? ""}`}>
+      <button
+        type="button"
+        className="inline-flex items-center gap-1 hover:text-foreground"
+        onClick={toggle}
+      >
+        {label}
+        <Icon className="size-3" />
+      </button>
+    </TableHead>
+  );
+}
+
 function StudentTable(props: {
   rows: StudentAttendanceRow[];
+  sort: SortState;
+  onSort: (sort: SortState) => void;
   onSelectStudent: (studentId: string) => void;
 }) {
-  const { rows, onSelectStudent } = props;
+  const { rows, sort, onSort, onSelectStudent } = props;
   return (
     <Card>
       <CardContent className="px-2 pb-2 pt-3">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="h-8 text-xs">Student</TableHead>
-              <TableHead className="h-8 text-right text-xs">Late</TableHead>
-              <TableHead className="h-8 text-right text-xs">Absent</TableHead>
-              <TableHead className="h-8 text-right text-xs">Pres.</TableHead>
+              <SortableHead
+                label="Student"
+                column="name"
+                sort={sort}
+                onSort={onSort}
+              />
+              <SortableHead
+                label="Late"
+                column="late"
+                sort={sort}
+                onSort={onSort}
+                className="text-right"
+              />
+              <SortableHead
+                label="Absent"
+                column="absent"
+                sort={sort}
+                onSort={onSort}
+                className="text-right"
+              />
+              <SortableHead
+                label="Pres."
+                column="presence"
+                sort={sort}
+                onSort={onSort}
+                className="text-right"
+              />
             </TableRow>
           </TableHeader>
           <TableBody>
