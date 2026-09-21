@@ -30,32 +30,44 @@ export const OPS = {
 } as const;
 
 /**
- * Per-student stats batched with aliases. Selections are verbatim from the
- * web client: `edgeInfo` from getStudentAttendanceRecord, `presenceOverview`
- * from getStudentOverallPresenceCount.
+ * Per-student stats batched with aliases. Mirrors the web client's
+ * statisticsV2/overallPresenceCount ops: presence lives in presenceOverview
+ * (classic orgs) or attendanceMetric(type: OVERALL) (attendance-layers
+ * orgs) — select both, coalesce client-side. Late/absent percentages come
+ * from statistics.categorySummary.percentageItems, exactly as the layered
+ * client reads them.
  */
 const BATCH_SELECTION = `
-        late: attendanceV2(filters: $lateFilters) {
-          edgeInfo {
-            totalCount
-            categoryFilteredCount
-            percentage
-          }
-        }
-        absent: attendanceV2(filters: $absentFilters) {
-          edgeInfo {
-            totalCount
-            categoryFilteredCount
-            percentage
-          }
-        }
-        overview: attendanceV2(filters: $filters) {
+        overallPresence: attendanceV2(filters: $overAllPresenceFilter) {
           presenceOverview {
             totalCount
             presencePercentage
             absencePercentage
             presenceNumber
             absenceNumber
+          }
+          attendanceMetric(type: OVERALL) {
+            totalCount
+            presencePercentage
+            absencePercentage
+            presenceNumber
+            absenceNumber
+          }
+        }
+        stats: attendanceV2(filters: $filters) {
+          edgeInfo {
+            totalCount
+          }
+          statistics {
+            categorySummary {
+              percentageItems {
+                percentage
+                category {
+                  id
+                  label
+                }
+              }
+            }
           }
         }`;
 
@@ -68,7 +80,7 @@ ${BATCH_SELECTION}
       }
     }`)
     .join("\n");
-  return `query companionBatchStats($filters: StudentAttendanceFilters, $lateFilters: StudentAttendanceFilters, $absentFilters: StudentAttendanceFilters) {
+  return `query companionBatchStats($filters: StudentAttendanceFilters, $overAllPresenceFilter: StudentAttendanceFilters) {
 ${selections}
 }`;
 }

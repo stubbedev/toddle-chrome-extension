@@ -25,39 +25,38 @@ export interface DateRange {
 }
 
 /**
- * StudentAttendanceFilters with the full key set the web client sends —
- * the server resolvers destructure these fields unconditionally.
+ * StudentAttendanceFilters as the web client builds it. Only keys the client
+ * actually sends — invented keys (e.g. periodIds) fail variable coercion.
  */
 function rangeFilters(
   range: DateRange,
   academicYearIds: string[] | null,
+  layers: boolean,
 ): Record<string, unknown> {
   return {
     startDate: range.startDate,
     endDate: range.endDate,
     isPeriodByAttendance: false,
     courseIds: null,
-    periodIds: null,
     showFullDateAttendance: true,
     academicYearIds,
     curriculumProgramIds: null,
-    onlyHomeroomAttendance: false,
+    ...(layers ? { layerTypes: ["DERIVED"] } : {}),
   };
 }
 
-function withCategoryIds(
+/** Minimal filter the client passes as overAllPresenceFilter. */
+function presenceFilters(
   range: DateRange,
   academicYearIds: string[] | null,
-  categoryV2Ids: string[],
+  layers: boolean,
 ): Record<string, unknown> {
-  // the web client sends exactly one of these keys depending on feature
-  // flags (categoryIds vs categoryV2Ids vs optionIds) — the resolvers read
-  // their flag's key and ignore the rest, so send all three to be flag-proof
   return {
-    ...rangeFilters(range, academicYearIds),
-    categoryIds: categoryV2Ids,
-    categoryV2Ids,
-    optionIds: categoryV2Ids,
+    startDate: range.startDate,
+    endDate: range.endDate,
+    academicYearIds,
+    curriculumProgramIds: null,
+    ...(layers ? { layerTypes: ["DERIVED"] } : {}),
   };
 }
 
@@ -184,6 +183,62 @@ export function pickAcademicYear(years: AcademicYear[]): AcademicYear | null {
   );
 }
 
+// ---------- attendance-layers mode probe ----------
+
+/**
+ * Orgs with "attendance layers" skip presenceOverview and compute
+ * attendanceMetric(type: OVERALL) instead (the web client branches on the
+ * isAttendanceLayersEnabled flag). Probe once per session: classic first,
+ * then layers (which also adds layerTypes: ["DERIVED"] to filters).
+ */
+let cachedLayersMode: boolean | null = null;
+
+const MODE_PROBE_QUERY = /* GraphQL */ `
+  query companionModeProbe($id: ID!, $f: StudentAttendanceFilters) {
+    node(id: $id, type: STUDENT) {
+      ... on Student {
+        attendanceV2(filters: $f) {
+          presenceOverview {
+            totalCount
+          }
+          attendanceMetric(type: OVERALL) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+`;
+
+async function detectLayersMode(
+  token: string,
+  studentId: string,
+  range: DateRange,
+  academicYearIds: string[] | null,
+): Promise<boolean> {
+  if (cachedLayersMode !== null) return cachedLayersMode;
+  for (const layers of [false, true]) {
+    try {
+      const res = await gql<{ node?: { attendanceV2?: {
+        presenceOverview?: { totalCount: number } | null;
+        attendanceMetric?: { totalCount: number } | null;
+      } } }>(token, MODE_PROBE_QUERY, {
+        id: studentId,
+        f: presenceFilters(range, academicYearIds, layers),
+      });
+      const v2 = res.data?.node?.attendanceV2;
+      if (v2 && (v2.presenceOverview || v2.attendanceMetric)) {
+        cachedLayersMode = layers;
+        return layers;
+      }
+    } catch {
+      // try next variant
+    }
+  }
+  cachedLayersMode = false;
+  return false;
+}
+
 // ---------- batched stats ----------
 
 export interface StudentAttendanceRow {
@@ -199,25 +254,31 @@ export interface StudentAttendanceRow {
   absentPercentage: number | null;
 }
 
-interface EdgeInfo {
+interface PresenceBlock {
   totalCount: number;
-  categoryFilteredCount: number;
-  percentage: number;
-}
-
-interface PresenceOverview {
-  totalCount: number;
-  presenceNumber: number;
-  absenceNumber: number;
   presencePercentage: string;
   absencePercentage: string;
+  presenceNumber: number;
+  absenceNumber: number;
 }
 
 interface BatchStudentNode {
   id: string;
-  late: { edgeInfo: EdgeInfo } | null;
-  absent: { edgeInfo: EdgeInfo } | null;
-  overview: { presenceOverview: PresenceOverview } | null;
+  overallPresence: {
+    presenceOverview: PresenceBlock | null;
+    attendanceMetric: PresenceBlock | null;
+  } | null;
+  stats: {
+    edgeInfo: { totalCount: number };
+    statistics?: {
+      categorySummary?: {
+        percentageItems?: {
+          percentage: number;
+          category: { id: string; label: string };
+        }[];
+      };
+    };
+  } | null;
 }
 
 const BATCH_CHUNK = 40;
@@ -229,6 +290,13 @@ export async function fetchAttendanceRows(
   categories: ResolvedCategories,
   academicYearIds: string[] | null,
 ): Promise<StudentAttendanceRow[]> {
+  if (!students.length) return [];
+  const layers = await detectLayersMode(
+    token,
+    students[0].id,
+    range,
+    academicYearIds,
+  );
   const rows: StudentAttendanceRow[] = [];
   for (let offset = 0; offset < students.length; offset += BATCH_CHUNK) {
     const chunk = students.slice(offset, offset + BATCH_CHUNK);
@@ -236,26 +304,40 @@ export async function fetchAttendanceRows(
       token,
       buildBatchStatsQuery(chunk.map((s) => s.id)),
       {
-        filters: rangeFilters(range, academicYearIds),
-        lateFilters: withCategoryIds(range, academicYearIds, categories.lateIds),
-        absentFilters: withCategoryIds(range, academicYearIds, categories.absentIds),
+        filters: rangeFilters(range, academicYearIds, layers),
+        overAllPresenceFilter: presenceFilters(range, academicYearIds, layers),
       },
     );
     const data = res.data ?? {};
     chunk.forEach((student, index) => {
       const node = data[`s${index}`];
-      const overview = node?.overview?.presenceOverview;
+      const presence =
+        node?.overallPresence?.presenceOverview ??
+        node?.overallPresence?.attendanceMetric;
+      const items =
+        node?.stats?.statistics?.categorySummary?.percentageItems ?? [];
+      const catPct = (ids: string[]): number | null => {
+        const item = items.find((i) => ids.includes(i.category.id));
+        return item ? item.percentage : null;
+      };
+      const total = presence?.totalCount ?? node?.stats?.edgeInfo?.totalCount ?? null;
+      const derived = (pct: number | null): number | null =>
+        pct !== null && total !== null
+          ? Math.round((pct / 100) * total)
+          : null;
+      const latePct = catPct(categories.lateIds);
+      const absentPct = catPct(categories.absentIds);
       rows.push({
         student,
-        totalSessions: overview?.totalCount ?? null,
-        presenceNumber: overview?.presenceNumber ?? null,
-        absenceNumber: overview?.absenceNumber ?? null,
-        presencePercentage: num(overview?.presencePercentage),
-        absencePercentage: num(overview?.absencePercentage),
-        lateCount: node?.late?.edgeInfo?.categoryFilteredCount ?? null,
-        latePercentage: node?.late?.edgeInfo?.percentage ?? null,
-        absentCount: node?.absent?.edgeInfo?.categoryFilteredCount ?? null,
-        absentPercentage: node?.absent?.edgeInfo?.percentage ?? null,
+        totalSessions: total,
+        presenceNumber: presence?.presenceNumber ?? null,
+        absenceNumber: presence?.absenceNumber ?? null,
+        presencePercentage: num(presence?.presencePercentage),
+        absencePercentage: num(presence?.absencePercentage),
+        lateCount: derived(latePct),
+        latePercentage: latePct,
+        absentCount: derived(absentPct),
+        absentPercentage: absentPct,
       });
     });
   }
@@ -280,6 +362,7 @@ export async function fetchStudentDetailStats(
   range: DateRange,
   academicYearIds: string[] | null,
 ): Promise<StudentDetailStats> {
+  const layers = await detectLayersMode(token, studentId, range, academicYearIds);
   const data = requireData(
     await gql<{
       node?: {
@@ -288,7 +371,8 @@ export async function fetchStudentDetailStats(
         lastName: string | null;
         preferredName: string | null;
         overallPresence?: {
-          presenceOverview?: PresenceOverview;
+          presenceOverview?: PresenceBlock | null;
+          attendanceMetric?: PresenceBlock | null;
         };
         attendanceV2?: {
           statistics?: {
@@ -303,13 +387,15 @@ export async function fetchStudentDetailStats(
       };
     }>(token, OPS.studentStatsV2, {
       studentId,
-      filters: rangeFilters(range, academicYearIds),
-      overAllPresenceFilter: rangeFilters(range, academicYearIds),
-      isAttendanceLayersEnabled: false,
+      filters: rangeFilters(range, academicYearIds, layers),
+      overAllPresenceFilter: presenceFilters(range, academicYearIds, layers),
+      isAttendanceLayersEnabled: layers,
     }),
   );
   const node = data.node;
-  const overview = node?.overallPresence?.presenceOverview;
+  const overview =
+    node?.overallPresence?.presenceOverview ??
+    node?.overallPresence?.attendanceMetric;
   const stats = node?.attendanceV2?.statistics;
   return {
     student: {
@@ -356,6 +442,7 @@ export async function fetchStudentRecords(
   academicYearIds: string[] | null,
   first = 100,
 ): Promise<AttendanceRecord[]> {
+  const layers = await detectLayersMode(token, studentId, range, academicYearIds);
   const data = requireData(
     await gql<{
       node?: {
@@ -364,7 +451,7 @@ export async function fetchStudentRecords(
     }>(token, OPS.studentRecords, {
       id: studentId,
       first,
-      filters: rangeFilters(range, academicYearIds),
+      filters: rangeFilters(range, academicYearIds, layers),
     }),
   );
   return data.node?.attendanceV2?.edges?.map((e) => e.node) ?? [];
