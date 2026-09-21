@@ -38,16 +38,20 @@ export function StudentDetail({ auth, studentId, range, academicYearIds, onBack 
     setError(null);
     setStats(null);
     setRecords(null);
-    Promise.all([
-      fetchStudentDetailStats(auth.token, studentId, range, academicYearIds),
-      fetchStudentRecords(auth.token, studentId, range, academicYearIds),
-    ])
-      .then(([s, r]) => {
-        if (cancelled) return;
-        setStats(s);
-        setRecords(r);
-      })
-      .catch((e: unknown) => !cancelled && setError(String(e)));
+    (async () => {
+      const [stats, records, statsError, recordsError] = await Promise.all([
+        fetchStudentDetailStats(auth.token, studentId, range, academicYearIds)
+          .then((v) => [v, null] as const)
+          .catch((e: unknown) => [null, String(e)] as const),
+        fetchStudentRecords(auth.token, studentId, range, academicYearIds)
+          .then((v) => [v, null] as const)
+          .catch((e: unknown) => [null, String(e)] as const),
+      ]).then(([s, r]) => [s[0], r[0], s[1], r[1]] as const);
+      if (cancelled) return;
+      setStats(stats);
+      setRecords(records);
+      setError(statsError ?? recordsError);
+    })();
     return () => {
       cancelled = true;
     };

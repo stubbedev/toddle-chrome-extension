@@ -37,10 +37,10 @@ function rangeFilters(
     startDate: range.startDate,
     endDate: range.endDate,
     isPeriodByAttendance: false,
-    courseIds: null,
+    courseIds: [],
     showFullDateAttendance: true,
     academicYearIds,
-    curriculumProgramIds: null,
+    curriculumProgramIds: [],
     ...(layers ? { layerTypes: ["DERIVED"] } : {}),
   };
 }
@@ -55,7 +55,7 @@ function presenceFilters(
     startDate: range.startDate,
     endDate: range.endDate,
     academicYearIds,
-    curriculumProgramIds: null,
+    curriculumProgramIds: [],
     ...(layers ? { layerTypes: ["DERIVED"] } : {}),
   };
 }
