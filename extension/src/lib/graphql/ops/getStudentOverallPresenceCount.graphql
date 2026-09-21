@@ -2,7 +2,7 @@ query getStudentOverallPresenceCount($studentId: ID!, $overAllPresenceFilter: St
   node(id: $studentId, type: STUDENT) {
     id
     ... on Student {
-      attendanceV2(filters: $overAllPresenceFilter) {
+      overallPresence: attendanceV2(filters: $overAllPresenceFilter) {
         presenceOverview @skip(if: $isAttendanceLayersEnabled) {
           totalCount
           presencePercentage

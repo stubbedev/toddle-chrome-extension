@@ -66,6 +66,37 @@ def main() -> int:
                     stack.append(child)
         return out
 
+    def auto_alias(definition):
+        """Alias duplicate fields with differing arguments at the same level.
+
+        The web client composes these documents at runtime and aliases such
+        fields (e.g. hom:/att:); a statically-exported copy must do the same
+        or the server rejects it with a field-conflict validation error.
+        """
+        stack = [definition]
+        while stack:
+            cur = stack.pop()
+            if not isinstance(cur, dict):
+                continue
+            ss = cur.get("selectionSet")
+            if ss:
+                groups = {}
+                for sel in ss.get("selections", []):
+                    if sel.get("kind") == "Field":
+                        key = (sel.get("alias") or {}).get("value") or sel["name"]["value"]
+                        groups.setdefault(key, []).append(sel)
+                for key, sels in groups.items():
+                    if len(sels) < 2:
+                        continue
+                    if len({json.dumps(s.get("arguments"), sort_keys=True) for s in sels}) < 2:
+                        continue
+                    for n, sel in enumerate(sels[1:], start=2):
+                        sel["alias"] = {"kind": "Name", "value": f"{key}__{n}"}
+                stack.extend(ss.get("selections", []))
+            for child_key in ("arguments", "definitions"):
+                for child in cur.get(child_key) or []:
+                    stack.append(child)
+
     def declared_vars(op):
         return {
             vd["variable"]["name"]["value"]
@@ -97,6 +128,9 @@ def main() -> int:
             closure = {}
             declared = declared_vars(d)
             collect_fragments(d, closure, doc.get("own_fragments", {}), declared)
+            auto_alias(d)
+            for frag in closure.values():
+                auto_alias(frag)
             text = sdl(d) + "\n" + "\n\n".join(sdl(f) for f in closure.values())
             parse(text)  # raises if spreads are unresolved or syntax is off
             path = outdir / f"{name}.graphql"
@@ -178,7 +212,7 @@ def print_selection(sel, indent):
     pad = "  " * indent
     k = sel["kind"]
     if k == "Field":
-        alias = name_of(sel.get("alias")) if sel.get("alias") else None
+        alias = (sel.get("alias") or {}).get("value")
         base = f"{alias}: {name_of(sel)}" if alias else name_of(sel)
         base += print_args(sel.get("arguments") or [])
         for d in sel.get("directives") or []:

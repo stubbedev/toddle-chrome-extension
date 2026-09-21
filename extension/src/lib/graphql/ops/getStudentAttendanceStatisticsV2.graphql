@@ -4,7 +4,7 @@ query getStudentAttendanceStatisticsV2($studentId: ID!, $filters: StudentAttenda
     ... on Student {
       id
       ...studentNameFields
-      attendanceV2(filters: $overAllPresenceFilter) {
+      overallPresence: attendanceV2(filters: $overAllPresenceFilter) {
         presenceOverview @skip(if: $isAttendanceLayersEnabled) {
           totalCount
           presencePercentage

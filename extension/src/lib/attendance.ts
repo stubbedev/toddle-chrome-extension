@@ -50,7 +50,15 @@ function withCategoryIds(
   academicYearIds: string[] | null,
   categoryV2Ids: string[],
 ): Record<string, unknown> {
-  return { ...rangeFilters(range, academicYearIds), categoryV2Ids };
+  // the web client sends exactly one of these keys depending on feature
+  // flags (categoryIds vs categoryV2Ids vs optionIds) — the resolvers read
+  // their flag's key and ignore the rest, so send all three to be flag-proof
+  return {
+    ...rangeFilters(range, academicYearIds),
+    categoryIds: categoryV2Ids,
+    categoryV2Ids,
+    optionIds: categoryV2Ids,
+  };
 }
 
 function requireData<T>(res: GqlResponse<T>): T {
@@ -279,8 +287,10 @@ export async function fetchStudentDetailStats(
         middleName: string | null;
         lastName: string | null;
         preferredName: string | null;
-        attendanceV2?: {
+        overallPresence?: {
           presenceOverview?: PresenceOverview;
+        };
+        attendanceV2?: {
           statistics?: {
             categorySummary?: {
               percentageItems?: {
@@ -289,7 +299,7 @@ export async function fetchStudentDetailStats(
               }[];
             };
           };
-        }[];
+        };
       };
     }>(token, OPS.studentStatsV2, {
       studentId,
@@ -299,11 +309,8 @@ export async function fetchStudentDetailStats(
     }),
   );
   const node = data.node;
-  const v2 = node?.attendanceV2?.find((entry) => entry.statistics);
-  const overviewEntry = node?.attendanceV2?.find(
-    (entry) => entry.presenceOverview,
-  );
-  const overview = overviewEntry?.presenceOverview;
+  const overview = node?.overallPresence?.presenceOverview;
+  const stats = node?.attendanceV2?.statistics;
   return {
     student: {
       id: studentId,
@@ -318,7 +325,7 @@ export async function fetchStudentDetailStats(
     presencePercentage: num(overview?.presencePercentage),
     absencePercentage: num(overview?.absencePercentage),
     categoryItems:
-      v2?.statistics?.categorySummary?.percentageItems?.map((item) => ({
+      stats?.categorySummary?.percentageItems?.map((item) => ({
         id: item.category.id,
         label: item.category.label,
         color: item.category.color,
