@@ -1,0 +1,20 @@
+query ComplianceReportSetupChangeStudentFeed($input: ComplianceReportSetupChangeStudentFeedInput!) {
+  complianceReport {
+    complianceReportSetupChangeStudentFeed(input: $input) {
+      totalCount
+      edges {
+        cursor
+        node {
+          entityId
+          firstName
+          lastName
+          uid
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

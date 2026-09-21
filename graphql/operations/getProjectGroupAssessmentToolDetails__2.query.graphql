@@ -1,0 +1,8 @@
+query getProjectGroupAssessmentToolDetails($ids: [ID!], $assessmentToolFilters: AssessmentToolFilters) {
+  multiNode(ids: $ids, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      type
+      ...projectGroupWithAssessmentToolsItem
+    }
+  }
+}

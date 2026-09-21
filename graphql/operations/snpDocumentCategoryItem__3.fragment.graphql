@@ -1,0 +1,18 @@
+fragment snpDocumentCategoryItem on SnPDocumentCategory {
+  id
+  taggedPractices {
+    evaluationCycle {
+      id
+    }
+    taggedPractice {
+      practice {
+        ...practiceItem
+        label
+        suggestedEvidence(filters: $suggestedEvidenceFilters) {
+          totalCount
+          newEvidenceCount
+        }
+      }
+    }
+  }
+}

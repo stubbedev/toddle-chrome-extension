@@ -1,0 +1,47 @@
+fragment course on Course {
+  id
+  title
+  profileImageData {
+    url
+    icon
+    __typename
+  }
+  primaryGrade {
+    id
+  }
+  subjects {
+    id
+    recommendedPhase @include(if: $shouldFetchRecommendedPhase) {
+      gradeId
+      phaseId
+    }
+  }
+  grades {
+    id
+    name
+    subjects {
+      id
+      name
+      isArchived
+      subjectGroup {
+        id
+        name
+      }
+    }
+    yearGroup {
+      id
+      name
+      examSession {
+        id
+        year
+      }
+    }
+    displaySequence
+    globalGrade {
+      id
+      uid
+      name
+      constants
+    }
+  }
+}

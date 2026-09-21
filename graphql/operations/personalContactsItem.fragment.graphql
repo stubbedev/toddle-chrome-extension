@@ -1,0 +1,11 @@
+fragment personalContactsItem on PersonalContact {
+  id
+  firstName
+  middleName
+  lastName
+  email
+  phoneNumber
+  secondPhoneNumber
+  thirdPhoneNumber
+  relationship
+}

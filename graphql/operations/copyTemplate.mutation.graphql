@@ -1,0 +1,10 @@
+mutation copyTemplate($input: CopyTranscriptTemplateInput!) {
+  transcript {
+    copyTranscriptTemplateV3(input: $input) {
+      isSuccess
+      transcriptTemplate {
+        id
+      }
+    }
+  }
+}

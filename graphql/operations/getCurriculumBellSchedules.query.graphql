@@ -1,0 +1,7 @@
+query getCurriculumBellSchedules($bellScheduleId: ID!) {
+  node(id: $bellScheduleId, type: BELL_SCHEDULE) {
+    ... on BellSchedule {
+      ...bellScheduleItem
+    }
+  }
+}

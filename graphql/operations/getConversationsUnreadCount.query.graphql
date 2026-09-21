@@ -1,0 +1,9 @@
+query getConversationsUnreadCount($id: ID!) {
+  node(id: $id, type: CONVERSATION) {
+    id
+    ... on Conversation {
+      id
+      unreadMessageCount
+    }
+  }
+}

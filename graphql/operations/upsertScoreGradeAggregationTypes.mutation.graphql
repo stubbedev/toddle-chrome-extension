@@ -1,0 +1,9 @@
+mutation upsertScoreGradeAggregationTypes($input: [UpsertScoreGradeAggregationTypesInput!]!) {
+  platform {
+    upsertScoreGradeAggregationTypes(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+  }
+}

@@ -1,0 +1,57 @@
+fragment userItem on User {
+  id
+  firstName
+  middleName
+  lastName
+  email
+  type
+  profileImage
+  ... on Staff {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    role
+    sourceId
+    isArchived
+    isArchivedV2
+    designation {
+      id
+      title
+      description
+      roles
+    }
+    academicYears {
+      id
+      endDate
+      startDate
+      isCurrentAcademicYear
+      isPreviousAcademicYear
+      isUpcomingAcademicYear
+    }
+    curriculumPrograms {
+      id
+      label
+    }
+  }
+  ... on Student {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    sourceId
+    isArchivedV2
+    curriculumPrograms(filters: {academicYearId: $academicYearId}) {
+      id
+      type
+    }
+    academicYears {
+      id
+      endDate
+      startDate
+      isCurrentAcademicYear
+      isPreviousAcademicYear
+      isUpcomingAcademicYear
+    }
+  }
+}

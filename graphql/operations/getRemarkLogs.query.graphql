@@ -1,0 +1,19 @@
+query getRemarkLogs($input: RemarkLogsInput!) {
+  documentation {
+    internalToolsData {
+      progressReport {
+        remarkLogs(input: $input) {
+          courseName
+          gradeName
+          studentName
+          teacherName
+          subjectName
+          commentLabel
+          oldComment
+          newComment
+          updatedAt
+        }
+      }
+    }
+  }
+}

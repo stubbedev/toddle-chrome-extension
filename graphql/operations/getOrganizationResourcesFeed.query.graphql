@@ -1,0 +1,11 @@
+query getOrganizationResourcesFeed($parentId: ID!, $searchText: String, $parentType: ENTITY_TYPE_ENUM!, $types: [ORGANIZATION_RESOURCE_TYPE_ENUM!], $visibleTo: [ORGANIZATION_RESOURCE_VISIBLE_TO_ENUM!], $organizationResourceFilter: OrganizationResourceFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Organization {
+      ...organizationResourceFeedItem
+    }
+    ... on UnitPlan {
+      ...unitPlanResourceFeedItem
+    }
+  }
+}

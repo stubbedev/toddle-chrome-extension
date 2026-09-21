@@ -1,0 +1,5 @@
+fragment gradesItem on Organization {
+  grades(filters: $gradeFilters) {
+    ...gradeItem
+  }
+}

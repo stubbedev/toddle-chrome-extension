@@ -1,0 +1,6 @@
+fragment staffUnitPlanFeedCountItem on Staff {
+  id
+  unitPlans(filters: $unitPlanFilters) {
+    totalCount
+  }
+}

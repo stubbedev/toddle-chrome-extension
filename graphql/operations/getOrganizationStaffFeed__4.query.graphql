@@ -1,0 +1,42 @@
+query getOrganizationStaffFeed($first: Int, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $rnpRoleContextDetailFilter: RnPRoleContextDetailFilterInput) {
+  platform {
+    organization {
+      id
+      staff(filters: $filters, first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        totalCount
+        edges {
+          node {
+            id
+            email
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            profileImage
+            isDevUser
+            type
+            rnpRoleContextDetail(filters: $rnpRoleContextDetailFilter) {
+              id
+              contextType
+              role {
+                id
+                label
+                isCustomRole
+              }
+              context {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

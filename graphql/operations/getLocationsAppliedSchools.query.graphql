@@ -1,0 +1,15 @@
+query getLocationsAppliedSchools($ids: [ID!]) {
+  multiNode(ids: $ids, type: BEHAVIOUR_LOCATION) {
+    ... on BehaviourLocation {
+      id
+      appliedSchools(input: {fetchAll: true}) {
+        edges {
+          node {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

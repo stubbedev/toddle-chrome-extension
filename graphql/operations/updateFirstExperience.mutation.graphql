@@ -1,0 +1,8 @@
+mutation updateFirstExperience($value: Boolean!) {
+  platform {
+    addUserData(input: {isSnpExplainerVideoAvailable: $value}) {
+      id
+      isSnpExplainerVideoAvailable
+    }
+  }
+}

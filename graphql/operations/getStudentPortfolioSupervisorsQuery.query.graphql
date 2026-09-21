@@ -1,0 +1,17 @@
+query getStudentPortfolioSupervisorsQuery($id: ID!, $academicYearId: ID, $filters: ProjectFilter) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      projects(filters: $filters) {
+        edges {
+          node {
+            id
+            supervisors {
+              ...userItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation deleteTemplate($templateId: ID!) {
+  planner {
+    deleteTemplate(input: {templateId: $templateId}) {
+      isSuccess
+      warning
+      error {
+        message
+      }
+    }
+  }
+}

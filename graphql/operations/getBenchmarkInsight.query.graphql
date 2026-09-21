@@ -1,0 +1,31 @@
+query getBenchmarkInsight($id: ID!, $filters: BenchmarkVerticalInsightFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      benchmarkVerticalInsight(filters: $filters) {
+        element {
+          id
+          label
+        }
+        edges {
+          grade {
+            id
+          }
+          unitPlans {
+            id
+          }
+          assessments {
+            id
+          }
+          questions {
+            id
+            assessmentDataV2 {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

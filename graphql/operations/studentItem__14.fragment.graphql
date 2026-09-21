@@ -1,0 +1,8 @@
+fragment studentItem on Student {
+  ...userNameFields
+  profileImage
+  email
+  isDevUser
+  isArchived
+  sourceId
+}

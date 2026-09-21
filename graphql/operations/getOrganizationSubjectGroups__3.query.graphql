@@ -1,0 +1,13 @@
+query getOrganizationSubjectGroups($subjectGroupFilters: SubjectGroupFilterInput) {
+  platform {
+    organization {
+      subjectGroups(filters: $subjectGroupFilters) {
+        id
+        name
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  allFields {
+    id
+    uid
+    value
+  }
+  fields(uids: ["lp", "centralIdea", "concepts", "atls", "benchmarks", "lois"]) {
+    id
+    uid
+    value
+  }
+  assessmentType {
+    id
+    uid
+    value
+  }
+  unitPlan {
+    id
+  }
+}

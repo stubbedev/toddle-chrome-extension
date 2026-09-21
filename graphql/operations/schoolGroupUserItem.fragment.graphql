@@ -1,0 +1,15 @@
+fragment schoolGroupUserItem on User {
+  id
+  type
+  firstName
+  middleName
+  lastName
+  profileImage
+  ... on Staff {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    role
+  }
+}

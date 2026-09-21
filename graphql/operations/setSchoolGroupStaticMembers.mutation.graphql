@@ -1,0 +1,12 @@
+mutation setSchoolGroupStaticMembers($input: SetSchoolGroupStaticMembersInput!) {
+  platform {
+    setSchoolGroupStaticMembers(input: $input) {
+      isSuccess
+      warning
+      schoolGroup {
+        ...schoolGroupListItem
+        ...schoolGroupCounts
+      }
+    }
+  }
+}

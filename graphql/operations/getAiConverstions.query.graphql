@@ -1,0 +1,13 @@
+query getAiConverstions($filters: AiConversationFilters) {
+  ai {
+    aiConversations(filters: $filters) {
+      edges {
+        node {
+          id
+          entityType
+          metadata
+        }
+      }
+    }
+  }
+}

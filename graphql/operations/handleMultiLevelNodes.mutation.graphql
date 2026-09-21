@@ -1,0 +1,8 @@
+mutation handleMultiLevelNodes($input: HandleMultiLevelNodesInput!) {
+  planner {
+    handleMultiLevelNodes(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

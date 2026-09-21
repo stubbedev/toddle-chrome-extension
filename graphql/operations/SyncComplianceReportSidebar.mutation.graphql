@@ -1,0 +1,17 @@
+mutation SyncComplianceReportSidebar($input: SyncComplianceReportSidebarInput!) {
+  complianceReport {
+    syncComplianceReportSidebarFromToddle(input: $input) {
+      isSuccess
+      warning
+      activityLogId
+      report {
+        id
+        dataStatus
+        sidebarSyncs {
+          sidebarUid
+          lastSyncedAt
+        }
+      }
+    }
+  }
+}

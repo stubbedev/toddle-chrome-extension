@@ -1,0 +1,15 @@
+fragment organizationCourseFeedEdgeItem on Organization {
+  id
+  jobFeed(first: $first, afterV2: $afterV2, academicYearState: $academicYearState, filters: {status: $filters, academicYearIds: $academicYearIds}, curriculumProgramId: $curriculumProgramId) {
+    totalCount
+    edges {
+      node {
+        ...jobData
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

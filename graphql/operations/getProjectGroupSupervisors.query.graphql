@@ -1,0 +1,32 @@
+query getProjectGroupSupervisors($projectGroupId: ID!, $filters: ProjectGroupSupervisorFilters, $projectFilters: ProjectGroupSupervisorProjectsFilters, $academicYearId: ID) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            staff {
+              ...userItem
+              curriculumPrograms {
+                id
+                acronym
+              }
+            }
+            projects(filters: $projectFilters) {
+              id
+              students {
+                ...userItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

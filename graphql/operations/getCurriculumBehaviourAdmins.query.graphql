@@ -1,0 +1,14 @@
+query getCurriculumBehaviourAdmins($id: ID!, $filters: ModuleAdminsFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      moduleAdminsFeed(filters: $filters) {
+        id
+        staffIds
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

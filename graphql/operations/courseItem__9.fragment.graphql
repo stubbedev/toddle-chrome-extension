@@ -1,0 +1,12 @@
+fragment courseItem on LearningCourse {
+  id
+  title
+  state
+  isBookmarked
+  displayMetadata
+  type
+  academicCourse {
+    id
+    code
+  }
+}

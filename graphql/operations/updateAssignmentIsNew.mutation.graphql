@@ -1,0 +1,5 @@
+mutation updateAssignmentIsNew($input: UpdateAssignmentIsNewInput!) {
+  platform {
+    updateAssignmentIsNew(input: $input)
+  }
+}

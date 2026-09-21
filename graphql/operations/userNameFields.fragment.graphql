@@ -1,0 +1,34 @@
+fragment staff on Staff {
+  ...userNameFields
+  email
+  profileImage
+  roles
+  isArchived
+  __typename
+}
+
+fragment userNameFields on User {
+  id
+  firstName
+  middleName
+  lastName
+  type
+  ... on Student {
+    preferredName
+    pronouns
+    suffix
+    prefix
+  }
+  ... on Staff {
+    preferredName
+    pronouns
+    suffix
+    prefix
+  }
+  ... on FamilyMember {
+    preferredName
+    pronouns
+    suffix
+    prefix
+  }
+}

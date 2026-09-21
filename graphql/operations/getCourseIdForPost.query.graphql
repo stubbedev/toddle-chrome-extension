@@ -1,0 +1,10 @@
+query getCourseIdForPost($id: ID!) {
+  node(id: $id, type: POST) {
+    id
+    ... on Post {
+      course {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation unitPlanPDFAnnotation($input: UnitPlanPDFAnnotationInput!) {
+  planner {
+    unitPlanPDFAnnotation(input: $input) {
+      isSuccess
+      response
+    }
+  }
+}

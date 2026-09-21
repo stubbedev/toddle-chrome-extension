@@ -1,0 +1,12 @@
+mutation createUserAccessToken($input: GenerateUserAccessTokenInput!) {
+  platform {
+    generateUserAccessToken(input: $input) {
+      warning
+      response {
+        id
+        serviceType
+        accessToken
+      }
+    }
+  }
+}

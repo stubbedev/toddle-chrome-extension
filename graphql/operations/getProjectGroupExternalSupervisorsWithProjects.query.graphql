@@ -1,0 +1,31 @@
+query getProjectGroupExternalSupervisorsWithProjects($projectGroupId: ID!, $filters: ProjectGroupSupervisorFilters, $projectFilters: ProjectGroupSupervisorProjectsFilters, $academicYearId: ID, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...projectGroupSupervisorApprovalInfoItem
+            projects(filters: $projectFilters) {
+              id
+              fields(filters: {pseudoFieldUids: ["title", "image"]}) {
+                id
+                uid
+                value
+              }
+              type
+              students {
+                ...studentInfo
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

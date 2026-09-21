@@ -1,0 +1,19 @@
+fragment attachmentGroupItem on AttachmentGroup {
+  id
+  metadata
+  attachments {
+    ... on Attachment {
+      id
+      name
+      type
+      mimeType
+      url
+      signedUrl
+      thumbUrl
+      title
+    }
+  }
+  studentTemplate {
+    id
+  }
+}

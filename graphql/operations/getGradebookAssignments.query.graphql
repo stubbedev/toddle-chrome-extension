@@ -1,0 +1,8 @@
+query getGradebookAssignments($organizationId: ID!, $first: Int, $after: String, $assignmentFeedFilters: AssignmentFeedFilters, $assessmentToolsFilters: AssessmentToolFilters, $customOrderBy: [CustomOrderByInput!], $aclControlParametersFilters: ACLControlParameterFilter, $assessmentFieldUids: [String!] = ["measureAssessing", "objectivesMYP", "interdisciplinaryCriteriaMYP", "subjectLevel", "atls", "benchmarks", "concepts", "lp", "learningStandardUBD", "atlsUBD", "learningStandardMYP", "atlsMYP", "subjectStandardDP", "atlDP", "learnerProfileDP", "syllabusContentDP", "lpMYP", "aiEvaluation", "subjects"], $shouldFetchRatingInsights: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationAssignmentItem
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query getProjectAssessmentRemark($id: ID!) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      assessmentRemarks {
+        ...remarkMessage
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+query getSyncStatusBreakdown($ids: [ID!], $type: ENTITY_TYPE_ENUM_MULTI_NODE!, $syncedBluePrintItemFilters: SyncedBluePrintItemFilter) {
+  multiNode(ids: $ids, type: $type) {
+    id
+    ... on LearningCourseFlow {
+      id
+      isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) {
+        status
+        courseSyncStatus {
+          course {
+            id
+            title
+          }
+          status
+        }
+      }
+    }
+    ... on UnitPlan {
+      id
+      isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) {
+        status
+        courseSyncStatus {
+          course {
+            id
+            title
+          }
+          status
+        }
+      }
+    }
+    ... on Assessment {
+      id
+      isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) {
+        status
+        courseSyncStatus {
+          course {
+            id
+            title
+          }
+          status
+        }
+      }
+    }
+  }
+}

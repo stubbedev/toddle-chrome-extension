@@ -1,0 +1,20 @@
+query getLearningCourses($id: ID!, $curriculumIds: [ID], $filters: LearningCourseFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        acronym
+        learningCourse(filters: $filters) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}

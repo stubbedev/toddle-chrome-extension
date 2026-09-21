@@ -1,0 +1,10 @@
+query getOrganizationCoursesCount($organizationId: ID!, $filters: CourseFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      courses(filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

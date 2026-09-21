@@ -1,0 +1,8 @@
+mutation updateWorkrampFoundationsOrder($input: [UpdateWorkrampFoundationsOrderInput!]!) {
+  platform {
+    updateWorkrampFoundationsOrder(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

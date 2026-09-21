@@ -1,0 +1,11 @@
+mutation addUserV2($input: UserInputV2!) {
+  platform {
+    addUserV2(input: $input) {
+      isSuccess
+      warning
+      user {
+        ...externalUserItem
+      }
+    }
+  }
+}

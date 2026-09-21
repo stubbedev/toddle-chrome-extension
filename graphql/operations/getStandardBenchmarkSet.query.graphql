@@ -1,0 +1,7 @@
+query getStandardBenchmarkSet($id: ID!, $organizationId: ID!, $curriculumProgramId: ID) {
+  planner {
+    standardBenchmarkSet(id: $id, organizationId: $organizationId, curriculumProgramId: $curriculumProgramId) {
+      ...standardSetItem
+    }
+  }
+}

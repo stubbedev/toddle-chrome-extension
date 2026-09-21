@@ -1,0 +1,14 @@
+query getAcademicTypeOptions($organizationId: ID!) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      curriculumPrograms {
+        id
+        academicProgram {
+          id
+          type
+        }
+      }
+    }
+  }
+}

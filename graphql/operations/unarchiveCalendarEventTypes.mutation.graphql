@@ -1,0 +1,8 @@
+mutation unarchiveCalendarEventTypes($input: UnarchiveCalendarEventTypesInput!) {
+  platform {
+    unarchiveCalendarEventTypes(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

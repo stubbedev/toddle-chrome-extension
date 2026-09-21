@@ -1,0 +1,20 @@
+mutation resetAIConversation($input: ResetAiConversationInput!) {
+  ai {
+    resetAiConversation(input: $input) {
+      isSuccess
+      warning
+      responseArray {
+        id
+        entityType
+        messages {
+          totalCount
+          edges {
+            node {
+              ...aiMessageItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

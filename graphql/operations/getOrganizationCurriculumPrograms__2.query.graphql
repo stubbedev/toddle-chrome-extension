@@ -1,0 +1,19 @@
+query getOrganizationCurriculumPrograms($organizationId: ID!, $curriculumProgramIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        type
+        label
+        acronym
+        ... on UBDCurriculumProgram {
+          id
+          variant
+        }
+      }
+    }
+  }
+}

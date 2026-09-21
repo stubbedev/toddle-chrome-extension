@@ -1,0 +1,13 @@
+mutation updateAcademicCriteriaSetValues($id: ID!, $academicCriteriaValues: [AcademicCriteriaValueUpdateInput!], $allowRemovingAllAcademicCriteriaSetValues: Boolean!) {
+  planner {
+    updateAcademicCriteriaSet(input: {id: $id, academicCriteriaValues: $academicCriteriaValues, allowRemovingAllAcademicCriteriaSetValues: $allowRemovingAllAcademicCriteriaSetValues}) {
+      id
+      label
+      academicCriteriaValues {
+        ...criteriaValueItem
+      }
+      __typename
+    }
+    __typename
+  }
+}

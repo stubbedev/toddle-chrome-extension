@@ -1,0 +1,8 @@
+query getPracticeEvidences($practiceId: ID!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $applyDashboardEvidenceCategoryOrdering: Boolean, $evidenceFilters: SnpPracticeEvidenceFilters!) {
+  node(id: $practiceId, type: SnP_PRACTICE) {
+    id
+    ... on SnPPractice {
+      ...practiceItem
+    }
+  }
+}

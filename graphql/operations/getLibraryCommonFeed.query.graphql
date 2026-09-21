@@ -1,0 +1,61 @@
+query getLibraryCommonFeed($id: ID!, $entityTypes: [LIBRARY_ENTITY_TYPE_ENUM!], $searchText: String, $first: Int, $after: String, $feedType: LIBRARY_FEED_ENUM, $filters: LibraryEntityFilter, $seed: Float!, $sortBy: LIBRARY_SORT_ENUM, $isPaginated: Boolean!, $showOnlyAccessible: Boolean, $questionFilters: OrganizationResourceQuestionItemFilters, $worksheetFilters: LibraryWorksheetFilters, $collectionFilterInput: collectionFilterInput, $contextCurriculumProgramId: NumericId) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      libraryEntities(entityTypes: $entityTypes, first: $first, after: $after, searchText: $searchText, feedType: $feedType, filters: $filters, seed: $seed, sortBy: $sortBy, showOnlyAccessible: $showOnlyAccessible, questionFilters: $questionFilters, worksheetFilters: $worksheetFilters, contextCurriculumProgramId: $contextCurriculumProgramId) {
+        totalCount
+        categorisedCount {
+          le
+          unitPlan
+          leCollection
+          question
+          worksheet
+          mockExam
+          eAssessment
+        }
+        edges {
+          isPremium
+          isNew
+          node {
+            id
+            ... on UnitPlan {
+              id
+              ...unitPlanItem
+            }
+            ... on Assessment {
+              id
+              ...assessmentItem
+            }
+            ... on LECollection {
+              id
+              ...leCollectionItem
+            }
+            ... on MockExam {
+              id
+              label
+              isSavedForLibrary
+              worksheet {
+                totalCount
+                edges {
+                  node {
+                    id
+                    ...assessmentItem
+                  }
+                }
+              }
+            }
+            ... on OrganizationResource {
+              id
+              ...organizationResourceQuestionFeedItem
+            }
+          }
+        }
+        pageInfo @include(if: $isPaginated) {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

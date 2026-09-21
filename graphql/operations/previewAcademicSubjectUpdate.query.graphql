@@ -1,0 +1,26 @@
+query previewAcademicSubjectUpdate($id: ID!, $gradeIds: [ID!], $levelIds: [ID!], $departmentId: ID, $orgSubjectVariants: OrgSubjectVariantUpdateInput) {
+  platform {
+    previewAcademicSubjectUpdate(input: {id: $id, gradeIds: $gradeIds, levelIds: $levelIds, departmentId: $departmentId, orgSubjectVariants: $orgSubjectVariants}) {
+      canUpdate
+      rejection {
+        code
+        message
+      }
+      willBeUpdated {
+        schoolCurriculumProgramId
+        levelsToCreate {
+          id
+          label
+        }
+        departmentToCreate {
+          id
+          name
+        }
+      }
+      cannotBeUpdated {
+        schoolCurriculumProgramId
+        missingGradeIds
+      }
+    }
+  }
+}

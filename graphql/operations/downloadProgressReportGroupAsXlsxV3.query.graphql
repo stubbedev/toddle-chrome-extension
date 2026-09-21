@@ -1,0 +1,11 @@
+query downloadProgressReportGroupAsXlsxV3($taskGroupId: ID!) {
+  node(id: $taskGroupId, type: PROGRESS_REPORT_TASK_GROUP) {
+    id
+    ... on ProgressReportTaskGroup {
+      excelDataDownload(filters: {downloadTypes: [PROOFREADING]}) {
+        error
+        isSuccess
+      }
+    }
+  }
+}

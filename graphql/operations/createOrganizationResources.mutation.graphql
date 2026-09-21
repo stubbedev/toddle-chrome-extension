@@ -1,0 +1,36 @@
+mutation createOrganizationResources($input: OrganizationResourceGroupInput!) {
+  platform {
+    createOrganizationResources(input: $input) {
+      id
+      label
+      resourceType
+      state
+      attachment {
+        ...attachmentItem
+      }
+      item {
+        ... on Assignment {
+          id
+          contentType
+          content {
+            ... on Assessment {
+              assignments {
+                edges {
+                  id
+                  state {
+                    state
+                  }
+                  course {
+                    id
+                  }
+                }
+              }
+              ...assessmentItem
+            }
+          }
+        }
+      }
+    }
+    __typename
+  }
+}

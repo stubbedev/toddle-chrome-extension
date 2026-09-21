@@ -1,0 +1,7 @@
+mutation updateStudentNote($id: ID!, $title: String, $category: ID!, $description: String, $attachments: [AttachmentInput!]) {
+  platform {
+    updateStudentNote(input: {id: $id, title: $title, category: $category, description: $description, attachments: $attachments}) {
+      ...studentNoteItem
+    }
+  }
+}

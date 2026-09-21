@@ -1,0 +1,48 @@
+query getStudentProgressReportContextualData($studentProgressReportId: ID!, $skipLearningCourses: Boolean!, $skipUnits: Boolean!, $skipProjects: Boolean!, $gradeIds: [ID!]) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      contextualData {
+        learningCourses {
+          ...learningCourseContextualData
+        }
+        subjects @include(if: $skipLearningCourses) {
+          ...subjectContextualData
+        }
+        units @skip(if: $skipUnits) {
+          ...unitContextualData
+        }
+        projects @include(if: $skipLearningCourses) @skip(if: $skipProjects) {
+          ...projectContextualData
+        }
+        atls {
+          ...atlContextualData
+        }
+        plannerElementSets {
+          ...plannerElementSetsContextualData
+        }
+        gpaAssociatedData {
+          ...gpaAssociatedContextualData
+          scoreGradeAggregationInclusionMap {
+            id
+            learningCourse {
+              id
+            }
+            subject {
+              id
+            }
+            grade {
+              id
+            }
+            academicTerm {
+              id
+            }
+            gradingType
+            gradeScaleId
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+fragment periodItem on Period {
+  id
+  label
+  type
+  isDefault
+  startTime
+  endTime
+  sequence
+  isDefault
+  abbreviation
+}

@@ -1,0 +1,25 @@
+query getCourseGradeScalesList($id: ID!, $filters: GradeScaleFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      gradeScales(filters: $filters) {
+        id
+        templateName
+      }
+      standardsWrapper {
+        standardsEdge {
+          standardSet {
+            id
+            title
+            gradeScales {
+              id
+              templateName
+              displayName
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation updateAcademicYear($input: ManageOrganizationAcademicYearInput) {
+  organizationManagement {
+    manageOrganizationAcademicYear(input: $input) {
+      warning
+      errorTypes
+      response {
+        ...academicYearItem
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+query getStudentTasksFilterCount($courseIds: [ID!], $userId: ID!, $entityTypes: [TASK_EVENT_ITEM_TYPE_ENUM!], $academicYearId: ID, $studentIds: [ID!], $type: ENTITY_TYPE_ENUM!, $excludedAssessmentTypes: [String!], $startDate: String, $endDate: String, $projectGroupIds: [ID!], $searchText: String, $overDueStartDate: String, $overDueEndDate: String, $curriculumProgramIds: [ID!], $countCategories: [TASK_CATEGORY_ENUM!], $includeHasUnreadItemsInCount: Boolean, $includeUnreadItemsCount: Boolean) {
+  node(id: $userId, type: $type) {
+    id
+    ... on Student {
+      ...studentCountItem
+    }
+    ... on FamilyMember {
+      ...parentCountItem
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

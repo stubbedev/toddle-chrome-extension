@@ -1,0 +1,50 @@
+query getStudentAndFamilyMembers($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $familiesFilter: FamiliesFiltersInput, $familyMembersCountFilter: FamilyMembersFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      familyMembers(filters: $familyMembersCountFilter) {
+        totalCount
+      }
+      students(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            profileImage
+            email
+            type
+            families(filters: $familiesFilter) {
+              id
+              status
+              familyMember {
+                id
+                lastName
+                middleName
+                firstName
+                preferredName
+                prefix
+                suffix
+                pronouns
+                email
+                profileImage
+                type
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

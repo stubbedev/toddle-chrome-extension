@@ -1,0 +1,34 @@
+query getOrganizationLearningCourseFeed($first: Int, $after: String, $filters: LearningCourseFilters, $organizationId: ID!, $academicYearId: ID!) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      learningCourses(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            type
+            curriculumProgram {
+              id
+            }
+            displayMetadata
+            classes(filters: {status: ACTIVE, academicYears: [$academicYearId]}) {
+              id
+              title
+              profileImageData {
+                url
+                icon
+                color
+                acronym
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

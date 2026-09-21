@@ -1,0 +1,21 @@
+fragment basicAssessmentDetails on Assessment {
+  id
+  type
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+  }
+  category {
+    id
+    label
+  }
+}

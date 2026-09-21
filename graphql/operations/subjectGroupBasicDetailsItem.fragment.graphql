@@ -1,0 +1,5 @@
+fragment subjectGroupBasicDetailsItem on SubjectGroup {
+  id
+  name
+  type
+}

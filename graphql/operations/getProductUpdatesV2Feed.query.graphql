@@ -1,0 +1,45 @@
+query getProductUpdatesV2Feed($filters: ProductUpdatesFilterV2, $after: String, $first: Int, $orderBy: ORDERBY_FIELD_ENUM_CMS, $onlyNewContent: Boolean) {
+  cms {
+    productUpdatesFeedV2(filters: $filters, after: $after, first: $first, orderBy: $orderBy, onlyNewContent: $onlyNewContent) {
+      count
+      pageInfo {
+        hasNextPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          id
+          title
+          releaseDate
+          releaseItems {
+            id
+            title
+            redirectUrl
+            betaRequestStatus
+            isBeta
+            isBetaRequestAllowed
+            description
+            version
+            displaySequence
+            categories {
+              id
+              type
+              title
+              group
+              displaySequence
+              color
+            }
+            module {
+              id
+              label
+              isNewModule
+              moduleKey
+            }
+          }
+        }
+        cursor
+      }
+    }
+  }
+}

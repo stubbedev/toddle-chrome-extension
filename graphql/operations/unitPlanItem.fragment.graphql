@@ -1,0 +1,51 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ...resolvedFieldVideoAttachmentItem
+    }
+  }
+  unitType {
+    id
+    value
+  }
+  resolvedGrades {
+    id
+    name
+  }
+  theme {
+    value
+    id
+    resolvedMinimalTree {
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          label
+          id
+        }
+      }
+    }
+  }
+  fields(uids: ["subjects"]) {
+    id
+    uid
+    resolvedMinimalTree {
+      ... on ResolvedFieldSubjectSet {
+        id
+        subjects {
+          id
+          name
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+  }
+}

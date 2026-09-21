@@ -1,0 +1,26 @@
+fragment postRatingsItem on IBPYPElementRating {
+  id
+  value
+  ibPYPElementId
+  ibPYPElementType
+  subjectId
+  subject {
+    id
+  }
+  academicCriteriaSet {
+    id
+    label
+  }
+  academicCriteriaValue {
+    id
+    label
+    abbreviation
+    description
+  }
+  academicTerm {
+    id
+  }
+  student {
+    id
+  }
+}

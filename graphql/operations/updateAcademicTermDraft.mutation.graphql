@@ -1,0 +1,10 @@
+mutation updateAcademicTermDraft($id: ID!, $draftData: AcademicTermDraftUpdateInput!) {
+  planner {
+    updateAcademicTermDraft(id: $id, draftData: $draftData) {
+      key
+      label
+      startDate
+      endDate
+    }
+  }
+}

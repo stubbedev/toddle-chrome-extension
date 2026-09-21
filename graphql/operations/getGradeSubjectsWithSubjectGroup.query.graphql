@@ -1,0 +1,17 @@
+query getGradeSubjectsWithSubjectGroup($id: ID!) {
+  node(id: $id, type: GRADE) {
+    id
+    ... on Grade {
+      name
+      subjects {
+        id
+        name
+        isArchived
+        subjectGroup {
+          id
+          name
+        }
+      }
+    }
+  }
+}

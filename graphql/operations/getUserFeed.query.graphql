@@ -1,0 +1,16 @@
+query getUserFeed($searchText: String!, $organizations: [String], $after: String, $regionIds: [ID!]) {
+  platform {
+    userFeed(first: 20, filters: {searchText: $searchText, organizations: $organizations, regionIds: $regionIds}, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...teacherItem
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

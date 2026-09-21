@@ -1,0 +1,7 @@
+query getOrganizatonResources($ids: [ID!], $orderBy: ORDER_BY_ENUM, $filters: OrganizationResourceFilter) {
+  multiNode(ids: $ids, type: ORGANIZATION_RESOURCE) {
+    ... on OrganizationResource {
+      ...unitPlanWithChildrenItem
+    }
+  }
+}

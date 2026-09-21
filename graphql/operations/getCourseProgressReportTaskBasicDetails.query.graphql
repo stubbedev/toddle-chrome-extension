@@ -1,0 +1,15 @@
+query getCourseProgressReportTaskBasicDetails($id: ID!) {
+  node(id: $id, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      title
+      parentEntity {
+        id
+        ... on Grade {
+          id
+          name
+        }
+      }
+    }
+  }
+}

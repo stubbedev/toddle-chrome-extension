@@ -1,0 +1,11 @@
+fragment questionAssessmentToolItem on AssessmentTool {
+  id
+  isStudentEvaluationEnable
+  isTeacherEvaluationEnable
+  assessmentToolItem {
+    ...assessmentEvaluationItem
+  }
+  assessmentToolType
+  isTeacherEvaluationEnable
+  isStudentEvaluationEnable
+}

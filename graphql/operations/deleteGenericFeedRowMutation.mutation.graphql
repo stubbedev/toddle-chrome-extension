@@ -1,0 +1,8 @@
+mutation deleteGenericFeedRowMutation($id: ID!, $password: String!) {
+  platform {
+    deleteGenericFormResponse(id: $id, password: $password) {
+      isSuccess
+      error
+    }
+  }
+}

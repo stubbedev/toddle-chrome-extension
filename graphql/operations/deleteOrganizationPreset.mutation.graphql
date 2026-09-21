@@ -1,0 +1,5 @@
+mutation deleteOrganizationPreset($id: ID!) {
+  organizationManagement {
+    deleteOrganizationPreset(input: {id: $id})
+  }
+}

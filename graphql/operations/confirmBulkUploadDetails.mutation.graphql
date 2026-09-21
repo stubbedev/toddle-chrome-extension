@@ -1,0 +1,5 @@
+mutation confirmBulkUploadDetails($input: EntityBulkActionDeciderInput!) {
+  platform {
+    entityBulkActionDecider(input: $input)
+  }
+}

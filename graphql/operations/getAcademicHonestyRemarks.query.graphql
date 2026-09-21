@@ -1,0 +1,10 @@
+query getAcademicHonestyRemarks($id: ID!) {
+  node(id: $id, type: PROJECT) {
+    ... on Project {
+      id
+      academicHonestyRemarks {
+        ...remarksDetailsItem
+      }
+    }
+  }
+}

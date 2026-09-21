@@ -1,0 +1,10 @@
+mutation CreateStudentPlan($input: [CreateStudentPlanInput!]!) {
+  documentation {
+    createStudentPlan(input: $input) {
+      isSuccess
+      studentPlans {
+        id
+      }
+    }
+  }
+}

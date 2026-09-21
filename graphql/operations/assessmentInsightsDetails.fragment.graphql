@@ -1,0 +1,147 @@
+fragment assessmentInsightsDetails on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+    color
+  }
+  description {
+    id
+    value
+  }
+  duration {
+    id
+    value
+  }
+  academicTerm {
+    id
+    label
+  }
+  category {
+    id
+    label
+  }
+  globalCategories {
+    id
+    name
+  }
+  organizationResourcesV2(orderBy: SEQUENCE, orderByDirection: ASC, filters: {types: [PLANNER_RESOURCE]}) {
+    edges {
+      node {
+        id
+        label
+        attachment {
+          id
+          name
+          url
+          mimeType
+        }
+      }
+    }
+  }
+  assessmentTools {
+    edges {
+      node {
+        id
+        assessmentToolType
+      }
+    }
+  }
+  allFields {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      id
+      ... on ResolvedFieldBenchmarkSet {
+        id
+        benchmarks {
+          id
+          label
+          code
+          children
+          parent
+          dataSetNodeWrapper {
+            plannerElementNodeSet {
+              id
+              title
+            }
+          }
+        }
+      }
+      ... on ResolvedFieldATLSet {
+        id
+        atls {
+          id
+          label
+          code
+          children
+          parent
+        }
+      }
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        nodes {
+          id
+          label
+          code
+          children
+          parent
+          dataSetNodeWrapper {
+            plannerElementNodeSet {
+              id
+              title
+            }
+          }
+        }
+      }
+      ... on ResolvedFieldStudentTemplate {
+        id
+        attachmentGroups {
+          id
+          attachments {
+            id
+            name
+            url
+            mimeType
+          }
+        }
+      }
+      ... on ResolvedFieldVoiceInstruction {
+        id
+        attachment {
+          id
+          name
+          url
+          mimeType
+        }
+      }
+    }
+  }
+  linkedAssessments {
+    id
+    title {
+      id
+      value
+    }
+    assessmentType {
+      id
+      value
+      label
+    }
+    taskType {
+      id
+      type
+      label
+    }
+  }
+}

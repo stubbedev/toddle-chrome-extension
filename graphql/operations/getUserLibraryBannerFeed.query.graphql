@@ -1,0 +1,49 @@
+query getUserLibraryBannerFeed($id: ID!, $filters: libraryBannerFeedFilterInput!, $showOnlyAccessible: Boolean) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      libraryBannerFeed(filters: $filters, showOnlyAccessible: $showOnlyAccessible) {
+        edges {
+          isNew
+          isPremium
+          node {
+            id
+            ... on UnitPlan {
+              id
+              title {
+                id
+                value
+              }
+              image {
+                id
+                value
+              }
+            }
+            ... on Assessment {
+              id
+              title {
+                id
+                value
+              }
+              image {
+                id
+                value
+              }
+              type
+            }
+            ... on LECollection {
+              id
+              name
+              image {
+                id
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+query GetStudent($ids: [ID!], $userCourseMapFilters: UserCourseMapFilters, $courseGradeFilters: CourseGradeFilters) {
+  multiNode(ids: $ids, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      firstName
+      middleName
+      lastName
+      profileImage
+      preferredName
+      suffix
+      pronouns
+      alertTypes {
+        ...alertTypeFields
+      }
+      curriculumPrograms {
+        id
+      }
+      yearGroup {
+        id
+        curriculumProgram {
+          id
+          acronym
+          type
+        }
+      }
+      courseMap(filters: $userCourseMapFilters) {
+        id
+        tags {
+          id
+          label
+        }
+        course {
+          id
+          title
+          isArchived
+          grades(filters: $courseGradeFilters) {
+            id
+            name
+          }
+          curriculumProgram {
+            id
+            acronym
+            type
+          }
+        }
+      }
+    }
+  }
+}

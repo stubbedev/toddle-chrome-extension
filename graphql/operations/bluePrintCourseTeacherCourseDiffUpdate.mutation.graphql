@@ -1,0 +1,5 @@
+mutation bluePrintCourseTeacherCourseDiffUpdate($input: BluePrintCourseTeacherCourseDiffUpdateInput!) {
+  planner {
+    bluePrintCourseTeacherCourseDiffUpdate(input: $input)
+  }
+}

@@ -1,0 +1,8 @@
+query getCoursePostFeed($id: ID!, $after: String, $filters: PostFilterInput, $translationFilter: TranslatedLabelFilter, $uids: [String!], $isDP: Boolean!) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      ...courseItem
+    }
+  }
+}

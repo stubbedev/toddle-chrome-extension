@@ -1,0 +1,7 @@
+mutation editMultiAccessIdentity($input: EditMultiAccessIdentityInput) {
+  platform {
+    editMultiAccessIdentity(input: $input) {
+      id
+    }
+  }
+}

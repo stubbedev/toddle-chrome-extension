@@ -1,0 +1,8 @@
+mutation duplicateQuestionInWorksheetV2($input: ImportQuestionToWorksheetV2Input!) {
+  content {
+    duplicateQuestionInWorksheetV2(input: $input) {
+      isSuccess
+      questionIds
+    }
+  }
+}

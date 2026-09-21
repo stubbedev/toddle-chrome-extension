@@ -1,0 +1,22 @@
+query getLearningCourseStandardSets($id: ID!, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      standardsWrapper {
+        standardsEdge {
+          standardSet {
+            id
+            title
+            standardSetWrapper {
+              ...StandardSetWrapperFragment
+            }
+            gradingConfigurationWrapper {
+              ...GradingConfigurationWrapperFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+query getChildResourcesFeed($id: ID!, $searchText: String, $visibleTo: [ORGANIZATION_RESOURCE_VISIBLE_TO_ENUM!], $filters: OrganizationResourceFilter, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $id, type: ORGANIZATION_RESOURCE) {
+    ...organizationChildResourceItem
+  }
+}

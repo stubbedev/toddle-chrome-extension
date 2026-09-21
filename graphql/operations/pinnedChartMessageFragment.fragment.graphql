@@ -1,0 +1,4 @@
+fragment pinnedChartMessageFragment on AiMessage {
+  id
+  content
+}

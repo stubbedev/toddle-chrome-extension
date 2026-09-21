@@ -1,0 +1,5 @@
+mutation deleteSnPEvaluationCycle($id: ID!) {
+  platform {
+    deleteSnpEvaluationCycle(input: {id: $id})
+  }
+}

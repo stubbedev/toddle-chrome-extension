@@ -1,0 +1,26 @@
+query getStudentFromGrade($studentFilters: GradeStudentsFilters, $id: ID!, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: GRADE) {
+    id
+    ... on Grade {
+      id
+      students(filters: $studentFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            isArchived
+            prefix
+            isArchivedV2(filters: $userArchivedFilters)
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+      }
+    }
+  }
+}

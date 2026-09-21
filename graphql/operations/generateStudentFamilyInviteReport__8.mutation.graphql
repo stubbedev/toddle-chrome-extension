@@ -1,0 +1,49 @@
+fragment staffItem on Staff {
+  id
+  calendarEvents(filters: $filters) {
+    id
+    startTime
+    endTime
+    itemType
+    item {
+      id
+      ... on Assignment {
+        ...assignmentItem
+      }
+      ... on CalendarEventItem {
+        ...calendarEventItem
+      }
+      ... on CalendarEvent {
+        ...calendarEvent
+      }
+      ... on ProjectGroupDeadline {
+        ...deadline
+      }
+    }
+    calendars {
+      id
+      parentType
+      parent {
+        ... on Course {
+          ...courseItem
+        }
+      }
+    }
+  }
+}
+
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}
+
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}

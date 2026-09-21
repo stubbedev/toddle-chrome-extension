@@ -1,0 +1,6 @@
+mutation duplicateWeeklyPlannerSectionContent($input: CopyWeeklyPlannerSectionContentInput!) {
+  planner {
+    duplicateWeeklyPlannerSectionContent(input: $input)
+    __typename
+  }
+}

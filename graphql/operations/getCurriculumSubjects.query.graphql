@@ -1,0 +1,21 @@
+query getCurriculumSubjects($id: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $filters: CurriculumProgramSubjectFilters) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbDpCurriculumProgram {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        contentSubject {
+          id
+          assessmentYearTitle
+        }
+        variants {
+          level {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+query getOrganizationUserAccessRequest($filters: MultiAccessIdentityRequestFeedFilters) {
+  platform {
+    multiAccessIdentityUserAccessRequestFeed(filters: $filters) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+        __typename
+      }
+      edges {
+        node {
+          id
+          requester {
+            id
+            firstName
+            lastName
+            identityId
+            email
+            __typename
+          }
+          requestedManager {
+            id
+            identityId
+            firstName
+            lastName
+            email
+            __typename
+          }
+          user {
+            ... on Staff {
+              id
+              firstName
+              lastName
+              role
+              organization {
+                id
+                name
+              }
+            }
+            ... on Student {
+              id
+              firstName
+              lastName
+              organization {
+                id
+                name
+              }
+            }
+          }
+          reason
+          status
+          expiresAt
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

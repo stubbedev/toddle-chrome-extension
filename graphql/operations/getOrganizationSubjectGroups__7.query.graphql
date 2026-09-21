@@ -1,0 +1,12 @@
+query getOrganizationSubjectGroups($id: ID!, $subjectGroupFilters: SubjectGroupFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      subjectGroups(filters: $subjectGroupFilters) {
+        id
+        name
+        type
+      }
+    }
+  }
+}

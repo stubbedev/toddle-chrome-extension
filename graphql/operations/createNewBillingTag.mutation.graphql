@@ -1,0 +1,11 @@
+mutation createNewBillingTag($input: [TagInfoInput!]) {
+  platform {
+    upsertEntityTags(input: $input) {
+      response {
+        id
+        tag_type
+        value
+      }
+    }
+  }
+}

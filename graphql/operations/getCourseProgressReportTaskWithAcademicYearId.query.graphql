@@ -1,0 +1,71 @@
+query getCourseProgressReportTaskWithAcademicYearId($id: ID!, $filters: TermFilters) {
+  node(id: $id, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      title
+      course {
+        id
+        title
+        isArchived
+        grades {
+          id
+        }
+        primaryGrade {
+          id
+          name
+        }
+      }
+      reportingDates {
+        startDate
+        endDate
+      }
+      parentEntity {
+        id
+        ... on Grade {
+          id
+          name
+        }
+        ... on Course {
+          id
+          title
+        }
+      }
+      progressReportTaskGroup {
+        id
+        attendanceMode
+        studentReflectionDeadline
+        academicTerm {
+          id
+        }
+        academicTerms {
+          id
+          type
+        }
+        template {
+          id
+          gradingPeriodType
+        }
+        academicYear {
+          id
+          terms(filters: $filters) {
+            id
+            type
+            associatedAcademicTermEntities {
+              id
+              academicTerm {
+                id
+                type
+              }
+              cumulativeAcademicTermWeightages {
+                id
+                weightage
+                percentage
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

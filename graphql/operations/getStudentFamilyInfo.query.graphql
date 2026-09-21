@@ -1,0 +1,23 @@
+query getStudentFamilyInfo($id: ID!, $filters: ChatFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      families {
+        id
+        createdAt
+        status
+        familyMember {
+          ...familyInfo
+          chats(filters: $filters) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

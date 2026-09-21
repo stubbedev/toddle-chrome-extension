@@ -1,0 +1,10 @@
+mutation generateTranscriptsZipFileUrl($input: TranscriptsZipFileUrlInput!) {
+  documentation {
+    generateTranscriptsZipFileUrl(input: $input) {
+      isSuccess
+      isLongRunningTaskCreated
+      fileUrl
+      fileName
+    }
+  }
+}

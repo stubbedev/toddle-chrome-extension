@@ -1,0 +1,10 @@
+mutation duplicateQuestionInWorksheet($input: DuplicateQuestionInWorksheetInput!) {
+  content {
+    duplicateQuestionInWorksheet(input: $input) {
+      isSuccess
+      questionResource {
+        ...organizationResourceQuestionItem
+      }
+    }
+  }
+}

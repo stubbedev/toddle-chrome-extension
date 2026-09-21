@@ -1,0 +1,7 @@
+fragment assessmentSavedByNodeItem on Assessment {
+  id
+  savedBy {
+    id
+  }
+  isSavedForLibrary
+}

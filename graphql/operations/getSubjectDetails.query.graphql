@@ -1,0 +1,30 @@
+query getSubjectDetails($subject: ID!) {
+  node(id: $subject, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      name
+      grades {
+        id
+        name
+      }
+      subjectGroup {
+        id
+        type
+        name
+      }
+      isArchived
+      benchmarkRootNode {
+        id
+        label
+      }
+      variants {
+        level {
+          id
+          label
+          type
+        }
+      }
+    }
+  }
+}

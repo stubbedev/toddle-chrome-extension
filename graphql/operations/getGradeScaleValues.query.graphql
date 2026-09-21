@@ -1,0 +1,24 @@
+query getGradeScaleValues($id: ID!, $filters: GradingSetupEntityFilters) {
+  node(id: $id, type: GRADE_SCALE) {
+    id
+    ... on GradeScale {
+      id
+      gradeScaleEntityDetails(filters: $filters) {
+        id
+        gradeScaleValues {
+          id
+          label
+          abbreviation
+          description
+          displaySequence
+          type
+          color
+          gradeScaleValueScores {
+            id
+            gradeValue
+          }
+        }
+      }
+    }
+  }
+}

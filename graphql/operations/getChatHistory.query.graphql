@@ -1,0 +1,19 @@
+query getChatHistory($first: Int, $after: String, $searchText: String, $filters: AiConversationFilters!) {
+  ai {
+    aiConversationsV2(first: $first, after: $after, searchText: $searchText, filters: $filters) {
+      totalCount
+      edges {
+        node {
+          id
+          entityType
+          metadata
+          createdAt
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

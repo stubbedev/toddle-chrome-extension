@@ -1,0 +1,10 @@
+mutation updateAiMessage($input: UpdateAiMessageInput!) {
+  ai {
+    updateAiMessage(input: $input) {
+      isSuccess
+      response {
+        ...aiMessageItem
+      }
+    }
+  }
+}

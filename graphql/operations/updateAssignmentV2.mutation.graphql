@@ -1,0 +1,13 @@
+mutation updateAssignmentV2($id: ID!, $courseId: ID!, $publishedAt: String, $deadline: String, $closeSubmissionDate: String) {
+  platform {
+    updateAssignmentV2(input: {id: $id, courses: {updatedCourses: {courseId: $courseId, publishedAt: $publishedAt, deadline: $deadline, closeSubmissionDate: $closeSubmissionDate}}}) {
+      warning
+      response {
+        id
+        deadline
+        publishedAt
+        closeSubmissionDate
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment questionDetailsItem on Question {
+  id
+  questionScore
+  fields {
+    ...questionFieldsItem
+  }
+  answerFields {
+    ...questionFieldsItem
+  }
+  questionType {
+    id
+    uid
+  }
+}

@@ -1,0 +1,87 @@
+query getTimetableWidgetEnrolledPeriods($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodFilters: PeriodFilterOptions, $timetableSlotAttendanceFilters: TimetableSlotAttendanceFilters!) {
+  node(id: $id, type: $type) {
+    ... on Student {
+      id
+      enrolledPeriodsV2(filters: $periodFilters) {
+        ...timetableWidgetEnrolledPeriodV2Item
+      }
+    }
+    ... on Staff {
+      id
+      enrolledPeriodsV2(filters: $periodFilters) {
+        ...timetableWidgetEnrolledPeriodV2Item
+      }
+    }
+  }
+}
+
+fragment timetableWidgetEnrolledPeriodV2Item on TimetableSlot {
+  date
+  location
+  rotationDay {
+    id
+    label
+  }
+  locationV2 {
+    id
+    label
+  }
+  course {
+    id
+    title
+    primaryGrade {
+      id
+      curriculumProgram {
+        id
+        type
+      }
+    }
+    learningCourse {
+      id
+    }
+    grades {
+      id
+    }
+    curriculumProgram {
+      id
+      type
+      academicSetupType
+      nodeInterfaceType
+      acronym
+      isPrimary
+    }
+  }
+  period {
+    id
+    label
+    type
+    abbreviation
+  }
+  teachers {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+  }
+  teachersV2 {
+    staff {
+      id
+      firstName
+      middleName
+      lastName
+      profileImage
+    }
+    type
+  }
+  groupKey
+  subject
+  startTime
+  endTime
+  attendance(filters: $timetableSlotAttendanceFilters) {
+    attendanceMarkedStatus
+    unmarkedStudents {
+      id
+    }
+  }
+}

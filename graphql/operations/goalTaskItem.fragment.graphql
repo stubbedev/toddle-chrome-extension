@@ -1,0 +1,15 @@
+fragment goalTaskItem on GoalTask {
+  id
+  title
+  note
+  checkinDate
+  posts {
+    ...postItem
+  }
+  comments {
+    totalCount
+    unreadCountV2
+  }
+  isComplete
+  displaySequence
+}

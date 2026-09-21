@@ -1,0 +1,7 @@
+mutation updateDefaultReviewSettings($input: [OrganizationConstantInput!]) {
+  platform {
+    upsertOrganizationGlobalConstant(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,9 @@
+fragment attachmentFragment on Attachment {
+  id
+  type
+  url
+  signedUrl
+  name
+  thumbUrl
+  metadata
+}

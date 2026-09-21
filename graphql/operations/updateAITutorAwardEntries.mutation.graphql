@@ -1,0 +1,12 @@
+mutation updateAITutorAwardEntries($input: UpdateAiTutorAwardEntriesInput!) {
+  planner {
+    updateAiTutorAwardEntries(input: $input) {
+      isSuccess
+      warning
+      response {
+        id
+        review
+      }
+    }
+  }
+}

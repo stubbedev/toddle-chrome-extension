@@ -1,0 +1,17 @@
+fragment aytTransferInFeedFields on CurriculumProgram {
+  id
+  label
+  incomingStudentTransferRequestsFeed(input: $input) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        ...aytStudentTransferRequest
+      }
+    }
+  }
+}

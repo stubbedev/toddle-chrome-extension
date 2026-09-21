@@ -1,0 +1,139 @@
+query getPublishedNodesFromSet($id: ID!, $nodesFilters: PlannerElementNodeFilters, $nodeSetFilters: PlannerElementNodeSetsByPlannerElementFilters, $lockingInfoFilters: LockingInfoFiltersInput, $skipLockingInfo: Boolean = true, $hasNodeCountFilters: Boolean! = false, $nodeCountFilters: DataSetNodeCountWrapperFilters, $includeForAssignments: Boolean = false) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      plannerElementNodeSets(filters: $nodeSetFilters) {
+        id
+        plannerElementNodeSetWrapperV2 {
+          ... on PlannerElementNodeSetWrapper {
+            publishedData(filters: $nodesFilters) {
+              edges {
+                node {
+                  ...plannerElementNodeItem
+                }
+              }
+            }
+          }
+          ... on PlannerBenchmarkSetWrapper {
+            publishedData(filters: $nodesFilters) {
+              edges {
+                node {
+                  ...plannerBenchmarkItem
+                  levelId @include(if: $includeForAssignments)
+                  type @include(if: $includeForAssignments)
+                }
+              }
+            }
+          }
+          ... on PlannerATLSetWrapper {
+            publishedData(filters: $nodesFilters) {
+              edges {
+                node {
+                  ...plannerATLItem
+                }
+              }
+            }
+          }
+          ... on PlannerLearnerProfileSetWrapper {
+            publishedData(filters: $nodesFilters) {
+              edges {
+                node {
+                  ...plannerLearnerProfileItem
+                }
+              }
+            }
+          }
+          ... on PlannerConceptSetWrapper {
+            publishedData(filters: $nodesFilters) {
+              edges {
+                node {
+                  ...plannerConceptItem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+fragment subjectItem on Subject {
+  id
+  name
+  icon
+  grades {
+    id
+    name
+  }
+  isArchived
+  benchmarkRootNode {
+    ...benchmarkItem
+  }
+  isArchived
+  globalSubject
+  framework
+  snsChildren
+  standardSet {
+    ...standardSetItem
+  }
+  subjectLevelLabels {
+    cuLevelName
+    strandLevelName
+    loLevelName
+  }
+  type
+  tags {
+    id
+    key
+    value
+  }
+  variants {
+    level {
+      ...basicGenericTagItem
+    }
+    responseLanguages {
+      ...basicGenericTagItem
+    }
+  }
+  flatVariants(filters: {archivalState: ALL}) {
+    isArchived
+    level {
+      ...basicGenericTagItem
+    }
+    responseLanguage {
+      ...basicGenericTagItem
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

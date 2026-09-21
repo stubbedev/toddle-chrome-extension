@@ -1,0 +1,8 @@
+query getOrganizationSubjects($id: ID!, $filters: SubjectFilterInput, $assignmentCountFilters: SubjectAssignmentsFilters, $curriculumProgramType: CURRICULUM_PROGRAM_TYPE_ENUM!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationItem
+    }
+  }
+}

@@ -1,0 +1,18 @@
+fragment conversationBasicDetails on Conversation {
+  id
+  parentType
+  unreadMessageCount
+  users {
+    ... on Staff {
+      id
+      firstName
+      lastName
+      email
+      profileImage
+      designation {
+        id
+        roles
+      }
+    }
+  }
+}

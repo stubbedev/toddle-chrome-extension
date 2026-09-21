@@ -1,0 +1,41 @@
+query getSubjectGroupOverview($id: ID!, $filters: SubjectGroupOverviewFilterInput) {
+  node(id: $id, type: SUBJECT_GROUP) {
+    id
+    ... on SubjectGroup {
+      id
+      name
+      subjects {
+        id
+        name
+        isArchived
+      }
+      subjectGroupOverview(filters: $filters) {
+        grade {
+          id
+          name
+          displaySequence
+        }
+        subject {
+          id
+          name
+          isArchived
+        }
+        unitPlans {
+          id
+          startDate
+          endDate
+          templateId
+          title {
+            ...plannerFieldNodeItem
+          }
+          image {
+            ...mediaFieldNodeItem
+          }
+          allFields {
+            ...unitPlanFieldBasicDetailsItem
+          }
+        }
+      }
+    }
+  }
+}

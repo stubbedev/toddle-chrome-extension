@@ -1,0 +1,9 @@
+fragment plannerElementNodeSetTitleConnectionItem on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      type
+      title
+    }
+  }
+}

@@ -1,0 +1,18 @@
+query getGraphData($id: ID!, $graphDataFilters: GraphFilterInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      analytics {
+        graphData(filter: $graphDataFilters) {
+          xAxis
+          yAxis {
+            key
+            value
+            metaData
+          }
+        }
+      }
+    }
+  }
+}

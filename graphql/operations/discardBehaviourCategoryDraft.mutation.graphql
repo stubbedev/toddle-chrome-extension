@@ -1,0 +1,5 @@
+mutation discardBehaviourCategoryDraft($input: DiscardBehaviourCategoryDraftInput!) {
+  platform {
+    discardBehaviourCategoryDraft(input: $input)
+  }
+}

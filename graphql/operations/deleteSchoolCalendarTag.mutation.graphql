@@ -1,0 +1,5 @@
+mutation deleteSchoolCalendarTag($id: ID!) {
+  platform {
+    deleteSchoolCalendarTag(input: {id: $id})
+  }
+}

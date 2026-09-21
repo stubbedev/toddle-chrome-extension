@@ -1,0 +1,8 @@
+query getStudentFeed($organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationStudentFeedEdgeItem
+    }
+  }
+}

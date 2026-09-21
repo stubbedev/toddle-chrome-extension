@@ -1,0 +1,6 @@
+fragment organizationProgressReportTemplateItem on Organization {
+  id
+  progressReportTemplates(filters: $filters) {
+    totalCount
+  }
+}

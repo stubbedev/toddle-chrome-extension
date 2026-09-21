@@ -1,0 +1,5 @@
+mutation createThirdPartySSOToken($input: createThirdPartySSOTokenInput!) {
+  platform {
+    createThirdPartySSOToken(input: $input)
+  }
+}

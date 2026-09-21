@@ -1,0 +1,10 @@
+mutation createProjectTemplateCopy($input: CreateProjectTemplateCopyInput!) {
+  documentation {
+    createProjectTemplateCopy(input: $input) {
+      ...attachmentItem
+      presetAttachment {
+        ...attachmentItem
+      }
+    }
+  }
+}

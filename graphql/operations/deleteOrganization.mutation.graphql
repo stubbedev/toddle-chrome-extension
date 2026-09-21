@@ -1,0 +1,7 @@
+mutation deleteOrganization($id: ID!) {
+  platform {
+    deleteOrganization(input: {id: $id}) {
+      isSuccess
+    }
+  }
+}

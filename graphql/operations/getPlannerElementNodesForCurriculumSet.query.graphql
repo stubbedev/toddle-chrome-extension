@@ -1,0 +1,128 @@
+query getPlannerElementNodesForCurriculumSet($curriculumProgramId: ID!, $setFilters: PlannerElementNodeSetFilters, $nodeFilters: PlannerElementNodeFilters) {
+  node(id: $curriculumProgramId, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $setFilters) {
+        edges {
+          node {
+            id
+            type
+            dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+              id
+              type
+              settings {
+                id
+                uid
+                value
+              }
+            }
+            plannerElementNodeSetWrapperV2 {
+              id
+              ... on PlannerElementNodeSetWrapper {
+                publishedData(filters: $nodeFilters) {
+                  edges {
+                    node {
+                      ...plannerElementNodeItem
+                      dataSetNodeWrapper {
+                        properties {
+                          gradeScaleGradingDetails {
+                            gradeScale {
+                              id
+                            }
+                            gradingType
+                            isGraded
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PlannerBenchmarkSetWrapper {
+                publishedData(filters: $nodeFilters) {
+                  edges {
+                    node {
+                      ...benchmarkItem
+                      dataSetNodeWrapper {
+                        properties {
+                          gradeScaleGradingDetails {
+                            gradeScale {
+                              id
+                            }
+                            gradingType
+                            isGraded
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PlannerATLSetWrapper {
+                publishedData(filters: $nodeFilters) {
+                  edges {
+                    node {
+                      ...atlItem
+                      dataSetNodeWrapper {
+                        properties {
+                          gradeScaleGradingDetails {
+                            gradeScale {
+                              id
+                            }
+                            gradingType
+                            isGraded
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PlannerLearnerProfileSetWrapper {
+                publishedData(filters: $nodeFilters) {
+                  edges {
+                    node {
+                      ...lpItem
+                      dataSetNodeWrapper {
+                        properties {
+                          gradeScaleGradingDetails {
+                            gradeScale {
+                              id
+                            }
+                            gradingType
+                            isGraded
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PlannerConceptSetWrapper {
+                publishedData(filters: $nodeFilters) {
+                  edges {
+                    node {
+                      ...conceptItem
+                      dataSetNodeWrapper {
+                        properties {
+                          gradeScaleGradingDetails {
+                            gradeScale {
+                              id
+                            }
+                            gradingType
+                            isGraded
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment preferenceBasicDetailsItem on ACLPreference {
+  id
+  uid
+  value
+  valueType
+}

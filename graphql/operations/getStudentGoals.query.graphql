@@ -1,0 +1,8 @@
+query getStudentGoals($studentId: ID!, $last: Int, $after: String, $filters: StudentGoalsFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      ...studentGoalsItem
+    }
+  }
+}

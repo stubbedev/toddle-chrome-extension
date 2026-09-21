@@ -1,0 +1,18 @@
+fragment staffItem on Staff {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...courseItem
+  }
+}
+
+fragment resolvedMinimalTreeItem on ResolvedFieldValue {
+  id
+  type
+  ... on ResolvedFieldSubjectSet {
+    id
+    subjects {
+      id
+      name
+    }
+  }
+}

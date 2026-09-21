@@ -1,0 +1,14 @@
+query getTeacherTasksStatusWiseCount($userId: ID!, $filters: TaskFilter, $first: Int, $after: String, $orderByDirection: ORDER_BY_DIRECTION, $type: ENTITY_TYPE_ENUM!, $orderBy: TODOS_ORDER_BY_ENUM) {
+  node(id: $userId, type: $type) {
+    id
+    ... on Staff {
+      id
+      tasks(filters: $filters, first: $first, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy) {
+        statusWiseCount {
+          category
+          count
+        }
+      }
+    }
+  }
+}

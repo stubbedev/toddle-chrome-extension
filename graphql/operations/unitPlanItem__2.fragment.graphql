@@ -1,0 +1,43 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  owner {
+    id
+  }
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  startDate
+  endDate
+  state
+  templateId
+  template {
+    id
+    name
+  }
+  unitType {
+    id
+    value
+  }
+  libraryGrades {
+    ...libraryEntityBasicDetailsItem
+  }
+  librarySubjects {
+    ...libraryEntityBasicDetailsItem
+  }
+  curriculumProgram {
+    id
+    type
+    nodeInterfaceType
+    label
+    acronym
+    academicSetupType
+    __typename
+  }
+  showLibraryPremiumBannerForUser
+  ...unitSavedByNodeItem
+}

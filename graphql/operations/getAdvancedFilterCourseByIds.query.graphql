@@ -1,0 +1,8 @@
+query getAdvancedFilterCourseByIds($ids: [ID!]) {
+  multiNode(ids: $ids, type: COURSE) {
+    id
+    ... on Course {
+      title
+    }
+  }
+}

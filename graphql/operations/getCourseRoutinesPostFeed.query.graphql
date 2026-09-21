@@ -1,0 +1,8 @@
+query getCourseRoutinesPostFeed($id: ID!, $after: String, $filters: PostFilterInput) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      ...courseItem
+    }
+  }
+}

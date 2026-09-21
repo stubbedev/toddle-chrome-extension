@@ -1,0 +1,48 @@
+query getCASInsightQuery($id: ID!, $StudentProjectPortfolioFilters: StudentProjectPortfolioFilters, $PlannerFieldFilter: PlannerFieldFilter, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $StudentProjectPortfolioFilters) {
+        edges {
+          node {
+            id
+            achievedPlannerElements {
+              totalCount
+            }
+            student {
+              ...studentInfo
+            }
+            plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+              id
+              plannerElementNode {
+                id
+                displaySequence
+                label
+              }
+              evidence {
+                totalCount
+              }
+              isAchieved
+              projects {
+                totalCount
+                edges {
+                  node {
+                    id
+                    title {
+                      id
+                      value
+                    }
+                    fields(filters: $PlannerFieldFilter) {
+                      uid
+                      value
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

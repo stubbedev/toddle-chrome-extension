@@ -1,0 +1,41 @@
+query getUserThirdPartyRedirectionConfigs($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: ThirdPartyRedirectionConfigFilterOptions) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      thirdPartyRedirectionConfigs(filters: $filters) {
+        service
+        redirectUrl
+        customValue
+        color
+        imageUrl
+        fieldUid
+        canEditCustomValue
+      }
+    }
+    ... on Student {
+      id
+      thirdPartyRedirectionConfigs(filters: $filters) {
+        service
+        redirectUrl
+        customValue
+        color
+        imageUrl
+        fieldUid
+        canEditCustomValue
+      }
+    }
+    ... on FamilyMember {
+      id
+      thirdPartyRedirectionConfigs(filters: $filters) {
+        service
+        redirectUrl
+        customValue
+        color
+        imageUrl
+        fieldUid
+        canEditCustomValue
+      }
+    }
+  }
+}

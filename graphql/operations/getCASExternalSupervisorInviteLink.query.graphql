@@ -1,0 +1,9 @@
+query getCASExternalSupervisorInviteLink($id: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      casExternalSupervisorInviteUrl
+    }
+  }
+}

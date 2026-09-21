@@ -1,0 +1,12 @@
+query getCollection($id: ID!) {
+  node(id: $id, type: LE_COLLECTION) {
+    id
+    ... on LECollection {
+      id
+      libraryGrades {
+        id
+        label
+      }
+    }
+  }
+}

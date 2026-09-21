@@ -1,0 +1,25 @@
+mutation UpdateCourseUserEntityMap($input: UpdateCourseUserEntityMapInput!) {
+  platform {
+    updateCourseUserEntityMap(input: $input) {
+      id
+      user {
+        id
+        firstName
+        middleName
+        lastName
+      }
+      entity {
+        id
+        ... on Subject {
+          id
+          name
+        }
+        ... on LearningCourse {
+          id
+          title
+        }
+      }
+      entityType
+    }
+  }
+}

@@ -1,0 +1,46 @@
+fragment schoolGroupMemberUserItem on User {
+  id
+  type
+  firstName
+  middleName
+  lastName
+  profileImage
+  email
+  ... on Staff {
+    displayRole
+    role
+    preferredName
+    prefix
+    suffix
+    pronouns
+  }
+  ... on Student {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    yearGroup {
+      id
+      grade {
+        id
+        name
+      }
+    }
+  }
+  ... on FamilyMember {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    children {
+      id
+      firstName
+      middleName
+      lastName
+      preferredName
+      prefix
+      suffix
+      pronouns
+    }
+  }
+}

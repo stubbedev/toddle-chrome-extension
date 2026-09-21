@@ -1,0 +1,23 @@
+query getTableMetrics($id: ID!, $tableMetricFilters: IndividualMetricsFilterInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      analytics {
+        individualMetrics(filter: $tableMetricFilters) {
+          totalCount
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          edges {
+            field
+            stringField
+            value
+            metaData
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation portProgressReportTemplates($portingEntityType: PORT_PROGRESS_REPORT_TEMPLATES_ENTITY_TYPE_ENUM!, $portingEntitySubType: PORT_PROGRESS_REPORT_TEMPLATES_ENTITY_SUB_TYPE_ENUM, $curriculumTypes: [CURRICULUM_PROGRAM_TYPE_ENUM!], $featureTypes: [PRS_PORTING_FEATURE_TYPE_ENUM!], $organizationIds: [ID!], $primaryProgressReportTaskGroupId: [ID!], $secondaryProgressReportTaskGroupId: [ID!], $shouldUpdateBaseTemplateIdMapping: Boolean!) {
+  documentation {
+    portProgressReportTemplates(input: {portingEntityType: $portingEntityType, portingEntitySubType: $portingEntitySubType, curriculumTypes: $curriculumTypes, featureTypes: $featureTypes, organizationIds: $organizationIds, primaryProgressReportTaskGroupId: $primaryProgressReportTaskGroupId, secondaryProgressReportTaskGroupId: $secondaryProgressReportTaskGroupId, shouldUpdateBaseTemplateIdMapping: $shouldUpdateBaseTemplateIdMapping})
+  }
+}

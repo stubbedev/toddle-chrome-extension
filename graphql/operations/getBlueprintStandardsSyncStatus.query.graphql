@@ -1,0 +1,8 @@
+query getBlueprintStandardsSyncStatus($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      isBlueprintStandardsAllSynced
+    }
+  }
+}

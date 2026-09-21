@@ -1,0 +1,5 @@
+mutation quickCopyProgressReportRemark($input: QuickCopyStudentProgressReportRemarkInput!) {
+  documentation {
+    quickCopyStudentProgressReportRemark(input: $input)
+  }
+}

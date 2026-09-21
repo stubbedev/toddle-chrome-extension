@@ -1,0 +1,13 @@
+mutation validateGradingCommentTemplateExcel($input: ValidateGradingCommentTemplateExcelInput!) {
+  documentation {
+    validateGradingCommentTemplateExcel(input: $input) {
+      commentTemplatesDifference
+      transactionId
+      errors {
+        entityName
+        errorType
+        rowNumber
+      }
+    }
+  }
+}

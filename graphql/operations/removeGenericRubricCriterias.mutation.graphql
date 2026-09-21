@@ -1,0 +1,11 @@
+mutation removeGenericRubricCriterias($input: [ID!]) {
+  planner {
+    removeGenericRubricCriterias(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...genericRubricCriteriaItem
+      }
+    }
+  }
+}

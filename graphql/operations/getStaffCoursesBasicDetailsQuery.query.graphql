@@ -1,0 +1,8 @@
+query getStaffCoursesBasicDetailsQuery($id: ID!, $first: Int, $after: String, $filters: CourseFilter, $areStudentsIncluded: Boolean!, $courseGradeFilters: CourseGradeFilters, $enabledModulesFilters: EnabledModulesFiltersInput, $aclControlParameterFilter: ACLControlParameterFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+  }
+}

@@ -1,0 +1,40 @@
+query getStudentAssessmentsForReportConfiguration($studentId: ID!, $filters: StudentAssignmentFeedFilters, $orderBy: ASSIGNMENT_ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      assignments(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            ...configureAssessmentsItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment configureAssessmentsItem on StudentAssignment {
+  id
+  assignment {
+    id
+    content {
+      id
+      ... on Assessment {
+        id
+        title {
+          id
+          value
+        }
+        assessmentType {
+          id
+          value
+        }
+        globalCategories {
+          id
+          name
+        }
+      }
+    }
+  }
+}

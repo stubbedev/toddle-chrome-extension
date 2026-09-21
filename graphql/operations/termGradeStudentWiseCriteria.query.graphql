@@ -1,0 +1,35 @@
+query termGradeStudentWiseCriteria($id: ID!, $associatedChildPlannerElementFilters: AssociatedChildPlannerElementNodesFilters, $termGradeStudentWiseCriteriaFilter: TermGradeStudentWiseCriteriaFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      termGradeStudentWiseCriteria(filters: $termGradeStudentWiseCriteriaFilter) {
+        id
+        student {
+          id
+        }
+        subject {
+          id
+          name
+          associatedChildPlannerElementNodes(filters: $associatedChildPlannerElementFilters) {
+            id
+            label
+            parent
+          }
+        }
+        grade {
+          id
+          name
+        }
+        academicTerm {
+          id
+          label
+        }
+        criteria {
+          id
+          label
+        }
+      }
+    }
+  }
+}

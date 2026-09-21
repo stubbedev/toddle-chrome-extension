@@ -1,0 +1,11 @@
+mutation removeStandardRubricDescriptors($input: [ID!]) {
+  planner {
+    removeStandardRubricDescriptors(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...standardRubricDescriptorItem
+      }
+    }
+  }
+}

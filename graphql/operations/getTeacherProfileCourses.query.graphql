@@ -1,0 +1,8 @@
+query getTeacherProfileCourses($teacherId: ID!, $courseFilters: CourseFilter, $collaboratorsFilters: CollaboratorFilters) {
+  node(id: $teacherId, type: STAFF) {
+    id
+    ... on Staff {
+      ...teacherCoursesDetails
+    }
+  }
+}

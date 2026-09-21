@@ -1,0 +1,10 @@
+mutation getWeeklyPlannerDownloadUrl($input: WeeklyPlannerTemplateDownloadUrlInput!) {
+  planner {
+    weeklyPlannerTemplateDownloadUrl(input: $input) {
+      url
+      isSuccess
+      longRunningTaskCreated
+    }
+    __typename
+  }
+}

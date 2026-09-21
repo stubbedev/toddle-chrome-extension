@@ -1,0 +1,8 @@
+query getPlannerTemplateWithProgramFilters($ids: [ID!], $locale: String, $curriculumProgramIds: [ID!], $programTypes: [PROGRAM_TYPE_ENUM!]) {
+  multiNode(ids: $ids, type: PLANNER_TEMPLATE) {
+    id
+    ... on PlannerTemplate {
+      ...templateWithProgramFiltersItem
+    }
+  }
+}

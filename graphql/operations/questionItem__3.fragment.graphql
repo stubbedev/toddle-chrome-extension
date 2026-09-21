@@ -1,0 +1,28 @@
+fragment questionItem on Question {
+  id
+  questionType {
+    id
+    uid
+    config
+  }
+  questionTitle {
+    id
+    uid
+    value
+  }
+  questionScore
+  assessmentTools @include(if: $showAssessmentTools) {
+    totalCount
+    edges {
+      node {
+        ...questionAssessmentToolItem
+      }
+    }
+  }
+  fields {
+    ...questionFieldsItem
+  }
+  answerFields {
+    ...questionFieldsItem
+  }
+}

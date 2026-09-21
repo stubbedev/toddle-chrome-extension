@@ -1,0 +1,5 @@
+mutation removeBlueprintTeacherCourses($input: RemoveBlueprintTeacherCoursesInput!) {
+  planner {
+    removeBlueprintTeacherCourses(input: $input)
+  }
+}

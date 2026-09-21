@@ -1,0 +1,10 @@
+query getUnitPlanEvidencesCount($id: ID!, $filters: PostUnitPlanFilter) {
+  node(id: $id, type: UNIT_PLAN) {
+    ... on UnitPlan {
+      id
+      postsFeed(filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

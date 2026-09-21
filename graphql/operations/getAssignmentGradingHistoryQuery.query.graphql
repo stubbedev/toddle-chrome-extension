@@ -1,0 +1,146 @@
+query getAssignmentGradingHistoryQuery($organizationId: ID!, $assignmentFilters: AssignmentFeedFilters, $orderBy: ASSIGNMENT_ORDER_BY_ENUM, $orderDirection: ORDER_BY_DIRECTION, $studentIds: [ID!], $assignmentAclFilters: ACLControlParameterFilter, $assessmentToolFilters: AssessmentToolFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      assignments(filters: $assignmentFilters, orderBy: $orderBy, orderByDirection: $orderDirection) {
+        edges {
+          node {
+            id
+            isExcludedFromFinalGradeCalculation
+            course {
+              id
+              learningCourse {
+                id
+                displayName
+              }
+              aclControlParameters(filters: $assignmentAclFilters) {
+                id
+                permission
+                value
+              }
+            }
+            content {
+              id
+              ... on Assessment {
+                id
+                weightage
+                assessmentType {
+                  id
+                  value
+                }
+                taskType {
+                  id
+                  type
+                  label
+                }
+                assessmentTools(filters: $assessmentToolFilters) {
+                  totalCount
+                  edges {
+                    node {
+                      id
+                      assessmentToolType
+                      assessmentToolItem {
+                        id
+                        ... on StandardRubric {
+                          id
+                          associateScoreTool {
+                            id
+                            scoreToolData {
+                              id
+                              maxScore
+                            }
+                          }
+                        }
+                        ... on GenericRubric {
+                          id
+                          associateScoreTool {
+                            scoreTool {
+                              id
+                              scoreToolData {
+                                id
+                                maxScore
+                              }
+                            }
+                          }
+                        }
+                        ... on ScoreAssessmentTool {
+                          id
+                          scoreToolData {
+                            id
+                            maxScore
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                category {
+                  id
+                  label
+                }
+                globalCategories {
+                  id
+                  name
+                }
+                academicTerm {
+                  id
+                  label
+                }
+                title {
+                  id
+                  value
+                }
+                fields(uids: ["objectivesMYP", "interdisciplinaryCriteriaMYP"]) {
+                  id
+                  uid
+                  resolvedMinimalTree {
+                    ... on ResolvedFieldPlannerElementSet {
+                      id
+                      nodes {
+                        id
+                        uid
+                        label
+                        type
+                        depth
+                        associatedParents {
+                          id
+                          ... on Subject {
+                            id
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                gradingConfigurations {
+                  id
+                  settings {
+                    id
+                    uid
+                    value
+                  }
+                }
+              }
+            }
+            assignedStudents(studentIds: $studentIds) {
+              id
+              isEvaluated
+              ibPYPElementRatings {
+                id
+                value
+                ibPYPElementId
+                ibPYPElementType
+                parentType
+                academicCriteriaValue {
+                  id
+                  label
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

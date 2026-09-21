@@ -1,0 +1,8 @@
+mutation updateCourseDraft($id: ID!, $draftData: CourseDraftUpdateInput!) {
+  planner {
+    updateCourseDraft(id: $id, draftData: $draftData) {
+      key
+    }
+    __typename
+  }
+}

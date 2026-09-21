@@ -1,0 +1,38 @@
+query getOrganizationAcademicYears($id: ID!, $termsFilters: TermFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      academicYears {
+        id
+        startDate
+        endDate
+        isCurrentAcademicYear
+        isUpcomingAcademicYear
+        isPreviousAcademicYear
+        terms(filters: $termsFilters) {
+          id
+          label
+          type
+          startDate
+          endDate
+          curriculumProgram {
+            id
+          }
+          associatedAcademicTermEntities {
+            id
+            academicTerm {
+              id
+              label
+            }
+            cumulativeAcademicTermWeightages {
+              id
+              weightage
+              percentage
+            }
+          }
+        }
+      }
+    }
+  }
+}

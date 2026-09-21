@@ -1,0 +1,20 @@
+query getLearningGoalsGradingData($id: ID!, $plannerElementNodeSetsFilters: PlannerElementNodeSetFilters, $customDatasetFilters: PlannerElementNodeSetFilters, $skipCustomDatasets: Boolean!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      ...curriculumProgramLearningGoalsGradingDataItem
+    }
+    ... on IbPypCurriculumProgram {
+      ...curriculumProgramLearningGoalsGradingDataItem
+    }
+    ... on IbMypCurriculumProgram {
+      ...curriculumProgramLearningGoalsGradingDataItem
+    }
+    ... on IbDpCurriculumProgram {
+      ...curriculumProgramLearningGoalsGradingDataItem
+    }
+    ... on UBDCurriculumProgram {
+      ...curriculumProgramLearningGoalsGradingDataItem
+    }
+  }
+}

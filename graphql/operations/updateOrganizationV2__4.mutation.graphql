@@ -1,0 +1,9 @@
+mutation updateOrganizationV2($input: OrganizationUpdateV2Input) {
+  platform {
+    updateOrganizationV2(input: $input) {
+      organization {
+        id
+      }
+    }
+  }
+}

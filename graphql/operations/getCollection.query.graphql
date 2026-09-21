@@ -1,0 +1,29 @@
+query getCollection($id: ID!, $collectionFilterInput: collectionFilterInput) {
+  node(id: $id, type: LE_COLLECTION) {
+    id
+    ... on LECollection {
+      id
+      name
+      description
+      ...leCollectionSavedByNodeItem
+      libraryGrades {
+        id
+        label
+      }
+      entities(entityType: ASSESSMENT, filters: $collectionFilterInput) {
+        totalCount
+        libraryEdges {
+          isPremium
+          isNew
+          node {
+            id
+            ... on Assessment {
+              id
+              ...assessmentItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

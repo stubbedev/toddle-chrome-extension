@@ -1,0 +1,154 @@
+query getFlatUnitPlanFeed($id: ID!, $after: String, $filters: UnitPlansV2FeedFilters, $first: Int, $orderBy: UnitPlanOrderByEnum, $orderByDirection: OrderByDirectionEnum, $centralRepoInput: UnitCentralRepoConfigInput) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      flatUnitPlans(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        unitTypeCount {
+          type
+          count
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            state
+            startDate
+            endDate
+            isPublishedInSampleUnits
+            isImported
+            isSharedWithStudents
+            isSharedWithFamilies
+            createdBy {
+              id
+              firstName
+              middleName
+              type
+              lastName
+              profileImage
+            }
+            curriculumProgram {
+              ...curriculumProgramBasicDetailsItem
+            }
+            owner {
+              id
+            }
+            title {
+              id
+              value
+            }
+            unitCode {
+              id
+              value
+            }
+            courses {
+              id
+              title
+            }
+            grades
+            resolvedGrades {
+              id
+              name
+            }
+            theme {
+              id
+              value
+              resolvedMinimalTree {
+                ... on ResolvedFieldThemeSet {
+                  id
+                  themes {
+                    id
+                    label
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+            }
+            duration {
+              id
+              value
+            }
+            unitType {
+              id
+              value
+            }
+            image {
+              id
+              value
+              resolvedMinimalTree {
+                ...resolvedFieldVideoAttachmentItem
+              }
+            }
+            templateId
+            subjects {
+              id
+              value
+              resolvedMinimalTree {
+                ... on ResolvedFieldSubjectSet {
+                  id
+                  subjects {
+                    id
+                    name
+                    type
+                    isArchived
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+            }
+            expertProfile {
+              ...expertItem
+            }
+            resourceLibrary {
+              leCount
+              assessmentCount
+            }
+            assessmentTemplate
+            leTemplate
+            taggedPractices {
+              ...taggedPracticesOnEvidence
+            }
+            academicYears {
+              ...academicYearItem
+            }
+            submittedToCommunity
+            fields(uids: ["hours", "subjectLevel", "objectiveLevel"]) {
+              id
+              uid
+              value
+              resolvedMinimalTree {
+                ...resolvedMinimalTreeItem
+              }
+            }
+            createdAt
+            updatedAt
+            centralRepoConfig(input: $centralRepoInput) {
+              newVersionId
+              isSeen
+              derivedStatus
+              publishedDate
+            }
+            cascadeUpdatedBy {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+            cascadeUpdateAt
+            learningCourse {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

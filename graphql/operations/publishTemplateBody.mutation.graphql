@@ -1,0 +1,8 @@
+mutation publishTemplateBody($input: PublishDraftTemplateInput!) {
+  planner {
+    publishDraftTemplate(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

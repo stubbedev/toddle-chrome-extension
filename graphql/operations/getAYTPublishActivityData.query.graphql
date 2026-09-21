@@ -1,0 +1,17 @@
+query getAYTPublishActivityData($organizationId: ID!, $activityFilters: BulkUploadActivityFilter!, $actionFilters: BulkUploadActionFilters) {
+  platform {
+    organization(id: $organizationId) {
+      bulkUploadActivityData(filters: $activityFilters) {
+        id
+        status
+        bulkUploadActions(filters: $actionFilters) {
+          id
+          actionType
+          metadata
+          status
+        }
+        actionsProgress(filters: $actionFilters)
+      }
+    }
+  }
+}

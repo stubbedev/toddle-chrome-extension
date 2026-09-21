@@ -1,0 +1,7 @@
+query getMultiNodeCourseQuery($ids: [ID!], $shouldFetchRecommendedPhase: Boolean!) {
+  multiNode(ids: $ids, type: COURSE) {
+    ... on Course {
+      ...course
+    }
+  }
+}

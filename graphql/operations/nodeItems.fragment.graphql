@@ -1,0 +1,34 @@
+fragment nodeItems on CurriculumWebsiteNode {
+  id
+  label
+  itemType
+  mapType
+  isEnabled
+  item {
+    id
+    ... on LearningCourse {
+      curriculumProgram {
+        id
+        type
+        label
+        academicSetupType
+      }
+      subjects {
+        id
+        name
+      }
+    }
+  }
+  content(filters: $contentFilter) {
+    id
+    type
+    isEnabled
+    value
+    fieldUid @include(if: $showFieldUid)
+    attachments {
+      id
+      url
+      name
+    }
+  }
+}

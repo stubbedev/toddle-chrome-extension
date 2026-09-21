@@ -1,0 +1,58 @@
+query getTeachersFromCourse($ids: [ID!], $after: String, $filters: CourseFilter, $orderBy: ORDER_BY_ENUM, $rnpRoleContextDetailFilter: RnPRoleContextDetailFilterInput, $filtersWithoutSearch: CourseFilter, $includeAdminCount: Boolean = false, $includeMappedToMe: Boolean = false) {
+  platform {
+    course(ids: $ids) {
+      id
+      isMappedToMe @include(if: $includeMappedToMe)
+      collaborator(first: 15, after: $after, filters: $filters, orderBy: $orderBy) {
+        totalCount
+        adminCount @include(if: $includeAdminCount)
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            profileImage
+            isArchived
+            email
+            displayRole
+            sourceId
+            allCourses {
+              id
+              title
+            }
+            designation {
+              id
+              title
+            }
+            type
+            rnpRoleContextDetail(filters: $rnpRoleContextDetailFilter) {
+              id
+              contextType
+              role {
+                id
+                label
+                isCustomRole
+                isSuperAdmin
+              }
+              context {
+                id
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+      collaborator(filters: $filtersWithoutSearch) {
+        totalCount
+      }
+    }
+  }
+}

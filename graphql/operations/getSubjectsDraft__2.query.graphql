@@ -1,0 +1,109 @@
+query getSubjectsDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        subjectDrafts(filters: {academicYearId: $academicYearId}) {
+          key
+          name
+          type
+          reportDisplayName
+          icon
+          iconType
+          associatedDepartment {
+            id
+            name
+            globalSubjectGroup {
+              id
+            }
+          }
+          addedGrades {
+            id
+          }
+          existingGrades {
+            id
+          }
+          addedLevels {
+            key
+            label
+          }
+          existingLevels {
+            key
+            label
+          }
+          presetSubjectId
+          isExisting
+          isArchived
+          associatedCourses {
+            key
+            associatedGrades {
+              grade {
+                id
+              }
+            }
+            associatedLevels {
+              levelDraft {
+                key
+                globalTag {
+                  id
+                }
+              }
+            }
+            associatedSubjectWiseLevels {
+              subjectDraft {
+                key
+              }
+              associatedLevelDrafts {
+                key
+              }
+            }
+            associatedGlobalResponseLanguage {
+              id
+            }
+          }
+          associatedClasses {
+            key
+            associatedLevels {
+              levelDraft {
+                key
+                globalTag {
+                  id
+                }
+              }
+            }
+            associatedGlobalResponseLanguage {
+              id
+            }
+          }
+          dpSubjectType
+          ibOfferedSubjectId
+          ibOfferedSubject {
+            id
+            name
+            contentSubject {
+              id
+              assessmentYearTitle
+            }
+          }
+          existingVariants {
+            orgSubjectVariantId
+            subjectLevelId
+            responseLanguageId
+            globalSubjectLevelId
+            globalResponseLanguageId
+            isArchived
+          }
+          addedVariants {
+            globalSubjectLevelId
+            globalResponseLanguageId
+            subjectLevelId
+            responseLanguageId
+            subjectLevelDraftKey
+          }
+        }
+      }
+    }
+  }
+}

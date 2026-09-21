@@ -1,0 +1,62 @@
+fragment gradeBookInfo on Project {
+  id
+  students {
+    ...userNameFields
+    profileImage
+    registrationCategory
+    alertTypes {
+      ...alertTypeFields
+    }
+  }
+  ibPYPElementRatings {
+    id
+    ibPYPElementId
+    ibPYPElementType
+    value
+    createdAt
+    createdByV2 {
+      ...userNameFields
+      profileImage
+    }
+    academicCriteriaSet {
+      label
+      criteriaType
+      id
+      academicCriteriaValues {
+        abbreviation
+        description
+        id
+        label
+      }
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      color
+    }
+  }
+  reportStatus
+  assessmentRemarks {
+    id
+    message
+  }
+  ibPYPElementRemarks {
+    id
+    message
+    ibPYPElementId
+    ibPYPElementType
+  }
+  supervisors {
+    ...userNameFields
+    profileImage
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+  }
+  fields(filters: $projectFieldFilters) {
+    id
+    uid
+    value
+    pseudoFieldUid
+  }
+}

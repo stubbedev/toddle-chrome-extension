@@ -1,0 +1,28 @@
+query getOrganizationCourse($id: ID!, $first: Int, $after: String, $filters: CourseFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            primaryGrade {
+              id
+              name
+            }
+            profileImageData {
+              url
+              icon
+            }
+          }
+        }
+      }
+    }
+  }
+}

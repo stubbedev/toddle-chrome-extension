@@ -1,0 +1,14 @@
+mutation insertRemarkForProject($input: [RemarkInputBulk!]) {
+  planner {
+    upsertRemarkInBulk(input: $input) {
+      isSuccess
+      warning
+      remarks {
+        id
+        message
+      }
+      __typename
+    }
+    __typename
+  }
+}

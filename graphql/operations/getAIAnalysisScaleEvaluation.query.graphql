@@ -1,0 +1,34 @@
+query getAIAnalysisScaleEvaluation($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      entityType
+      metadata
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+            authorType
+            content
+            parentMessage {
+              id
+            }
+            metadata
+            attachments {
+              id
+            }
+          }
+        }
+      }
+      analysisToolEvaluation(filters: {userFilter: ALL}) {
+        id
+        toolId
+        toolType
+        toolResponses {
+          ...toolResponseItem
+        }
+      }
+    }
+  }
+}

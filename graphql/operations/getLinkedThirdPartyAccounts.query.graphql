@@ -1,0 +1,14 @@
+query getLinkedThirdPartyAccounts($userId: ID!, $userType: ENTITY_TYPE_ENUM!) {
+  node(id: $userId, type: $userType) {
+    ... on Staff {
+      id
+      linkedThirdPartyAccounts {
+        id
+        serviceType
+        isConnected
+        userName
+        accessToken
+      }
+    }
+  }
+}

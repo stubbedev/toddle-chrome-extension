@@ -1,0 +1,8 @@
+fragment commentTemplatesTags on GradingCommentTemplateTag {
+  id
+  title
+  columnTag {
+    id
+    title
+  }
+}

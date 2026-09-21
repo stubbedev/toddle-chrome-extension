@@ -1,0 +1,20 @@
+fragment organizationResourceItemV2 on OrganizationResource {
+  id
+  label
+  attachment {
+    ...attachmentItemV2
+  }
+  type
+  resourceType
+}
+
+fragment ltiFragment on LTILaunchObject {
+  launchUrl
+  launchObject
+  errorFlag
+  stopLinkCreation
+  attachmentContextId
+  integrationCreds {
+    metadata
+  }
+}

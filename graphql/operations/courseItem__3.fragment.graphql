@@ -1,0 +1,26 @@
+fragment courseItem on Course {
+  id
+  title
+  isArchived
+  learningCourse {
+    id
+    title
+    academicCourse {
+      id
+      label
+    }
+  }
+  curriculumProgram {
+    id
+  }
+  primaryGrade {
+    id
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  grades {
+    id
+  }
+}

@@ -1,0 +1,28 @@
+query getCurriculumWiseGradeScales($id: ID!, $type: ENTITY_TYPE_ENUM!, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $filters: GradeScaleFilters, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: $type) {
+    ... on UBDCurriculumProgram {
+      id
+      gradeScale(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        ...gradeScalesReportsFragment
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      gradeScale(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        ...gradeScalesReportsFragment
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      gradeScale(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        ...gradeScalesReportsFragment
+      }
+    }
+    ... on IbPypCurriculumProgram {
+      id
+      gradeScale(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        ...gradeScalesReportsFragment
+      }
+    }
+  }
+}

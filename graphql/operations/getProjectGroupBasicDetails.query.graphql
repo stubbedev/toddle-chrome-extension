@@ -1,0 +1,10 @@
+query getProjectGroupBasicDetails($projectGroupId: ID!) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      ...projectGroupBasicDetails
+      category
+      globalProjectGroupId
+    }
+  }
+}

@@ -1,0 +1,26 @@
+query getProcessJournalList($id: ID!, $filters: PostFilterInput, $after: String) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      projectComments(filters: {projectCommentType: PROJECT_EVIDENCE}) {
+        totalCount
+      }
+      notificationBadgeCounts {
+        unreadProjectEvidenceCommentCount
+      }
+      posts(filters: $filters, after: $after, last: 6) {
+        totalCount
+        edges {
+          node {
+            ...processJournalItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

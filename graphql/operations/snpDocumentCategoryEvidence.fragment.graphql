@@ -1,0 +1,12 @@
+fragment snpDocumentCategoryEvidence on SnPDocumentCategoryEvidence {
+  id
+  evidenceType
+  evidenceItem {
+    ...evidenceItemInterface
+  }
+  parentItem {
+    item {
+      id
+    }
+  }
+}

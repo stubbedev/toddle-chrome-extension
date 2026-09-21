@@ -1,0 +1,7 @@
+mutation createIBPYPElementRatings($elementRatings: [IBPYPElementRatingInput!], $after: String, $first: Int, $filters: MessagesFilters, $colorFilters: IBPYPElementRatingColorFilters) {
+  planner {
+    createIBPYPElementRatings(input: $elementRatings) {
+      ...continuumRatingItem
+    }
+  }
+}

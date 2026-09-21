@@ -1,0 +1,5 @@
+mutation updateCurriculumAcademicYearTransitionState($input: CurriculumAcademicYearTransitionStateUpdateInput!) {
+  planner {
+    updateCurriculumAcademicYearTransitionState(input: $input)
+  }
+}

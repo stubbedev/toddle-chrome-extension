@@ -1,0 +1,35 @@
+fragment templateItem on PlannerTemplate {
+  id
+  body(locale: $locale)
+  name
+  type
+  isGlobal
+  isBilingual
+  unitType
+  isDraftEdited
+  isPublish
+  academicTemplate {
+    id
+  }
+  curriculumProgram {
+    id
+  }
+  publishedTemplate {
+    id
+    curriculumProgram {
+      id
+    }
+  }
+  draftTemplate {
+    id
+    isDraftEdited
+  }
+  helpEnabledFields {
+    id
+    uid
+    helpText {
+      id
+    }
+    type
+  }
+}

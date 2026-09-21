@@ -1,0 +1,67 @@
+query getOrganizationSubjectVariantsV3($id: ID!, $curriculumIds: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        ... on IbDpCurriculumProgram {
+          id
+          subjectVariants(filters: {archivalState: ALL}) {
+            subject {
+              name
+              id
+              icon
+              iconType
+              type
+              ibOfferedSubject {
+                id
+                contentSubject {
+                  id
+                  assessmentYearTitle
+                  assessmentYearEndsOn
+                }
+              }
+              curriculumProgram {
+                id
+              }
+              isArchived
+              associatedLevels {
+                id
+                label
+                type
+              }
+              flatVariants(filters: {archivalState: ALL}) {
+                level {
+                  id
+                  label
+                }
+                responseLanguage {
+                  id
+                  label
+                }
+                isArchived
+              }
+              subjectGroup {
+                id
+                globalSubjectGroup {
+                  id
+                }
+              }
+            }
+            subjectGroup {
+              id
+              name
+              type
+              globalSubjectGroup {
+                id
+                name
+                type
+              }
+              displaySequence
+            }
+          }
+        }
+      }
+    }
+  }
+}

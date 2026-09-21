@@ -1,0 +1,12 @@
+query getRulesetBasicDetails($filters: GetAllSurveyRulesetsFilter) {
+  platform {
+    getAllSurveyRulesets(filters: $filters) {
+      isSuccess
+      warning
+      rulesets {
+        id
+        name
+      }
+    }
+  }
+}

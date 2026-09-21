@@ -1,0 +1,12 @@
+query getPlanningInsightDownloadUrl($id: ID!, $unitPlanInsightUrlInput: UnitPlanInsightUrlInput!) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      generateUnitPlanInsightUrl(unitPlanInsightUrlInputs: $unitPlanInsightUrlInput) {
+        url
+        isSuccess
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+mutation updateBehaviourCategoryV2($input: UpdateBehaviourCategoryV2Input!) {
+  platform {
+    updateBehaviourCategoryV2(input: $input) {
+      id
+      name
+      severities(input: {first: 100}) {
+        edges {
+          node {
+            id
+            name
+            color
+          }
+        }
+      }
+      pointsSetup {
+        ...BehaviourCategoryPointsSetup
+      }
+    }
+  }
+}

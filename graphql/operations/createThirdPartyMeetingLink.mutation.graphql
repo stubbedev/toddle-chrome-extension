@@ -1,0 +1,17 @@
+mutation createThirdPartyMeetingLink($serviceType: THIRD_PARTY_SERVICE_TYPE!) {
+  platform {
+    createThirdPartyMeetingLink(input: {serviceType: $serviceType}) {
+      response {
+        id
+        meetingUrl
+        meetingData
+        type
+        createdAt
+        createdBy {
+          id
+        }
+      }
+      warning
+    }
+  }
+}

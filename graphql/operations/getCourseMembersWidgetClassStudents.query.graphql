@@ -1,0 +1,29 @@
+query getCourseMembersWidgetClassStudents($classId: ID!, $first: Int! = 30, $after: String) {
+  node(id: $classId, type: COURSE) {
+    id
+    ... on Course {
+      id
+      students(filters: {archivalState: ACTIVE}, first: $first, after: $after, orderBy: FULL_NAME) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            profileImage
+            allGrades {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

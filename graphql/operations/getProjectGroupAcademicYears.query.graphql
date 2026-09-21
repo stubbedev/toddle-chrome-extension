@@ -1,0 +1,18 @@
+query getProjectGroupAcademicYears($id: ID!, $filters: AcademicYearGradeMapFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      yearGroup {
+        id
+        academicYearGradeMap(filters: $filters) {
+          academicYear {
+            id
+            startDate
+            endDate
+            isCurrentAcademicYear
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+fragment evidenceFeedDetailsItem on SnPDocumentCategory {
+  id
+  taggedEvidence(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        ...snpDocumentCategoryEvidence
+      }
+    }
+  }
+}

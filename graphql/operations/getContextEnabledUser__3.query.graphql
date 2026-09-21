@@ -1,0 +1,14 @@
+query getContextEnabledUser($controlparameterId: ID!, $context: [ACLContextEntityInput!], $academicYearId: ID) {
+  node(id: $controlparameterId, type: ACL_CONTROL_PARAMETER) {
+    id
+    ... on ACLPermission {
+      id
+      enabledUsers(context: $context, academicYearId: $academicYearId) {
+        ...staff
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

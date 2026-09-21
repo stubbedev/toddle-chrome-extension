@@ -1,0 +1,8 @@
+mutation restoreGlobalBinItem($input: RestoreGlobalBinItemInput!) {
+  platform {
+    restoreGlobalBinItem(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

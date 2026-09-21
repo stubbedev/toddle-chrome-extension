@@ -1,0 +1,10 @@
+mutation createBulkAiMessages($input: CreateBulkAiMessagesInput!) {
+  ai {
+    createBulkAiMessages(input: $input) {
+      isSuccess
+      response {
+        ...aiMessageItem
+      }
+    }
+  }
+}

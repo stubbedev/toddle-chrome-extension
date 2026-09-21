@@ -1,0 +1,8 @@
+query downloadResponses($id: ID!, $input: DownloadInteractionResponsesInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      downloadInteractionResponses(input: $input)
+    }
+  }
+}

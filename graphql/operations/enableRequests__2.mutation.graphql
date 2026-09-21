@@ -1,0 +1,12 @@
+mutation enableRequests($input: EnableProductRequestInput!) {
+  platform {
+    enableProductRequestV2(input: $input) {
+      productRequestId
+      isSuccess
+      warning
+      status
+      failureReason
+      __typename
+    }
+  }
+}

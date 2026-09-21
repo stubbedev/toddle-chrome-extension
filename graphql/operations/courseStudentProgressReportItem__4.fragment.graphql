@@ -1,0 +1,25 @@
+fragment courseStudentProgressReportItem on CourseProgressReportTask {
+  id
+  studentProgressReports(filters: $filters) {
+    edges {
+      node {
+        id
+        status
+        student {
+          id
+          firstName
+          middleName
+          lastName
+          sourceId
+          preferredName
+          suffix
+          pronouns
+          prefix
+        }
+        publishedReport {
+          id
+        }
+      }
+    }
+  }
+}

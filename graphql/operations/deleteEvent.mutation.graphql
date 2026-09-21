@@ -1,0 +1,7 @@
+mutation deleteEvent($id: ID!) {
+  school {
+    deleteCalendarEvent(input: {id: $id}) {
+      id
+    }
+  }
+}

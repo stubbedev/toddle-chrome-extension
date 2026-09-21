@@ -1,0 +1,7 @@
+query generateBulkUploadIncidentTemplate($input: BulkUploadIncidentGenerateTemplateInput!) {
+  platform {
+    generateBulkUploadIncidentTemplate(input: $input) {
+      url
+    }
+  }
+}

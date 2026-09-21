@@ -1,0 +1,50 @@
+query getUnitViewOutline($id: ID!, $filters: UnitViewInsightsFilter!, $input: UnitViewInsightInput, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $unitPlanTaskFlowWrapperInput: UnitPlanTaskFlowWrapperInput, $shouldFetchTaskFlow: Boolean!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      curriculumInsights {
+        unitViewInsights(filters: $filters) {
+          unitViewOutLine(input: $input) {
+            ...unitPlanOutlineDetails
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      curriculumInsights {
+        unitViewInsights(filters: $filters) {
+          unitViewOutLine(input: $input) {
+            ...unitPlanOutlineDetails
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      curriculumInsights {
+        unitViewInsights(filters: $filters) {
+          unitViewOutLine(input: $input) {
+            ...unitPlanOutlineDetails
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      curriculumInsights {
+        unitViewInsights(filters: $filters) {
+          unitViewOutLine(input: $input) {
+            ...unitPlanOutlineDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation excludeUnitPlanFromInsights($excludedIds: [ID!]) {
+  planner {
+    updateUnitPlanInclusionStatusInInsights(input: {excludedIds: $excludedIds})
+  }
+}

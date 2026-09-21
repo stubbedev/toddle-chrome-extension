@@ -1,0 +1,28 @@
+query getOrganizationClassFeed($first: Int, $after: String, $filters: CourseFilterInput, $organizationId: ID!) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      courses(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            curriculumProgram {
+              id
+            }
+            profileImageData {
+              url
+              icon
+              color
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query getSubjectLearningCourses($subjectId: ID!, $learningCourseFilters: SubjectLearningCourseFilters) {
+  node(id: $subjectId, type: SUBJECT) {
+    id
+    ... on Subject {
+      learningCourses(filters: $learningCourseFilters) {
+        id
+        grades {
+          id
+        }
+        subjectLevelMap {
+          subject {
+            id
+          }
+          associatedLevels {
+            id
+          }
+        }
+      }
+    }
+  }
+}

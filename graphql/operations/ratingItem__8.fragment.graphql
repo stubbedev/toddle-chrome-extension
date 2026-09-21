@@ -1,0 +1,12 @@
+fragment ratingItem on IBPYPElementRating {
+  id
+  ibPYPElementId
+  ibPYPElementType
+  academicCriteriaSet {
+    ...criteriaSetItem
+  }
+  academicCriteriaValue {
+    ...criteriaValueItem
+  }
+  parentType
+}

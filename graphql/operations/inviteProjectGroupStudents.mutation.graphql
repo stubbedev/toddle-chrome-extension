@@ -1,0 +1,5 @@
+mutation inviteProjectGroupStudents($projectGroupId: ID!, $addArray: [ID!], $removeArray: [ID!]) {
+  documentation {
+    inviteProjectGroupStudents(input: {projectGroupId: $projectGroupId, student: {added: $addArray, removed: $removeArray}})
+  }
+}

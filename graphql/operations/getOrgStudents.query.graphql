@@ -1,0 +1,15 @@
+query getOrgStudents($organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      students(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            isArchivedV2(filters: $userArchivedFilters)
+          }
+        }
+      }
+    }
+  }
+}

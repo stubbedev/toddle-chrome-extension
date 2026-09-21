@@ -1,0 +1,47 @@
+query getCourseUsers($organizationId: ID!, $first: Int, $after: String, $filters: CourseFilterInput, $skipStudents: Boolean!, $skipStaff: Boolean!, $skipFamilyMembers: Boolean!, $studentFilters: CourseFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      courses(first: $first, after: $after, filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        totalCount
+        edges {
+          node {
+            id
+            title
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            students(filters: $studentFilters) @skip(if: $skipStudents) {
+              edges {
+                node {
+                  ...userDetailItem
+                }
+              }
+            }
+            collaborator @skip(if: $skipStaff) {
+              edges {
+                node {
+                  ...userDetailItem
+                }
+              }
+            }
+            familyMembers @skip(if: $skipFamilyMembers) {
+              edges {
+                node {
+                  ...userDetailItem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

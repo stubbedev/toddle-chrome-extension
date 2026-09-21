@@ -1,0 +1,37 @@
+query getOpeningMessageResources($id: ID!) {
+  node(id: $id, type: ASSESSMENT) {
+    ... on Assessment {
+      id
+      fields(uids: ["openingMessageResource"]) {
+        id
+        resolvedMinimalTree {
+          id
+          ... on ResolvedFieldOpeningMessageResource {
+            id
+            attachmentGroups {
+              id
+              attachments {
+                id
+                url
+                type
+                metadata
+                modalityAttachment {
+                  id
+                  ... on ToddleDoc {
+                    id
+                    value
+                  }
+                  ... on ModalityFile {
+                    id
+                    content
+                    metadata
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

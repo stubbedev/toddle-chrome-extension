@@ -1,0 +1,8 @@
+mutation portOrgTo2p0($input: PortOrgTo2p0Input!) {
+  platform {
+    portOrgTo2p0(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

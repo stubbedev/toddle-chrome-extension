@@ -1,0 +1,5 @@
+mutation deleteCourseFlowResource($input: DeleteLearningCourseFlowResourceInput!) {
+  planner {
+    deleteLearningCourseFlowResource(input: $input)
+  }
+}

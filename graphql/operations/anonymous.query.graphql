@@ -1,0 +1,51 @@
+query($reportId: ID!, $filters: ProgressReportCourseWiseMetricsFilter) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      otherSectionWiseMetrics(filters: $filters) {
+        id
+        sections
+        pending
+        total
+        notAssessed
+      }
+      projectSectionWiseMetrics(filters: $filters) {
+        id
+        sections
+        pending
+        total
+        notAssessed
+      }
+      progressReportTaskGroup {
+        id
+        attendanceMode
+      }
+      subjectGroupWiseMetrics(filters: $filters) {
+        subjectGroup {
+          id
+          name
+          type
+        }
+        courseWiseStats {
+          id
+          total
+          pending
+          completed
+          notAssessed
+          course {
+            id
+            title
+            subjects {
+              id
+              name
+            }
+            profileImageData {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+query getCourseFlowOutline($id: ID!, $filters: LearningCourseFlowFilter) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeedOutline(filters: $filters) {
+          id
+          label
+          depth
+          itemType
+          parent {
+            id
+          }
+          item {
+            ... on Assessment {
+              title {
+                value
+              }
+            }
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

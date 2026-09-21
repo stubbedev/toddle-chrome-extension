@@ -1,0 +1,16 @@
+fragment bellScheduleItem on BellSchedule {
+  id
+  label
+  periodsEdge {
+    totalCount
+    periods {
+      ...bellSchedulePeriodItem
+    }
+  }
+  appliedCurriculumPrograms {
+    id
+  }
+  parent {
+    id
+  }
+}

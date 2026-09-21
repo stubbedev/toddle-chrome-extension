@@ -1,0 +1,98 @@
+query getWorksheetQuestionWiseInsights($assignmentId: ID!) {
+  node(id: $assignmentId, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      id
+      content {
+        ... on Assessment {
+          id
+          organizationResources {
+            id
+            childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+              edges {
+                node {
+                  id
+                  label
+                  childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+                    resourceTypeBasedCount {
+                      totalCount
+                    }
+                    edges {
+                      node {
+                        id
+                        item {
+                          ...questionInsightsDetailsItem
+                        }
+                        childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+                          resourceTypeBasedCount {
+                            totalCount
+                          }
+                          edges {
+                            node {
+                              id
+                              item {
+                                ...questionInsightsDetailsItem
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      assignedStudents {
+        id
+        student {
+          ...studentItem
+          ... on Student {
+            id
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+        status
+        isSubmitted
+        isEvaluated
+        isSharedWithStudent
+        isEvaluationApplicable
+        toolResponsesV2(filters: {userFilter: ALL}) {
+          id
+          toolId
+          toolType
+          toolResponses {
+            ...toolResponseItem
+          }
+        }
+        ibPYPElementRatings {
+          id
+          value
+          ibPYPElementId
+          ibPYPElementType
+          academicCriteriaValue {
+            id
+            label
+          }
+          academicCriteriaSet {
+            id
+          }
+        }
+        submission {
+          id
+          questionSubmissions {
+            edges {
+              node {
+                ...questionSubmissionInsightsDetailsItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

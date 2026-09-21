@@ -1,0 +1,7 @@
+mutation markSyncRead($input: [UpsertUserEntityStateInput!]!) {
+  platform {
+    upsertUserEntityState(input: $input) {
+      isSuccess
+    }
+  }
+}

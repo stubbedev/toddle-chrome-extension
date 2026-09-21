@@ -1,0 +1,12 @@
+mutation handleRelatedConcept($elementId: ID!, $plannerElementSetId: ID, $elementType: RELATED_CONCEPT_ELEMENT_TYPE_ENUM!, $relatedConcepts: [RelatedConceptInput!]) {
+  planner {
+    handleRelatedConcept(input: {elementId: $elementId, elementType: $elementType, relatedConcepts: $relatedConcepts, plannerElementSetId: $plannerElementSetId}) {
+      id
+      label
+      elementId
+      elementType
+      children
+      parent
+    }
+  }
+}

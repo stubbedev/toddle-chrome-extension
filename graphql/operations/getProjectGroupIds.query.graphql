@@ -1,0 +1,11 @@
+query getProjectGroupIds($id: ID!, $filters: ProjectGroupFilters) {
+  node(id: $id, type: YEAR_GROUP) {
+    ... on YearGroup {
+      id
+      projectGroups(filters: $filters) {
+        id
+        type
+      }
+    }
+  }
+}

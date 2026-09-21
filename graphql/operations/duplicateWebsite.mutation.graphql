@@ -1,0 +1,11 @@
+mutation duplicateWebsite($input: DuplicateCurriculumWebsiteInput!) {
+  planner {
+    duplicateCurriculumWebsite(input: $input) {
+      isSuccess
+      curriculumWebsite {
+        id
+        status
+      }
+    }
+  }
+}

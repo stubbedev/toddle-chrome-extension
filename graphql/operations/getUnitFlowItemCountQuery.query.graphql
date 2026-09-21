@@ -1,0 +1,34 @@
+query getUnitFlowItemCountQuery($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $leAndAssessmentFilters: resourceLibraryFilter, $unitFlowFeedFilters: EntityFlowResourceFilter, $unitFlowResourceFilters: EntityFlowResourceFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on UnitPlan {
+      id
+      unitFlowFeed {
+        unitFlowId
+        unitFlowFlatFeed(filters: $unitFlowFeedFilters) {
+          resourceBasedCount {
+            totalCount
+            fileCount
+            folderCount
+            __typename
+          }
+        }
+        unitFlowFlatFeed(filters: $unitFlowResourceFilters) {
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+        }
+      }
+      resourceLibrary(filters: $leAndAssessmentFilters) {
+        leCount
+        assessmentCount
+        worksheetCount
+        aiChatTaskCount
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

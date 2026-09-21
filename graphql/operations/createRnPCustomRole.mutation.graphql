@@ -1,0 +1,12 @@
+mutation createRnPCustomRole($input: CreateRnPCustomRoleInput!) {
+  acl {
+    createRnPCustomRole(input: $input) {
+      isSuccess
+      warning
+      response
+      rnpRole {
+        id
+      }
+    }
+  }
+}

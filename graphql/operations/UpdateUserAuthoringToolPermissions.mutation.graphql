@@ -1,0 +1,8 @@
+mutation UpdateUserAuthoringToolPermissions($input: UpdateUserAuthoringToolPermissionsInput!) {
+  content {
+    updateUserAuthoringToolPermissions(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

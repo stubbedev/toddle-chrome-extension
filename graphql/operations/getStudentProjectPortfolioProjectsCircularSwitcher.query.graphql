@@ -1,0 +1,14 @@
+query getStudentProjectPortfolioProjectsCircularSwitcher($id: ID!, $projectFilters: ProjectFilter) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      projects(filters: $projectFilters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

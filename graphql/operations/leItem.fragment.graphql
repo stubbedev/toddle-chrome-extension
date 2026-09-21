@@ -1,0 +1,11 @@
+fragment leItem on LearningEngagement {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+}

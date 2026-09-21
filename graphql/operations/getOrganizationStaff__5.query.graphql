@@ -1,0 +1,36 @@
+query getOrganizationStaff($organizationId: ID!, $filters: OrgConnectionFilterInput, $supervisorArchivedFilters: UserArchivedFilters, $skipProjectGroups: Boolean! = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: $filters) {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            email
+            type
+            ... on Staff {
+              projectGroups @skip(if: $skipProjectGroups) {
+                id
+              }
+              preferredName
+              prefix
+              suffix
+              pronouns
+              role
+              isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+              otherDetails {
+                id
+                organizationName
+                phoneNumber
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

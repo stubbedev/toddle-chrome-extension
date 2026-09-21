@@ -1,0 +1,13 @@
+query getOrganizationAcademicCriteriaValues($id: ID!, $finalGradeFilters: RatingLevelsFilter, $fetchFinalGrade: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      constants {
+        ratingLevels(filters: $finalGradeFilters) @include(if: $fetchFinalGrade) {
+          ...basicOrganizationElementRatingsItem
+        }
+      }
+    }
+  }
+}

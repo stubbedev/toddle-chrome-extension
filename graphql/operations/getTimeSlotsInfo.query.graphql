@@ -1,0 +1,7 @@
+query getTimeSlotsInfo($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodFilters: PeriodFilterOptions, $routineFilters: RoutineFilterOptions!) {
+  node(id: $id, type: $type) {
+    ... on Staff {
+      ...staffPeriodListItemV2
+    }
+  }
+}

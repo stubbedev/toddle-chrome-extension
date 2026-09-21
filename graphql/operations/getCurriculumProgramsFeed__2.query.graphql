@@ -1,0 +1,18 @@
+query getCurriculumProgramsFeed {
+  platform {
+    organization {
+      id
+      courses {
+        totalCount
+        curriculumWiseCount {
+          curriculumProgram {
+            id
+            type
+            acronym
+          }
+          count
+        }
+      }
+    }
+  }
+}

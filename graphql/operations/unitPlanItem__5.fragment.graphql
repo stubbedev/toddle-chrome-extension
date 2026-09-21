@@ -1,0 +1,86 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  templateId
+  title {
+    id
+    value
+  }
+  unitType {
+    id
+    value
+  }
+  startDate
+  endDate
+  owner {
+    id
+  }
+  isSharedWithStudents
+  isSharedWithFamilies
+  enabledSections {
+    userType
+    sections
+  }
+  lockingInfo {
+    isLocked
+  }
+  subjects {
+    id
+    value
+    lockingInfo {
+      isLocked
+    }
+  }
+  learningCourses {
+    id
+    title
+  }
+  unshareRestrictedLearningCourseIds
+  standardLockingInfo {
+    uid
+    value
+    lockingInfo {
+      isLocked
+    }
+  }
+  fields(uids: ["pace"]) {
+    id
+    uid
+    value
+  }
+  isSyncedFromBluePrintCourse(filters: $syncedBluePrintItemFilters)
+  isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) {
+    isConflictExists
+    status
+  }
+  defaultStaffAccess
+  state
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldVideoAttachment {
+        id
+        type
+        attachment {
+          id
+          url
+          thumbUrl
+        }
+      }
+    }
+  }
+  taggedPractices {
+    evaluationCycle {
+      id
+    }
+    taggedPractice {
+      taggedBy {
+        id
+      }
+      practice {
+        id
+      }
+      evidenceStatus
+    }
+  }
+}

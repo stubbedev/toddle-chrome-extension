@@ -1,0 +1,19 @@
+query getRoutineNameAndGrades($id: ID!, $filter: RoutineFilterOptions!, $curriculumProgramIds: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        routines(filter: $filter) {
+          id
+          label
+          grades {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

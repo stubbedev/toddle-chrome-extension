@@ -1,0 +1,31 @@
+query getOrganizationLearningCourses($organizationId: ID!, $learningCourseFilters: LearningCourseFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(filters: $learningCourseFilters) {
+        count {
+          totalCount
+        }
+        edges {
+          node {
+            id
+            title
+            type
+            grades {
+              id
+              name
+            }
+            gradingPeriods {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

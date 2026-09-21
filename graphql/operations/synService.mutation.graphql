@@ -1,0 +1,12 @@
+mutation synService($service: INTEGRATION_SERVICE_NAME!, $type: INTEGRATION_SERVICE_SYNC_INPUT, $curriculumProgramId: ID, $isRefresh: Boolean, $jobType: JOB_TYPE_ENUM, $jobSubType: INTEGRATION_JOB_SUB_TYPE_ENUM, $futureAYSync: Boolean, $gradingPeriods: [ID!], $academicCriteriaSetType: CriteriaTypeEnum, $academicCriteriaSetId: ID, $courseData: JSON) {
+  integration {
+    integrationSyncService(input: {service: $service, type: $type, curriculumProgramId: $curriculumProgramId, isRefresh: $isRefresh, jobType: $jobType, jobSubType: $jobSubType, futureAYSync: $futureAYSync, gradingPeriods: $gradingPeriods, academicCriteriaSetType: $academicCriteriaSetType, academicCriteriaSetId: $academicCriteriaSetId, courseData: $courseData}) {
+      allow
+      message
+      job {
+        id
+        status
+      }
+    }
+  }
+}

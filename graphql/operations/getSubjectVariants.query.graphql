@@ -1,0 +1,15 @@
+query getSubjectVariants($subjectId: ID!) {
+  node(id: $subjectId, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      variants {
+        level {
+          id
+          label
+          type
+        }
+      }
+    }
+  }
+}

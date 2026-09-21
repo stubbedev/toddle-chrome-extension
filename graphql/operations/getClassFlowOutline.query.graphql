@@ -1,0 +1,18 @@
+query getClassFlowOutline($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: OrganizationResourceFilter, $orderBy: ORDER_BY_ENUM) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Course {
+      id
+      organizationResourcesFlatFeedOutline(filters: $filters) {
+        id
+        label
+        depth
+        state
+        resourceType
+        ...classMaterialsWithChildrenItem
+      }
+      __typename
+    }
+    __typename
+  }
+}

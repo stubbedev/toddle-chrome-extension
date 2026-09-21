@@ -1,0 +1,9 @@
+mutation restoreDeletedAssignment($restoreAssignmentInput: RestoreDeletedAssignmentInput!) {
+  platform {
+    restoreDeletedAssignment(input: $restoreAssignmentInput) {
+      response {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateGoalTask($input: GoalTaskUpdateInput!) {
+  documentation {
+    updateGoalTask(input: $input) {
+      ...goalTaskItem
+    }
+  }
+}

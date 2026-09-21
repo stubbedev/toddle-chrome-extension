@@ -1,0 +1,37 @@
+query searchAttachments($input: MessageV2AttachmentInput!, $organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messageV2Attachments(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            attachment {
+              id
+              type
+              title
+              name
+              mimeType
+              metadata
+              url
+              thumbUrl
+              streamUrl
+            }
+            message {
+              id
+              cursor
+              chat {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

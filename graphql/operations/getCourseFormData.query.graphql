@@ -1,0 +1,81 @@
+query getCourseFormData($id: ID!, $subjectFilters: SubjectFilterInput, $gradeFilters: GradeFilterInput, $gradingPeriodsFilters: TermFilters, $flatVariantFilters: FlatSubjectVariantFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        icon
+        iconType
+        type
+        isArchived
+        grades {
+          id
+          name
+        }
+        curriculumProgram {
+          id
+          label
+          type
+          nodeInterfaceType
+        }
+        subjectGroup {
+          id
+          name
+          type
+          displaySequence
+          globalSubjectGroup {
+            id
+          }
+        }
+        associatedLevels {
+          id
+          label
+          type
+        }
+        ibOfferedSubject {
+          id
+          contentSubject {
+            id
+            assessmentYearTitle
+            assessmentYearEndsOn
+          }
+        }
+        flatVariants(filters: $flatVariantFilters) {
+          level {
+            id
+            label
+          }
+          responseLanguage {
+            id
+            label
+          }
+        }
+      }
+      grades(filters: $gradeFilters) {
+        id
+        name
+        curriculumProgram {
+          id
+        }
+        globalGrade {
+          id
+          uid
+        }
+      }
+      academicYears {
+        id
+        terms(filters: $gradingPeriodsFilters) {
+          id
+          label
+          startDate
+          endDate
+          curriculumProgram {
+            id
+          }
+        }
+      }
+    }
+  }
+}

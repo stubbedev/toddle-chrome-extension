@@ -1,0 +1,8 @@
+mutation upsertCurriculumServiceFeatures($input: [IntegrationUsertFeatureServiceCurriculumInput!]!) {
+  integration {
+    integrationUpsertCurriculumServiceFeatures(input: $input) {
+      isSuccess
+      message
+    }
+  }
+}

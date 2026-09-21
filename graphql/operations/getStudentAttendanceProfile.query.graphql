@@ -1,0 +1,165 @@
+query getStudentAttendanceProfile($studentId: ID!, $attendanceV2Filters: StudentAttendanceFilters, $studentActivityFilters: StudentActivityFilters!, $enrolledPeriodsFilters: PeriodFilterOptions, $studentExcusalFilters: AttendanceExcusalFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      enrolledPeriodsV3(filters: $enrolledPeriodsFilters) {
+        period {
+          id
+          label
+          abbreviation
+          startTime
+          endTime
+        }
+        date
+        day
+        isSelected
+        startTime
+        endTime
+        course {
+          id
+          title
+        }
+      }
+      attendanceV2(filters: $attendanceV2Filters) {
+        attendanceMetric(type: OVERALL) {
+          totalCount
+          presencePercentage
+          presenceNumber
+          absencePercentage
+          absenceNumber
+          tier {
+            id
+            label
+            color
+            minPercentage
+            maxPercentage
+          }
+        }
+        categorySummary {
+          percentageItems {
+            category {
+              id
+              label
+              color
+            }
+            percentage
+          }
+        }
+      }
+      attendanceActivities(filters: $studentActivityFilters) {
+        edges {
+          node {
+            id
+            date
+            createdAt
+            parentType
+            parentId
+            subLayer {
+              uid
+              label
+            }
+            attendanceOption {
+              id
+              label
+              abbreviation
+              color
+              attendanceCategory {
+                id
+                color
+              }
+            }
+            period {
+              id
+              label
+              abbreviation
+            }
+            parent {
+              ... on StudentDateAttendance {
+                id
+                course {
+                  id
+                  title
+                }
+                timeBlock {
+                  id
+                  uid
+                  label
+                }
+                isHomeroomAttendance
+              }
+              ... on AttendanceTimeBlock {
+                id
+                uid
+                label
+              }
+            }
+          }
+        }
+      }
+      studentAttendanceExcusals(filters: $studentExcusalFilters) {
+        edges {
+          node {
+            ...attendanceExcusalItem
+            startTime
+            endTime
+            excusalReason {
+              id
+              name
+            }
+            attendanceOption {
+              label
+              abbreviation
+              color
+              attendanceCategory {
+                id
+                color
+              }
+            }
+            status
+            isRecurringEvent
+            seriesParentId
+            occurrenceIndex
+            occurrenceCount
+            recurrenceSetting {
+              frequency
+              weekDays
+              interval
+              endDate
+              monthDays
+              setPositions
+              count
+            }
+            attachments {
+              id
+              type
+              title
+              url
+              name
+              mimeType
+              thumbUrl
+              streamUrl
+              description
+              metadata
+            }
+            uid
+            resolutionNote
+            notifiedVia
+            notifiedBy {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+            familyMembers {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getPreviewSet($id: ID!, $orgId: ID!, $curriculumProgramId: ID, $benchmarkFilters: StandardBenchmarkFilters!) {
+  planner {
+    standardBenchmarkSetV2(id: $id, organizationId: $orgId, curriculumProgramId: $curriculumProgramId, benchmarkFilters: $benchmarkFilters) {
+      id
+      benchmarks {
+        nodes {
+          id
+          label
+          code
+          parentId
+          grades {
+            id
+            name
+          }
+          tags
+          isPowerStandard
+          gradingType
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation setStandardSetOfSubject($id: ID!, $standardSet: ID, $changeStandardSet: Boolean, $framework: SUBJECT_FRAMEWORK_ENUM, $snsChildren: [SUBJECT_SNS_CHILDREN_ENUM], $plannerElementSetType: SUBJECT_PLANNER_ELEMENT_TYPE_ENUM) {
+  platform {
+    updateSubject(input: {id: $id, standardSet: $standardSet, changeStandardSet: $changeStandardSet, framework: $framework, snsChildren: $snsChildren, plannerElementSetType: $plannerElementSetType}) {
+      ...subjectItem
+    }
+  }
+}

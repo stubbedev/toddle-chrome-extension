@@ -1,0 +1,27 @@
+query getStudentProgressReportFeed($id: ID!, $filters: PublishedProgressReportsFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      publishedProgressReports(filters: $filters) {
+        ...studentReportItem
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

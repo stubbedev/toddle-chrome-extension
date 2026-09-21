@@ -1,0 +1,13 @@
+mutation createAnnouncementAIConversation($input: CreateAiConversationInput!) {
+  ai {
+    createAiConversation(input: $input) {
+      isSuccess
+      response {
+        id
+        entityType
+        entitySubType
+        metadata
+      }
+    }
+  }
+}

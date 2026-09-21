@@ -1,0 +1,12 @@
+mutation importCalendarEvents($input: ImportCalendarEventsInput!) {
+  platform {
+    importCalendarEvents(input: $input) {
+      isSuccess
+      warning
+      response {
+        id
+      }
+    }
+    __typename
+  }
+}

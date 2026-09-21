@@ -1,0 +1,14 @@
+fragment organizationItem on Organization {
+  id
+  rubrics(filters: $filters) {
+    id
+    title
+    createdBy {
+      ...rubricListStaffItem
+    }
+    updatedBy {
+      ...rubricListStaffItem
+    }
+    updatedAt
+  }
+}

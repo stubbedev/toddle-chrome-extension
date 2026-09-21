@@ -1,0 +1,5 @@
+mutation deleteLearningGoalsEvaluationCriteriaByIds($ids: [ID!]!) {
+  planner {
+    deleteIBPYPElementRatingByIds(ids: $ids)
+  }
+}

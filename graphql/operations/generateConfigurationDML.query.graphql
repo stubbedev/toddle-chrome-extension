@@ -1,0 +1,5 @@
+query generateConfigurationDML($configurationId: ID!) {
+  platform {
+    generateConfigurationPortDML(configurationId: $configurationId)
+  }
+}

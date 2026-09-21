@@ -1,0 +1,25 @@
+query getAssessmentDetailsV2($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on Assessment {
+      id
+      questions {
+        totalCount
+        edges {
+          id
+          parentIdV2
+          sequence
+          parentTypeV2
+          questionType {
+            id
+            uid
+          }
+        }
+      }
+      title {
+        id
+        uid
+        value
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+query getCourseTimetableSlots($id: ID!, $periodsFilters: PeriodFilterOptions) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      periodsV4(filters: $periodsFilters) {
+        edges {
+          node {
+            date
+            day
+            isSelected
+            rotationEntity {
+              id
+              label
+              abbreviation
+            }
+            location
+            locationV2 {
+              id
+              label
+            }
+            period {
+              id
+              label
+              abbreviation
+            }
+            course {
+              id
+              title
+              primaryGrade {
+                id
+                curriculumProgram {
+                  id
+                  type
+                }
+              }
+            }
+            teachers {
+              staff {
+                id
+                profileImage
+                ...staffNameFields
+              }
+            }
+            subject
+            startTime
+            endTime
+          }
+        }
+        edgeInfo {
+          lastModifiedAt
+          lastModifiedBy {
+            id
+            ...staffNameFields
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query getOrganizationGenericTags($organizationId: ID!, $filters: GenericTagsFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      genericTagsV2(filters: $filters) {
+        id
+        label
+        abbreviation
+        curriculumProgram {
+          id
+          label
+          type
+          nodeInterfaceType
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+query getUserCourseIdsQuery($id: ID!, $filters: CourseFilter, $courseGradeFilters: CourseGradeFilters, $userEntityType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $userEntityType) {
+    id
+    ... on Staff {
+      coursesV2(filters: $filters, orderBy: TITLE, orderByDirection: ASC) {
+        edges {
+          node {
+            id
+            curriculumProgram {
+              id
+            }
+            grade(filters: $courseGradeFilters) {
+              id
+            }
+            learningCourse {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

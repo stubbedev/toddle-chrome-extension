@@ -1,0 +1,11 @@
+query getCalendarEventsDataQuery($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: UserCoursesCalendarFilter!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+    ... on Student {
+      ...studentItem
+    }
+  }
+}

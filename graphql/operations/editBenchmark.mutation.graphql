@@ -1,0 +1,7 @@
+mutation editBenchmark($id: ID!, $label: String, $grades: [ID!], $levels: JSON, $code: String) {
+  planner {
+    editBenchmark(input: {id: $id, label: $label, grades: $grades, levels: $levels, code: $code}) {
+      id
+    }
+  }
+}

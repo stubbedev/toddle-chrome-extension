@@ -1,0 +1,5 @@
+mutation approveUser($presetOrgId: ID!, $unauthenticatedUserId: ID!) {
+  school {
+    approveFirstUserWorkEmailRequest(presetOrgId: $presetOrgId, unauthenticatedUserId: $unauthenticatedUserId)
+  }
+}

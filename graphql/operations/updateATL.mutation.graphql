@@ -1,0 +1,7 @@
+mutation updateATL($id: ID!, $label: String, $grades: [ID!], $levels: JSON, $subText: String) {
+  planner {
+    updateATL(input: {id: $id, label: $label, grades: $grades, levels: $levels, subText: $subText}) {
+      id
+    }
+  }
+}

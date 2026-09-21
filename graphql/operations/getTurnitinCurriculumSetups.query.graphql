@@ -1,0 +1,43 @@
+query getTurnitinCurriculumSetups {
+  integration {
+    getTurnitinSetups {
+      curriculumProgram {
+        id
+        label
+        acronym
+      }
+      turnitinConfig {
+        valueType
+        apiUrl
+        apiKey
+        name
+      }
+      turnitinEnabledForOtherModules {
+        valueType
+        value
+      }
+      turnitinEnabledGrades {
+        valueType
+        value
+      }
+      turnitinEnableIndexingForClassroom {
+        valueType
+        value
+      }
+      turnitinEnableIndexingForOtherModules {
+        valueType
+        value
+      }
+      turnitinSearchRepositoriesForClassroom {
+        valueType
+        searchRepositories
+        availableRepositories
+      }
+      turnitinSearchRepositoriesForOtherModules {
+        valueType
+        searchRepositories
+        availableRepositories
+      }
+    }
+  }
+}

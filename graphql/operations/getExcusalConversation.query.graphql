@@ -1,0 +1,10 @@
+query getExcusalConversation($id: ID!, $after: String, $first: Int, $filters: MessagesFilters) {
+  node(id: $id, type: ATTENDANCE_EXCUSAL) {
+    id
+    ... on AttendanceExcusal {
+      conversation {
+        ...messages
+      }
+    }
+  }
+}

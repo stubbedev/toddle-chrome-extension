@@ -1,0 +1,19 @@
+fragment organizationChildResourceItem on OrganizationResource {
+  id
+  label
+  children(visibleTo: $visibleTo, searchText: $searchText, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+    ...organizationResourceItem
+  }
+  isDeleted
+  visibleTo
+  resourceType
+  parentHierarchy {
+    id
+    label
+  }
+  tags {
+    key
+    id
+    value
+  }
+}

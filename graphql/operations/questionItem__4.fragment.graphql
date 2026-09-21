@@ -1,0 +1,7 @@
+fragment questionItem on Question {
+  id
+  questionType {
+    id
+    uid
+  }
+}

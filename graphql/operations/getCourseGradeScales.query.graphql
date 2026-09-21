@@ -1,0 +1,11 @@
+query getCourseGradeScales($id: ID!, $filters: GradeScaleFilters, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      gradeScales(filters: $filters) {
+        ...GradeScaleFragment
+      }
+    }
+  }
+}

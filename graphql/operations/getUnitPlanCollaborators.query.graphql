@@ -1,0 +1,8 @@
+query getUnitPlanCollaborators($id: ID!, $collaboratorsFilter: CollaboratorFilters) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      ...unitPlanItem
+    }
+  }
+}

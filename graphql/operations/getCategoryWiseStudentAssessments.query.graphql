@@ -1,0 +1,51 @@
+query getCategoryWiseStudentAssessments($id: ID!, $grades: [ID!], $academicCriteriaSetsFilter: academicCriteriaSetsFilter, $assignmentFilters: AssignmentFeedFilters, $studentIds: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      constants {
+        academicCriteriaSets(grades: $grades, filters: $academicCriteriaSetsFilter) {
+          id
+          label
+          isShowGradeBoundaries
+          academicCriteriaValues {
+            id
+            label
+            color
+            scoreValues {
+              id
+              value
+              genericTag {
+                id
+                label
+              }
+              category {
+                id
+              }
+            }
+            gradeBoundaries {
+              id
+            }
+            ...categoryWiseStudentAssessmentItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

@@ -1,0 +1,8 @@
+mutation archiveOrDeleteCalendarEventTypes($input: ArchiveOrDeleteCalendarEventTypesInput!) {
+  platform {
+    archiveOrDeleteCalendarEventTypes(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

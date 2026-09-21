@@ -1,0 +1,46 @@
+query getCurriculumWebsiteNode($id: ID!, $first: Int, $after: String, $showFieldUid: Boolean = false, $contentFilter: CurriculumWebsiteContentFilter, $filters: CurriculumWebsiteNodeFilters, $orderByInput: CurriculumWebsiteNodeOrderByInput, $skipNodeChildren: Boolean = false, $skipNodeChildEdges: Boolean = false) {
+  node(id: $id, type: CURRICULUM_WEBSITE_NODE) {
+    ... on CurriculumWebsiteNode {
+      ...nodeItems
+      children(first: $first, after: $after, filters: $filters, orderByInput: $orderByInput) {
+        totalCount
+        enabledCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...nodeItems
+            schools {
+              id
+              label
+            }
+            item {
+              id
+              ... on UnitPlan {
+                ...unitPlanItems
+              }
+              ... on LearningCourse {
+                ...learningCourseItems
+              }
+            }
+            children @skip(if: $skipNodeChildren) {
+              totalCount
+              enabledCount
+              edges @skip(if: $skipNodeChildEdges) {
+                node {
+                  ...nodeItems
+                  children {
+                    totalCount
+                    enabledCount
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

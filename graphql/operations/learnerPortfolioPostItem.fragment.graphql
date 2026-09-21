@@ -1,0 +1,23 @@
+fragment learnerPortfolioPostItem on Post {
+  id
+  title
+  course {
+    id
+  }
+  state
+  createdAt
+  attachments {
+    ...attachmentItem
+  }
+  learnerPortfolioCollection {
+    id
+    label
+    parentHierarchy {
+      id
+    }
+  }
+  folders {
+    id
+    name
+  }
+}

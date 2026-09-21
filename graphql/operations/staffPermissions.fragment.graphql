@@ -1,0 +1,13 @@
+fragment staffPermissions on Staff {
+  permissions(curriculumProgramId: $permissionCurriculumId) {
+    configuration {
+      configurations {
+        id
+        configuration
+        valueType
+        value
+      }
+    }
+  }
+  __typename
+}

@@ -1,0 +1,5 @@
+query getLibrarySearchSuggestions($filters: LibrarySearchSuggestionsFilterInput!) {
+  library {
+    searchSuggestions(filters: $filters)
+  }
+}

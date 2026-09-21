@@ -1,0 +1,29 @@
+query getIndividualAssessmentDataForProjectQuery($id: ID!, $filters: ProjectStudentsCollaboratorFilters) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      studentCollaborators(filters: $filters) {
+        id
+        student {
+          id
+        }
+        ibPYPElementRatings {
+          ...ratingItem
+        }
+        ibPYPElementRemarks {
+          id
+          message
+          ibPYPElementId
+          ibPYPElementType
+        }
+        toolResponses(userFilter: ALL) {
+          ...toolResponseItem
+        }
+        assessmentRemarks {
+          ...remarkMessage
+        }
+      }
+    }
+  }
+}

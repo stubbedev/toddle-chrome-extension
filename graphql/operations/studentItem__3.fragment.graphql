@@ -1,0 +1,21 @@
+fragment studentItem on Student {
+  id
+  profileImage
+  firstName
+  middleName
+  lastName
+  pronouns
+  preferredName
+  suffix
+  prefix
+  alertTypes {
+    ...alertTypeFields
+  }
+  yearGroup {
+    id
+    grade {
+      id
+      name
+    }
+  }
+}

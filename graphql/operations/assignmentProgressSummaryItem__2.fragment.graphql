@@ -1,0 +1,117 @@
+fragment assignmentProgressSummaryItem on Assignment {
+  id
+  contentType
+  createdAt
+  isPrivate
+  state {
+    state
+  }
+  isTeacherEvaluationEnabled
+  isStudentEvaluationEnabled
+  isStudentSubmissionEnabled
+  isExcludedFromFinalGradeCalculation
+  course {
+    id
+  }
+  deadline
+  content {
+    id
+    ... on Assessment {
+      id
+      assessmentType {
+        id
+        value
+      }
+      taskType {
+        id
+        type
+        label
+        color
+        displaySequence
+        metaData
+      }
+      title {
+        id
+        value
+      }
+      assessmentTools(filters: {assessmentToolType: $assessmentToolTypes}) {
+        edges {
+          node {
+            id
+            assessmentToolType
+            assessmentToolItem {
+              id
+              ... on AcademicCriteriaSet {
+                id
+                academicCriteriaValues {
+                  id
+                  label
+                  abbreviation
+                  scoreValues {
+                    id
+                    genericTag {
+                      id
+                      label
+                    }
+                    minValue
+                    maxValue
+                  }
+                }
+                criteriaType
+              }
+              ... on MypObjectiveRubric {
+                id
+                label
+                criteria {
+                  id
+                  highestMark
+                }
+              }
+              ... on ScoreAssessmentTool {
+                id
+                scoreToolData {
+                  id
+                  maxScore
+                }
+              }
+            }
+            isTeacherEvaluationEnable
+            isStudentEvaluationEnable
+          }
+        }
+      }
+      templateId
+      unitPlan {
+        id
+        allFields {
+          ...unitPlanAllFields
+        }
+        ...unitPlanItem
+      }
+      fields(uids: $assessmentFieldUids) {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          ...resolvedMinimalTreeItem
+        }
+      }
+      category {
+        id
+        label
+        colorCode
+      }
+      academicTerm {
+        id
+      }
+      weightage
+      isLearningGoalsEvaluationEnabled
+    }
+  }
+  assignedStudents {
+    ...assignedStudentItem
+  }
+  counts {
+    totalDraftSubmissions
+  }
+}

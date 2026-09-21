@@ -1,0 +1,157 @@
+fragment assignmentProgressSummaryItem on Assignment {
+  id
+  contentType
+  createdAt
+  isPrivate
+  state {
+    state
+  }
+  isTeacherEvaluationEnabled
+  isStudentEvaluationEnabled
+  isStudentSubmissionEnabled
+  isExcludedFromFinalGradeCalculation
+  course {
+    id
+  }
+  deadline
+  content {
+    id
+    ... on Assessment {
+      id
+      assessmentType {
+        id
+        value
+      }
+      title {
+        id
+        value
+      }
+      assessmentTools(filters: {assessmentToolType: $assessmentToolTypes}) {
+        edges {
+          node {
+            id
+            assessmentToolType
+            assessmentToolItem {
+              id
+              ... on AcademicCriteriaSet {
+                id
+                academicCriteriaValues {
+                  id
+                  label
+                  scoreValues {
+                    id
+                    genericTag {
+                      id
+                      label
+                    }
+                    minValue
+                    maxValue
+                  }
+                }
+                criteriaType
+              }
+              ... on MypObjectiveRubric {
+                id
+                label
+                criteria {
+                  id
+                  highestMark
+                }
+              }
+              ... on ScoreAssessmentTool {
+                id
+                scoreToolData {
+                  id
+                  maxScore
+                }
+              }
+            }
+            isTeacherEvaluationEnable
+            isStudentEvaluationEnable
+          }
+        }
+      }
+      templateId
+      unitPlan {
+        id
+        allFields {
+          ...unitPlanAllFields
+        }
+        ...unitPlanItem
+      }
+      fields(uids: ["measureAssessing", "objectivesMYP", "interdisciplinaryCriteriaMYP", "subjectLevel", "atls", "benchmarks", "concepts", "lp", "learningStandardUBD", "atlsUBD", "learningStandardMYP", "atlsMYP", "subjectStandardDP", "atlDP", "learnerProfileDP", "syllabusContentDP"]) {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          ...resolvedMinimalTreeItem
+        }
+      }
+      category {
+        id
+        label
+        colorCode
+      }
+      academicTerm {
+        id
+      }
+      weightage
+      isLearningGoalsEvaluationEnabled
+    }
+  }
+  assignedStudents {
+    id
+    student {
+      id
+      profileImage
+      firstName
+      middleName
+      lastName
+      isArchived
+      courseMap(filters: $courseMapFilters) {
+        tags {
+          id
+          label
+        }
+      }
+    }
+    toolResponsesV2(filters: {userFilter: ALL}) {
+      id
+      toolId
+      toolType
+      toolResponses {
+        ...toolResponseItem
+      }
+    }
+    ibPYPElementRatings {
+      id
+      value
+      ibPYPElementId
+      ibPYPElementType
+      academicCriteriaValue {
+        id
+        label
+      }
+      academicCriteriaSet {
+        id
+      }
+    }
+    elementRemarks(filters: {creatorTypes: [STAFF]}) {
+      id
+      message
+      ibPYPElementId
+      ibPYPElementType
+    }
+    isEvaluated
+    isSharedWithStudent
+    isEvaluationApplicable
+    status
+    isSubmitted
+    lockingState {
+      state
+    }
+  }
+  counts {
+    totalDraftSubmissions
+  }
+}

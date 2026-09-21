@@ -1,0 +1,73 @@
+query getStudentSubjectTags($id: ID!, $type: ENTITY_TYPE_ENUM!, $subjectFilters: SubjectFilterInput, $userCourseMapFilters: UserCourseMapFilters, $courseGradeFilters: CourseGradeFilters, $assignmentCountFilters: SubjectAssignmentsFilters, $curriculumProgramType: CURRICULUM_PROGRAM_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Student {
+      id
+      courseMap(filters: $userCourseMapFilters) {
+        id
+        course {
+          id
+          title
+          learningCourse {
+            id
+            title
+            academicCourse {
+              id
+              label
+            }
+            isArchived
+            displayMetadata
+            gradingPeriods {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+          subjects(filters: $subjectFilters) {
+            id
+            name
+            icon
+            iconType
+            type
+            isArchived
+            subjectGroup {
+              id
+              displaySequence
+            }
+            assignmentCount(filters: $assignmentCountFilters, curriculumProgramType: $curriculumProgramType)
+          }
+          primaryGrade(filters: $courseGradeFilters) {
+            id
+          }
+          grades {
+            id
+          }
+          curriculumProgram {
+            id
+            type
+            academicSetupType
+          }
+        }
+        tags {
+          id
+          label
+          abbreviation
+          reportDisplayName
+        }
+        subjectWiseLevel {
+          level {
+            id
+            label
+            abbreviation
+            reportDisplayName
+          }
+          subject {
+            id
+          }
+        }
+      }
+    }
+  }
+}

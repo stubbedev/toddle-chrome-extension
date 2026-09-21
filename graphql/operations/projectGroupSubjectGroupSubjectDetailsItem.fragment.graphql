@@ -1,0 +1,50 @@
+fragment projectGroupSubjectGroupSubjectDetailsItem on ProjectGroup {
+  id
+  subjectGroup @skip(if: $isAccountDepartmentEnabled) {
+    id
+    subjects(filters: {includeInterdisciplinarySubjects: $includeInterdisciplinarySubjects}) {
+      id
+      name
+      students(filters: $studentFilters) {
+        edges {
+          node {
+            ...studentInfo
+            courses(filters: $courseFilters) {
+              id
+              title
+            }
+            projects(filters: $projectFilters) {
+              id
+              title {
+                id
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scienceSubjects(filters: {includeInterdisciplinarySubjects: $includeInterdisciplinarySubjects}) @include(if: $isAccountDepartmentEnabled) {
+    id
+    name
+    students(filters: $studentFilters) {
+      edges {
+        node {
+          ...studentInfo
+          courses(filters: $courseFilters) {
+            id
+            title
+          }
+          projects(filters: $projectFilters) {
+            id
+            title {
+              id
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

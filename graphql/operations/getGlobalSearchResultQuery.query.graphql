@@ -1,0 +1,12 @@
+query getGlobalSearchResultQuery($searchText: String, $platformSearchEntities: [PLATFORM_SEARCH_ENTITY_ENUM!], $maxCountPerType: Int!, $scope: SEARCH_SCOPE_ENUM!, $academicYear: ID!, $curriculum: ID, $curriculumIds: [ID]!, $metadata: JSON!) {
+  platform {
+    platformSearch(input: {searchText: $searchText, platformSearchEntities: $platformSearchEntities, maxCountPerType: $maxCountPerType, scope: $scope, academicYear: $academicYear, curriculum: $curriculum, curriculumIds: $curriculumIds, metadata: $metadata}) {
+      id
+      type
+      metadata
+      title
+      subTitle
+      order
+    }
+  }
+}

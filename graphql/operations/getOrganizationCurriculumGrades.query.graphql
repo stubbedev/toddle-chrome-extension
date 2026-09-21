@@ -1,0 +1,17 @@
+query getOrganizationCurriculumGrades($gradeFilters: GradeFilterInput, $curriculumProgramIds: [ID]) {
+  platform {
+    organization {
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        acronym
+      }
+      grades(filters: $gradeFilters) {
+        id
+        name
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

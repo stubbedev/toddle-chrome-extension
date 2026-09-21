@@ -1,0 +1,13 @@
+query getOrganizationAndUserRequestCount($filters: MultiAccessIdentityRequestFeedFilters) {
+  platform {
+    multiAccessIdentityRequestFeed(filters: $filters) {
+      totalCount
+      __typename
+    }
+    multiAccessIdentityUserAccessRequestFeed(filters: $filters) {
+      totalCount
+      __typename
+    }
+    __typename
+  }
+}

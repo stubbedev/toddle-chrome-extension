@@ -1,0 +1,5 @@
+mutation updateUnitPlanInclusionStatus($input: updateUnitPlanInclusionStatusInInsightInput!) {
+  planner {
+    updateUnitPlanInclusionStatusInInsights(input: $input)
+  }
+}

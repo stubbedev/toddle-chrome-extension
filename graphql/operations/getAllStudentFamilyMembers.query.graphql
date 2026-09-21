@@ -1,0 +1,21 @@
+query getAllStudentFamilyMembers($organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $familiesFilter: FamiliesFiltersInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            families(filters: $familiesFilter) {
+              id
+              familyMember {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

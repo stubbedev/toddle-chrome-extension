@@ -1,0 +1,11 @@
+fragment projectGroupBasicDetails on ProjectGroup {
+  id
+  name
+  subType
+  isEnabled
+  type
+  curriculumProgram {
+    id
+    type
+  }
+}

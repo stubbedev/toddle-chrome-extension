@@ -1,0 +1,34 @@
+query getOrganizationDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      libraryGrades {
+        ...libraryEntityBasicDetailsItem
+        mappedLibraryEntities(filters: {types: [SUBJECT]}) {
+          ...libraryEntityBasicSubjectDetailsItem
+          mappedOrganizationEntities {
+            ... on Subject {
+              id
+              name
+              curriculumProgram {
+                id
+                type
+              }
+            }
+          }
+        }
+        mappedOrganizationEntities {
+          ... on Grade {
+            id
+            globalGrade {
+              id
+              uid
+            }
+          }
+        }
+      }
+    }
+  }
+}

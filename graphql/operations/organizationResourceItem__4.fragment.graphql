@@ -1,0 +1,96 @@
+query getAssignments($id: ID!, $first: Int, $after: String, $filters: AssignmentFeedFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      assignments(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            course {
+              id
+              title
+            }
+            createdBy {
+              id
+              profileImage
+              firstName
+              lastName
+            }
+            content {
+              ... on Assessment {
+                id
+                title {
+                  id
+                  value
+                }
+                category {
+                  id
+                  label
+                }
+                ...organizationResourceItem
+                allFields {
+                  id
+                  uid
+                  resolvedMinimalTree {
+                    id
+                    ... on ResolvedFieldUnitPlan {
+                      id
+                      unitPlan {
+                        id
+                        title {
+                          id
+                          uid
+                          value
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            isPrivate
+            deadline
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment organizationResourceItem on Assessment {
+  id
+  organizationResourcesV2 {
+    edges {
+      node {
+        id
+        childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+          edges {
+            node {
+              id
+              item {
+                id
+              }
+              label
+              childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+                edges {
+                  node {
+                    id
+                    item {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

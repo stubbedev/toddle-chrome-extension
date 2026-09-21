@@ -1,0 +1,8 @@
+mutation bulkUpdatePostFields($input: BulkUpdatePostFieldInput!) {
+  documentation {
+    bulkUpdatePostFields(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

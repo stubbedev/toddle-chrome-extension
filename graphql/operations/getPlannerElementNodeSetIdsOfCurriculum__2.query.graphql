@@ -1,0 +1,29 @@
+query getPlannerElementNodeSetIdsOfCurriculum($id: ID!, $type: ENTITY_TYPE_ENUM!, $plannerElementNodeSetFilters: PlannerElementNodeSetFilters, $nodeSetConfigFilters: PlannerElementNodeSetConfigFilters) {
+  node(id: $id, type: $type) {
+    id
+    ... on IbMypCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetFilters) {
+        ...plannerElementNodeSetItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetFilters) {
+        ...plannerElementNodeSetItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetFilters) {
+        ...plannerElementNodeSetItem
+      }
+    }
+    ... on IbPypCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetFilters) {
+        ...plannerElementNodeSetItem
+      }
+    }
+  }
+}

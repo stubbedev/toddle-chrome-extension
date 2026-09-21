@@ -1,0 +1,46 @@
+fragment projectDetailItem on Project {
+  id
+  projectGroup {
+    id
+    type
+  }
+  supervisors {
+    ...userNameFields
+    profileImage
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+  }
+  status
+  reportStatus
+  assessmentRemarks {
+    id
+    message
+  }
+  fields(filters: $projectFieldFilters) {
+    id
+    uid
+    value
+  }
+  ibPYPElementRatings(filters: {academicCriteriaSetTypes: [PROJECT_OVERALL_PROGRESS]}) {
+    id
+    ibPYPElementId
+    ibPYPElementType
+    value
+    createdAt
+    createdByV2 {
+      ...userNameFields
+      profileImage
+    }
+    academicCriteriaSet {
+      id
+      label
+      criteriaType
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      color
+    }
+  }
+}

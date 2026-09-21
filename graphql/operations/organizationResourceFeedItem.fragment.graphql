@@ -1,0 +1,6 @@
+fragment organizationResourceFeedItem on Organization {
+  id
+  organizationResources(types: $types, visibleTo: $visibleTo, searchText: $searchText, filters: $organizationResourceFilter) {
+    ...organizationResourceItem
+  }
+}

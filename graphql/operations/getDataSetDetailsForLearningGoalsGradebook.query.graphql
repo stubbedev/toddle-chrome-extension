@@ -1,0 +1,38 @@
+query getDataSetDetailsForLearningGoalsGradebook($curriculumProgramId: ID!, $plannerElementNodeSetsFilters: PlannerElementNodeSetFilters) {
+  node(id: $curriculumProgramId, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetsFilters) {
+        edges {
+          node {
+            id
+            title
+            gradeScales {
+              id
+              displayName
+              description
+              type
+              gradingType
+              isArchived
+              isUseForMastery
+              minValue
+              maxValue
+              calculateStandardGradesUsing
+              gradeScaleEntityDetails {
+                id
+                gradeScaleValues {
+                  id
+                  abbreviation
+                  label
+                  description
+                  color
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

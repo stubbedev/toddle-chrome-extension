@@ -1,0 +1,7 @@
+mutation createWorksheetQuestionsUsingAI($input: CreateWorksheetQuestionsUsingAIInput!) {
+  content {
+    createWorksheetQuestionsUsingAI(input: $input) {
+      id
+    }
+  }
+}

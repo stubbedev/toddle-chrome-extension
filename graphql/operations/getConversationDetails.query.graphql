@@ -1,0 +1,29 @@
+query getConversationDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $organizationId: ID, $first: Int, $after: String, $filters: ChatFilter) {
+  node(id: $id, type: $type) {
+    ... on Staff {
+      id
+      chats(first: $first, after: $after) {
+        edges {
+          node {
+            ...chatDetailsItem
+          }
+        }
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on FamilyMember {
+      id
+      chats(filters: $filters, first: $first) {
+        edges {
+          node {
+            ...chatDetailsItem
+          }
+        }
+      }
+    }
+  }
+}

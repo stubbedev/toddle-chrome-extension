@@ -1,0 +1,17 @@
+fragment learningCourseSubjectsItem on Subject {
+  id
+  name
+  isArchived
+  grades {
+    id
+    name
+  }
+  subjectGroup {
+    id
+    name
+  }
+  recommendedPhase {
+    gradeId
+    phaseId
+  }
+}

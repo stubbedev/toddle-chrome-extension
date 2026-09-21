@@ -1,0 +1,50 @@
+query getBehaviourLocationsV2($id: ID!, $locationFilters: BehaviourLocationFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourLocations(filters: $locationFilters) {
+        id
+        name
+        sourcedId
+        isArchived
+        status
+        isPushedFromAccount
+        presetLocation {
+          id
+        }
+        appliedSchoolsCount
+        incidentCount
+        createdAt
+        createdBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+        updatedAt
+        updatedBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+      }
+    }
+  }
+}

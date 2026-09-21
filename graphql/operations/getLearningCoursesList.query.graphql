@@ -1,0 +1,190 @@
+query getLearningCoursesList($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $filters: LearningCourseFilters, $academicCourseStudentsFilters: AcademicCourseStudentFilters) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse(filters: $filters) {
+        edges {
+          node {
+            ...learningCourseListItem
+          }
+        }
+      }
+      academicProgram {
+        id
+        ... on IbPypCurriculumProgram {
+          id
+          learningCourse(filters: $filters) {
+            edges {
+              node {
+                ...learningCourseListItem
+                schoolEntityMappings(filter: {curriculumProgramIds: [$curriculumProgramId]}) {
+                  grades {
+                    id
+                  }
+                  subjects {
+                    id
+                  }
+                  subjectGroups {
+                    id
+                  }
+                  associatedLevels {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse(filters: $filters) {
+        edges {
+          node {
+            ...learningCourseListItem
+          }
+        }
+      }
+      academicProgram {
+        id
+        ... on IbMypCurriculumProgram {
+          id
+          learningCourse(filters: $filters) {
+            edges {
+              node {
+                ...learningCourseListItem
+                schoolEntityMappings(filter: {curriculumProgramIds: [$curriculumProgramId]}) {
+                  grades {
+                    id
+                  }
+                  subjects {
+                    id
+                  }
+                  subjectGroups {
+                    id
+                  }
+                  associatedLevels {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(filters: $filters) {
+        edges {
+          node {
+            ...learningCourseListItem
+          }
+        }
+      }
+      academicProgram {
+        id
+        ... on UBDCurriculumProgram {
+          id
+          learningCourse(filters: $filters) {
+            edges {
+              node {
+                ...learningCourseListItem
+                schoolEntityMappings(filter: {curriculumProgramIds: [$curriculumProgramId]}) {
+                  grades {
+                    id
+                  }
+                  subjects {
+                    id
+                  }
+                  subjectGroups {
+                    id
+                  }
+                  associatedLevels {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse(filters: $filters) {
+        edges {
+          node {
+            ...learningCourseListItem
+          }
+        }
+      }
+      academicProgram {
+        id
+        ... on IbDpCurriculumProgram {
+          id
+          learningCourse(filters: $filters) {
+            edges {
+              node {
+                ...learningCourseListItem
+                schoolEntityMappings(filter: {curriculumProgramIds: [$curriculumProgramId]}) {
+                  grades {
+                    id
+                  }
+                  subjects {
+                    id
+                  }
+                  subjectGroups {
+                    id
+                  }
+                  associatedLevels {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      learningCourse(filters: $filters) {
+        edges {
+          node {
+            ...learningCourseListItem
+          }
+        }
+      }
+      academicProgram {
+        id
+        ... on GenericCurriculumProgram {
+          id
+          learningCourse(filters: $filters) {
+            edges {
+              node {
+                ...learningCourseListItem
+                schoolEntityMappings(filter: {curriculumProgramIds: [$curriculumProgramId]}) {
+                  grades {
+                    id
+                  }
+                  subjects {
+                    id
+                  }
+                  subjectGroups {
+                    id
+                  }
+                  associatedLevels {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+fragment themeItem on PlannerTheme {
+  id
+  label
+  descriptor
+  metadata
+  associatedChildren {
+    id
+    label
+  }
+  focusAreas {
+    ...focusAreaItem
+  }
+  icon
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

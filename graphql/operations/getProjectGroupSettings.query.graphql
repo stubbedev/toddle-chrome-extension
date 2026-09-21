@@ -1,0 +1,12 @@
+query getProjectGroupSettings($id: ID!, $settingsFilter: ProjectGroupSettingsFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      settings(filters: $settingsFilter) {
+        id
+        setting
+        value
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+query getGradeUsersV2($organizationId: ID!, $first: Int, $filters: OrganizationGradeV2FilterInput, $allStudentsFilters: GradeAllStudentsFiltersInput, $skipStudents: Boolean!, $skipStaff: Boolean!, $skipFamilyMembers: Boolean!, $getTotalCount: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      gradesV2(input: {first: $first, filter: $filters}) {
+        totalCount(input: {filter: $filters}) @include(if: $getTotalCount)
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            name
+            allStaffs @skip(if: $skipStaff) {
+              ...userDetailItem
+            }
+            allStudents(filters: $allStudentsFilters) @skip(if: $skipStudents) {
+              ...userDetailItem
+            }
+            allParents @skip(if: $skipFamilyMembers) {
+              ...userDetailItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

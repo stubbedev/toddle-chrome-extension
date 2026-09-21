@@ -1,0 +1,19 @@
+query getAITutorAssessmentDetails($id: ID!) {
+  node(id: $id, type: ASSESSMENT) {
+    id
+    ... on Assessment {
+      id
+      academicTerm {
+        id
+      }
+      isLearningGoalsEvaluationEnabled
+      allFields {
+        id
+        uid
+        value
+        resolvedMinimalTree
+      }
+      ...assessmentNodeItem
+    }
+  }
+}

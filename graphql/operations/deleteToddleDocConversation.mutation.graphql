@@ -1,0 +1,9 @@
+mutation deleteToddleDocConversation($input: DeleteToddleDocConversationInput!) {
+  platform {
+    deleteToddleDocConversation(input: $input) {
+      isSuccess
+      warning
+    }
+    __typename
+  }
+}

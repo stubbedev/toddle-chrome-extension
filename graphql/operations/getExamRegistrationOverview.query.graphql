@@ -1,0 +1,30 @@
+query getExamRegistrationOverview($id: ID!, $filters: ExamRegistrationStudentFilterInput, $subjectFilters: ExamRegistrationUserSubjectsFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      allStudents(filters: $filters) {
+        ...ibisExamRegStudent
+        student {
+          id
+          sourceId
+          profileImage
+        }
+      }
+      yearGroup {
+        id
+        examSession {
+          id
+          session
+          month
+          year
+        }
+      }
+      examSessions {
+        id
+        session
+        month
+        year
+      }
+    }
+  }
+}

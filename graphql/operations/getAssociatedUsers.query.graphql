@@ -1,0 +1,23 @@
+query getAssociatedUsers($input: FetchAssociatedUsersInput!, $roleFilters: RnPRoleContextDetailFilterInput) {
+  platform {
+    fetchAssociatedUsers(input: $input) {
+      userId
+      associatedUsers {
+        ... on Staff {
+          id
+          rnpRoleContextDetail(filters: $roleFilters) {
+            id
+            role {
+              id
+              label
+            }
+            contextType
+            context {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

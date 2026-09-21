@@ -1,0 +1,17 @@
+query getBehaviourCategoryPublishPreview($id: ID!, $input: BehaviourCategoryPublishPreviewInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourCategoryPublishPreview(input: $input) {
+        cannotApply {
+          schoolCpId
+          schoolName
+        }
+        willApply {
+          schoolCpId
+          schoolName
+        }
+      }
+    }
+  }
+}

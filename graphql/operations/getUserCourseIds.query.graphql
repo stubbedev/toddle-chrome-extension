@@ -1,0 +1,19 @@
+query getUserCourseIds($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: CourseFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    ... on Student {
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        id
+      }
+    }
+  }
+}

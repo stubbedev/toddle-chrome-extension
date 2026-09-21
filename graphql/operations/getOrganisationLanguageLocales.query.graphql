@@ -1,0 +1,11 @@
+query getOrganisationLanguageLocales($organizationId: ID!, $curriculumIds: [ID]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        programDataLanguages
+      }
+    }
+  }
+}

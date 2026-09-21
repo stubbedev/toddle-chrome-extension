@@ -1,0 +1,7 @@
+mutation updateRubric($id: ID!, $title: String!) {
+  planner {
+    updateRubric(input: {id: $id, title: $title}) {
+      id
+    }
+  }
+}

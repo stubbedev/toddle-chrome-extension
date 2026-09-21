@@ -1,0 +1,13 @@
+fragment plannerElementItem on PlannerElementSet {
+  id
+  nodes(filters: $filters) {
+    id
+    label
+    children
+    depth
+    parent
+    associatedParents {
+      id
+    }
+  }
+}

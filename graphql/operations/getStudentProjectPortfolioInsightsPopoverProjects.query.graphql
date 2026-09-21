@@ -1,0 +1,25 @@
+query getStudentProjectPortfolioInsightsPopoverProjects($id: ID!, $projectFilters: ProjectFilter, $filters: PlannerFieldFilter) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      projects(filters: $projectFilters) {
+        totalCount
+        edges {
+          node {
+            ...portfolioProjectInfo
+            ...projectFieldsDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment projectFieldsDetails on Project {
+  id
+  fields(filters: $filters) {
+    id
+    uid
+    value
+  }
+}

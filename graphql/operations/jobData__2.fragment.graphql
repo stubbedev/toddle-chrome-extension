@@ -1,0 +1,24 @@
+fragment jobData on IntegrationJob {
+  id
+  status
+  serviceName
+  createdAt
+  curriculum
+  curriculumId
+  isLatest
+  type
+  metadata
+  academicYear {
+    id
+  }
+  createdBy {
+    ...staffItem
+  }
+  executionStatus {
+    ...executionStatus
+  }
+}
+
+fragment executionStatus on SyncExecutionStatus {
+  percentageComplete
+}

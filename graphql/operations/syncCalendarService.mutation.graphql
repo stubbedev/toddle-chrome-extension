@@ -1,0 +1,12 @@
+mutation syncCalendarService($input: IntegrationSyncCalendarInput!) {
+  integration {
+    integrationSyncCalendar(input: $input) {
+      allow
+      message
+      job {
+        id
+        status
+      }
+    }
+  }
+}

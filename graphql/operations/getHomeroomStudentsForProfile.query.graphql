@@ -1,0 +1,26 @@
+query getHomeroomStudentsForProfile($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            ... on Student {
+              preferredName
+              prefix
+              suffix
+              pronouns
+            }
+          }
+        }
+      }
+    }
+  }
+}

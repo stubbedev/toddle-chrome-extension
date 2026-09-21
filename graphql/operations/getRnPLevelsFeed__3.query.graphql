@@ -1,0 +1,19 @@
+query getRnPLevelsFeed($id: ID!, $rnpViewFilters: RnpViewFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      rnpView(filters: $rnpViewFilters) {
+        id
+        ... on RnPRole {
+          id
+          label
+          description
+          globalLevel
+          isDefaultRole
+          isCustomRole
+          isSuperAdmin
+        }
+      }
+    }
+  }
+}

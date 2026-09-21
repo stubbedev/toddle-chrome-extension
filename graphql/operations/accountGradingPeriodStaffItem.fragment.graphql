@@ -1,0 +1,29 @@
+fragment accountGradingPeriodItem on AcademicTerm {
+  id
+  label
+  reportDisplayName
+  abbreviation
+  type
+  lockingStatus
+  canDelete
+  createdAt
+  updatedAt
+  createdBy {
+    ...accountGradingPeriodStaffItem
+  }
+  updatedBy {
+    ...accountGradingPeriodStaffItem
+  }
+}
+
+fragment accountGradingPeriodStaffItem on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  type
+}

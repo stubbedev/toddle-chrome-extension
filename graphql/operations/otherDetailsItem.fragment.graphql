@@ -1,0 +1,18 @@
+fragment otherDetailsItem on OtherUserDetails {
+  id
+  dob
+  primaryNationality
+  secondaryNationality
+  languages
+  birthPlace
+  nationalId
+  firstNameLocale
+  lastNameLocale
+  dobLocale
+  birthPlaceLocale
+  primaryNationalityLocale
+  religionLocale
+  pronouns
+  seventhAdditionalField
+  eighthAdditionalField
+}

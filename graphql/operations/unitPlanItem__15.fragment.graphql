@@ -1,0 +1,80 @@
+query getDPSubjectWiseUnitPlans($id: ID!, $unitPlanAcademicYearFlatVariantFilterInput: FlatVariantUnitPlansFilterInput, $unitPlanAcademicYearFilterInput: SubjectUnitPlansFilterInput, $subjectCourseFilter: SubjectCourseFilters, $flatVariantsCourseFilters: FlatVariantsCourseFilters, $flatVariantFilterInput: FlatSubjectVariantFilterInput) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      flatVariants(filters: $flatVariantFilterInput) {
+        level {
+          id
+        }
+        responseLanguage {
+          id
+        }
+        unitPlans(filters: $unitPlanAcademicYearFlatVariantFilterInput) {
+          totalCount
+          edges {
+            node {
+              id
+              resolvedGrades {
+                id
+                name
+              }
+              ...unitPlanItem
+            }
+          }
+        }
+        courses(filters: $flatVariantsCourseFilters) {
+          totalCount
+        }
+      }
+      unitPlans(filters: $unitPlanAcademicYearFilterInput) {
+        totalCount
+        edges {
+          node {
+            resolvedGrades {
+              id
+              name
+            }
+            ...unitPlanItem
+          }
+        }
+      }
+      courses(filters: $subjectCourseFilter) {
+        totalCount
+      }
+    }
+  }
+}
+
+fragment unitPlanItem on UnitPlan {
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  theme {
+    id
+    resolvedMinimalTree {
+      id
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+    }
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+}

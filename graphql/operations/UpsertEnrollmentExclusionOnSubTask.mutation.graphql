@@ -1,0 +1,5 @@
+mutation UpsertEnrollmentExclusionOnSubTask($input: UpsertEnrollmentExclusionOnSubTaskInput!) {
+  integration {
+    upsertEnrollmentExclusionOnSubTask(input: $input)
+  }
+}

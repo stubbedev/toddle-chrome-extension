@@ -1,0 +1,12 @@
+query getStudentProgressReportUnitsConfiguration($id: ID!, $unitPlanFilter: UnitPlanFilter!, $academicYears: [ID!], $searchText: String) {
+  node(id: $id, type: GRADE) {
+    id
+    ... on Grade {
+      id
+      name
+      unitPlans(filters: $unitPlanFilter, academicYears: $academicYears, searchText: $searchText) {
+        ...studentProgressReportConfigurationUnitsFeedItemV2
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+query getShortAndLongResponses($id: ID!, $input: UserTextResponseV2Input, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on MessageV2FormSectionShortResponse {
+      id
+      userResponseV2(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            user {
+              id
+              firstName
+              middleName
+              lastName
+              type
+              profileImage
+              ... on Student {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+            response
+          }
+        }
+      }
+    }
+    ... on MessageV2FormSectionLongResponse {
+      id
+      userResponseV2(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            user {
+              id
+              firstName
+              middleName
+              lastName
+              type
+              profileImage
+              ... on Student {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+            response
+          }
+        }
+      }
+    }
+  }
+}

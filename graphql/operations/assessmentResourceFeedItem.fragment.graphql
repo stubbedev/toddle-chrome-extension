@@ -1,0 +1,6 @@
+fragment assessmentResourceFeedItem on Assessment {
+  id
+  organizationResources {
+    ...organizationResourceItem
+  }
+}

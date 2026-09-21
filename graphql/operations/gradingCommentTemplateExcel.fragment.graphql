@@ -1,0 +1,4 @@
+fragment gradingCommentTemplateExcel on GradingCommentTemplateExcelDownloadResponse {
+  id
+  url
+}

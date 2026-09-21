@@ -1,0 +1,5 @@
+mutation changeStudentProfileSectionOrder($id: ID!, $putAfter: ID) {
+  platform {
+    changeStudentProfileSectionOrder(input: {id: $id, putAfter: $putAfter})
+  }
+}

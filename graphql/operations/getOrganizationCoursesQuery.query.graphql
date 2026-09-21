@@ -1,0 +1,21 @@
+query getOrganizationCoursesQuery($organizationId: ID!, $filters: CourseFilterInput, $shouldFetchRecommendedPhase: Boolean!, $after: String, $first: Int) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(orderBy: UPDATED_AT, orderByDirection: ASC, filters: $filters, first: $first, after: $after) {
+        edges {
+          node {
+            ...course
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

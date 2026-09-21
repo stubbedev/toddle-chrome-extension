@@ -1,0 +1,19 @@
+fragment playgroundAccessLinkFragment on PlaygroundAccessLink {
+  id
+  linkType
+  name
+  token
+  url
+  status
+  validFrom
+  validTill
+  orgValidTill
+  flavor
+  isSuspended
+  maxSignups
+  signupCount
+  organization {
+    id
+    name
+  }
+}

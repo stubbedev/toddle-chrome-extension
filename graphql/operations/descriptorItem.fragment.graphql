@@ -1,0 +1,12 @@
+fragment descriptorItem on DescriptorRubric {
+  id
+  label
+  criteria {
+    id
+    label
+  }
+  indicator {
+    id
+    label
+  }
+}

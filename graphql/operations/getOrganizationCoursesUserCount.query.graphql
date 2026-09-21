@@ -1,0 +1,16 @@
+query getOrganizationCoursesUserCount($courseIds: [ID!]) {
+  multiNode(ids: $courseIds, type: COURSE) {
+    id
+    ... on Course {
+      students {
+        totalCount
+      }
+      collaborator {
+        totalCount
+      }
+      familyMembers {
+        totalCount
+      }
+    }
+  }
+}

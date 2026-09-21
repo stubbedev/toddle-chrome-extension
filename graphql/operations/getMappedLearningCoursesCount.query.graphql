@@ -1,0 +1,13 @@
+query getMappedLearningCoursesCount($organizationId: ID!, $filters: LearningCourseFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(filters: $filters) {
+        count {
+          totalCount
+        }
+      }
+    }
+  }
+}

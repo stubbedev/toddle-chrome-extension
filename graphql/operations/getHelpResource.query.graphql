@@ -1,0 +1,5 @@
+query getHelpResource {
+  globalConstants {
+    snpExplainerVedioUrl
+  }
+}

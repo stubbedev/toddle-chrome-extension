@@ -1,0 +1,21 @@
+fragment courseItem on Course {
+  id
+  title
+  learningCourse {
+    id
+    title
+    academicCourse {
+      id
+      label
+    }
+  }
+  allStudents {
+    totalCount
+    edges {
+      node {
+        id
+        firstName
+      }
+    }
+  }
+}

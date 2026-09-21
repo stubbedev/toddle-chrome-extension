@@ -1,0 +1,44 @@
+query getStudentPlanCount($id: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentPlansFeedInput!, $filters: StudentPlansFeedFilters) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlanCountFeedFragment
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlanCountFeedFragment
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlanCountFeedFragment
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlanCountFeedFragment
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

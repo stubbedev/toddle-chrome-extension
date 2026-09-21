@@ -1,0 +1,29 @@
+query getCourseDetailsForStandardsGradebook($courseId: ID!, $standardsFilters: PlannerElementNodeFilters, $subjectGradingMethodologyFilters: SubjectGradingMethodologyFilters, $isCourseBasedGrading: Boolean!, $isSubjectBasedGrading: Boolean!) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      id
+      primaryGrade {
+        id
+      }
+      ...flatUnitPlanFields
+      subjects @include(if: $isSubjectBasedGrading) {
+        ...subjectItem
+      }
+      learningCourse @include(if: $isCourseBasedGrading) {
+        id
+        gradingMethodology {
+          id
+          gradingMethodologyTypes
+        }
+        standardsWrapper(filters: $standardsFilters) {
+          standardsEdge {
+            standardSet {
+              ...standardSetItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation addCourseV2($title: String, $grades: [String!], $isActive: Boolean, $subjectIds: [ID!], $isClassroom: Boolean, $studentsToAdd: [ID!], $profileImage: String, $curriculumProgramId: ID, $newStudents: [UserInput!], $collaboratorsAddWithId: [ID!], $tags: [ID!], $academicYears: [ID!], $subjectGroupIds: [ID!], $responseLanguageIds: [ID!], $subjectLevelIds: [ID!], $studentsWithSubjectLevel: [StudentsWithSubjectLevelInput!], $sourcedId: String, $primaryGrade: String, $allStaffMapInput: AllStaffMapInput, $allStudentMapInput: AllStudentMapInput, $gradesWithAcademicYear: [GradesWithAcademicYearInput!], $academicYearId: ID, $collaboratorsAddWithIdAndAclUserRole: [collaboratorsAddWithIdAndAclUserRoleInput!], $associatedCourse: ID, $profileImageData: ProfileImageDataInput, $studentSubjectsAndLevels: [StudentSubjectsAndLevelsInput!]) {
+  platform {
+    addCourseV2(input: {title: $title, grades: $grades, isActive: $isActive, subjectIds: $subjectIds, isClassroom: $isClassroom, newStudents: $newStudents, profileImage: $profileImage, studentsToAdd: $studentsToAdd, curriculumProgramId: $curriculumProgramId, collaboratorsAddWithId: $collaboratorsAddWithId, tags: $tags, academicYears: $academicYears, subjectGroupIds: $subjectGroupIds, responseLanguageIds: $responseLanguageIds, subjectLevelIds: $subjectLevelIds, studentsWithSubjectLevel: $studentsWithSubjectLevel, studentSubjectsAndLevelsInput: $studentSubjectsAndLevels, sourcedId: $sourcedId, primaryGrade: $primaryGrade, allStaffMapInput: $allStaffMapInput, allStudentMapInput: $allStudentMapInput, gradesWithAcademicYear: $gradesWithAcademicYear, collaboratorsAddWithIdAndAclUserRole: $collaboratorsAddWithIdAndAclUserRole, learningCourseId: $associatedCourse, profileImageData: $profileImageData}) {
+      isSuccess
+      warning
+      course {
+        ...courseItem
+      }
+    }
+  }
+}

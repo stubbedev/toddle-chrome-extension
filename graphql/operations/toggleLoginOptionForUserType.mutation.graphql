@@ -1,0 +1,12 @@
+mutation toggleLoginOptionForUserType($input: [ToggleLoginOptionForUserTypeInput!]) {
+  organizationManagement {
+    toggleLoginOptionForUserType(input: $input) {
+      isSuccess
+      data {
+        id
+        type
+        supportedUserTypes
+      }
+    }
+  }
+}

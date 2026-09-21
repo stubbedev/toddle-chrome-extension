@@ -1,0 +1,5 @@
+mutation updateAccess($input: UserCircularAccessInput!) {
+  platform {
+    updateUserCircularAccess(input: $input)
+  }
+}

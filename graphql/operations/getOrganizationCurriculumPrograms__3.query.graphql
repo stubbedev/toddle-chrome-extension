@@ -1,0 +1,25 @@
+query getOrganizationCurriculumPrograms($organizationId: ID!, $curriculumIds: [ID], $filters: AcademicYearTransitionConfigurationStateFilters!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...curriculumProgramsItem
+    }
+  }
+}
+
+fragment yearGroupAcademicYearMapDetails on YearGroupAcademicYearMap {
+  academicYear {
+    id
+    isCurrentAcademicYear
+    isUpcomingAcademicYear
+    isPreviousAcademicYear
+  }
+  yearGroup {
+    id
+    name
+    curriculumProgram {
+      id
+      acronym
+    }
+  }
+}

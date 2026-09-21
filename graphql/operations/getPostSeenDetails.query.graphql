@@ -1,0 +1,7 @@
+query getPostSeenDetails($id: ID!) {
+  node(id: $id, type: POST) {
+    ... on Post {
+      ...postItem
+    }
+  }
+}

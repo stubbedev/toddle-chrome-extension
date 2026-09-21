@@ -1,0 +1,18 @@
+fragment questionFieldsItem on QuestionFields {
+  id
+  uid
+  value
+  resolveFields {
+    id
+    ... on QuestionAttachment {
+      id
+      attachments {
+        ...attachmentItem
+      }
+    }
+    type
+  }
+  resolvedMinimalTree {
+    ...resolvedMinimalTreeItem
+  }
+}

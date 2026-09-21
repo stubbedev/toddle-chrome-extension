@@ -1,0 +1,38 @@
+fragment progressReportGroupItem on Organization {
+  id
+  progressReportTaskGroups(first: 12, after: $after, filters: $filters) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        title
+        courseProgressReportTasks {
+          id
+          parentEntity {
+            id
+            ... on Grade {
+              id
+              name
+            }
+          }
+          studentProgressReport {
+            id
+            student {
+              id
+            }
+            status
+          }
+          reportSubjects {
+            id
+          }
+        }
+        createdAt
+        deadlineDate
+      }
+    }
+  }
+}

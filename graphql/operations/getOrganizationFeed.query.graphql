@@ -1,0 +1,14 @@
+query getOrganizationFeed($filters: OrganizationFeedConnectionFilter) {
+  platform {
+    organizationFeed(first: 1, filters: $filters) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          ...curriculumProgramsItem
+        }
+      }
+    }
+  }
+}

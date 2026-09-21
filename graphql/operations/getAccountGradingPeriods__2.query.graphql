@@ -1,0 +1,74 @@
+query getAccountGradingPeriods($academicYearId: ID!, $accountCurriculumProgramId: ID!) {
+  node(id: $academicYearId, type: ACADEMIC_YEAR) {
+    id
+    ... on AcademicYear {
+      academicTerms(filters: {curriculumProgramIds: [$accountCurriculumProgramId], curriculumProgramType: "ACCOUNT"}) {
+        edges {
+          node {
+            id
+            label
+            type
+            abbreviation
+            childAcademicTerms(filters: {academicYearIds: [$academicYearId]}) {
+              ...childTermFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment childTermFragment on AcademicTerm {
+  id
+  label
+  type
+  abbreviation
+  startDate
+  endDate
+  lockingStatus
+  canDelete
+  associatedAcademicTermEntities {
+    id
+    academicTerm {
+      id
+      abbreviation
+      type
+    }
+    cumulativeAcademicTermWeightages {
+      id
+      weightage
+    }
+  }
+  createdAt
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+    preferredName
+    prefix
+    suffix
+    pronouns
+    type
+  }
+  updatedAt
+  updatedBy {
+    id
+    firstName
+    middleName
+    lastName
+    preferredName
+    prefix
+    suffix
+    pronouns
+    type
+  }
+  curriculumProgram {
+    id
+    label
+    acronym
+    logo
+    programType
+  }
+}

@@ -1,0 +1,87 @@
+fragment courseFlowResource on LearningCourseFlow {
+  id
+  label
+  depth
+  itemType
+  parent {
+    id
+  }
+  item {
+    id
+    ... on Assessment {
+      ...assessmentItem
+    }
+    ... on Attachment {
+      ...attachmentItem
+    }
+    ... on UnitPlan {
+      ...unitPlanItem
+    }
+  }
+  state(filters: $stateFilters)
+  children(filters: $filters) {
+    id
+  }
+  childrenHierarchyInfo(filters: $filters) {
+    maxDepth
+    totalCount
+    totalCountWithFolder
+  }
+}
+
+fragment assessmentItem on Assessment {
+  id
+  type
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+  }
+  image {
+    id
+    value
+  }
+}
+
+fragment attachmentItem on Attachment {
+  id
+  type
+  title
+  name
+  mimeType
+  url
+  signedUrl
+  thumbUrl
+  __typename
+}
+
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldVideoAttachment {
+        id
+        type
+        attachment {
+          id
+          url
+          thumbUrl
+        }
+      }
+    }
+  }
+}

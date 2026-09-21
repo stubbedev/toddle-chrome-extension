@@ -1,0 +1,20 @@
+query getSuggestedEvidenceAnalytics($evaluationCycleId: ID!, $suggestedEvidenceFilters: SnpPracticeSuggestedEvidenceFilters!, $practiceOrderBy: OrderByEnum, $practiceOrderByDirection: OrderByDirectionEnum) {
+  node(id: $evaluationCycleId, type: SnP_EVALUATION_CYCLE) {
+    ... on SnPEvaluationCycle {
+      id
+      evaluationCycleStandard {
+        id
+        standard {
+          id
+          practicesV2(orderBy: $practiceOrderBy, orderByDirection: $practiceOrderByDirection) {
+            edges {
+              node {
+                ...practiceSuggestedEvidenceAnalyticsItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

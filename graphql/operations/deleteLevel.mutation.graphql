@@ -1,0 +1,5 @@
+mutation deleteLevel($input: DeleteIdsInput!) {
+  platform {
+    deleteGenericTags(input: $input)
+  }
+}

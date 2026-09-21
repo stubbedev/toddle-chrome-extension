@@ -1,0 +1,86 @@
+fragment courseFlowResource on LearningCourseFlow {
+  id
+  label
+  depth
+  itemType
+  isRepeated
+  repeatedResources
+  parent {
+    id
+  }
+  item {
+    id
+    ... on Assessment {
+      ...assessmentItem
+      fields(uids: $assessmentFieldUids) {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          id
+          ... on ResolvedFieldPlannerElementSet {
+            id
+            nodes {
+              id
+              dataSetNodeWrapper {
+                plannerElementNodeSet {
+                  id
+                }
+              }
+            }
+          }
+          ... on ResolvedFieldSubjectSet {
+            id
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+    ... on Attachment {
+      ...attachmentItem
+    }
+    ... on UnitPlan {
+      ...unitPlanItem
+    }
+  }
+  state(filters: $stateFilters)
+  sharedDetails {
+    class {
+      id
+      title
+    }
+    students {
+      id
+    }
+  }
+  lockingInfo {
+    isLocked
+  }
+  hasPublishedAssessments
+  linkedResources {
+    id
+  }
+  isSyncedFromBluePrintCourse(filters: $syncedBluePrintItemFilters)
+  isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) {
+    isConflictExists
+    status
+    courseSyncStatus @include(if: $includeCourseSyncStatus) {
+      course {
+        id
+        title
+      }
+      status
+    }
+  }
+  children(filters: $filters) {
+    id
+  }
+  childrenHierarchyInfo(filters: $filters) {
+    maxDepth
+    totalCount
+    totalCountWithFolder
+  }
+}

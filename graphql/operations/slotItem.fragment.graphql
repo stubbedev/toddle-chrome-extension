@@ -1,0 +1,94 @@
+fragment slotItem on TimetableSlotItem {
+  id
+  itemType
+  item {
+    ... on LearningCourseFlow {
+      id
+      label
+      learningCourse {
+        id
+      }
+      itemType
+      state
+      sharedDetails {
+        class {
+          id
+        }
+        students {
+          id
+        }
+      }
+      lockingInfo {
+        isLocked
+      }
+      item {
+        ... on Attachment {
+          ...attachmentItem
+        }
+        ... on Assessment {
+          ...assessmentItem
+        }
+        ... on UnitPlan {
+          id
+          title {
+            id
+            value
+          }
+          colorCode
+          templateId
+        }
+      }
+    }
+    ... on Assignment {
+      id
+      contentType
+      content {
+        ... on Assessment {
+          assignments {
+            edges {
+              id
+              state {
+                state
+              }
+              course {
+                id
+              }
+            }
+          }
+          ...assessmentItem
+        }
+      }
+    }
+    ... on OrganizationResource {
+      id
+      label
+      resourceType
+      state
+      attachment {
+        ...attachmentItem
+      }
+      item {
+        ... on Assignment {
+          id
+          contentType
+          content {
+            ... on Assessment {
+              assignments {
+                edges {
+                  id
+                  state {
+                    state
+                  }
+                  course {
+                    id
+                  }
+                }
+              }
+              ...assessmentItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

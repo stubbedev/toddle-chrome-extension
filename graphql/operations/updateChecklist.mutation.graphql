@@ -1,0 +1,7 @@
+mutation updateChecklist($id: ID!, $title: String!) {
+  planner {
+    updateChecklist(input: {id: $id, title: $title}) {
+      id
+    }
+  }
+}

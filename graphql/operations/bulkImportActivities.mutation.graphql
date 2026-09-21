@@ -1,0 +1,9 @@
+mutation bulkImportActivities($input: BulkImportActivitiesInput!) {
+  planner {
+    bulkImportActivities(input: $input) {
+      isSuccess
+      warning
+      workflowId
+    }
+  }
+}

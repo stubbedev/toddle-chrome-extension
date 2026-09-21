@@ -1,0 +1,12 @@
+query fetchThirdPartyDriveAttachmentRevisionData($id: ID!) {
+  node(id: $id, type: ATTACHMENT) {
+    id
+    ... on Attachment {
+      thirdPartyDriveAttachmentRevisionData {
+        isSuccess
+        response
+        warning
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+query getLearningCoursesSubjectsQuery($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      subjects {
+        id
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+query getCurriculumWebsiteFeed($organizationId: ID!, $filters: OrgCurriculumWebsiteFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      attachments {
+        id
+        name
+        url
+      }
+      grades {
+        id
+      }
+      curriculumPrograms {
+        id
+        label
+        logo
+        isFeatureFlagLearningCoursesEnabled
+      }
+      curriculumWebsites(filters: $filters) {
+        id
+        title
+        status
+        slug
+        createdAt
+        createdBy {
+          ...userNameFields
+        }
+        updatedAt
+        updatedBy {
+          ...userNameFields
+        }
+        curriculumPrograms {
+          id
+          label
+          type
+        }
+      }
+    }
+  }
+}

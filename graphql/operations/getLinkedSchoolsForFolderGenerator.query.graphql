@@ -1,0 +1,27 @@
+query getLinkedSchoolsForFolderGenerator($id: ID!, $type: ENTITY_TYPE_ENUM!, $first: Int, $after: String, $searchText: String) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      linkedIdentityUsersV2(first: $first, after: $after, searchText: $searchText) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edgesV2 {
+          node {
+            id
+            organizationV2 {
+              id
+              name
+              logo
+              code
+              region
+            }
+          }
+        }
+      }
+    }
+  }
+}

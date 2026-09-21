@@ -1,0 +1,69 @@
+query getDeadlinesV2BasicDetails($id: ID!, $responseFilters: ProjectGroupTaskResponsesFilters) {
+  node(id: $id, type: PROJECT_GROUP_TASK) {
+    ... on ProjectGroupTask {
+      id
+      title
+      description
+      dueOn
+      closesOn
+      isStudentSubmissionEnabled
+      isDeadlineAllDay
+      submission {
+        id
+        type
+        fieldUID
+        items {
+          id
+          title
+          fieldUID
+          template {
+            id
+            name
+            type
+            mimeType
+            url
+            signedUrl
+            thumbUrl
+            title
+            metadata
+            streamUrl
+            parentType
+          }
+        }
+      }
+      resources {
+        edges {
+          node {
+            id
+            label
+            attachment {
+              id
+              name
+              type
+              mimeType
+              url
+              signedUrl
+              thumbUrl
+              title
+              metadata
+              streamUrl
+              parentType
+            }
+          }
+        }
+      }
+      responses(filters: $responseFilters) {
+        id
+        isComplete
+        isSubmissionTurnedIn
+        project {
+          id
+          students {
+            ...userNameFields
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

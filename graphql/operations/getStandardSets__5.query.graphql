@@ -1,0 +1,11 @@
+query getStandardSets($id: ID!, $filters: PlannerElementNodeSetFilters, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        ...subjectStandardItem
+      }
+    }
+  }
+}

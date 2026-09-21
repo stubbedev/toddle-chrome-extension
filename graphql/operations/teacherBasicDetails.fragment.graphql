@@ -1,0 +1,71 @@
+fragment teacherBasicDetails on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  prefix
+  suffix
+  preferredName
+  pronouns
+  email
+  profileImage
+  displayRole
+  isDevUser
+  isArchived
+  isArchivedV2(filters: $userArchivedFilters)
+  designation {
+    id
+  }
+  address {
+    ...addressItem
+  }
+  otherDetails {
+    ...otherDetailsItem
+  }
+  allCourses {
+    id
+    academicYears {
+      id
+    }
+    curriculumProgram {
+      id
+      type
+      label
+      acronym
+    }
+  }
+  curriculumPrograms(filters: $curriculumProgramsFilters) {
+    ...curriculumProgramBasicDetailsItem
+  }
+  organization {
+    id
+    academicYears {
+      id
+      isCurrentAcademicYear
+    }
+    curriculumPrograms {
+      id
+      type
+    }
+  }
+  rnpRoleContextDetail {
+    id
+    contextType
+    role {
+      id
+      label
+      isCustomRole
+    }
+    context {
+      id
+    }
+  }
+}
+
+fragment otherDetailsItem on OtherUserDetails {
+  id
+  dob
+  personalEmail
+  phoneNumber
+  pronouns
+}

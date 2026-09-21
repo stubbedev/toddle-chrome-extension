@@ -1,0 +1,10 @@
+mutation createEntityEventTracking($input: [CreateEntityEventTrackingInput!]!) {
+  platform {
+    createEntityEventTracking(input: $input) {
+      response {
+        ...entityEventTrackItem
+      }
+      warning
+    }
+  }
+}

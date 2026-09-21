@@ -1,0 +1,5 @@
+mutation setConfigurationValueForEntityIdsAndType($input: SetConfigurationValueForEntityIdsAndTypeInput!) {
+  platform {
+    setConfigurationValueForEntityIdsAndType(input: $input)
+  }
+}

@@ -1,0 +1,42 @@
+fragment tokPointAssessmentSetItem on PointAssessmentSet {
+  id
+  label
+  type
+  subType
+  isShowGradeBoundaries
+  categories {
+    id
+    label
+    colorCode
+    metadata
+    values {
+      id
+      value
+      minValue
+      maxValue
+    }
+    gradeBoundary {
+      ...tokGradeBoundaryItem
+    }
+    gradeScaleType
+    displaySequence
+  }
+  updatedAt
+  updatedBy {
+    ...userNameFields
+  }
+}
+
+fragment tokGradeBoundaryItem on PointAssessmentSet {
+  id
+  categories {
+    id
+    label
+    displaySequence
+    values {
+      id
+      minValue
+      maxValue
+    }
+  }
+}

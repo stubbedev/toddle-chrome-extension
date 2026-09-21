@@ -1,0 +1,83 @@
+fragment studentItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  pronouns
+  preferredName
+  suffix
+  type
+  profileImage
+  sourceId
+  isArchived
+  familyInviteCode
+  alertTypes {
+    ...alertTypeFields
+  }
+  curriculumPrograms(filters: $studentCurriculumProgramFilter) {
+    ...curriculumProgramBasicDetailsItem
+  }
+  yearGroup(filters: $userYearGroupMapFilters) {
+    id
+    name
+    grade(filters: $yearGroupGradeFilters) {
+      id
+      name
+    }
+    curriculumProgram {
+      ...curriculumProgramBasicDetailsItem
+    }
+  }
+  families {
+    id
+    status
+    familyMember {
+      id
+      lastName
+      middleName
+      firstName
+      email
+      type
+    }
+    createdAt
+    lastUpdatedAt
+  }
+  email
+  courseMap(filters: $userCourseMapFilters) {
+    course {
+      id
+      title
+      isArchived
+      curriculumProgram {
+        ...curriculumProgramBasicDetailsItem
+      }
+      genericTags {
+        id
+        label
+        type
+      }
+      grades(filters: $courseGradeFilters) {
+        id
+        name
+      }
+      grade {
+        id
+        yearGroup {
+          id
+        }
+      }
+    }
+    tags {
+      id
+      label
+    }
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+}

@@ -1,0 +1,7 @@
+mutation removeUserIdentityFromMultiAccessIdentity($input: removeUserIdentityFromMultiAccessIdentityInput!) {
+  platform {
+    removeUserIdentityFromMultiAccessIdentity(input: $input) {
+      isSuccess
+    }
+  }
+}

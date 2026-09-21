@@ -1,0 +1,26 @@
+query getTeachersFromCourse($ids: [ID!], $after: String, $filters: CourseFilter) {
+  platform {
+    course(ids: $ids) {
+      id
+      collaborator(first: 10, after: $after, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            profileImage
+            isArchived
+            email
+            displayRole
+            sourceId
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

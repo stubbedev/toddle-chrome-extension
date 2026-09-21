@@ -1,0 +1,9 @@
+fragment attachmentBasicDetailsItem on Attachment {
+  id
+  url
+  signedUrl
+  thumbUrl
+  metadata
+  name
+  type
+}

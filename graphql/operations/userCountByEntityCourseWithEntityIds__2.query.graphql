@@ -1,0 +1,19 @@
+query userCountByEntityCourseWithEntityIds($organizationId: ID!, $input: UserCountByEntityInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      users {
+        userCountByEntity(input: $input) {
+          totalCount
+          staffCount
+          studentCount
+          familyCount
+          totalHasEmailCount
+          staffHasEmailCount
+          studentHasEmailCount
+          familyHasEmailCount
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+query getAssessmentQuestionsForLibrary($id: ID!, $type: ENTITY_TYPE_ENUM!, $orgResourceFilters: OrganizationResourceFilter, $libraryBannerFilters: LibraryPremiumBannerFilters) {
+  node(id: $id, type: $type) {
+    ... on Assessment {
+      id
+      organizationResourcesV2(first: null, filters: $orgResourceFilters) {
+        edges {
+          node {
+            ...organizationResourceParentItem
+          }
+        }
+      }
+      ...assessmentTitle
+      libraryGrades {
+        ...libraryEntityBasicDetailsItem
+      }
+      librarySubjects {
+        ...libraryEntityBasicDetailsItem
+      }
+      allFields {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          ...resolvedMinimalTreeItem
+        }
+      }
+      isLibraryPremium
+      showLibraryPremiumBannerForUser(filters: $libraryBannerFilters)
+      ...assessmentSavedByNodeItem
+    }
+  }
+}

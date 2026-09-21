@@ -1,0 +1,16 @@
+query getUnitPlanFeed($id: ID!, $filters: UnitPlansV2FeedFilters!, $getUnitFlowId: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      unitPlansV2(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...unitPlanItem
+          }
+        }
+      }
+    }
+  }
+}

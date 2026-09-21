@@ -1,0 +1,36 @@
+fragment organizationDetailsItem on Organization {
+  id
+  academicYears {
+    id
+    startDate
+    endDate
+    isCurrentAcademicYear
+  }
+  constants {
+    examSessionMonth
+    scheduler
+  }
+  curriculumPrograms(filters: $curriculumProgramFilters) {
+    rosteringMethod
+    id
+    programDataLanguages
+    dealId
+    programType
+    academicSetupType
+    defaultLanguage
+    academicProgram {
+      id
+    }
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+    accountProgram {
+      id
+    }
+  }
+  globalConstants(filter: $globalConstantsFilter) {
+    id
+    name
+    value
+  }
+}

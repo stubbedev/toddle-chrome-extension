@@ -1,0 +1,23 @@
+query getSearchedMembers($organizationId: ID!, $input: MessageV2UserInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messageV2Users(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...userDetailItem
+            ... on Student {
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

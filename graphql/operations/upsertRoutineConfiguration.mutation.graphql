@@ -1,0 +1,16 @@
+mutation upsertRoutineConfiguration($input: UpsertRoutineConfigurationInput!) {
+  platform {
+    upsertRoutineConfiguration(input: $input) {
+      isSuccess
+      warning
+      routine {
+        id
+        rotationDays {
+          id
+          label
+        }
+        routineMode
+      }
+    }
+  }
+}

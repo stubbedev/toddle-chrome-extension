@@ -1,0 +1,12 @@
+query getOrganizationPlanningInsightDownloadUrl($id: ID!, $input: OverallProgrammeInsightDownloadUrlInput!, $curriculumProgramType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumProgramType) {
+    id
+    ... on CurriculumProgram {
+      id
+      overallProgrammeInsightsDownloadUrl(input: $input) {
+        url
+        isSuccess
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+query inFlightBulkApplyJobs($id: ID!, $filters: OrganizationIntegrationJobFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      jobFeed(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            status
+            createdAt
+          }
+        }
+      }
+    }
+  }
+}

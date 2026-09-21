@@ -1,0 +1,82 @@
+fragment courseStudentProgressReportItem on CourseProgressReportTask {
+  id
+  title
+  parentEntity {
+    ... on Grade {
+      id
+      name
+    }
+  }
+  otherSectionWiseMetrics(filters: $filters) {
+    id
+    sections
+    pending
+    total
+    notAssessed
+  }
+  projectSectionWiseMetrics(filters: $filters) {
+    id
+    sections
+    pending
+    total
+    notAssessed
+  }
+  subjectWiseMetrics(filters: $filters) @include(if: $isSubjectBased) {
+    subject {
+      id
+      name
+    }
+    courseWiseStats {
+      id
+      pending
+      total
+      notAssessed
+      course {
+        id
+        title
+      }
+    }
+  }
+  subjectGroupWiseMetrics @include(if: $param) {
+    subjectGroup {
+      id
+      name
+      type
+    }
+    courseWiseStats {
+      id
+      pending
+      total
+      notAssessed
+      course {
+        id
+        title
+      }
+    }
+  }
+  progressReportTaskGroup {
+    id
+    attendanceMode
+  }
+  learningCourseWiseMetrics(filters: $filters) @include(if: $isCourseBased) {
+    learningCourse {
+      id
+      displayName
+      type
+      academicCourse {
+        id
+        label
+      }
+    }
+    courseWiseStats {
+      id
+      pending
+      total
+      notAssessed
+      course {
+        id
+        title
+      }
+    }
+  }
+}

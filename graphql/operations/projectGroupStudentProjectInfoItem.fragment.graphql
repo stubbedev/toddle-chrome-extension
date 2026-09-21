@@ -1,0 +1,14 @@
+fragment projectGroupStudentProjectInfoItem on Project {
+  id
+  supervisors {
+    ...supervisorInfo
+  }
+  students @include(if: $fetchProjectStudents) {
+    ...studentInfo
+  }
+  fields(filters: $projectFieldFilters) @include(if: $fetchFields) {
+    id
+    uid
+    value
+  }
+}

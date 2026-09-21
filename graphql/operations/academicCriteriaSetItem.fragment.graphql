@@ -1,0 +1,6 @@
+fragment academicCriteriaSetItem on AcademicCriteriaSet {
+  id
+  label
+  criteriaType
+  subType
+}

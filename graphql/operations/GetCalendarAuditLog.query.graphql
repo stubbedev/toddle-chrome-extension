@@ -1,0 +1,33 @@
+query GetCalendarAuditLog($input: CalendarActivityLogsFeedInput!) {
+  platform {
+    calendarActivityLogsFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          action
+          entityType
+          field
+          metadata
+          curriculumProgram {
+            id
+            label
+          }
+          createdAt
+          createdBy {
+            id
+            firstName
+            lastName
+            middleName
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation reorderProjectGroupGuidingQuestion($id: ID!, $putAfterItemId: ID) {
+  documentation {
+    reorderProjectGroupGuidingQuestion(input: {id: $id, putAfterItemId: $putAfterItemId})
+  }
+}

@@ -1,0 +1,32 @@
+fragment progressReportTemplateItem on ProgressReportTemplate {
+  id
+  name
+  progressReportTaskGroups {
+    id
+    title
+    academicYear {
+      ...academicYearItem
+    }
+    courseProgressReportTasks {
+      id
+      course {
+        ...courseItem
+      }
+      parentEntity {
+        id
+        ... on Grade {
+          id
+          name
+        }
+      }
+    }
+  }
+  grades {
+    ...gradeItem
+  }
+  updatedAt
+  filteredNodes
+  gradingPeriodType
+  locale
+  version
+}

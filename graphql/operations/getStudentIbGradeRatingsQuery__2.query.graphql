@@ -1,0 +1,46 @@
+query getStudentIbGradeRatingsQuery($id: ID!, $filtersForRatingHistory: ibPYPElementRatingFiltersForRatingHistory) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      ibPYPElementRatings(dataSet: RATING_HISTORY, filtersForRatingHistory: $filtersForRatingHistory) {
+        id
+        ibPYPElementId
+        ibPYPElementType
+        value
+        publishedAt
+        parent {
+          id
+          ... on StudentAssignment {
+            id
+            assignment {
+              id
+              content {
+                id
+                ... on Assessment {
+                  id
+                  title {
+                    id
+                    value
+                  }
+                  assessmentType {
+                    id
+                    value
+                  }
+                  taskType {
+                    id
+                    type
+                    label
+                  }
+                  category {
+                    id
+                    label
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+query getProjectGroupPortfoliosGradeBookDetails($id: ID!, $filters: StudentProjectPortfolioFilters, $academicYearId: ID, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!, $ibPYPElementRatingsFilters: ibPYPElementRatingsFilter, $completionStatusFilters: CompletionStatusFilter, $elementRemarksFilters: ElementRemarksFilter) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...portfolioProgress
+            student {
+              ...studentInfo
+            }
+            staff {
+              ...supervisorInfo
+            }
+          }
+        }
+      }
+    }
+  }
+}

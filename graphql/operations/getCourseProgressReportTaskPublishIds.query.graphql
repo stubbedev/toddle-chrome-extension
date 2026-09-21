@@ -1,0 +1,10 @@
+query getCourseProgressReportTaskPublishIds($reportId: ID!) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      allPublishedProgressReport {
+        id
+      }
+    }
+  }
+}

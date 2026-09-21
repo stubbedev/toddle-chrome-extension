@@ -1,0 +1,81 @@
+query getStudentViewFeed($id: ID!, $filters: GroupStudentFilter) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      id
+      name
+      examRegistration {
+        id
+        allStudents {
+          id
+          student {
+            id
+          }
+          personalCode
+          category
+        }
+      }
+      students(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            email
+            preferredName
+            suffix
+            pronouns
+            type
+            registrationCategory
+            alertTypes {
+              ...alertTypeFields
+            }
+            studentProjectPortfolios {
+              id
+              isComplete
+              projectGroup {
+                id
+                name
+              }
+            }
+            projectGroups(filters: {projectGroupSubTypes: [CORE, INTERNAL_ASSESSMENT, EXTERNAL_ASSESSMENT], subjectArchivalState: ALL}) {
+              id
+              name
+              subType
+              type
+              subject {
+                id
+                name
+                subjectGroup {
+                  id
+                  displaySequence
+                }
+              }
+              projects {
+                totalCount
+                edges {
+                  node {
+                    id
+                    reportStatus
+                    students {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

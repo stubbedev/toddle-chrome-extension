@@ -1,0 +1,15 @@
+query getCurriculumProgramGrades($id: ID!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      grades {
+        id
+        name
+        globalGrade {
+          id
+          name
+        }
+      }
+    }
+  }
+}

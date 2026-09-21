@@ -1,0 +1,8 @@
+mutation bulkUploadByFiles($input: BulkUploadByFilesInput!) {
+  platform {
+    bulkUploadByFiles(input: $input) {
+      errorsJSON
+      successful
+    }
+  }
+}

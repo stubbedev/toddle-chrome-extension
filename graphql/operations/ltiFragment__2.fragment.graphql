@@ -1,0 +1,60 @@
+fragment organizationResourceItemV3 on OrganizationResource {
+  id
+  label
+  attachment {
+    ...attachmentItemV2
+  }
+  type
+  resourceType
+  item {
+    ... on OrganizationResource {
+      id
+      label
+      isImportedFromDiffOrg
+      attachment {
+        ...attachmentItemV2
+      }
+      isDeleted
+      type
+      resourceType
+      visibleTo
+    }
+    ... on Assessment {
+      id
+      isImported
+      title {
+        id
+        value
+      }
+      assessmentType {
+        id
+        value
+      }
+      image {
+        id
+        value
+      }
+      grades {
+        id
+        name
+      }
+      createdBy {
+        id
+        firstName
+        lastName
+        profileImage
+      }
+    }
+  }
+}
+
+fragment ltiFragment on LTILaunchObject {
+  launchUrl
+  launchObject
+  errorFlag
+  stopLinkCreation
+  attachmentContextId
+  integrationCreds {
+    metadata
+  }
+}

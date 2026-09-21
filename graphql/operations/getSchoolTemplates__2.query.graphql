@@ -1,0 +1,26 @@
+query getSchoolTemplates($id: ID!, $filters: TranscriptTemplateFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    ... on GenericCurriculumProgram {
+      id
+      transcriptTemplates(filters: $filters) {
+        edges {
+          node {
+            id
+            name
+            templateConfig
+            curriculumPrograms {
+              id
+              label
+            }
+            isAccountTemplate
+            isArchived
+            updatedAt
+            updatedBy {
+              ...staffFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

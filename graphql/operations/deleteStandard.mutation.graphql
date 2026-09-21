@@ -1,0 +1,7 @@
+mutation deleteStandard($id: ID!) {
+  planner {
+    deleteStandardBenchmarkSet(input: {id: $id}) {
+      isSuccess
+    }
+  }
+}

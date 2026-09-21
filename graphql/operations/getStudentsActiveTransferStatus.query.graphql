@@ -1,0 +1,12 @@
+query getStudentsActiveTransferStatus($ids: [ID!]) {
+  multiNode(ids: $ids, type: STUDENT) {
+    id
+    ... on Student {
+      ...userNameFields
+      profileImage
+      email
+      sourceId
+      hasAnActiveTransfer
+    }
+  }
+}

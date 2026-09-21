@@ -1,0 +1,5 @@
+mutation updateIntegrationConfigDetails($input: [UpdateIntegrationConfigInput!]) {
+  integration {
+    updateIntegrationConfigDetails(input: $input)
+  }
+}

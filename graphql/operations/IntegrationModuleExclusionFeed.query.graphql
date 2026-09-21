@@ -1,0 +1,21 @@
+query IntegrationModuleExclusionFeed($input: IntegrationModuleExclusionFeedInput!) {
+  integration {
+    integrationModuleExclusionFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          id
+          ... on Course {
+            title
+          }
+        }
+      }
+    }
+  }
+}

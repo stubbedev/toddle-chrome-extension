@@ -1,0 +1,10 @@
+query getPlannerElementInsightSpecifics($projectGroupId: ID!, $gradeFilters: PlannerElementInsightSpecificsFilter) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      plannerElementInsightSpecifics(filters: $gradeFilters) {
+        ...plannerElementInsightSpecificItem
+      }
+    }
+  }
+}

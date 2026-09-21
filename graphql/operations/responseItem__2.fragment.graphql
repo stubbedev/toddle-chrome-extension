@@ -1,0 +1,53 @@
+fragment responseItem on Response {
+  id
+  message
+  createdBy {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+    ... on Student {
+      ...studentItem
+    }
+  }
+  evidence {
+    id
+    ... on Attachment {
+      ...attachmentItem
+    }
+    ... on Post {
+      id
+      title
+      attachments {
+        id
+        name
+        type
+        signedUrl
+      }
+      items {
+        item {
+          id
+          ... on StudentAssignment {
+            id
+            assignment {
+              id
+              content {
+                id
+                ... on Assessment {
+                  id
+                  assessmentType {
+                    id
+                    value
+                  }
+                }
+              }
+            }
+          }
+        }
+        itemType
+      }
+    }
+  }
+  createdAt
+  updatedAt
+}

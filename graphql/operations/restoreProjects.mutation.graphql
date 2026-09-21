@@ -1,0 +1,7 @@
+mutation restoreProjects($projectIds: [ID!]!) {
+  documentation {
+    restoreProjects(input: {projectIds: $projectIds}) {
+      isSuccess
+    }
+  }
+}

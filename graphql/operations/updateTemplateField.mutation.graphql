@@ -1,0 +1,11 @@
+mutation updateTemplateField($input: UpdateTemplateFieldPropertyInput!, $templateFieldPropertyValuesFilters: TemplateFieldPropertyValuesFilter) {
+  planner {
+    updateTemplateField(input: $input) {
+      isSuccess
+      templateFieldProperties {
+        ...fieldConfigItem
+      }
+      warning
+    }
+  }
+}

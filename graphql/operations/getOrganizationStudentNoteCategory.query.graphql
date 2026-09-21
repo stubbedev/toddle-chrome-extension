@@ -1,0 +1,5 @@
+query getOrganizationStudentNoteCategory($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ...organizationItem
+  }
+}

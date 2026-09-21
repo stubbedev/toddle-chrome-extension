@@ -1,0 +1,81 @@
+query getOrganizationCurriculumProgramsAndGrades($organizationId: ID!, $filters: GradeConfigurationFiltersInput!, $curriculumIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        label
+        acronym
+        ... on IbMypCurriculumProgram {
+          id
+          type
+          grades {
+            id
+            name
+            configurations(filters: $filters) {
+              configurationId
+              multiPlatformCategorizedValues {
+                default
+                staff
+                parent
+                student
+              }
+            }
+          }
+        }
+        ... on IbPypCurriculumProgram {
+          id
+          type
+          grades {
+            id
+            name
+            configurations(filters: $filters) {
+              configurationId
+              multiPlatformCategorizedValues {
+                default
+                staff
+                parent
+                student
+              }
+            }
+          }
+        }
+        ... on UBDCurriculumProgram {
+          id
+          type
+          grades {
+            id
+            name
+            configurations(filters: $filters) {
+              configurationId
+              multiPlatformCategorizedValues {
+                default
+                staff
+                parent
+                student
+              }
+            }
+          }
+        }
+        ... on IbDpCurriculumProgram {
+          id
+          type
+          grades {
+            id
+            name
+            configurations(filters: $filters) {
+              configurationId
+              multiPlatformCategorizedValues {
+                default
+                staff
+                parent
+                student
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

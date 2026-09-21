@@ -1,0 +1,16 @@
+fragment calendarEventItemStaff on CalendarEventItem {
+  id
+  eventType
+  label
+  isFullDayEvent
+  startDateTime
+  recurringSetting {
+    frequency
+  }
+  eventTag {
+    id
+    label
+    colorCode
+    uid
+  }
+}

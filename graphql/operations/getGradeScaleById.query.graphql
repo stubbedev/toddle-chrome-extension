@@ -1,0 +1,24 @@
+query getGradeScaleById($id: ID!, $entityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: GRADE_SCALE) {
+    id
+    ... on GradeScale {
+      id
+      displayName
+      description
+      type
+      gradingType
+      isArchived
+      calculateStandardGradesUsing
+      gradeScaleEntityDetails(filters: $entityDetailsFilters) {
+        id
+        gradeScaleValues {
+          id
+          abbreviation
+          label
+          description
+          color
+        }
+      }
+    }
+  }
+}

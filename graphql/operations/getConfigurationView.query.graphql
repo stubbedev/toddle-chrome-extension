@@ -1,0 +1,25 @@
+query getConfigurationView($configurationViewFilters: ConfigurationViewFilters) {
+  platform {
+    configurationView(filters: $configurationViewFilters) {
+      id
+      labelKey
+      metadata
+      uiType
+      viewType
+      displaySequence
+      parentView {
+        id
+        labelKey
+      }
+      configuration {
+        id
+        configuration
+        configurationGroup
+      }
+      controlParameter {
+        id
+      }
+      curriculumTypes
+    }
+  }
+}

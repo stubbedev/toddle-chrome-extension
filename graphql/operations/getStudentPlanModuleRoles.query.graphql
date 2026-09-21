@@ -1,0 +1,15 @@
+query getStudentPlanModuleRoles($cpId: ID!) {
+  node(id: $cpId, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      permission
+      enabledRoles(levels: [ACCOUNT, PROGRAMME]) {
+        id
+        label
+        globalLevel
+        assignedUserCount
+        isSuperAdmin
+      }
+    }
+  }
+}

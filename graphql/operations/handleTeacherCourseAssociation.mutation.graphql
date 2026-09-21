@@ -1,0 +1,5 @@
+mutation handleTeacherCourseAssociation($input: InitBluePrintCourseTeacherCourseSyncInput!) {
+  planner {
+    initBluePrintCourseTeacherCourseSync(input: $input)
+  }
+}

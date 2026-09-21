@@ -1,0 +1,20 @@
+fragment courseAssignmentBasicDetails on Course {
+  id
+  assignments(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+    totalCount
+    pageInfo {
+      endCursor
+      hasNextPage
+      __typename
+    }
+    edges {
+      node {
+        ...assignmentBasicDetails
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  __typename
+}

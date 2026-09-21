@@ -1,0 +1,11 @@
+fragment staffItem on Staff {
+  id
+  profileImage
+  firstName
+  lastName
+  middleName
+  prefix
+  preferredName
+  pronouns
+  suffix
+}

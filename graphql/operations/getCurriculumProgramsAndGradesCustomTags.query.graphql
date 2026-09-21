@@ -1,0 +1,36 @@
+query getCurriculumProgramsAndGradesCustomTags($organizationId: ID!, $filters: SettingsPortalCustomTagsFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      settingsPortalCustomTags(filters: $filters) {
+        customCurriculumPrograms {
+          acl {
+            controlParameterId
+            curriculumPrograms
+          }
+          configuration {
+            configurationId
+            curriculumPrograms {
+              id
+              userType
+            }
+          }
+        }
+        customGrades {
+          acl {
+            controlParameterId
+            grades
+          }
+          configuration {
+            configurationId
+            grades {
+              id
+              userType
+            }
+          }
+        }
+      }
+    }
+  }
+}

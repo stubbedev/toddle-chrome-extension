@@ -1,0 +1,14 @@
+fragment curriculumProgramItem on CurriculumProgram {
+  id
+  type
+  nodeInterfaceType
+  label
+  acronym
+  curriculum {
+    ...curriculumItem
+  }
+  periodSet(filter: $periodSetFilter) {
+    ...periodSetItem
+  }
+  attendanceRecordingType
+}

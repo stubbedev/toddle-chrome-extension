@@ -1,0 +1,204 @@
+fragment weeklyPlannerSectionItem on WeeklyPlannerSection {
+  id
+  title
+  description
+  startDate
+  endDate
+  startTime
+  endTime
+  isAllDay
+  createdAt
+  isRecurringEvent
+  recurranceStartDate
+  recurranceEndDate
+  isStudentsSharingAllowed
+  class {
+    id
+    title
+    isActive
+    isArchived
+    learningCourse {
+      id
+      title
+    }
+    profileImageData {
+      icon
+      color
+      acronym
+    }
+  }
+  recurrenceSetting {
+    frequency
+    weekDays
+    interval
+    endDate
+    monthDays
+    setPositions
+    timezone
+    count
+  }
+  items {
+    id
+    itemType
+    isItemDragged
+    item {
+      ... on Attachment {
+        ...attachmentItem
+      }
+      ... on Assessment {
+        id
+        templateId
+        title {
+          id
+          value
+        }
+        assessmentType {
+          id
+          value
+        }
+        image {
+          id
+          value
+        }
+        academicTerm {
+          id
+          label
+          lockingStatus
+        }
+        lockingInfo {
+          isLocked
+        }
+        isIncludedInCourseFlow
+        assignments {
+          edges {
+            state {
+              state
+            }
+          }
+        }
+        ...assessmentLEDetailFields
+      }
+      ... on Assignment {
+        id
+        contentType
+        state {
+          state
+        }
+        content {
+          __typename
+          ... on Assessment {
+            id
+            templateId
+            title {
+              id
+              value
+            }
+            assessmentType {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+            academicTerm {
+              id
+              label
+              lockingStatus
+            }
+            lockingInfo {
+              isLocked
+            }
+            isIncludedInCourseFlow
+            learningCourse {
+              id
+              permissions {
+                isManageAssignmentsAndResourcesInCourseFlow
+              }
+            }
+            ...assessmentLEDetailFields
+          }
+        }
+      }
+      ... on LearningCourseFlow {
+        id
+        label
+        displaySequence
+        parent {
+          id
+        }
+        learningCourse {
+          id
+        }
+        depth
+        itemType
+        state
+        isEditAllowed
+        isSharingAllowed
+        sharedDetails {
+          class {
+            id
+          }
+          students {
+            id
+          }
+        }
+        lockingInfo {
+          isLocked
+        }
+        item {
+          ... on Attachment {
+            ...attachmentItem
+          }
+          ... on Assessment {
+            id
+            templateId
+            title {
+              id
+              value
+            }
+            assessmentType {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+            academicTerm {
+              id
+              label
+              lockingStatus
+            }
+            lockingInfo {
+              isLocked
+            }
+            isIncludedInCourseFlow
+            ...assessmentLEDetailFields
+          }
+        }
+      }
+    }
+  }
+  noteDescription {
+    id
+    item {
+      ... on Attachment {
+        ...attachmentItem
+      }
+    }
+  }
+  colorCode
+  class {
+    id
+    title
+    isActive
+    isArchived
+    profileImageData {
+      icon
+      color
+      acronym
+    }
+  }
+  __typename
+}

@@ -1,0 +1,12 @@
+mutation disableRequest($input: DisableProductRequestInput!) {
+  platform {
+    disableProductRequest(input: $input) {
+      productRequestId
+      isSuccess
+      warning
+      status
+      failureReason
+      __typename
+    }
+  }
+}

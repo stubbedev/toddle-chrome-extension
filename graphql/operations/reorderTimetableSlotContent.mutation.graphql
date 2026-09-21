@@ -1,0 +1,5 @@
+mutation reorderTimetableSlotContent($input: TimetableSlotContentReorderInput!) {
+  platform {
+    reorderTimetableSlotContent(input: $input)
+  }
+}

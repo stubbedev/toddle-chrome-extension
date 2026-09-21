@@ -1,0 +1,22 @@
+fragment organizationResourceItem on OrganizationResource {
+  id
+  label
+  metadata
+  attachment {
+    ...attachmentItem
+  }
+  isImportedFromDiffOrg
+  isDeleted
+  isArchived
+  status
+  type
+  resourceType
+  visibleTo
+  createdAt
+  updatedAt
+  tags {
+    id
+    key
+    value
+  }
+}

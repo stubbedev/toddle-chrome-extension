@@ -1,0 +1,21 @@
+fragment aiMessageItem on AiMessage {
+  id
+  role
+  authorType
+  content
+  metadata
+  createdBy {
+    ...staffItem
+    ...studentItem
+  }
+  votes {
+    myVote
+  }
+  usageMetricsId
+  parentMessage {
+    id
+  }
+  attachments {
+    ...attachmentItem
+  }
+}

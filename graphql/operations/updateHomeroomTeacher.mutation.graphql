@@ -1,0 +1,8 @@
+mutation updateHomeroomTeacher($input: StaffStudentRelationInput) {
+  platform {
+    upsertStaffStudentRelation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

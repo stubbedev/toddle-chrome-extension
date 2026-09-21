@@ -1,0 +1,8 @@
+mutation updateBulkUploadActionsStatus($input: UpdateBulkUploadActionsStatusInput!) {
+  platform {
+    updateBulkUploadActionsStatus(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation confirmBulkUploadExternalAssessmentData($input: ConfirmBulkUploadExternalAssessmentDataInput!) {
+  platform {
+    confirmBulkUploadExternalAssessmentData(input: $input)
+  }
+}

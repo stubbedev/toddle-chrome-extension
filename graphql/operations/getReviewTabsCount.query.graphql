@@ -1,0 +1,11 @@
+query getReviewTabsCount($organizationId: ID!, $getToReviewCount: Boolean!, $getUnderReviewCount: Boolean!, $createdAfter: String, $createdBefore: String, $academicYearId: ID, $studentIds: [ID!], $curriculumProgramIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      circularFeedV3 {
+        totalCount(input: {createdAfter: $createdAfter, createdBefore: $createdBefore, states: [REVIEW_PENDING, REVIEW_REJECTED], createdBy: ME, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds}) @include(if: $getUnderReviewCount)
+        totalCount(input: {createdAfter: $createdAfter, createdBefore: $createdBefore, states: [REVIEW_PENDING], createdBy: OTHERS, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds}) @include(if: $getToReviewCount)
+      }
+    }
+  }
+}

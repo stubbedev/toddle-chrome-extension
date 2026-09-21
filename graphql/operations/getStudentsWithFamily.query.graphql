@@ -1,0 +1,60 @@
+query getStudentsWithFamily($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $familiesFilter: FamiliesFiltersInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        blockedCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            email
+            families(filters: $familiesFilter) {
+              id
+              status
+              familyMember {
+                id
+                lastName
+                middleName
+                firstName
+                email
+                rnpRoleContextDetail {
+                  id
+                  role {
+                    id
+                    label
+                    displayUid
+                    isDefaultRole
+                  }
+                  contextType
+                  context {
+                    id
+                  }
+                }
+              }
+            }
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+            alertTypes {
+              id
+              name
+              icon
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

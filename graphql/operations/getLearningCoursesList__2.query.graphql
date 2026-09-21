@@ -1,0 +1,95 @@
+query getLearningCoursesList($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $filters: LearningCourseFilters, $after: String, $learningCourseIsApplicableFilters: LearningCourseIsApplicableFilters!) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse(first: 10, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            title
+            displayMetadata
+            isApplicableForClassId(filters: $learningCourseIsApplicableFilters)
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse(first: 10, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            title
+            displayMetadata
+            isApplicableForClassId(filters: $learningCourseIsApplicableFilters)
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(first: 10, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            title
+            displayMetadata
+            isApplicableForClassId(filters: $learningCourseIsApplicableFilters)
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse(first: 10, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            title
+            displayMetadata
+            isApplicableForClassId(filters: $learningCourseIsApplicableFilters)
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      learningCourse(first: 10, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            title
+            displayMetadata
+            isApplicableForClassId(filters: $learningCourseIsApplicableFilters)
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

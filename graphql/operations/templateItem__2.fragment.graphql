@@ -1,0 +1,51 @@
+fragment templateItem on PlannerTemplate {
+  id
+  name
+  type
+  assessmentType
+  isGlobal
+  isBilingual
+  unitType
+  updatedAt
+  updatedBy {
+    id
+    firstName
+    middleName
+    lastName
+  }
+  createdAt
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+  }
+  draftTemplate {
+    id
+    isDraftEdited
+  }
+  academicTemplate {
+    id
+    curriculumProgram {
+      id
+      label
+    }
+  }
+  schoolTemplates {
+    id
+    curriculumProgram {
+      id
+      label
+    }
+  }
+  curriculum {
+    id
+  }
+  baseTemplate {
+    id
+    name
+  }
+  unitPlans(filters: $unitPlanFilters) {
+    totalCount
+  }
+}

@@ -1,0 +1,7 @@
+mutation approveSchool($id: ID!, $name: String!, $domains: [String!], $city: String, $country: String, $ibCode: String) {
+  organizationManagement {
+    approveSchool(input: {id: $id, name: $name, domains: $domains, city: $city, country: $country, ibCode: $ibCode}) {
+      id
+    }
+  }
+}

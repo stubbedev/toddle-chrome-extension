@@ -1,0 +1,5 @@
+mutation upsertTermGradeStudentWiseCriteria($termGradeStudentWiseCriteriaInput: [TermGradeStudentWiseCriteriaInput!]) {
+  platform {
+    upsertTermGradeStudentWiseCriteria(input: $termGradeStudentWiseCriteriaInput)
+  }
+}

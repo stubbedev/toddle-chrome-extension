@@ -1,0 +1,6 @@
+fragment categoryWiseAssessmentItem on AcademicCriteriaValue {
+  id
+  assignments(filters: $assignmentFilters) {
+    ...assignmentProgressSummaryItem
+  }
+}

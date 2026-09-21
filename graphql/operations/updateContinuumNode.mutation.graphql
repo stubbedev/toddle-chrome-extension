@@ -1,0 +1,9 @@
+mutation updateContinuumNode($input: [UpdateContinuumNodeInput!]) {
+  platform {
+    updateContinuumNode(input: $input) {
+      id
+      label
+      subText
+    }
+  }
+}

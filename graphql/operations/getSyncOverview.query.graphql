@@ -1,0 +1,14 @@
+query getSyncOverview($input: GetOverviewForSyncInput!) {
+  integration {
+    getOverviewForSync(input: $input) {
+      dataType
+      added
+      modified
+      deleted
+      excluded
+      action {
+        entity
+      }
+    }
+  }
+}

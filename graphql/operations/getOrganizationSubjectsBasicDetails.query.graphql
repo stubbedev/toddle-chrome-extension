@@ -1,0 +1,18 @@
+query getOrganizationSubjectsBasicDetails($organizationId: ID!, $filters: SubjectFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        isArchived
+        subjectGroup {
+          id
+          name
+          displaySequence
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+fragment organizationAssignmentItem on Organization {
+  id
+  assignments(first: $first, after: $after, filters: $assignmentFeedFilters, customOrderBy: $customOrderBy) {
+    edges {
+      node {
+        ...assignmentProgressSummaryItem
+        ratingInsights @include(if: $shouldFetchRatingInsights) {
+          toolId
+          toolType
+          academicCriteriaSetId
+          average
+          genericTagId
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

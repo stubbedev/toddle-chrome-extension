@@ -1,0 +1,53 @@
+query getCourseUsers($id: ID!, $first: Int, $after: String, $organizationId: ID!, $filters: CourseFilter, $skipStudents: Boolean!, $skipStaff: Boolean!, $skipFamilyMembers: Boolean!, $studentFilters: CourseFilter, $aclControlParameterFilter: ACLControlParameterFilter, $getOnlyUserId: Boolean!, $getCurriculumProgram: Boolean!) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      coursesV2(first: $first, after: $after, filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            curriculumProgram @include(if: $getCurriculumProgram) {
+              id
+              label
+            }
+            aclControlParameters(filters: $aclControlParameterFilter) {
+              id
+              uid
+              permission
+              value
+            }
+            students(filters: $studentFilters) @skip(if: $skipStudents) {
+              edges {
+                node {
+                  id
+                  ...userDetailItem @skip(if: $getOnlyUserId)
+                }
+              }
+            }
+            collaborator @skip(if: $skipStaff) {
+              edges {
+                node {
+                  id
+                  ...userDetailItem @skip(if: $getOnlyUserId)
+                }
+              }
+            }
+            familyMembers @skip(if: $skipFamilyMembers) {
+              edges {
+                node {
+                  id
+                  ...userDetailItem @skip(if: $getOnlyUserId)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+fragment userMapItem on CourseUserMapConnection {
+  edges {
+    node {
+      id
+      user {
+        ... on Student {
+          id
+          firstName
+          middleName
+          lastName
+          preferredName
+          prefix
+          suffix
+          pronouns
+          type
+          isArchived
+          isArchivedV2(filters: {academicYearId: $academicYearId})
+          profileImage
+          yearGroup {
+            id
+            name
+          }
+          alertTypes {
+            ...alertTypeFields
+          }
+        }
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

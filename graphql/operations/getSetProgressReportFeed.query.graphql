@@ -1,0 +1,8 @@
+query getSetProgressReportFeed($id: ID!, $searchText: String) {
+  node(id: $id, type: PROGRESS_REPORT_TASK_GROUP) {
+    id
+    ... on ProgressReportTaskGroup {
+      ...setProgressReportFragmentItem
+    }
+  }
+}

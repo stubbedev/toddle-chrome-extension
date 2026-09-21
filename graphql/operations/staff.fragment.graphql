@@ -1,0 +1,16 @@
+fragment staff on Staff {
+  ...userNameFields
+  email
+  profileImage
+  roles
+  isArchived
+  coursesV2 {
+    edges {
+      node {
+        id
+        title @skip(if: $skipTitle)
+      }
+    }
+  }
+  __typename
+}

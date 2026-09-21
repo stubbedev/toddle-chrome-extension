@@ -1,0 +1,37 @@
+query getSearchedFiles($organizationId: ID!, $input: MessageV2AttachmentInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messageV2Attachments(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            attachment {
+              id
+              type
+              title
+              name
+              mimeType
+              metadata
+              url
+              thumbUrl
+              streamUrl
+            }
+            message {
+              id
+              cursor
+              chat {
+                id
+                type
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

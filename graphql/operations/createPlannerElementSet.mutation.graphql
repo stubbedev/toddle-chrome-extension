@@ -1,0 +1,19 @@
+mutation createPlannerElementSet($input: CreatePlannerElementSetInput!) {
+  planner {
+    createPlannerElementSet(input: $input) {
+      isSuccess
+      warning
+      plannerElementSet {
+        id
+        type
+        isIncludedInInsights
+        config {
+          id
+          config
+          valueType
+          value
+        }
+      }
+    }
+  }
+}

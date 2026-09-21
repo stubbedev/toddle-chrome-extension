@@ -1,0 +1,33 @@
+query getOrganizationAYGroups($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      academicYearGroups {
+        id
+        name
+        acronym
+        isArchived
+        isCurrent
+        displayOrder
+        curriculumProgramWiseAcademicYearMap {
+          academicYear {
+            ...academicYearItem
+          }
+          curriculumProgram {
+            id
+            programType
+            label
+          }
+        }
+      }
+      academicYears {
+        ...academicYearItem
+      }
+      curriculumPrograms {
+        id
+        programType
+        label
+      }
+    }
+  }
+}

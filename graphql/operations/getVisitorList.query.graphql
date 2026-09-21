@@ -1,0 +1,22 @@
+query getVisitorList($organizationId: ID!, $first: Int, $after: String, $searchText: String, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $excludedStaffIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(first: $first, after: $after, filters: {roles: [visitor], searchText: $searchText, excludedStaffIds: $excludedStaffIds}, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            ... on Staff {
+              ...visitorItem
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        totalCount
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+fragment videoMeetingItem on PlatformCalendarEvent {
+  id
+  startTime
+  endTime
+  itemType
+  item {
+    ... on CalendarEventItem {
+      id
+    }
+  }
+}

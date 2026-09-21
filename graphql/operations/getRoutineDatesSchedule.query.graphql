@@ -1,0 +1,81 @@
+query getRoutineDatesSchedule($id: ID!, $curriculumProgramIds: [ID!], $routineFilters: RoutineFilterOptions!, $routineDatesFilters: RoutineDatesFilters!, $calendarEventsFilters: RoutineCalendarEventFilters!, $associatedEntitiesFilter: AssociatedEntitiesFilters, $skipCalendarEvents: Boolean!, $skipCalendarEventItems: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        routines(filter: $routineFilters) {
+          id
+          label
+          routineMode
+          dayPatternType
+          countHolidayAsRotationDay
+          bellSchedules {
+            id
+            bellSchedule {
+              id
+              label
+            }
+          }
+          rotationDays {
+            id
+            label
+          }
+          grades {
+            id
+            name
+          }
+          calendarEvents(filters: $calendarEventsFilters) @skip(if: $skipCalendarEvents) {
+            id
+            title
+            startDate
+            endDate
+            description
+            routines {
+              id
+              label
+              grades {
+                id
+                name
+              }
+            }
+          }
+          calendarEventItems(filters: $calendarEventsFilters) @skip(if: $skipCalendarEventItems) {
+            id
+            startDateTime
+            endDateTime
+            label
+            description
+            associatedEntities(filters: $associatedEntitiesFilter) {
+              ... on Routine {
+                id
+                label
+                grades {
+                  id
+                  name
+                }
+              }
+            }
+          }
+          routineDates(filters: $routineDatesFilters) {
+            date
+            rotationDay {
+              id
+              label
+            }
+            bellSchedule {
+              id
+              label
+            }
+            upcomingRotationDay {
+              id
+              label
+            }
+            eventType
+          }
+        }
+      }
+    }
+  }
+}

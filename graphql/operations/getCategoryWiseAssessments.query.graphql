@@ -1,0 +1,36 @@
+query getCategoryWiseAssessments($id: ID!, $grades: [ID!], $assessmentToolTypes: [ASSESSMENT_EVALUATION_TYPE_ENUM!], $academicCriteriaSetsFilter: academicCriteriaSetsFilter, $assignmentFilters: AssignmentFeedFilters, $assessmentFieldUids: [String!] = ["measureAssessing", "objectivesMYP", "interdisciplinaryCriteriaMYP", "subjectLevel", "atls", "benchmarks", "concepts", "lp", "learningStandardUBD", "atlsUBD", "learningStandardMYP", "atlsMYP", "subjectStandardDP", "atlDP", "learnerProfileDP", "syllabusContentDP"]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      constants {
+        academicCriteriaSets(grades: $grades, filters: $academicCriteriaSetsFilter) {
+          id
+          label
+          isShowGradeBoundaries
+          academicCriteriaValues {
+            id
+            label
+            color
+            scoreValues {
+              id
+              value
+              genericTag {
+                id
+                label
+              }
+              category {
+                id
+              }
+            }
+            gradeBoundaries {
+              id
+            }
+            gradeScaleType
+            ...categoryWiseAssessmentItem
+          }
+        }
+      }
+    }
+  }
+}

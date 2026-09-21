@@ -1,0 +1,6 @@
+fragment projectGroupStudentPortfolioInfoItem on StudentProjectPortfolio {
+  id
+  staff {
+    ...supervisorInfo
+  }
+}

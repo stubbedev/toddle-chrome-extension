@@ -1,0 +1,23 @@
+fragment projectTaskItem on ProjectTaskResponse {
+  id
+  project {
+    id
+  }
+  isComplete
+  task {
+    id
+    dueOn
+    title
+    isDeadlineAllDay
+    projectGroup {
+      ...projectGroupInfo
+      yearGroup {
+        id
+        name
+      }
+    }
+    createdBy {
+      ...supervisorInfo
+    }
+  }
+}

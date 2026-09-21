@@ -1,0 +1,44 @@
+fragment gradeScaleItem on GradeScale {
+  id
+  displayName
+  description
+  type
+  gradingType
+  calculateStandardGradesUsing
+  dependentGradeScales {
+    id
+  }
+  gradeScaleEntityDetails(filters: $gradeScaleEntityDetailsFilters) {
+    id
+    academicTerm {
+      id
+    }
+    entityDetail {
+      subjectId
+      gradeId
+      academicTermId
+      learningCourseId
+    }
+    gradingConfiguration {
+      id
+      settings {
+        id
+        uid
+        groupType
+        value
+      }
+    }
+    gradeScaleValues {
+      id
+      abbreviation
+      label
+      description
+      color
+      gradeScaleValueScores {
+        id
+        minValue
+        maxValue
+      }
+    }
+  }
+}

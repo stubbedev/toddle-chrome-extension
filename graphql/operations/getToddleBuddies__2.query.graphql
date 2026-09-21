@@ -1,0 +1,9 @@
+query getToddleBuddies {
+  platform {
+    buddies {
+      id
+      firstName
+      lastName
+    }
+  }
+}

@@ -1,0 +1,13 @@
+fragment gradeScaleBasicDetailsItem on GradeScale {
+  id
+  displayName
+  templateName
+  gradeScaleEntityDetails(filters: $gradingSetupEntityFilters) {
+    id
+    isPrimary
+    entityDetail {
+      subjectId
+      gradeId
+    }
+  }
+}

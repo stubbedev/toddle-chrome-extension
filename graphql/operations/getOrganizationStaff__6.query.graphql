@@ -1,0 +1,22 @@
+query getOrganizationStaff($organizationId: ID!, $curriculumProgramIds: [ID!], $staffCoursesFilter: [ID!], $academicYearIds: [ID!], $excludedStaffIds: [ID!], $searchText: String, $after: String, $first: Int, $skipTitle: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(after: $after, first: $first, filters: {curriculumProgramIds: $curriculumProgramIds, roles: [teacher], courses: $staffCoursesFilter, academicYearIds: $academicYearIds, searchText: $searchText, excludedStaffIds: $excludedStaffIds}) {
+        edges {
+          node {
+            ...staff
+          }
+          __typename
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

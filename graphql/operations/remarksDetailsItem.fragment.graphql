@@ -1,0 +1,13 @@
+fragment remarksDetailsItem on Remark {
+  id
+  message
+  isLocked
+  lockingState {
+    state
+    scheduledAt
+  }
+  createdAt
+  createdBy {
+    ...userItem
+  }
+}

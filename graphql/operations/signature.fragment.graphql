@@ -1,0 +1,10 @@
+fragment signature on Attachment {
+  id
+  url
+  signedUrl
+  type
+  name
+  createdBy {
+    id
+  }
+}

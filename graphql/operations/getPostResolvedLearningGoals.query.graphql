@@ -1,0 +1,17 @@
+query getPostResolvedLearningGoals($id: ID!) {
+  node(id: $id, type: POST) {
+    id
+    ... on Post {
+      id
+      elementPYP {
+        id
+        fieldUID
+        value
+        parentType
+        resolvedMinimalTree {
+          ...resolvedMinimalTreeItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation createStudentProfileResponse($title: String, $questionId: ID!, $studentId: ID!, $attachments: [AttachmentInput!]) {
+  platform {
+    createStudentProfileResponse(input: {title: $title, questionId: $questionId, studentId: $studentId, attachments: $attachments}) {
+      ...studentProfileResponseItem
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query getSubjectTermGradeScale($id: ID!, $filters: SubjectGradeScalesFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      gradeScales(filters: $filters) {
+        ...IBGradeScaleTermFragment
+      }
+    }
+  }
+}

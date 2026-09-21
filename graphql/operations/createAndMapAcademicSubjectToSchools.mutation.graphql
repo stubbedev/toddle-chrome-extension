@@ -1,0 +1,42 @@
+mutation createAndMapAcademicSubjectToSchools($input: CreateAndMapAcademicSubjectToSchoolsInput!) {
+  platform {
+    createAndMapAcademicSubjectToSchools(input: $input) {
+      isSuccess
+      warning
+      subject {
+        id
+        name
+        code
+        courseType
+        reportDisplayName
+        icon
+        iconType
+        isArchived
+        type
+        metadata
+      }
+      mapped {
+        schoolCurriculumProgramId
+        childSubjectId
+      }
+      cannotBeMapped {
+        schoolCurriculumProgramId
+        missingGradeIds
+      }
+      impact {
+        schoolCurriculumProgramId
+        existingChildSubjectId
+        alreadyMapped
+        departmentToCreate {
+          id
+          name
+          type
+        }
+        levelsToCreate {
+          id
+          label
+        }
+      }
+    }
+  }
+}

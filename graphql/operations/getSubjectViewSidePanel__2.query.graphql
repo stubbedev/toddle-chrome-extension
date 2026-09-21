@@ -1,0 +1,64 @@
+query getSubjectViewSidePanel($id: ID!, $projectFieldFilters: PlannerFieldFilter, $fetchFields: Boolean!, $projectFilters: ProjectGroupProjectsFilters, $projectTaskFilters: ProjectTaskFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      name
+      type
+      subject {
+        id
+        name
+      }
+      projects(filters: $projectFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            tasks(filters: $projectTaskFilters) {
+              id
+              task {
+                submission {
+                  id
+                  type
+                }
+              }
+              isSubmissionTurnedIn
+            }
+            isAcademicHonestyLocked
+            students {
+              id
+              firstName
+              middleName
+              lastName
+              preferredName
+              suffix
+              pronouns
+              type
+            }
+            finalProjectReports {
+              id
+              name
+              type
+              mimeType
+              url
+              thumbUrl
+              title
+              metadata
+              streamUrl
+              parentType
+              createdBy {
+                id
+                type
+              }
+            }
+            projectReports {
+              isRead
+            }
+            fields(filters: $projectFieldFilters) @include(if: $fetchFields) {
+              ...fieldsResolvedMinimalTreeFragmentItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

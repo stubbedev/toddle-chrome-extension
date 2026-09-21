@@ -1,0 +1,5 @@
+mutation updateLearningCourseInclusionStatusInInsights($input: updateLearningCourseInclusionStatusInInsightInput!) {
+  planner {
+    updateLearningCourseInclusionStatusInInsights(input: $input)
+  }
+}

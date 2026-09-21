@@ -1,0 +1,12 @@
+query getAssessmentAiUsageMetrics($id: ID!) {
+  node(id: $id, type: ASSESSMENT) {
+    id
+    ... on Assessment {
+      id
+      aiUsageMetrics {
+        id
+        type
+      }
+    }
+  }
+}

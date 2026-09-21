@@ -1,0 +1,6 @@
+query getClassBasicDetails($id: ID!) {
+  node(id: $id, type: COURSE) {
+    ...courseBasicDetails
+    __typename
+  }
+}

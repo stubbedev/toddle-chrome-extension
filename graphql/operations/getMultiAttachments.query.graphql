@@ -1,0 +1,26 @@
+query getMultiAttachments($ids: [ID!]) {
+  multiNode(ids: $ids, type: ATTACHMENT) {
+    ... on Attachment {
+      id
+      url
+      name
+      type
+      title
+      mimeType
+      thumbUrl
+      metadata
+      toddleDoc {
+        id
+        value
+      }
+      modalityAttachment {
+        id
+        ... on ModalityFile {
+          content
+          metadata
+          modalityType
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation bookmarkCourse($input: UpdateLearningCourseUserBookmarkInput!) {
+  planner {
+    bookmarkLearningCourse(input: $input)
+  }
+}

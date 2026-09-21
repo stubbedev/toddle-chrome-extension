@@ -1,0 +1,15 @@
+query getUserProjectGroupTypes($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: UserProjectGroupFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      projectGroups(filters: $filters) {
+        id
+        type
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

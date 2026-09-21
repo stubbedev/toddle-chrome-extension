@@ -1,0 +1,8 @@
+mutation productRequest($input: CreateProductRequestInput!) {
+  platform {
+    createProductRequest(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

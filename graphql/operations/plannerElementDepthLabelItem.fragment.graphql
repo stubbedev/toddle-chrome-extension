@@ -1,0 +1,6 @@
+fragment plannerElementDepthLabelItem on PlannerElementDepthLabel {
+  id
+  depth
+  label
+  totalNodes
+}

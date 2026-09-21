@@ -1,0 +1,17 @@
+query getSnPDocumentReviewStages($cycleId: ID!) {
+  node(id: $cycleId, type: SnP_EVALUATION_CYCLE) {
+    ... on SnPEvaluationCycle {
+      id
+      documentReviewStage {
+        id
+        stageType
+        title
+        localeLabelKey
+        displaySequence
+        documentCategoryGroup {
+          ...snpDocumentCategoryGroupItem
+        }
+      }
+    }
+  }
+}

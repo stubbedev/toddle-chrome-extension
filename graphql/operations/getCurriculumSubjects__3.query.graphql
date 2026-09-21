@@ -1,0 +1,49 @@
+query getCurriculumSubjects($id: ID!, $filters: CurriculumProgramSubjectFilters, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        subjectGroup {
+          ...subjectGroupBasicDetailsItem
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        subjectGroup {
+          ...subjectGroupBasicDetailsItem
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        subjectGroup {
+          ...subjectGroupBasicDetailsItem
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        type
+        contentSubject {
+          id
+          assessmentYearTitle
+        }
+        subjectGroup {
+          ...subjectGroupBasicDetailsItem
+        }
+      }
+    }
+  }
+}

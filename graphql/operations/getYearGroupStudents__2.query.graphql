@@ -1,0 +1,18 @@
+query getYearGroupStudents($id: ID!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      allStudents {
+        id
+        firstName
+        lastName
+        middleName
+        preferredName
+        suffix
+        pronouns
+        type
+        isArchived
+      }
+    }
+  }
+}

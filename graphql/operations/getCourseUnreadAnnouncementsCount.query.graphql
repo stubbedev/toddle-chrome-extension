@@ -1,0 +1,10 @@
+query getCourseUnreadAnnouncementsCount($id: ID!, $unreadAnnouncementsCountInput: CircularFeedV3Input!) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      circularFeedV3 {
+        ...unreadAnnouncementsCountItem
+      }
+    }
+  }
+}

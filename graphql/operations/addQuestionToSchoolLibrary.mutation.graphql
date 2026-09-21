@@ -1,0 +1,7 @@
+mutation addQuestionToSchoolLibrary($input: AddQuestionToSchoolLibraryInput!) {
+  content {
+    addQuestionToSchoolLibrary(input: $input) {
+      isSuccess
+    }
+  }
+}

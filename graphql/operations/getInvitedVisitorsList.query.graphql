@@ -1,0 +1,11 @@
+query getInvitedVisitorsList($cycleId: ID!, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $cycleId, type: SnP_EVALUATION_CYCLE) {
+    id
+    ... on SnPEvaluationCycle {
+      id
+      visitors(orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        ...visitorItem
+      }
+    }
+  }
+}

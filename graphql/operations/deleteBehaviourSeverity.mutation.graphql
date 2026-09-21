@@ -1,0 +1,5 @@
+mutation deleteBehaviourSeverity($input: BehaviourSeverityDeleteInput!) {
+  platform {
+    deleteBehaviourSeverity(input: $input)
+  }
+}

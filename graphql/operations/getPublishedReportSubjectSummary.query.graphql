@@ -1,0 +1,8 @@
+query getPublishedReportSubjectSummary($id: ID!) {
+  node(id: $id, type: PUBLISHED_STUDENT_PROGRESS_REPORT) {
+    id
+    ... on PublishedStudentProgressReport {
+      ...publishedReportSubjectSummaryItem
+    }
+  }
+}

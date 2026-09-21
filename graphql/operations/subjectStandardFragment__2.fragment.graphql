@@ -1,0 +1,22 @@
+fragment subjectStandardFragment on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      title
+      isArchived
+      subject {
+        id
+        name
+        isArchived
+      }
+      standardSetWrapper {
+        publishedStandards {
+          totalCount
+        }
+      }
+      courseStandards(ids: [$courseId]) {
+        id
+      }
+    }
+  }
+}

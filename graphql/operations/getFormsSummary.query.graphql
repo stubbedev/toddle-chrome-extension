@@ -1,0 +1,85 @@
+query getFormsSummary($id: ID!) {
+  node(id: $id, type: MESSAGEV2_FORM) {
+    ... on MessageV2Form {
+      id
+      sections {
+        id
+        type
+        ... on MessageV2FormSectionSingleChoice {
+          question
+          isRequired
+          options {
+            ...optionItemForSummary
+          }
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionMultiChoice {
+          question
+          isRequired
+          options {
+            ...optionItemForSummary
+          }
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionHeader {
+          title
+          description
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionShortResponse {
+          question
+          isRequired
+          attachments {
+            ...attachmentItem
+          }
+          userResponseV2 {
+            totalCount
+          }
+        }
+        ... on MessageV2FormSectionLongResponse {
+          question
+          isRequired
+          attachments {
+            ...attachmentItem
+          }
+          userResponseV2 {
+            totalCount
+          }
+        }
+        ... on MessageV2FormSectionLinearScale {
+          question
+          isRequired
+          options {
+            ...optionItemForSummary
+          }
+          scaleLimit
+          attachments {
+            ...attachmentItem
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation createMessageV2Form($input: CreateMessageV2FormInput!) {
+  platform {
+    createMessageV2Form(input: $input) {
+      id
+    }
+  }
+}
+
+mutation createMessageV2Form($input: CreateMessageV2FormInput!) {
+  platform {
+    createMessageV2Form(input: $input) {
+      id
+    }
+  }
+}

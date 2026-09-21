@@ -1,0 +1,5 @@
+mutation updateProjectGroupGuidingQuestion($question: String!, $id: ID!, $gradeAdded: [ID!], $gradeRemoved: [ID!]) {
+  documentation {
+    updateProjectGroupGuidingQuestion(input: {question: $question, id: $id, grades: {added: $gradeAdded, removed: $gradeRemoved}})
+  }
+}

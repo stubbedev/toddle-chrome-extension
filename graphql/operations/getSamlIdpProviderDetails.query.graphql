@@ -1,0 +1,11 @@
+query getSamlIdpProviderDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      samlSpProviderDetails {
+        id
+        serviceName
+      }
+    }
+  }
+}

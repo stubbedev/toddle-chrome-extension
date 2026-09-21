@@ -1,0 +1,7 @@
+mutation createQuestionTopic($input: CreateQuestionTagInput!) {
+  content {
+    createQuestionTag(input: $input) {
+      id
+    }
+  }
+}

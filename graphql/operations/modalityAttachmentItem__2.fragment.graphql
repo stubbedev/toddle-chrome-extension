@@ -1,0 +1,23 @@
+mutation updateAttachment($input: AttachmentUpdateInput!, $skipModalityAttachment: Boolean = false) {
+  platform {
+    updateAttachment(input: $input) {
+      ...attachmentItem
+      modalityAttachment @skip(if: $skipModalityAttachment) {
+        ...modalityAttachmentItem
+      }
+    }
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

@@ -1,0 +1,17 @@
+fragment plannerElementNodeSetItem on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      type
+      title
+      plannerElementSet {
+        id
+        type
+        templateFields(filters: {includeDisciplinaryFields: true}) {
+          id
+          uid
+        }
+      }
+    }
+  }
+}

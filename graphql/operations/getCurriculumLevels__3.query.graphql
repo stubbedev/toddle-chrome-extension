@@ -1,0 +1,13 @@
+query getCurriculumLevels($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $levelsFilters: GenericTagFilters = {types: [LEVELS]}) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on UBDCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+      }
+    }
+  }
+}

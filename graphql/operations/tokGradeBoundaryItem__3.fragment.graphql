@@ -1,0 +1,34 @@
+query getProjectGroupProjectsWithGradebookDetials($id: ID!, $projectGradebookFilters: ProjectGroupProjectsFilters, $projectFieldFilters: PlannerFieldFilter, $academicYearId: ID) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      ...gradebookCriteria
+      projects(filters: $projectGradebookFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...gradebookInfo
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment tokGradeBoundaryItem on PointAssessmentSet {
+  id
+  categories {
+    id
+    label
+    displaySequence
+    values {
+      id
+      minValue
+      maxValue
+    }
+  }
+}

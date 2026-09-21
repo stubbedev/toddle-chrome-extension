@@ -1,0 +1,11 @@
+mutation updateAccessLink($input: UpdatePlaygroundAccessLinkInput!) {
+  playground {
+    updateAccessLink(input: $input) {
+      isSuccess
+      warning
+      accessLink {
+        ...playgroundAccessLinkFragment
+      }
+    }
+  }
+}

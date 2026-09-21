@@ -1,0 +1,6 @@
+mutation resetCourseConfigurationValue($input: CourseConfigurationValueResetInput!) {
+  platform {
+    resetCourseConfigurationValue(input: $input)
+    __typename
+  }
+}

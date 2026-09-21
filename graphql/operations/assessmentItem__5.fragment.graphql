@@ -1,0 +1,26 @@
+fragment assessmentItem on Assessment {
+  id
+  templateId
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  academicTerm {
+    id
+    label
+    lockingStatus
+  }
+  lockingInfo {
+    isLocked
+  }
+  isIncludedInCourseFlow
+  ...assessmentLEDetailFields
+}

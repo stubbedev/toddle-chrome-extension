@@ -1,0 +1,17 @@
+query getEnabledRoles($ids: [ID!]!, $assignedUsersFilters: RnPRoleContextDetailFilterInput) {
+  multiNode(ids: $ids, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      uid
+      type
+      enabledRoles(levels: [ACCOUNT, PROGRAMME]) {
+        id
+        label
+        globalLevel
+        assignedUsers(filters: $assignedUsersFilters, orderBy: FULL_NAME, orderByDirection: ASC) {
+          totalCount
+        }
+      }
+    }
+  }
+}

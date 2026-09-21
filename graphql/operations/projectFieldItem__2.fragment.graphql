@@ -1,0 +1,6 @@
+fragment projectFieldItem on PlannerField {
+  id
+  uid
+  value
+  pseudoFieldUid
+}

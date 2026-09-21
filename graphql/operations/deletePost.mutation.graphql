@@ -1,0 +1,7 @@
+mutation deletePost($id: ID!) {
+  documentation {
+    deletePost(id: $id) {
+      isSuccess
+    }
+  }
+}

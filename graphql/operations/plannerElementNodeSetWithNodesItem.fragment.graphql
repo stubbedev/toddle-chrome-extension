@@ -1,0 +1,15 @@
+fragment plannerElementNodeSetWithNodesItem on PlannerElementNodeSet {
+  id
+  type
+  plannerElementNodeSetWrapperV2 {
+    ... on PlannerElementNodeSetWrapper {
+      publishedData(filters: $plannerElementNodeFilters) {
+        edges {
+          node {
+            ...plannerElementNodeItem
+          }
+        }
+      }
+    }
+  }
+}

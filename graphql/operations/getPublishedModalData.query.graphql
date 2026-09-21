@@ -1,0 +1,55 @@
+query getPublishedModalData($id: ID!, $defaultLocale: String, $first: Int!, $after: String, $shouldSkipUpdated: Boolean = false, $shouldSkipAdded: Boolean = false, $shouldSkipRemoved: Boolean = false, $shouldSkipFilterData: Boolean = false, $nodeSetConfigFilters: PlannerElementNodeSetConfigFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      config(filters: $nodeSetConfigFilters) @skip(if: $shouldSkipFilterData) {
+        id
+        value
+        draftValue
+        updatedBy {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+        }
+        globalProperty {
+          id
+          property
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          ...plannerElementNodeUpdatedFeed @skip(if: $shouldSkipUpdated)
+          ...plannerElementNodeAddedFeed @skip(if: $shouldSkipAdded)
+          ...plannerElementNodeRemovedFeed @skip(if: $shouldSkipRemoved)
+        }
+        ... on PlannerATLSetWrapper {
+          ...atlUpdatedFeed @skip(if: $shouldSkipUpdated)
+          ...atlAddedFeed @skip(if: $shouldSkipAdded)
+          ...atlRemovedFeed @skip(if: $shouldSkipRemoved)
+        }
+        ... on PlannerBenchmarkSetWrapper {
+          ...benchmarkUpdatedFeed @skip(if: $shouldSkipUpdated)
+          ...benchmarkAddedFeed @skip(if: $shouldSkipAdded)
+          ...benchmarkRemovedFeed @skip(if: $shouldSkipRemoved)
+        }
+        ... on PlannerActionSetWrapper {
+          ...actionUpdatedFeed @skip(if: $shouldSkipUpdated)
+          ...actionAddedFeed @skip(if: $shouldSkipAdded)
+          ...actionRemovedFeed @skip(if: $shouldSkipRemoved)
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          ...learnerProfileUpdatedFeed @skip(if: $shouldSkipUpdated)
+          ...learnerProfileAddedFeed @skip(if: $shouldSkipAdded)
+          ...learnerProfileRemovedFeed @skip(if: $shouldSkipRemoved)
+        }
+        ... on PlannerConceptSetWrapper {
+          ...conceptUpdatedFeed @skip(if: $shouldSkipUpdated)
+          ...conceptAddedFeed @skip(if: $shouldSkipAdded)
+          ...conceptRemovedFeed @skip(if: $shouldSkipRemoved)
+        }
+      }
+    }
+  }
+}

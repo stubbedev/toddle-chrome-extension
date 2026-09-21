@@ -1,0 +1,11 @@
+mutation updateAiVoiceTone($input: [VoiceToneEditInput!]) {
+  ai {
+    updateAiVoiceTone(input: $input) {
+      isSuccess
+      response {
+        id
+        ...progressReportAIVoiceTones
+      }
+    }
+  }
+}

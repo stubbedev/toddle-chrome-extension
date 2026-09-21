@@ -1,0 +1,26 @@
+query getUnitPlan($id: ID!, $uids: [String!]) {
+  node(id: $id, type: UNIT_PLAN) {
+    ... on UnitPlan {
+      id
+      templateId
+      subjects {
+        id
+        resolvedMinimalTree {
+          ... on ResolvedFieldSubjectSet {
+            id
+            type
+            subjects {
+              id
+              name
+              isDeleted
+              isArchived
+            }
+          }
+        }
+      }
+      fields(uids: $uids) {
+        ...PlannerFieldItem
+      }
+    }
+  }
+}

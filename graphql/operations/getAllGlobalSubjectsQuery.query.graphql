@@ -1,0 +1,7 @@
+query getAllGlobalSubjectsQuery {
+  platform {
+    allGlobalSubjects {
+      ...globalSubjects
+    }
+  }
+}

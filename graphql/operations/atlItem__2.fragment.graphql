@@ -1,0 +1,4 @@
+fragment atlItem on PlannerATL {
+  id
+  label
+}

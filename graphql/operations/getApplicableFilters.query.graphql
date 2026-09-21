@@ -1,0 +1,5 @@
+query getApplicableFilters($module: GENERIC_MODULE_NAMES_ENUM) {
+  globalConstants {
+    ...applicableFilters
+  }
+}

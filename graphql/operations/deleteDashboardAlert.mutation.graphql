@@ -1,0 +1,8 @@
+mutation deleteDashboardAlert($input: UpdateDashboardAlertsInput!) {
+  platform {
+    updateDashboardAlerts(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

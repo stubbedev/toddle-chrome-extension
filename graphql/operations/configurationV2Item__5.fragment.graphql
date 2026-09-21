@@ -1,0 +1,27 @@
+query getOrganizationConfiguration($configurationEntityGroupFilters: [ConfigurationEntityGroupFilter!], $isSettingsPage: Boolean!) {
+  platform {
+    configuration(filters: {configurationEntityGroupFilters: $configurationEntityGroupFilters, isSettingsPage: $isSettingsPage}) {
+      configurations {
+        ...configurationV2Item
+      }
+      entityGroups {
+        entityId
+        entityType
+      }
+    }
+  }
+}
+
+fragment configurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  multiPlatformCategorizedValues {
+    default
+    staff
+    parent
+    student
+  }
+}

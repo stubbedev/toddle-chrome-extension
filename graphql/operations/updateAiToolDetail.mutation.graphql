@@ -1,0 +1,18 @@
+mutation updateAiToolDetail($input: UpdateAiToolDetailInput!) {
+  ai {
+    updateAiToolDetail(input: $input) {
+      isSuccess
+      warning
+      response {
+        id
+        name
+        description
+        schema
+        toolHandler
+        version
+        displaySequence
+        updatedAt
+      }
+    }
+  }
+}

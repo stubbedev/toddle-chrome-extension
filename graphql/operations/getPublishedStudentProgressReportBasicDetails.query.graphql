@@ -1,0 +1,11 @@
+query getPublishedStudentProgressReportBasicDetails($id: ID!, $filters: PublishedProgressReportsFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      publishedProgressReports(filters: $filters) {
+        ...publishedStudentProgressReportItem
+      }
+    }
+  }
+}

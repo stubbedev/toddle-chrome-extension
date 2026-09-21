@@ -1,0 +1,13 @@
+mutation updateElementRemarkMutation($input: [IBPYPElementRemarkInput!]) {
+  planner {
+    createElementRemarks(input: $input) {
+      warning
+      response {
+        id
+        message
+        ibPYPElementType
+        ibPYPElementId
+      }
+    }
+  }
+}

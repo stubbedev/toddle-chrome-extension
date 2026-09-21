@@ -1,0 +1,8 @@
+query getUserCourses($id: ID!, $filters: CourseFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      ...familyStudentItem
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getCustomCriteriaSetsBasicDetails($organizationId: ID!, $curriculumProgramId: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: {curriculumProgramIds: $curriculumProgramId, criteriaType: CUSTOM}) {
+          id
+          label
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation deleteProgressReportRatingsByIds($ids: [ID!]!) {
+  planner {
+    deleteIBPYPElementRatingByIds(ids: $ids)
+  }
+}

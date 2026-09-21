@@ -1,0 +1,29 @@
+query getOrganizationStudentsFeed($first: Int, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  platform {
+    organization {
+      id
+      students(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            email
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            type
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

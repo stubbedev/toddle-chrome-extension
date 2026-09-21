@@ -1,0 +1,29 @@
+query getAIConversations($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION_INSIGHTS) {
+    ... on AiConversation {
+      id
+      entityType
+      metadata
+      tokenExhaustionStatusV2 {
+        isExhausted
+        tokenConsumed
+        maxTokenLimit
+      }
+      messages(filters: {getPinnedStatus: true}) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...aiMessageItem
+          }
+        }
+      }
+      attachments {
+        ...attachmentItem
+      }
+    }
+  }
+}

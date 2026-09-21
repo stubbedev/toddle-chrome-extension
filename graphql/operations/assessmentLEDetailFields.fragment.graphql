@@ -1,0 +1,168 @@
+fragment assessmentLEDetailFields on Assessment {
+  globalCategories {
+    id
+    name
+  }
+  taskType {
+    id
+    type
+    label
+  }
+  linkedAssessments {
+    id
+    assessmentType {
+      id
+      value
+    }
+    taskType {
+      id
+      type
+      label
+    }
+    image {
+      id
+      value
+    }
+    title {
+      id
+      value
+    }
+  }
+  allFields {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldStudentTemplate {
+        id
+        attachmentGroups {
+          id
+          attachments {
+            id
+            name
+            url
+            type
+            mimeType
+            thumbUrl
+          }
+        }
+      }
+      ... on ResolvedFieldLtiTemplate {
+        id
+        attachmentGroups {
+          id
+          attachments {
+            id
+            name
+            url
+            type
+            mimeType
+            thumbUrl
+          }
+        }
+      }
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        type
+        nodes {
+          id
+          label
+          parent
+          isLeaf
+        }
+      }
+      ... on ResolvedFieldConceptSet {
+        id
+        concepts {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldBenchmarkSet {
+        id
+        benchmarks {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldATLSet {
+        id
+        atls {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldLPSet {
+        id
+        learnerProfiles {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldActionSet {
+        id
+        actions {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldRelatedConceptSet {
+        id
+        relatedConcepts {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldVoiceInstruction {
+        id
+        attachment {
+          ...attachmentItem
+        }
+      }
+    }
+  }
+  organizationResourcesV2(orderBy: CREATED_AT, orderByDirection: ASC, first: 100) {
+    edges {
+      node {
+        id
+        label
+        attachment {
+          ...attachmentItem
+        }
+      }
+    }
+  }
+  assessmentTools {
+    edges {
+      node {
+        id
+        assessmentToolType
+        assessmentToolItem {
+          id
+          ... on MypObjectiveRubric {
+            id
+            label
+          }
+          ... on ScoreAssessmentTool {
+            id
+          }
+          ... on Analysis {
+            id
+            label
+            criterias {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

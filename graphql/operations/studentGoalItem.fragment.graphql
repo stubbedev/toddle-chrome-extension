@@ -1,0 +1,6 @@
+fragment studentGoalItem on StudentGoal {
+  id
+  comments {
+    ...commentConnectionItem
+  }
+}

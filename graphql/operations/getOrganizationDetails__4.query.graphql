@@ -1,0 +1,24 @@
+query getOrganizationDetails($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      name
+      logo
+      loginConfig {
+        id
+        schoolCode
+        logoUrl
+        displayName
+        isEnabled
+        loginOptions {
+          id
+          type
+          service
+          supportedUserTypes
+          metadata
+          signingCertificate
+        }
+      }
+    }
+  }
+}

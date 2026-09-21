@@ -1,0 +1,11 @@
+query getTranscriptHistory($yearGroupId: ID!, $filters: StudentTranscriptGenerationTaskFilter) {
+  node(id: $yearGroupId, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      id
+      transcriptTasks(filters: $filters) {
+        ...transcriptTasksItem
+      }
+    }
+  }
+}

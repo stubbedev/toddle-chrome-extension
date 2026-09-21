@@ -1,0 +1,10 @@
+mutation bulkApplyCalendarEntitiesToCurriculumPrograms($input: BulkApplyCalendarEntitiesToCurriculumProgramsInput!) {
+  platform {
+    bulkApplyCalendarEntitiesToCurriculumPrograms(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+    __typename
+  }
+}

@@ -1,0 +1,5 @@
+mutation confirmFamilyMemberUploadDetailsMutation($input: FamilyBulkActionDeciderInput!) {
+  platform {
+    familyBulkActionDecider(input: $input)
+  }
+}

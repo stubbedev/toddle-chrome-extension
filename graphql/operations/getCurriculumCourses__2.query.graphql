@@ -1,0 +1,53 @@
+query getCurriculumCourses($id: ID!, $first: Int, $after: String, $filters: LearningCourseFilters, $fetchTemplates: Boolean!, $courseGradeFilters: LearningCourseGradeFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      learningCourses(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        count {
+          totalCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            academicYears {
+              id
+            }
+            grades(filters: $courseGradeFilters) {
+              id
+              name
+              globalGrade {
+                id
+                uid
+              }
+            }
+            primaryGrade(filters: $courseGradeFilters) {
+              id
+              plannerTemplates(filters: {templateType: [UNIT_PLAN]}) @include(if: $fetchTemplates) {
+                id
+                name
+                unitType
+                curriculum {
+                  id
+                }
+              }
+            }
+            subjects {
+              id
+              name
+            }
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+          }
+        }
+      }
+    }
+  }
+}

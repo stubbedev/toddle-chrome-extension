@@ -1,0 +1,8 @@
+mutation transitionYearGroupsAcrossAcademicYears($input: TransitionYearGroupsInput!) {
+  platform {
+    transitionYearGroups(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,9 @@
+query getBenchmarkAnalytics($id: ID!, $type: PYP_ANALYTICS_TYPE_ENUM!, $grades: [ID!]) {
+  node(id: $id, type: PLANNER_BENCHMARK) {
+    id
+    ... on PlannerBenchmark {
+      id
+      analytics(type: $type, grades: $grades)
+    }
+  }
+}

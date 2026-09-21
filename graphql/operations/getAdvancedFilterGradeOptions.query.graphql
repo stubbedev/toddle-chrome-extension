@@ -1,0 +1,15 @@
+query getAdvancedFilterGradeOptions($organizationId: ID!, $filters: GradeFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      grades(filters: $filters) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+        }
+      }
+    }
+  }
+}

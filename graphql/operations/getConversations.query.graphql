@@ -1,0 +1,8 @@
+query getConversations($id: ID!, $after: String, $first: Int, $filters: MessagesFilters) {
+  node(id: $id, type: CONVERSATION) {
+    id
+    ... on Conversation {
+      ...messages
+    }
+  }
+}

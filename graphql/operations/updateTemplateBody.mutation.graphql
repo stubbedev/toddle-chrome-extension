@@ -1,0 +1,5 @@
+mutation updateTemplateBody($id: ID!, $templateBody: String!) {
+  planner {
+    updatePlannerTemplate(templateId: $id, templateBody: $templateBody)
+  }
+}

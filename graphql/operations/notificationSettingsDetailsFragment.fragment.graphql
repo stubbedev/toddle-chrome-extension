@@ -1,0 +1,109 @@
+query getNotificationSchoolsFeed($organizationId: ID!, $input: CurriculumProgramsFeedInput) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      curriculumProgramsFeed(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            label
+            ... on IbPypCurriculumProgram {
+              notificationSettingsDetails {
+                ...notificationSettingsDetailsFragment
+              }
+              notificationSettingsBreakdown {
+                ...notificationSettingsBreakdownFragment
+              }
+            }
+            ... on IbMypCurriculumProgram {
+              notificationSettingsDetails {
+                ...notificationSettingsDetailsFragment
+              }
+              notificationSettingsBreakdown {
+                ...notificationSettingsBreakdownFragment
+              }
+            }
+            ... on IbDpCurriculumProgram {
+              notificationSettingsDetails {
+                ...notificationSettingsDetailsFragment
+              }
+              notificationSettingsBreakdown {
+                ...notificationSettingsBreakdownFragment
+              }
+            }
+            ... on UBDCurriculumProgram {
+              notificationSettingsDetails {
+                ...notificationSettingsDetailsFragment
+              }
+              notificationSettingsBreakdown {
+                ...notificationSettingsBreakdownFragment
+              }
+            }
+            ... on GenericCurriculumProgram {
+              notificationSettingsDetails {
+                ...notificationSettingsDetailsFragment
+              }
+              notificationSettingsBreakdown {
+                ...notificationSettingsBreakdownFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment notificationSettingsDetailsFragment on NotificationSettingsDetails {
+  updatedAt
+  updatedBy {
+    id
+    firstName
+    middleName
+    lastName
+    preferredName
+    profileImage
+  }
+  staff {
+    enabled
+    disabled
+    isMasterEnabled
+  }
+  student {
+    enabled
+    disabled
+    isMasterEnabled
+  }
+  family {
+    enabled
+    disabled
+    isMasterEnabled
+  }
+}
+
+fragment notificationSettingsBreakdownFragment on NotificationSettingsBreakdownDetails {
+  staff {
+    moduleKey
+    enabled
+    disabled
+    total
+  }
+  student {
+    moduleKey
+    enabled
+    disabled
+    total
+  }
+  family {
+    moduleKey
+    enabled
+    disabled
+    total
+  }
+}

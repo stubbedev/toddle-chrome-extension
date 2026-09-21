@@ -1,0 +1,11 @@
+query getProjectGroupStudentProjectPortfoliosCount($id: ID!, $portfolioFilters: StudentProjectPortfolioFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $portfolioFilters) {
+        totalCount
+      }
+    }
+  }
+}

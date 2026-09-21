@@ -1,0 +1,7 @@
+fragment plannerElementNode on PlannerElementNode {
+  id
+  label
+  depth
+  children
+  type
+}

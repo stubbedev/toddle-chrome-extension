@@ -1,0 +1,60 @@
+query getFlaggedConversationUsers($organizationId: ID!, $chatId: ID!, $input: UserV2Input!, $flaggedMessagesCountInput: ChatMessagesCountInput) {
+  node(id: $chatId, type: CHAT) {
+    ... on Chat {
+      id
+      usersV2(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            type
+            profileImage
+            flaggedMessagesCount(input: $flaggedMessagesCountInput)
+            ... on Student {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+              }
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+            ... on Staff {
+              displayRole
+              preferredName
+              pronouns
+              prefix
+              suffix
+            }
+            ... on FamilyMember {
+              children(organizationId: $organizationId) {
+                id
+                profileImage
+                firstName
+                lastName
+                middleName
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

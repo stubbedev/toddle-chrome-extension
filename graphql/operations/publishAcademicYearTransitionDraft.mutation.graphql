@@ -1,0 +1,10 @@
+mutation publishAcademicYearTransitionDraft($input: PublishAcademicYearTransitionDraftInput!) {
+  planner {
+    publishAcademicYearTransitionDraft(input: $input) {
+      isSuccess
+      workflowId
+      message
+      activityLogId
+    }
+  }
+}

@@ -1,0 +1,17 @@
+query getAllStudentIdsExamRegistration($id: ID!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      allStudents {
+        id
+        firstName
+        lastName
+        isLocked
+        isExcluded
+        student {
+          id
+        }
+      }
+    }
+  }
+}

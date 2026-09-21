@@ -1,0 +1,82 @@
+fragment projectGroupTaskItem on ProjectGroupTask {
+  id
+  isDeadlineAllDay
+  title
+  description
+  dueOn
+  closesOn
+  isStudentSubmissionEnabled
+  status
+  responses {
+    id
+    isComplete
+    isSubmissionTurnedIn
+    latestSubmissionResponse {
+      id
+      status
+    }
+    project {
+      id
+      students {
+        id
+        type
+        ...userNameFields @skip(if: $skipUserDetails)
+        profileImage @skip(if: $skipUserDetails)
+        alertTypes @skip(if: $skipUserDetails) {
+          ...alertTypeFields
+        }
+      }
+    }
+  }
+  resources {
+    edges {
+      node {
+        id
+        label
+        attachment {
+          id
+          name
+          type
+          mimeType
+          url
+          signedUrl
+          thumbUrl
+          title
+          metadata
+          streamUrl
+          parentType
+        }
+      }
+    }
+  }
+  submission {
+    id
+    type
+    items {
+      id
+      template {
+        id
+        name
+        type
+        mimeType
+        url
+        signedUrl
+        thumbUrl
+        title
+        metadata
+        streamUrl
+        parentType
+      }
+    }
+  }
+  createdBy {
+    ...supervisorInfo
+  }
+  projectGroup {
+    ...projectGroupInfo
+    yearGroup {
+      id
+      name
+    }
+  }
+}

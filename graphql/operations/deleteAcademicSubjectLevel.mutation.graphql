@@ -1,0 +1,9 @@
+mutation deleteAcademicSubjectLevel($input: DeleteAcademicSubjectLevelInput!) {
+  platform {
+    deleteAcademicSubjectLevel(input: $input) {
+      isSuccess
+      warning
+      id
+    }
+  }
+}

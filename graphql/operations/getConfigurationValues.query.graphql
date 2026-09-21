@@ -1,0 +1,17 @@
+query getConfigurationValues($filters: configurationValueFilters!) {
+  platform {
+    getConfigurationValues(filters: $filters) {
+      values {
+        value
+        id
+        entityGroup {
+          entities {
+            entityId
+            entityType
+          }
+        }
+        regionId
+      }
+    }
+  }
+}

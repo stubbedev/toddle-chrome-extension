@@ -1,0 +1,16 @@
+query getOrganizationContinuumFeed($id: ID!, $filters: ContinuumFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      continuums(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...continuumBasicDetails
+          }
+        }
+      }
+    }
+    __typename
+  }
+}

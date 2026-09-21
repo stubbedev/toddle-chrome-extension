@@ -1,0 +1,20 @@
+mutation updateCurriculumWebsiteNodeContent($input: UpdateCurriculumWebsiteNodeInput!, $contentFilter: CurriculumWebsiteContentFilter) {
+  planner {
+    updateCurriculumWebsiteNode(input: $input) {
+      isSuccess
+      node {
+        id
+        content(filters: $contentFilter) {
+          id
+          type
+          fieldUid
+          attachments {
+            id
+            url
+            name
+          }
+        }
+      }
+    }
+  }
+}

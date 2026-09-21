@@ -1,0 +1,5 @@
+mutation deleteProjectDeadline($input: DeleteProjectGroupDeadlineInput!) {
+  documentation {
+    deleteProjectGroupDeadline(input: $input)
+  }
+}

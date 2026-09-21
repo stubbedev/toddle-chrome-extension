@@ -1,0 +1,7 @@
+mutation updateTimetableSlotResource($input: UpdateLearningCourseFlowResourceInput!) {
+  planner {
+    updateLearningCourseFlowResource(input: $input) {
+      id
+    }
+  }
+}

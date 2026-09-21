@@ -1,0 +1,9 @@
+mutation addAcademicCourseDraft($input: AcademicCourseAddInput!) {
+  planner {
+    addAcademicCourseDraft(input: $input) {
+      key
+      label
+    }
+    __typename
+  }
+}

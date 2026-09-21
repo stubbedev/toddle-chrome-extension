@@ -1,0 +1,9 @@
+mutation convertDocumentToImages($input: ConvertDocumentToImagesInput!) {
+  ai {
+    convertDocumentToImages(input: $input) {
+      isSuccess
+      imageUrls
+      pageCount
+    }
+  }
+}

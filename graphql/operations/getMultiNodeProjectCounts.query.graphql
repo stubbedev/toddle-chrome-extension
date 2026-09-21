@@ -1,0 +1,12 @@
+query getMultiNodeProjectCounts($ids: [ID!], $academicYearIds: [ID!]) {
+  multiNode(ids: $ids, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      projects(filters: {academicYearIds: $academicYearIds}) {
+        totalCount
+      }
+      isInvited
+    }
+  }
+}

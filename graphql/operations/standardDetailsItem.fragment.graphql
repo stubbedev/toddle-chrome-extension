@@ -1,0 +1,48 @@
+fragment standardDetailsItem on SnPEvaluationCycleStandard {
+  id
+  status {
+    ...statusItem
+  }
+  standard {
+    id
+    practicesV2(orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+      edges {
+        node {
+          ...practiceItem
+        }
+      }
+    }
+  }
+}
+
+fragment attachmentEvidenceItem on Attachment {
+  id
+  type
+  title
+  streamUrl
+  url
+  signedUrl
+  name
+  mimeType
+  thumbUrl
+  description
+  metadata
+  resolvedParentEntity {
+    ... on AttachmentGroup {
+      resolvedParentEntity {
+        ... on StudentAssignmentSubmission {
+          id
+          assignment {
+            id
+            assignedStudents {
+              id
+              submission {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

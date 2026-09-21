@@ -1,0 +1,13 @@
+query getSchoolisationEnabled($id: ID!, $aiConfigGroupFilters: AiConfigGroupFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      aiConfigGroups(filters: $aiConfigGroupFilters) {
+        id
+        status
+        isEnabled
+      }
+    }
+  }
+}

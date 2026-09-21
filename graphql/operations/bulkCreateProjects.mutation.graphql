@@ -1,0 +1,12 @@
+mutation bulkCreateProjects($input: CreateProjectInput!) {
+  documentation {
+    bulkCreateProjects(input: $input) {
+      projects {
+        id
+        students {
+          id
+        }
+      }
+    }
+  }
+}

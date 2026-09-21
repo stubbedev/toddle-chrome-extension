@@ -1,0 +1,32 @@
+mutation validateExternalAssessmentBulkUpload($input: ValidateExternalAssessmentBulkUploadInput!) {
+  externalAssessment {
+    validateExternalAssessmentBulkUpload(input: $input) {
+      isSuccess
+      error {
+        errorCode
+        metadata
+      }
+      validationResult {
+        rows {
+          rowNumber
+          errors {
+            errorCode
+            metadata
+          }
+          student {
+            ...userNameFields
+            profileImage
+            sourceId
+          }
+          entries {
+            column {
+              id
+              name
+            }
+            value
+          }
+        }
+      }
+    }
+  }
+}

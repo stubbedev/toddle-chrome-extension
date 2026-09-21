@@ -1,0 +1,8 @@
+query getYearGroupBasicDetails($yearGroupId: ID!, $yearGroupGradeFilters: YearGroupGradeFilters) {
+  node(id: $yearGroupId, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      ...yearGroupBasicDetailsItem
+    }
+  }
+}

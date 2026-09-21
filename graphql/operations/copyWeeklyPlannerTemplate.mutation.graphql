@@ -1,0 +1,7 @@
+mutation copyWeeklyPlannerTemplate($input: CopyWeeklyPlannerTemplateInput!) {
+  planner {
+    copyWeeklyPlannerTemplate(input: $input) {
+      ...classPlannerItem
+    }
+  }
+}

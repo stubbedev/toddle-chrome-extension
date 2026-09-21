@@ -1,0 +1,97 @@
+query getFormsDetails($id: ID!) {
+  node(id: $id, type: MESSAGEV2_FORM) {
+    ... on MessageV2Form {
+      id
+      expiresAt
+      isResponseActive
+      isResponseEditAllowed
+      isRespondedByUser
+      title
+      description
+      createdBy {
+        id
+      }
+      respondents {
+        totalCount
+      }
+      sections {
+        id
+        type
+        ... on MessageV2FormSectionSingleChoice {
+          question
+          isRequired
+          options {
+            ...optionsItem
+          }
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionMultiChoice {
+          question
+          isRequired
+          options {
+            ...optionsItem
+          }
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionHeader {
+          title
+          description
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionShortResponse {
+          question
+          isRequired
+          attachments {
+            ...attachmentItem
+          }
+          userResponse {
+            response
+          }
+        }
+        ... on MessageV2FormSectionLongResponse {
+          question
+          isRequired
+          attachments {
+            ...attachmentItem
+          }
+          userResponse {
+            response
+          }
+        }
+        ... on MessageV2FormSectionLinearScale {
+          question
+          isRequired
+          options {
+            ...optionsItem
+          }
+          scaleLimit
+          attachments {
+            ...attachmentItem
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation createMessageV2Form($input: CreateMessageV2FormInput!) {
+  platform {
+    createMessageV2Form(input: $input) {
+      id
+    }
+  }
+}
+
+mutation createMessageV2Form($input: CreateMessageV2FormInput!) {
+  platform {
+    createMessageV2Form(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,15 @@
+query ComplianceReportLatestExport($id: ID!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      exports {
+        id
+        format
+        status
+        downloadUrl
+        exportedAt
+        createdAt
+      }
+    }
+  }
+}

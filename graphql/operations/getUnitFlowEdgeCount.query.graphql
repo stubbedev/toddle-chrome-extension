@@ -1,0 +1,18 @@
+query getUnitFlowEdgeCount($parentId: ID!, $filters: EntityFlowResourceFilter, $first: Int) {
+  node(id: $parentId, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      unitFlowFeed {
+        unitFlowId
+        unitResourceId
+        unitFlowFlatFeed(filters: $filters, first: $first) {
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

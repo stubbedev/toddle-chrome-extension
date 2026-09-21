@@ -1,0 +1,5 @@
+mutation markStudentProgressReportSectionComplete($studentProgressReportId: ID!, $sections: UpdateArrayInput) {
+  documentation {
+    markStudentProgressReportSectionComplete(input: {studentProgressReportId: $studentProgressReportId, sections: $sections})
+  }
+}

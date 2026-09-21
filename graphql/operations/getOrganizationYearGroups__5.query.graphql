@@ -1,0 +1,45 @@
+query getOrganizationYearGroups($id: ID!, $yearGroupFilters: YearGroupFilter, $yearGroupGradeFilters: YearGroupGradeFilters, $allStudentFilters: ExamRegistrationStudentFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      yearGroups(filters: $yearGroupFilters) {
+        id
+        name
+        grade(filters: $yearGroupGradeFilters) {
+          id
+          name
+        }
+        students {
+          totalCount
+        }
+        isArchived
+        examSession {
+          id
+          session
+          month
+          year
+        }
+        examRegistration {
+          id
+          registrationStatusWiseStudentCount {
+            status
+            count
+          }
+          lastSyncInfo {
+            id
+          }
+          allStudents(filters: $allStudentFilters) {
+            id
+          }
+          lastSyncInfo {
+            id
+          }
+        }
+        curriculumProgram {
+          id
+          type
+        }
+      }
+    }
+  }
+}

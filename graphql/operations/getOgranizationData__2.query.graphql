@@ -1,0 +1,9 @@
+query getOgranizationData($organizationId: ID!, $type: String!, $academicYearId: ID, $filters: bulkDataDownloadFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      name
+      organizationDataBulkDownload(type: $type, academicYearId: $academicYearId, filters: $filters)
+    }
+  }
+}

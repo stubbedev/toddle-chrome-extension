@@ -1,0 +1,7 @@
+query getProjectInfo($projectId: ID!) {
+  node(id: $projectId, type: PROJECT) {
+    ... on Project {
+      ...projectCompletedDeadlinesItem
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment organizationItem on Organization {
+  id
+  checklists(filters: $filters) {
+    id
+    title
+    createdBy {
+      ...checklistListStaffItem
+    }
+    updatedBy {
+      ...checklistListStaffItem
+    }
+    updatedAt
+  }
+}

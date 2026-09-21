@@ -1,0 +1,11 @@
+mutation upsertRnPPermissionValues($input: UpsertACLPermissionInput!) {
+  acl {
+    upsertRnPPermissionValues(input: $input) {
+      isSuccess
+      warning
+      response
+      __typename
+    }
+    __typename
+  }
+}

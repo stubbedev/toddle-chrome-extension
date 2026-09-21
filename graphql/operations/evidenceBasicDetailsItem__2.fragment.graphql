@@ -1,0 +1,19 @@
+fragment evidenceBasicDetailsItem on SnPDocumentCategory {
+  id
+  taggedEvidence(filters: $filters) {
+    edges {
+      node {
+        id
+        evidenceType
+        evidenceItem {
+          id
+        }
+        parentItem {
+          item {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment plannerBenchmarkCountItem on PlannerBenchmark {
+  id
+  standardCountWrapper {
+    assignment {
+      totalCount
+    }
+    portfolio {
+      totalCount
+    }
+    unitPlan {
+      totalCount
+    }
+  }
+}

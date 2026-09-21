@@ -1,0 +1,35 @@
+query getMealTemplate($id: ID!) {
+  node(id: $id, type: POST_TEMPLATE_DATASET) {
+    id
+    ... on PostTemplateDataSet {
+      id
+      title
+      startDate
+      endDate
+      updatedAt
+      updatedBy {
+        id
+        type
+        firstName
+        lastName
+        middleName
+      }
+      createdBy {
+        id
+        type
+        firstName
+        lastName
+        middleName
+      }
+      values {
+        id
+        date
+        displaySequence
+        item {
+          id
+          itemName
+        }
+      }
+    }
+  }
+}

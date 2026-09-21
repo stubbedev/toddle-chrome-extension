@@ -1,0 +1,193 @@
+query getPublishedNodesFromNodeSet($id: ID!, $nodesFilters: PlannerElementNodeFilters, $lockingInfoFilters: LockingInfoFiltersInput, $skipLockingInfo: Boolean = true, $hasNodeCountFilters: Boolean! = false, $nodeCountFilters: DataSetNodeCountWrapperFilters, $includeForAssignments: Boolean = false) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerElementNodeItem
+              }
+            }
+          }
+        }
+        ... on PlannerBenchmarkSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerBenchmarkItem
+                levelId @include(if: $includeForAssignments)
+                type @include(if: $includeForAssignments)
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerATLItem
+              }
+            }
+          }
+        }
+        ... on PlannerActionSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerActionItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerLearnerProfileItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerConceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerRelatedConceptSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            totalCount
+            edges {
+              node {
+                ...plannerRelatedConceptItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+query getWorkbookTemplates($organizationId: ID!, $types: [ORGANIZATION_RESOURCE_TYPE_ENUM!], $searchText: String!, $first: Int, $after: String, $states: [ORGANIZATION_RESOURCE_STATE_ENUM!], $status: ORGANIZATION_RESOURCE_STATUS_ENUM, $courseIds: [ID!], $createdBy: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      workbookTemplatesV2(types: $types, filters: {states: $states}) {
+        workbookTemplateResource {
+          ...workbookTemplateResourceBasicDetailsItem
+        }
+      }
+    }
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}

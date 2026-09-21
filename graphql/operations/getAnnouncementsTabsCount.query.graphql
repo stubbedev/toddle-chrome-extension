@@ -1,0 +1,14 @@
+query getAnnouncementsTabsCount($organizationId: ID!, $createdAfter: String, $createdBefore: String, $curriculumProgramIds: [ID!], $academicYearId: ID, $studentIds: [ID!], $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM, $courseIds: [ID!], $createdBy: CIRCULAR_CREATED_BY_FILTER_ENUM = OTHERS) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      circularFeedV3 {
+        ...unreadAnnouncementsCountItem
+        totalCount(input: {createdBy: ME, states: [DRAFT], createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds})
+        totalCount(input: {createdBy: ME, states: [SCHEDULED], createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds})
+        totalCount(input: {createdBy: ME, states: [PUBLISHED], createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds})
+        totalCount(input: {createdBy: OTHERS, states: [PUBLISHED], createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds})
+      }
+    }
+  }
+}

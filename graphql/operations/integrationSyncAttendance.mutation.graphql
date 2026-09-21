@@ -1,0 +1,12 @@
+mutation integrationSyncAttendance($input: IntegrationSyncAttendanceInput!) {
+  integration {
+    integrationSyncAttendance(input: $input) {
+      allow
+      message
+      job {
+        id
+        status
+      }
+    }
+  }
+}

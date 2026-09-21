@@ -1,0 +1,29 @@
+query getCurriculumWebsiteFilters($id: ID!, $subjectFilters: CurriculumWebsiteSubjectFilters) {
+  node(id: $id, type: CURRICULUM_WEBSITE) {
+    ... on CurriculumWebsite {
+      id
+      grades {
+        id
+        name
+      }
+      subjectGroups {
+        id
+        name
+      }
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+        }
+      }
+      curriculumPrograms {
+        id
+        type
+        label
+        academicSetupType
+      }
+    }
+  }
+}

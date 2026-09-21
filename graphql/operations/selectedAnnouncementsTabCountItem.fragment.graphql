@@ -1,0 +1,5 @@
+fragment selectedAnnouncementsTabCountItem on Organization {
+  circularFeedV3 {
+    totalCount(input: {createdBy: $createdBy, states: $states, createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, isRead: $isRead, createdIn: $createdIn, courseIds: $courseIds})
+  }
+}

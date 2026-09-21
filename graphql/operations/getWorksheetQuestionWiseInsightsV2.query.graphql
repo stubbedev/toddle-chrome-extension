@@ -1,0 +1,20 @@
+query getWorksheetQuestionWiseInsightsV2($assignmentId: ID!) {
+  node(id: $assignmentId, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      content {
+        ... on Assessment {
+          id
+          questions {
+            edges {
+              ...questionInsightsDetailsItem
+            }
+          }
+        }
+      }
+      assignedStudents {
+        ...assignedStudentItem
+      }
+    }
+  }
+}

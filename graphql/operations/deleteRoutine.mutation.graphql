@@ -1,0 +1,8 @@
+mutation deleteRoutine($input: DeleteRoutineInput!) {
+  platform {
+    deleteRoutine(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,23 @@
+query getSchoolSpaces($id: ID!, $first: Int, $after: String, $spacesFilters: LocationsFilters!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      locations(first: $first, after: $after, orderBy: LABEL, orderByDirection: ASC, filters: $spacesFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            label
+            abbreviation
+          }
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+        }
+      }
+    }
+  }
+}

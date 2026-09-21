@@ -1,0 +1,76 @@
+fragment organizationItem on Organization {
+  id
+  name
+  logo
+  code
+  toddleBuddy
+  isPaid
+  region
+  attachments {
+    ...attachmentBasicDetailsItem
+  }
+  currentAcademicYear {
+    startDate
+    endDate
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+    isCurrentAcademicYear
+  }
+  constants {
+    examSessionMonth
+    scheduler
+    additionalData
+  }
+  courses {
+    totalCount
+  }
+  staff {
+    totalCount
+  }
+  students {
+    totalCount
+  }
+  tier {
+    plan
+  }
+  curriculumPrograms(filters: $curriculumProgramFilters) {
+    id
+    type
+    rosteringMethod
+    onboardingStatus
+    label
+    acronym
+    dealId
+    platformId
+    academicSetupType
+    programType
+    buddy {
+      firstName
+      lastName
+      id
+    }
+    ... on UBDCurriculumProgram {
+      variant
+    }
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+    ...subscriptionPlanDetailsItem
+    onboardingSteps {
+      step
+      status
+    }
+    accountProgram {
+      id
+    }
+    academicProgram {
+      id
+    }
+    defaultLanguage
+    programDataLanguages
+    ...curriculumProgramBasicDetailsItem
+  }
+}

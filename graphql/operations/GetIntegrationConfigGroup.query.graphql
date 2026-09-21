@@ -1,0 +1,11 @@
+query GetIntegrationConfigGroup($input: IntegrationConfigGroupQueryInput!, $includeDetails: Boolean = true) {
+  integration {
+    integrationConfigGroup(input: $input) {
+      id
+      name
+      serviceName
+      authentication @include(if: $includeDetails)
+      ...curriculumMappings @include(if: $includeDetails)
+    }
+  }
+}

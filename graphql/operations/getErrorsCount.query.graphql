@@ -1,0 +1,16 @@
+query getErrorsCount($id: ID!, $curriculum: CURRICULUM_PROGRAM_TYPE_ENUM, $curriculumProgramId: ID) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      jobFeed(latest: true, curriculum: $curriculum, curriculumProgramId: $curriculumProgramId) {
+        edges {
+          node {
+            id
+            errorsCount
+          }
+        }
+      }
+    }
+  }
+}

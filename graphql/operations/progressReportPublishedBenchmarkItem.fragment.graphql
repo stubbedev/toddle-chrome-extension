@@ -1,0 +1,24 @@
+fragment progressReportPublishedBenchmarkItem on PlannerBenchmark {
+  id
+  uid
+  label
+  subText
+  gradingType
+  code
+  depth
+  parent
+  dataSetNodeWrapper {
+    properties {
+      isArchived
+      isPowerStandard
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

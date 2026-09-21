@@ -1,0 +1,21 @@
+query getOrganizationConstant($id: ID!, $filters: academicCriteriaSetsFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      constants {
+        academicCriteriaSets(filters: $filters) {
+          id
+          label
+          criteriaType
+          academicCriteriaValues {
+            id
+            label
+            color
+            abbreviation
+          }
+        }
+      }
+    }
+  }
+}

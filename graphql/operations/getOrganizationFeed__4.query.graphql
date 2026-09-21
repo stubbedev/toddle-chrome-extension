@@ -1,0 +1,27 @@
+query getOrganizationFeed($filters: OrganizationFeedConnectionFilter, $curriculumProgramFilters: CurriculumProgramFilters, $after: String, $tagFilters: TagFilters, $globalConstantsFilter: GlobalConstantsFilterOptions, $fetchGlobalConstants: Boolean = false) {
+  platform {
+    organizationFeed(first: 10, filters: $filters, after: $after) {
+      totalCount
+      programAnalytics
+      edges {
+        node {
+          ...organisationFeedDetailsItem
+          tags(filters: $tagFilters) {
+            id
+            value
+            key
+          }
+          globalConstants(filter: $globalConstantsFilter) @include(if: $fetchGlobalConstants) {
+            id
+            name
+            value
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

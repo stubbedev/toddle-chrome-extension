@@ -1,0 +1,14 @@
+fragment organizationTranscriptTemplateItem on Organization {
+  id
+  progressReportTemplates(filters: $filters) {
+    edges {
+      node {
+        ... on ProgressReportTemplate {
+          id
+          type
+          body
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getLearnerPortfolioCollectionsMultiNode($ids: [ID!], $skipPostData: Boolean!, $collectionFilters: OrganizationResourceFilter, $postFilters: OrganizationResourceFilter) {
+  multiNode(ids: $ids, type: ORGANIZATION_RESOURCE) {
+    id
+    ... on OrganizationResource {
+      ...organizationResourceItemCollection
+    }
+  }
+}

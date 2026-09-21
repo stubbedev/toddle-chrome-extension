@@ -1,0 +1,67 @@
+query getCourseDetails($id: ID!, $academicYearId: ID!, $curriculumProgramIds: [ID!]) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      title
+      sourcedId
+      profileImage
+      profileImageData {
+        url
+        icon
+        acronym
+        color
+      }
+      isArchived
+      isMappedToMe
+      academicYears {
+        id
+        startDate
+        endDate
+      }
+      genericTags {
+        id
+        label
+        type
+      }
+      allPosts {
+        totalCount
+      }
+      unitPlans {
+        totalCount
+      }
+      flatUnitPlans {
+        totalCount
+      }
+      grades(filters: {academicYearId: $academicYearId}) {
+        ...gradeItem
+      }
+      primaryGrade {
+        ...gradeItem
+      }
+      subjects(filters: {archivalState: ALL}) {
+        ...subjectWithSubjectGroupItem
+      }
+      subjectWiseEntityCount(filters: {curriculumProgramIds: $curriculumProgramIds}) {
+        subjectId
+        unitPlanCount
+        assignmentCount
+      }
+      subjectGroups {
+        id
+        name
+      }
+      curriculumProgram {
+        ...curriculumProgramBasicDetailsItem
+      }
+      assignments {
+        totalCount
+      }
+      tags {
+        id
+        key
+        value
+      }
+    }
+  }
+}

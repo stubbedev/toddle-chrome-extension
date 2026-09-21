@@ -1,0 +1,30 @@
+query getProgressReportGroupsForMerge($organizationId: ID!, $academicYearId: ID, $after: String, $curriculumProgramIds: [ID!], $searchText: String) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      progressReportTaskGroups(first: 12, after: $after, filters: {academicYearId: $academicYearId, curriculumProgramIds: $curriculumProgramIds, searchText: $searchText}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            createdAt
+            curriculumProgram {
+              id
+              type
+            }
+            template {
+              id
+              name
+              gradingPeriodType
+            }
+          }
+        }
+      }
+    }
+  }
+}

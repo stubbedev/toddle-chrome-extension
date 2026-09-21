@@ -1,0 +1,27 @@
+query getOrganizationSubjectsWithoutCourses($id: ID!, $subjectFilters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        grades {
+          id
+          name
+          curriculumProgram {
+            id
+            type
+          }
+        }
+        flatVariants {
+          level {
+            id
+            label
+            type
+          }
+        }
+      }
+    }
+  }
+}

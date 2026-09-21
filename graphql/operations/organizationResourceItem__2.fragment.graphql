@@ -1,0 +1,82 @@
+fragment organizationResourceItem on OrganizationResource {
+  id
+  type
+  label
+  attachment {
+    ...attachmentItem
+  }
+  childrenV2(orderBy: CREATED_AT, orderByDirection: ASC) {
+    resourceTypeBasedCount {
+      totalCount
+    }
+    edges {
+      node {
+        id
+        item {
+          ...questionDetailsItem
+        }
+        childrenV2(orderBy: CREATED_AT, orderByDirection: ASC) {
+          resourceTypeBasedCount {
+            totalCount
+          }
+          edges {
+            node {
+              id
+              item {
+                ...questionDetailsItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isImportedFromDiffOrg
+  isDeleted
+  type
+  resourceType
+  visibleTo
+  createdAt
+  updatedAt
+  state
+  studentDriveSharedCourses {
+    id
+    title
+    profileImage
+    academicYears {
+      id
+      isCurrentAcademicYear
+      startDate
+      endDate
+    }
+  }
+  item {
+    ... on OrganizationResource {
+      id
+      label
+      isImportedFromDiffOrg
+      attachment {
+        ...attachmentItem
+      }
+      isDeleted
+      type
+      resourceType
+      visibleTo
+    }
+    ... on Assessment {
+      ...resourceLibraryItem
+    }
+    ... on EntityFlowResource {
+      id
+      label
+      attachment {
+        ...attachmentItem
+      }
+    }
+  }
+  tags {
+    id
+    key
+    value
+  }
+}

@@ -1,0 +1,33 @@
+query GetOrganizationPostFeed($filters: PostFilterInput, $organizationId: ID!, $after: String, $translationFilter: TranslatedLabelFilter, $uids: [String!], $isDP: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      name
+      posts(last: 5, filters: $filters, after: $after) {
+        totalCount
+        courseWisePostCount {
+          course {
+            id
+            title
+          }
+          teacherInApproval
+          studentInApproval
+          inApproval
+          published
+          draft
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            ...postItem
+          }
+        }
+      }
+    }
+  }
+}

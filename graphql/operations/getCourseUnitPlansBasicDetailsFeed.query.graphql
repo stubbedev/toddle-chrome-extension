@@ -1,0 +1,19 @@
+query getCourseUnitPlansBasicDetailsFeed($id: ID!) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      flatUnitPlans {
+        edges {
+          node {
+            id
+            title {
+              id
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

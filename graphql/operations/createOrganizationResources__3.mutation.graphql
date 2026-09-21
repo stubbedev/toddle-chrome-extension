@@ -1,0 +1,7 @@
+mutation createOrganizationResources($parentId: ID!, $parentResourceId: ID, $parentType: ORGANIZATION_RESOURCE_PARENT_TYPE, $organizationResources: [OrganizationResourceInput!], $shouldHandleSequence: Boolean, $putAfterItemId: ID, $tags: [ID!], $isCountry: Boolean) {
+  platform {
+    createOrganizationResources(input: {parentId: $parentId, parentResourceId: $parentResourceId, parentType: $parentType, organizationResources: $organizationResources, shouldHandleSequence: $shouldHandleSequence, putAfterItemId: $putAfterItemId, tags: $tags, isCountry: $isCountry}) {
+      ...organizationResourceItem
+    }
+  }
+}

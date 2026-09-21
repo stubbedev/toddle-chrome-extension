@@ -1,0 +1,7 @@
+mutation createTranscriptTemplate($body: JSON!, $type: PROGRESS_REPORT_TEMPLATE_TYPE_ENUM) {
+  documentation {
+    createProgressReportTemplate(input: {body: $body, type: $type}) {
+      id
+    }
+  }
+}

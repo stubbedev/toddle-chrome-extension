@@ -1,0 +1,10 @@
+mutation editVideoMeetingMutation($id: ID!, $label: String!, $description: String, $durationInMin: Int, $recurrenceSetting: RecurrenceSettingInput, $metadata: CalendarEventItemMetadataInput, $meeting: MeetingInput, $startDateTime: String, $endDateTime: String, $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $entityType: CALENDAR_EVENT_ITEM_ENTITY_TYPE_ENUM, $sharedWith: [CALENDAR_EVENT_ITEM_SHARED_WITH_ENUM!], $eventReminders: [EventReminderInput!], $shouldNotifyParticipants: Boolean, $actionFor: CALENDAR_EVENT_ACTION_FOR, $addedEntityIds: [ID!], $addedAttachments: [AttachmentInput!], $removedAttachments: [ID!], $notificationMessage: String, $shouldUseNewMeetingInfra: Boolean) {
+  platform {
+    editPlatformCalendarEvent(input: {id: $id, label: $label, description: $description, durationInMin: $durationInMin, recurrenceSetting: $recurrenceSetting, meeting: $meeting, actionFor: $actionFor, startDateTime: $startDateTime, endDateTime: $endDateTime, addedEntityIds: $addedEntityIds, entityType: $entityType, eventType: $eventType, addedAttachments: $addedAttachments, removedAttachments: $removedAttachments, sharedWith: $sharedWith, eventReminders: $eventReminders, notificationMessage: $notificationMessage, shouldNotifyParticipants: $shouldNotifyParticipants, metadata: $metadata, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra}) {
+      response {
+        ...videoMeetingItem
+      }
+      warning
+    }
+  }
+}

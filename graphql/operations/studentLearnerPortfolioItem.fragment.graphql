@@ -1,0 +1,13 @@
+fragment studentLearnerPortfolioItem on StudentLearnerPortfolioConnection {
+  totalCount
+  edges {
+    node {
+      id
+      student {
+        ...userItem
+      }
+      postCount
+      lastModifiedAt
+    }
+  }
+}

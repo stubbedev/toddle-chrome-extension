@@ -1,0 +1,53 @@
+query getLearningCourseClasses($id: ID!, $classesFilters: LearningCourseClassFilter, $collaboratorFilters: CollaboratorFilters, $studentFilters: CourseFilter) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      classes(filters: $classesFilters) {
+        id
+        title
+        sourcedId
+        isArchived
+        profileImageData {
+          url
+          icon
+          color
+          acronym
+        }
+        students(filters: $studentFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              firstName
+              middleName
+              lastName
+            }
+          }
+        }
+        allCollaborators(filters: $collaboratorFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              firstName
+              middleName
+              lastName
+              rnpRoleContextDetail {
+                id
+                role {
+                  id
+                  label
+                  description
+                }
+                context {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+fragment configurationV2UpdateItem on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  aclControlParameterType
+  valueType
+  value
+  isLocked
+  channelTypeCategorizedValues(filters: {isAdminNotificationManager: $isAdminNotificationManager}) {
+    push
+    email
+    inApp
+  }
+  platformCategorizedValues(isCourseModuleSetting: $isCourseModuleSetting) {
+    default
+    staff
+    parent
+    student
+  }
+}

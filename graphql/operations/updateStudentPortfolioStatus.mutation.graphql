@@ -1,0 +1,7 @@
+mutation updateStudentPortfolioStatus($id: ID!, $status: STUDENT_PROJECT_PORTFOLIO_STATUS_ENUM, $isComplete: Boolean) {
+  documentation {
+    updateStudentProjectPortfolio(input: {id: $id, status: $status, isComplete: $isComplete}) {
+      id
+    }
+  }
+}

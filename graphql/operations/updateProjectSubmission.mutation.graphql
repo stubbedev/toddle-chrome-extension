@@ -1,0 +1,8 @@
+mutation updateProjectSubmission($input: UpdateProjectSubmissionInput!) {
+  project {
+    updateProjectSubmission(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

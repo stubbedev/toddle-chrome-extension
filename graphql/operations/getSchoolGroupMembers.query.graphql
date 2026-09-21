@@ -1,0 +1,20 @@
+query getSchoolGroupMembers($groupId: ID!, $input: SchoolGroupMembersInput) {
+  platform {
+    schoolGroup(id: $groupId) {
+      id
+      members(input: $input) {
+        edges {
+          node {
+            user {
+              ...schoolGroupMemberUserItem
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

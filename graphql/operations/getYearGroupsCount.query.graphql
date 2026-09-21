@@ -1,0 +1,11 @@
+query getYearGroupsCount($id: ID!, $filters: YearGroupFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      yearGroups(filters: $filters) {
+        id
+      }
+    }
+  }
+}

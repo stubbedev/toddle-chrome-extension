@@ -1,0 +1,7 @@
+mutation archiveCircular($id: ID!) {
+  school {
+    archiveCircular(input: {id: $id}) {
+      isSuccess
+    }
+  }
+}

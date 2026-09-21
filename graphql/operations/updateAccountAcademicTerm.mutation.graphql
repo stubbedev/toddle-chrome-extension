@@ -1,0 +1,11 @@
+mutation updateAccountAcademicTerm($input: UpdateAccountAcademicTermInput!) {
+  organizationManagement {
+    updateAccountAcademicTerm(input: $input) {
+      isSuccess
+      warning
+      academicTerm {
+        ...accountGradingPeriodItem
+      }
+    }
+  }
+}

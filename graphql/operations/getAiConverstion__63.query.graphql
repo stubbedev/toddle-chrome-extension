@@ -1,0 +1,47 @@
+query getOrganizationGrades($id: ID!, $filters: GradeFilterInput!, $academicYears: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(filters: $filters) {
+        unitPlanCount(academicYears: $academicYears)
+        curriculumProgram {
+          ...curriculumProgramBasicDetailsItem
+        }
+        ...gradeItem
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

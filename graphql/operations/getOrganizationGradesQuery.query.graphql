@@ -1,0 +1,53 @@
+query getOrganizationGradesQuery($id: ID!, $filterByWorksheets: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades {
+        unitPlanCount
+        unitPlans @include(if: $filterByWorksheets) {
+          id
+          resourceLibrary(filters: {groupType: WORKSHEET}) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+        curriculumProgram {
+          ...curriculumProgramBasicDetailsItem
+        }
+        ...gradeItem
+      }
+    }
+  }
+}
+
+fragment worksheetItem on FlowSectionItem {
+  id
+  title {
+    id
+    value
+  }
+  createdBy {
+    id
+    profileImage
+    firstName
+    lastName
+  }
+  fields(uids: ["subjectLevel"]) {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldGenericTags {
+        id
+        type
+        genericTags {
+          id
+          label
+        }
+      }
+    }
+  }
+}

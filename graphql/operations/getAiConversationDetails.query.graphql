@@ -1,0 +1,25 @@
+query getAiConversationDetails($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      entityType
+      metadata
+      messages {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...aiMessageItem
+          }
+        }
+      }
+      attachments {
+        ...attachmentItem
+      }
+      publicUrl
+    }
+  }
+}

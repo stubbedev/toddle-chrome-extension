@@ -1,0 +1,21 @@
+fragment dataSetNodeCountWrapperFragmentPyp on PlannerBenchmark {
+  id
+  dataSetNodeCountWrapper(filters: {learningCourseIds: [$learningCourseId]}) {
+    assessment @skip(if: $shouldSkipAssessment) {
+      totalCount
+      directCount @include(if: $isParentTaggingEnabled)
+    }
+    portfolio @skip(if: $shouldSkipPortfolio) {
+      totalCount
+      directCount @include(if: $isParentTaggingEnabled)
+    }
+    unitPlan @skip(if: $shouldSkipUnitPlan) {
+      totalCount
+      directCount @include(if: $isParentTaggingEnabled)
+    }
+    studentProgressReport @skip(if: $shouldSkipStudentProgressReport) {
+      totalCount
+      directCount @include(if: $isParentTaggingEnabled)
+    }
+  }
+}

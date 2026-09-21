@@ -1,0 +1,11 @@
+query ComplianceReportLocationSchools($id: ID!, $input: LocationSchoolsInput!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      locationSchools(input: $input) {
+        code
+        name
+      }
+    }
+  }
+}

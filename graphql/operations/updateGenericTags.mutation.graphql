@@ -1,0 +1,10 @@
+mutation updateGenericTags($input: UpdateGenericTagInput!) {
+  platform {
+    updateGenericTags(input: $input) {
+      id
+      label
+      __typename
+    }
+    __typename
+  }
+}

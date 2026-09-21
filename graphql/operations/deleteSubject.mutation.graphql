@@ -1,0 +1,5 @@
+mutation deleteSubject($id: ID!) {
+  platform {
+    deleteSubject(input: {id: $id})
+  }
+}

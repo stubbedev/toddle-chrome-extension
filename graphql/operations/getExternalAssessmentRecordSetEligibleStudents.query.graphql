@@ -1,0 +1,17 @@
+query getExternalAssessmentRecordSetEligibleStudents($filters: OrgConnectionFilterInput) {
+  platform {
+    organization {
+      id
+      students(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+            sourceId
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+query getIntegrationFetchStudentAttendance($first: Int, $after: String, $jobId: ID!, $date: String!, $type: ATTENDANCE_INPUT_TYPE_ENUM, $periodId: ID) {
+  integration {
+    integrationFetchStudentAttendance(input: {first: $first, after: $after, jobId: $jobId, date: $date, type: $type, periodId: $periodId}) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        endCursor
+        startCursor
+      }
+      edges {
+        node {
+          id
+          period {
+            label
+            abbreviation
+            id
+            __typename
+          }
+          student {
+            firstName
+            lastName
+            email
+            profileImage
+            middleName
+            prefix
+            suffix
+            pronouns
+            preferredName
+            id
+            __typename
+          }
+          course {
+            title
+            __typename
+          }
+          date
+          value {
+            label
+            value
+            abbreviation
+            color
+            __typename
+          }
+          remark
+          prevValue {
+            label
+            value
+            abbreviation
+            color
+            __typename
+          }
+          prevRemark
+          isHomeroomAttendance
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

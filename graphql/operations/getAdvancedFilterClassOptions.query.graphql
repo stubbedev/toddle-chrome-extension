@@ -1,0 +1,19 @@
+query getAdvancedFilterClassOptions($id: ID!, $first: Int, $after: String, $filters: CourseFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      coursesV2(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}

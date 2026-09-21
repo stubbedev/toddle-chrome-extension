@@ -1,0 +1,47 @@
+query getOrganizationStudentsQuery($id: ID!, $first: Int, $after: String, $orderBy: ORDER_BY_ENUM, $studentFilters: OrgConnectionFilterInput, $userCourseMapFilters: UserCourseMapFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(first: $first, after: $after, orderBy: $orderBy, filters: $studentFilters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            ...studentNameFields
+            profileImage
+            allGrades {
+              id
+              name
+            }
+            courseMap(filters: $userCourseMapFilters) {
+              course {
+                id
+                title
+                primaryGrade {
+                  id
+                  name
+                }
+                grade {
+                  id
+                  name
+                }
+              }
+            }
+            yearGroup {
+              id
+              name
+              grade {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

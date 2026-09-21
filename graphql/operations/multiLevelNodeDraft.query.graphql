@@ -1,0 +1,16 @@
+query multiLevelNodeDraft($draftId: ID!) {
+  node(id: $draftId, type: MULTI_LEVEL_NODE_DRAFT) {
+    ... on MultiLevelNodeDraft {
+      id
+      nodes
+      rootNodes
+      subjectId
+      type
+      levels {
+        id
+        value
+      }
+      maxDepth
+    }
+  }
+}

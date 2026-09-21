@@ -1,0 +1,19 @@
+query searchMessagesInChatAndChannel($organizationId: ID!, $input: MessageFeedInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messages(input: $input) {
+        edges {
+          node {
+            ...messageItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          startCursor
+          endCursor
+        }
+      }
+    }
+  }
+}

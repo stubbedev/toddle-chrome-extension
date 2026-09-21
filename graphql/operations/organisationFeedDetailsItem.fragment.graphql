@@ -1,0 +1,39 @@
+fragment organisationFeedDetailsItem on Organization {
+  id
+  name
+  logo
+  code
+  isPaid
+  region
+  currentAcademicYear {
+    startDate
+    endDate
+  }
+  organizationAnalytics
+  curriculumPrograms {
+    id
+    type
+    label
+    acronym
+    onboardingStatus
+    platformId
+    buddy {
+      firstName
+      lastName
+      id
+      email
+    }
+    curriculumProgramData {
+      subscriptionPlan
+      subscriptionStatus
+      curriculumGroup
+    }
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+    ... on UBDCurriculumProgram {
+      variant
+    }
+    ...subscriptionPlanDetailsItem
+  }
+}

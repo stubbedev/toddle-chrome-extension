@@ -1,0 +1,80 @@
+mutation uploadTimetableXML($input: UploadTimetableXMLInput!) {
+  integration {
+    uploadTimetableXML(input: $input) {
+      uploadStatus
+      errorData
+      periodsData {
+        toolPeriods {
+          id
+          name
+        }
+        fuzzyMap {
+          toolPeriod {
+            id
+            name
+          }
+          toddlePeriod {
+            id
+            label
+          }
+        }
+      }
+      classesData {
+        toolClasses {
+          id
+          name
+          groups {
+            id
+            name
+            entireClass
+          }
+        }
+        toolSubjects {
+          id
+          name
+        }
+        fuzzyMap {
+          toolClass {
+            id
+            name
+          }
+          toolSubjects {
+            id
+            name
+          }
+          toolGroup {
+            id
+            name
+            entireClass
+          }
+          toddleClass {
+            id
+            title
+            primaryGrade {
+              id
+              name
+            }
+          }
+        }
+      }
+      teachersData {
+        toolTeachers {
+          id
+          email
+          name
+        }
+        fuzzyMap {
+          toolTeacher {
+            id
+            email
+            name
+          }
+          toddleTeacher {
+            id
+            email
+          }
+        }
+      }
+    }
+  }
+}

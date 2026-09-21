@@ -1,0 +1,49 @@
+query getCourseMembersWidget($id: ID!, $classesFilters: LearningCourseClassFilter, $courseCollaboratorFilters: LearningCourseCollaboratorFilters, $skipStudentCounts: Boolean! = false, $first: Int! = 30, $after: String) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      collaborators(filters: $courseCollaboratorFilters, first: $first, after: $after, orderBy: FULL_NAME) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            profileImage
+            isArchived
+            rnpRoleContextDetail {
+              id
+              role {
+                id
+                label
+              }
+              context {
+                id
+              }
+            }
+          }
+        }
+      }
+      classes(filters: $classesFilters) {
+        id
+        title
+        profileImageData {
+          url
+          icon
+          color
+          acronym
+        }
+        students(filters: {archivalState: ACTIVE}) @skip(if: $skipStudentCounts) {
+          totalCount
+        }
+      }
+    }
+  }
+}

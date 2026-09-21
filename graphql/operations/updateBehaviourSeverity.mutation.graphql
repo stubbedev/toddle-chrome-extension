@@ -1,0 +1,10 @@
+mutation updateBehaviourSeverity($input: BehaviourSeverityUpdateInput!) {
+  platform {
+    updateBehaviourSeverity(input: $input) {
+      id
+      name
+      level
+      color
+    }
+  }
+}

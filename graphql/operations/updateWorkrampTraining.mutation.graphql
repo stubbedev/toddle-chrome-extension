@@ -1,0 +1,12 @@
+mutation updateWorkrampTraining($input: UpdateWorkrampTrainingInput!) {
+  platform {
+    updateWorkrampTraining(input: $input) {
+      training {
+        id
+        name
+      }
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,28 @@
+query downloadGradingCommentTemplateAsExcel($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: GradingCommentTemplateExcelDownloadFilterOptions!) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      gradingCommentTemplateExcelDownload(filters: $filters) {
+        ...gradingCommentTemplateExcel
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      gradingCommentTemplateExcelDownload(filters: $filters) {
+        ...gradingCommentTemplateExcel
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      gradingCommentTemplateExcelDownload(filters: $filters) {
+        ...gradingCommentTemplateExcel
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      gradingCommentTemplateExcelDownload(filters: $filters) {
+        ...gradingCommentTemplateExcel
+      }
+    }
+  }
+}

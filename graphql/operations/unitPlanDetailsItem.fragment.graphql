@@ -1,0 +1,28 @@
+fragment unitPlanDetailsItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  templateId
+  resourceLibrary {
+    assessmentCount
+    leCount
+  }
+  grades
+  startDate
+  endDate
+  learningCourse {
+    id
+  }
+  subjects {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+  allFields {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+}

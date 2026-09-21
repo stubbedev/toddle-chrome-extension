@@ -1,0 +1,20 @@
+query getStudentActivityCriteriaSets($organizationId: ID!, $filters: academicCriteriaSetsFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: $filters) {
+          id
+          label
+          academicCriteriaValues {
+            id
+            label
+            metadata
+            displaySequence
+          }
+          criteriaType
+        }
+      }
+    }
+  }
+}

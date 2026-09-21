@@ -1,0 +1,62 @@
+query getOrganizationCourseFeed($first: Int, $after: String, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $isDP: Boolean = false, $courseGradeFilters: CourseGradeFilters, $userArchivedFilters: UserArchivedFilters) {
+  platform {
+    organization {
+      id
+      courses(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        totalCount
+        edges {
+          node {
+            id
+            title
+            grades(filters: $courseGradeFilters) {
+              id
+              name
+              globalGrade {
+                id
+                displaySequence
+              }
+            }
+            subjects {
+              id
+              name
+            }
+            genericTags {
+              id
+              label
+              type
+            }
+            curriculumProgram {
+              id
+              type
+              acronym
+            }
+            userMap(filters: {archivalState: ALL, userTypes: [student]}) @include(if: $isDP) {
+              ...userMapItem
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment yearGroupAcademicYearMapDetails on YearGroupAcademicYearMap {
+  academicYear {
+    id
+    isCurrentAcademicYear
+    isUpcomingAcademicYear
+    isPreviousAcademicYear
+  }
+  yearGroup {
+    id
+    name
+    curriculumProgram {
+      id
+      acronym
+    }
+  }
+}

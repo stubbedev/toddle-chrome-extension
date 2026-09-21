@@ -1,0 +1,15 @@
+fragment themeItem on PlannerTheme {
+  id
+  label
+  descriptor
+  metadata
+  associatedChildren {
+    id
+    label
+  }
+  focusAreas {
+    id
+    label
+  }
+  icon
+}

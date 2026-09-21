@@ -1,0 +1,50 @@
+fragment assignmentBasicDetails on Assignment {
+  id
+  contentType
+  state {
+    state
+    __typename
+  }
+  createdBy {
+    ...staffItem
+    __typename
+  }
+  course {
+    id
+    title
+    academicYears {
+      ...academicYearItem
+      __typename
+    }
+    __typename
+  }
+  content {
+    id
+    ... on Assessment {
+      id
+      title {
+        id
+        value
+        __typename
+      }
+      assessmentType {
+        id
+        value
+        __typename
+      }
+      taskType {
+        id
+        type
+        label
+      }
+      image {
+        id
+        value
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  __typename
+}

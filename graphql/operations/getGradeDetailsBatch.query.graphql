@@ -1,0 +1,17 @@
+query getGradeDetailsBatch($ids: [ID!]!) {
+  multiNode(ids: $ids, type: GRADE) {
+    id
+    ... on Grade {
+      id
+      name
+      staffCount
+      studentCount
+      familyMemberCount
+      curriculumProgram {
+        id
+        label
+        acronym
+      }
+    }
+  }
+}

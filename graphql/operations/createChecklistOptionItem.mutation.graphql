@@ -1,0 +1,7 @@
+mutation createChecklistOptionItem($checklistId: ID!, $label: String!, $createdBy: ID!, $putAfterItemId: ID) {
+  planner {
+    createChecklistOptionItem(input: {checklistId: $checklistId, label: $label, createdBy: $createdBy, putAfterItemId: $putAfterItemId}) {
+      ...checklistOption
+    }
+  }
+}

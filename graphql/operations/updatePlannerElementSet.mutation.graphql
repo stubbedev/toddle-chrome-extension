@@ -1,0 +1,8 @@
+mutation updatePlannerElementSet($input: UpdatePlannerElementSetInput!) {
+  planner {
+    updatePlannerElementSet(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

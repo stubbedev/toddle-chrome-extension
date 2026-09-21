@@ -1,0 +1,20 @@
+mutation addLevelDraft($input: LevelDraftAddInput!) {
+  planner {
+    addLevelDraft(input: $input) {
+      key
+      label
+      reportDisplayName
+      abbreviation
+      associatedSubjects {
+        key
+      }
+      associatedStudents {
+        id
+      }
+      associatedCourses {
+        key
+      }
+    }
+    __typename
+  }
+}

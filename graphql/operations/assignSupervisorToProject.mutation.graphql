@@ -1,0 +1,5 @@
+mutation assignSupervisorToProject($staffId: ID, $addedArray: [ID!], $removedArray: [ID!], $projectsToUpdate: [ID!], $staffIds: [ID!]) {
+  documentation {
+    assignSupervisorToProject(input: {staffId: $staffId, project: {added: $addedArray, removed: $removedArray}, projectsToUpdate: $projectsToUpdate, staffIds: $staffIds})
+  }
+}

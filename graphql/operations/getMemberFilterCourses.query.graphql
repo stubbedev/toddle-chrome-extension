@@ -1,0 +1,34 @@
+query getMemberFilterCourses($organizationId: ID!, $first: Int, $after: String, $filters: CourseFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            profileImageData {
+              url
+              icon
+              color
+              acronym
+            }
+            grades {
+              id
+              name
+              curriculumProgram {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

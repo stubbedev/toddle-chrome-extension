@@ -1,0 +1,8 @@
+fragment translationPostItem on Post {
+  id
+  title
+  titleTranslationItem(filters: $translationFilter) {
+    label
+    translatedLabel
+  }
+}

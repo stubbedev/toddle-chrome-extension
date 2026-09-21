@@ -1,0 +1,8 @@
+mutation updateGrades($input: [UpdateGradesInput!]!) {
+  school {
+    updateGrades(input: $input) {
+      id
+      name
+    }
+  }
+}

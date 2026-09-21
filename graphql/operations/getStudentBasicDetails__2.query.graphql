@@ -1,0 +1,8 @@
+query getStudentBasicDetails($studentId: ID!, $courseFilters: CourseFilter, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      ...studentDetailsItem
+    }
+  }
+}

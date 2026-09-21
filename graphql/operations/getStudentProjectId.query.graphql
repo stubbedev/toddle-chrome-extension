@@ -1,0 +1,10 @@
+query getStudentProjectId($studentId: ID!, $projectGroupId: ID!) {
+  node(id: $studentId, type: STUDENT) {
+    ... on Student {
+      id
+      projects(filters: {projectGroupId: $projectGroupId}) {
+        id
+      }
+    }
+  }
+}

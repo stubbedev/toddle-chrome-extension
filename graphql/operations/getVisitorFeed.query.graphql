@@ -1,0 +1,8 @@
+query getVisitorFeed($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $snpFilters: SnPEvaluationCycleFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...visitorFeedItem
+    }
+  }
+}

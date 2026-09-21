@@ -1,0 +1,7 @@
+mutation copyProgressReportTemplate($input: CopyProgressReportTemplateInput!) {
+  documentation {
+    copyProgressReportTemplate(input: $input) {
+      ...progressReportTemplateItem
+    }
+  }
+}

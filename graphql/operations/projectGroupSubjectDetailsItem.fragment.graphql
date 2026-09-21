@@ -1,0 +1,28 @@
+fragment projectGroupSubjectDetailsItem on ProjectGroup {
+  id
+  subjectGroup @skip(if: $isAccountDepartmentEnabled) {
+    id
+    subjects(filters: $subjectFilters) {
+      id
+      name
+      students(filters: $studentFilters) {
+        edges {
+          node {
+            ...studentInfo
+          }
+        }
+      }
+    }
+  }
+  scienceSubjects(filters: $subjectFilters) @include(if: $isAccountDepartmentEnabled) {
+    id
+    name
+    students(filters: $studentFilters) {
+      edges {
+        node {
+          ...studentInfo
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+mutation uploadTimetableColumnMapping($input: ImportTimetableInput!) {
+  integration {
+    uploadTimetableColumnMapping(input: $input) {
+      uploadStatus
+      errorData
+      periodsData {
+        toolPeriods
+        mappings {
+          toolPeriod
+          toddlePeriod {
+            id
+            label
+            abbreviation
+          }
+        }
+      }
+      classesData {
+        toolClasses
+        mappings {
+          toolClass
+          toddleClass {
+            id
+            title
+            primaryGrade {
+              id
+              name
+            }
+          }
+        }
+      }
+      teachersData {
+        toolTeachers
+        mappings {
+          toolTeacher
+          toddleTeacher {
+            id
+            email
+            firstName
+            middleName
+            lastName
+            profileImage
+          }
+        }
+      }
+      locationData {
+        toolLocations
+        mappings {
+          toolLocation
+          toddleLocation {
+            id
+            label
+            abbreviation
+          }
+        }
+      }
+      yardDutyData {
+        toolYardDuties
+        mappings {
+          toolYardDuty
+          toddleYardDuty {
+            id
+            label
+            location {
+              id
+              label
+            }
+          }
+        }
+        showDutyTimings
+      }
+      dayData {
+        toolDays
+        mappings {
+          toolDay
+          toddleDay {
+            day
+            rotationDay {
+              id
+              label
+            }
+            rotationEntity {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

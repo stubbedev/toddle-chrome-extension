@@ -1,0 +1,5 @@
+mutation linkTeacherCourseToBluePrintCourse($input: AddBlueprintTeacherCoursesInput!) {
+  planner {
+    addBlueprintTeacherCourses(input: $input)
+  }
+}

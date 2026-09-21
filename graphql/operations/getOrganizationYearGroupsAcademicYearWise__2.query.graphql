@@ -1,0 +1,45 @@
+query getOrganizationYearGroupsAcademicYearWise($id: ID!, $filters: YearGroupFilter, $yearGroupGradeFilters: YearGroupGradeFilters, $yearGroupStudentFilters: GroupStudentFilter, $academicYearGradeMapFilters: AcademicYearGradeMapFilters, $allStudentsFilters: YearGroupAllStudentsFiltersInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      yearGroups(filters: $filters) {
+        ...basicYearGroupDetails
+      }
+    }
+  }
+}
+
+fragment basicYearGroupDetails on YearGroup {
+  id
+  name
+  curriculumProgram {
+    id
+  }
+  grade(filters: $yearGroupGradeFilters) {
+    id
+    name
+    displaySequence
+    courses {
+      totalCount
+    }
+  }
+  students(filters: $yearGroupStudentFilters) {
+    totalCount
+  }
+  allStudents(filters: $allStudentsFilters) {
+    id
+  }
+  academicYearGradeMap(filters: $academicYearGradeMapFilters) {
+    grade {
+      id
+      name
+    }
+  }
+  examSession {
+    id
+    session
+    year
+  }
+  isArchived
+}

@@ -1,0 +1,9 @@
+query ComplianceReportSchoolLocations {
+  platform {
+    schoolLocations {
+      id
+      ageid
+      name
+    }
+  }
+}

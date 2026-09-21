@@ -1,0 +1,16 @@
+query getPlaygroundPoolSummary {
+  playground {
+    poolSummary {
+      available
+      reserved
+      inUse
+      total
+      flavors {
+        flavor
+        available
+        reserved
+        inUse
+      }
+    }
+  }
+}

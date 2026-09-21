@@ -1,0 +1,5 @@
+mutation deleteBehaviourAction($input: BehaviourActionDeleteInput!) {
+  platform {
+    deleteBehaviourAction(input: $input)
+  }
+}

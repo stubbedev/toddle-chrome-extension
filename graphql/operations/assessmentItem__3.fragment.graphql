@@ -1,0 +1,66 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  fields(uids: ["syllabusContentDP", "worksheetPaperType", "worksheetType", "subjectLevel", "relatedConceptsMYP", "learningObjectivesMyp", "conceptsMYP", "globalContextMYP", "toddleLibraryTopicsMYP"]) {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldGenericTags {
+        id
+        genericTags {
+          id
+          label
+        }
+      }
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        type
+        nodes {
+          id
+          label
+          depth
+        }
+      }
+    }
+  }
+  image {
+    id
+    value
+  }
+  assessmentTools {
+    edges {
+      node {
+        id
+        assessmentToolItem {
+          ... on ScoreAssessmentTool {
+            id
+            scoreToolData {
+              id
+              maxScore
+            }
+          }
+        }
+        assessmentToolType
+      }
+    }
+  }
+  questions {
+    totalCount
+    questionTypeWiseCount {
+      questionTypeUid
+      count
+    }
+  }
+  libraryGrades {
+    ...libraryEntityBasicDetailsItem
+  }
+  librarySubjects {
+    ...libraryEntityBasicDetailsItem
+  }
+  ...assessmentSavedByNodeItem
+  isSavedForLibrary
+}

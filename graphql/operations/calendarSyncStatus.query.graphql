@@ -1,0 +1,11 @@
+query calendarSyncStatus($id: ID!, $type: [JOB_TYPE_ENUM!]) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      syncStatus(type: $type) {
+        id
+        status
+      }
+    }
+  }
+}

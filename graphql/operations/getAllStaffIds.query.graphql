@@ -1,0 +1,15 @@
+query getAllStaffIds($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

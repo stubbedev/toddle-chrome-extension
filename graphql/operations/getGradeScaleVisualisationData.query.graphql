@@ -1,0 +1,12 @@
+query getGradeScaleVisualisationData($studentProgressReportId: ID!, $filters: VisualisationDataFilters) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      visualisationData(filters: $filters) {
+        status
+        data
+      }
+    }
+  }
+}

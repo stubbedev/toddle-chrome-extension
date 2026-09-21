@@ -1,0 +1,18 @@
+query getStudentFamilyMembers($studentId: ID!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      families {
+        id
+        familyMember {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+        }
+      }
+    }
+  }
+}

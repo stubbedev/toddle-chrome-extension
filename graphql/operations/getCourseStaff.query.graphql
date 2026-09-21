@@ -1,0 +1,47 @@
+query getCourseStaff($courseID: ID!, $first: Int, $after: String, $academicYearId: ID!, $collaboratorFilters: CourseFilter, $rnpRoleContextDetailFilter: RnPRoleContextDetailFilterInput) {
+  node(id: $courseID, type: COURSE) {
+    id
+    ... on Course {
+      collaborator(first: $first, after: $after, filters: $collaboratorFilters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            isArchived
+            isArchivedV2(filters: {academicYearId: $academicYearId})
+            profileImage
+            displayRole
+            designation {
+              id
+              title
+            }
+            type
+            rnpRoleContextDetail(filters: $rnpRoleContextDetailFilter) {
+              id
+              contextType
+              role {
+                id
+                label
+                isCustomRole
+              }
+              context {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

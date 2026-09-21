@@ -1,0 +1,17 @@
+mutation createOrganizationResources($input: OrganizationResourceGroupInput!) {
+  platform {
+    createOrganizationResources(input: $input) {
+      id
+      attachment {
+        id
+        type
+        title
+        name
+        mimeType
+        url
+        signedUrl
+        thumbUrl
+      }
+    }
+  }
+}

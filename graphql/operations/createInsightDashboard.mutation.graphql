@@ -1,0 +1,22 @@
+mutation createInsightDashboard($input: CreateInsightDashboardInput!) {
+  platform {
+    createInsightDashboard(input: $input) {
+      isSuccess
+      warning
+      insightDashboard {
+        id
+        name
+        description
+        sequence
+        organizationId
+        lastRefreshedAt
+        createdBy
+        updatedBy
+        isPinned
+        isDeleted
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}

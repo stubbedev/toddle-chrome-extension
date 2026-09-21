@@ -1,0 +1,8 @@
+mutation updateMealTemplate($id: ID!, $title: String, $startDate: String, $endDate: String, $updateValues: DatasetValueUpdateInput) {
+  documentation {
+    updatePostTemplateDataSet(input: {id: $id, title: $title, startDate: $startDate, endDate: $endDate, updateValues: $updateValues}) {
+      isSuccess
+      warning
+    }
+  }
+}

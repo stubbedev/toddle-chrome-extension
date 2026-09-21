@@ -1,0 +1,12 @@
+mutation editPlatformCalendarEvent($input: EditPlatformCalendarEventInput!) {
+  platform {
+    editPlatformCalendarEvent(input: $input) {
+      response {
+        id
+      }
+      warning
+      jobId
+    }
+    __typename
+  }
+}

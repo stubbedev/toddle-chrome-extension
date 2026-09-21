@@ -1,0 +1,53 @@
+query getOrganizationCourseFeed($first: Int, $after: String, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  platform {
+    organization {
+      id
+      courses(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        totalCount
+        edges {
+          node {
+            id
+            title
+            grades {
+              id
+              name
+              globalGrade {
+                id
+                displaySequence
+              }
+            }
+            genericTags {
+              id
+              label
+              type
+            }
+            subjectGroups {
+              id
+              name
+              type
+            }
+            subjects(filters: {archivalState: ALL}) {
+              id
+              name
+              subjectGroup {
+                id
+                name
+                type
+                displaySequence
+              }
+            }
+            curriculumProgram {
+              id
+              type
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

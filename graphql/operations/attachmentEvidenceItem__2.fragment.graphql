@@ -1,0 +1,60 @@
+fragment evidenceItemInterface on SnPEvidenceItemInterface {
+  id
+  ... on Attachment {
+    ...attachmentEvidenceItem
+  }
+  ... on Assessment {
+    ...assessmentItem
+  }
+  ... on UnitPlan {
+    ...unitPlanItem
+  }
+  ... on Post {
+    ...postItem
+  }
+  ... on Subject {
+    ...subject
+  }
+  ... on OrganizationResource {
+    ...organizationResourceBasicDetailsItem
+  }
+  ... on StudentProgressReport {
+    ...progressReport
+  }
+  ... on SubjectGroup {
+    ...subjectGroupItem
+  }
+  ...assignmentItem
+}
+
+fragment attachmentEvidenceItem on Attachment {
+  id
+  type
+  title
+  streamUrl
+  url
+  signedUrl
+  name
+  mimeType
+  thumbUrl
+  description
+  metadata
+  resolvedParentEntity {
+    ... on AttachmentGroup {
+      resolvedParentEntity {
+        ... on StudentAssignmentSubmission {
+          id
+          assignment {
+            id
+            assignedStudents {
+              id
+              submission {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

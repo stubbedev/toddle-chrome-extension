@@ -1,0 +1,8 @@
+mutation revokeOpenApiToken($input: RevokeOpenApiTokenInput!) {
+  integration {
+    revokeOpenApiToken(input: $input) {
+      isSuccess
+      message
+    }
+  }
+}

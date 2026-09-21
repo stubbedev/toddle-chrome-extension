@@ -1,0 +1,7 @@
+mutation createCustomTemplate($input: CreateCustomTemplateInput!, $unitPlanFilters: TemplateUnitPlanFilters) {
+  planner {
+    createCustomTemplate(input: $input) {
+      ...templateItem
+    }
+  }
+}

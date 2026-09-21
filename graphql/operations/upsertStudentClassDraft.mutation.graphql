@@ -1,0 +1,7 @@
+mutation upsertStudentClassDraft($input: UpsertStudentClassDraftInput!) {
+  planner {
+    upsertStudentClassDraft(input: $input) {
+      isSuccess
+    }
+  }
+}

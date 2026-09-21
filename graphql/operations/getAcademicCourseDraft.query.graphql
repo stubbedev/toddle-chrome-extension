@@ -1,0 +1,19 @@
+query getAcademicCourseDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        draftAcademicCourses(filters: {academicYearId: $academicYearId}) {
+          key
+          label
+          code
+          associatedStudents {
+            id
+          }
+        }
+      }
+    }
+  }
+}

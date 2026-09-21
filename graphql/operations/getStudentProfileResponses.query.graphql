@@ -1,0 +1,5 @@
+query getStudentProfileResponses($studentId: ID!) {
+  node(id: $studentId, type: STUDENT) {
+    ...studentProfileResponsesItem
+  }
+}

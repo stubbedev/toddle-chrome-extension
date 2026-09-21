@@ -1,0 +1,19 @@
+query getAggregateGradeScalesConfigQuery($id: ID!, $gradingConfigFilters: GradingConfigurationFilters, $settingsFilters: GradingConfigurationSettingFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      gradingConfiguration(filters: $gradingConfigFilters) {
+        edges {
+          node {
+            id
+            ...GradingConfigurationFragment
+          }
+        }
+      }
+      scoreGradeAggregationConfigs {
+        ...ScoreGradeAggregationFragment
+      }
+    }
+  }
+}

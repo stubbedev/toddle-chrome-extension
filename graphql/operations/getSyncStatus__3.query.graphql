@@ -1,0 +1,14 @@
+query getSyncStatus($id: ID!, $type: [JOB_TYPE_ENUM!], $campusId: String) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      syncStatus(type: $type, campusId: $campusId) {
+        id
+        status
+        curriculumProgramId
+        acronym
+        jobType
+      }
+    }
+  }
+}

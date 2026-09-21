@@ -1,0 +1,20 @@
+fragment courseStudentProgressReportItem on CourseProgressReportTask {
+  id
+  studentProgressReports(filters: $filters) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        ...studentProgressReportItem
+      }
+    }
+  }
+  reportStatusCount {
+    status
+    count
+  }
+}

@@ -1,0 +1,19 @@
+query getAttachmentModality($id: ID!) {
+  node(id: $id, type: ATTACHMENT) {
+    id
+    ... on Attachment {
+      id
+      name
+      type
+      metadata
+      modalityAttachment {
+        id
+        ... on ModalityFile {
+          id
+          content
+          metadata
+        }
+      }
+    }
+  }
+}

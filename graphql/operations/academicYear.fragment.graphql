@@ -1,0 +1,6 @@
+fragment academicYear on AcademicYear {
+  id
+  startDate
+  endDate
+  isCurrentAcademicYear
+}

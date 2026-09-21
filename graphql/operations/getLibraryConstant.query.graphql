@@ -1,0 +1,23 @@
+query getLibraryConstant {
+  library {
+    constants {
+      unitTypesV2 {
+        id
+        label
+      }
+      libraryTopics {
+        id
+        label
+        libraryEntity {
+          id
+          label
+          type
+        }
+        image {
+          id
+          url
+        }
+      }
+    }
+  }
+}

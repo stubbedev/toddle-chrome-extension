@@ -1,0 +1,8 @@
+query getBlueprintStandardsSyncStatusV2($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      blueprintCourseSyncStatusV2(filters: {type: STANDARDS})
+    }
+  }
+}

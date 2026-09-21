@@ -1,0 +1,29 @@
+query getProjectGroupStudents($id: ID!, $filters: ProjectGroupStudentFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      students(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            student {
+              ...projectGroupStudent
+              projects(filters: {projectGroupId: $id}) {
+                id
+                title {
+                  id
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

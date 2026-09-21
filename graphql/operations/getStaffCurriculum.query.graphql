@@ -1,0 +1,17 @@
+query getStaffCurriculum($ids: [ID!], $userCurriculumProgramFilter: UserCurriculumProgramFilter) {
+  platform {
+    staff(ids: $ids) {
+      curriculumPrograms(filters: $userCurriculumProgramFilter) {
+        id
+        type
+        nodeInterfaceType
+        label
+        acronym
+        ... on UBDCurriculumProgram {
+          id
+          variant
+        }
+      }
+    }
+  }
+}

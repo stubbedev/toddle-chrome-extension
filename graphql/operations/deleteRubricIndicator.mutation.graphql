@@ -1,0 +1,5 @@
+mutation deleteRubricIndicator($rubricId: ID!, $deletedBy: ID!, $id: ID!) {
+  planner {
+    deleteRubricIndicator(input: {deletedBy: $deletedBy, rubricId: $rubricId, id: $id})
+  }
+}

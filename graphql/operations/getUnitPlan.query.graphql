@@ -1,0 +1,9 @@
+query getUnitPlan($id: ID!, $responseFilter: ResponseFilter) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      ...unitPlanItem
+    }
+  }
+}

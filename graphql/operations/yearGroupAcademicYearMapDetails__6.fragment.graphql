@@ -1,0 +1,43 @@
+query getOrganizationPresetCourseFeed($filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $presetCollaboratorFilters: CollaboratorFilters) {
+  platform {
+    organization {
+      id
+      courses(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            presetCourse {
+              id
+              title
+              allCollaborators(filters: $presetCollaboratorFilters) {
+                ...AllCollaboratorsFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment yearGroupAcademicYearMapDetails on YearGroupAcademicYearMap {
+  academicYear {
+    id
+    isCurrentAcademicYear
+    isUpcomingAcademicYear
+    isPreviousAcademicYear
+  }
+  yearGroup {
+    id
+    name
+    curriculumProgram {
+      id
+      acronym
+    }
+  }
+}

@@ -1,0 +1,50 @@
+query getOrganizationCourseFeed($filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYearId: ID, $collaboratorFilters: CollaboratorFilters) {
+  platform {
+    organization {
+      id
+      courses(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            grades(filters: {academicYearId: $academicYearId}) {
+              id
+              name
+              globalGrade {
+                id
+                uid
+              }
+            }
+            subjects(filters: {archivalState: ACTIVE}) {
+              ...subjectWithSubjectGroupItem
+            }
+            allCollaborators(filters: $collaboratorFilters) {
+              ...AllCollaboratorsFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment yearGroupAcademicYearMapDetails on YearGroupAcademicYearMap {
+  academicYear {
+    id
+    isCurrentAcademicYear
+    isUpcomingAcademicYear
+    isPreviousAcademicYear
+  }
+  yearGroup {
+    id
+    name
+    curriculumProgram {
+      id
+      acronym
+    }
+  }
+}

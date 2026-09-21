@@ -1,0 +1,7 @@
+mutation deleteStudentPlan($input: DeleteStudentPlanInput!) {
+  documentation {
+    deleteStudentPlan(input: $input) {
+      isSuccess
+    }
+  }
+}

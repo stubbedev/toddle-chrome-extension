@@ -1,0 +1,62 @@
+fragment resourceLibraryItem on FlowSectionItem {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  duration {
+    id
+    value
+  }
+  createdBy {
+    ...staffItem
+  }
+  templateId
+  ... on Assessment {
+    assessmentType {
+      id
+      value
+    }
+    taskType {
+      id
+      type
+      label
+    }
+    academicTerm {
+      id
+      lockingStatus
+    }
+    assessmentTools {
+      edges {
+        node {
+          id
+          assessmentToolType
+        }
+      }
+    }
+    grades {
+      id
+      name
+    }
+    fields(uids: ["duration", "size", "measureAssessing", "assessmentType"]) {
+      id
+      uid
+      value
+    }
+    isImported
+    taggedPractices {
+      ...taggedPracticesOnEvidence
+    }
+  }
+  ... on LearningEngagement {
+    fields(uids: ["duration", "size", "documentation"]) {
+      id
+      uid
+      value
+    }
+  }
+}

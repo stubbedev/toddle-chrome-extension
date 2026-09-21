@@ -1,0 +1,9 @@
+mutation generateProjectFileUrl($projectIds: [ID!], $attachmentTypesInput: [ProjectAttachmentTypeInput!], $isLongRunningTask: Boolean, $academicYearIds: [ID!]) {
+  platform {
+    generateProjectFileUrl(projectIds: $projectIds, attachmentTypesInput: $attachmentTypesInput, isLongRunningTask: $isLongRunningTask, academicYearIds: $academicYearIds) {
+      url
+      longRunningTaskCreated
+      isSuccess
+    }
+  }
+}

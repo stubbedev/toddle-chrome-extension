@@ -1,0 +1,5 @@
+fragment schoolGroupCounts on SchoolGroup {
+  memberCount(filters: {userTypes: [staff]})
+  memberCount(filters: {userTypes: [student]})
+  memberCount(filters: {userTypes: [parent]})
+}

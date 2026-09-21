@@ -1,0 +1,20 @@
+query getSubjectAssociatedLevels($id: ID!) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      associatedLevels {
+        id
+        label
+        abbreviation
+      }
+      flatVariants(filters: {archivalState: ACTIVE}) {
+        level {
+          id
+          label
+          abbreviation
+        }
+      }
+    }
+  }
+}

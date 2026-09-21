@@ -1,0 +1,11 @@
+query getOrganizationYearGroupsAcademicYearWise($id: ID!, $filters: YearGroupFilter, $yearGroupGradeFilters: YearGroupGradeFilters, $yearGroupStudentFilters: GroupStudentFilter, $academicYearGradeMapFilters: AcademicYearGradeMapFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      yearGroups(filters: $filters) {
+        ...basicYearGroupDetails
+      }
+    }
+  }
+}

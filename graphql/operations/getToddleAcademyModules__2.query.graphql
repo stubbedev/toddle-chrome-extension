@@ -1,0 +1,39 @@
+query getAcademyVideos($id: ID!, $first: Int, $after: String, $videosFilter: AcademyVideoFilter, $orderBy: ORDERBY_FIELD_ENUM_CMS, $orderByDirection: ORDERBY_VALUE_ENUM) {
+  node(id: $id, type: ACADEMY_MODULE) {
+    id
+    ... on AcademyModule {
+      id
+      title
+      description
+      imageUrl
+      color
+      videos(first: $first, after: $after, filters: $videosFilter, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        count
+        edges {
+          node {
+            ...academyVideoItem
+          }
+          cursor
+        }
+        pageInfo {
+          ...pageInfoItem
+        }
+      }
+    }
+  }
+}
+
+query getToddleAcademyModules($moduleFilters: AcademyModuleFilter, $videosFilter: AcademyVideoFilter) {
+  cms {
+    academyModules(filters: $moduleFilters) {
+      id
+      title
+      description
+      imageUrl
+      color
+      videos(filters: $videosFilter) {
+        count
+      }
+    }
+  }
+}

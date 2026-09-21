@@ -1,0 +1,31 @@
+query getGlobalBinDeletedByUsers($organizationId: ID!, $first: Int, $after: String, $userSearchText: String) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      globalBin {
+        distinctDeletedByUsers(first: $first, after: $after, userSearchText: $userSearchText) {
+          edges {
+            node {
+              ...globalBinStaffInfo
+            }
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment globalBinStaffInfo on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+}

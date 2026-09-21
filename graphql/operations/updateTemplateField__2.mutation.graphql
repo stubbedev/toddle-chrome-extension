@@ -1,0 +1,8 @@
+mutation updateTemplateField($input: UpdateTemplateFieldPropertyInput!) {
+  planner {
+    updateTemplateField(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

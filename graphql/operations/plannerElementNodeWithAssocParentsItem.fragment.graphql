@@ -1,0 +1,33 @@
+fragment plannerElementNodeWithAssocParentsItem on PlannerElementNode {
+  id
+  label
+  subText
+  code
+  type
+  depth
+  parent
+  children
+  associatedParents {
+    id
+    ... on Grade {
+      id
+      name
+    }
+    ... on Subject {
+      id
+      name
+    }
+    ... on SubjectGroup {
+      id
+      name
+    }
+    ... on Course {
+      id
+      title
+    }
+    ... on PlannerElementNode {
+      id
+      label
+    }
+  }
+}

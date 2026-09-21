@@ -1,0 +1,10 @@
+mutation updateFormValuesMutation($input: [GenericFormFieldValueInput!]) {
+  platform {
+    createGenericFormFieldValue(input: $input) {
+      id
+      field {
+        id
+      }
+    }
+  }
+}

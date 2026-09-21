@@ -1,0 +1,18 @@
+query AuthoringToolUserBasicDetails($id: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      firstName
+      lastName
+      preferredName
+      email
+      curriculumPrograms {
+        id
+        label
+        type
+        acronym
+      }
+    }
+  }
+}

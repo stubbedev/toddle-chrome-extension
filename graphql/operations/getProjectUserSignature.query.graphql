@@ -1,0 +1,13 @@
+query getProjectUserSignature($id: ID!, $academicYearId: ID) {
+  node(id: $id, type: PROJECT) {
+    ... on Project {
+      id
+      supervisors {
+        ...supervisorSignature
+      }
+      students {
+        ...studentSignature
+      }
+    }
+  }
+}

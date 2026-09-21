@@ -1,0 +1,21 @@
+mutation createToddleDocConversation($input: CreateToddleDocConversationsInput!) {
+  platform {
+    createToddleDocConversation(input: $input) {
+      isSuccess
+      warning
+      conversations {
+        id
+        referenceId
+        colorCode
+        messages {
+          id
+          content
+          state
+          type
+          authorType
+        }
+      }
+    }
+    __typename
+  }
+}

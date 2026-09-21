@@ -1,0 +1,19 @@
+query getOrganizationStaffPaginated($organizationId: ID!, $first: Int, $after: String, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: $filters, first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...userItem
+          }
+        }
+      }
+    }
+  }
+}

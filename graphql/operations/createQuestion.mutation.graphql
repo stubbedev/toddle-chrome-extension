@@ -1,0 +1,7 @@
+mutation createQuestion($input: CreateQuestionInput!) {
+  content {
+    createQuestion(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,14 @@
+mutation updateSubjectGroup($id: ID!, $isArchived: Boolean) {
+  platform {
+    updateSubjectGroup(input: {id: $id, isArchived: $isArchived}) {
+      isSuccess
+      warning
+      subjectGroup {
+        id
+        name
+        isArchived
+      }
+    }
+    __typename
+  }
+}

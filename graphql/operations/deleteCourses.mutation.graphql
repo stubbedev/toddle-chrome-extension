@@ -1,0 +1,10 @@
+mutation deleteCourses($ids: [ID!]!, $deletedBy: ID!) {
+  platform {
+    deleteCourses(input: {ids: $ids, deletedBy: $deletedBy}) {
+      isSuccess
+      activityLogId
+      __typename
+    }
+    __typename
+  }
+}

@@ -1,0 +1,19 @@
+mutation updateToddleDocConversation($input: [ToddleDocConversationUpdateInput!]) {
+  platform {
+    updateToddleDocConversation(input: $input) {
+      isSuccess
+      warning
+      conversations {
+        id
+        colorCode
+        referenceId
+        messages {
+          id
+          content
+          state
+        }
+      }
+    }
+    __typename
+  }
+}

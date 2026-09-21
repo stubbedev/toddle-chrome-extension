@@ -1,0 +1,6 @@
+fragment courseProgressReportItem on Course {
+  id
+  courseProgressReportTasks {
+    totalCount
+  }
+}

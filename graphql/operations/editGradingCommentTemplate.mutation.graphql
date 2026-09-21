@@ -1,0 +1,7 @@
+mutation editGradingCommentTemplate($input: EditGradingCommentTemplateInput!) {
+  documentation {
+    editGradingCommentTemplate(input: $input) {
+      ...commentTemplates
+    }
+  }
+}

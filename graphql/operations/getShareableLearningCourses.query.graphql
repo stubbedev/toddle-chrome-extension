@@ -1,0 +1,31 @@
+query getShareableLearningCourses($organizationId: ID!, $after: String, $filters: LearningCourseFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(first: 30, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            type
+            bluePrintCourse {
+              id
+            }
+            subjects {
+              id
+              name
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        count {
+          totalCount
+        }
+      }
+    }
+  }
+}

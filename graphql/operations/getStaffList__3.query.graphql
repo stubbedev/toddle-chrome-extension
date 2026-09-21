@@ -1,0 +1,38 @@
+query getStaffList($filters: OrgConnectionFilterInput, $organizationId: ID!, $after: String, $rnpRoleContextDetailFilter: RnPRoleContextDetailFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: $filters, first: 12, after: $after) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+          __typename
+        }
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            role
+            prefix
+            preferredName
+            pronouns
+            suffix
+            rnpRoleContextDetail(filters: $rnpRoleContextDetailFilter) {
+              id
+              role {
+                id
+                label
+              }
+              contextType
+              context {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

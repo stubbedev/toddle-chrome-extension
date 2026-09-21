@@ -1,0 +1,35 @@
+query getStudentPlanRoleMembers($roleId: ID!, $searchText: String, $first: Int, $after: String) {
+  node(id: $roleId, type: RNP_ROLE) {
+    ... on RnPRole {
+      id
+      assignedUsers(first: $first, after: $after, searchText: $searchText, orderBy: FULL_NAME) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            rnpRoleContextDetail {
+              id
+              role {
+                id
+              }
+            }
+            ... on Staff {
+              curriculumPrograms {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

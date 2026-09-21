@@ -1,0 +1,35 @@
+query getNestedChecklistPlannerElementSetDetails($id: ID!) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      label
+      type
+      nodes {
+        id
+        label
+        displaySequence
+        type
+        depth
+        code
+        parent
+        children
+        associatedParents {
+          id
+          ... on Grade {
+            id
+            name
+          }
+        }
+        genericTags {
+          id
+        }
+      }
+      config {
+        id
+        config
+        value
+      }
+    }
+  }
+}

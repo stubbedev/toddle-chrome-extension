@@ -1,0 +1,11 @@
+mutation updateAITutorModality($input: AiTutorModalityUpdateInput!) {
+  platform {
+    updateAiTutorModality(input: $input) {
+      isSuccess
+      warning
+      attachment {
+        ...attachmentWithModalityItem
+      }
+    }
+  }
+}

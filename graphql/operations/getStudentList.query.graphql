@@ -1,0 +1,36 @@
+query getStudentList($organizationId: ID!, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $filters: OrgConnectionFilterInput, $studentPlanFilters: StudentPlansFeedFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            sourceId
+            studentPlans(filters: $studentPlanFilters) {
+              id
+              status
+              planType {
+                id
+                flagIcon
+                metadata
+              }
+            }
+            yearGroup {
+              id
+              grade {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

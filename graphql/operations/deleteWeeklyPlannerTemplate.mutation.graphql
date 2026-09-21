@@ -1,0 +1,5 @@
+mutation deleteWeeklyPlannerTemplate($input: DeleteInput!) {
+  planner {
+    deleteWeeklyPlannerTemplate(input: $input)
+  }
+}

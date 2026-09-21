@@ -1,0 +1,22 @@
+fragment studentItem on Student {
+  ...userNameFields
+  profileImage
+  alertTypes {
+    ...alertTypeFields
+  }
+  courses {
+    id
+    title
+    grades {
+      id
+      name
+    }
+  }
+  studentGoalsV2 {
+    totalCount
+    count {
+      ongoing
+      completed
+    }
+  }
+}

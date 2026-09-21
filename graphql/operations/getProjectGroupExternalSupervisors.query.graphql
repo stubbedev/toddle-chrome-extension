@@ -1,0 +1,15 @@
+query getProjectGroupExternalSupervisors($projectGroupId: ID!, $academicYearId: ID!) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: {supervisorType: EXTERNAL, orderBy: FIRST_NAME, orderByDirection: ASC, approvalStatus: [APPROVED], academicYearIds: [$academicYearId]}) {
+        totalCount
+        edges {
+          node {
+            ...projectGroupSupervisorApprovalInfoItem
+          }
+        }
+      }
+    }
+  }
+}

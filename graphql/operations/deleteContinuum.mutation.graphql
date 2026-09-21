@@ -1,0 +1,5 @@
+mutation deleteContinuum($input: DeleteContinuumInput!) {
+  platform {
+    deleteContinuum(input: $input)
+  }
+}

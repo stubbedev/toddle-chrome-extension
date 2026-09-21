@@ -1,0 +1,53 @@
+fragment studentProgressReportItem on StudentProgressReport {
+  id
+  status
+  studentReflectionStatus
+  sectionCompleteStatus {
+    section
+    isCompleted
+  }
+  student {
+    ...studentWithBasicCourseItem
+    alertTypes {
+      ...alertTypeFields
+    }
+    isArchivedV2(filters: $userArchivedFilters)
+    prefix
+  }
+  courseProgressReportTask {
+    id
+    title
+    course {
+      ...courseItem
+      grades {
+        id
+      }
+    }
+    reportingDates {
+      startDate
+      endDate
+    }
+    parentEntity {
+      id
+      ... on Grade {
+        id
+        name
+      }
+      ... on Course {
+        id
+        title
+      }
+    }
+    progressReportTaskGroup {
+      id
+      attendanceMode
+    }
+  }
+  taggedPractices {
+    ...taggedPracticesOnEvidence
+  }
+  publishedReport {
+    id
+  }
+  isSubjectObjectivesSelected
+}

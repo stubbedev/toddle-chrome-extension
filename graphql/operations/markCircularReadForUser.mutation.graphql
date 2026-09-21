@@ -1,0 +1,5 @@
+mutation markCircularReadForUser($isMarkAllRead: Boolean, $circularIds: [ID!], $curriculumProgramIds: [ID!], $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM, $courseIds: [ID!]) {
+  platform {
+    markCircularReadForUser(isMarkAllRead: $isMarkAllRead, circularIds: $circularIds, curriculumProgramIds: $curriculumProgramIds, createdIn: $createdIn, courseIds: $courseIds)
+  }
+}

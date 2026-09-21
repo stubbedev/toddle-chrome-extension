@@ -1,0 +1,60 @@
+query getSubjectWiseUnitPlans($id: ID!, $subjectUnitPlanFilter: SubjectUnitPlansFilterInput, $unitPlanFilters: UnitPlanFilter, $fetchUnitsList: Boolean!, $fetchUnitsListV2: Boolean = false, $coursesFilters: SubjectCourseFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      unitPlans(filters: $subjectUnitPlanFilter) @include(if: $fetchUnitsListV2) {
+        totalCount
+        edges {
+          node {
+            id
+            ...unitPlanItem
+          }
+        }
+      }
+      grades {
+        id
+        unitPlans(filters: $unitPlanFilters) @include(if: $fetchUnitsList) {
+          id
+          ...unitPlanItem
+        }
+      }
+      courses(filters: $coursesFilters) {
+        totalCount
+      }
+    }
+  }
+}
+
+fragment unitPlanItem on UnitPlan {
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  theme {
+    id
+    resolvedMinimalTree {
+      id
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+    }
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+}

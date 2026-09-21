@@ -1,0 +1,4 @@
+fragment downloadExcelResponseItem on TranscriptExcelDownloadResponse {
+  url
+  fileName
+}

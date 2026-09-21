@@ -1,0 +1,46 @@
+query getRoutineGeneralInfo($id: ID!) {
+  node(id: $id, type: ROUTINE) {
+    id
+    ... on Routine {
+      id
+      label
+      startDate
+      endDate
+      routineMode
+      dayPatternType
+      countHolidayAsRotationDay
+      grades {
+        id
+        name
+      }
+      bellSchedules {
+        id
+        weekday
+        rotationDay {
+          id
+          label
+        }
+        bellSchedule {
+          id
+          label
+        }
+      }
+      dayPatterns {
+        id
+        weekdays
+        relation
+        rotationDays {
+          rotationDay {
+            id
+            label
+          }
+          isStartCycle
+        }
+      }
+      rotationDays {
+        id
+        label
+      }
+    }
+  }
+}

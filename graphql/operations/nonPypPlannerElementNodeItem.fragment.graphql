@@ -1,0 +1,75 @@
+query getPlannerElementNodeSetPreviewData($id: ID!, $plannerElementNodeFilters: PlannerElementNodeFilters, $shouldSkipNodes: Boolean! = false, $nodeSetConfigFilters: PlannerElementNodeSetConfigFilters, $shouldSkipNodeSetConfig: Boolean! = true, $shouldSkipSetConfig: Boolean! = true) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      plannerElementSet @skip(if: $shouldSkipSetConfig) {
+        id
+        config {
+          config
+          value
+        }
+      }
+      config(filters: $nodeSetConfigFilters) @skip(if: $shouldSkipNodeSetConfig) {
+        id
+        value
+        globalProperty {
+          id
+          property
+        }
+      }
+      ...plannerElementNodeSetWrapperV2Item
+    }
+  }
+}
+
+fragment nonPypPlannerElementNodeItem on PlannerElementNode {
+  id
+  displaySequence
+  label
+  subText
+  code
+  type
+  depth
+  children
+  parent
+  updatedAt
+  icon {
+    id
+    title
+    url
+    metadata
+  }
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      title
+    }
+    properties {
+      isArchived
+      grades {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+        isArchived
+      }
+      tags {
+        id
+        label
+      }
+      subjectGroups {
+        id
+        name
+        constants
+      }
+      associatedPlannerElementNodes {
+        id
+        label
+        type
+        metadata
+      }
+    }
+  }
+}

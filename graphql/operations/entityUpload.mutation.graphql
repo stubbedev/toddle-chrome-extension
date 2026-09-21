@@ -1,0 +1,11 @@
+mutation entityUpload($input: UnitPlanXlsxValidationActionInput!) {
+  planner {
+    unitPlanXlsxValidationAction(input: $input) {
+      uploadStatus
+      successData {
+        added
+      }
+      errorData
+    }
+  }
+}

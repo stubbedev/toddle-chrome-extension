@@ -1,0 +1,10 @@
+query getExternalAssessmentRecordSetsCount($id: ID!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      externalAssessmentRecordSetFeed(input: {filters: {archivalState: ALL}}) {
+        totalCount
+      }
+    }
+  }
+}

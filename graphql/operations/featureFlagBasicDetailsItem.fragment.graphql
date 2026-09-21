@@ -1,0 +1,5 @@
+fragment featureFlagBasicDetailsItem on ACLFeatureFlag {
+  id
+  uid
+  value
+}

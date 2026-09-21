@@ -1,0 +1,16 @@
+fragment externalUserItem on User {
+  ...userNameFields
+  email
+  ... on Staff {
+    yearGroups {
+      id
+      name
+    }
+    role
+    otherDetails {
+      id
+      organizationName
+      phoneNumber
+    }
+  }
+}

@@ -1,0 +1,40 @@
+fragment unitPlanItems on UnitPlan {
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  duration {
+    id
+    uid
+    value
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+  template {
+    id
+    body
+  }
+  startDate
+  endDate
+  curriculumProgram {
+    id
+    type
+  }
+  allFields {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+}

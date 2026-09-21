@@ -1,0 +1,19 @@
+query getProjectGroupProjectSupervisors($id: ID!, $projectFilters: ProjectGroupProjectsFilters, $academicYearId: ID, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectFilters) {
+        edges {
+          node {
+            id
+            supervisors {
+              isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+              ...supervisorInfo
+            }
+          }
+        }
+      }
+    }
+  }
+}

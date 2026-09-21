@@ -1,0 +1,38 @@
+fragment jobData on IntegrationJob {
+  id
+  status
+  serviceName
+  createdAt
+  jobRowCount
+  isLatest
+  tempStatus
+  updatedAt
+  createdBy {
+    ...staffItem
+  }
+  subTasksAnalytics
+  executionStatus {
+    ...executionStatus
+    analytics {
+      ...jobAnalytics
+    }
+  }
+}
+
+mutation updateGrades($input: [UpdateGradesInput!]!) {
+  school {
+    updateGrades(input: $input) {
+      id
+      name
+    }
+  }
+}
+
+mutation updateGrades($input: [UpdateGradesInput!]!) {
+  school {
+    updateGrades(input: $input) {
+      id
+      name
+    }
+  }
+}

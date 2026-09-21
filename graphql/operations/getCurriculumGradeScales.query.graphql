@@ -1,0 +1,42 @@
+query getCurriculumGradeScales($id: ID!, $gradeScaleFilters: GradeScaleFilters, $gradeScaleEntityDetailFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      gradeScale(filters: $gradeScaleFilters) {
+        edges {
+          node {
+            id
+            type
+            gradingType
+            displayName
+            templateName
+            dependentGradeScales {
+              id
+              type
+            }
+            gradeScaleEntityDetails(filters: $gradeScaleEntityDetailFilters) {
+              id
+              isPrimary
+              entityDetail {
+                subjectId
+                gradeId
+                academicTermId
+                learningCourseId
+              }
+              gradingConfiguration {
+                id
+                settings {
+                  id
+                  uid
+                  groupType
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

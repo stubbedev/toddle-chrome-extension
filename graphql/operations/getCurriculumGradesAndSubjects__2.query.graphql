@@ -1,0 +1,49 @@
+query getCurriculumGradesAndSubjects($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $filters: CurriculumProgramSubjectFilters) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      grades {
+        ...gradeBasicDetailsItem
+      }
+      subjects(filters: $filters) {
+        ...subjectBasicDetailsItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      grades {
+        ...gradeBasicDetailsItem
+      }
+      subjects(filters: $filters) {
+        ...subjectBasicDetailsItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      grades {
+        ...gradeBasicDetailsItem
+      }
+      subjects(filters: $filters) {
+        ...subjectBasicDetailsItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      grades {
+        ...gradeBasicDetailsItem
+      }
+      subjects(filters: $filters) {
+        ...subjectBasicDetailsItem
+        contentSubject {
+          id
+          assessmentYearTitle
+        }
+      }
+    }
+  }
+}
+
+fragment gradeBasicDetailsItem on Grade {
+  id
+  name
+}

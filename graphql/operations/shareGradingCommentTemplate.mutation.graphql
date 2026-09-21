@@ -1,0 +1,7 @@
+mutation shareGradingCommentTemplate($input: ShareGradingCommentTemplatesExcelInput!) {
+  documentation {
+    shareGradingCommentTemplates(input: $input) {
+      isSuccess
+    }
+  }
+}

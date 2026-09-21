@@ -1,0 +1,9 @@
+fragment homepageLayoutFields on HomepageLayout {
+  id
+  layout {
+    ...gridLayoutItemFields
+  }
+  widgets {
+    ...homepageWidgetFields
+  }
+}

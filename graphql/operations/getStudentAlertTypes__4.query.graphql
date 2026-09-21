@@ -1,0 +1,68 @@
+fragment attendanceExcusalItem on AttendanceExcusal {
+  id
+  student {
+    id
+    firstName
+    middleName
+    lastName
+    preferredName
+    suffix
+    pronouns
+  }
+  durationType
+  startDate
+  endDate
+  periods {
+    ...periodsItem
+  }
+  reason
+  createdBy {
+    ...createdByItem
+  }
+  createdAt
+  conversation {
+    ...conversationItem
+  }
+  attendanceOption {
+    id
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}

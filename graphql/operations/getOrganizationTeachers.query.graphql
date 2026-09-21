@@ -1,0 +1,41 @@
+query getOrganizationTeachers($organizationId: ID!, $archivalState: ARCHIVAL_STATE_ENUM, $curriculumProgramIds: [ID!], $academicYearIds: [ID!], $first: Int, $after: String, $searchText: String, $grades: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: {archivalState: $archivalState, curriculumProgramIds: $curriculumProgramIds, academicYearIds: $academicYearIds, searchText: $searchText, grades: $grades}, first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            ...staffNameFields
+            profileImage
+            email
+            allGrades {
+              id
+              name
+            }
+            curriculumPrograms {
+              id
+            }
+            coursesV2 {
+              edges {
+                node {
+                  id
+                  title
+                  grade {
+                    id
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

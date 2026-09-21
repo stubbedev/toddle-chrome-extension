@@ -1,0 +1,26 @@
+query getOrganizationSpaces($id: ID!, $first: Int, $after: String, $spacesFilters: OrganizationLocationsFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      locations(first: $first, after: $after, orderBy: LABEL, orderByDirection: ASC, filters: $spacesFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            label
+            abbreviation
+            usage {
+              isUsed
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+        }
+      }
+    }
+  }
+}

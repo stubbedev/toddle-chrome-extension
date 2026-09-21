@@ -1,0 +1,12 @@
+fragment subjectItem on Subject {
+  id
+  name
+  isArchived
+  metadata
+  flatVariants(filters: $flatSubjectVariantFilters) {
+    responseLanguage {
+      id
+      label
+    }
+  }
+}

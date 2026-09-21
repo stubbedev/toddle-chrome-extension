@@ -1,0 +1,27 @@
+query getParticipantStaff($organizationId: ID!, $first: Int, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        edges {
+          node {
+            ...participantStaffBasicDetailsItem
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}
+
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}

@@ -1,0 +1,30 @@
+query getSubjectOverview($id: ID!, $uids: [String!], $filters: UnitPlanFilter) {
+  node(id: $id, type: SUBJECT) {
+    ... on Subject {
+      id
+      grades {
+        id
+        name
+        unitPlans(filters: $filters) {
+          id
+          templateId
+          startDate
+          endDate
+          title {
+            ...plannerFieldNodeItem
+          }
+          image {
+            ...mediaFieldNodeItem
+          }
+          subjects {
+            id
+            value
+          }
+          fields(uids: $uids) {
+            ...unitPlanFieldBasicDetailsItem
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getCases21XML($taskGroupId: ID!) {
+  node(type: PROGRESS_REPORT_TASK_GROUP, id: $taskGroupId) {
+    ... on ProgressReportTaskGroup {
+      cases21XML {
+        isSuccess
+        url
+        filename
+        filetype
+        error
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+query unitImportInstructions {
+  ai {
+    unitImportInstructions {
+      id
+      content
+      metadata
+      entityType
+      createdAt
+      updatedAt
+    }
+  }
+}

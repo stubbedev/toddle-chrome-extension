@@ -1,0 +1,11 @@
+query getTokSubjectResponseLanguages($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      tokSubjectResponseLanguages {
+        id
+        label
+      }
+    }
+  }
+}

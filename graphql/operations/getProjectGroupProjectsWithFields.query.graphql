@@ -1,0 +1,70 @@
+query getProjectGroupProjectsWithFields($id: ID!, $projectFilters: ProjectGroupProjectsFilters, $projectFieldFilters: PlannerFieldFilter, $studentCourseFilters: UserCourseMapFilters, $isServiceAsAction: Boolean!, $academicYearId: ID, $skipCourseDetails: Boolean!, $fetchProjectTasks: Boolean!, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      type
+      deadlines @skip(if: $isServiceAsAction) {
+        ...deadline
+      }
+      projects(filters: $projectFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...projectInfoProgress
+            tasks @include(if: $fetchProjectTasks) {
+              ...projectTaskResponseItem
+            }
+            fields(filters: $projectFieldFilters) {
+              ...fieldsResolvedMinimalTreeFragmentItem
+            }
+            academicYear @include(if: $isServiceAsAction) {
+              id
+              startDate
+              endDate
+            }
+            studentCollaborators {
+              id
+              academicHonesty(filters: {orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC}) {
+                id
+                displaySequence
+                lockingState {
+                  state
+                }
+              }
+              academicHonestyRemarks {
+                id
+                lockingState {
+                  state
+                }
+              }
+              isAcademicHonestyLocked
+              student {
+                ...userNameFields
+              }
+            }
+            notificationBadgeCounts {
+              unreadPostCount
+              unreadPostCommentCount
+              unreadCommentCount
+              unreadAcademicHonestyCount
+              unreadAttachmentCount
+              unreadPendingReviewLogCount
+              unreadResolvedReviewLogCount
+              unreadPendingReviewLogCommentCount
+              unreadResolvedReviewLogCommentCount
+              unreadAttachmentAnnotatedCount
+              unreadProjectEvidenceCommentCount
+              unreadProjectTasksCommentsCount
+              unreadProjectPresentationCommentsCount
+            }
+            isCasExternalPortingDone
+          }
+        }
+      }
+    }
+  }
+}

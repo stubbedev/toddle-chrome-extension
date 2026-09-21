@@ -1,0 +1,13 @@
+fragment interviewInfoItem on ProjectAcademicHonesty {
+  id
+  description
+  meetingDate
+  createdBy {
+    ...userItem
+  }
+  isPrivate
+  isFormalInterview
+  attachments {
+    ...attachmentItem
+  }
+}

@@ -1,0 +1,29 @@
+query searchChannel($input: ChatFeedInput!, $organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      chats(input: $input) {
+        totalCount(input: $input)
+        pageInfo {
+          hasNextPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            id
+            label
+            type
+            profileImageData {
+              url
+              icon
+            }
+            usersV2 {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

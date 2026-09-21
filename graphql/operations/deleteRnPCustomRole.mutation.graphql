@@ -1,0 +1,8 @@
+mutation deleteRnPCustomRole($input: DeleteRnPCustomRoleInput!) {
+  acl {
+    deleteRnPCustomRole(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

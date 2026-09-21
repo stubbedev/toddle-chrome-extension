@@ -1,0 +1,16 @@
+query getBehaviourSeverities($id: ID!, $filters: BehaviourSeverityFilters, $defaultOutcomeFilters: BehaviourDefaultOutcomeFilters, $includeUserCurriculums: Boolean = false, $includeUserRnPRoles: Boolean = false, $includeDefaultOutcomes: Boolean = true) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourSeverities(filters: $filters) {
+        id
+        level
+        name
+        color
+        defaultOutcomes(filters: $defaultOutcomeFilters) @include(if: $includeDefaultOutcomes) {
+          ...defaultOutcomeItem
+        }
+      }
+    }
+  }
+}

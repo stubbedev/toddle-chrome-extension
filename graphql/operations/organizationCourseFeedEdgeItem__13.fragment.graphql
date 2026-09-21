@@ -1,0 +1,66 @@
+fragment organizationCourseFeedEdgeItem on Organization {
+  id
+  courses(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    edges {
+      node {
+        ...courseItem
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
+fragment courseItem on Course {
+  id
+  title
+  sourcedId
+  profileImageData {
+    url
+    icon
+    color
+    acronym
+  }
+  isArchived
+  students(filters: {archivalState: ALL, academicYear: $academicYearId}) {
+    totalCount
+    edges {
+      node {
+        id
+        firstName
+        middleName
+        lastName
+      }
+    }
+  }
+  allCollaborators(filters: $collaboratorFilters) {
+    totalCount
+    edges {
+      node {
+        id
+        firstName
+        middleName
+        lastName
+        rnpRoleContextDetail {
+          id
+          role {
+            id
+            label
+            description
+          }
+          context {
+            id
+          }
+        }
+      }
+    }
+  }
+  learningCourse {
+    id
+    title
+    isArchived
+  }
+}

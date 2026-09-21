@@ -1,0 +1,8 @@
+query getJobFeed($id: ID!, $afterV2: String, $filters: OrganizationIntegrationJobFilterInput, $first: Int, $curriculumProgramId: ID, $academicYearState: ACADEMIC_YEAR_STATE_ENUM, $subTaskFilters: IntegrationSubTaskFeedFilterInput, $fetchSubTasksCount: Boolean! = false) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationCourseFeedEdgeItem
+    }
+  }
+}

@@ -1,0 +1,49 @@
+query getSubjectViewFeed($id: ID!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      name
+      projectGroups(filters: {projectGroupSubTypes: [CORE, INTERNAL_ASSESSMENT, EXTERNAL_ASSESSMENT], subjectArchivalState: ALL}) {
+        id
+        name
+        type
+        subType
+        subject {
+          id
+          name
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+          subjectGroup {
+            id
+            name
+            displaySequence
+          }
+        }
+        projects {
+          totalCount
+          edges {
+            node {
+              id
+              reportStatus
+              template {
+                id
+              }
+              students {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+                suffix
+                pronouns
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

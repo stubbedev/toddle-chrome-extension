@@ -1,0 +1,5 @@
+mutation updateCurriculumOnboardingStatus($input: CurriculumOnboardingStatusInput) {
+  platform {
+    updateCurriculumOnboardingStatus(input: $input)
+  }
+}

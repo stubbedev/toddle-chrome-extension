@@ -1,0 +1,25 @@
+query getCardPlannerElementSetDetails($id: ID!) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      label
+      config {
+        id
+        config
+        valueType
+        value
+      }
+      nodes {
+        id
+        label
+        subText
+        icon {
+          id
+          url
+          metadata
+        }
+      }
+    }
+  }
+}

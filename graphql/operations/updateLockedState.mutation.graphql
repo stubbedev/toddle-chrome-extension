@@ -1,0 +1,7 @@
+mutation updateLockedState($input: LearningCourseEntityLockUpdateInput!) {
+  planner {
+    bulkUpdateLearningCourseEntityLock(input: $input) {
+      isSuccess
+    }
+  }
+}

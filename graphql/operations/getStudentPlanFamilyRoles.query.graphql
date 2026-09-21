@@ -1,0 +1,18 @@
+query getStudentPlanFamilyRoles($organizationId: ID!, $filters: RnPRoleContextDetailFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      rnpView(filters: {rnpType: FAMILY}) {
+        ... on RnPRole {
+          id
+          label
+          description
+          displaySequence
+          assignedFamilyMembers(filters: $filters) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

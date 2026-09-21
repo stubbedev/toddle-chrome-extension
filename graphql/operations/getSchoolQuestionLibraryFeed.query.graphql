@@ -1,0 +1,25 @@
+query getSchoolQuestionLibraryFeed($orgResourceFilters: OrganizationResourceFilter, $first: Int, $after: String, $orgId: ID!, $orderBy: ORDER_BY_ENUM) {
+  node(type: ORGANIZATION, id: $orgId) {
+    id
+    ... on Organization {
+      id
+      organizationResourcesV2(filters: $orgResourceFilters, first: $first, after: $after, orderBy: $orderBy) {
+        resourceTypeBasedCount {
+          totalCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            item {
+              ...questionLibraryFeedDetailsItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

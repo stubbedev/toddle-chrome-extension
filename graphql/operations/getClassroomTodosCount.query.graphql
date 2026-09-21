@@ -1,0 +1,11 @@
+query getClassroomTodosCount($userId: ID!, $studentIds: [ID!], $assignmentFilters: StudentAssignmentFeedFilters) {
+  node(id: $userId, type: FAMILY_MEMBER) {
+    id
+    ... on FamilyMember {
+      id
+      assignments(studentIds: $studentIds, filters: $assignmentFilters) {
+        newAssignmentCount
+      }
+    }
+  }
+}

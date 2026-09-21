@@ -1,0 +1,39 @@
+mutation updateStudentTemplateResponse($input: [UpdateStudentTemplateResponseInput!]) {
+  documentation {
+    updateStudentTemplateResponse(input: $input) {
+      isSuccess
+      warning
+      studentTemplateResponse {
+        id
+        student {
+          id
+          firstName
+          lastName
+        }
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        fields {
+          id
+          resolvedMinimalTree {
+            id
+            type
+            ... on ResolvedFieldAttachmentGroup {
+              attachmentGroups {
+                id
+                displaySequence
+                attachments {
+                  ...attachmentItem
+                }
+              }
+            }
+          }
+        }
+        individuallyRated
+        metadata
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation handlePlannerTemplateLocales($input: HandlePlannerTemplateComponentsInput!) {
+  planner {
+    handlePlannerTemplateComponents(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

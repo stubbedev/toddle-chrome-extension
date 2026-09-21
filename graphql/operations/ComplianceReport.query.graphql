@@ -1,0 +1,57 @@
+query ComplianceReport($id: ID!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      name
+      status
+      dataStatus
+      studentsIncluded
+      setupValues {
+        fieldUid
+        values
+      }
+      locations {
+        entityId
+        ageid
+        name
+      }
+      sidebarSyncs {
+        sidebarUid
+        lastSyncedAt
+      }
+      templateVersion {
+        id
+        versionNumber
+        configBody
+        template {
+          id
+          code
+          name
+        }
+      }
+      lastExportedAt
+      lastExportedBy {
+        id
+        firstName
+        lastName
+        profileImage
+      }
+      exports {
+        id
+        format
+        status
+        downloadUrl
+        failureReason
+        exportedAt
+        createdAt
+        exportedBy {
+          id
+          firstName
+          lastName
+          profileImage
+          email
+        }
+      }
+    }
+  }
+}

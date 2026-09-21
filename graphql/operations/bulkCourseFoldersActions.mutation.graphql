@@ -1,0 +1,8 @@
+mutation bulkCourseFoldersActions($input: BulkFolderActionInput!) {
+  documentation {
+    bulkFolderAction(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

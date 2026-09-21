@@ -1,0 +1,8 @@
+query productRequestDataCSVDownload($orderBy: ORDER_BY_ENUM, $filters: ProductRequestDataBulkDownloadFilters) {
+  platform {
+    productRequestDataBulkDownload(filters: $filters, orderBy: $orderBy) {
+      downloadUrl
+      isSuccess
+    }
+  }
+}

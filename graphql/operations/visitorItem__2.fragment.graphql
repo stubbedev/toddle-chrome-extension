@@ -1,0 +1,13 @@
+fragment visitorItem on Staff {
+  id
+  profileImage
+  firstName
+  lastName
+  email
+  isArchived
+  snp {
+    snpEvaluationCycles(filters: $snpFilters) {
+      ...snpEvaluationCycleItem
+    }
+  }
+}

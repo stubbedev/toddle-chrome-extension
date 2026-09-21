@@ -1,0 +1,23 @@
+query bulkApplyProgress($id: ID!) {
+  node(id: $id, type: INTEGRATION_JOB) {
+    id
+    ... on IntegrationJob {
+      id
+      status
+      workflowProgressV2 {
+        totalSteps
+        completedSteps
+        percentComplete
+        currentStep
+        lastUpdated
+        steps {
+          name
+          status
+          metadata
+          startedAt
+          completedAt
+        }
+      }
+    }
+  }
+}

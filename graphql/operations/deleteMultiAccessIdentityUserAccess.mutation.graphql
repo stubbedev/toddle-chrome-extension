@@ -1,0 +1,8 @@
+mutation deleteMultiAccessIdentityUserAccess($input: EditRequestForMultiAccessIdentityInput!) {
+  platform {
+    deleteRequestForMultiAccessIdentityUserAccess(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

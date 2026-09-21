@@ -1,0 +1,115 @@
+mutation editUser($firstName: String, $middleName: String, $lastName: String, $pronouns: String, $preferredName: String, $suffix: String, $id: ID!, $email: String, $profileImage: String, $sourceId: String, $isArchived: Boolean, $registrationCategory: REGISTRATION_CATEGORY_TYPE_ENUM, $nccdCategory: NCCD_CATEGORY_ENUM, $yearGroupId: ID, $addedCourses: [ID!], $removedCourses: [ID!], $courseTagMap: [CourseTagMapInput!], $otherDetails: OtherUserDetailsInput, $gender: String, $staffRelationMap: [StaffRelationMapInput!], $academicYearId: ID, $isBlocked: Boolean, $withdrawalDate: String) {
+  platform {
+    updateUserV2(input: {id: $id, firstName: $firstName, middleName: $middleName, lastName: $lastName, pronouns: $pronouns, preferredName: $preferredName, suffix: $suffix, profileImage: $profileImage, email: $email, sourceId: $sourceId, isArchived: $isArchived, isBlocked: $isBlocked, registrationCategory: $registrationCategory, nccdCategory: $nccdCategory, yearGroupId: $yearGroupId, addedCourses: $addedCourses, removedCourses: $removedCourses, courseTagMap: $courseTagMap, otherDetails: $otherDetails, gender: $gender, staffRelationMap: $staffRelationMap, academicYearId: $academicYearId, withdrawalDate: $withdrawalDate}) {
+      warning
+      isSuccess
+      user {
+        ...userItem
+      }
+      response {
+        ...userItem
+      }
+    }
+  }
+}
+
+fragment ratingItem on IBPYPElementRating {
+  id
+  academicYear {
+    id
+    startDate
+    endDate
+    terms {
+      id
+    }
+  }
+  academicTerm {
+    id
+    label
+    startDate
+    endDate
+  }
+  parent {
+    id
+    ... on StudentAssessmentEvaluation {
+      id
+      assessment {
+        id
+        title {
+          id
+          value
+        }
+        assessmentType {
+          id
+          value
+        }
+        image {
+          id
+          value
+        }
+      }
+      assessmentEvaluation {
+        id
+      }
+    }
+    ... on StudentProgressReport {
+      id
+      courseProgressReportTask {
+        id
+        title
+      }
+    }
+    ... on Post {
+      id
+      title
+      attachments {
+        ...attachmentItem
+      }
+    }
+    ... on ImportedEntity {
+      id
+      type
+      name
+    }
+    ... on StudentAssignment {
+      id
+      assignment {
+        id
+        contentType
+        course {
+          id
+        }
+        content {
+          id
+          ... on Assessment {
+            id
+            title {
+              id
+              value
+            }
+            assessmentType {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+          }
+          ... on AssignmentResource {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+  createdBy {
+    ...staffItem
+  }
+  publishedAt
+  parentType
+  academicCriteriaValue {
+    ...criteriaValueItem
+  }
+}

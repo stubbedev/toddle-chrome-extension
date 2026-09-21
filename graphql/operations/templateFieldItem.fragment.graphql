@@ -1,0 +1,17 @@
+fragment templateFieldItem on TemplateField {
+  id
+  uid
+  config(filter: $templateFieldConfigFilter) {
+    ...fieldConfigItem
+  }
+  fieldType
+  plannerElementSet(filters: $templateFieldPlannerElementSetFilters) {
+    id
+    label
+    type
+    plannerElementNodeSets {
+      id
+    }
+    ...plannerElementSetConfigDetails
+  }
+}

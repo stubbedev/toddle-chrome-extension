@@ -1,0 +1,7 @@
+mutation createFutureAcademicYear($input: ManageOrganizationAcademicYearInput) {
+  organizationManagement {
+    manageOrganizationAcademicYear(input: $input) {
+      warning
+    }
+  }
+}

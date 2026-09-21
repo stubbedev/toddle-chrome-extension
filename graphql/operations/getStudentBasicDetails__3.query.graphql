@@ -1,0 +1,44 @@
+query getStudentBasicDetails($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        blockedCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            suffix
+            pronouns
+            prefix
+            profileImage
+            email
+            families {
+              id
+              status
+              familyMember {
+                id
+                email
+                lastName
+                middleName
+                firstName
+                type
+                profileImage
+              }
+            }
+            type
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

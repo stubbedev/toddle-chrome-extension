@@ -1,0 +1,63 @@
+query getTrendOverPastWeekByChatTypeQuery($organizationId: ID!, $input: TotalChatMessageInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      messageV2Analytics {
+        totalChatMessages(input: $input) {
+          totalChatMessagesFromPersonalChat {
+            totalMessagesFromStaffWithStaff {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromStaffWithStudent {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromStaffWithFamily {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+          }
+          totalChatMessagesFromChannel {
+            totalMessagesFromSystemManagedChannel {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromFamilyChannel {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromCustomChannel {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromPublicChannel {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromDepartmentChannel {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

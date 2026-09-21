@@ -1,0 +1,19 @@
+mutation completeCodeTransition($input: CompleteCodeTransitionInput!) {
+  platform {
+    completeCodeTransition(input: $input) {
+      isSuccess
+      warning
+      studentsFinalized
+      classesFinalized
+      hasLegacySignInCodes
+      hasLegacyInviteCodes
+      hasOldSignInCodes
+      hasOldInviteCodes
+      hasLegacyClassQRCodes
+      hasOldClassQRCodes
+      oldSignInExpiresAt
+      oldInviteExpiresAt
+      oldQrExpiresAt
+    }
+  }
+}

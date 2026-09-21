@@ -1,0 +1,25 @@
+query getAssignmentForTimetableSlot($id: ID!) {
+  node(id: $id, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      id
+      contentType
+      content {
+        ... on Assessment {
+          assignments {
+            edges {
+              id
+              state {
+                state
+              }
+              course {
+                id
+              }
+            }
+          }
+          ...assessmentItem
+        }
+      }
+    }
+  }
+}

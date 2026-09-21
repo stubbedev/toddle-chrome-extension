@@ -1,0 +1,22 @@
+query getOrganizationDocumentIds($organizationId: ID!, $documentFilter: DocumentFilterInput, $first: Int) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      documents(filters: $documentFilter, first: $first, orderBy: CREATED_AT) {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+        pageInfo {
+          startCursor
+          endCursor
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

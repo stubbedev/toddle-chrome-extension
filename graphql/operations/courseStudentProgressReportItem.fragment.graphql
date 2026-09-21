@@ -1,0 +1,10 @@
+fragment courseStudentProgressReportItem on CourseProgressReportTask {
+  id
+  studentProgressReport(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection, orderByInput: $orderByInput) {
+    ...studentProgressReportItem
+  }
+  reportStatusCount {
+    status
+    count
+  }
+}

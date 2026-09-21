@@ -1,0 +1,20 @@
+mutation createAcademicSubject($name: String!, $code: String, $reportDisplayName: String, $gradeIds: [ID!], $levelIds: [ID!], $departmentId: ID, $academicCurriculumProgramId: ID!, $icon: String, $iconType: SUBJECT_ICON_TYPE_ENUM, $metadata: JSON, $presetSubjectId: ID, $orgSubjectVariants: [OrgSubjectVariantInput!], $courseType: SUBJECT_COURSE_TYPE_ENUM, $type: SUBJECT_TYPE_ENUM) {
+  platform {
+    createAcademicSubject(input: {name: $name, code: $code, reportDisplayName: $reportDisplayName, gradeIds: $gradeIds, levelIds: $levelIds, departmentId: $departmentId, academicCurriculumProgramId: $academicCurriculumProgramId, icon: $icon, iconType: $iconType, metadata: $metadata, presetSubjectId: $presetSubjectId, orgSubjectVariants: $orgSubjectVariants, courseType: $courseType, type: $type}) {
+      isSuccess
+      warning
+      subject {
+        id
+        name
+        code
+        courseType
+        reportDisplayName
+        icon
+        iconType
+        isArchived
+        type
+        metadata
+      }
+    }
+  }
+}

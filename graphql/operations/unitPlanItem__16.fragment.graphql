@@ -1,0 +1,58 @@
+query getMapleBearUnitPlans($id: ID!, $unitPlansFeedFilters: UnitPlansV2FeedFilters, $coursesFilters: SubjectCourseFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      allRegionTags {
+        id
+        region
+        unitPlans(filters: $unitPlansFeedFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              grades
+              ...unitPlanItem
+            }
+          }
+        }
+      }
+      courses(filters: $coursesFilters) {
+        totalCount
+      }
+    }
+  }
+}
+
+fragment unitPlanItem on UnitPlan {
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  theme {
+    id
+    resolvedMinimalTree {
+      id
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+    }
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+}

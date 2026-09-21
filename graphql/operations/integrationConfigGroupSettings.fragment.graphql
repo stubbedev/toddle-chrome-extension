@@ -1,0 +1,5 @@
+fragment integrationConfigGroupSettings on IntegrationConfigGroupDetailResponse {
+  id
+  settings
+  apiFilters
+}

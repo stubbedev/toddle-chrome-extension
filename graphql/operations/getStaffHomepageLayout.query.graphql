@@ -1,0 +1,10 @@
+query getStaffHomepageLayout($id: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      homepageLayout {
+        ...homepageLayoutFields
+      }
+    }
+  }
+}

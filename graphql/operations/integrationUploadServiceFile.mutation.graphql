@@ -1,0 +1,9 @@
+mutation integrationUploadServiceFile($input: IntegrationUploadServiceFileInput!) {
+  integration {
+    integrationUploadServiceFile(input: $input) {
+      isSuccess
+      warning
+      message
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query multiAccessIdentitiesWithAMAccess {
+  platform {
+    multiAccessIdentitiesWithAMAccess {
+      id
+      identityId
+      firstName
+      lastName
+      email
+    }
+  }
+}

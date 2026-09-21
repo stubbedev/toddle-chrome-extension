@@ -1,0 +1,32 @@
+query getStudentAcademicYears($id: ID!, $termFilters: TermFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      academicYears {
+        id
+        startDate
+        endDate
+        terms(filters: $termFilters) {
+          id
+          type
+          label
+          abbreviation
+          lockingStatus
+          associatedAcademicTermEntities {
+            id
+            academicTerm {
+              id
+              type
+            }
+            cumulativeAcademicTermWeightages {
+              id
+              weightage
+              percentage
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query getProjectGroupDeadlinesCount($projectGroupId: ID!) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      tasks {
+        totalCount
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+fragment organizationItem on Organization {
+  subjectGroups(filters: $filters) {
+    id
+    name
+    globalSubjectGroup {
+      id
+      constants
+    }
+    subjects(filters: $subjectFilters) {
+      ...subjectItem
+    }
+    sourceSubjects {
+      id
+      name
+    }
+  }
+}
+
+fragment userMapItem on CourseUserMapConnection {
+  edges {
+    node {
+      id
+      user {
+        ... on Student {
+          id
+          firstName
+          middleName
+          lastName
+          preferredName
+          prefix
+          suffix
+          pronouns
+          type
+          isArchived
+          isArchivedV2(filters: {academicYearId: $academicYearId})
+          profileImage
+          yearGroup {
+            id
+            name
+          }
+          alertTypes {
+            ...alertTypeFields
+          }
+        }
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query getSnpSet($curriculumType: CURRICULUM_PROGRAM_TYPE_ENUM) {
+  platform {
+    organization {
+      snpSet(filters: {curriculumType: $curriculumType}) {
+        id
+        title
+      }
+    }
+  }
+}

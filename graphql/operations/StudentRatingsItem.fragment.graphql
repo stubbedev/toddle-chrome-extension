@@ -1,0 +1,38 @@
+fragment StudentRatingsItem on Student {
+  id
+  ibPYPElementRatings(dataSet: ASSESSMENT_CATEGORY_AND_TERM_FINAL_SCORE, filtersForGeneric: $filtersForGeneric) {
+    id
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      displaySequence
+    }
+    academicCriteriaSet {
+      id
+      criteriaType
+      subType
+    }
+    ibPYPElementId
+    ibPYPElementType
+    isComputedRating
+    isRemoved
+    category {
+      id
+    }
+    globalCategory {
+      id
+    }
+    parent {
+      id
+      ... on StudentAssignment {
+        id
+      }
+    }
+    parentType
+    academicTerm {
+      id
+    }
+    value
+  }
+}

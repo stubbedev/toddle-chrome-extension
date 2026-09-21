@@ -1,0 +1,5 @@
+query getStudentCourses($studentId: ID!, $filters: UserCourseMapFilters, $enabledModulesFilters: EnabledModulesFiltersInput, $aclControlParameterFilter: ACLControlParameterFilter, $postFilters: PostFilterInput) {
+  node(id: $studentId, type: STUDENT) {
+    ...studentCoursesItem
+  }
+}

@@ -1,0 +1,7 @@
+query getPypConceptSet($id: ID!) {
+  node(id: $id, type: PYP_KEY_CONCEPT) {
+    ... on PlannerConceptSet {
+      ...conceptSetItem
+    }
+  }
+}

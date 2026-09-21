@@ -1,0 +1,10 @@
+fragment studentNameFields on Student {
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  type
+}

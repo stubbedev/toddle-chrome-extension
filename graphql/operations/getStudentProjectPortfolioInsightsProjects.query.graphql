@@ -1,0 +1,35 @@
+query getStudentProjectPortfolioInsightsProjects($id: ID!, $filters: PlannerFieldFilter, $projectFilters: ProjectFilter) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      student {
+        ...studentInfo
+      }
+      projects(filters: $projectFilters) {
+        totalCount
+        edges {
+          node {
+            ...portfolioProjectInfo
+            ...projectFieldsDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

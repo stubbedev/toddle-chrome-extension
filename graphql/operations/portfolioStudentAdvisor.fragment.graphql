@@ -1,0 +1,9 @@
+fragment portfolioStudentAdvisor on StudentProjectPortfolio {
+  id
+  student {
+    ...userItem
+  }
+  staff {
+    ...userItem
+  }
+}

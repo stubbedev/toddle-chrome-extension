@@ -1,0 +1,20 @@
+query getYearGroupUsers($organizationId: ID!, $filters: YearGroupFilter, $skipStudents: Boolean!, $skipStaff: Boolean!, $skipFamilyMembers: Boolean!, $allStudentsFilters: YearGroupAllStudentsFiltersInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      yearGroups(filters: $filters) {
+        id
+        name
+        allStaffs @skip(if: $skipStaff) {
+          ...userDetailItem
+        }
+        allStudents(filters: $allStudentsFilters) @skip(if: $skipStudents) {
+          ...userDetailItem
+        }
+        allParents @skip(if: $skipFamilyMembers) {
+          ...userDetailItem
+        }
+      }
+    }
+  }
+}

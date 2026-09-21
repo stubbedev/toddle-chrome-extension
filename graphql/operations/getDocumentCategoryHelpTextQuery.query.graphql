@@ -1,0 +1,8 @@
+query getDocumentCategoryHelpTextQuery($id: ID!, $locale: String, $attachmentFilters: AttachmentFilterInput!) {
+  node(id: $id, type: SnP_DOCUMENT_CATEGORY) {
+    id
+    ... on SnPDocumentCategory {
+      ...documentCategoryHelpText
+    }
+  }
+}

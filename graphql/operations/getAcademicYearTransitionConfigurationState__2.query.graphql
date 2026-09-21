@@ -1,0 +1,22 @@
+query getAcademicYearTransitionConfigurationState($organizationId: ID!, $curriculumIds: [ID!], $academicYearTransitionConfigurationStateFilters: AcademicYearTransitionConfigurationStateFilters!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds, filters: {programType: ALL}) {
+        id
+        programType
+        academicYearTransitionConfigurationState(filters: $academicYearTransitionConfigurationStateFilters) {
+          state
+          isComplete
+          isChecked
+          updatedAt
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

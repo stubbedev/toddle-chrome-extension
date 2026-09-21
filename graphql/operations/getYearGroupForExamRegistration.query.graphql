@@ -1,0 +1,22 @@
+query getYearGroupForExamRegistration($id: ID!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      yearGroup {
+        id
+        name
+        isArchived
+      }
+      lastSyncInfo {
+        id
+      }
+      students {
+        totalCount
+      }
+      allStudents {
+        id
+      }
+      updatedAt
+    }
+  }
+}

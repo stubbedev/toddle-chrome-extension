@@ -1,0 +1,10 @@
+mutation editPlatformCalendarEvent($id: ID!, $label: String!, $startAt: String, $description: String, $durationInMin: Int, $recurrenceSetting: RecurrenceSettingInput, $metadata: CalendarEventItemMetadataInput, $meeting: MeetingInput, $removedCourseIds: [ID!], $addedCourseIds: [ID!], $removedUserIds: [ID!], $addedUserIds: [ID!], $actionFor: CALENDAR_EVENT_ACTION_FOR, $startDateTime: String, $endDateTime: String, $location: String, $addedEntityIds: [ID!], $removedEntityIds: [ID!], $entityType: CALENDAR_EVENT_ITEM_ENTITY_TYPE_ENUM, $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $categoryId: ID, $isFullDayEvent: Boolean, $addedAttachments: [AttachmentInput!], $removedAttachments: [ID!], $sharedWith: [CALENDAR_EVENT_ITEM_SHARED_WITH_ENUM!], $eventReminders: [EventReminderInput!], $notificationMessage: String, $shouldNotifyParticipants: Boolean, $shouldUseNewMeetingInfra: Boolean, $attendanceTakers: AttendanceTakerChangesInput, $sessions: SessionChangesInput) {
+  platform {
+    editPlatformCalendarEvent(input: {id: $id, label: $label, startAt: $startAt, description: $description, durationInMin: $durationInMin, recurrenceSetting: $recurrenceSetting, meeting: $meeting, removedCourseIds: $removedCourseIds, addedCourseIds: $addedCourseIds, removedUserIds: $removedUserIds, addedUserIds: $addedUserIds, actionFor: $actionFor, startDateTime: $startDateTime, endDateTime: $endDateTime, location: $location, addedEntityIds: $addedEntityIds, removedEntityIds: $removedEntityIds, entityType: $entityType, eventType: $eventType, categoryId: $categoryId, isFullDayEvent: $isFullDayEvent, addedAttachments: $addedAttachments, removedAttachments: $removedAttachments, sharedWith: $sharedWith, eventReminders: $eventReminders, notificationMessage: $notificationMessage, shouldNotifyParticipants: $shouldNotifyParticipants, metadata: $metadata, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra, attendanceTakers: $attendanceTakers, sessions: $sessions}) {
+      response {
+        ...platformCalendarEventItem
+      }
+      warning
+    }
+  }
+}

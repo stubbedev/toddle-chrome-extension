@@ -1,0 +1,9 @@
+query getGradebookSummaryExport($id: ID!, $input: [GradebookSummaryExportInput!]) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      gradebookSummaryExport(input: $input)
+    }
+    __typename
+  }
+}

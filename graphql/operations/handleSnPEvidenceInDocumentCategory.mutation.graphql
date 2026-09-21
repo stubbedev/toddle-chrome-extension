@@ -1,0 +1,7 @@
+mutation handleSnPEvidenceInDocumentCategory($input: HandleSnPEvidenceInDocumentCategoryInput) {
+  platform {
+    handleSnPEvidenceInDocumentCategory(input: $input) {
+      id
+    }
+  }
+}

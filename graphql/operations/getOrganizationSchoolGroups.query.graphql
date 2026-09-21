@@ -1,0 +1,22 @@
+query getOrganizationSchoolGroups($organizationId: ID!, $input: SchoolGroupsInput, $skipStudents: Boolean! = false, $skipStaff: Boolean! = false, $skipFamilyMembers: Boolean! = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      schoolGroupsFeed(input: $input) {
+        edges {
+          node {
+            ...schoolGroupListItem
+            memberCount(filters: {userTypes: [staff]}) @skip(if: $skipStaff)
+            memberCount(filters: {userTypes: [student]}) @skip(if: $skipStudents)
+            memberCount(filters: {userTypes: [parent]}) @skip(if: $skipFamilyMembers)
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

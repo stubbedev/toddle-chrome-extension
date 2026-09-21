@@ -1,0 +1,7 @@
+mutation deleteAcademicTerms($ids: [ID!]) {
+  organizationManagement {
+    deleteAcademicTerms(ids: $ids) {
+      isSuccess
+    }
+  }
+}

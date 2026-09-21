@@ -1,0 +1,5 @@
+mutation integrationUpdateSyncMetaData($service: INTEGRATION_SERVICE_NAME!, $metadata: JSON!) {
+  integration {
+    integrationUpdateSyncMetaData(input: {service: $service, metadata: $metadata})
+  }
+}

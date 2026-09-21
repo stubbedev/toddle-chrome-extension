@@ -1,0 +1,25 @@
+query getOrganizationResourcesFeed($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $organizationResourceFilter: OrganizationResourceFilter, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $after: String, $first: Int) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Organization {
+      id
+      organizationResourcesV2(filters: $organizationResourceFilter, orderBy: $orderBy, orderByDirection: $orderByDirection, first: $first, after: $after) {
+        resourceTypeBasedCount {
+          fileCount
+          folderCount
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            ...externalDataSourceFragment
+          }
+        }
+      }
+    }
+  }
+}

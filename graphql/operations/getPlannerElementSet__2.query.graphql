@@ -1,0 +1,13 @@
+query getPlannerElementSet($id: ID!, $filters: PlannerElementFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      nodes(filters: $filters) {
+        id
+        label
+        subText
+      }
+    }
+  }
+}

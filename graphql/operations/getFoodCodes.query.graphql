@@ -1,0 +1,14 @@
+query getFoodCodes($organizationId: ID!, $filters: OrganizationPostTemplateItemCodeFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      postTemplateItemCode(filters: $filters) {
+        id
+        itemName
+        code
+        isArchived
+        isItemUsed
+      }
+    }
+  }
+}

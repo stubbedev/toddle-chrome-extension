@@ -1,0 +1,7 @@
+mutation updateRubricCriteria($id: ID!, $updatedBy: ID!, $label: String) {
+  planner {
+    updateRubricCriteria(input: {updatedBy: $updatedBy, id: $id, label: $label}) {
+      id
+    }
+  }
+}

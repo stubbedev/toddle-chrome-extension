@@ -1,0 +1,74 @@
+fragment plannerElementNodeItem on PlannerElementNode {
+  id
+  uid
+  type
+  label
+  subText
+  gradingType
+  code
+  depth
+  parentData {
+    id
+    uid
+  }
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+      gradeScales {
+        id
+        displayName
+      }
+    }
+    properties {
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+      isGraded
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+    }
+  }
+  standardsWrapper {
+    standardSet {
+      id
+      type
+      title
+    }
+    properties {
+      isArchived
+      isPowerStandard
+      isGradedStandard
+      subjects {
+        id
+        name
+      }
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+fragment progressReportItem on CourseProgressReportTask {
+  id
+  title
+  completionStatus
+  gradeSubjectObjectivesIsComplete
+  studentProgressReport {
+    id
+    status
+    student {
+      id
+    }
+  }
+  course {
+    ...courseItem
+    grades {
+      id
+    }
+  }
+  parentEntity {
+    id
+    ... on Grade {
+      id
+      name
+    }
+  }
+  unitPlans {
+    id
+    title {
+      id
+      value
+    }
+    image {
+      id
+      resolvedMinimalTree {
+        ... on ResolvedFieldVideoAttachment {
+          id
+          attachment {
+            id
+            thumbUrl
+            url
+          }
+        }
+      }
+    }
+    unitType {
+      id
+      value
+    }
+    subjects {
+      id
+      value
+    }
+    theme {
+      id
+      value
+      resolvedMinimalTree {
+        ... on ResolvedFieldThemeSet {
+          id
+          type
+          themes {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+  filteredNodes
+  deadlineDate
+  progressReportTaskGroup {
+    id
+    attendanceMode
+    academicTerm {
+      id
+      label
+    }
+    academicTerms {
+      id
+      label
+    }
+  }
+  attendanceDates {
+    startDate
+    endDate
+  }
+  reportingDates {
+    startDate
+    endDate
+  }
+  reportStatusCount {
+    status
+    count
+  }
+  createdAt
+  signatories {
+    ...progressReportSignatoriesItem
+  }
+}

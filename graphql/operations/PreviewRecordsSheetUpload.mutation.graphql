@@ -1,0 +1,33 @@
+mutation PreviewRecordsSheetUpload($input: PreviewRecordsSheetUploadInput!) {
+  complianceReport {
+    previewRecordsSheetUpload(input: $input) {
+      isSuccess
+      warning
+      uploadStatus
+      dataToUpdate {
+        recordId
+        page
+        identifier
+        changes {
+          fieldUid
+          newValue
+          isClear
+        }
+      }
+      softErrors {
+        page
+        row
+        identifier
+        errorDescription
+      }
+      hardErrors {
+        page
+        row
+        identifier
+        errorDescription
+      }
+      activityLogId
+      status
+    }
+  }
+}

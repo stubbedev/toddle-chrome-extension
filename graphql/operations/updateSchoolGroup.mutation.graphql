@@ -1,0 +1,12 @@
+mutation updateSchoolGroup($input: UpdateSchoolGroupInput!) {
+  platform {
+    updateSchoolGroup(input: $input) {
+      isSuccess
+      warning
+      schoolGroup {
+        ...schoolGroupListItem
+        ...schoolGroupCounts
+      }
+    }
+  }
+}

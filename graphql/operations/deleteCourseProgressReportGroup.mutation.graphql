@@ -1,0 +1,5 @@
+mutation deleteCourseProgressReportGroup($id: ID!) {
+  documentation {
+    deleteProgressReportGroup(input: {id: $id})
+  }
+}

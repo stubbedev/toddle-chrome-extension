@@ -1,0 +1,16 @@
+query getAllOrganizationDetails($searchText: String!, $after: String) {
+  organizationManagement {
+    organizationPresetFeed(first: 20, searchText: $searchText, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...organizationItem
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

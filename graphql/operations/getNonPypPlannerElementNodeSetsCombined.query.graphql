@@ -1,0 +1,372 @@
+query getNonPypPlannerElementNodeSetsCombined($interdisciplinaryIds: [ID!], $globalIds: [ID!], $subjectIds: [ID!], $subjectGradeIds: [ID!], $gradeIds: [ID!], $interdisciplinaryFilters: PlannerElementNodeFilters, $globalFilters: PlannerElementNodeFilters, $subjectFilters: PlannerElementNodeFilters, $subjectGradeFilters: PlannerElementNodeFilters, $gradeFilters: PlannerElementNodeFilters) {
+  multiNode(ids: $interdisciplinaryIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      title
+      type
+      plannerElementSet {
+        id
+        type
+        label
+        config {
+          id
+          config
+          valueType
+          value
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $interdisciplinaryFilters) {
+            edges {
+              node {
+                ...plannerElementNodeV2Item
+              }
+            }
+          }
+        }
+        ... on PlannerActionSetWrapper {
+          publishedData(filters: $interdisciplinaryFilters) {
+            edges {
+              node {
+                ...actionItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $interdisciplinaryFilters) {
+            edges {
+              node {
+                ...lpItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $interdisciplinaryFilters) {
+            edges {
+              node {
+                ...conceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerRelatedConceptSetWrapper {
+          publishedData(filters: $interdisciplinaryFilters) {
+            edges {
+              node {
+                ...relatedConceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $interdisciplinaryFilters) {
+            edges {
+              node {
+                ...atlItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  multiNode(ids: $globalIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      title
+      type
+      plannerElementSet {
+        id
+        type
+        label
+        config {
+          id
+          config
+          valueType
+          value
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $globalFilters) {
+            edges {
+              node {
+                ...plannerElementNodeV2Item
+              }
+            }
+          }
+        }
+        ... on PlannerActionSetWrapper {
+          publishedData(filters: $globalFilters) {
+            edges {
+              node {
+                ...actionItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $globalFilters) {
+            edges {
+              node {
+                ...lpItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $globalFilters) {
+            edges {
+              node {
+                ...conceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerRelatedConceptSetWrapper {
+          publishedData(filters: $globalFilters) {
+            edges {
+              node {
+                ...relatedConceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $globalFilters) {
+            edges {
+              node {
+                ...atlItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  multiNode(ids: $subjectIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      title
+      type
+      plannerElementSet {
+        id
+        type
+        label
+        config {
+          id
+          config
+          valueType
+          value
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $subjectFilters) {
+            edges {
+              node {
+                ...plannerElementNodeV2Item
+              }
+            }
+          }
+        }
+        ... on PlannerActionSetWrapper {
+          publishedData(filters: $subjectFilters) {
+            edges {
+              node {
+                ...actionItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $subjectFilters) {
+            edges {
+              node {
+                ...lpItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $subjectFilters) {
+            edges {
+              node {
+                ...conceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerRelatedConceptSetWrapper {
+          publishedData(filters: $subjectFilters) {
+            edges {
+              node {
+                ...relatedConceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $subjectFilters) {
+            edges {
+              node {
+                ...atlItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  multiNode(ids: $subjectGradeIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      title
+      type
+      plannerElementSet {
+        id
+        type
+        label
+        config {
+          id
+          config
+          valueType
+          value
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $subjectGradeFilters) {
+            edges {
+              node {
+                ...plannerElementNodeV2Item
+              }
+            }
+          }
+        }
+        ... on PlannerActionSetWrapper {
+          publishedData(filters: $subjectGradeFilters) {
+            edges {
+              node {
+                ...actionItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $subjectGradeFilters) {
+            edges {
+              node {
+                ...lpItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $subjectGradeFilters) {
+            edges {
+              node {
+                ...conceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerRelatedConceptSetWrapper {
+          publishedData(filters: $subjectGradeFilters) {
+            edges {
+              node {
+                ...relatedConceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $subjectGradeFilters) {
+            edges {
+              node {
+                ...atlItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  multiNode(ids: $gradeIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      title
+      type
+      plannerElementSet {
+        id
+        type
+        label
+        config {
+          id
+          config
+          valueType
+          value
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $gradeFilters) {
+            edges {
+              node {
+                ...plannerElementNodeV2Item
+              }
+            }
+          }
+        }
+        ... on PlannerActionSetWrapper {
+          publishedData(filters: $gradeFilters) {
+            edges {
+              node {
+                ...actionItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $gradeFilters) {
+            edges {
+              node {
+                ...lpItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $gradeFilters) {
+            edges {
+              node {
+                ...conceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerRelatedConceptSetWrapper {
+          publishedData(filters: $gradeFilters) {
+            edges {
+              node {
+                ...relatedConceptItem
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $gradeFilters) {
+            edges {
+              node {
+                ...atlItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

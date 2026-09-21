@@ -1,0 +1,11 @@
+query getAIConversationAttachments($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    id
+    ... on AiConversation {
+      id
+      attachments {
+        ...attachmentItem
+      }
+    }
+  }
+}

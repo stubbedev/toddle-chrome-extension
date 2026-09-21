@@ -1,0 +1,27 @@
+query getOrganizationCourses($organizationId: ID!, $courseFilters: CourseFilterInput, $getGrades: Boolean!, $getCurriculumProgram: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $courseFilters) {
+        edges {
+          node {
+            id
+            title
+            grades @include(if: $getGrades) {
+              id
+              name
+              displaySequence
+            }
+            curriculumProgram @include(if: $getCurriculumProgram) {
+              id
+              type
+              label
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

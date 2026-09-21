@@ -1,0 +1,5 @@
+mutation updateCourseProgressReportTaskPypElements($taskId: ID!, $parentType: COURSE_PROGRESS_REPORT_TASK_PYP_ELEMENT_PARENT_ENUM!, $parentId: ID, $addedElements: [ProgressReportPypElementInput!], $removedElements: [ProgressReportPypElementInput!]) {
+  documentation {
+    updateCourseProgressReportTaskPypElements(input: {taskId: $taskId, parentType: $parentType, parentId: $parentId, addedElements: $addedElements, removedElements: $removedElements})
+  }
+}

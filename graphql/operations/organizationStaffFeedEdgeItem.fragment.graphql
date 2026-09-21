@@ -1,0 +1,22 @@
+fragment organizationStaffFeedEdgeItem on Organization {
+  id
+  staff(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    userCount {
+      role
+      totalCount
+    }
+    edges {
+      node {
+        id
+        ... on Staff {
+          displayRole
+          ...teacherItem
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

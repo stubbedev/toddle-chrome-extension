@@ -1,0 +1,23 @@
+fragment jobData on IntegrationJob {
+  id
+  status
+  serviceName
+  createdAt
+  curriculum
+  curriculumId
+  type
+  metadata
+  subTasksFeed(filters: $subTaskFilters) @include(if: $fetchSubTasksCount) {
+    totalCount
+    errorCount
+  }
+  createdBy {
+    ...staffItem
+  }
+}
+
+mutation integrationAddThirdPartyMapping($input: IntegrationThirdPartyMappingInput!) {
+  integration {
+    integrationAddThirdPartyMapping(input: $input)
+  }
+}

@@ -1,0 +1,9 @@
+mutation uploadToSftp($input: IntegrationUploadToSftpInput!) {
+  integration {
+    integrationUploadToSftp(input: $input) {
+      isSuccess
+      errorMessage
+      jobId
+    }
+  }
+}

@@ -1,0 +1,105 @@
+query getCCHBlueprintCoursesFeed($organizationId: ID!, $orderByDirection: OrderByDirectionEnum, $orderBy: OrderByEnum, $collaboratorFilters: LearningCourseCollaboratorFilters, $filters: LearningCourseFilters, $after: String, $gradeFilters: LearningCourseGradeFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(first: 20, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            ...cchBlueprintCourseItem
+          }
+        }
+        count {
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}
+
+fragment cchBlueprintCourseItem on LearningCourse {
+  id
+  type
+  title
+  state
+  code
+  academicCourse {
+    id
+    label
+    code
+  }
+  includeAllGradingPeriods
+  gradingPeriods {
+    edges {
+      node {
+        id
+        label
+      }
+    }
+  }
+  isArchived
+  isBookmarked
+  displayName
+  displayMetadata
+  subjects {
+    id
+    name
+  }
+  grades(filters: $gradeFilters) {
+    id
+    name
+  }
+  subjectGroup {
+    id
+    name
+  }
+  createdAt
+  updatedAt
+  createdBy {
+    id
+    type
+    firstName
+    middleName
+    lastName
+    profileImage
+  }
+  updatedBy {
+    id
+    type
+    firstName
+    middleName
+    lastName
+    profileImage
+  }
+  collaborators(filters: $collaboratorFilters) {
+    totalCount
+    edges {
+      node {
+        id
+        type
+        firstName
+        middleName
+        lastName
+        preferredName
+        prefix
+        suffix
+        pronouns
+        profileImage
+      }
+    }
+  }
+  childCourses(filters: {status: ACTIVE}) {
+    id
+    title
+    displayMetadata
+  }
+  curriculumProgram {
+    id
+    label
+  }
+}

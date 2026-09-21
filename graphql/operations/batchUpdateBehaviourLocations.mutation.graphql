@@ -1,0 +1,13 @@
+mutation batchUpdateBehaviourLocations($input: BatchUpdateBehaviourLocationsInput!) {
+  platform {
+    batchUpdateBehaviourLocations(input: $input) {
+      isSuccess
+      errors {
+        entityId
+        code
+        message
+        incidentCount
+      }
+    }
+  }
+}

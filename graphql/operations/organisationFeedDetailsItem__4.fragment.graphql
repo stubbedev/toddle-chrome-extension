@@ -1,0 +1,36 @@
+fragment organisationFeedDetailsItem on Organization {
+  id
+  name
+  logo
+  code
+  isPaid
+  region
+  curriculumPrograms(filters: $curriculumProgramFilters) {
+    id
+    type
+    label
+    acronym
+    platformId
+    buddy {
+      firstName
+      lastName
+      id
+      email
+    }
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+    curriculumProgramData {
+      subscriptionPlan
+      subscriptionStatus
+      curriculumGroup
+    }
+    students {
+      totalCount
+    }
+    ... on UBDCurriculumProgram {
+      variant
+    }
+    ...subscriptionPlanDetailsItem
+  }
+}

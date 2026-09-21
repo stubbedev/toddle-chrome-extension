@@ -1,0 +1,18 @@
+query getStudentAssignmentQuestionSubmissions($submissionId: ID!, $userFilter: TOOL_RESPONSE_USER_FILTER_ENUM) {
+  node(id: $submissionId, type: STUDENT_ASSIGNMENT_SUBMISSION) {
+    id
+    ... on StudentAssignmentSubmission {
+      id
+      status
+      questionSubmissions {
+        totalCount
+        totalQuestionAttempted
+        edges {
+          node {
+            ...questionSubmissionItem
+          }
+        }
+      }
+    }
+  }
+}

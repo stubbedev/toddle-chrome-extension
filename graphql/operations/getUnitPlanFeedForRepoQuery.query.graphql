@@ -1,0 +1,82 @@
+query getUnitPlanFeedForRepoQuery($id: ID!, $after: String, $filters: UnitPlansV2FeedFilters!, $first: Int, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      unitPlansV2(filters: $filters, first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            state
+            createdAt
+            title {
+              id
+              value
+              __typename
+            }
+            unitCode {
+              id
+              value
+            }
+            image {
+              id
+              value
+              __typename
+            }
+            duration {
+              id
+              value
+              __typename
+            }
+            unitType {
+              id
+              value
+              __typename
+            }
+            curriculumProgram {
+              id
+              type
+            }
+            subjects {
+              id
+              value
+              resolvedMinimalTree {
+                ... on ResolvedFieldSubjectSet {
+                  id
+                  subjects {
+                    id
+                    name
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            theme {
+              id
+              value
+              resolvedMinimalTree {
+                ... on ResolvedFieldThemeSet {
+                  id
+                  themes {
+                    id
+                    label
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getCustomIcons($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      attachments(filters: {parentTypes: [ORGANIZATION_CUSTOM_ICON]}) {
+        id
+        name
+        signedUrl
+        createdAt
+      }
+    }
+  }
+}

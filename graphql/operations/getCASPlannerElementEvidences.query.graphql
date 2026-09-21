@@ -1,0 +1,43 @@
+query getCASPlannerElementEvidences($id: ID!, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+        id
+        plannerElementNode {
+          id
+          displaySequence
+          label
+        }
+        evidence {
+          totalCount
+          edges {
+            node {
+              id
+              title
+              description
+              shareableUrl
+              attachments {
+                id
+                title
+                name
+                description
+                thumbUrl
+                url
+                type
+              }
+              items {
+                itemType
+                item {
+                  ... on Project {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

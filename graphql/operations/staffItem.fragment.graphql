@@ -1,0 +1,6 @@
+fragment staffItem on Staff {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...courseItem
+  }
+}

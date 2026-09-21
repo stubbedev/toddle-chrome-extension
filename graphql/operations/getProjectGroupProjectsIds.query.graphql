@@ -1,0 +1,17 @@
+query getProjectGroupProjectsIds($id: ID!, $projectFilters: ProjectGroupProjectsFilters, $shouldFetchPsmIds: Boolean!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectFilters) {
+        edges {
+          node {
+            id
+            studentCollaborators @include(if: $shouldFetchPsmIds) {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

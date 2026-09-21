@@ -1,0 +1,11 @@
+mutation createDashboardAlerts($input: CreateDashboardAlertsInput!) {
+  platform {
+    createDashboardAlerts(input: $input) {
+      isSuccess
+      warning
+      dashboardAlert {
+        ...dashboardAlertFragment
+      }
+    }
+  }
+}

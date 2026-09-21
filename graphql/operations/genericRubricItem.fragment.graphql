@@ -1,0 +1,58 @@
+fragment genericRubricItem on GenericRubric {
+  id
+  label
+  label
+  subType
+  metadata
+  gradeScale {
+    id
+    gradingType
+  }
+  associateScoreTool {
+    isAutoCalculate
+    scoreTool {
+      id
+      scoreToolData {
+        id
+        maxScore
+        isCustomMaxScore
+      }
+    }
+  }
+  associateGradeScaleTool {
+    isAutoCalculate
+    gradeScaleAssessmentTool {
+      id
+      gradeScaleToolData {
+        id
+        subType
+        gradeScaleEntityDetail {
+          id
+          gradeScale {
+            id
+            displayName
+            gradingType
+            templateName
+          }
+          gradeScaleValues {
+            id
+            label
+            abbreviation
+            description
+            displaySequence
+            color
+            gradeScaleValueScores {
+              id
+              minValue
+              maxValue
+              gradeValue
+            }
+          }
+        }
+      }
+    }
+  }
+  genericRubricCriterias {
+    ...genericRubricCriteriaItem
+  }
+}

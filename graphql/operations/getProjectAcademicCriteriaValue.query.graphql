@@ -1,0 +1,11 @@
+query getProjectAcademicCriteriaValue($id: ID!) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      ibPYPElementRatings {
+        ...basicIBPYPElementRatingItem
+      }
+    }
+  }
+}

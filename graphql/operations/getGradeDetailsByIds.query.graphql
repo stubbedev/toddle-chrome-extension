@@ -1,0 +1,12 @@
+query getGradeDetailsByIds($gradeIds: [ID!]) {
+  multiNode(ids: $gradeIds, type: GRADE) {
+    id
+    ... on Grade {
+      id
+      name
+      staffCount
+      studentCount
+      familyMemberCount
+    }
+  }
+}

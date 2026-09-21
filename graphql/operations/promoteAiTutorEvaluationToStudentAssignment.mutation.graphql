@@ -1,0 +1,8 @@
+mutation promoteAiTutorEvaluationToStudentAssignment($input: PromoteAiTutorEvaluationToStudentAssignmentInput!) {
+  platform {
+    promoteAiTutorEvaluationToStudentAssignment(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

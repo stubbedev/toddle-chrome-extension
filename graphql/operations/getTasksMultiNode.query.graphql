@@ -1,0 +1,8 @@
+query getTasksMultiNode($ids: [ID!]) {
+  multiNode(ids: $ids, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      ...assignmentItem
+    }
+  }
+}

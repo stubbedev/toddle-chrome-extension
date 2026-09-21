@@ -1,0 +1,10 @@
+mutation updateOrganization($orgId: ID!, $id: ID!, $startDate: String!, $endDate: String!) {
+  organizationManagement {
+    manageOrganizationAcademicYear(input: {id: $orgId, academicYear: {id: $id, dates: {startDate: $startDate, endDate: $endDate}}}) {
+      warning
+      response {
+        ...academicYear
+      }
+    }
+  }
+}

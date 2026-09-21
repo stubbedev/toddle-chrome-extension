@@ -1,0 +1,7 @@
+mutation createSinglePointRubric($title: String!, $criterias: [SinglePointRubricCriteriaInput!], $standards: [SinglePointRubricStandardInput!], $isGlobal: Boolean, $rubricId: ID, $mode: SINGLE_POINT_RUBRIC_CREATION_MODE!, $parentId: ID, $parentType: ASSESSMENT_TOOL_PARENT_TYPE_ENUM, $curriculumProgramId: ID) {
+  planner {
+    createSinglePointRubric(input: {title: $title, criterias: $criterias, standards: $standards, isGlobal: $isGlobal, rubricId: $rubricId, mode: $mode, parentId: $parentId, parentType: $parentType, curriculumProgramId: $curriculumProgramId}) {
+      ...singlePointRubricItem
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mutation quickRescheduleVideoMeeting($id: ID!, $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $shouldUseNewMeetingInfra: Boolean, $actionFor: CALENDAR_EVENT_ACTION_FOR, $startDateTime: String, $durationInMin: Int, $recurrenceSetting: RecurrenceSettingInput, $notificationMessage: String, $shouldNotifyParticipants: Boolean) {
+  platform {
+    editPlatformCalendarEvent(input: {id: $id, eventType: $eventType, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra, actionFor: $actionFor, startDateTime: $startDateTime, durationInMin: $durationInMin, recurrenceSetting: $recurrenceSetting, notificationMessage: $notificationMessage, shouldNotifyParticipants: $shouldNotifyParticipants}) {
+      response {
+        ...videoMeetingItem
+      }
+      warning
+    }
+  }
+}

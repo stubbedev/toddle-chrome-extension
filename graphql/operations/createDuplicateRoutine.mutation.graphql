@@ -1,0 +1,12 @@
+mutation createDuplicateRoutine($input: CreateDuplicateRoutineInput!) {
+  platform {
+    createDuplicateRoutine(input: $input) {
+      warning
+      isSuccess
+      routine {
+        id
+        label
+      }
+    }
+  }
+}

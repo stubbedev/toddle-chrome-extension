@@ -1,0 +1,5 @@
+mutation integrationDeleteSubTasks($subTasks: [ID!]!) {
+  integration {
+    integrationDeleteSubTasks(input: {subTasks: $subTasks})
+  }
+}

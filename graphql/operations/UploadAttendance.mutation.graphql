@@ -1,0 +1,14 @@
+mutation UploadAttendance($input: IntegrationUploadAttendanceInput!) {
+  integration {
+    integrationUploadAttendance(input: $input) {
+      allow
+      message
+      job {
+        id
+        curriculum
+        status
+        s3Url
+      }
+    }
+  }
+}

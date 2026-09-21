@@ -1,0 +1,15 @@
+mutation entityBulkUpload($input: EntityBulkUploadInput!) {
+  platform {
+    entityBulkUpload(input: $input) {
+      activityLogId
+      errorData
+      successData {
+        added
+        updated
+        archived
+        mapped
+      }
+      uploadStatus
+    }
+  }
+}

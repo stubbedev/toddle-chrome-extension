@@ -1,0 +1,20 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  unitType {
+    id
+    value
+  }
+  subjects {
+    id
+    value
+  }
+  templateId
+}

@@ -1,0 +1,6 @@
+query getUserCoursesV2($userId: ID!, $courseFilters: CourseFilter) {
+  node(id: $userId, type: STAFF) {
+    id
+    ...staffCourses
+  }
+}

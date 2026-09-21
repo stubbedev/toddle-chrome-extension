@@ -1,0 +1,7 @@
+mutation updateStudentProfileSection($title: String, $id: ID!) {
+  platform {
+    updateStudentProfileSection(input: {title: $title, id: $id}) {
+      id
+    }
+  }
+}

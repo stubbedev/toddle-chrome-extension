@@ -1,0 +1,24 @@
+fragment leItem on LearningEngagement {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  fields(uids: ["lp", "centralIdea", "concepts", "atls", "benchmarks", "lois"]) {
+    id
+    uid
+    value
+  }
+  allFields {
+    id
+    uid
+    value
+  }
+  unitPlan {
+    id
+  }
+}

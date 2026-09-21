@@ -1,0 +1,7 @@
+mutation upsertFeedbackStatus($input: [UpsertVoteInput!]) {
+  platform {
+    upsertVote(input: $input) {
+      myVote
+    }
+  }
+}

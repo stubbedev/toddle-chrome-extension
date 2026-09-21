@@ -1,0 +1,10 @@
+query getLearningCourseChildCourseCount($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: LearningCourseChildCourses!) {
+  node(id: $parentId, type: $parentType) {
+    ... on LearningCourse {
+      id
+      childCourses(filters: $filters) {
+        id
+      }
+    }
+  }
+}

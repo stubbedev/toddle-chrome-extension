@@ -1,0 +1,5 @@
+mutation upsertUnitPlansForStudentProgressReport($input: UpsertUnitPlansForStudentProgressReportsInput!) {
+  documentation {
+    upsertUnitPlansForStudentProgressReports(input: $input)
+  }
+}

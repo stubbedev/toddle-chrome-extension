@@ -1,0 +1,16 @@
+mutation createStudentTemplateResponse($input: [CreateStudentTemplateResponseInput!]) {
+  documentation {
+    createStudentTemplateResponse(input: $input) {
+      isSuccess
+      warning
+      studentTemplateResponse {
+        id
+        student {
+          id
+        }
+        individuallyRated
+        metadata
+      }
+    }
+  }
+}

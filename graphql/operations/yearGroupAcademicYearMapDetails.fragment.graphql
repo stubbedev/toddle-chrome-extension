@@ -1,0 +1,63 @@
+fragment basicYearGroupDetails on YearGroup {
+  id
+  name
+  grade(filters: $yearGroupGradeFilters) {
+    id
+    name
+  }
+  curriculumProgram {
+    acronym
+    id
+    type
+  }
+  academicYearGradeMap(filters: $academicYearGradeMapFilters) {
+    ...academicYearGradeMapDetails
+  }
+  students(filters: {archivalState: ALL}) {
+    totalCount
+    edges {
+      node {
+        id
+        profileImage
+        firstName
+        middleName
+        lastName
+        pronouns
+        preferredName
+        prefix
+        suffix
+        type
+        yearGroup {
+          id
+          name
+          curriculumProgram {
+            id
+            type
+          }
+        }
+        isArchived
+        isArchivedV2(filters: $userArchivedFilters)
+        yearGroupAcademicYearMap(filters: $yearGroupAcademicYearMapFilters) {
+          ...yearGroupAcademicYearMapDetails
+        }
+      }
+    }
+  }
+}
+
+fragment yearGroupAcademicYearMapDetails on YearGroupAcademicYearMap {
+  academicYear {
+    id
+    isCurrentAcademicYear
+    isUpcomingAcademicYear
+    isPreviousAcademicYear
+  }
+  yearGroup {
+    id
+    name
+    curriculumProgram {
+      id
+      acronym
+    }
+  }
+}

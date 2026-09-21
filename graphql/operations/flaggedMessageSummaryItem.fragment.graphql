@@ -1,0 +1,10 @@
+fragment flaggedMessageSummaryItem on Chat {
+  id
+  flaggedMessageSummary(input: $flaggedMessageSummaryInput) {
+    summaryMessage {
+      id
+      type
+      label
+    }
+  }
+}

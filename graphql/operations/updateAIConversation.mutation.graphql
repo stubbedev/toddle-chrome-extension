@@ -1,0 +1,12 @@
+mutation updateAIConversation($input: UpdateAiConversationInput!) {
+  ai {
+    updateAiConversation(input: $input) {
+      isSuccess
+      response {
+        id
+        entityType
+        metadata
+      }
+    }
+  }
+}

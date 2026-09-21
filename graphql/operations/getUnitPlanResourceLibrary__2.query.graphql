@@ -1,0 +1,17 @@
+query getUnitPlanResourceLibrary($id: ID!, $filters: resourceLibraryFilter) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      assessmentFeed(first: 1000, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...basicAssessmentDetails
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

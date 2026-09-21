@@ -1,0 +1,8 @@
+mutation updateProjectGroupEntitySplitSettings($projectGroupId: ID!, $entity: PROJECT_GROUP_ENTITY_SPLIT_SETTINGS_ENTITY_ENUM!, $action: PROJECT_GROUP_ENTITY_SPLIT_SETTINGS_ACTION_ENUM!) {
+  documentation {
+    updateProjectGroupEntitySplitSettings(input: {projectGroupId: $projectGroupId, entity: $entity, action: $action}) {
+      isSuccess
+      warning
+    }
+  }
+}

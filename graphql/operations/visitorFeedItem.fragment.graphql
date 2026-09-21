@@ -1,0 +1,21 @@
+fragment visitorFeedItem on Organization {
+  id
+  staff(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    userCount {
+      role
+      totalCount
+    }
+    edges {
+      node {
+        id
+        ... on Staff {
+          ...visitorItem
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

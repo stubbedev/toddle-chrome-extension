@@ -1,0 +1,20 @@
+mutation GenerateComplianceReportExport($input: GenerateComplianceReportExportInput!) {
+  complianceReport {
+    generateComplianceReportExport(input: $input) {
+      isSuccess
+      warning
+      export {
+        id
+        format
+        status
+        downloadUrl
+        failureReason
+        exportedAt
+        createdAt
+        exportedBy {
+          id
+        }
+      }
+    }
+  }
+}

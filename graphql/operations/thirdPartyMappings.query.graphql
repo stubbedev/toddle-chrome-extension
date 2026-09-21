@@ -1,0 +1,11 @@
+query thirdPartyMappings($id: ID!, $input: ThirdPartyMappingInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      thirdPartyMappings(input: $input) {
+        thirdPartyId
+        toddleId
+      }
+    }
+  }
+}

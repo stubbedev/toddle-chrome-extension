@@ -1,0 +1,27 @@
+query getParticipantFamilyMembers($organizationId: ID!, $first: Int, $after: String, $familyMembersFilter: FamilyMembersFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      familyMembers(first: $first, after: $after, filters: $familyMembersFilter) {
+        totalCount
+        edges {
+          node {
+            ...participantFamilyMemberBasicDetailsItem
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}
+
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}

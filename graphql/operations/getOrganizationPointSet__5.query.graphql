@@ -1,0 +1,35 @@
+query getOrganizationPointSet($id: ID!, $filters: PointAssessmentSetFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      pointAssessmentSets(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            associatedEntities {
+              id
+              ... on AcademicTerm {
+                id
+              }
+            }
+            categories {
+              id
+              label
+              displaySequence
+              values {
+                id
+                value
+                genericTag {
+                  id
+                  label
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

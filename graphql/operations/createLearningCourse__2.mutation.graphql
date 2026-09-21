@@ -1,0 +1,11 @@
+mutation createLearningCourse($input: CreateLearningCourseInput!, $collaboratorFilters: LearningCourseCollaboratorFilters, $gradeFilters: LearningCourseGradeFilters) {
+  planner {
+    createLearningCourse(input: $input) {
+      isSuccess
+      learningCourse {
+        ...learningCourseItem
+      }
+    }
+    __typename
+  }
+}

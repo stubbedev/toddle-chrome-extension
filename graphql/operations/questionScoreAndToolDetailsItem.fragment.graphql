@@ -1,0 +1,20 @@
+fragment questionScoreAndToolDetailsItem on Question {
+  id
+  questionType {
+    id
+    uid
+  }
+  questionScore
+  fields {
+    ...questionFieldsItem
+  }
+  assessmentTools {
+    totalCount
+    edges {
+      node {
+        id
+        ...questionAssessmentToolItem
+      }
+    }
+  }
+}

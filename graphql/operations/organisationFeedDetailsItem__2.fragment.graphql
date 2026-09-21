@@ -1,0 +1,50 @@
+fragment organisationFeedDetailsItem on Organization {
+  id
+  name
+  logo
+  code
+  isPaid
+  region
+  organizationAnalytics
+  curriculumPrograms(filters: $curriculumProgramFilters) {
+    id
+    type
+    label
+    acronym
+    platformId
+    programType
+    students {
+      totalCount
+    }
+    isFeatureFlagLearningCoursesEnabled
+    isAdminPortalGradingSetupV2Enabled
+    staff {
+      totalCount
+    }
+    buddy {
+      firstName
+      lastName
+      id
+      email
+    }
+    ... on UBDCurriculumProgram {
+      variant
+    }
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+    academicProgram {
+      id
+    }
+    ...subscriptionPlanDetailsItem
+    curriculumProgramData {
+      subscriptionPlan
+      subscriptionStatus
+      curriculumGroup
+      contractStaffCount
+      contractStudentCount
+      contractUserCount
+      crmId
+    }
+  }
+}

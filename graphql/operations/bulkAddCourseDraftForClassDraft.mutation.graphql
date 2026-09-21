@@ -1,0 +1,17 @@
+mutation bulkAddCourseDraftForClassDraft($input: BulkAddCourseDraftForClassDraftInput!) {
+  planner {
+    bulkAddCourseDraftForClassDraft(input: $input) {
+      key
+      title
+      academicCourse {
+        key
+        label
+        code
+      }
+      associatedClasses {
+        key
+      }
+    }
+    __typename
+  }
+}

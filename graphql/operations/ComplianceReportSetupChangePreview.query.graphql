@@ -1,0 +1,8 @@
+query ComplianceReportSetupChangePreview($input: ComplianceReportSetupChangePreviewInput!) {
+  complianceReport {
+    complianceReportSetupChangePreview(input: $input) {
+      studentsAdded
+      studentsRemoved
+    }
+  }
+}

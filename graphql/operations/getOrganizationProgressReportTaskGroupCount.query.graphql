@@ -1,0 +1,11 @@
+query getOrganizationProgressReportTaskGroupCount($organizationId: ID!, $academicYearId: ID, $curriculumProgramIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      progressReportTaskGroups(filters: {academicYearId: $academicYearId, curriculumProgramIds: $curriculumProgramIds}) {
+        totalCount
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+mutation createBehaviourCategory($input: BehaviourCategoryCreateInput!) {
+  platform {
+    createBehaviourCategory(input: $input) {
+      id
+      name
+      color
+      sentiment {
+        id
+        label
+      }
+      curriculumPrograms {
+        id
+        label
+        acronym
+      }
+      pointsSetup {
+        ...behaviourCategoryPointsSetupFragment
+      }
+    }
+  }
+}

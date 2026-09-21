@@ -1,0 +1,11 @@
+query getPostEvidencesFeed($ids: [ID!]) {
+  multiNode(ids: $ids, type: POST) {
+    ... on Post {
+      id
+      title
+      attachments {
+        ...attachmentItem
+      }
+    }
+  }
+}

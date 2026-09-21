@@ -1,0 +1,7 @@
+mutation unitPlanBulkUpload($input: BulkUnitPlanUploadActionInput!) {
+  planner {
+    unitPlanBulkUploadAction(input: $input) {
+      isSuccess
+    }
+  }
+}

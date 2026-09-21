@@ -1,0 +1,11 @@
+mutation createOrgLink($input: CreatePlaygroundOrgLinkInput!) {
+  playground {
+    createOrgLink(input: $input) {
+      isSuccess
+      warning
+      accessLink {
+        ...playgroundAccessLinkFragment
+      }
+    }
+  }
+}

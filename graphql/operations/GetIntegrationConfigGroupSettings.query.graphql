@@ -1,0 +1,10 @@
+query GetIntegrationConfigGroupSettings($input: IntegrationConfigGroupQueryInput!) {
+  integration {
+    integrationConfigGroup(input: $input) {
+      id
+      settings
+      apiFilters
+      ...curriculumMappings
+    }
+  }
+}

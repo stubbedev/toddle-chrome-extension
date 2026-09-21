@@ -1,0 +1,14 @@
+mutation editUser($firstName: String, $middleName: String, $lastName: String, $pronouns: String, $preferredName: String, $prefix: String, $suffix: String, $id: ID!, $email: String, $profileImage: String, $sourceId: String, $isArchived: Boolean, $registrationCategory: REGISTRATION_CATEGORY_TYPE_ENUM, $nccdCategory: NCCD_CATEGORY_ENUM, $yearGroupId: ID, $addedCourses: [ID!], $removedCourses: [ID!], $courseTagMap: [CourseTagMapInput!], $otherDetails: OtherUserDetailsInput, $gender: String, $staffRelationMap: [StaffRelationMapInput!], $academicYearId: ID, $isBlocked: Boolean, $enrollmentDate: String) {
+  platform {
+    updateUserV2(input: {id: $id, firstName: $firstName, middleName: $middleName, lastName: $lastName, pronouns: $pronouns, preferredName: $preferredName, prefix: $prefix, suffix: $suffix, profileImage: $profileImage, email: $email, sourceId: $sourceId, isArchived: $isArchived, isBlocked: $isBlocked, registrationCategory: $registrationCategory, nccdCategory: $nccdCategory, yearGroupId: $yearGroupId, addedCourses: $addedCourses, removedCourses: $removedCourses, courseTagMap: $courseTagMap, otherDetails: $otherDetails, gender: $gender, staffRelationMap: $staffRelationMap, academicYearId: $academicYearId, enrollmentDate: $enrollmentDate}) {
+      warning
+      isSuccess
+      user {
+        ...userItem
+      }
+      response {
+        ...userItem
+      }
+    }
+  }
+}

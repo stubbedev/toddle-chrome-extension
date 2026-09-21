@@ -1,0 +1,7 @@
+mutation DeleteExternalAssessmentTemplates($input: [DeleteExternalAssessmentTemplateInput!]!) {
+  externalAssessment {
+    deleteExternalAssessmentTemplates(input: $input) {
+      isSuccess
+    }
+  }
+}

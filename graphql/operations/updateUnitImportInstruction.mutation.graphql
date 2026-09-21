@@ -1,0 +1,9 @@
+mutation updateUnitImportInstruction($input: UpdateUnitImportInstructionInput!) {
+  ai {
+    updateUnitImportInstruction(input: $input) {
+      isSuccess
+      warning
+      response
+    }
+  }
+}

@@ -1,0 +1,8 @@
+fragment plannerElementSetWithNodesItem on PlannerElementSet {
+  id
+  label
+  type
+  nodes(filters: $filters) {
+    ...plannerElementNodeItem
+  }
+}

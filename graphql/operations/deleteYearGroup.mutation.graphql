@@ -1,0 +1,8 @@
+mutation deleteYearGroup($input: DeleteInput!) {
+  platform {
+    deleteYearGroup(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

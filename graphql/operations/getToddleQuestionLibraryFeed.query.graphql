@@ -1,0 +1,26 @@
+query getToddleQuestionLibraryFeed($id: ID!, $entityTypes: [LIBRARY_ENTITY_TYPE_ENUM!], $searchText: String, $first: Int, $after: String, $filters: LibraryEntityFilter, $seed: Float!, $sortBy: LIBRARY_SORT_ENUM, $questionFilters: OrganizationResourceQuestionItemFilters, $feedType: LIBRARY_FEED_ENUM, $showOnlyAccessible: Boolean) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      libraryEntities(entityTypes: $entityTypes, first: $first, after: $after, searchText: $searchText, filters: $filters, seed: $seed, sortBy: $sortBy, questionFilters: $questionFilters, feedType: $feedType, showOnlyAccessible: $showOnlyAccessible) {
+        totalCount
+        edges {
+          node {
+            id
+            ... on OrganizationResource {
+              id
+              item {
+                ...questionLibraryFeedDetailsItem
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

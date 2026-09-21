@@ -1,0 +1,14 @@
+fragment homepageWidgetFields on HomepageWidget {
+  id
+  widgetType
+  showWidget
+  lockingInfo {
+    isLocked
+  }
+  layout {
+    ...gridLayoutItemFields
+  }
+  contents {
+    ...homepageWidgetContentFields
+  }
+}

@@ -1,0 +1,8 @@
+mutation importAssessment($input: IntegrationImportAssessmentInput!) {
+  integration {
+    integrationImportAssessment(input: $input) {
+      isSuccess
+      jobId
+    }
+  }
+}

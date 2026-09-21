@@ -1,0 +1,9 @@
+fragment configurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  aclControlParameterType
+  valueType
+  value
+  isLocked
+}

@@ -1,0 +1,18 @@
+query getAcademicTermsDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        draftAcademicTerms(filters: {academicYearId: $academicYearId}) {
+          key
+          label
+          startDate
+          endDate
+          type
+        }
+      }
+    }
+  }
+}

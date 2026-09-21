@@ -1,0 +1,60 @@
+query getUnitPlan($id: ID!, $filters: resourceLibraryFilter) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      resourceLibrary(filters: $filters) {
+        edges {
+          type
+          node {
+            ...worksheetItem
+            ... on Assessment {
+              id
+              questions {
+                totalCount
+                edges {
+                  id
+                  parentIdV2
+                  sequence
+                  parentTypeV2
+                  questionType {
+                    id
+                    uid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment worksheetItem on FlowSectionItem {
+  id
+  title {
+    id
+    value
+  }
+  createdBy {
+    id
+    profileImage
+    firstName
+    lastName
+  }
+  fields(uids: ["subjectLevel"]) {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldGenericTags {
+        id
+        type
+        genericTags {
+          id
+          label
+        }
+      }
+    }
+  }
+}

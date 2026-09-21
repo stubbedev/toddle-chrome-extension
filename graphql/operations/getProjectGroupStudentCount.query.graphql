@@ -1,0 +1,10 @@
+query getProjectGroupStudentCount($projectGroupId: ID!, $filters: ProjectGroupStudentFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      students(filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

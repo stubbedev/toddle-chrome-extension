@@ -1,0 +1,23 @@
+mutation bulkCreateEntityEventTracking($input: CreateBulkEntityEventTrackingInput!) {
+  platform {
+    bulkCreateEntityEventTracking(input: $input) {
+      response {
+        ...entityEventTrackItem
+        __typename
+      }
+      warning
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment entityEventTrackItem on EntityEventTrack {
+  id
+  eventType
+  eventTime
+  duration
+  reason
+  metadata
+  __typename
+}

@@ -1,0 +1,11 @@
+query getTimetableUploadYardDutyTiming($input: TimetableUploadYardDutyTimingDataInput!) {
+  integration {
+    getTimetableUploadYardDutyTimingData(input: $input) {
+      toolDay
+      toolPeriod
+      toolYardDuty
+      startTime
+      endTime
+    }
+  }
+}

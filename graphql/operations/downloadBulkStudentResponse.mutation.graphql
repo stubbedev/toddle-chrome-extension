@@ -1,0 +1,7 @@
+mutation downloadBulkStudentResponse($input: DownloadBulkStudentResponseInput!) {
+  content {
+    downloadBulkStudentResponse(input: $input) {
+      isSuccess
+    }
+  }
+}

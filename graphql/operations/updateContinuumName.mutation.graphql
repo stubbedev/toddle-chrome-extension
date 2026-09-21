@@ -1,0 +1,8 @@
+mutation updateContinuumName($updateContinuumInput: UpdateContinuumInput!) {
+  platform {
+    updateContinuum(input: $updateContinuumInput) {
+      id
+      label
+    }
+  }
+}

@@ -1,0 +1,9 @@
+query getYearGroupStudentFeed($yearGroupId: ID!, $studentFilters: GroupStudentFilter, $skipTranscriptData: Boolean!, $yearGroupGradeFilters: YearGroupGradeFilters, $courseFilter: CourseFilter) {
+  node(id: $yearGroupId, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      ...yearGroupBasicDetailsItem
+      ...yearGroupStudentsItem
+    }
+  }
+}

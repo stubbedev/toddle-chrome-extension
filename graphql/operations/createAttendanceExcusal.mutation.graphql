@@ -1,0 +1,20 @@
+mutation createAttendanceExcusal($studentId: ID!, $durationType: ATTENDANCE_EXCUSAL_DURATION_TYPE_ENUM, $startDate: String, $endDate: String, $reason: String, $periodIds: [ID!], $attachments: [AttachmentInput!], $curriculumProgramId: ID, $reasonId: ID, $startTime: String, $endTime: String, $recurrenceSetting: ExcusalRecurrenceSettingInput) {
+  platform {
+    createAttendanceExcusal(input: {studentId: $studentId, durationType: $durationType, startDate: $startDate, endDate: $endDate, reason: $reason, periodIds: $periodIds, attachments: $attachments, curriculumProgramId: $curriculumProgramId, reasonId: $reasonId, startTime: $startTime, endTime: $endTime, recurrenceSetting: $recurrenceSetting}) {
+      response {
+        ...attendanceExcusalItem
+        isRecurringEvent
+        seriesParentId
+        recurrenceSetting {
+          frequency
+          weekDays
+          interval
+          endDate
+          monthDays
+          setPositions
+          count
+        }
+      }
+    }
+  }
+}

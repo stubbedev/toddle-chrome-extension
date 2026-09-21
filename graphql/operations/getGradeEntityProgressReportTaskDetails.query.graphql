@@ -1,0 +1,23 @@
+query getGradeEntityProgressReportTaskDetails($id: ID!) {
+  node(id: $id, type: PROGRESS_REPORT_TASK_GROUP) {
+    id
+    ... on ProgressReportTaskGroup {
+      id
+      courseProgressReportTasks {
+        id
+        studentProgressReport {
+          id
+          status
+          student {
+            id
+            firstName
+            lastName
+          }
+        }
+        parentEntity {
+          id
+        }
+      }
+    }
+  }
+}

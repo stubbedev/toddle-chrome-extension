@@ -1,0 +1,8 @@
+fragment BehaviourCategoryPointsSetup on BehaviourCategoryPointsSetup {
+  id
+  isEnabled
+  isMeritPointEnabled
+  isDemeritPointEnabled
+  minPoints
+  maxPoints
+}

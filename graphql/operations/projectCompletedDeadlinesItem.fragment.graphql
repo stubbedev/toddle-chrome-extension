@@ -1,0 +1,17 @@
+fragment projectCompletedDeadlinesItem on Project {
+  id
+  reportStatus
+  markedCompletedBy {
+    ...userNameFields
+  }
+  markedCompletedAt
+  updatedAt
+  updatedBy {
+    ...userNameFields
+  }
+  completedDeadlines {
+    deadline {
+      id
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mutation generateFileFolderUrlByStudentProjectGroup($studentIds: [ID!]!, $projectGroupId: ID!, $fileFolderTypesInput: [ProjectFileFolderTypeInput!], $fileFolderConfig: StudentFileFolderConfigInput, $courseIds: [ID!], $isLongRunningTask: Boolean) {
+  platform {
+    generateStudentProjectGroupUrl(studentIds: $studentIds, fileFolderTypesInput: $fileFolderTypesInput, fileFolderConfig: $fileFolderConfig, courseIds: $courseIds, projectGroupId: $projectGroupId, isLongRunningTask: $isLongRunningTask) {
+      name
+      url
+      longRunningTaskCreated
+      isSuccess
+    }
+  }
+}

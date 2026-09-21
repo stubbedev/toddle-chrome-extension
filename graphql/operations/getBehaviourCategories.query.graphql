@@ -1,0 +1,39 @@
+query getBehaviourCategories($id: ID!, $filters: BehaviourCategoryFilters, $includeCurriculumProgram: Boolean = false) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourCategories(filters: $filters) {
+        id
+        name
+        status
+        iconData
+        color
+        level
+        isSeverityLinked
+        sentiment {
+          id
+          label
+          value
+        }
+        grades {
+          id
+          name
+        }
+        curriculumPrograms {
+          id
+        }
+        curriculumProgram @include(if: $includeCurriculumProgram) {
+          id
+          label
+          acronym
+        }
+        pointsSetup {
+          id
+          isEnabled
+          minPoints
+          maxPoints
+        }
+      }
+    }
+  }
+}

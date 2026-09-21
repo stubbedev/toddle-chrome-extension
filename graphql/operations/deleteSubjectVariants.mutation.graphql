@@ -1,0 +1,8 @@
+mutation deleteSubjectVariants($input: SubjectVariantInput!) {
+  platform {
+    deleteSubjectVariants(input: $input) {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment subjectItem on Subject {
+  id
+  name
+  isArchived
+  type
+}

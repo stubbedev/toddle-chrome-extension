@@ -1,0 +1,5 @@
+query getStandardBenchmarkSetDownloadUrl($standardSetId: ID!) {
+  planner {
+    standardBenchmarkSetDownload(input: {standardSetId: $standardSetId})
+  }
+}

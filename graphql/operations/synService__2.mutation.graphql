@@ -1,0 +1,11 @@
+mutation synService($service: INTEGRATION_SERVICE_NAME!, $type: INTEGRATION_SERVICE_SYNC_INPUT, $curriculumProgramId: ID, $version: Int) {
+  integration {
+    integrationSyncService(input: {service: $service, type: $type, curriculumProgramId: $curriculumProgramId, version: $version}) {
+      allow
+      message
+      job {
+        ...jobData
+      }
+    }
+  }
+}

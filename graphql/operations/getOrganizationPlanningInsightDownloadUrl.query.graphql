@@ -1,0 +1,14 @@
+query getOrganizationPlanningInsightDownloadUrl($id: ID!, $input: genericUnitPlanInsightUrlInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      genericUnitPlanInsightDownloadUrl(input: $input) {
+        url
+        isSuccess
+      }
+      __typename
+    }
+    __typename
+  }
+}

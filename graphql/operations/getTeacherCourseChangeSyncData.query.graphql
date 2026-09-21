@@ -1,0 +1,34 @@
+query getTeacherCourseChangeSyncData($id: ID!, $filters: BluePrintTeacherCourseDiffFilters!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      teacherCourseChangeSyncData(filters: $filters) {
+        allChanges {
+          path {
+            itemId
+            label
+            itemType
+          }
+          entityId
+          entityType
+          classes {
+            id
+            title
+          }
+        }
+        conflictChanges {
+          entityId
+          entityType
+          path {
+            label
+            itemType
+          }
+          classes {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}

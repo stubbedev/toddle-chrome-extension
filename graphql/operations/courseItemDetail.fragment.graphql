@@ -1,0 +1,12 @@
+fragment courseItemDetail on Course {
+  id
+  title
+  grades(filters: $courseGradeFilters) {
+    id
+    name
+  }
+  profileImage
+  subjects {
+    ...subjectWithSubjectGroupItem
+  }
+}

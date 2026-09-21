@@ -1,0 +1,13 @@
+query getTeacherFeed($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: $filters) {
+        userCount {
+          role
+          totalCount
+        }
+      }
+    }
+  }
+}

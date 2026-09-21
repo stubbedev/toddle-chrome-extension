@@ -1,0 +1,25 @@
+fragment aytStudentTransferRequest on StudentTransferRequest {
+  id
+  uid
+  status
+  transferDate
+  student {
+    ...userNameFields
+    email
+    profileImage
+  }
+  destinationCurriculumProgram {
+    id
+    label
+  }
+  originCurriculumPrograms {
+    id
+    label
+    acronym
+    logo
+  }
+  originYearGroups {
+    id
+    name
+  }
+}

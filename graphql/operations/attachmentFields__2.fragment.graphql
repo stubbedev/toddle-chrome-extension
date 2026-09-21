@@ -1,0 +1,24 @@
+fragment resourceItem on OrganizationResource {
+  id
+  label
+  resourceType
+  state
+  attachment {
+    ...attachmentFields
+  }
+  item {
+    ... on Assignment {
+      ...assignmentFields
+    }
+  }
+}
+
+fragment attachmentFields on Attachment {
+  id
+  type
+  title
+  name
+  mimeType
+  url
+  thumbUrl
+}

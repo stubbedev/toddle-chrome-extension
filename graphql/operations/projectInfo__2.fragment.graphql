@@ -1,0 +1,13 @@
+fragment projectInfo on Project {
+  id
+  students {
+    ...userItem
+    isArchived
+    alertTypes {
+      ...alertTypeFields
+    }
+  }
+  supervisors {
+    ...supervisorInfo
+  }
+}

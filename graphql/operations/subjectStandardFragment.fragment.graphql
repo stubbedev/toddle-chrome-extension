@@ -1,0 +1,14 @@
+fragment subjectStandardFragment on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      title
+      isArchived
+      subject {
+        id
+        name
+        isArchived
+      }
+    }
+  }
+}

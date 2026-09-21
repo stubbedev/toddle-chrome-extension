@@ -1,0 +1,14 @@
+query getPermissionsQuery($filters: ACLPermissionsFilterInput) {
+  platform {
+    aclControlParameters(filters: $filters) {
+      uid
+      module
+      controlParameters {
+        id
+        value
+        permission
+        uid
+      }
+    }
+  }
+}

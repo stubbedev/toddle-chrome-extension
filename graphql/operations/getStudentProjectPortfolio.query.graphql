@@ -1,0 +1,24 @@
+query getStudentProjectPortfolio($id: ID!, $projectCountFilter: ProjectCountFilter, $completionStatusFilters: CompletionStatusFilter, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      ...studentProjectPortfolioDetailsItem
+      plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+        id
+        plannerElementNode {
+          id
+          metadata
+        }
+      }
+      projects(filters: {status: ["REJECTED"]}) {
+        totalCount
+      }
+      notificationBadgeCounts {
+        interestsAndGoalsCommentCount
+        learningOutcomesCommentCount
+        feedbackCount
+        feedbackCommentCount
+        interviewCount
+      }
+    }
+  }
+}

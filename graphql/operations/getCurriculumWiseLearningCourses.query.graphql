@@ -1,0 +1,10 @@
+query getCurriculumWiseLearningCourses($id: ID!, $type: ENTITY_TYPE_ENUM!, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $filters: LearningCourseFilters) {
+  node(id: $id, type: $type) {
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        ...learningCoursesReportsFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+query getOrganizationInsightUnitPlans($id: ID!, $filters: UnitPlansV2FeedFilters!, $fieldUids: [String!], $after: String) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      unitPlansV2(first: 20, filters: $filters, after: $after, orderBy: GRADE_DISPLAY_SEQUENCE, orderByDirection: ASC) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title {
+              id
+              value
+            }
+            image {
+              ...mediaFieldNodeItem
+            }
+            theme {
+              id
+              value
+            }
+            unitType {
+              id
+              value
+            }
+            subjects {
+              id
+              value
+              resolvedMinimalTree {
+                ... on ResolvedFieldSubjectSet {
+                  id
+                  subjects {
+                    id
+                    name
+                    isArchived
+                  }
+                }
+              }
+            }
+            fields(uids: $fieldUids) {
+              id
+              uid
+              value
+              resolvedMinimalTree {
+                ... on ResolvedFieldGenericTags {
+                  id
+                  genericTags {
+                    id
+                    label
+                  }
+                }
+                ... on ResolvedFieldObjectiveLevel {
+                  id
+                  nodes {
+                    id
+                    label
+                    associatedParents {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+            isIncludedInInsights
+            grades
+          }
+        }
+      }
+    }
+  }
+}

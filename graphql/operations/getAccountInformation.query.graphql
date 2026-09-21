@@ -1,0 +1,36 @@
+query getAccountInformation($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      name
+      logo
+      banner
+      attachments {
+        id
+        name
+        title
+        url
+        parentType
+      }
+      region
+      curriculumPrograms(filters: {programType: ALL}) {
+        id
+        label
+        accountProgram {
+          id
+        }
+        address {
+          id
+          line1
+          city
+          state
+          zipcode
+          country
+          phoneNumber
+          email
+        }
+        websiteLink
+      }
+    }
+  }
+}

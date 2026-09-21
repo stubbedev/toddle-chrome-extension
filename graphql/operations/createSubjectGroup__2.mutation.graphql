@@ -1,0 +1,14 @@
+mutation createSubjectGroup($name: String!, $uid: String, $curriculumProgramId: ID!, $profileImageData: JSON, $type: SUBJECT_GROUP_TYPE_ENUM, $applicableCurriculumPrograms: [ID!], $globalSubjectGroupId: ID) {
+  platform {
+    createSubjectGroup(input: {name: $name, uid: $uid, profileImageData: $profileImageData, curriculumProgramId: $curriculumProgramId, type: $type, applicableCurriculumPrograms: $applicableCurriculumPrograms, globalSubjectGroupId: $globalSubjectGroupId}) {
+      isSuccess
+      warning
+      subjectGroup {
+        id
+        name
+        uid
+        type
+      }
+    }
+  }
+}

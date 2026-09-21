@@ -1,0 +1,7 @@
+mutation createSinglePointRubricStandard($rubricId: ID!, $title: String, $subTitle: String, $putAfterItemId: ID) {
+  planner {
+    createSinglePointRubricStandard(input: {rubricId: $rubricId, title: $title, subTitle: $subTitle, putAfterItemId: $putAfterItemId}) {
+      ...singlePointRubricStandardItem
+    }
+  }
+}

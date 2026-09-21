@@ -1,0 +1,19 @@
+query getChatDetails($id: ID!, $organizationId: ID) {
+  node(id: $id, type: CHAT) {
+    ... on Chat {
+      id
+      conversation {
+        id
+        isStaffHasNoAccess
+        users {
+          ...userItem
+          ... on FamilyMember {
+            children(organizationId: $organizationId) {
+              ...childItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

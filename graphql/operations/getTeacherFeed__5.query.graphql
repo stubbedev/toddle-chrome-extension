@@ -1,0 +1,30 @@
+query getTeacherFeed($organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        userCount {
+          role
+          totalCount
+        }
+        edges {
+          node {
+            id
+            ... on Staff {
+              id
+              firstName
+              middleName
+              lastName
+              preferredName
+              prefix
+              suffix
+              pronouns
+              isArchived
+            }
+          }
+        }
+      }
+    }
+  }
+}

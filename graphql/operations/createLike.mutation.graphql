@@ -1,0 +1,12 @@
+mutation createLike($userId: ID!, $parentId: ID!, $parentType: PARENT_TYPE_ENUM!) {
+  documentation {
+    createLike(input: {userId: $userId, parentId: $parentId, parentType: $parentType}) {
+      totalCount
+      edges {
+        node {
+          ...likeItem
+        }
+      }
+    }
+  }
+}

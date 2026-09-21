@@ -1,0 +1,17 @@
+query getContextualHelpSearchedArticle($id: ID!) {
+  cms {
+    contextualHelpContentById(contentId: $id) {
+      id
+      title
+      contentMarkdown
+      locale
+      tag {
+        id
+        pageIdentifierTag
+      }
+      curriculumPrograms {
+        id
+      }
+    }
+  }
+}

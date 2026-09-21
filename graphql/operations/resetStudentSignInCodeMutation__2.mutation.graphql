@@ -1,0 +1,10 @@
+mutation resetStudentSignInCodeMutation($resetStudentsCodeInput: ResetStudentsCodeInput!) {
+  platform {
+    resetStudentsCodeV2(input: $resetStudentsCodeInput) {
+      ids
+      unmappedFamilyMembersCount
+      isSuccess
+      activityLogId
+    }
+  }
+}

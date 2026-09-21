@@ -1,0 +1,20 @@
+fragment courseItem on LearningCourse {
+  id
+  title
+  state
+  isBookmarked
+  type
+  subjects {
+    id
+    name
+  }
+  grades(filters: $gradeFilters) {
+    id
+    name
+  }
+  classes(filters: $classesFilters) {
+    id
+    title
+  }
+  displayMetadata
+}

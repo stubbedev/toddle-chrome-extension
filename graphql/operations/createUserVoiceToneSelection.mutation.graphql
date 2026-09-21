@@ -1,0 +1,5 @@
+mutation createUserVoiceToneSelection($input: UserVoiceToneSelectionInput!) {
+  ai {
+    createUserVoiceToneSelection(input: $input)
+  }
+}

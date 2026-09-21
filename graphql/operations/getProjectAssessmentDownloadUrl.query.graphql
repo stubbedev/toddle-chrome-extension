@@ -1,0 +1,14 @@
+query getProjectAssessmentDownloadUrl($id: ID!, $projectGroupAssessmentToolExportUrlInputs: ProjectGroupAssessmentToolExportUrlInput!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      generateAssessmentToolExportUrl(projectGroupAssessmentToolExportUrlInputs: $projectGroupAssessmentToolExportUrlInputs) {
+        url
+        isSuccess
+      }
+      __typename
+    }
+    __typename
+  }
+}

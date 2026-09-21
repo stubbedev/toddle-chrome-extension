@@ -1,0 +1,16 @@
+mutation updateMutation($input: CircularUpdateInput!, $academicYearId: ID!) {
+  school {
+    updateCircular(input: $input) {
+      id
+      title
+      state
+      description
+      publishedAt
+      sharedWith
+      isSharedWithMe(input: {academicYearId: $academicYearId})
+      createdBy {
+        id
+      }
+    }
+  }
+}

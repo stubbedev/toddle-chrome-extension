@@ -1,0 +1,8 @@
+mutation ManualSyncAnalyticsData($input: ManualSyncInput!) {
+  platform {
+    manualSyncAnalyticsData(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

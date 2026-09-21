@@ -1,0 +1,17 @@
+fragment parentItem on FamilyMember {
+  id
+  posts(last: 5, after: $after, filters: $filters) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        ...postItem
+      }
+    }
+  }
+}

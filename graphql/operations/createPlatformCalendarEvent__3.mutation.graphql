@@ -1,0 +1,11 @@
+mutation createPlatformCalendarEvent($input: CreatePlatformCalendarEventInput!) {
+  platform {
+    createPlatformCalendarEvent(input: $input) {
+      response {
+        id
+      }
+      warning
+    }
+    __typename
+  }
+}

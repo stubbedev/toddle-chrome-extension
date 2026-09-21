@@ -1,0 +1,21 @@
+query ComplianceReportUnresolvedAttendance($id: ID!, $input: UnresolvedAttendanceInput!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      unresolvedAttendance(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            date
+            courseTitle
+          }
+        }
+      }
+    }
+  }
+}

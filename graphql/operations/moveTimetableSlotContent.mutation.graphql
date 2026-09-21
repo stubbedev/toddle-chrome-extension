@@ -1,0 +1,5 @@
+mutation moveTimetableSlotContent($input: CopyTimetableContentInput!) {
+  platform {
+    moveTimetableSlotContent(input: $input)
+  }
+}

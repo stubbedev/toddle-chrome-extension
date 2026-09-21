@@ -1,0 +1,12 @@
+fragment studentInfo on User {
+  ...userNameFields
+  email
+  profileImage
+  ... on Student {
+    sourceId
+    registrationCategory
+    alertTypes {
+      ...alertTypeFields
+    }
+  }
+}

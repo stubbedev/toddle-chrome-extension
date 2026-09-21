@@ -1,0 +1,14 @@
+query getAssessmentToolForProjectGroup($id: ID!, $assessmentToolFilters: AssessmentToolFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      assessmentTool(filters: $assessmentToolFilters) {
+        id
+        ... on MypObjectiveRubric {
+          ...mypObjectiveRubricItem
+        }
+      }
+    }
+  }
+}

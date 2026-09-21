@@ -1,0 +1,11 @@
+query getPublishedStudentProgressReportDetails($studentId: ID!, $archivalState: ARCHIVAL_STATE_ENUM!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      academicYears(filters: {archivalState: $archivalState}) {
+        ...academicYearItem
+      }
+      ...publishedStudentProgressReportItem
+    }
+  }
+}

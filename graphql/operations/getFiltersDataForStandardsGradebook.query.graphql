@@ -1,0 +1,20 @@
+query getFiltersDataForStandardsGradebook($organizationId: ID!, $curriculumProgramId: ID!, $genericTagsFilter: GenericTagsFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      subjects(filters: {curriculumProgramIds: [$curriculumProgramId]}) {
+        id
+        name
+        isArchived
+      }
+      grades(filters: {curriculumProgramIds: [$curriculumProgramId]}) {
+        id
+        name
+      }
+      genericTagsV2(filters: $genericTagsFilter) {
+        id
+        label
+      }
+    }
+  }
+}

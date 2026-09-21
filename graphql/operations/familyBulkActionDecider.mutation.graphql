@@ -1,0 +1,5 @@
+mutation familyBulkActionDecider($input: FamilyBulkActionDeciderInput!) {
+  platform {
+    familyBulkActionDecider(input: $input)
+  }
+}

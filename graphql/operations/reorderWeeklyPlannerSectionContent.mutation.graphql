@@ -1,0 +1,5 @@
+mutation reorderWeeklyPlannerSectionContent($input: WeeklyPlannerSectionContentReorderInput!) {
+  planner {
+    reorderWeeklyPlannerSectionContent(input: $input)
+  }
+}

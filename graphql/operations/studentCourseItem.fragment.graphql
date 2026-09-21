@@ -1,0 +1,7 @@
+fragment studentCourseItem on Student {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...courseFeedItem
+    isExcludedFromAttendanceCalculation
+  }
+}

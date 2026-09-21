@@ -1,0 +1,5 @@
+mutation deleteBehaviourLocation($input: BehaviourLocationDeleteInput!) {
+  platform {
+    deleteBehaviourLocation(input: $input)
+  }
+}

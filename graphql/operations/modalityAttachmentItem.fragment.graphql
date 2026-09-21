@@ -1,0 +1,19 @@
+fragment attachmentWithModalityItem on Attachment {
+  ...attachmentItem
+  modalityAttachment {
+    ...modalityAttachmentItem
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

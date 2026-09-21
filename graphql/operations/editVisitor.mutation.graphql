@@ -1,0 +1,7 @@
+mutation editVisitor($firstName: String, $lastName: String, $id: ID!, $email: String, $snpEvaluationCycles: [ID!]) {
+  platform {
+    updateUser(input: {id: $id, firstName: $firstName, lastName: $lastName, email: $email, snpEvaluationCycles: $snpEvaluationCycles}) {
+      id
+    }
+  }
+}

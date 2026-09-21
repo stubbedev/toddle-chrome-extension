@@ -1,0 +1,36 @@
+fragment attendanceRecordItem on StudentDateAttendance {
+  id
+  date
+  remark
+  status
+  updatedAt
+  updatedBy {
+    ...staffItem
+  }
+  timeBlock {
+    id
+    uid
+    label
+  }
+  period {
+    ...periodItem
+  }
+  course {
+    ...courseItem
+  }
+  value {
+    ...categoryItem
+    attendanceCategory {
+      id
+      color
+    }
+  }
+  isHomeroomAttendance
+}
+
+fragment staffItem on Staff {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...courseItem
+  }
+}

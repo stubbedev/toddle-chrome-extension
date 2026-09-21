@@ -1,0 +1,58 @@
+query getBehaviourActionsV2($id: ID!, $filters: BehaviourActionFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourActions(filters: $filters) {
+        id
+        title
+        metadata
+        sourcedId
+        isArchived
+        metadata
+        status
+        isPushedFromAccount
+        presetAction {
+          id
+        }
+        appliedSchoolsCount
+        incidentCount
+        createdAt
+        createdBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+        updatedAt
+        updatedBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+        mappedCategoriesCount
+        accessibilityMap {
+          id
+          entityId
+          type
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateInteractionSettings($input: UpdateInteractionSettingsInput!) {
+  platform {
+    updateInteractionSettings(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,24 @@
+query getProjectGroupProjectDeletedByUsers($id: ID!, $projectFilters: ProjectGroupProjectsFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectFilters) {
+        edges {
+          node {
+            id
+            deletedBy {
+              ...userNameFields
+              type
+              ... on Student {
+                alertTypes {
+                  ...alertTypeFields
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

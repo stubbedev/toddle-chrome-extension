@@ -1,0 +1,11 @@
+query getDepartmentSubjectsQuery($id: ID!, $subjectFilters: SubjectFilterInput) {
+  node(id: $id, type: SUBJECT_GROUP) {
+    ... on SubjectGroup {
+      id
+      subjects(filters: $subjectFilters) {
+        id
+        name
+      }
+    }
+  }
+}

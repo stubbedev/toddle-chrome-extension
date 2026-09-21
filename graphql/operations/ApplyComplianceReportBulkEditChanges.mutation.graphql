@@ -1,0 +1,10 @@
+mutation ApplyComplianceReportBulkEditChanges($input: ApplyComplianceReportBulkEditChangesInput!) {
+  complianceReport {
+    applyComplianceReportBulkEditChanges(input: $input) {
+      isSuccess
+      warning
+      activityLogId
+      status
+    }
+  }
+}

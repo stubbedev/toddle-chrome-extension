@@ -1,0 +1,26 @@
+query getAnalyticsEntity($id: ID!, $analyticsEntityFilterInput: AnalyticsEntityFilterInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      analytics {
+        analyticsEntityData(filter: $analyticsEntityFilterInput) {
+          totalCount
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          edges {
+            entityId
+            entityType
+            name
+            curriculumProgramIds
+            academicYearId
+            createdAt
+            metaData
+          }
+        }
+      }
+    }
+  }
+}

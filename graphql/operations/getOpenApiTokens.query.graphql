@@ -1,0 +1,16 @@
+query getOpenApiTokens {
+  integration {
+    getOpenApiTokens {
+      id
+      status
+      label
+      accessLevel
+      tokenLastSix
+      createdBy
+      createdByName
+      createdAt
+      updatedAt
+      expiresAt
+    }
+  }
+}

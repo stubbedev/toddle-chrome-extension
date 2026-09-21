@@ -1,0 +1,50 @@
+query getOrganizationSubjects($id: ID!, $subjectFilters: SubjectFilterInput, $subjectCourseFilters: SubjectCourseFilters, $flatVariantsCourseFilters: FlatVariantsCourseFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        grades {
+          id
+          name
+          curriculumProgram {
+            id
+            type
+          }
+        }
+        flatVariants {
+          level {
+            id
+            label
+            type
+          }
+          courses(filters: $flatVariantsCourseFilters) {
+            edges {
+              node {
+                ...courseDetails
+              }
+            }
+          }
+        }
+        courses(filters: $subjectCourseFilters) {
+          edges {
+            node {
+              ...courseDetails
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment courseDetails on Course {
+  id
+  title
+  grades {
+    id
+    name
+  }
+}

@@ -1,0 +1,9 @@
+mutation uploadToSftpFromDrive($input: IntegrationUploadToSftpFromDriveInput!) {
+  integration {
+    integrationUploadToSftpFromDrive(input: $input) {
+      isSuccess
+      errorMessage
+      jobId
+    }
+  }
+}

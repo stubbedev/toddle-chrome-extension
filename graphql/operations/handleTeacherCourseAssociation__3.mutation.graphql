@@ -1,0 +1,25 @@
+query getCoursesFeed($organizationId: ID!, $after: String, $filters: LearningCourseFilters, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $gradeFilters: LearningCourseGradeFilters, $termFilters: TermFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            ...courseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}
+
+mutation handleTeacherCourseAssociation($input: InitBluePrintCourseTeacherCourseSyncInput!) {
+  planner {
+    initBluePrintCourseTeacherCourseSync(input: $input)
+  }
+}

@@ -1,0 +1,29 @@
+query getPlannerElementNodeSetConfig($id: ID!, $nodeSetConfigFilters: PlannerElementNodeSetConfigFilters, $gradingConfigurationsFilters: DataSetGradingConfigurationFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      config(filters: $nodeSetConfigFilters) {
+        id
+        value
+        globalProperty {
+          id
+          property
+        }
+      }
+      dataSetGradingConfigurations(filters: $gradingConfigurationsFilters) {
+        id
+        type
+        entityType
+        settings {
+          id
+          uid
+          value
+        }
+      }
+      gradeScales {
+        id
+        displayName
+      }
+    }
+  }
+}

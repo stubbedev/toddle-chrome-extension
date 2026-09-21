@@ -1,0 +1,20 @@
+query getUserRnpRoles($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: RnPRoleContextDetailFilterInput) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      rnpRoleContextDetail(filters: $filters) {
+        id
+        contextType
+        role {
+          id
+          isDefaultRole
+          globalRole {
+            id
+            uid
+          }
+        }
+      }
+    }
+  }
+}

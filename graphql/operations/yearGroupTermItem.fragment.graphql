@@ -1,0 +1,67 @@
+fragment yearGroupTermItem on YearGroup {
+  id
+  name
+  students {
+    totalCount
+    edges {
+      node {
+        id
+      }
+    }
+  }
+  selectedTranscriptTerms {
+    id
+    label
+  }
+  academicYearGradeMapForTranscript {
+    grade {
+      id
+      name
+      curriculumProgram {
+        id
+        type
+      }
+    }
+    academicYear {
+      id
+      startDate
+      endDate
+    }
+    terms {
+      id
+      label
+    }
+    sources {
+      id
+      type
+      source {
+        id
+        ... on Attachment {
+          id
+          name
+          url
+          signedUrl
+        }
+        ... on ProgressReportTaskGroup {
+          id
+          title
+          courseProgressReportTasks {
+            id
+            parentEntity {
+              id
+            }
+          }
+        }
+        ... on Gradebook {
+          id
+          createdAt
+          updatedAt
+        }
+      }
+      term {
+        id
+        label
+      }
+    }
+  }
+}

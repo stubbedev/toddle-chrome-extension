@@ -1,0 +1,35 @@
+query getRoutineRotationDays($id: ID!, $curriculumProgramIds: [ID!], $routineFilters: RoutineFilterOptions!, $routineDatesFilters: RoutineDatesFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        routines(filter: $routineFilters) {
+          id
+          label
+          routineMode
+          routineDates(filters: $routineDatesFilters) {
+            date
+            rotationDay {
+              id
+              label
+              abbreviation
+            }
+            bellSchedule {
+              id
+              periodsEdge {
+                periods {
+                  period {
+                    id
+                  }
+                  isDefault
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getSubjectGradeScalesList($id: ID!, $filters: SubjectGradeScalesFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      gradeScales(filters: $filters) {
+        id
+        templateName
+      }
+      plannerElementNodeSet {
+        id
+        standardSetWrapper {
+          gradeScales {
+            id
+            templateName
+            displayName
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+fragment userItem on User {
+  id
+  firstName
+  middleName
+  lastName
+  type
+  email
+  profileImage
+  ... on Student {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    type
+    sourceId
+  }
+  ... on Staff {
+    preferredName
+    prefix
+    suffix
+    pronouns
+    role
+    courses {
+      id
+      title
+    }
+    curriculumPrograms {
+      id
+      acronym
+    }
+    isArchived
+  }
+}

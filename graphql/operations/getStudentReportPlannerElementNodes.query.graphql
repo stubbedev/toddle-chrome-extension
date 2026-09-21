@@ -1,0 +1,54 @@
+query getStudentReportPlannerElementNodes($studentProgressReportId: ID!, $associatedChildPlannerElementFilters: AssociatedChildPlannerElementNodesFilters!) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      student {
+        id
+      }
+      courseProgressReportTask {
+        id
+        parentEntity {
+          id
+          ... on Grade {
+            id
+            name
+          }
+        }
+      }
+      plannerElementNodes(filters: {elementType: MYP_OBJECTIVES}) {
+        id
+        label
+        dataSetNodeWrapper {
+          properties {
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+      mypCriteria {
+        id
+        label
+        type
+        dataSetNodeWrapper {
+          properties {
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+      reportSubjects {
+        id
+        name
+        associatedChildPlannerElementNodes(filters: $associatedChildPlannerElementFilters) {
+          id
+          label
+        }
+      }
+    }
+  }
+}

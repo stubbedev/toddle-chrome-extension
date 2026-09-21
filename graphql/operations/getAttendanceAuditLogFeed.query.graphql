@@ -1,0 +1,64 @@
+query getAttendanceAuditLogFeed($input: AttendanceActivityAuditLogFeedInput!) {
+  platform {
+    attendanceActivityAuditLogFeed(input: $input) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          id
+          eventType
+          pipeline
+          action
+          entityType
+          metadata
+          seq
+          userType
+          activityTimestamp
+          user {
+            id
+            firstName
+            lastName
+          }
+          period {
+            id
+            label
+          }
+          previousState {
+            attendanceOption {
+              id
+              label
+            }
+          }
+          nextState {
+            attendanceOption {
+              id
+              label
+            }
+          }
+          attendanceActivity {
+            id
+            parent {
+              ... on AttendanceArrivalDepartureEntry {
+                id
+                direction
+              }
+              ... on ActivitySession {
+                id
+                name
+              }
+              ... on CalendarEventSession {
+                id
+                calendarEventItem {
+                  id
+                  label
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

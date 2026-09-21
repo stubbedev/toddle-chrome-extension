@@ -1,0 +1,29 @@
+mutation updateAcademicYearGroup($input: UpdateAcademicYearGroupInput!) {
+  platform {
+    updateAcademicYearGroup(input: $input) {
+      isSuccess
+      warning
+      academicYearGroup {
+        id
+        name
+        acronym
+        isArchived
+        isCurrent
+        displayOrder
+        curriculumProgramWiseAcademicYearMap {
+          academicYear {
+            ...academicYearItem
+          }
+          curriculumProgram {
+            id
+            programType
+            label
+          }
+        }
+        academicYears {
+          id
+        }
+      }
+    }
+  }
+}

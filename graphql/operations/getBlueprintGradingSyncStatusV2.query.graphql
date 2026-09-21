@@ -1,0 +1,8 @@
+query getBlueprintGradingSyncStatusV2($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      blueprintCourseSyncStatusV2(filters: {type: GRADING_CONFIG})
+    }
+  }
+}

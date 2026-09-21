@@ -1,0 +1,5 @@
+fragment permissionBasicDetailsItem on ACLPermission {
+  id
+  uid
+  value
+}

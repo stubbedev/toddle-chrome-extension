@@ -1,0 +1,22 @@
+query getProjectReportTemplateDetails($id: ID!, $filters: ParentProjectGroupReportFilter) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      selectedProjectReportTemplate {
+        ...attachmentItem
+        presetAttachment {
+          ...attachmentItem
+        }
+      }
+      allProjectReportTemplates {
+        ...attachmentItem
+        presetAttachment {
+          ...attachmentItem
+        }
+        parentProjectGroupReport(filters: $filters) {
+          ...attachmentItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+query getMapleBearSubjectAssociationList($id: ID!, $unitPlanFilters: UnitPlanFilter, $classesFilters: CourseFilterInput, $unitPlansFeedFilters: UnitPlansV2FeedFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      allRegionTags {
+        id
+        region
+        unitPlans(filters: $unitPlansFeedFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              grades
+              ...unitPlanItem
+            }
+          }
+        }
+        courses(filters: $classesFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              title
+              grade {
+                id
+              }
+              unitPlans(filters: $unitPlanFilters) {
+                totalCount
+              }
+              academicYears {
+                id
+                startDate
+                endDate
+              }
+              gradesWithAcademicYear {
+                grade {
+                  id
+                  name
+                }
+                academicYear {
+                  id
+                  startDate
+                  endDate
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment unitPlanItem on UnitPlan {
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  theme {
+    id
+    resolvedMinimalTree {
+      id
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+    }
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+}

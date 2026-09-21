@@ -1,0 +1,13 @@
+mutation updateColumn($input: [UpdateExternalAssessmentColumnInput!]!) {
+  externalAssessment {
+    updateExternalAssessmentColumns(input: $input) {
+      isSuccess
+      columns {
+        id
+        name
+        columnType
+        config
+      }
+    }
+  }
+}

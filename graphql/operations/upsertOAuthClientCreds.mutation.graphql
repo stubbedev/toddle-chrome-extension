@@ -1,0 +1,9 @@
+mutation upsertOAuthClientCreds($input: OAuthClientCredsUpsertInput!) {
+  integration {
+    upsertOAuthClientCreds(input: $input) {
+      isSuccess
+      message
+      warning
+    }
+  }
+}

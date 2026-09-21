@@ -1,0 +1,17 @@
+query getAllStudents($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      students(first: 10000, filters: $filters) {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+          }
+        }
+      }
+    }
+  }
+}

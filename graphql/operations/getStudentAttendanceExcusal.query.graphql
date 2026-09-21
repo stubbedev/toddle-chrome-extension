@@ -1,0 +1,83 @@
+query getStudentAttendanceExcusal($studentId: ID!, $filters: AttendanceExcusalFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      yearGroup {
+        grade {
+          id
+          name
+        }
+      }
+      ...studentNameFields
+      profileImage
+      yearGroup {
+        id
+        name
+      }
+      studentAttendanceExcusals(filters: $filters) {
+        edges {
+          node {
+            ...attendanceExcusalItem
+            startTime
+            endTime
+            excusalReason {
+              id
+              name
+            }
+            attendanceOption {
+              label
+              abbreviation
+              color
+              attendanceCategory {
+                id
+                color
+              }
+            }
+            status
+            isRecurringEvent
+            seriesParentId
+            occurrenceIndex
+            occurrenceCount
+            recurrenceSetting {
+              frequency
+              weekDays
+              interval
+              endDate
+              monthDays
+              setPositions
+              count
+            }
+            attachments {
+              id
+              type
+              title
+              url
+              name
+              mimeType
+              thumbUrl
+              streamUrl
+              description
+              metadata
+            }
+            uid
+            resolutionNote
+            notifiedVia
+            notifiedBy {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+            familyMembers {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+          }
+        }
+      }
+    }
+  }
+}

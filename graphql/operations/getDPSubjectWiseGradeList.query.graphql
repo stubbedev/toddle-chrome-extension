@@ -1,0 +1,28 @@
+query getDPSubjectWiseGradeList($id: ID!, $flatVariantsCourseFilters: FlatVariantsCourseFilters, $subjectCourseFilter: SubjectCourseFilters, $unitPlanFilters: UnitPlanFilter, $unitPlanAcademicYearFilterInput: SubjectUnitPlansFilterInput, $unitPlanAcademicYearFlatVariantFilterInput: FlatVariantUnitPlansFilterInput, $flatVariantFilterInput: FlatSubjectVariantFilterInput) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      flatVariants(filters: $flatVariantFilterInput) {
+        level {
+          id
+        }
+        responseLanguage {
+          id
+        }
+        unitPlans(filters: $unitPlanAcademicYearFlatVariantFilterInput) {
+          totalCount
+        }
+        courses(filters: $flatVariantsCourseFilters) {
+          ...courseCountItem
+        }
+      }
+      unitPlans(filters: $unitPlanAcademicYearFilterInput) {
+        totalCount
+      }
+      courses(filters: $subjectCourseFilter) {
+        ...courseCountItem
+      }
+    }
+  }
+}

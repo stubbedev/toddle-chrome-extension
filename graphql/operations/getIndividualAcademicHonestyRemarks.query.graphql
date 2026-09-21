@@ -1,0 +1,14 @@
+query getIndividualAcademicHonestyRemarks($id: ID!, $filters: ProjectStudentsCollaboratorFilters) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      studentCollaborators(filters: $filters) {
+        id
+        academicHonestyRemarks {
+          ...remarksDetailsItem
+        }
+      }
+    }
+  }
+}

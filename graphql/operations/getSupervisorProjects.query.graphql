@@ -1,0 +1,13 @@
+query getSupervisorProjects($staffId: ID!, $filters: ProjectFilter) {
+  node(id: $staffId, type: STAFF) {
+    ... on Staff {
+      id
+      projects(filters: $filters) {
+        id
+        students {
+          ...userItem
+        }
+      }
+    }
+  }
+}

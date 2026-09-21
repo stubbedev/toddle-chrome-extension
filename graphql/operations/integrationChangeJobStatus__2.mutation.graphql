@@ -1,0 +1,5 @@
+mutation integrationChangeJobStatus($id: ID!, $enableType: INTEGRATION_SUBTASK_ENABLE_TYPE_ENUM!, $status: INTEGRATION_JOB_STATUS_ENUM!, $subTasks: [IntegrationInputSubTask!]) {
+  integration {
+    integrationChangeJobStatus(input: {jobId: $id, enableType: $enableType, status: $status, subTasks: $subTasks})
+  }
+}

@@ -1,0 +1,41 @@
+query getStaffMembersMappedToRole($roleId: ID!, $after: String, $first: Int, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYearId: ID!, $filters: RnPRoleContextDetailFilterInput, $searchText: String, $includeRnpRoles: Boolean = true) {
+  node(id: $roleId, type: RNP_ROLE) {
+    ... on RnPRole {
+      id
+      assignedUsers(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters, searchText: $searchText) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            type
+            email
+            firstName
+            lastName
+            middleName
+            profileImage
+            preferredName
+            pronouns
+            prefix
+            suffix
+            isArchivedV2(filters: {academicYearId: $academicYearId})
+            rnpRoleContextDetail(filters: {roleModule: ["BEHAVIOUR"]}) @include(if: $includeRnpRoles) {
+              id
+              role {
+                id
+                label
+              }
+              contextType
+              context {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

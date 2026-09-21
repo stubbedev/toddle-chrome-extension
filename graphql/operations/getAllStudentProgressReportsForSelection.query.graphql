@@ -1,0 +1,29 @@
+query getAllStudentProgressReportsForSelection($courseProgressReportTaskId: ID!, $filters: TaskStudentProgressReportsFilter) {
+  node(id: $courseProgressReportTaskId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      studentProgressReports(filters: $filters) {
+        edges {
+          node {
+            id
+            courses {
+              id
+              title
+            }
+            student {
+              id
+              firstName
+              middleName
+              lastName
+              preferredName
+              profileImage
+              isArchived
+              prefix
+            }
+          }
+        }
+      }
+    }
+  }
+}

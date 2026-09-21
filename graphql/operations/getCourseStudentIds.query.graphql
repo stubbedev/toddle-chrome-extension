@@ -1,0 +1,14 @@
+query getCourseStudentIds($id: ID!) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      allStudents {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

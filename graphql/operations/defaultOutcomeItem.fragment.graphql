@@ -1,0 +1,54 @@
+fragment defaultOutcomeItem on BehaviourDefaultOutcome {
+  id
+  appliedActions {
+    id
+    status
+    canOverride
+    action {
+      id
+      title
+      state
+      metadata
+    }
+  }
+  accessibilityMap {
+    ...behaviourAccessibilityMapItem
+    users {
+      ... on Staff {
+        curriculumPrograms @include(if: $includeUserCurriculums) {
+          id
+        }
+        rnpRoleContextDetail(filters: {roleModule: ["BEHAVIOUR"]}) @include(if: $includeUserRnPRoles) {
+          id
+          role {
+            id
+          }
+          contextType
+          context {
+            id
+          }
+        }
+      }
+    }
+  }
+  subCategory {
+    id
+    name
+  }
+  severity {
+    id
+    name
+    level
+    color
+  }
+  points
+  description
+  confidentialNote
+  attachments {
+    ...attachmentItem
+  }
+  confidentialAttachments {
+    ...attachmentItem
+  }
+  points
+}

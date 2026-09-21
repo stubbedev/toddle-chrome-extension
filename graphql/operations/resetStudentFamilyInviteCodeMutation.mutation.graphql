@@ -1,0 +1,9 @@
+mutation resetStudentFamilyInviteCodeMutation($id: ID!, $unmapStudentParent: Boolean) {
+  platform {
+    updateUser(input: {id: $id, unmapStudentParent: $unmapStudentParent, updateParentInviteCode: true}) {
+      ... on Student {
+        familyInviteCode
+      }
+    }
+  }
+}

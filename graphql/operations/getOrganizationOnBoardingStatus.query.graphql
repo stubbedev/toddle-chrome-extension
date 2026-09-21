@@ -1,0 +1,29 @@
+query getOrganizationOnBoardingStatus($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      toddleBuddy
+      onboardingStatus {
+        step
+        status
+      }
+      curriculumPrograms {
+        id
+        type
+        onboardingSteps {
+          step
+          status
+        }
+        onboardingStatus
+        rosteringMethod
+        buddy {
+          firstName
+          email
+        }
+        ...curriculumProgramBasicDetailsItem
+      }
+    }
+  }
+}

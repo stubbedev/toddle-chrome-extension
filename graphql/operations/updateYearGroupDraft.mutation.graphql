@@ -1,0 +1,8 @@
+mutation updateYearGroupDraft($input: YearGroupDraftStateUpdateInput!) {
+  planner {
+    updateYearGroupDraft(input: $input) {
+      key
+      name
+    }
+  }
+}

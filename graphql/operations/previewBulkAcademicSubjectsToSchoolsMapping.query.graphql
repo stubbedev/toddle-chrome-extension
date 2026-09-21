@@ -1,0 +1,31 @@
+query previewBulkAcademicSubjectsToSchoolsMapping($input: PreviewBulkAcademicSubjectsToSchoolsMappingInput!) {
+  platform {
+    previewBulkAcademicSubjectsToSchoolsMapping(input: $input) {
+      previews {
+        academicSubjectId
+        rejection {
+          code
+          message
+        }
+        cannotBeMapped {
+          schoolCurriculumProgramId
+          missingGradeIds
+        }
+        mappedTo {
+          schoolCurriculumProgramId
+          existingChildSubjectId
+          alreadyMapped
+          departmentToCreate {
+            id
+            name
+            type
+          }
+          levelsToCreate {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

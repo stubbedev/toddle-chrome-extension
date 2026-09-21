@@ -1,0 +1,7 @@
+fragment GradingConfigurationFragment on GradingConfiguration {
+  id
+  settings(filters: $settingsFilters) {
+    id
+    value
+  }
+}

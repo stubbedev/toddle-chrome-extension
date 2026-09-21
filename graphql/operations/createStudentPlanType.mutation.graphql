@@ -1,0 +1,30 @@
+mutation createStudentPlanType($input: CreateStudentPlanTypeInput!) {
+  documentation {
+    createStudentPlanType(input: $input) {
+      isSuccess
+      studentPlanType {
+        ...studentPlanTypeBaseItem
+      }
+    }
+  }
+}
+
+query getStudentPlanDefaultAccess($schoolId: ID!) {
+  node(id: $schoolId, type: CURRICULUM_PROGRAM) {
+    ... on CurriculumProgram {
+      id
+      studentPlanWrapper {
+        defaultAccess {
+          accessLevel
+          source
+          role {
+            id
+            label
+            assignedUserCount
+            isSuperAdmin
+          }
+        }
+      }
+    }
+  }
+}

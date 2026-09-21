@@ -1,0 +1,6 @@
+fragment studentNotesItem on Student {
+  id
+  studentNotes {
+    ...studentNoteItem
+  }
+}

@@ -1,0 +1,22 @@
+query getCodeLearningCourses($id: ID!, $learningCourseFilters: LearningCourseAcademicCourseFilter) {
+  node(id: $id, type: ACADEMIC_COURSE) {
+    ... on AcademicCourse {
+      id
+      learningCourses(filters: $learningCourseFilters) {
+        edges {
+          node {
+            id
+            title
+            type
+            displayMetadata
+            isArchived
+            academicYears {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

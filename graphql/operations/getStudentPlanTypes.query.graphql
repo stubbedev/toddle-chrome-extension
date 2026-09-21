@@ -1,0 +1,28 @@
+query getStudentPlanTypes($id: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentPlanTypesFeedInput!) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...planTypesFeedFragment
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...planTypesFeedFragment
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...planTypesFeedFragment
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...planTypesFeedFragment
+      }
+    }
+  }
+}

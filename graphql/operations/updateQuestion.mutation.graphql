@@ -1,0 +1,15 @@
+mutation updateQuestion($input: UpdateQuestionInput!) {
+  content {
+    updateQuestion(input: $input) {
+      id
+      assessmentTools {
+        totalCount
+        edges {
+          node {
+            ...questionAssessmentToolItem
+          }
+        }
+      }
+    }
+  }
+}

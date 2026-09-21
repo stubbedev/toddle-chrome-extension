@@ -1,0 +1,34 @@
+fragment yearGroupStudentsItem on YearGroup {
+  students(filters: $studentFilters) {
+    totalCount
+    edges {
+      node {
+        id
+        profileImage
+        firstName
+        middleName
+        lastName
+        pronouns
+        preferredName
+        suffix
+        prefix
+        type
+        uniqueOrganizationID
+        alertTypes {
+          ...alertTypeFields
+        }
+        courses(filters: $courseFilter) {
+          id
+          title
+        }
+        transcript @skip(if: $skipTranscriptData) {
+          latestGeneratedTranscript {
+            id
+            createdAt
+            filteredNodes
+          }
+        }
+      }
+    }
+  }
+}

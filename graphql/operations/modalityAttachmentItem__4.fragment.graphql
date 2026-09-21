@@ -1,0 +1,20 @@
+query getConfigurationView($configurationViewFilters: ConfigurationViewFilters) {
+  platform {
+    configurationView(filters: $configurationViewFilters) {
+      ...configurationViewItem
+    }
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

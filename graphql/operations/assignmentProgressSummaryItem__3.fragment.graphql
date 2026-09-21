@@ -1,0 +1,273 @@
+fragment assignmentProgressSummaryItem on Assignment {
+  id
+  contentType
+  createdAt
+  isPrivate
+  state {
+    state
+  }
+  isTeacherEvaluationEnabled
+  isStudentEvaluationEnabled
+  isStudentSubmissionEnabled
+  isLockSubmissionEnabled
+  isExcludedFromFinalGradeCalculation
+  course {
+    id
+    title
+    isMappedToMe
+    aclControlParameters(filters: $aclControlParametersFilters) {
+      id
+      permission
+      value
+    }
+    learningCourse {
+      id
+    }
+    primaryGrade {
+      id
+    }
+  }
+  deadline
+  publishedAt
+  closeSubmissionDate
+  isBackdateAssignment
+  isTimedTestEnabled
+  isFixedStartTime
+  metadata
+  summaryCounts {
+    lockedSubmissions
+    unlockedSubmissions
+    assigned
+    turnedIn
+    evaluated
+    evaluationShared
+    evaluationApplicable
+  }
+  taggedPractices {
+    ...taggedPracticesOnEvidence
+  }
+  content {
+    id
+    ... on Assessment {
+      id
+      assessmentType {
+        id
+        value
+      }
+      taskType {
+        id
+        type
+        label
+        color
+        displaySequence
+        metaData
+      }
+      title {
+        id
+        value
+      }
+      academicTerm {
+        id
+        lockingStatus
+      }
+      assessmentTools(filters: $assessmentToolsFilters) {
+        edges {
+          node {
+            id
+            assessmentToolType
+            assessmentToolItem {
+              id
+              ... on AcademicCriteriaSet {
+                id
+                academicCriteriaValues {
+                  id
+                  label
+                  abbreviation
+                  scoreValues {
+                    id
+                    genericTag {
+                      id
+                      label
+                    }
+                    minValue
+                    maxValue
+                  }
+                }
+                criteriaType
+              }
+              ... on MypObjectiveRubric {
+                id
+                label
+                criteria {
+                  id
+                  highestMark
+                }
+              }
+              ... on ScoreAssessmentTool {
+                id
+                scoreToolData {
+                  id
+                  maxScore
+                }
+              }
+              ... on StandardRubric {
+                id
+                associateScoreTool {
+                  id
+                  scoreToolData {
+                    id
+                    maxScore
+                  }
+                }
+                standardRubricCriterias {
+                  id
+                  standardRubricDescriptors {
+                    id
+                    score
+                    gradeScaleValue {
+                      id
+                    }
+                  }
+                }
+                gradeScale {
+                  id
+                  gradingType
+                }
+              }
+              ... on GenericRubric {
+                id
+                associateScoreTool {
+                  scoreTool {
+                    id
+                    scoreToolData {
+                      id
+                      maxScore
+                    }
+                  }
+                }
+                genericRubricCriterias {
+                  id
+                  genericRubricDescriptors {
+                    id
+                    score
+                    gradeScaleValue {
+                      id
+                    }
+                  }
+                }
+                gradeScale {
+                  id
+                  gradingType
+                }
+              }
+              ... on GradeScaleEntityDetail {
+                id
+                gradeScale {
+                  id
+                }
+                gradeScaleValues {
+                  id
+                  label
+                  description
+                  color
+                  abbreviation
+                  displaySequence
+                  gradeScaleValueScores {
+                    id
+                    minValue
+                    maxValue
+                    gradeValue
+                    subjectLevel {
+                      id
+                      label
+                      abbreviation
+                    }
+                  }
+                }
+              }
+              ... on GradeScaleAssessmentTool {
+                id
+                gradeScaleToolData {
+                  id
+                  subType
+                  gradeScaleEntityDetail {
+                    id
+                    gradeScale {
+                      id
+                    }
+                    gradeScaleValues {
+                      id
+                      label
+                      description
+                      color
+                      abbreviation
+                      displaySequence
+                      gradeScaleValueScores {
+                        id
+                        minValue
+                        maxValue
+                        gradeValue
+                        subjectLevel {
+                          id
+                          label
+                          abbreviation
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            isTeacherEvaluationEnable
+            isStudentEvaluationEnable
+          }
+        }
+      }
+      templateId
+      fields(uids: $assessmentFieldUids) {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          ...resolvedMinimalTreeItem
+        }
+      }
+      category {
+        id
+        label
+        colorCode
+      }
+      globalCategories {
+        id
+        name
+      }
+      academicTerm {
+        id
+      }
+      weightage
+      isLearningGoalsEvaluationEnabled
+      assignments {
+        totalCount
+        userAssignmentsCount
+      }
+      isIncludedInCourseFlow
+      lockingInfo {
+        isLocked
+      }
+      gradingConfigurations {
+        id
+        settings {
+          id
+          uid
+          value
+        }
+      }
+    }
+  }
+  assignedStudents {
+    ...assignedStudentItem
+  }
+  counts {
+    totalDraftSubmissions
+  }
+}

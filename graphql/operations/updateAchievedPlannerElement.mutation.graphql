@@ -1,0 +1,5 @@
+mutation updateAchievedPlannerElement($input: UpdateAchievedPlannerElementsInput!) {
+  planner {
+    updateAchievedPlannerElements(input: $input)
+  }
+}

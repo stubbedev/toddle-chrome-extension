@@ -1,0 +1,5 @@
+mutation unenrollStaff($id: ID!, $academicYearId: ID!) {
+  platform {
+    unenrollStaff(input: {id: $id, academicYearId: $academicYearId})
+  }
+}

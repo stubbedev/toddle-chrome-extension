@@ -1,0 +1,7 @@
+mutation replaceWorksheetQuestionUsingAI($input: ReplaceWorksheetQuestionInput!) {
+  content {
+    replaceWorksheetQuestionGeneratedFromAI(input: $input) {
+      id
+    }
+  }
+}

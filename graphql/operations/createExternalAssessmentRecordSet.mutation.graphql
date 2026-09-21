@@ -1,0 +1,10 @@
+mutation createExternalAssessmentRecordSet($input: CreateExternalAssessmentRecordSetInput!) {
+  externalAssessment {
+    createExternalAssessmentRecordSet(input: $input) {
+      isSuccess
+      recordSet {
+        id
+      }
+    }
+  }
+}

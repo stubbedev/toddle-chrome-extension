@@ -1,0 +1,7 @@
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}

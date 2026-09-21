@@ -1,0 +1,14 @@
+fragment commentConnectionItem on CommentConnection {
+  totalCount
+  unreadCount
+  unreadCountV2
+  pageInfo(first: $first, after: $after) {
+    endCursor
+    hasNextPage
+  }
+  messageEdges(first: $first, after: $after) {
+    node {
+      ...messageItem
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getUnitPlansForPYPStandardsGradebook($courseId: ID!) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      ...flatUnitPlanFields
+    }
+  }
+}

@@ -1,0 +1,24 @@
+query getStudentExamRegDetails($id: ID!, $studentId: ID!, $subjectFilters: ExamRegistrationUserSubjectsFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      student(id: $studentId) {
+        ...ibisExamRegStudent
+      }
+      examSessions {
+        id
+        session
+        month
+        year
+      }
+      yearGroup {
+        id
+        isArchived
+        examSession {
+          id
+          session
+        }
+      }
+    }
+  }
+}

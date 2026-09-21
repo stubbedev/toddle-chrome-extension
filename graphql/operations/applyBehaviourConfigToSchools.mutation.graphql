@@ -1,0 +1,13 @@
+mutation applyBehaviourConfigToSchools($input: ApplyBehaviourConfigToSchoolsInput!) {
+  platform {
+    applyBehaviourConfigToSchools(input: $input) {
+      isSuccess
+      errors {
+        entityId
+        code
+        message
+        incidentCount
+      }
+    }
+  }
+}

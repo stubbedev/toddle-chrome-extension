@@ -1,0 +1,21 @@
+query getAnnouncementPublishers($organizationId: ID!, $publishersInput: CircularPublishersInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      circularPublishers(input: $publishersInput) {
+        id
+        email
+        firstName
+        middleName
+        lastName
+        profileImage
+        type
+        displayRole
+        preferredName
+        pronouns
+        prefix
+        suffix
+      }
+    }
+  }
+}

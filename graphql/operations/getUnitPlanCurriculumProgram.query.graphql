@@ -1,0 +1,11 @@
+query getUnitPlanCurriculumProgram($id: ID!) {
+  node(id: $id, type: UNIT_PLAN) {
+    ... on UnitPlan {
+      id
+      curriculumProgram {
+        id
+        type
+      }
+    }
+  }
+}

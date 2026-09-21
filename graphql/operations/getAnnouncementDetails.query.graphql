@@ -1,0 +1,84 @@
+query getAnnouncementDetails($id: ID!, $academicYearId: ID!, $isRecipientsVisible: Boolean!, $getEntities: Boolean!, $getReviewComment: Boolean!) {
+  node(id: $id, type: CIRCULAR) {
+    id
+    ... on Circular {
+      ...announcementItem
+      createdIn
+      bannerV2 {
+        id
+        url
+        name
+        type
+        mimeType
+        metadata
+      }
+      createdAt
+      sendEmail
+      reviewComment @include(if: $getReviewComment) {
+        id
+        message
+        createdBy {
+          id
+          firstName
+          middleName
+          lastName
+        }
+      }
+      attachments {
+        id
+        name
+        type
+        mimeType
+        url
+        signedUrl
+        thumbUrl
+        title
+        metadata
+        streamUrl
+        parentType
+        isRead
+        createdBy {
+          id
+          type
+        }
+      }
+      isSharedWithMe(input: {academicYearId: $academicYearId})
+      isDeleted
+      entityMap {
+        entityType
+        courses @include(if: $getEntities) {
+          id
+          isArchived
+          deletedBy {
+            id
+          }
+        }
+        grades @include(if: $getEntities) {
+          id
+        }
+        schoolGroups @include(if: $getEntities) {
+          id
+        }
+        curriculumPrograms @include(if: $getEntities) {
+          id
+          label
+          acronym
+        }
+        users @include(if: $getEntities) {
+          id
+          ... on Student {
+            isArchived
+          }
+          ... on Staff {
+            isArchived
+          }
+          ... on FamilyMember {
+            isArchived
+          }
+        }
+      }
+      sharedWith @include(if: $isRecipientsVisible)
+      emailSharedWith @include(if: $isRecipientsVisible)
+    }
+  }
+}

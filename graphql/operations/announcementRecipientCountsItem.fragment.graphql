@@ -1,0 +1,11 @@
+fragment announcementRecipientCountsItem on Circular {
+  id
+  recipientReadSummary(input: {academicYearId: $academicYearId}) {
+    read {
+      total
+    }
+    unread {
+      total
+    }
+  }
+}

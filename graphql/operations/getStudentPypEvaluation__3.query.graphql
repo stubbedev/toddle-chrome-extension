@@ -1,0 +1,11 @@
+query getStudentPypEvaluation($studentIds: [ID!], $startDate: String, $endDate: String, $filtersForRecentMost: ibPYPElementRatingFilterForRecentMost) {
+  multiNode(ids: $studentIds, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      ibPYPElementRatings(filtersForRecentMost: $filtersForRecentMost, dataSet: MOST_RECENT, startDate: $startDate, endDate: $endDate) {
+        ...ratingItem
+      }
+    }
+  }
+}

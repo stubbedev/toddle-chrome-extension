@@ -1,0 +1,8 @@
+mutation markUserModuleAsRead($input: MarkUserModuleAsReadInput!) {
+  platform {
+    markUserModuleAsRead(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

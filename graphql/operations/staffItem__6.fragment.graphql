@@ -1,0 +1,37 @@
+fragment attendanceExcusalItem on AttendanceExcusal {
+  id
+  student {
+    id
+    firstName
+    middleName
+    lastName
+    preferredName
+    suffix
+    pronouns
+  }
+  durationType
+  startDate
+  endDate
+  status
+  periods {
+    ...periodsItem
+  }
+  reason
+  createdBy {
+    ...createdByItem
+  }
+  createdAt
+  conversation {
+    ...conversationItem
+  }
+  attendanceOption {
+    id
+  }
+}
+
+fragment staffItem on Staff {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...courseItem
+  }
+}

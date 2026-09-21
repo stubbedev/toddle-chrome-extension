@@ -1,0 +1,13 @@
+fragment userItem on User {
+  ...userNameFields
+  email
+  profileImage
+  ... on Student {
+    sourceId
+    registrationCategory
+  }
+  ... on Staff {
+    role
+    isArchived
+  }
+}

@@ -1,0 +1,41 @@
+query getOrganizationPermissionRequest($filters: MultiAccessIdentityRequestFeedFilters) {
+  platform {
+    multiAccessIdentityRequestFeed(filters: $filters) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+        __typename
+      }
+      edges {
+        node {
+          id
+          requester {
+            id
+            firstName
+            lastName
+            identityId
+            email
+          }
+          requestedManager {
+            id
+            identityId
+            firstName
+            lastName
+            email
+          }
+          organization {
+            id
+            name
+          }
+          reason
+          status
+          expiresAt
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

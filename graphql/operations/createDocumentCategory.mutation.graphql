@@ -1,0 +1,7 @@
+mutation createDocumentCategory($input: SnpDocumentCategoryCreateInput!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  platform {
+    createSnpDocumentCategoryV2(input: $input) {
+      ...snpDocumentCategoryItem
+    }
+  }
+}

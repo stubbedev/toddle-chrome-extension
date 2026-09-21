@@ -1,0 +1,4 @@
+fragment subjectItem on Subject {
+  id
+  name
+}

@@ -1,0 +1,6 @@
+fragment studentGoalTaskItem on GoalTask {
+  id
+  comments {
+    ...commentConnectionItem
+  }
+}

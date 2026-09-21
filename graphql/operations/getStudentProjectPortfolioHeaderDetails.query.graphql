@@ -1,0 +1,52 @@
+query getStudentProjectPortfolioHeaderDetails($id: ID!, $academicYearId: ID, $projectCountFilter: ProjectCountFilter, $ibPYPElementRatingsFilters: ibPYPElementRatingsFilter, $completionStatusFilters: CompletionStatusFilter) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      projectCounts {
+        projectsCount(filters: $projectCountFilter)
+        experiencesCount
+      }
+      status
+      completionStatus(filters: $completionStatusFilters) {
+        isComplete
+        markedCompletedAt
+        markedCompletedBy {
+          ...userNameFields
+        }
+      }
+      student {
+        ...userItem
+      }
+      staff {
+        ...userItem
+      }
+      projects {
+        edges {
+          node {
+            id
+            status
+            isArchived
+          }
+        }
+      }
+      ibPYPElementRatings(filters: $ibPYPElementRatingsFilters) {
+        id
+        createdAt
+        createdByV2 {
+          ...userNameFields
+          profileImage
+        }
+        academicCriteriaSet {
+          id
+          criteriaType
+        }
+        academicCriteriaValue {
+          id
+          label
+          abbreviation
+          color
+        }
+      }
+    }
+  }
+}

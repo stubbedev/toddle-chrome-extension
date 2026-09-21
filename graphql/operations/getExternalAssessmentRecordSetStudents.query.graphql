@@ -1,0 +1,15 @@
+query getExternalAssessmentRecordSetStudents($id: ID!) {
+  node(id: $id, type: EXTERNAL_ASSESSMENT_RECORD_SET) {
+    id
+    ... on ExternalAssessmentRecordSet {
+      students {
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

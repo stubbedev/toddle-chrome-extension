@@ -1,0 +1,21 @@
+query getProgressReportTemplates($id: ID!, $filters: ProgressReportTemplateFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      progressReportTemplates(filters: $filters) {
+        edges {
+          node {
+            id
+            name
+            grades {
+              id
+              name
+            }
+            gradingPeriodType
+            isAttendanceEnabled
+          }
+        }
+      }
+    }
+  }
+}

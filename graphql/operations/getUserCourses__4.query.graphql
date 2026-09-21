@@ -1,0 +1,38 @@
+query getUserCourses($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: CourseFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      courses(filters: $filters, orderBy: TITLE, orderByDirection: ASC) {
+        id
+        title
+        curriculumProgram {
+          id
+          type
+          nodeInterfaceType
+          label
+          acronym
+        }
+        profileImageData {
+          url
+          icon
+        }
+        subjects {
+          id
+          type
+          subjectGroup {
+            id
+          }
+        }
+        subjectGroups {
+          id
+          type
+        }
+        grades {
+          id
+          displaySequence
+        }
+      }
+    }
+  }
+}

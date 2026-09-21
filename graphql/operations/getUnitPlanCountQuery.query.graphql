@@ -1,0 +1,10 @@
+query getUnitPlanCountQuery($id: ID!, $filters: UnitPlansV2FeedFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      unitPlansV2(filters: $filters) {
+        unitPublishCount
+      }
+    }
+  }
+}

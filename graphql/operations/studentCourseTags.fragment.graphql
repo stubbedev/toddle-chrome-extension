@@ -1,0 +1,12 @@
+fragment studentCourseTags on Student {
+  courseMap(filters: $courseIdsFilter) {
+    id
+    course {
+      id
+    }
+    tags {
+      id
+      label
+    }
+  }
+}

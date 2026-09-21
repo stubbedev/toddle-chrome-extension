@@ -1,0 +1,10 @@
+query getXlsxTemplateForTranscript($id: ID!, $input: DownloadExcelTemplateForTranscriptInput!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      downloadExcelTemplateForTranscript(input: $input) {
+        ...downloadExcelResponseItem
+      }
+    }
+  }
+}

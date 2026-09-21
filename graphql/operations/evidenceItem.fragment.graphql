@@ -1,0 +1,17 @@
+fragment evidenceItem on SnPPracticeEvidence {
+  id
+  evidenceType
+  evidenceStatus
+  evidenceItem {
+    ...evidenceItemInterface
+  }
+  createdBy {
+    id
+  }
+  createdAt
+  parentItem {
+    item {
+      id
+    }
+  }
+}

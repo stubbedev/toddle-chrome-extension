@@ -1,0 +1,19 @@
+query allClassesOfOrganisation($id: ID!, $filters: CourseFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses(filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            grades {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

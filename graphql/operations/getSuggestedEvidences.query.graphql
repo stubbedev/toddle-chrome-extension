@@ -1,0 +1,38 @@
+query getSuggestedEvidences($practiceId: ID!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $applyDashboardEvidenceCategoryOrdering: Boolean, $evidenceFilters: SnpPracticeSuggestedEvidenceFilters!) {
+  node(id: $practiceId, type: SnP_PRACTICE) {
+    id
+    ... on SnPPractice {
+      id
+      suggestedEvidence(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, applyDashboardEvidenceCategoryOrdering: $applyDashboardEvidenceCategoryOrdering, filters: $evidenceFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            evidenceType
+            evidenceStatus
+            evidenceItem {
+              ...evidenceItemInterface
+            }
+            createdBy {
+              id
+              firstName
+              lastName
+              middleName
+              preferredName
+              prefix
+              suffix
+              pronouns
+              type
+            }
+            createdAt
+            isViewed
+          }
+        }
+      }
+    }
+  }
+}

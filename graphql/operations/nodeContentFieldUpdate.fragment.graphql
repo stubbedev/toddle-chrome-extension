@@ -1,0 +1,14 @@
+fragment nodeContentFieldUpdate on CurriculumWebsiteNode {
+  id
+  content(filters: $contentFilter) {
+    id
+    type
+    value
+    isEnabled
+    attachments {
+      id
+      url
+      name
+    }
+  }
+}

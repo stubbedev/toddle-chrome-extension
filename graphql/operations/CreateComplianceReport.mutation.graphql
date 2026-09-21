@@ -1,0 +1,17 @@
+mutation CreateComplianceReport($input: CreateComplianceReportInput!) {
+  complianceReport {
+    createComplianceReport(input: $input) {
+      isSuccess
+      warning
+      report {
+        id
+        name
+        status
+        dataStatus
+        createdAt
+        updatedAt
+      }
+      activityLogId
+    }
+  }
+}

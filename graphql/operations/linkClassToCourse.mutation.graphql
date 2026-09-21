@@ -1,0 +1,5 @@
+mutation linkClassToCourse($input: BulkUpdateLearningCourseClassInput!) {
+  planner {
+    bulkUpdateLearningCourseClass(input: $input)
+  }
+}

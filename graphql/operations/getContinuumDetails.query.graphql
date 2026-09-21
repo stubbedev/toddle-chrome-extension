@@ -1,0 +1,12 @@
+query getContinuumDetails($id: ID!) {
+  node(id: $id, type: CONTINUUM) {
+    id
+    ... on Continuum {
+      ...continuumBasicDetails
+      nodes {
+        ...continuumNodeItem
+      }
+    }
+    __typename
+  }
+}

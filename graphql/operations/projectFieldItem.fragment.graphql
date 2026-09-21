@@ -1,0 +1,32 @@
+fragment projectFieldItem on PlannerField {
+  id
+  uid
+  value
+  parent
+  children
+  isComplete
+  updatedAt
+  pseudoFieldUid
+  attachments {
+    ...attachmentItemV2
+    presetAttachment {
+      ...attachmentItem
+    }
+  }
+  comments {
+    totalCount
+    unreadCount
+    unreadCountV2
+  }
+  resolvedMinimalTree {
+    ...projectResolvedFieldValueItem
+  }
+  allResponses {
+    totalCount
+    edges {
+      node {
+        ...responseItem
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query getSchoolTemplatesCount($id: ID!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    ... on GenericCurriculumProgram {
+      id
+      transcriptTemplates(filters: {archivalState: ALL}) {
+        totalCount
+      }
+    }
+  }
+}

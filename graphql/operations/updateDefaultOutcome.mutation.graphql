@@ -1,0 +1,19 @@
+mutation updateDefaultOutcome($input: [BehaviourDefaultOutcomeUpsertInput!]!) {
+  platform {
+    upsertBehaviourDefaultOutcome(input: $input) {
+      id
+      points
+      appliedActions {
+        id
+        action {
+          id
+          title
+        }
+      }
+      accessibilityMap {
+        id
+        type
+      }
+    }
+  }
+}

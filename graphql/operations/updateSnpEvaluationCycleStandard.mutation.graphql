@@ -1,0 +1,7 @@
+mutation updateSnpEvaluationCycleStandard($standardId: ID!, $status: SNP_STATUS_ENUM) {
+  platform {
+    updateSnpEvaluationCycleStandard(input: {id: $standardId, status: $status}) {
+      ...standardItem
+    }
+  }
+}

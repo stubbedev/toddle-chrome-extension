@@ -1,0 +1,12 @@
+mutation createCircular($input: CircularCreateInput!) {
+  school {
+    createCircular(input: $input) {
+      id
+      state
+      publishedAt
+      createdBy {
+        id
+      }
+    }
+  }
+}

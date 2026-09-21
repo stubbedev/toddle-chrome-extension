@@ -1,0 +1,30 @@
+query ComplianceReportSidebarRecords($id: ID!, $input: SidebarRecordsInput!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      sidebarRecords(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            sidebarUid
+            entityType
+            entityId
+            scopeEntityType
+            scopeEntityId
+            dataStatus
+            fieldValues {
+              fieldUid
+              values
+            }
+          }
+        }
+      }
+    }
+  }
+}

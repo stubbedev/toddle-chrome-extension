@@ -1,0 +1,16 @@
+query getOrganizationAttendanceCategories($id: ID!, $organizationAttendanceFilters: OrganizationAttendanceFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      attendanceV2(filters: $organizationAttendanceFilters) {
+        attendanceOptionSet {
+          id
+          attendanceCategories {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+query getStandardSets($id: ID!, $filters: PlannerElementNodeSetFilters, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      ...curriculumProgramStandardSetsItem
+    }
+    ... on IbPypCurriculumProgram {
+      ...curriculumProgramStandardSetsItem
+    }
+    ... on IbMypCurriculumProgram {
+      ...curriculumProgramStandardSetsItem
+    }
+    ... on IbDpCurriculumProgram {
+      ...curriculumProgramStandardSetsItem
+    }
+    ... on UBDCurriculumProgram {
+      ...curriculumProgramStandardSetsItem
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment teacherCoursesDetails on Staff {
+  courses(filters: $courseFilters) {
+    id
+    isArchived
+    title
+    allCollaborators(filters: $collaboratorsFilters) {
+      totalCount
+    }
+    grades {
+      id
+      name
+    }
+  }
+}

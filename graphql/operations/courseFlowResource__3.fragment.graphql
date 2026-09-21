@@ -1,0 +1,111 @@
+fragment courseFlowResource on LearningCourseFlow {
+  id
+  depth
+  itemType
+  state(filters: $stateFilters)
+  parent {
+    id
+  }
+  item {
+    id
+    ... on Assessment {
+      type
+      academicTerm {
+        id
+        lockingStatus
+      }
+      assessmentType {
+        id
+        value
+      }
+      taskType {
+        id
+        type
+      }
+      lockingInfo {
+        isLocked
+      }
+      fields(uids: $assessmentFieldUids) @skip(if: $skipAssessmentFields) {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          id
+          ... on ResolvedFieldPlannerElementSet {
+            id
+            nodes {
+              id
+              dataSetNodeWrapper {
+                plannerElementNodeSet {
+                  id
+                }
+              }
+            }
+          }
+          ... on ResolvedFieldSubjectSet {
+            id
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+    ... on UnitPlan {
+      lockingInfo {
+        isLocked
+      }
+      unitType {
+        id
+        value
+      }
+      subjects {
+        id
+        value
+        lockingInfo {
+          isLocked
+        }
+      }
+      standardLockingInfo {
+        uid
+        value
+        lockingInfo {
+          isLocked
+        }
+      }
+      fields(uids: ["pace"]) {
+        id
+        uid
+        value
+      }
+      unshareRestrictedLearningCourseIds
+    }
+  }
+  lockingInfo {
+    isLocked
+  }
+  hasPublishedAssessments
+  linkedResources {
+    id
+  }
+  isSyncedFromBluePrintCourse(filters: $syncedBluePrintItemFilters)
+  isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) @skip(if: $skipSyncStatus) {
+    isConflictExists
+    status
+    courseSyncStatus @include(if: $includeCourseSyncStatus) {
+      course {
+        id
+      }
+      status
+    }
+  }
+  children(filters: $filters) {
+    id
+  }
+  childrenHierarchyInfo(filters: $filters) {
+    maxDepth
+    totalCount
+    totalCountWithFolder
+  }
+}

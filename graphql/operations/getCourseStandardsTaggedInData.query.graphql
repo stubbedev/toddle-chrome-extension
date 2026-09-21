@@ -1,0 +1,29 @@
+query getCourseStandardsTaggedInData($learningCourseId: ID!, $filters: PlannerElementNodeFilters, $isPYPCurriculum: Boolean! = false, $shouldSkipAssessment: Boolean! = false, $shouldSkipPortfolio: Boolean! = false, $shouldSkipUnitPlan: Boolean! = false, $shouldSkipStudentProgressReport: Boolean! = false, $isParentTaggingEnabled: Boolean! = false) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      standardsWrapper(filters: $filters) @skip(if: $isPYPCurriculum) {
+        standardsEdge {
+          standardSet {
+            id
+            title
+          }
+          standards {
+            ...dataSetNodeCountWrapperFragment
+          }
+        }
+      }
+      benchmarksWrapper(filters: $filters) @include(if: $isPYPCurriculum) {
+        standardsEdge {
+          standardSet {
+            id
+            title
+          }
+          standards {
+            ...dataSetNodeCountWrapperFragmentPyp
+          }
+        }
+      }
+    }
+  }
+}

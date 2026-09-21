@@ -1,0 +1,5 @@
+mutation deleteRubric($id: ID!) {
+  planner {
+    deleteRubric(input: {id: $id})
+  }
+}

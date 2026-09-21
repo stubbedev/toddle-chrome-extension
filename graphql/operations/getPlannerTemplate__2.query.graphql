@@ -1,0 +1,15 @@
+query getPlannerTemplate($ids: [ID!], $locale: String) {
+  multiNode(ids: $ids, type: PLANNER_TEMPLATE) {
+    id
+    ... on PlannerTemplate {
+      id
+      body(locale: $locale)
+      name
+      isBilingual
+      type
+      academicTemplate {
+        id
+      }
+    }
+  }
+}

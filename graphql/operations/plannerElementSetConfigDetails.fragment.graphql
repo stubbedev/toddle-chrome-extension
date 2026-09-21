@@ -1,0 +1,9 @@
+fragment plannerElementSetConfigDetails on PlannerElementSet {
+  id
+  config {
+    id
+    config
+    value
+    valueType
+  }
+}

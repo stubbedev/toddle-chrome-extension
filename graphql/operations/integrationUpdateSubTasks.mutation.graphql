@@ -1,0 +1,7 @@
+mutation integrationUpdateSubTasks($subTasks: [IntegrationInputSubTask!]) {
+  integration {
+    integrationUpdateSubTasks(input: {subTasks: $subTasks}) {
+      ...subTaskData
+    }
+  }
+}

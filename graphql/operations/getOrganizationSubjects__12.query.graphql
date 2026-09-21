@@ -1,0 +1,121 @@
+query getOrganizationSubjects($id: ID!, $filters: SubjectFilterInput, $flatSubjectVariantFilters: FlatSubjectVariantFilterInput, $learningCourseFilters: SubjectLearningCourseFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        icon
+        iconType
+        presetSubjectId
+        parentSubject {
+          id
+        }
+        grades {
+          id
+          name
+        }
+        unitPlans {
+          totalCount
+        }
+        courses(filters: {archivalState: ALL}) {
+          totalCount
+        }
+        subjectGroup {
+          id
+          name
+          type
+          displaySequence
+          globalSubjectGroup {
+            id
+          }
+        }
+        associatedLevels {
+          id
+          label
+          type
+          metadata
+        }
+        learningCourses(filters: $learningCourseFilters) {
+          id
+          title
+          state
+          displayMetadata
+          grades {
+            id
+          }
+          associatedLevels {
+            id
+          }
+          academicCourse {
+            id
+            label
+          }
+          academicYears {
+            id
+            startDate
+            endDate
+          }
+          type
+          isArchived
+        }
+        code
+        courseType
+        isArchived
+        metadata
+        ibOfferedSubject {
+          id
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+          globalSubjectGroup {
+            id
+            name
+          }
+        }
+        flatVariants(filters: $flatSubjectVariantFilters) {
+          level {
+            id
+            label
+            globalTag {
+              id
+            }
+          }
+          responseLanguage {
+            id
+            label
+            globalTag {
+              id
+            }
+          }
+          learningCourses {
+            id
+            title
+            state
+            displayMetadata
+            type
+            academicCourse {
+              id
+              label
+            }
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+            isArchived
+          }
+          isArchived
+          unitPlans {
+            totalCount
+          }
+          courses(filters: {archivalState: ALL}) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

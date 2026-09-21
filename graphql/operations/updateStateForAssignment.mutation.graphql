@@ -1,0 +1,11 @@
+mutation updateStateForAssignment($id: ID!, $state: ASSIGNMENT_STATE_ENUM!) {
+  platform {
+    updateStateForAssignment(input: {id: $id, state: $state}) {
+      id
+      assignedStudents {
+        id
+        state
+      }
+    }
+  }
+}

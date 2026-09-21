@@ -1,0 +1,7 @@
+mutation updateProjectField($input: UpdateProjectInput!) {
+  documentation {
+    updateProject(input: $input) {
+      id
+    }
+  }
+}

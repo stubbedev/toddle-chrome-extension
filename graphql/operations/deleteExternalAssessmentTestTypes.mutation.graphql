@@ -1,0 +1,7 @@
+mutation deleteExternalAssessmentTestTypes($input: [DeleteExternalAssessmentTestTypeInput!]!) {
+  externalAssessment {
+    deleteExternalAssessmentTestTypes(input: $input) {
+      isSuccess
+    }
+  }
+}

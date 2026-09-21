@@ -1,0 +1,31 @@
+query getLearningCourseORSubjectDetails($learningCourseId: ID!, $subjectId: ID!, $isSubjectBasedGrading: Boolean!, $courseGradeScalesFilters: GradeScaleFilters, $subjectGradeScalesFilters: SubjectGradeScalesFilters, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) @skip(if: $isSubjectBasedGrading) {
+    id
+    ... on LearningCourse {
+      id
+      title
+      gradeScales(filters: $courseGradeScalesFilters) {
+        ...gradeScaleItem
+      }
+      standardsWrapper {
+        standardsEdge {
+          standardSet {
+            ...standardSetItem
+          }
+        }
+      }
+    }
+  }
+  node(id: $subjectId, type: SUBJECT) @include(if: $isSubjectBasedGrading) {
+    ... on Subject {
+      id
+      name
+      gradeScales(filters: $subjectGradeScalesFilters) {
+        ...gradeScaleItem
+      }
+      plannerElementNodeSet {
+        ...standardSetItem
+      }
+    }
+  }
+}

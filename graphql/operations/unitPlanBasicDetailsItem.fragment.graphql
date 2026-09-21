@@ -1,0 +1,180 @@
+fragment unitPlanBasicDetailsItem on UnitPlan {
+  id
+  templateId
+  grades
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldVideoAttachment {
+        id
+        type
+        attachment {
+          id
+          type
+          url
+          thumbUrl
+        }
+      }
+    }
+  }
+  allFields {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ...commonResolvedFieldValueItem
+    }
+  }
+  subjects {
+    id
+    value
+  }
+  resolvedGrades {
+    id
+    name
+  }
+  courses {
+    id
+  }
+  organization {
+    id
+  }
+}
+
+fragment commonResolvedFieldValueItem on ResolvedFieldValue {
+  id
+  type
+  ... on ResolvedFieldBenchmarkSet {
+    id
+    benchmarks {
+      ...benchmarkItem
+    }
+  }
+  ... on ResolvedFieldConceptSet {
+    id
+    concepts {
+      ...conceptItem
+    }
+  }
+  ... on ResolvedFieldActionSet {
+    id
+    actions {
+      ...actionItem
+    }
+  }
+  ... on ResolvedFieldLPSet {
+    id
+    learnerProfiles {
+      ...lpItem
+    }
+  }
+  ... on ResolvedFieldThemeSet {
+    id
+    themes {
+      ...themeItem
+    }
+  }
+  ... on ResolvedFieldSubjectSet {
+    id
+    subjects {
+      ...subjectItem
+      subjectGroup {
+        id
+        name
+        constants
+        globalSubjectGroup {
+          id
+          name
+          constants
+        }
+      }
+    }
+  }
+  ... on ResolvedFieldATLSet {
+    id
+    atls {
+      ...atlItem
+    }
+  }
+  ... on ResolvedFieldRelatedConceptSet {
+    id
+    relatedConcepts {
+      ...relatedConceptItem
+    }
+  }
+  ... on ResolvedFieldVoiceInstruction {
+    id
+    attachment {
+      ...attachmentItem
+    }
+  }
+  ... on ResolvedFieldVideoAttachment {
+    id
+    attachment {
+      ...attachmentItem
+    }
+  }
+  ... on ResolvedFieldStudentTemplate {
+    id
+    attachmentGroups {
+      ...attachmentGroupItem
+    }
+  }
+  ... on ResolvedFieldLtiTemplate {
+    id
+    attachmentGroups {
+      ...attachmentGroupItem
+    }
+  }
+  ... on ResolvedFieldTags {
+    id
+    tags {
+      id
+      label
+    }
+  }
+  ... on ResolvedFieldGenericTags {
+    id
+    genericTags {
+      id
+      label
+      __typename
+    }
+    __typename
+  }
+  ... on ResolvedFieldPlannerElementSet {
+    id
+    type
+    nodes {
+      ...plannerElementNodeItem
+    }
+  }
+  ... on ResolvedFieldSubjectGroup {
+    id
+    type
+    subjectGroups {
+      ...subjectGroupWithGlobalSubjectGroupItem
+    }
+  }
+  ... on ResolvedFieldScore {
+    ...fieldScoreItem
+  }
+  ... on ResolvedFieldObjectiveLevel {
+    id
+    nodes {
+      ...plannerElementNodeItem
+    }
+  }
+  ... on ResolvedFieldAttachments {
+    id
+    type
+    attachments {
+      ...attachmentItem
+    }
+  }
+}

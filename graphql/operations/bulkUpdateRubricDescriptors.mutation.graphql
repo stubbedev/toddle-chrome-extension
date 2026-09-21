@@ -1,0 +1,11 @@
+mutation bulkUpdateRubricDescriptors($input: [RubricDescriptorUpdateInput!]) {
+  planner {
+    bulkUpdateRubricDescriptors(input: $input) {
+      isSuccessful
+      warnings
+      response {
+        ...descriptorItem
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+query getStudentAssignmentDetailsV2($id: ID!, $showOnlySubmitted: Boolean, $entityEventsFilter: EntityEventsFilter) {
+  node(id: $id, type: STUDENT_ASSIGNMENT) {
+    id
+    ... on StudentAssignment {
+      id
+      isSubmitted
+      isEvaluated
+      isSharedWithStudent
+      isEvaluationApplicable
+      assignment {
+        id
+        contentType
+        isLockScreenEnabled
+        isSafeBrowserEnabled
+        isTimedTestEnabled
+        timedTestDuration
+        isStudentEvaluationEnabled
+        isStudentSubmissionEnabled
+        showStudentResponse
+        isOnScreenCalculatorEnabled
+        closeSubmissionDate
+        content {
+          ... on Assessment {
+            id
+            templateId
+            taskType {
+              id
+              type
+              label
+            }
+            assessmentTools {
+              edges {
+                node {
+                  id
+                  assessmentToolType
+                }
+              }
+            }
+          }
+        }
+        course {
+          id
+          genericTags {
+            id
+            label
+          }
+        }
+      }
+      lockingState {
+        state
+      }
+      ibPYPElementRatings {
+        id
+        value
+        ibPYPElementType
+      }
+      events(filters: $entityEventsFilter) {
+        ...entityEventTrackItem
+      }
+      submission(showOnlySubmitted: $showOnlySubmitted) {
+        ...studentAssigmentSubmissionItem
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation backdateTimeTable($input: BackdateTimetableTemplateInput!) {
+  platform {
+    backdateTimetableTemplate(input: $input) {
+      isSuccess
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query getDataSharingScopeOptions($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourCategories {
+        id
+        name
+        curriculumPrograms {
+          id
+        }
+      }
+      studentAlertTypes {
+        id
+        name
+        curriculums {
+          id
+        }
+      }
+    }
+  }
+}

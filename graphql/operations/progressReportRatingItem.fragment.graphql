@@ -1,0 +1,13 @@
+fragment progressReportRatingItem on StudentProgressReportPypElementRating {
+  id
+  nodeId
+  value
+  isRemoved
+  academicCriteriaSet
+  academicCriteriaValue
+  ibPYPElementId
+  ibPYPElementType
+  isComputedRating
+  academicTermId
+  categoryId
+}

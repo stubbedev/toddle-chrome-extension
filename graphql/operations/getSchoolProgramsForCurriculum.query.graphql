@@ -1,0 +1,12 @@
+query getSchoolProgramsForCurriculum($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on CurriculumProgram {
+      id
+      schoolPrograms {
+        id
+        label
+      }
+    }
+  }
+}

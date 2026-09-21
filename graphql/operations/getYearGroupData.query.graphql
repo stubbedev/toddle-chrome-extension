@@ -1,0 +1,10 @@
+query getYearGroupData($organizationId: ID!, $filters: BulkDownloadYearGroupFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      bulkDownloadYearGroupData(filters: $filters)
+    }
+  }
+}

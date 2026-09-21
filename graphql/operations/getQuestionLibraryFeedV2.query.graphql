@@ -1,0 +1,28 @@
+query getQuestionLibraryFeedV2($questionFilters: OrganizationResourceQuestionItemFilters, $first: Int, $after: String, $orgId: ID!, $orderBy: ORDER_BY_ENUM) {
+  node(type: ORGANIZATION, id: $orgId) {
+    id
+    ... on Organization {
+      id
+      questions(filters: $questionFilters, first: $first, after: $after, orderBy: $orderBy) {
+        edges {
+          ...questionLibraryFeedDetailsItem
+        }
+        count {
+          totalCount
+          questionStatusWiseCount {
+            status
+            count
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

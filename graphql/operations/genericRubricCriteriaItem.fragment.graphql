@@ -1,0 +1,42 @@
+fragment genericRubricCriteriaItem on GenericRubricCriteria {
+  id
+  label
+  description
+  displaySequence
+  maxScore
+  gradeScale {
+    id
+    gradingType
+  }
+  standard {
+    ...genericRubricPlannerElementNodeItem
+  }
+  benchmark {
+    ...genericRubricBenchmarkItem
+  }
+  genericRubricDescriptors {
+    id
+    label
+    description
+    displaySequence
+    score
+    gradeScaleValue {
+      id
+      label
+      description
+      abbreviation
+      displaySequence
+    }
+    standardGradeScaleValueDescriptor {
+      id
+      description
+      gradeScaleValue {
+        id
+        label
+        description
+        abbreviation
+        displaySequence
+      }
+    }
+  }
+}

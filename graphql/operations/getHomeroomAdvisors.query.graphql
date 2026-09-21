@@ -1,0 +1,21 @@
+query getHomeroomAdvisors($id: ID!, $first: Int, $after: String, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $staffFilters: OrgConnectionFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $staffFilters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            ...staffNameFields
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

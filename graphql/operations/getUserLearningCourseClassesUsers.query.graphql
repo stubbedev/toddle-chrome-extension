@@ -1,0 +1,52 @@
+query getUserLearningCourseClassesUsers($id: ID!, $organizationId: ID!, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!, $skipStudents: Boolean = true, $skipFamilyMembers: Boolean = true, $skipStaff: Boolean = true) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            title
+            isArchived
+            deletedBy {
+              id
+            }
+            curriculumProgram {
+              id
+              label
+            }
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            students @skip(if: $skipStudents) {
+              edges {
+                node {
+                  ...userDetailItem
+                }
+              }
+            }
+            collaborator @skip(if: $skipStaff) {
+              edges {
+                node {
+                  ...userDetailItem
+                }
+              }
+            }
+            familyMembers @skip(if: $skipFamilyMembers) {
+              edges {
+                node {
+                  ...userDetailItem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

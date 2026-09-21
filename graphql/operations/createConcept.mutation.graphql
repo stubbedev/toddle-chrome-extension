@@ -1,0 +1,7 @@
+mutation createConcept($label: String!, $subText: String, $plannerElementSetId: ID) {
+  planner {
+    createConcept(input: {label: $label, subText: $subText, plannerElementSetId: $plannerElementSetId}) {
+      ...conceptItem
+    }
+  }
+}

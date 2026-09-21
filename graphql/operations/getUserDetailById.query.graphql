@@ -1,0 +1,14 @@
+query getUserDetailById($id: ID!, $type: ENTITY_TYPE_ENUM!, $organizationId: ID!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      ...userDetailItem
+    }
+    ... on Student {
+      ...userDetailItem
+    }
+    ... on FamilyMember {
+      ...userDetailItem
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation upsertSisEnrolmentExclusions($input: UpsertSisEnrolmentExclusionsInput!) {
+  integration {
+    upsertSisEnrolmentExclusions(input: $input)
+  }
+}

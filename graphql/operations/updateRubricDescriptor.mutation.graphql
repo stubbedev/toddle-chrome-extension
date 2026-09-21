@@ -1,0 +1,7 @@
+mutation updateRubricDescriptor($id: ID!, $updatedBy: ID!, $label: String) {
+  planner {
+    updateRubricDescriptor(input: {updatedBy: $updatedBy, id: $id, label: $label}) {
+      id
+    }
+  }
+}

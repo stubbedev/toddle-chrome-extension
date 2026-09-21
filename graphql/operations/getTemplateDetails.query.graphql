@@ -1,0 +1,18 @@
+query getTemplateDetails($id: ID!) {
+  node(id: $id, type: EXTERNAL_ASSESSMENT_TEMPLATE) {
+    ... on ExternalAssessmentTemplate {
+      ...externalAssessmentTemplateDetailsItem
+      associatedRecordSets {
+        totalCount
+      }
+    }
+  }
+}
+
+mutation createExternalAssessmentTemplate($input: CreateExternalAssessmentTemplateInput!) {
+  externalAssessment {
+    createExternalAssessmentTemplate(input: $input) {
+      isSuccess
+    }
+  }
+}

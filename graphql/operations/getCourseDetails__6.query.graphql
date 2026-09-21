@@ -1,0 +1,6 @@
+query getCourseDetails($id: ID!, $academicYearId: ID!, $collaboratorFilters: CollaboratorFilters, $curriculumProgramIds: [ID!], $rnpRoleContextDetailFilter: RnPRoleContextDetailFilterInput, $userMapFilters: CourseUserMapFilter) {
+  node(id: $id, type: COURSE) {
+    id
+    ...courseItem
+  }
+}

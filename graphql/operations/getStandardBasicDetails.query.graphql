@@ -1,0 +1,8 @@
+query getStandardBasicDetails($cycleId: ID!, $filters: SnpPracticeEvidenceFilters!) {
+  node(id: $cycleId, type: SnP_EVALUATION_CYCLE) {
+    id
+    ... on SnPEvaluationCycle {
+      ...cycleItem
+    }
+  }
+}

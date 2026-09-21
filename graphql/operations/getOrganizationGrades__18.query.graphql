@@ -1,0 +1,17 @@
+query getOrganizationGrades($organizationId: ID!, $filters: GradeFilterInput, $shouldResolveGlobalGrade: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(filters: $filters) {
+        id
+        name
+        displaySequence
+        globalGrade @include(if: $shouldResolveGlobalGrade) {
+          id
+          curriculumTypes
+        }
+      }
+    }
+  }
+}

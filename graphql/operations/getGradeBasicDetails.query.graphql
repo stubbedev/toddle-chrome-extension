@@ -1,0 +1,20 @@
+query getGradeBasicDetails($gradeFilters: GradeFilterInput, $id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: $gradeFilters) {
+        id
+        name
+        subjects {
+          id
+          name
+          isArchived
+          subjectGroup {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

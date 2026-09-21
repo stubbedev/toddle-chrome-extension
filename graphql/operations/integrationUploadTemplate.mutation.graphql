@@ -1,0 +1,8 @@
+mutation integrationUploadTemplate($data: [JSON!]!, $type: INTEGRATION_UPLOAD_TEMPLATE_TYPE_ENUM!, $filters: IntegrationSubTaskFeedFilterInput, $curriculumProgramId: ID, $curriculum: CURRICULUM_PROGRAM_TYPE_ENUM) {
+  integration {
+    integrationUploadTemplate(input: {type: $type, data: $data, curriculumProgramId: $curriculumProgramId, curriculum: $curriculum}) {
+      ...jobData
+      ...subTaskFeedEdgeItem
+    }
+  }
+}

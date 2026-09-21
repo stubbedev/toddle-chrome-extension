@@ -1,0 +1,13 @@
+mutation createCalendarWorkspace($input: CreateCalendarWorkspaceInput!) {
+  platform {
+    createCalendarWorkspace(input: $input) {
+      isSuccess
+      calendarWorkspace {
+        id
+        provider
+        domain
+        status
+      }
+    }
+  }
+}

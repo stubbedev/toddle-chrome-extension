@@ -1,0 +1,8 @@
+query getParentJournalFeed($id: ID!, $after: String, $filters: PostFilterInput) {
+  node(id: $id, type: FAMILY_MEMBER) {
+    id
+    ... on FamilyMember {
+      ...parentItem
+    }
+  }
+}

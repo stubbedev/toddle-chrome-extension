@@ -1,0 +1,40 @@
+fragment plannerElementNodeV2Item on PlannerElementNode {
+  id
+  label
+  type
+  depth
+  children
+  parent
+  subType
+  isLeaf
+  code
+  gradingType
+  plannerElementNodeWrapper {
+    properties {
+      isGradedStandard
+    }
+  }
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+      isGradedStandard
+      subjects {
+        id
+        name
+        isArchived
+      }
+      grades {
+        id
+        name
+      }
+      subjectGroups {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

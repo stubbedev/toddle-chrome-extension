@@ -1,0 +1,47 @@
+fragment courseItem on Course {
+  id
+  title
+  isDemo
+  grade {
+    id
+    name
+    displaySequence
+  }
+  calendar {
+    id
+  }
+  curriculumProgram {
+    id
+    type
+  }
+  academicYears {
+    ...academicYearItem
+  }
+  subjects {
+    id
+    type
+  }
+  primaryGrade {
+    id
+  }
+  genericTags {
+    id
+    type
+    label
+  }
+  enabledModules(filters: $enabledModulesFilters)
+  aclControlParameters(filters: $aclControlParameterFilter) {
+    id
+    uid
+    permission
+    value
+  }
+  learningCourse {
+    id
+    title
+    academicCourse {
+      id
+      label
+    }
+  }
+}

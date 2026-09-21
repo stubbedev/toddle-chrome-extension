@@ -1,0 +1,39 @@
+query getWorkspaceSyncSchoolsFeed($organizationId: ID!, $input: CurriculumProgramsFeedInput) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      curriculumProgramsFeed(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            nodeInterfaceType
+            label
+            calendarSyncConfig {
+              status
+              lastUpdatedAt
+              lastUpdatedBy {
+                id
+                firstName
+                middleName
+                lastName
+                profileImage
+              }
+              calendarWorkspace {
+                id
+                provider
+                domain
+                status
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

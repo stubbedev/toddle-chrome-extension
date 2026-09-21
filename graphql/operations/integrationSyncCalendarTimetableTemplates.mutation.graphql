@@ -1,0 +1,8 @@
+mutation integrationSyncCalendarTimetableTemplates($input: IntegrationSyncCalendarUpdateTimetableTemplatesInput!) {
+  integration {
+    integrationSyncCalendarUpdateTimetableTemplates(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

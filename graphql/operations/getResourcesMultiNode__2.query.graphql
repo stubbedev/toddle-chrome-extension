@@ -1,0 +1,7 @@
+query getResourcesMultiNode($ids: [ID!]) {
+  multiNode(ids: $ids, type: ORGANIZATION_RESOURCE) {
+    ... on OrganizationResource {
+      ...resourceItem
+    }
+  }
+}

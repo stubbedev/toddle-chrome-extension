@@ -1,0 +1,14 @@
+query getExamRegistrationBasicCandidateDetails($id: ID!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      allStudents {
+        id
+        firstName
+        lastName
+        category
+        isExcluded
+      }
+    }
+  }
+}

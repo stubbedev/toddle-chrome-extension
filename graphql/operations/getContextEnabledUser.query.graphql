@@ -1,0 +1,24 @@
+query getContextEnabledUser($controlparameterId: ID!, $context: [ACLContextEntityInput!], $academicYearId: ID, $contextFilters: [RnPRoleContextFilter!], $skipTitle: Boolean = false) {
+  node(id: $controlparameterId, type: ACL_CONTROL_PARAMETER) {
+    id
+    ... on ACLPermission {
+      id
+      enabledUsers(context: $context, academicYearId: $academicYearId) {
+        ...staff
+        rnpRoleContextDetail(filters: {contextFilters: $contextFilters}) {
+          context {
+            id
+          }
+          contextType
+          role {
+            id
+            label
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

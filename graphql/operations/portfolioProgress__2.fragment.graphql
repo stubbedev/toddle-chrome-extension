@@ -1,0 +1,58 @@
+fragment portfolioProgress on StudentProjectPortfolio {
+  id
+  completionStatus(filters: $completionStatusFilters) {
+    isComplete
+  }
+  plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+    id
+    plannerElementNode {
+      id
+      label
+      subText
+      metadata
+    }
+    isAchieved
+    ibPYPElementRatings(filters: {orderBy: CREATED_AT, orderByDirection: DESC}) {
+      id
+      academicCriteriaSet {
+        id
+        label
+        criteriaType
+      }
+      createdAt
+      createdByV2 {
+        ...userNameFields
+        profileImage
+      }
+      academicCriteriaValue {
+        id
+        label
+        abbreviation
+        color
+      }
+    }
+  }
+  ibPYPElementRatings(filters: $ibPYPElementRatingsFilters) {
+    id
+    academicCriteriaSet {
+      id
+      label
+      criteriaType
+    }
+    createdAt
+    createdByV2 {
+      ...userNameFields
+      profileImage
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      color
+    }
+  }
+  elementRemarks(filters: $elementRemarksFilters) {
+    id
+    message
+  }
+}

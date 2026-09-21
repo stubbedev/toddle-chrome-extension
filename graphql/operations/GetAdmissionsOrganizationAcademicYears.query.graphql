@@ -1,0 +1,17 @@
+query GetAdmissionsOrganizationAcademicYears($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      academicYears {
+        id
+        startDate
+        endDate
+        label
+        isCurrentAcademicYear
+        isUpcomingAcademicYear
+        isPreviousAcademicYear
+      }
+    }
+  }
+}

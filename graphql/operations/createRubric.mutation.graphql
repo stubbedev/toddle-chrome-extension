@@ -1,0 +1,7 @@
+mutation createRubric($title: String, $criterias: [CriteriaRubricInput!], $indicators: [IndicatorRubricInput!], $createdBy: ID!, $isGlobal: Boolean, $rubricId: ID, $copyRubric: Boolean!, $parentId: ID, $parentType: ASSESSMENT_TOOL_PARENT_TYPE_ENUM, $curriculumProgramId: ID) {
+  planner {
+    createRubric(input: {title: $title, criterias: $criterias, indicators: $indicators, createdBy: $createdBy, isGlobal: $isGlobal, rubricId: $rubricId, copyRubric: $copyRubric, parentId: $parentId, parentType: $parentType, curriculumProgramId: $curriculumProgramId}) {
+      ...rubricItem
+    }
+  }
+}

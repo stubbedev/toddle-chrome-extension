@@ -1,0 +1,5 @@
+mutation deleteAcademicCourse($input: DeleteAcademicCourseInput!) {
+  planner {
+    deleteAcademicCourse(input: $input)
+  }
+}

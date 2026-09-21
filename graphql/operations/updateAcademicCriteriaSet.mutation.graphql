@@ -1,0 +1,8 @@
+mutation updateAcademicCriteriaSet($input: [AcademicCriteriaSetUpdateInput!]!) {
+  planner {
+    updateAcademicCriteriaSets(input: $input) {
+      id
+      label
+    }
+  }
+}

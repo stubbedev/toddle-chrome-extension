@@ -1,0 +1,31 @@
+query getPlannerElementNodeSetWithGradeScales($id: ID!, $plannerElementNodeSetsFilters: PlannerElementNodeSetFilters, $gradeScaleEntityDetailFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetsFilters) {
+        edges {
+          node {
+            id
+            type
+            title
+            gradeScales {
+              id
+              type
+              displayName
+              templateName
+              gradeScaleEntityDetails(filters: $gradeScaleEntityDetailFilters) {
+                id
+                gradeScaleValues {
+                  id
+                  label
+                  abbreviation
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

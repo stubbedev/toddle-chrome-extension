@@ -1,0 +1,27 @@
+query getCalendarEventTypeSchools($feedInput: CalendarEventTypesFeedInput!, $schoolsInput: CalendarEventTagCurriculumProgramsInput!) {
+  platform {
+    calendarEventTypesFeed(input: $feedInput) {
+      edges {
+        node {
+          id
+          curriculumPrograms(input: $schoolsInput) {
+            totalCount
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              startCursor
+              endCursor
+            }
+            edges {
+              cursor
+              node {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

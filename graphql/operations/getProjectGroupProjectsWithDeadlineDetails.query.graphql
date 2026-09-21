@@ -1,0 +1,31 @@
+query getProjectGroupProjectsWithDeadlineDetails($projectGroupId: ID!, $projectFilters: ProjectGroupProjectsFilters, $projectTaskFilters: ProjectTaskFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            reportStatus
+            students {
+              ...userNameFields
+              profileImage
+              registrationCategory
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+            tasks(filters: $projectTaskFilters) {
+              ...projectTaskResponseItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

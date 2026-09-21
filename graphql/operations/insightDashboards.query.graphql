@@ -1,0 +1,19 @@
+query insightDashboards($id: ID!, $input: InsightDashboardFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        insightDashboards(filter: $input) {
+          totalCount
+          edges {
+            ...insightDashboardFragment
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+      }
+    }
+  }
+}

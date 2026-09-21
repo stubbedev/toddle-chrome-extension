@@ -1,0 +1,11 @@
+fragment basicStaffDetails on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  profileImage
+}

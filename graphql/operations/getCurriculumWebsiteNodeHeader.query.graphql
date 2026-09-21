@@ -1,0 +1,30 @@
+query getCurriculumWebsiteNodeHeader($id: ID!, $contentFilter: CurriculumWebsiteContentFilter) {
+  node(id: $id, type: CURRICULUM_WEBSITE_NODE) {
+    ... on CurriculumWebsiteNode {
+      id
+      label
+      item {
+        id
+        ... on LearningCourse {
+          curriculumProgram {
+            id
+            type
+            label
+            academicSetupType
+          }
+        }
+      }
+      content(filters: $contentFilter) {
+        id
+        type
+        isEnabled
+        value
+        attachments {
+          id
+          url
+          name
+        }
+      }
+    }
+  }
+}

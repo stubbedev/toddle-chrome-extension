@@ -1,0 +1,4 @@
+fragment classBookmarkStatus on Course {
+  id
+  isBookmark
+}

@@ -1,0 +1,13 @@
+query getSchoolGroupFilterFieldCatalogues($staffInput: SchoolGroupFilterFieldsInput!, $studentInput: SchoolGroupFilterFieldsInput!, $parentInput: SchoolGroupFilterFieldsInput!) {
+  platform {
+    schoolGroupFilterFields(input: $staffInput) {
+      ...schoolGroupFilterFieldCatalogueItem
+    }
+    schoolGroupFilterFields(input: $studentInput) {
+      ...schoolGroupFilterFieldCatalogueItem
+    }
+    schoolGroupFilterFields(input: $parentInput) {
+      ...schoolGroupFilterFieldCatalogueItem
+    }
+  }
+}

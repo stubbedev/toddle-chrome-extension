@@ -1,0 +1,19 @@
+query getWeeklyPlannerTemplatesByEntity($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Course {
+      id
+      title
+      weeklyPlannerTemplates {
+        ...classPlannerItem
+      }
+    }
+    ... on LearningCourse {
+      id
+      title
+      weeklyPlannerTemplates {
+        ...classPlannerItem
+      }
+    }
+  }
+}

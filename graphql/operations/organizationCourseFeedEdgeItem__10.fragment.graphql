@@ -1,0 +1,19 @@
+fragment organizationCourseFeedEdgeItem on Organization {
+  id
+  courses(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    archivedCount
+    edges {
+      node {
+        ...courseItem
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+  courses(filters: $filtersWithoutSearch) {
+    totalCount
+  }
+}

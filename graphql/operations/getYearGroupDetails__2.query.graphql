@@ -1,0 +1,9 @@
+query getYearGroupDetails($id: ID!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      id
+      name
+    }
+  }
+}

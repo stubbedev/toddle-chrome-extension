@@ -1,0 +1,5 @@
+mutation updateVisitorsInCycleMutation($cycleId: ID!, $addedVisitors: [ID!], $removedVisitors: [ID!]) {
+  platform {
+    handleSnPEvaluationCycleVisitor(input: {evaluationCycleId: $cycleId, addedVisitor: $addedVisitors, removedVisitor: $removedVisitors})
+  }
+}

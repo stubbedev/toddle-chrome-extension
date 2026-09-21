@@ -1,0 +1,7 @@
+mutation addUsersToMultiAccessIdentity($input: AddUsersToMultiAccessIdentityInput) {
+  platform {
+    addUsersToMultiAccessIdentity(input: $input) {
+      isSuccess
+    }
+  }
+}

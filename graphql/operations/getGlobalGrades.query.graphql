@@ -1,0 +1,10 @@
+query getGlobalGrades {
+  platform {
+    globalGrades {
+      id
+      uid
+      name
+      curriculumTypes
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment subTaskFeedEdgeItem on IntegrationJob {
+  id
+  subTasksFeed(first: 200000, filters: $filters) {
+    edges {
+      node {
+        ...subTaskData
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

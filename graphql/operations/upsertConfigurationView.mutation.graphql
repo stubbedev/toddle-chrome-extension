@@ -1,0 +1,7 @@
+mutation upsertConfigurationView($input: UpsertConfigurationViewInput!) {
+  platform {
+    upsertConfigurationView(input: $input) {
+      categoryKey
+    }
+  }
+}

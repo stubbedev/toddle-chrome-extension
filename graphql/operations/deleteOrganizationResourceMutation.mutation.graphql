@@ -1,0 +1,5 @@
+mutation deleteOrganizationResourceMutation($ids: [ID!]) {
+  platform {
+    deleteOrganizationResource(input: {ids: $ids})
+  }
+}

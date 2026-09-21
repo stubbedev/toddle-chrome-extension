@@ -1,0 +1,8 @@
+query getClassProgressSummaryExport($courseId: ID!, $input: [ClassProgressSummaryExportInput!]) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      classProgressSummaryExport(input: $input)
+    }
+  }
+}

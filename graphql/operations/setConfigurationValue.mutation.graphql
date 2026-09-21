@@ -1,0 +1,5 @@
+mutation setConfigurationValue($input: [ConfigurationValueUpdateInput!]!) {
+  platform {
+    setMultipleConfigurationValueForEntityGroups(input: $input)
+  }
+}

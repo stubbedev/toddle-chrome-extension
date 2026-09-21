@@ -1,0 +1,5 @@
+mutation deletelearningterm($ids: [ID!]) {
+  planner {
+    deleteLearningTerms(ids: $ids)
+  }
+}

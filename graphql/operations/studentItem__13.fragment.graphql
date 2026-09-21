@@ -1,0 +1,41 @@
+fragment studentItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  pronouns
+  preferredName
+  suffix
+  type
+  profileImage
+  sourceId
+  isArchived
+  familyInviteCode
+  curriculumPrograms(filters: $studentCurriculumProgramFilter) {
+    ...curriculumProgramBasicDetailsItem
+  }
+  families {
+    id
+    status
+    familyMember {
+      id
+      lastName
+      middleName
+      firstName
+      email
+      type
+      lastActiveAt
+    }
+    createdAt
+    lastUpdatedAt
+  }
+  email
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+}

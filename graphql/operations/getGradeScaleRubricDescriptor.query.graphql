@@ -1,0 +1,13 @@
+query getGradeScaleRubricDescriptor($id: ID!, $descriptorFilters: standardGradeScaleValueDescriptorFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE) {
+    id
+    ... on PlannerElementNode {
+      id
+      standardsWrapper {
+        standardGradeScaleValueDescriptor(filters: $descriptorFilters) {
+          ...standardGradeScaleValueDescriptor
+        }
+      }
+    }
+  }
+}

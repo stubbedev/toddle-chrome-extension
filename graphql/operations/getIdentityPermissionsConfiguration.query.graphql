@@ -1,0 +1,17 @@
+query getIdentityPermissionsConfiguration($configurationEntityGroupFilters: [ConfigurationEntityGroupFilter!], $isAdminPage: Boolean!, $isSettingsPage: Boolean!, $isCourseModuleSetting: Boolean, $isAdminNotificationManager: Boolean) {
+  platform {
+    configuration(filters: {configurationEntityGroupFilters: $configurationEntityGroupFilters, isSettingsPage: $isSettingsPage}) {
+      ...identityPermissionsConfigurationResponseItem
+    }
+  }
+}
+
+fragment identityPermissionsConfigurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+  description
+}

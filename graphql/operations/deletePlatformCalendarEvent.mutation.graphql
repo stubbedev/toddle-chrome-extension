@@ -1,0 +1,7 @@
+mutation deletePlatformCalendarEvent($id: ID!, $actionFor: CALENDAR_EVENT_ACTION_FOR, $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $isFullDayEvent: Boolean, $notificationMessage: String, $shouldNotifyParticipants: Boolean, $shouldUseNewMeetingInfra: Boolean) {
+  platform {
+    deletePlatformCalendarEvent(input: {id: $id, actionFor: $actionFor, eventType: $eventType, isFullDayEvent: $isFullDayEvent, notificationMessage: $notificationMessage, shouldNotifyParticipants: $shouldNotifyParticipants, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra}) {
+      response
+    }
+  }
+}

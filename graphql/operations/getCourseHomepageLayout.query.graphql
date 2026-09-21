@@ -1,0 +1,10 @@
+query getCourseHomepageLayout($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      homepageLayout {
+        ...homepageLayoutFields
+      }
+    }
+  }
+}

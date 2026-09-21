@@ -1,0 +1,11 @@
+query getStudentPlanModulePermission($orgId: ID!) {
+  platform {
+    organization(id: $orgId) {
+      id
+      aclPermissionsListView(filters: {rnpType: STAFF}) {
+        id
+        permission
+      }
+    }
+  }
+}

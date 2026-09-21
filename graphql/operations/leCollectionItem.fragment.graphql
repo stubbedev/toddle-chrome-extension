@@ -1,0 +1,15 @@
+fragment leCollectionItem on LECollection {
+  id
+  name
+  image {
+    id
+    url
+  }
+  entities(entityType: ASSESSMENT, filters: $collectionFilterInput) {
+    totalCount
+  }
+  libraryGrades {
+    ...libraryEntityBasicDetailsItem
+  }
+  ...leCollectionSavedByNodeItem
+}

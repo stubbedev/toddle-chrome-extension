@@ -1,0 +1,18 @@
+query getManagerListQuery($filters: MultiAccessIdentityFeedFilters) {
+  platform {
+    multiAccessIdentityFeed(filters: $filters) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          id
+          identityId
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}

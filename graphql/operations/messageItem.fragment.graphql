@@ -1,0 +1,49 @@
+fragment messageItem on Message {
+  id
+  label
+  itemType
+  type
+  isDeleted
+  isCommentRead
+  isRead
+  item {
+    id
+    ... on AttachmentSet {
+      id
+      attachments {
+        ...attachmentItem
+      }
+    }
+  }
+  createdAt
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+    middleName
+    ... on Student {
+      pronouns
+      preferredName
+      suffix
+      alertTypes {
+        ...alertTypeFields
+      }
+    }
+    ... on Staff {
+      preferredName
+      prefix
+      suffix
+      pronouns
+    }
+    ... on FamilyMember {
+      preferredName
+      prefix
+      suffix
+      pronouns
+    }
+    type
+    email
+    profileImage
+  }
+}

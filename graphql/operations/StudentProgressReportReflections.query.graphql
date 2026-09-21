@@ -1,0 +1,30 @@
+query StudentProgressReportReflections($id: ID!, $filters: StudentProgressReportReflectionFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      studentProgressReportReflections(filters: $filters) {
+        studentProgressReportId
+        reflectionDeadline
+        progressReportName
+        isReflectionEditable
+        reflectionFeedback {
+          id
+          label
+          isResolved
+          createdBy {
+            ...staffItem
+          }
+        }
+        studentProgressReport {
+          id
+          studentReflectionStatus
+        }
+        academicTerms {
+          id
+          label
+        }
+      }
+    }
+  }
+}

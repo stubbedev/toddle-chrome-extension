@@ -1,0 +1,17 @@
+query getBenchmarkGradeScaleDescriptors($ids: [ID!]) {
+  multiNode(ids: $ids, type: PLANNER_BENCHMARK) {
+    id
+    ... on PlannerBenchmark {
+      id
+      standardsWrapper {
+        standardGradeScaleValueDescriptor {
+          id
+          description
+          gradeScaleValue {
+            id
+          }
+        }
+      }
+    }
+  }
+}

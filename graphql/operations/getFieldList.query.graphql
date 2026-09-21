@@ -1,0 +1,28 @@
+query getFieldList($id: ID!, $type: ENTITY_TYPE_ENUM!, $templateFieldFilters: TemplateFieldFilter, $templateFieldConfigFilters: TemplateFieldConfigFilter, $templateFieldPropertyValuesFilters: TemplateFieldPropertyValuesFilter, $templateFieldPlannerElementSetFilters: TemplateFieldPlannerElementSetFilters, $plannerElementNodeSetConfigFilters: PlannerElementNodeSetConfigFilters, $templateFilters: TemplateFieldTemplateFilters!, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      templateField(filters: $templateFieldFilters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        ...templateFieldConnectionItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      templateField(filters: $templateFieldFilters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        ...templateFieldConnectionItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      templateField(filters: $templateFieldFilters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        ...templateFieldConnectionItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      templateField(filters: $templateFieldFilters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        ...templateFieldConnectionItem
+      }
+    }
+  }
+}

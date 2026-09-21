@@ -1,0 +1,8 @@
+mutation deleteCourseProgressReportTask($id: ID!) {
+  documentation {
+    deleteCourseProgressReportTask(input: {id: $id}) {
+      isSuccess
+      warning
+    }
+  }
+}

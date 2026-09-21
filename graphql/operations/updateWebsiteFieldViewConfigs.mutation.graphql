@@ -1,0 +1,15 @@
+mutation updateWebsiteFieldViewConfigs($input: UpdateWebsiteSettingsInput!) {
+  planner {
+    updateWebsiteSettings(input: $input) {
+      isSuccess
+      websiteSettings {
+        id
+        fieldViewConfigs {
+          templateId
+          fieldUid
+          isEnabled
+        }
+      }
+    }
+  }
+}

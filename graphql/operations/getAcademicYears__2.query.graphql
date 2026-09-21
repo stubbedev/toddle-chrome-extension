@@ -1,0 +1,10 @@
+query getAcademicYears($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      academicYears {
+        ...academicYear
+      }
+    }
+  }
+}

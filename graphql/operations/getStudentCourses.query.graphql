@@ -1,0 +1,16 @@
+query getStudentCourses($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      courses {
+        id
+        title
+        learningCourse {
+          id
+          title
+        }
+      }
+    }
+  }
+}

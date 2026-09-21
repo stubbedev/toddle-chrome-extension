@@ -1,0 +1,28 @@
+query getAssociatedCriteriaRatings($plannerElementSetId: ID!, $plannerElementNodeFilters: PlannerElementFilters, $associatedRatingsFilters: PlannerAssociatedRatingsFilter) {
+  node(id: $plannerElementSetId, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      label
+      nodes(filters: $plannerElementNodeFilters) {
+        ...associatedCriteriaRatingsItem
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

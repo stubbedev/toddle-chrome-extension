@@ -1,0 +1,199 @@
+query getStudentSubjectsFeed($id: ID!, $academicYearId: ID, $fetchProjectTasks: Boolean!) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      firstName
+      middleName
+      lastName
+      sourceId
+      preferredName
+      suffix
+      pronouns
+      type
+      isArchived
+      isArchivedV2(filters: {academicYearId: $academicYearId})
+      yearGroup {
+        id
+        name
+      }
+      courseMap {
+        course {
+          id
+          title
+          subjects {
+            id
+            name
+          }
+        }
+        tags {
+          id
+          label
+          type
+        }
+        subjectWiseLevel {
+          level {
+            id
+            type
+            label
+          }
+        }
+      }
+      projectGroups(filters: {projectGroupSubTypes: [CORE, INTERNAL_ASSESSMENT, EXTERNAL_ASSESSMENT], subjectArchivalState: ALL}) {
+        id
+        name
+        type
+        subType
+        category
+        subject {
+          id
+          name
+          icon
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+          subjectGroup {
+            id
+            name
+            displaySequence
+          }
+        }
+        courses {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+        studentProjectPortfolio {
+          edges {
+            node {
+              id
+              isComplete
+              student {
+                id
+              }
+              staff {
+                ...userItem
+              }
+            }
+          }
+        }
+        projects(filters: {students: [$id]}) {
+          totalCount
+          edges {
+            node {
+              id
+              isCompleted
+              finalProjectReports {
+                ...attachmentItem
+              }
+              tasks @include(if: $fetchProjectTasks) {
+                id
+                latestSubmissionResponse {
+                  id
+                  submission {
+                    id
+                    type
+                  }
+                  itemResponses {
+                    id
+                    attachments {
+                      id
+                      name
+                      type
+                      mimeType
+                      url
+                      createdAt
+                    }
+                    value
+                    submissionItem {
+                      id
+                      title
+                      fieldUID
+                    }
+                  }
+                }
+              }
+              students {
+                id
+                firstName
+                lastName
+                middleName
+                profileImage
+                preferredName
+                suffix
+                pronouns
+                type
+              }
+              supervisors {
+                id
+                firstName
+                lastName
+                profileImage
+                middleName
+                type
+              }
+              reportStatus
+              template {
+                id
+                name
+                body
+              }
+              ibPYPElementRatings {
+                id
+                ibPYPElementId
+                value
+                academicCriteriaSet {
+                  id
+                  criteriaType
+                }
+                __typename
+              }
+              isAcademicHonestyLocked
+              fields {
+                ...fieldsResolvedMinimalTreeFragmentItem
+                __typename
+              }
+            }
+          }
+        }
+        assessmentTools {
+          id
+          ... on MypObjectiveRubric {
+            id
+            label
+            genericTags {
+              id
+              label
+              __typename
+            }
+            criteria {
+              id
+              label
+              type
+              highestMark
+              parent
+              children
+              subText
+              objectiveRubricDescriptors {
+                id
+                achievementLevel {
+                  id
+                  label
+                  subText
+                  __typename
+                }
+                label
+                __typename
+              }
+              __typename
+            }
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

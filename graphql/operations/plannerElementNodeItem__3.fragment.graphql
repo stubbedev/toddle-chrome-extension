@@ -1,0 +1,54 @@
+fragment plannerElementNodeItem on PlannerElementNode {
+  id
+  displaySequence
+  label
+  subText
+  code
+  type
+  subText
+  depth
+  children
+  parent
+  subType
+  isLeaf
+  code
+  updatedAt
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+      grades {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+        isArchived
+      }
+      subjectGroups {
+        ...subjectGroupBasicDetailsItem
+      }
+      associatedPlannerElementNodes {
+        id
+        label
+        type
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

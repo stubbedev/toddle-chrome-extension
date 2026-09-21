@@ -1,0 +1,8 @@
+mutation deleteAttendanceExcusal($input: DeleteAttendanceExcusalInput!) {
+  platform {
+    deleteAttendanceExcusal(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

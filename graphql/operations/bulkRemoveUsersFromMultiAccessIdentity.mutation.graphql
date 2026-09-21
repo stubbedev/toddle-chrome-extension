@@ -1,0 +1,8 @@
+mutation bulkRemoveUsersFromMultiAccessIdentity($input: BulkRemoveUsersFromMultiAccessIdentityInput) {
+  platform {
+    bulkRemoveUsersFromMultiAccessIdentity(input: $input) {
+      isSuccess
+      updatedIdentityUserConnectionCount
+    }
+  }
+}

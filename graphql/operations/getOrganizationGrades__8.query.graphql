@@ -1,0 +1,13 @@
+query getOrganizationGrades($gradeFilters: GradeFilterInput) {
+  platform {
+    organization {
+      grades(filters: $gradeFilters) {
+        id
+        name
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

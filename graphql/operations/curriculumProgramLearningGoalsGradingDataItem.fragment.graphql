@@ -1,0 +1,27 @@
+fragment curriculumProgramLearningGoalsGradingDataItem on CurriculumProgram {
+  id
+  plannerElementNodeSets(filters: $plannerElementNodeSetsFilters) {
+    edges {
+      node {
+        id
+        title
+        type
+        gradeScales {
+          id
+        }
+      }
+    }
+  }
+  plannerElementNodeSets(filters: $customDatasetFilters) @skip(if: $skipCustomDatasets) {
+    edges {
+      node {
+        id
+        title
+        type
+        gradeScales {
+          id
+        }
+      }
+    }
+  }
+}

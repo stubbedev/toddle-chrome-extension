@@ -1,0 +1,42 @@
+fragment attachmentItem on Attachment {
+  id
+  name
+  type
+  mimeType
+  url
+  signedUrl
+  thumbUrl
+  title
+  metadata
+  streamUrl
+  parentType
+  isRead
+  similarityReport {
+    status
+    submissionId
+    errorCode
+    overallMatchPercentage
+  }
+  createdBy {
+    id
+    type
+  }
+  lockingState {
+    state
+    scheduledAt
+  }
+  questionAttachment {
+    ... on QuestionSubmission {
+      id
+      questionScore
+      score {
+        id
+        value
+      }
+    }
+    ... on Question {
+      id
+      questionScore
+    }
+  }
+}

@@ -1,0 +1,8 @@
+fragment leCollectionItem on LECollection {
+  id
+  name
+  image {
+    id
+    url
+  }
+}

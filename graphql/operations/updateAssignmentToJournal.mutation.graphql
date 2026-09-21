@@ -1,0 +1,8 @@
+mutation updateAssignmentToJournal($assignmentId: ID!, $studentAssignmentIds: [ID!], $postData: PostCompleteInput) {
+  platform {
+    updateAssignmentToJournal(input: {assignmentId: $assignmentId, studentAssignmentIds: $studentAssignmentIds, postData: $postData}) {
+      response
+      warning
+    }
+  }
+}

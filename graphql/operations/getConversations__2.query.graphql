@@ -1,0 +1,51 @@
+query getConversations($organizationId: ID!, $input: AllChatFeedInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      allChats(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            label
+            type
+            isArchived
+            profileImageData {
+              url
+              icon
+            }
+            personalChatUsers {
+              id
+              firstName
+              lastName
+              middleName
+              ... on Student {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+              ... on Staff {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+              ... on FamilyMember {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+              type
+              profileImage
+            }
+          }
+        }
+      }
+    }
+  }
+}

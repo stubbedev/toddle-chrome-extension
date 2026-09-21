@@ -1,0 +1,10 @@
+mutation upsertActivityPostCommentsAsRead($input: [UpsertUserEntityStateInput!]) {
+  platform {
+    upsertUserEntityState(input: $input) {
+      ... on UpsertUserEntityStateResponse {
+        isSuccess
+        warning
+      }
+    }
+  }
+}

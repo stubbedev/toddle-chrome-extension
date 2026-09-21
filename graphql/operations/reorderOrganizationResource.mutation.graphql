@@ -1,0 +1,5 @@
+mutation reorderOrganizationResource($id: ID, $putAfterItemId: ID) {
+  platform {
+    reorderOrganizationResource(input: {id: $id, putAfterItemId: $putAfterItemId})
+  }
+}

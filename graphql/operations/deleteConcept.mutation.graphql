@@ -1,0 +1,5 @@
+mutation deleteConcept($id: ID!) {
+  planner {
+    deleteConcept(input: {id: $id})
+  }
+}

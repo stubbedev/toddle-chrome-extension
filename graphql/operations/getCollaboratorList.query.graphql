@@ -1,0 +1,25 @@
+query getCollaboratorList($organizationId: ID!, $filters: OrgConnectionFilterInput, $shouldFetchRnpRoles: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: $filters) {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            displayRole
+            rnpRoleContextDetail @include(if: $shouldFetchRnpRoles) {
+              id
+              role {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

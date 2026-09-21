@@ -1,0 +1,5 @@
+mutation portfolioUpdateStudentsAllocationForSupervisor($projectGroupId: ID!, $staffId: ID!, $addedStudents: [ID!], $removedStudents: [ID!]) {
+  documentation {
+    portfolioUpdateStudentsAllocationForSupervisor(input: {projectGroupId: $projectGroupId, staffId: $staffId, addedStudents: $addedStudents, removedStudents: $removedStudents})
+  }
+}

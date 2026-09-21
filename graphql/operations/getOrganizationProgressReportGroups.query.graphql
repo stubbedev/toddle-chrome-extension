@@ -1,0 +1,8 @@
+query getOrganizationProgressReportGroups($organizationId: ID!, $searchText: String, $academicYearId: ID, $after: String, $curriculumProgramIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationProgressReportGroupItem
+    }
+  }
+}

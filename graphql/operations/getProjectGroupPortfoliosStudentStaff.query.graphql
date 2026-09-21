@@ -1,0 +1,25 @@
+query getProjectGroupPortfoliosStudentStaff($id: ID!, $filters: StudentProjectPortfolioFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            student {
+              ...studentInfo
+            }
+            staff {
+              ...supervisorInfo
+            }
+          }
+        }
+      }
+    }
+  }
+}

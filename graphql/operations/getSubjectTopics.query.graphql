@@ -1,0 +1,15 @@
+query getSubjectTopics($ids: [ID!], $depth: Int) {
+  multiNode(ids: $ids, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      name
+      associatedChildPlannerElementNodes(filters: {types: DP_SYLLABUS, depth: $depth}) {
+        id
+        label
+        displaySequence
+        parent
+      }
+    }
+  }
+}

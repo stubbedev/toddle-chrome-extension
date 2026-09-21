@@ -1,0 +1,32 @@
+fragment meetingItem on Meeting {
+  id
+  label
+  urls {
+    ... on OtherMeetingUrls {
+      type
+      url
+    }
+    ... on ZoomMeetingUrls {
+      type
+      joinUrl
+      startUrl
+      meetingCode
+    }
+    ... on MicrosoftTeamMeetingUrls {
+      type
+      joinUrl
+      joinWebUrl
+      meetingCode
+      passcode
+    }
+    ... on GoogleMeetingUrls {
+      type
+      url
+      meetingCode
+    }
+  }
+  type
+  createdBy {
+    id
+  }
+}

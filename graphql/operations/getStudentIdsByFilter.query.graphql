@@ -1,0 +1,8 @@
+query getStudentIdsByFilter($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      studentIdsByFilter(filters: $filters)
+    }
+  }
+}

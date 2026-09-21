@@ -1,0 +1,9 @@
+query contextualHelpPageTags {
+  cms {
+    contextualHelpPageTags {
+      id
+      pageIdentifierTag
+      hasContent
+    }
+  }
+}

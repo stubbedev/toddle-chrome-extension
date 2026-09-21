@@ -1,0 +1,20 @@
+mutation updateAcademicYearGroup($input: UpdateAcademicYearGroupInput!) {
+  platform {
+    updateAcademicYearGroup(input: $input) {
+      isSuccess
+      warning
+      academicYearGroup {
+        id
+        name
+        acronym
+        displayOrder
+        academicYears {
+          id
+          startDate
+          endDate
+          isCurrentAcademicYear
+        }
+      }
+    }
+  }
+}

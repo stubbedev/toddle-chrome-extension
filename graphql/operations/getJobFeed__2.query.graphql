@@ -1,0 +1,46 @@
+query getJobFeed($id: ID!, $afterV2: String, $filters: OrganizationIntegrationJobFilterInput, $academicYearState: ACADEMIC_YEAR_STATE_ENUM, $first: Int, $curriculumProgramId: ID) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      jobFeed(first: $first, afterV2: $afterV2, academicYearState: $academicYearState, filters: $filters, curriculumProgramId: $curriculumProgramId) {
+        totalCount
+        edges {
+          node {
+            id
+            status
+            serviceName
+            createdAt
+            curriculum
+            curriculumId
+            isLatest
+            type
+            metadata
+            academicYear {
+              id
+            }
+            createdBy {
+              id
+              firstName
+              middleName
+              lastName
+              profileImage
+              email
+              type
+              role
+              isDevUser
+              isArchived
+            }
+            executionStatus {
+              percentageComplete
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

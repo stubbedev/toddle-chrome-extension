@@ -1,0 +1,10 @@
+query getSnPCycleCurriculum($cycleId: ID!) {
+  node(id: $cycleId, type: SnP_EVALUATION_CYCLE) {
+    ... on SnPEvaluationCycle {
+      id
+      curriculumProgram {
+        id
+      }
+    }
+  }
+}

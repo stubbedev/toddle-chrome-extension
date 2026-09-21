@@ -1,0 +1,5 @@
+mutation quickCopyStudentTranscriptFieldValue($input: QuickCopyStudentTranscriptFieldValueInput!) {
+  documentation {
+    quickCopyStudentTranscriptFieldValue(input: $input)
+  }
+}

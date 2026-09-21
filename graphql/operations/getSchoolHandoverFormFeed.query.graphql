@@ -1,0 +1,36 @@
+query getSchoolHandoverFormFeed($first: Int, $after: String, $filter: GenericFormResponseFeedInput, $formType: FORM_TYPE_ENUM) {
+  organizationManagement {
+    GenericFormResponseFeed(first: $first, after: $after, filter: $filter, formType: $formType) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        startCursor
+        hasPreviousPage
+      }
+      totalCount
+      edges {
+        node {
+          id
+          state
+          salesPerson
+          organization {
+            id
+            name
+            plannerFormat
+            tier {
+              plan
+            }
+            curriculumPrograms {
+              ...subscriptionPlanDetailsItem
+            }
+          }
+          form {
+            id
+            name
+          }
+          createdAt
+        }
+      }
+    }
+  }
+}

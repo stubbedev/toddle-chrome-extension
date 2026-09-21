@@ -1,0 +1,8 @@
+mutation updateAttachment($input: AttachmentUpdateInput!) {
+  platform {
+    updateAttachment(input: $input) {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,38 @@
+fragment gradeScalesReportsFragment on GradeScaleConnection {
+  edges {
+    node {
+      id
+      templateName
+      displayName
+      isArchived
+      type
+      gradingType
+      calculateStandardGradesUsing
+      minValue
+      maxValue
+      gradeScaleEntityDetails(filters: $gradeScaleEntityDetailsFilters) {
+        id
+        gradeScaleValues {
+          id
+          label
+          description
+          abbreviation
+          displaySequence
+          color
+          gradeScaleValueScores {
+            id
+            minValue
+            maxValue
+            gradeValue
+            isMasteryLevel
+            subjectLevel {
+              id
+              label
+              abbreviation
+            }
+          }
+        }
+      }
+    }
+  }
+}

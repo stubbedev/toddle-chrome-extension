@@ -1,0 +1,7 @@
+mutation createProgressReportRatings($input: [IBPYPElementRatingInput!]) {
+  planner {
+    createIBPYPElementRatings(input: $input) {
+      id
+    }
+  }
+}

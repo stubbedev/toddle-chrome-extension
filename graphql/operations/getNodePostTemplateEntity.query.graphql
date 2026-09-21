@@ -1,0 +1,58 @@
+query getNodePostTemplateEntity($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on PostTemplate {
+      id
+      title
+      fields {
+        id
+        label
+        placeholder
+        type
+        metadata
+        displaySequence
+        dataSets {
+          title
+          type
+          id
+          startDate
+          endDate
+          values {
+            value
+            item {
+              id
+              itemName
+            }
+            date
+            displaySequence
+            id
+          }
+        }
+      }
+    }
+    ... on PostTemplateDataSet {
+      id
+      title
+      updatedAt
+      updatedBy {
+        id
+        firstName
+        lastName
+      }
+      mappedTemplates {
+        id
+        title
+      }
+      values {
+        id
+        displaySequence
+        value
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}

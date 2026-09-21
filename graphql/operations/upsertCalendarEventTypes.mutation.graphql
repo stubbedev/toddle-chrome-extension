@@ -1,0 +1,9 @@
+mutation upsertCalendarEventTypes($input: UpsertCalendarEventTypesInput!) {
+  platform {
+    upsertCalendarEventTypes(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+  }
+}

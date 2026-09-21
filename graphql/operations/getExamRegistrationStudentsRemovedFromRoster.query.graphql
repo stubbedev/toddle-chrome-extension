@@ -1,0 +1,12 @@
+query getExamRegistrationStudentsRemovedFromRoster($examRegId: ID!, $ibisUserIds: [ID!]) {
+  node(id: $examRegId, type: EXAM_REGISTRATION) {
+    id
+    ... on ExamRegistration {
+      studentsRemovedFromRoster(ids: $ibisUserIds) {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+}

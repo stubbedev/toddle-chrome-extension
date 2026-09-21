@@ -1,0 +1,12 @@
+mutation createRubricCriteria($rubricId: ID!, $createdBy: ID!, $label: String!, $putAfterItemId: ID) {
+  planner {
+    createRubricCriteria(input: {createdBy: $createdBy, rubricId: $rubricId, label: $label, putAfterItemId: $putAfterItemId}) {
+      criteria {
+        ...criteriaItem
+      }
+      descriptors {
+        ...descriptorItem
+      }
+    }
+  }
+}

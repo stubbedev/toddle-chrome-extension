@@ -1,0 +1,25 @@
+query getCurriculumStandards($id: ID!, $filters: PlannerElementNodeFilters, $isPYPCurriculum: Boolean! = false) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      standardSetWrapper {
+        publishedStandards(filters: $filters) @skip(if: $isPYPCurriculum) {
+          edges {
+            node {
+              ...standardsFragment
+              parent
+            }
+          }
+        }
+        publishedBenchmarks(filters: $filters) @include(if: $isPYPCurriculum) {
+          edges {
+            node {
+              ...benchmarksFragment
+              parent
+            }
+          }
+        }
+      }
+    }
+  }
+}

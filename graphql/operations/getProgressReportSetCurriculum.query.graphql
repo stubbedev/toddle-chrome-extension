@@ -1,0 +1,11 @@
+query getProgressReportSetCurriculum($setId: ID!) {
+  node(id: $setId, type: PROGRESS_REPORT_TASK_GROUP) {
+    ... on ProgressReportTaskGroup {
+      id
+      curriculumProgram {
+        id
+        type
+      }
+    }
+  }
+}

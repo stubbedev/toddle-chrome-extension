@@ -1,0 +1,7 @@
+mutation importQuestionFromToddleLibrary($input: ImportQuestionFromToddleLibraryInput!) {
+  content {
+    importQuestionFromToddleLibrary(input: $input) {
+      isSuccess
+    }
+  }
+}

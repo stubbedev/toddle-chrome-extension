@@ -1,0 +1,19 @@
+mutation discoverStudentFileUploadConflictsMutation($input: DiscoverStudentFileUploadConflictsInput!) {
+  platform {
+    discoverStudentFileUploadConflicts(input: $input) {
+      isSuccess
+      warning
+      conflicts {
+        itemId
+        conflicts {
+          folderName
+          existingResourceId
+        }
+      }
+      discoveryErrors {
+        itemId
+        message
+      }
+    }
+  }
+}

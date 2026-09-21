@@ -1,0 +1,7 @@
+mutation updateCalendarEvent($input: CalendarEventUpdateInput!) {
+  school {
+    updateCalendarEvent(input: $input) {
+      id
+    }
+  }
+}

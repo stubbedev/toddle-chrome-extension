@@ -1,0 +1,85 @@
+query getFormsIndividualResponse($id: ID!, $userId: ID!) {
+  node(id: $id, type: MESSAGEV2_FORM) {
+    ... on MessageV2Form {
+      id
+      sections {
+        id
+        type
+        ... on MessageV2FormSectionSingleChoice {
+          question
+          isRequired
+          options {
+            ...optionItemForIndividualUser
+          }
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionMultiChoice {
+          question
+          isRequired
+          options {
+            ...optionItemForIndividualUser
+          }
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionHeader {
+          title
+          description
+          attachments {
+            ...attachmentItem
+          }
+        }
+        ... on MessageV2FormSectionShortResponse {
+          question
+          isRequired
+          attachments {
+            ...attachmentItem
+          }
+          userResponse(input: {userId: $userId}) {
+            response
+          }
+        }
+        ... on MessageV2FormSectionLongResponse {
+          question
+          isRequired
+          attachments {
+            ...attachmentItem
+          }
+          userResponse(input: {userId: $userId}) {
+            response
+          }
+        }
+        ... on MessageV2FormSectionLinearScale {
+          question
+          isRequired
+          options {
+            ...optionItemForIndividualUser
+          }
+          scaleLimit
+          attachments {
+            ...attachmentItem
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation createMessageV2Form($input: CreateMessageV2FormInput!) {
+  platform {
+    createMessageV2Form(input: $input) {
+      id
+    }
+  }
+}
+
+mutation createMessageV2Form($input: CreateMessageV2FormInput!) {
+  platform {
+    createMessageV2Form(input: $input) {
+      id
+    }
+  }
+}

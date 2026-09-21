@@ -1,0 +1,6 @@
+fragment organizationAttachmentDetailsItem on Organization {
+  id
+  attachments {
+    ...attachmentBasicDetailsItem
+  }
+}

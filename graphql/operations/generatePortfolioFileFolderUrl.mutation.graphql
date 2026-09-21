@@ -1,0 +1,10 @@
+mutation generatePortfolioFileFolderUrl($portfolioIds: [ID!], $fileFolderTypesInput: [ProjectFileFolderTypeInput!], $fileFolderConfig: PortfolioFileFolderConfigInput, $isLongRunningTask: Boolean, $academicYearIds: [ID!]) {
+  platform {
+    generatePortfolioFileFolderUrl(portfolioIds: $portfolioIds, fileFolderTypesInput: $fileFolderTypesInput, fileFolderConfig: $fileFolderConfig, isLongRunningTask: $isLongRunningTask, academicYearIds: $academicYearIds) {
+      name
+      url
+      longRunningTaskCreated
+      isSuccess
+    }
+  }
+}

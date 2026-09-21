@@ -1,0 +1,9 @@
+fragment standardGradeScaleValueDescriptor on StandardGradeScaleValueDescriptor {
+  id
+  description
+  gradeScaleValue {
+    id
+    label
+    abbreviation
+  }
+}

@@ -1,0 +1,12 @@
+query getFuzzyMatchToolAndToddleIdResponse($input: IntegrationAssessmentCategoriesFuzzyMapInput!) {
+  integration {
+    getIntegrationAssessmentCategoriesFuzzyMap(input: $input) {
+      toolAndToddleIds {
+        toolId
+        toddleId
+        __typename
+      }
+      __typename
+    }
+  }
+}

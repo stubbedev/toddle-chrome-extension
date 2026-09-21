@@ -1,0 +1,20 @@
+query getCustomDatasetNodeSetsConfig($id: ID!, $filters: PlannerElementNodeSetFilters, $nodeSetConfigFilters: PlannerElementNodeSetConfigFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      ...curriculumProgramCustomDatasetNodeSetsConfigItem
+    }
+    ... on IbPypCurriculumProgram {
+      ...curriculumProgramCustomDatasetNodeSetsConfigItem
+    }
+    ... on IbMypCurriculumProgram {
+      ...curriculumProgramCustomDatasetNodeSetsConfigItem
+    }
+    ... on IbDpCurriculumProgram {
+      ...curriculumProgramCustomDatasetNodeSetsConfigItem
+    }
+    ... on UBDCurriculumProgram {
+      ...curriculumProgramCustomDatasetNodeSetsConfigItem
+    }
+  }
+}

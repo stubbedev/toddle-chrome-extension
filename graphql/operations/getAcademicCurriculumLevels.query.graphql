@@ -1,0 +1,310 @@
+query getAcademicCurriculumLevels($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $levelsFilters: GenericTagFilters) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      programType
+      schoolPrograms {
+        id
+        label
+      }
+      levels(filters: $levelsFilters) {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        type
+        isArchived
+        parentLevel {
+          id
+        }
+        childLevels {
+          id
+        }
+        associatedSchools {
+          id
+          label
+        }
+        associatedSubjects {
+          id
+          name
+          icon
+          parentSubject {
+            id
+          }
+          curriculumProgram {
+            id
+            label
+          }
+        }
+        associatedLearningCourses {
+          id
+          title
+          type
+          displayMetadata
+          curriculumProgram {
+            id
+          }
+        }
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        createdAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+        updatedAt
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      programType
+      schoolPrograms {
+        id
+        label
+      }
+      levels(filters: $levelsFilters) {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        type
+        isArchived
+        parentLevel {
+          id
+        }
+        childLevels {
+          id
+        }
+        associatedSchools {
+          id
+          label
+        }
+        associatedSubjects {
+          id
+          name
+          icon
+          parentSubject {
+            id
+          }
+          curriculumProgram {
+            id
+            label
+          }
+        }
+        associatedLearningCourses {
+          id
+          title
+          type
+          displayMetadata
+          curriculumProgram {
+            id
+          }
+        }
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        createdAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+        updatedAt
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      programType
+      schoolPrograms {
+        id
+        label
+      }
+      levels(filters: $levelsFilters) {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        type
+        isArchived
+        parentLevel {
+          id
+        }
+        childLevels {
+          id
+        }
+        associatedSchools {
+          id
+          label
+        }
+        associatedSubjects {
+          id
+          name
+          icon
+          parentSubject {
+            id
+          }
+          curriculumProgram {
+            id
+            label
+          }
+        }
+        associatedLearningCourses {
+          id
+          title
+          type
+          displayMetadata
+          curriculumProgram {
+            id
+          }
+        }
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        createdAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+        updatedAt
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      programType
+      schoolPrograms {
+        id
+        label
+      }
+      levels(filters: $levelsFilters) {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        type
+        isArchived
+        parentLevel {
+          id
+        }
+        childLevels {
+          id
+        }
+        associatedSchools {
+          id
+          label
+        }
+        associatedSubjects {
+          id
+          name
+          icon
+          parentSubject {
+            id
+          }
+          curriculumProgram {
+            id
+            label
+          }
+        }
+        associatedLearningCourses {
+          id
+          title
+          type
+          displayMetadata
+          curriculumProgram {
+            id
+          }
+        }
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        createdAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+        updatedAt
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      programType
+      schoolPrograms {
+        id
+        label
+      }
+      levels(filters: $levelsFilters) {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        type
+        isArchived
+        parentLevel {
+          id
+        }
+        childLevels {
+          id
+        }
+        associatedSchools {
+          id
+          label
+        }
+        associatedSubjects {
+          id
+          name
+          icon
+          parentSubject {
+            id
+          }
+          curriculumProgram {
+            id
+            label
+          }
+        }
+        associatedLearningCourses {
+          id
+          title
+          type
+          displayMetadata
+          curriculumProgram {
+            id
+          }
+        }
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        createdAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+        updatedAt
+      }
+    }
+  }
+}

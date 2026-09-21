@@ -1,0 +1,25 @@
+query getOrganizationStaffFeed($filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  platform {
+    organization {
+      id
+      staff(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            email
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            profileImage
+            displayRole
+            type
+          }
+        }
+      }
+    }
+  }
+}

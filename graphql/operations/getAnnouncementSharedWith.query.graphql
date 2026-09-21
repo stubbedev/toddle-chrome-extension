@@ -1,0 +1,10 @@
+query getAnnouncementSharedWith($id: ID!) {
+  node(id: $id, type: CIRCULAR) {
+    id
+    ... on Circular {
+      id
+      sharedWith
+      emailSharedWith
+    }
+  }
+}

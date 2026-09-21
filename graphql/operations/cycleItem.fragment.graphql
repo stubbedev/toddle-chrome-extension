@@ -1,0 +1,6 @@
+fragment cycleItem on SnPEvaluationCycle {
+  id
+  evaluationCycleStandard {
+    ...standardBasicDetailsItem
+  }
+}

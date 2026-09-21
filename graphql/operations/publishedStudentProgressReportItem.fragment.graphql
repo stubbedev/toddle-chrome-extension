@@ -1,0 +1,22 @@
+fragment publishedStudentProgressReportItem on PublishedStudentProgressReport {
+  id
+  studentProgressReport {
+    id
+    courseProgressReportTask {
+      id
+      title
+      progressReportTaskGroup {
+        id
+        template {
+          id
+          gradingPeriodType
+        }
+      }
+      parentEntity {
+        ... on Grade {
+          id
+        }
+      }
+    }
+  }
+}

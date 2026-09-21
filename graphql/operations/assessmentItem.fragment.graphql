@@ -1,0 +1,22 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  createdBy {
+    ...userItem
+  }
+  assessmentType {
+    id
+    value
+  }
+  duration {
+    id
+    value
+  }
+}

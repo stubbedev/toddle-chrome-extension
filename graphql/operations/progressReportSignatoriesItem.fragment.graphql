@@ -1,0 +1,7 @@
+fragment progressReportSignatoriesItem on Signatory {
+  id
+  name
+  designation
+  signatureImage
+  displaySequence
+}

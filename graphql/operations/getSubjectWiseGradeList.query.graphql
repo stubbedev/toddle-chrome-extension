@@ -1,0 +1,35 @@
+query getSubjectWiseGradeList($id: ID!, $subjectUnitPlanFilter: SubjectUnitPlansFilterInput, $unitPlanFilters: UnitPlanFilter, $classesFilters: GradeCourseFilter, $fetchClassList: Boolean!, $coursesFilters: SubjectCourseFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      unitPlans(filters: $subjectUnitPlanFilter) {
+        totalCount
+      }
+      grades {
+        id
+        courses(first: null, filters: $classesFilters) @include(if: $fetchClassList) {
+          totalCount
+          edges {
+            node {
+              id
+              title
+              isArchived
+              unitPlans(filters: $unitPlanFilters) {
+                totalCount
+              }
+              academicYears {
+                id
+                startDate
+                endDate
+              }
+            }
+          }
+        }
+      }
+      courses(filters: $coursesFilters) {
+        totalCount
+      }
+    }
+  }
+}

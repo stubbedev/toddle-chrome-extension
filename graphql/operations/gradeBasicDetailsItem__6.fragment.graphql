@@ -1,0 +1,30 @@
+query getIncludedLearningCourseIds($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $filters: LearningCourseFilters!, $orderBy: ORDER_BY_ENUM!) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      learningCourse(first: 10000, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseIdsItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      learningCourse(first: 10000, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseIdsItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      learningCourse(first: 10000, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseIdsItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      learningCourse(first: 10000, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseIdsItem
+      }
+    }
+  }
+}
+
+fragment gradeBasicDetailsItem on Grade {
+  id
+  name
+}

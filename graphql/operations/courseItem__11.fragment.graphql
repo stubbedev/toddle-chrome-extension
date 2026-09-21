@@ -1,0 +1,8 @@
+fragment courseItem on Course {
+  id
+  title
+  subjects {
+    id
+    name
+  }
+}

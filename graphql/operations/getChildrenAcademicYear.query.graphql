@@ -1,0 +1,13 @@
+query getChildrenAcademicYear($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on FamilyMember {
+      children {
+        id
+        academicYears(filters: {archivalState: ACTIVE}) {
+          ...academicYearItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getUserCourses($id: ID!, $filters: CourseFilter, $courseGradeFilters: CourseGradeFilters, $getGrades: Boolean!, $getCurriculumProgram: Boolean!, $userType: ENTITY_TYPE_ENUM!, $getAssociatedProgram: Boolean = false, $getLearningCourse: Boolean = false) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        ...userCourseDetailsItem
+        profileImageData {
+          icon
+          color
+          acronym
+          url
+        }
+      }
+    }
+    ... on Student {
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        ...userCourseDetailsItem
+      }
+    }
+  }
+}

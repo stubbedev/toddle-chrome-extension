@@ -1,0 +1,12 @@
+mutation createFoodCode($label: String!, $curriculumProgramId: ID!) {
+  documentation {
+    createPostTemplateItemCode(input: [{curriculumProgramId: $curriculumProgramId, itemName: $label}]) {
+      isSuccess
+      warning
+      itemCode {
+        id
+        itemName
+      }
+    }
+  }
+}

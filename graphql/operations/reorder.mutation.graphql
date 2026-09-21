@@ -1,0 +1,6 @@
+mutation reorder($id: ID!, $putAfterItemId: ID) {
+  platform {
+    reorderGenericTags(input: {id: $id, putAfterItemId: $putAfterItemId})
+    __typename
+  }
+}

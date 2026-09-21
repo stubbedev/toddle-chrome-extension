@@ -1,0 +1,28 @@
+mutation updateSubjectGroup($id: ID!, $name: String, $profileImageData: JSON, $type: SUBJECT_GROUP_TYPE_ENUM, $departmentToMerge: ID) {
+  platform {
+    updateSubjectGroup(input: {id: $id, name: $name, profileImageData: $profileImageData, type: $type, departmentToMerge: $departmentToMerge}) {
+      isSuccess
+      warning
+      subjectGroup {
+        id
+        name
+        type
+        childDepartments {
+          id
+          name
+          parentDepartment {
+            id
+            name
+            childDepartments {
+              id
+              name
+            }
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

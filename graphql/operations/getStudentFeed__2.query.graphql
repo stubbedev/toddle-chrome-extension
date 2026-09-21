@@ -1,0 +1,22 @@
+query getStudentFeed($organizationId: ID!, $filters: OrgConnectionFilterInput, $familyStatus: TotalCountsByFamilyStatusFilters, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $after: String, $familyMembersCountFilter: FamilyMembersFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      familyMembers(filters: $familyMembersCountFilter) {
+        totalCount
+      }
+      students(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        totalCountsByFamilyStatus(filters: $familyStatus) {
+          totalCount
+          totalUnconnected
+          totalConnected
+          totalInvited
+          totalApproveRequested
+          totalPending
+          totalNotActiveSince
+        }
+      }
+    }
+  }
+}

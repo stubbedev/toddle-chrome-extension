@@ -1,0 +1,65 @@
+query getRoutineDetails($id: ID!, $curriculumProgramIds: [ID!], $routineFilters: RoutineFilterOptions!, $routineDatesFilters: RoutineDatesFilters!, $fetchBellSchedule: Boolean!, $isToddleV2TimetableEnabled: Boolean!, $timetableFilter: TimetableFilterOptions!, $timetableDatesFilter: RoutineDatesFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        routines(filter: $routineFilters) @skip(if: $isToddleV2TimetableEnabled) {
+          id
+          label
+          routineMode
+          routineDates(filters: $routineDatesFilters) {
+            date
+            rotationDay {
+              id
+              label
+            }
+            bellSchedule @include(if: $fetchBellSchedule) {
+              id
+              periodsEdge {
+                periods {
+                  period {
+                    id
+                    label
+                    type
+                    abbreviation
+                  }
+                  startTime
+                  endTime
+                }
+              }
+            }
+          }
+        }
+        timetables(filters: $timetableFilter) @include(if: $isToddleV2TimetableEnabled) {
+          id
+          label
+          status
+          timetableDates(filters: $timetableDatesFilter) {
+            date
+            rotationEntity {
+              id
+              label
+            }
+            bellSchedule @include(if: $fetchBellSchedule) {
+              id
+              periodsEdge {
+                periods {
+                  period {
+                    id
+                    label
+                    type
+                    abbreviation
+                  }
+                  startTime
+                  endTime
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

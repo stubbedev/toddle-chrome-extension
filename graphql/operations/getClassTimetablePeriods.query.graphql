@@ -1,0 +1,21 @@
+query getClassTimetablePeriods($ids: [ID!], $periodsFilters: PeriodFilterOptions, $permissionFilters: TimetableSlotPermissionFilters, $termFilters: TermFilters, $attendanceFilters: TimetableSlotAttendanceFilters!, $itemFilter: TimetableSlotItemsFilters, $isToddleV2TimetableEnabled: Boolean!) {
+  multiNode(ids: $ids, type: COURSE) {
+    ... on Course {
+      id
+      periodsV3(filters: $periodsFilters) @skip(if: $isToddleV2TimetableEnabled) {
+        edges {
+          node {
+            ...selectedPeriodItemV2
+          }
+        }
+      }
+      periodsV4(filters: $periodsFilters) @include(if: $isToddleV2TimetableEnabled) {
+        edges {
+          node {
+            ...selectedPeriodItemV3
+          }
+        }
+      }
+    }
+  }
+}

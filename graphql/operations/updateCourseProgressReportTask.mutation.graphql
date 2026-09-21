@@ -1,0 +1,7 @@
+mutation updateCourseProgressReportTask($id: ID!, $progressReportTemplateId: ID, $addedUnitPlanIds: [ID!], $removedUnitPlanIds: [ID!], $unitPlanIds: [ID!], $addedStudents: [ID!], $removedStudents: [ID!], $title: String, $deadlineDate: String, $startDate: String, $endDate: String, $signatoriesGroup: SignatoriesGroupInput) {
+  documentation {
+    updateCourseProgressReportTask(input: {id: $id, progressReportTemplateId: $progressReportTemplateId, addedUnitPlanIds: $addedUnitPlanIds, removedUnitPlanIds: $removedUnitPlanIds, addedStudents: $addedStudents, removedStudents: $removedStudents, unitPlanIds: $unitPlanIds, title: $title, deadlineDate: $deadlineDate, attendanceDates: {startDate: $startDate, endDate: $endDate}, signatoriesGroup: $signatoriesGroup}) {
+      ...progressReportItem
+    }
+  }
+}

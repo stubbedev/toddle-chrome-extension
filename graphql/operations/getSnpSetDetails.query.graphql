@@ -1,0 +1,8 @@
+query getSnpSetDetails($setId: ID!) {
+  node(id: $setId, type: SnP_SET) {
+    id
+    ... on SnPSet {
+      ...snpSetItem
+    }
+  }
+}

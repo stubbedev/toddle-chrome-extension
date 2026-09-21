@@ -1,0 +1,24 @@
+query getFinalGradeScalesForStandardsGradebook($courseId: ID!, $subjectId: ID!, $courseGradeScalesFilters: GradeScaleFilters, $subjectGradeScalesFilters: SubjectGradeScalesFilters, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters, $isCourseBasedGrading: Boolean!, $isSubjectBasedGrading: Boolean!) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      id
+      learningCourse @include(if: $isCourseBasedGrading) {
+        id
+        gradeScales(filters: $courseGradeScalesFilters) {
+          ...gradeScaleItem
+        }
+      }
+    }
+  }
+  node(id: $subjectId, type: SUBJECT) @include(if: $isSubjectBasedGrading) {
+    id
+    ... on Subject {
+      id
+      name
+      gradeScales(filters: $subjectGradeScalesFilters) {
+        ...gradeScaleItem
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateCourseFlowResource($input: UpdateLearningCourseFlowResourceInput!) {
+  planner {
+    updateLearningCourseFlowResource(input: $input) {
+      id
+    }
+  }
+}

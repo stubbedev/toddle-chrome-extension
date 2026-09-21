@@ -1,0 +1,7 @@
+mutation createShortUrl($input: UrlShortCodeInput!) {
+  platform {
+    createShortUrl(input: $input) {
+      shortUrl
+    }
+  }
+}

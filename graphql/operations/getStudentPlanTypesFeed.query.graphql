@@ -1,0 +1,94 @@
+query getStudentPlanTypesFeed($id: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentPlanTypesFeedInput!, $studentPlansFilter: StudentPlansByPlanTypeFilters) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        planTypesFeed(input: $input) {
+          totalCount
+          edges {
+            node {
+              ...studentPlanTypeItem
+            }
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        planTypesFeed(input: $input) {
+          totalCount
+          edges {
+            node {
+              ...studentPlanTypeItem
+            }
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      studentPlanWrapper {
+        planTypesFeed(input: $input) {
+          totalCount
+          edges {
+            node {
+              ...studentPlanTypeItem
+            }
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      studentPlanWrapper {
+        planTypesFeed(input: $input) {
+          totalCount
+          edges {
+            node {
+              ...studentPlanTypeItem
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment studentPlanTypeItem on StudentPlanType {
+  id
+  name
+  description
+  abbreviation
+  flagIcon
+  metadata
+  isDefault
+  status
+  isArchived
+  flagType {
+    id
+    name
+    icon
+  }
+  templateDocuments {
+    id
+    type
+    name
+    url
+    mimeType
+    thumbUrl
+    metadata
+    displaySequence
+  }
+  updatedAt
+  updatedBy {
+    id
+    firstName
+    lastName
+    profileImage
+  }
+  studentPlans(filters: $studentPlansFilter) {
+    id
+    status
+  }
+}

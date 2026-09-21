@@ -1,0 +1,11 @@
+fragment attachmentItem on Attachment {
+  id
+  type
+  title
+  name
+  mimeType
+  url
+  signedUrl
+  thumbUrl
+  __typename
+}

@@ -1,0 +1,59 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ...resolvedFieldVideoAttachmentItem
+    }
+  }
+  centralIdea {
+    id
+    value
+  }
+  unitType {
+    id
+    value
+  }
+  subjects {
+    id
+    value
+  }
+  theme {
+    id
+    value
+  }
+  learningCourse {
+    id
+    title
+  }
+  unitType {
+    id
+    value
+    label
+  }
+  createdBy {
+    id
+    firstName
+    lastName
+    profileImage
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+  grades
+  templateId
+  fields(uids: $uids) {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+}

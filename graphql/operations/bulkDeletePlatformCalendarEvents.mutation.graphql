@@ -1,0 +1,9 @@
+mutation bulkDeletePlatformCalendarEvents($input: BulkDeletePlatformCalendarEventsInput!) {
+  platform {
+    bulkDeletePlatformCalendarEvents(input: $input) {
+      isSuccess
+      warning
+    }
+    __typename
+  }
+}

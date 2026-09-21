@@ -1,0 +1,27 @@
+fragment plannerElementNodeSetItem on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      type
+      title
+      config(filters: $nodeSetConfigFilters) {
+        id
+        value
+        globalProperty {
+          id
+          property
+        }
+      }
+      plannerElementSet {
+        id
+        type
+        label
+        templateFields {
+          id
+          uid
+          fieldType
+        }
+      }
+    }
+  }
+}

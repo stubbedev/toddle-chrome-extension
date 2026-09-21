@@ -1,0 +1,61 @@
+query getEntireCourseFlowFeed($id: ID!, $filters: LearningCourseFlowFilter, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Course {
+      classFlowFeedWrapper {
+        learningCourseFlowFeed(first: 1000, filters: $filters) {
+          edges {
+            node {
+              ...courseFlowResource
+              __typename
+            }
+            __typename
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+            __typename
+          }
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 1000, filters: $filters) {
+          edges {
+            node {
+              ...courseFlowResource
+              __typename
+            }
+            __typename
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+            __typename
+          }
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

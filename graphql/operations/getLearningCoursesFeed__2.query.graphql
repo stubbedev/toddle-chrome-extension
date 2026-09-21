@@ -1,0 +1,34 @@
+query getLearningCoursesFeed($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $after: String, $filters: LearningCourseFilters!, $first: Int!, $orderBy: ORDER_BY_ENUM!) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse(first: $first, after: $after, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseDetailsItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse(first: $first, after: $after, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseDetailsItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(first: $first, after: $after, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseDetailsItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse(first: $first, after: $after, filters: $filters, orderBy: $orderBy) {
+        ...learningCourseDetailsItem
+      }
+    }
+  }
+}
+
+fragment gradeBasicDetailsItem on Grade {
+  id
+  name
+}

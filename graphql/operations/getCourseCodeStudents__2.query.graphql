@@ -1,0 +1,32 @@
+query getCourseCodeStudents($id: ID!, $classesFilters: LearningCourseClassFilter, $studentFilters: CourseFilter) {
+  node(id: $id, type: ACADEMIC_COURSE) {
+    id
+    ... on AcademicCourse {
+      id
+      learningCourses {
+        edges {
+          node {
+            classes(filters: $classesFilters) {
+              id
+              title
+              students(filters: $studentFilters) {
+                edges {
+                  node {
+                    id
+                    firstName
+                    middleName
+                    lastName
+                    preferredName
+                    suffix
+                    pronouns
+                    type
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

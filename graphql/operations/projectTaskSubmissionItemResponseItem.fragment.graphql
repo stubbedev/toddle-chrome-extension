@@ -1,0 +1,13 @@
+fragment projectTaskSubmissionItemResponseItem on ProjectTaskSubmissionItemResponse {
+  id
+  attachments {
+    ...attachmentItem
+    createdAt
+  }
+  value
+  submissionItem {
+    id
+    title
+    fieldUID
+  }
+}

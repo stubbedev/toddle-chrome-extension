@@ -1,0 +1,7 @@
+fragment templateItem on PlannerTemplate {
+  id
+  body
+  unitType
+  name
+  type
+}

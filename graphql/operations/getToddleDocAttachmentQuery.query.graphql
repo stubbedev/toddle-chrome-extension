@@ -1,0 +1,41 @@
+query getToddleDocAttachmentQuery($id: ID!, $filters: ToddleDocPermissionFilter, $state: TODDLE_DOC_CONVERSATION_STATE_ENUM) {
+  node(id: $id, type: ATTACHMENT) {
+    id
+    ... on Attachment {
+      id
+      name
+      type
+      title
+      metadata
+      parentType
+      toddleDoc {
+        id
+        value
+        conversations(state: $state) {
+          id
+          referenceId
+          colorCode
+          derivedThreadState
+          isResolved
+          messages(filters: $filters) {
+            id
+            type
+            state
+            authorType
+            content
+            createdAt
+            createdBy {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

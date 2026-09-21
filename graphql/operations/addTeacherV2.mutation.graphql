@@ -1,0 +1,11 @@
+mutation addTeacherV2($email: String, $userType: USER_TYPE_ENUM!, $courses: [ID!], $addedLearningCourses: [ID!], $firstName: String, $middleName: String, $lastName: String, $preferredName: String, $prefix: String, $suffix: String, $pronouns: String, $profileImage: String, $designation: ID, $sourceId: String, $curriculumProgramIds: [ID!], $mergeUserWithSameEmail: Boolean, $displayRole: String, $academicYear: ID, $aclUserRoles: ACLUserRolesInput) {
+  platform {
+    addUserV2(input: {email: $email, userType: $userType, courses: $courses, firstName: $firstName, middleName: $middleName, lastName: $lastName, preferredName: $preferredName, prefix: $prefix, suffix: $suffix, pronouns: $pronouns, profileImage: $profileImage, designation: $designation, sourceId: $sourceId, curriculumProgramIds: $curriculumProgramIds, mergeUserWithSameEmail: $mergeUserWithSameEmail, displayRole: $displayRole, academicYearId: $academicYear, aclUserRoles: $aclUserRoles, addedLearningCourses: $addedLearningCourses}) {
+      isSuccess
+      warning
+      user {
+        ...teacherItem
+      }
+    }
+  }
+}

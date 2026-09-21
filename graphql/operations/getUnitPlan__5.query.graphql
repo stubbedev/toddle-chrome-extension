@@ -1,0 +1,29 @@
+query getUnitPlan($id: [ID!], $uids: [String!], $type: ENTITY_TYPE_ENUM_MULTI_NODE!) {
+  multiNode(ids: $id, type: $type) {
+    ... on UnitPlan {
+      id
+      templateId
+      subjects {
+        id
+        resolvedMinimalTree {
+          ... on ResolvedFieldSubjectSet {
+            id
+            type
+            subjects {
+              id
+              name
+              isDeleted
+              isArchived
+            }
+          }
+        }
+      }
+      fields(uids: $uids) {
+        ...PlannerFieldItem
+      }
+    }
+    ... on Assessment {
+      ...assessmentItem
+    }
+  }
+}

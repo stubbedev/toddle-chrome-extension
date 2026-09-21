@@ -1,0 +1,7 @@
+mutation createAttachment($name: String, $url: String, $thumbUrl: String, $mimeType: String, $type: ATTACHMENT_TYPE_ENUM!, $parentId: ID, $createdBy: ID, $parentType: ATTACHMENT_PARENT_TYPE_ENUM, $metadata: JSON, $lockingState: EntityLockingStateInput, $presetAttachmentId: ID) {
+  platform {
+    createAttachment(input: {url: $url, mimeType: $mimeType, type: $type, thumbUrl: $thumbUrl, parentId: $parentId, createdBy: $createdBy, parentType: $parentType, name: $name, metadata: $metadata, lockingState: $lockingState, presetAttachment: $presetAttachmentId}) {
+      ...attachmentItem
+    }
+  }
+}

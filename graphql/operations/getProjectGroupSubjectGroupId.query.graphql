@@ -1,0 +1,10 @@
+query getProjectGroupSubjectGroupId($id: ID!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      subjectGroup {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query getIndividualAcademicHonestyData($id: ID!, $filters: ProjectStudentsCollaboratorFilters) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      studentCollaborators(filters: $filters) {
+        id
+        isAcademicHonestyLocked
+        student {
+          id
+        }
+        academicHonesty(filters: {orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC}) {
+          ...academicHonestyItem
+        }
+        academicHonestyRemarks {
+          ...remarksDetailsItem
+        }
+      }
+    }
+  }
+}

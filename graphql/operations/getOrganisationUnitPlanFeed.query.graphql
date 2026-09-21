@@ -1,0 +1,15 @@
+query getOrganisationUnitPlanFeed($organizationId: ID!, $filters: UnitPlansV2FeedFilters!, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $first: Int, $after: String) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      unitPlansV2(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters, first: $first, after: $after) {
+        ...unitPlanFeedItem
+      }
+    }
+  }
+}
+
+fragment gradeBasicDetailsItem on Grade {
+  id
+  name
+}

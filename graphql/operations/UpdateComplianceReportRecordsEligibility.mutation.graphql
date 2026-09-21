@@ -1,0 +1,12 @@
+mutation UpdateComplianceReportRecordsEligibility($input: UpdateComplianceReportRecordsEligibilityInput!) {
+  complianceReport {
+    updateComplianceReportRecordsEligibility(input: $input) {
+      isSuccess
+      warning
+      report {
+        id
+        dataStatus
+      }
+    }
+  }
+}

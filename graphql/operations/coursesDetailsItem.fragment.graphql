@@ -1,0 +1,61 @@
+fragment coursesDetailsItem on Organization {
+  courses(filters: $filters, first: $first, after: $after, orderByDirection: ASC, orderBy: TITLE) {
+    totalCount
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        title
+        allStudents {
+          totalCount
+        }
+        attendance(dates: $dates) {
+          attendance {
+            createdBy {
+              id
+              profileImage
+              firstName
+              lastName
+            }
+          }
+        }
+        attendanceSummary(filters: {dates: $dates}) {
+          statusWiseCount {
+            totalCount
+            value {
+              id
+              label
+              abbreviation
+              color
+            }
+            period {
+              ...periodItem
+            }
+          }
+        }
+        ...coursePeriodListItemV2
+      }
+    }
+  }
+}
+
+fragment coursePeriodListItemV2 on Course {
+  periodsV2(filters: {routineMode: $routineMode}) {
+    edges {
+      node {
+        id
+        period {
+          id
+          label
+        }
+        rotationDay
+        day
+        isSelected
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+}

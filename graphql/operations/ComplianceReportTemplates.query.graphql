@@ -1,0 +1,14 @@
+query ComplianceReportTemplates {
+  complianceReport {
+    complianceReportTemplates {
+      id
+      code
+      name
+      latestVersion {
+        id
+        versionNumber
+        configBody
+      }
+    }
+  }
+}

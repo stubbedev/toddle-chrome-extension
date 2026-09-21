@@ -1,0 +1,8 @@
+mutation portCasExternalData($input: PortCasExternalOldDataInput!) {
+  documentation {
+    portCasExternalOldData(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

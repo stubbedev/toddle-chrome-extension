@@ -1,0 +1,44 @@
+fragment portfolioProgress on StudentProjectPortfolio {
+  id
+  isRead
+  status
+  feedback {
+    totalCount
+  }
+  completionStatus(filters: $completionStatusFilters) {
+    isComplete
+    markedCompletedAt
+    markedCompletedBy {
+      ...userNameFields
+    }
+  }
+  interviews(filters: {isFormalInterview: true, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC}) {
+    totalCount
+    edges {
+      node {
+        id
+        isLocked
+        meetingDate
+        attachments {
+          id
+        }
+        description
+        lockingState {
+          state
+        }
+        displaySequence
+      }
+    }
+  }
+  achievedPlannerElements {
+    totalCount
+    edges {
+      node {
+        label
+        id
+        metadata
+      }
+    }
+  }
+  strandCountsV2
+}

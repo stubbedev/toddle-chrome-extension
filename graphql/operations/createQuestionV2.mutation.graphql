@@ -1,0 +1,7 @@
+mutation createQuestionV2($input: CreateWorksheetQuestionInputV2!) {
+  content {
+    createQuestionV2(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation updateAccountDetails($input: OrganizationUpdateV2Input!) {
+  platform {
+    updateOrganizationV2(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

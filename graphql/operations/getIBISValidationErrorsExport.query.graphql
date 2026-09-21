@@ -1,0 +1,12 @@
+query getIBISValidationErrorsExport($id: ID!, $examRegistrationValidationErrorsExportInput: ExamRegistrationValidationErrorsExportInput!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      validationErrorsExport(input: $examRegistrationValidationErrorsExportInput) {
+        url
+      }
+      __typename
+    }
+    __typename
+  }
+}

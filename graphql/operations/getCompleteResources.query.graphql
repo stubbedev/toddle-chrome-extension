@@ -1,0 +1,47 @@
+query getCompleteResources($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $orderBy: ORDER_BY_ENUM, $filters: OrganizationResourceFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on UnitPlan {
+      id
+      organizationResourcesFlatFeed(first: 10000, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            id
+            label
+            depth
+            resourceType
+            parentResource {
+              id
+            }
+            item {
+              id
+            }
+            childrenHierarchyInfo(filters: $filters) {
+              maxDepth
+              totalCount
+              totalCountWithFolder
+            }
+            childrenV2(orderBy: DISPLAY_SEQUENCE, filters: $filters, first: 1000) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+          __typename
+        }
+        resourceTypeBasedCount {
+          totalCount
+          __typename
+        }
+      }
+    }
+  }
+}

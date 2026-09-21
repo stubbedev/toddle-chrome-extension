@@ -1,0 +1,34 @@
+query getAllStudentsFromCourse($id: ID!, $filters: CourseFilter, $userArchivedFilters: UserArchivedFilters, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      students(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            pronouns
+            preferredName
+            suffix
+            profileImage
+            email
+            type
+            isDevUser
+            isArchived
+            isArchivedV2(filters: $userArchivedFilters)
+            sourceId
+            type
+            prefix
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+      }
+    }
+  }
+}

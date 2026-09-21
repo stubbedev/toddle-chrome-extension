@@ -1,0 +1,17 @@
+query getCourseGrades($id: ID!, $courseGradeFilters: CourseGradeFilters) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      grades(filters: $courseGradeFilters) {
+        id
+        name
+        displaySequence
+      }
+      primaryGrade(filters: $courseGradeFilters) {
+        id
+        name
+      }
+    }
+  }
+}

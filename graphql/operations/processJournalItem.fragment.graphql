@@ -1,0 +1,46 @@
+fragment processJournalItem on Post {
+  id
+  title
+  description
+  attachments {
+    ...attachmentItem
+    displaySequence
+  }
+  createdAt
+  createdBy {
+    ...userItem
+  }
+  students {
+    edges {
+      node {
+        ...userItem
+      }
+    }
+  }
+  elementPYP {
+    id
+    value
+    fieldUID
+    parentType
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  isStarred
+  isRead
+  comments {
+    totalCount
+    unreadCount
+    unreadCountV2
+    messageEdges(first: 1) {
+      node {
+        ...messageItem
+      }
+    }
+    unreadMessageEdges {
+      node {
+        ...messageItem
+      }
+    }
+  }
+}

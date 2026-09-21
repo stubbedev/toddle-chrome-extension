@@ -1,0 +1,12 @@
+query getProjectPresentationComments($id: ID!) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      projectComments(filters: {projectCommentType: PROJECT_PRESENTATION}) {
+        totalCount
+        unreadCountV2
+      }
+    }
+  }
+}

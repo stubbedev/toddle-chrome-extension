@@ -1,0 +1,5 @@
+mutation upsertCredits($input: UpsertCreditsInput) {
+  platform {
+    upsertCredits(input: $input)
+  }
+}

@@ -1,0 +1,11 @@
+query getFieldList($templateId: ID!, $templateFieldPropertyValuesFilters: TemplateFieldPropertyValuesFilter, $templateFieldConfigFilter: TemplateFieldConfigFilter, $templateFieldPlannerElementSetFilters: TemplateFieldPlannerElementSetFilters) {
+  node(id: $templateId, type: PLANNER_TEMPLATE) {
+    id
+    ... on PlannerTemplate {
+      id
+      templateField {
+        ...templateFieldConnectionItem
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+fragment plannerElementInsightSpecificItem on ProjectPlannerElementInsightSpecific {
+  student {
+    ...studentInfo
+  }
+  studentInsights {
+    node {
+      id
+    }
+    addressedInProjects {
+      id
+    }
+    evidenceInProjects {
+      id
+    }
+    evidenceInPosts {
+      id
+    }
+  }
+}

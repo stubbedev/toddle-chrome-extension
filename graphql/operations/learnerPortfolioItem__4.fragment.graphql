@@ -1,0 +1,33 @@
+fragment projectGroupInfoV2 on ProjectGroup {
+  id
+  name
+  type
+  isEnabled
+  category
+  yearGroup {
+    ...basicYearGroupDetails
+  }
+  projects(filters: $projectFilters) {
+    totalCount
+  }
+  studentProjectPortfolio(filters: $studentProjectPortfolioFilters) {
+    totalCount
+  }
+  subType
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

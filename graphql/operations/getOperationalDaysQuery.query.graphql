@@ -1,0 +1,12 @@
+query getOperationalDaysQuery($organizationId: ID!, $filter: GlobalConstantsFilterOptions) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      globalConstants(filter: $filter) {
+        name
+        value
+        id
+      }
+    }
+  }
+}

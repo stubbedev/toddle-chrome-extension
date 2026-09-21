@@ -1,0 +1,31 @@
+query getOrganizationCoursesStudents($id: ID!, $filters: CourseFilterInput, $searchText: String, $removeChatExcludedUsers: Boolean = false) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses(filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            allStudents(filters: {searchText: $searchText, removeChatExcludedUsers: $removeChatExcludedUsers}) {
+              totalCount
+              edges {
+                node {
+                  ...userItem
+                  familyMembers {
+                    ...userItem
+                  }
+                  ... on Student {
+                    alertTypes {
+                      ...alertTypeFields
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

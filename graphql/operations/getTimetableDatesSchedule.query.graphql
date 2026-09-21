@@ -1,0 +1,78 @@
+query getTimetableDatesSchedule($id: ID!, $curriculumProgramIds: [ID!], $timetableFilters: TimetableFilterOptions!, $timetableDatesFilters: RoutineDatesFilters!, $calendarEventsFilters: RoutineCalendarEventFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        timetables(filters: $timetableFilters) {
+          id
+          label
+          grades {
+            id
+            name
+          }
+          status
+          timetableTemplate {
+            id
+            label
+            dayCycle {
+              cycleMode
+              rotationEntities {
+                id
+                label
+              }
+              dayPatterns {
+                id
+                rotationEntities {
+                  rotationEntity {
+                    id
+                    label
+                    abbreviation
+                    entityType
+                  }
+                  isStartCycle
+                }
+              }
+              countHolidayAsRotationDay
+            }
+            bellSchedules {
+              id
+              rotationEntity {
+                id
+                label
+              }
+              bellSchedule {
+                id
+                label
+              }
+            }
+          }
+          calendarEventItems(filters: $calendarEventsFilters) {
+            id
+            startDateTime
+            endDateTime
+            label
+            description
+          }
+          timetableDates(filters: $timetableDatesFilters) {
+            date
+            rotationEntity {
+              id
+              label
+            }
+            bellSchedule {
+              id
+              label
+            }
+            upcomingRotationEntity {
+              id
+              label
+            }
+            eventType
+          }
+        }
+      }
+    }
+  }
+}

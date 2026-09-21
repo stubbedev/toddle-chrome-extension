@@ -1,0 +1,8 @@
+query getOrganizationBasicDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      ...organizationItem
+      region
+    }
+  }
+}

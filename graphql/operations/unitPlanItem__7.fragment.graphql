@@ -1,0 +1,42 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  unitType {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+  allFields {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+  subjects {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  isImported
+  isSharedWithStudents
+  isSharedWithFamilies
+  shareWithUserType
+  learningCourse {
+    id
+    type
+    bluePrintCourse {
+      id
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

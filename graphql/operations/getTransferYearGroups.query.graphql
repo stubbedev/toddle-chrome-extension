@@ -1,0 +1,22 @@
+query getTransferYearGroups($id: ID!, $filters: YearGroupFilter, $yearGroupGradeFilters: YearGroupGradeFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      yearGroups(filters: $filters) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+          type
+          acronym
+        }
+        grade(filters: $yearGroupGradeFilters) {
+          id
+          name
+        }
+      }
+    }
+  }
+}

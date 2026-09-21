@@ -1,0 +1,8 @@
+fragment ScoreGradeAggregationFragment on ScoreGradeAggregationConfig {
+  id
+  gradingType
+  gradeScale {
+    id
+  }
+  aggregationTypes
+}

@@ -1,0 +1,10 @@
+fragment staffNameFields on Staff {
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  type
+}

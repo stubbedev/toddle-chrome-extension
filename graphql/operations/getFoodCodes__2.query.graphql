@@ -1,0 +1,12 @@
+query getFoodCodes($organizationId: ID!, $curriculumId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      postTemplateItemCode(filters: {curriculumProgramIds: [$curriculumId], itemCodeState: ACTIVE}) {
+        id
+        itemName
+        code
+      }
+    }
+  }
+}

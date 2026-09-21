@@ -1,0 +1,15 @@
+query getCalendarEventItemIsEditAllowed($id: ID!, $type: ENTITY_TYPE_ENUM!, $input: CalendarEventItemEditScopeInput) {
+  node(id: $id, type: $type) {
+    id
+    ... on PlatformCalendarEvent {
+      id
+      item {
+        id
+        ... on CalendarEventItem {
+          id
+          isEditAllowed(input: $input)
+        }
+      }
+    }
+  }
+}

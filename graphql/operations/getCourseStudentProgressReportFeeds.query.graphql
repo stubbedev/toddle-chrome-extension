@@ -1,0 +1,8 @@
+query getCourseStudentProgressReportFeeds($reportIds: [ID!], $courseFilters: CourseFilter, $userArchivedFilters: UserArchivedFilters) {
+  multiNode(ids: $reportIds, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      ...studentProgressReportItem
+    }
+  }
+}

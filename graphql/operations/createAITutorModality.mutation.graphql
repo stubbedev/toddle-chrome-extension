@@ -1,0 +1,25 @@
+mutation createAITutorModality($input: AttachmentInput!) {
+  platform {
+    createAiTutorModality(input: $input) {
+      id
+      name
+      type
+      mimeType
+      url
+      signedUrl
+      thumbUrl
+      title
+      metadata
+      streamUrl
+      parentType
+      isRead
+      createdBy {
+        id
+        type
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

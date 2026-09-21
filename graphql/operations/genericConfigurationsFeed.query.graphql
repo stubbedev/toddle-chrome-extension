@@ -1,0 +1,33 @@
+query genericConfigurationsFeed($filters: GenericConfigurationFeedFilters) {
+  platform {
+    genericConfigurationFeed(filters: $filters) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          id
+          configuration
+          aclModules
+          aclPortalTypes
+          aclControlParameterType
+          configurationGroup
+          dependentEntities {
+            id
+            entityGroup
+          }
+          description
+          valueType
+          value
+          isLocked
+          ownerTeam
+          isDeprecated
+          isDeleted
+        }
+      }
+    }
+  }
+}

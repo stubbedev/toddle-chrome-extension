@@ -1,0 +1,4 @@
+fragment courseBookmarkStatus on LearningCourse {
+  id
+  isBookmarked
+}

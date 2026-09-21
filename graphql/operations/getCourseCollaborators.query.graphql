@@ -1,0 +1,8 @@
+query getCourseCollaborators($courseId: ID!, $first: Int, $after: String, $collaboratorsFilters: CourseFilter) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      ...courseCollaboratorsDetails
+    }
+  }
+}

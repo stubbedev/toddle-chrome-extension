@@ -1,0 +1,8 @@
+query getAvailableServices($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      availableSyncServicesV2
+    }
+  }
+}

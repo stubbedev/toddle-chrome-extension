@@ -1,0 +1,5 @@
+mutation excludeUnitPlanFromInsights($excludedIds: [ID!]) {
+  planner {
+    updateUnitPlanInclusionStatusInInsights(input: {excludedIds: $excludedIds})
+  }
+}

@@ -1,0 +1,23 @@
+query thirdPartyMappingsV2($id: ID!, $first: Int, $after: String, $filters: ThirdPartyMappingV2Filters!, $orderBy: THIRD_PARTY_MAPPING_ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      thirdPartyMappingsV2(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            toddleEntity
+            thirdPartyEntity
+            fuzzyMappedEntity
+          }
+        }
+      }
+    }
+  }
+}

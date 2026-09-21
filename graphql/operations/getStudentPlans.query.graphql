@@ -1,0 +1,44 @@
+query getStudentPlans($studentId: ID!, $filters: StudentPlansFeedFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      firstName
+      middleName
+      lastName
+      profileImage
+      studentPlans(filters: $filters) {
+        id
+        status
+        createdAt
+        closedAt
+        planType {
+          id
+          name
+          abbreviation
+          flagIcon
+          metadata
+        }
+        collaborators {
+          totalCount
+          edges {
+            node {
+              user {
+                id
+                firstName
+                middleName
+                lastName
+                profileImage
+              }
+            }
+          }
+        }
+        reviewMeetings {
+          calendarEventItem {
+            startDateTime
+          }
+        }
+      }
+    }
+  }
+}

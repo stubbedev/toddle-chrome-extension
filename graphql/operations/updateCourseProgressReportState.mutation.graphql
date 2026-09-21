@@ -1,0 +1,7 @@
+mutation updateCourseProgressReportState($id: ID!, $fromStatus: STUDENT_PROGRESS_REPORT_STATUS, $status: STUDENT_PROGRESS_REPORT_STATUS!, $direction: DIRECTION_ENUM!, $shouldNotifyPublished: Boolean) {
+  documentation {
+    updateCourseProgressReportState(input: {id: $id, fromStatus: $fromStatus, status: $status, direction: $direction, shouldNotifyPublished: $shouldNotifyPublished}) {
+      ...progressReportItem
+    }
+  }
+}

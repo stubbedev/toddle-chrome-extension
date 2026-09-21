@@ -1,0 +1,7 @@
+query getStandardDetails($id: ID!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $applyDashboardEvidenceCategoryOrdering: Boolean, $evidenceFilters: SnpPracticeEvidenceFilters!) {
+  node(id: $id, type: SnP_EVALUATION_CYCLE_STANDARD) {
+    ... on SnPEvaluationCycleStandard {
+      ...standardDetailsItem
+    }
+  }
+}

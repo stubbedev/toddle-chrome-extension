@@ -1,0 +1,19 @@
+query unitPlanFeedQuery($id: ID!, $filters: UnitPlansV2FeedFilters!, $region: [ID!], $after: String, $collaboratorsFilter: CollaboratorFilters, $exceptionalCollaboratorsFilter: ExceptionalCollaboratorUserFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      unitPlansV2(filters: $filters, first: 15, after: $after) {
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...unitPlan
+          }
+        }
+      }
+    }
+  }
+}

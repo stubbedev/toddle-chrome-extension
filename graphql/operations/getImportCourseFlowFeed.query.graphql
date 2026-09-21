@@ -1,0 +1,51 @@
+query getImportCourseFlowFeed($learningCourseId: ID!, $filters: LearningCourseFlowFilter, $assessmentAssignmentsFilters: AssessmentAssignmentsFilters, $studentIds: [ID!], $skipAssignedStudents: Boolean! = true, $syncedBluePrintItemFilters: SyncedBluePrintItemFilter, $after: String) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 100, after: $after, filters: $filters) {
+          edges {
+            node {
+              id
+              label
+              depth
+              itemType
+              parent {
+                id
+              }
+              item {
+                ... on Assessment {
+                  ...assessmentItem
+                }
+                ... on Attachment {
+                  ...attachmentItem
+                }
+                ... on UnitPlan {
+                  ...unitPlanItem
+                }
+              }
+              state
+              childrenHierarchyInfo(filters: $filters) {
+                maxDepth
+                totalCount
+                totalCountWithFolder
+              }
+            }
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

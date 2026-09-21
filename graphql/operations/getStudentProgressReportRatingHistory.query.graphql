@@ -1,0 +1,94 @@
+query getStudentProgressReportRatingHistory($studentProgressReportId: ID!, $studentProgressReportRatingHistoryFilters: StudentProgressReportRatingHistoryFilters) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    ... on StudentProgressReport {
+      id
+      ratingHistory(filters: $studentProgressReportRatingHistoryFilters) {
+        id
+        ibPYPElementId
+        ibPYPElementType
+        academicTerm {
+          id
+        }
+        parent {
+          id
+          ... on StudentAssessmentEvaluation {
+            id
+            assessment {
+              id
+              title {
+                id
+                value
+              }
+              assessmentType {
+                id
+                value
+              }
+              taskType {
+                id
+                label
+                color
+              }
+            }
+          }
+          ... on StudentProgressReport {
+            id
+            courseProgressReportTask {
+              id
+              title
+            }
+          }
+          ... on Post {
+            id
+            title
+            attachments {
+              id
+              type
+              title
+            }
+          }
+          ... on ImportedEntity {
+            id
+            type
+            name
+          }
+          ... on StudentAssignment {
+            id
+            assignment {
+              id
+              content {
+                id
+                ... on Assessment {
+                  id
+                  title {
+                    id
+                    value
+                  }
+                  assessmentType {
+                    id
+                    value
+                  }
+                  taskType {
+                    id
+                    label
+                    color
+                  }
+                }
+              }
+            }
+          }
+        }
+        parentType
+        publishedAt
+        subjectId
+        academicCriteriaSet {
+          id
+          label
+        }
+        academicCriteriaValue {
+          id
+          label
+        }
+      }
+    }
+  }
+}

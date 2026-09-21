@@ -1,0 +1,47 @@
+query getEntireCourseFlowFeed($parentId: ID!, $filters: LearningCourseFlowFilter) {
+  node(id: $parentId, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC, first: 10000, filters: $filters) {
+          edges {
+            node {
+              id
+              label
+              depth
+              itemType
+              parent {
+                id
+              }
+              item {
+                id
+              }
+              isRepeated
+              repeatedResources
+              children {
+                id
+              }
+              childrenHierarchyInfo {
+                maxDepth
+                totalCount
+              }
+            }
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+            __typename
+          }
+          resourceBasedCount {
+            totalCount
+            fileCount
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

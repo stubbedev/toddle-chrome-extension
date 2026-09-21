@@ -1,0 +1,15 @@
+mutation handleBenchmarkInBulk($subject: ID!, $plannerElementSetId: ID, $benchmarks: [BenchmarkBulkInput!], $snsChildren: [SUBJECT_SNS_CHILDREN_ENUM]) {
+  platform {
+    updateSubject(input: {id: $subject, snsChildren: $snsChildren}) {
+      ...subjectItem
+    }
+  }
+  planner {
+    handleBenchmarkInBulk(input: {subject: $subject, benchmarks: $benchmarks, plannerElementSetId: $plannerElementSetId}) {
+      rootNodes
+      nodes {
+        ...benchmarkItem
+      }
+    }
+  }
+}

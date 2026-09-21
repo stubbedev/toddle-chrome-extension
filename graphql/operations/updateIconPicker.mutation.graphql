@@ -1,0 +1,10 @@
+mutation updateIconPicker($id: ID!, $url: String, $icon: String) {
+  platform {
+    updateCourse(input: {id: $id, profileImageData: {url: $url, icon: $icon}}) {
+      profileImageData {
+        url
+        icon
+      }
+    }
+  }
+}

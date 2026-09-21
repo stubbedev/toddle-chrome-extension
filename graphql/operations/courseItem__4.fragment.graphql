@@ -1,0 +1,36 @@
+fragment courseItem on Course {
+  id
+  title
+  isArchived
+  primaryGrade {
+    id
+    name
+    curriculumProgram {
+      id
+      type
+      routines(filter: $routineFilters) {
+        id
+        label
+        routineMode
+        startDate
+        endDate
+        grades {
+          id
+          name
+        }
+        dayPatternType
+        countHolidayAsRotationDay
+        dayPatterns {
+          weekdays
+          relation
+          rotationDays {
+            isStartCycle
+            rotationDay {
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

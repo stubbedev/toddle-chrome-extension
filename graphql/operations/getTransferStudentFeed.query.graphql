@@ -1,0 +1,37 @@
+query getTransferStudentFeed($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $userYearGroupMapFilters: YearGroupFilters, $yearGroupGradeFilters: YearGroupGradeFilters, $studentCurriculumProgramFilter: StudentCurriculumProgramFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        edges {
+          node {
+            ...userNameFields
+            email
+            profileImage
+            sourceId
+            curriculumPrograms(filters: $studentCurriculumProgramFilter) {
+              id
+              label
+              acronym
+              logo
+            }
+            yearGroup(filters: $userYearGroupMapFilters) {
+              id
+              name
+              grade(filters: $yearGroupGradeFilters) {
+                id
+                name
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

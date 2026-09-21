@@ -1,0 +1,28 @@
+query getPlannerElementSetNode($id: ID!, $filters: PlannerElementFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      type
+      nodes(filters: $filters) {
+        ...basicPlannerElementNodeItem
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

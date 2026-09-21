@@ -1,0 +1,9 @@
+query getInternalToolsGenericQuery($apiType: INTERNAL_TOOL_API_TYPE_ENUM!, $params: JSON!) {
+  platform {
+    internalToolsGenericQuery(input: {apiType: $apiType, params: $params}) {
+      isSuccess
+      warning
+      data
+    }
+  }
+}

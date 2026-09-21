@@ -1,0 +1,13 @@
+query getGradesOfSubject($id: ID!) {
+  node(id: $id, type: SUBJECT) {
+    ... on Subject {
+      id
+      name
+      grades {
+        id
+        name
+        displaySequence
+      }
+    }
+  }
+}

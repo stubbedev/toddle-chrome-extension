@@ -1,0 +1,25 @@
+query getProjectStudentCollaboratorsForSplitting($id: ID!) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      studentCollaborators {
+        id
+        student {
+          ...studentInfo
+        }
+        fields {
+          ...projectFieldItem
+        }
+        academicHonesty {
+          id
+          isRead
+        }
+        ibPYPElementRatings {
+          id
+        }
+        isAcademicHonestyLocked
+      }
+    }
+  }
+}

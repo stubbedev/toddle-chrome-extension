@@ -1,0 +1,10 @@
+query getLearnerPortfolioYearGroups($id: ID!, $type: ENTITY_TYPE_ENUM!, $curriculumProgramId: ID!, $filters: LearnerPortfolioFilterInput) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      learnerPortfolios(curriculumProgramId: $curriculumProgramId, filters: $filters) {
+        ...learnerPortfolioItem
+      }
+    }
+  }
+}

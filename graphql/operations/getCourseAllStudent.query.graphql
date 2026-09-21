@@ -1,0 +1,8 @@
+query getCourseAllStudent($id: ID!, $folderIds: [ID!], $includeRemovedStudentIds: [ID!], $isShowHiddenFromStudents: Boolean, $filters: PostCountFilterInput, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      ...courseItem
+    }
+  }
+}

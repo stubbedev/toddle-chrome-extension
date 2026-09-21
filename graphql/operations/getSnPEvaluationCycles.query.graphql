@@ -1,0 +1,11 @@
+query getSnPEvaluationCycles($id: ID!, $filters: SnPEvaluationCycleFilter) {
+  node(type: ORGANIZATION, id: $id) {
+    id
+    ... on Organization {
+      id
+      snpEvaluationCycles(filters: $filters) {
+        ...snpEvaluationCycleItem
+      }
+    }
+  }
+}

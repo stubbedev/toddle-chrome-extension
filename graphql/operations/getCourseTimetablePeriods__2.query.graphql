@@ -1,0 +1,57 @@
+query getCourseTimetablePeriods($id: ID!, $periodsFilters: PeriodFilterOptions) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      periodsV3(filters: $periodsFilters) {
+        edges {
+          node {
+            date
+            isSelected
+            day
+            rotationDay {
+              id
+              label
+            }
+            location
+            locationV2 {
+              id
+              label
+            }
+            period {
+              id
+              label
+              abbreviation
+              isDefault
+            }
+            course {
+              id
+              title
+              primaryGrade {
+                id
+                curriculumProgram {
+                  id
+                  type
+                }
+              }
+            }
+            teachers {
+              id
+              profileImage
+              ...staffNameFields
+            }
+            subject
+            startTime
+            endTime
+          }
+        }
+        edgeInfo {
+          lastModifiedAt
+          lastModifiedBy {
+            id
+            ...staffNameFields
+          }
+        }
+      }
+    }
+  }
+}

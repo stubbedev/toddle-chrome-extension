@@ -1,0 +1,47 @@
+query getCalendarEventItemUsersBatch($organizationId: ID!, $filters: CalendarEventItemUsersFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      calendarEventItemUsers(orderBy: FULL_NAME, orderByDirection: ASC, filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            profileImage
+            firstName
+            middleName
+            lastName
+            ... on Student {
+              preferredName
+              alertTypes {
+                id
+                name
+                icon
+              }
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+              }
+            }
+            ... on Staff {
+              preferredName
+            }
+            ... on FamilyMember {
+              preferredName
+              children {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

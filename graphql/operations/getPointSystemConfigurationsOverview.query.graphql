@@ -1,0 +1,30 @@
+query getPointSystemConfigurationsOverview($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      curriculumPrograms(filters: {programTypes: [SCHOOL]}) {
+        id
+        label
+        type
+        acronym
+        logo
+        academicProgram {
+          id
+          label
+        }
+        pointSystemConfiguration {
+          id
+          isEnabled
+          isStudentBalanceEnabled
+          startingBalance
+          resetSchedule
+          canAddPoints
+          canContributeToBalance
+          isNegativeBalanceAllowed
+          visibleToStudent
+          visibleToFamily
+        }
+      }
+    }
+  }
+}

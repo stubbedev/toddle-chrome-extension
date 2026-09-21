@@ -1,0 +1,26 @@
+query getLocationAppliedSchools($id: ID!) {
+  node(id: $id, type: BEHAVIOUR_LOCATION) {
+    ... on BehaviourLocation {
+      id
+      appliedSchools(input: {first: 300}) {
+        edges {
+          node {
+            id
+            label
+            type
+            acronym
+            logo
+            attachments {
+              id
+              url
+            }
+            academicProgram {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

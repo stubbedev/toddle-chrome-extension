@@ -1,0 +1,7 @@
+mutation markCommentsReadForField($input: [UpdateEntityIsReadInput!]) {
+  platform {
+    updateEntityIsReadInBulk(input: $input) {
+      isSuccess
+    }
+  }
+}

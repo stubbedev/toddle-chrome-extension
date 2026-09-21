@@ -1,0 +1,13 @@
+mutation createWorkrampTraining($input: CreateWorkrampTrainingInput!) {
+  platform {
+    createWorkrampTraining(input: $input) {
+      training {
+        id
+        name
+        workrampTrainingId
+      }
+      isSuccess
+      warning
+    }
+  }
+}

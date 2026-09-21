@@ -1,0 +1,95 @@
+fragment basicResolvedMinimalTreeItem on ResolvedFieldValue {
+  id
+  type
+  ... on ResolvedFieldPlannerElementSet {
+    id
+    type
+    nodes {
+      ...plannerElementNodeWithAssocParentsItem
+    }
+  }
+  ... on ResolvedFieldSubjectSet {
+    id
+    subjects {
+      id
+      name
+      benchmarkRootNode {
+        id
+      }
+    }
+  }
+  ... on ResolvedFieldATLSet {
+    id
+    atls {
+      id
+      label
+      parent
+      children
+      depth
+    }
+  }
+  ... on ResolvedFieldBenchmarkSet {
+    id
+    type
+    benchmarks {
+      id
+      label
+      code
+      children
+      parent
+      subject
+      depth
+      type
+      isLeaf
+      levelId
+    }
+  }
+  ... on ResolvedFieldConceptSet {
+    id
+    type
+    concepts {
+      ...conceptItem
+    }
+  }
+  ... on ResolvedFieldRelatedConceptSet {
+    id
+    type
+    relatedConcepts {
+      id
+      label
+      elementId
+      elementType
+      parent
+      children
+    }
+  }
+  ... on ResolvedFieldSubjectGroup {
+    id
+    type
+    subjectGroups {
+      id
+      name
+    }
+  }
+  ... on ResolvedFieldThemeSet {
+    id
+    type
+    themes {
+      ...themeItem
+    }
+    __typename
+  }
+  ... on ResolvedFieldLPSet {
+    id
+    type
+    learnerProfiles {
+      id
+      label
+      subText
+      children
+      parent
+      levelId
+    }
+  }
+  ...resolvedFieldVideoAttachmentItem
+}

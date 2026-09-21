@@ -1,0 +1,7 @@
+mutation updatePersonalContact($id: ID!, $firstName: String, $middleName: String, $lastName: String, $email: String, $phoneNumber: String, $secondPhoneNumber: String, $thirdPhoneNumber: String, $relationship: String) {
+  platform {
+    updatePersonalContact(input: {id: $id, firstName: $firstName, middleName: $middleName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, secondPhoneNumber: $secondPhoneNumber, thirdPhoneNumber: $thirdPhoneNumber, relationship: $relationship}) {
+      ...personalContactsItem
+    }
+  }
+}

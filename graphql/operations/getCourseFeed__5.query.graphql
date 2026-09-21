@@ -1,0 +1,45 @@
+query getCourseFeed($organizationId: ID!, $after: String, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYearId: ID, $collaboratorFilters: CollaboratorFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        edges {
+          node {
+            id
+            title
+            profileImageData {
+              url
+              icon
+              color
+              acronym
+            }
+            students(filters: {archivalState: ACTIVE, academicYear: $academicYearId}) {
+              totalCount
+            }
+            primaryGrade {
+              id
+              name
+            }
+            allCollaborators(filters: $collaboratorFilters) {
+              totalCount
+            }
+            subjectsCount
+            curriculumProgram {
+              acronym
+            }
+            learningCourse {
+              id
+              title
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

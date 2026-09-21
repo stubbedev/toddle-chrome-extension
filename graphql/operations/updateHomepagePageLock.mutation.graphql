@@ -1,0 +1,7 @@
+mutation updateHomepagePageLock($input: LearningCourseEntityLockUpdateInput!) {
+  planner {
+    bulkUpdateLearningCourseEntityLock(input: $input) {
+      isSuccess
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation mergeStudentProfileSections($toBeMergedId: ID!, $mergeWithId: ID!) {
+  platform {
+    mergeStudentProfileSections(input: {toBeMergedId: $toBeMergedId, mergeWithId: $mergeWithId}) {
+      ...studentProfileSectionItem
+    }
+  }
+}

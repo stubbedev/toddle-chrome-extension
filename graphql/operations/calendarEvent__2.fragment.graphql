@@ -1,0 +1,11 @@
+fragment calendarEvent on CalendarEvent {
+  id
+  startDate
+  endDate
+  title
+  grades
+  tag {
+    id
+    colorCode
+  }
+}

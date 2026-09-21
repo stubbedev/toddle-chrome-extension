@@ -1,0 +1,15 @@
+query getCoursePostTemplate($courseId: ID!, $filters: CoursePostTemplateFilter) {
+  node(id: $courseId, type: COURSE) {
+    ... on Course {
+      id
+      postTemplate(filters: $filters) {
+        id
+        type
+        title
+        isArchived
+        isGlobal
+      }
+    }
+    __typename
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateSnPEvaluationCycle($updatedCycle: SnpEvaluationCycleUpdateInputV2) {
+  platform {
+    updateSnpEvaluationCycleV2(input: $updatedCycle) {
+      id
+    }
+  }
+}

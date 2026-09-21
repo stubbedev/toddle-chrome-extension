@@ -1,0 +1,24 @@
+fragment learningCourseListItem on LearningCourse {
+  id
+  type
+  title
+  primaryGrade(filters: $gradeFilters) {
+    id
+    name
+  }
+  subjects {
+    id
+    name
+  }
+  grades(filters: $gradeFilters) {
+    id
+    name
+  }
+  classes {
+    id
+    title
+  }
+  academicCourse {
+    id
+  }
+}

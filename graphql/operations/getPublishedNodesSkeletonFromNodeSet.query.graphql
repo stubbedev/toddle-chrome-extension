@@ -1,0 +1,102 @@
+query getPublishedNodesSkeletonFromNodeSet($id: ID!, $nodesFilters: PlannerElementNodeFilters, $first: Int!, $after: String) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $nodesFilters, first: $first, after: $after) {
+            totalCount
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+            edges {
+              cursor
+              node {
+                id
+                depth
+                parent
+                label
+                children
+              }
+            }
+          }
+        }
+        ... on PlannerBenchmarkSetWrapper {
+          publishedData(filters: $nodesFilters, first: $first, after: $after) {
+            totalCount
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+            edges {
+              cursor
+              node {
+                id
+                depth
+                parent
+                label
+                children
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $nodesFilters, first: $first, after: $after) {
+            totalCount
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+            edges {
+              cursor
+              node {
+                id
+                depth
+                parent
+                label
+                children
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $nodesFilters, first: $first, after: $after) {
+            totalCount
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+            edges {
+              cursor
+              node {
+                id
+                parent
+                label
+                children
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $nodesFilters, first: $first, after: $after) {
+            totalCount
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+            edges {
+              cursor
+              node {
+                id
+                parent
+                label
+                children
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

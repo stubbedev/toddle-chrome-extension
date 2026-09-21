@@ -1,0 +1,12 @@
+query getStaffsBasedOnPermissionAndContexts($permissionId: ID!, $contexts: [ACLContextEntityInput!], $allowContextBuildInternally: Boolean, $academicYearId: ID) {
+  node(id: $permissionId, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      type
+      permission
+      enabledUsers(context: $contexts, allowContextBuildInternally: $allowContextBuildInternally, academicYearId: $academicYearId) {
+        ...userItem
+      }
+    }
+  }
+}

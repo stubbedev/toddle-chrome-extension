@@ -1,0 +1,8 @@
+mutation deleteClassDraft($input: DraftDeleteInput!) {
+  planner {
+    deleteClassDraft(input: $input) {
+      isSuccess
+    }
+    __typename
+  }
+}

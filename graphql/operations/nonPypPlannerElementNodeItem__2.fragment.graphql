@@ -1,0 +1,66 @@
+fragment plannerElementNodeSetWrapperV2Item on PlannerElementNodeSet {
+  plannerElementNodeSetWrapperV2 {
+    ... on PlannerElementNodeSetWrapper {
+      publishedData(filters: $plannerElementNodeFilters) {
+        totalCount
+        edges @skip(if: $shouldSkipNodes) {
+          node {
+            ...nonPypPlannerElementNodeItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment nonPypPlannerElementNodeItem on PlannerElementNode {
+  id
+  displaySequence
+  label
+  subText
+  code
+  type
+  depth
+  children
+  parent
+  updatedAt
+  icon {
+    id
+    title
+    url
+    metadata
+  }
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      title
+    }
+    properties {
+      isArchived
+      grades {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+        isArchived
+      }
+      tags {
+        id
+        label
+      }
+      subjectGroups {
+        id
+        name
+        constants
+      }
+      associatedPlannerElementNodes {
+        id
+        label
+        type
+        metadata
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+query getAcademicYearTerms($id: ID!, $curriculumProgramIds: [ID!]) {
+  node(id: $id, type: ACADEMIC_YEAR) {
+    id
+    ... on AcademicYear {
+      id
+      terms(filters: {curriculumProgramIds: $curriculumProgramIds}) {
+        id
+        label
+      }
+    }
+  }
+}

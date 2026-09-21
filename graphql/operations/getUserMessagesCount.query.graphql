@@ -1,0 +1,73 @@
+query getUserMessagesCount($organizationId: ID!, $input: MessageV2UserInput!, $isAiFeatureEnabled: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messageV2Users(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            type
+            profileImage
+            chatMessagesCount
+            flaggedMessagesCount @include(if: $isAiFeatureEnabled)
+            ... on Student {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+                curriculumProgram {
+                  id
+                  label
+                }
+              }
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+            ... on Staff {
+              displayRole
+              preferredName
+              pronouns
+              prefix
+              suffix
+              curriculumPrograms(filters: {programTypes: [SCHOOL]}) {
+                id
+                label
+              }
+            }
+            ... on FamilyMember {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              children(organizationId: $organizationId) {
+                id
+                profileImage
+                firstName
+                lastName
+                middleName
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

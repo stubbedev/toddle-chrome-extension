@@ -1,0 +1,8 @@
+query getPlannerTemplateUnitFlow($ids: [ID!], $locale: String) {
+  multiNode(ids: $ids, type: PLANNER_TEMPLATE) {
+    id
+    ... on PlannerTemplate {
+      body(locale: $locale)
+    }
+  }
+}

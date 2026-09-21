@@ -1,0 +1,21 @@
+query getSchoolGroupMembersForAnnouncement($groupId: ID!, $organizationId: ID!, $input: SchoolGroupMembersInput, $getStudentFamilyMembers: Boolean = false, $includeCurriculumPrograms: Boolean = false) {
+  platform {
+    schoolGroup(id: $groupId) {
+      id
+      members(input: $input) {
+        totalCount
+        edges {
+          node {
+            user {
+              ...userItemV2
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+query getCustomPlannerElementSets($id: ID!, $curriculumNodeInterfaceType: ENTITY_TYPE_ENUM!, $category: [PLANNER_ELEMENT_SET_CATEGORY_ENUM!], $filters: PlannerElementSetFilters, $_filters: PlannerEelementSetFilters) {
+  node(id: $id, type: $curriculumNodeInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      plannerElementSets(category: $category, filters: $_filters) {
+        ...plannerElementSetBasicDetailsItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      plannerElementSets(category: $category, filters: $filters) {
+        ...plannerElementSetBasicDetailsItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      plannerElementSets(category: $category, filters: $filters) {
+        ...plannerElementSetBasicDetailsItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      plannerElementSets(category: $category, filters: $filters) {
+        ...plannerElementSetBasicDetailsItem
+      }
+    }
+  }
+}

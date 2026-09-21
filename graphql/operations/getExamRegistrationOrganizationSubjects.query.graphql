@@ -1,0 +1,28 @@
+query getExamRegistrationOrganizationSubjects($id: ID!, $filters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        type
+        subjectGroup {
+          id
+          name
+          type
+          displaySequence
+        }
+        variants {
+          level {
+            id
+            label
+          }
+          responseLanguages {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

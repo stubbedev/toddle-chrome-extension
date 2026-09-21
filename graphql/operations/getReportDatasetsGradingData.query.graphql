@@ -1,0 +1,20 @@
+query getReportDatasetsGradingData($id: ID!, $customDatasetFilters: PlannerElementNodeSetFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      ...curriculumProgramReportDatasetsGradingDataItem
+    }
+    ... on IbPypCurriculumProgram {
+      ...curriculumProgramReportDatasetsGradingDataItem
+    }
+    ... on IbMypCurriculumProgram {
+      ...curriculumProgramReportDatasetsGradingDataItem
+    }
+    ... on IbDpCurriculumProgram {
+      ...curriculumProgramReportDatasetsGradingDataItem
+    }
+    ... on UBDCurriculumProgram {
+      ...curriculumProgramReportDatasetsGradingDataItem
+    }
+  }
+}

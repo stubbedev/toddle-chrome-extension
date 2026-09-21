@@ -1,0 +1,5 @@
+mutation publishResources($input: IntegrationCreateJobAndTaskInput!) {
+  integration {
+    integrationCreateJobAndTask(input: $input)
+  }
+}

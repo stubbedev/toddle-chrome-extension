@@ -1,0 +1,10 @@
+query getStudentProgressReportPublishId($studentProgressReportId: ID!) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      publishedReport {
+        id
+      }
+    }
+  }
+}

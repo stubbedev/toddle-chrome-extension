@@ -1,0 +1,11 @@
+mutation insertAccountAcademicTerm($input: InsertAccountAcademicTermInput!) {
+  organizationManagement {
+    insertAccountAcademicTerm(input: $input) {
+      isSuccess
+      warning
+      academicTerm {
+        ...accountGradingPeriodItem
+      }
+    }
+  }
+}

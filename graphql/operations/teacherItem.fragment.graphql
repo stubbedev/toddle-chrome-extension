@@ -1,0 +1,22 @@
+fragment teacherItem on Staff {
+  id
+  profileImage
+  firstName
+  lastName
+  email
+  role
+  designation {
+    id
+    title
+  }
+  region
+  status
+  courses {
+    id
+    title
+  }
+  organization {
+    id
+    name
+  }
+}

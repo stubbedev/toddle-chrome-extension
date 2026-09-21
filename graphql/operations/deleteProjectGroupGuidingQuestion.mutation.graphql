@@ -1,0 +1,5 @@
+mutation deleteProjectGroupGuidingQuestion($id: ID!) {
+  documentation {
+    deleteProjectGroupGuidingQuestion(input: {id: $id})
+  }
+}

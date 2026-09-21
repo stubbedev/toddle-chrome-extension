@@ -1,0 +1,19 @@
+query insightDataset($id: ID!, $input: InsightDatasetInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        insightDataset(input: $input) {
+          status
+          totalRowCount
+          columns {
+            key
+            label
+            format
+          }
+          rows
+        }
+      }
+    }
+  }
+}

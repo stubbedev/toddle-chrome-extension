@@ -1,0 +1,19 @@
+mutation createAcademicSubjectLevel($input: CreateAcademicSubjectLevelInput!) {
+  platform {
+    createAcademicSubjectLevel(input: $input) {
+      isSuccess
+      warning
+      subjectLevel {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

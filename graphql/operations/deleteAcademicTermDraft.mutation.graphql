@@ -1,0 +1,8 @@
+mutation deleteAcademicTermDraft($input: DraftDeleteInput!) {
+  planner {
+    deleteAcademicTermDraft(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,26 @@
+query unitPlansOfSubjectAcrossGrades($id: ID!, $filters: UnitPlanFilter) {
+  node(id: $id, type: SUBJECT) {
+    ... on Subject {
+      id
+      name
+      grades {
+        id
+        name
+        unitPlans(filters: $filters) {
+          id
+          unitType {
+            ...plannerFieldNodeItem
+          }
+          title {
+            ...plannerFieldNodeItem
+          }
+          image {
+            ...mediaFieldNodeItem
+          }
+          startDate
+          endDate
+        }
+      }
+    }
+  }
+}

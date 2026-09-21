@@ -1,0 +1,12 @@
+mutation updateBehaviourIncidentV2($input: UpdateBehaviourIncidentV2Input!) {
+  platform {
+    updateBehaviourIncidentV2(input: $input) {
+      isSuccess
+      warning
+      incidentGroupId
+      incidents {
+        ...behaviourIncidentGroupChild
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+query getAssignmentsTotalCount($courseId: ID!, $filters: AssignmentFeedFilters) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      id
+      assignments(filters: $filters) {
+        totalCount
+      }
+      assignments {
+        totalCount
+      }
+    }
+  }
+}

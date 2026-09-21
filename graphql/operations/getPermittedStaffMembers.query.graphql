@@ -1,0 +1,42 @@
+query getPermittedStaffMembers($organizationId: ID!, $input: PermittedUsersInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      permittedUsers(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ... on Staff {
+              id
+              firstName
+              middleName
+              lastName
+              profileImage
+              preferredName
+              pronouns
+              prefix
+              suffix
+              email
+              type
+              rnpRoleContextDetail(filters: {roleModule: ["BEHAVIOUR"]}) {
+                id
+                role {
+                  id
+                  label
+                }
+                contextType
+                context {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+fragment studentProjectPortfolioDetailsItem on StudentProjectPortfolio {
+  ...portfolioProgress
+  id
+  student {
+    ...userItem
+  }
+  projectCounts {
+    projectsCount(filters: $projectCountFilter)
+    experiencesCount
+  }
+  notificationBadgeCounts {
+    interestsAndGoalsCommentCount
+    learningOutcomesCommentCount
+    feedbackCount
+  }
+  completionStatus(filters: $completionStatusFilters) {
+    isComplete
+    markedCompletedAt
+    markedCompletedBy {
+      ...userNameFields
+    }
+  }
+}

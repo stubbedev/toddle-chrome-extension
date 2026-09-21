@@ -1,0 +1,23 @@
+query getAITutorEvaluationExistsForConversation($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    id
+    ... on AiConversation {
+      id
+      ibPYPElementRatings {
+        ...ratingItem
+        metadata
+      }
+      elementRemarks {
+        ...elementRemarkItem
+      }
+      analysisToolEvaluation(filters: {userFilter: ALL}) {
+        id
+        toolId
+        toolType
+        toolResponses {
+          ...toolResponseItem
+        }
+      }
+    }
+  }
+}

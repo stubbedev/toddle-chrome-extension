@@ -1,0 +1,14 @@
+mutation updateCalendarWorkspaceStatus($input: UpdateCalendarWorkspaceStatusInput!) {
+  platform {
+    updateCalendarWorkspaceStatus(input: $input) {
+      isSuccess
+      probe
+      calendarWorkspace {
+        id
+        provider
+        domain
+        status
+      }
+    }
+  }
+}

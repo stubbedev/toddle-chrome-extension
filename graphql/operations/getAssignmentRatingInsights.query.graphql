@@ -1,0 +1,14 @@
+query getAssignmentRatingInsights($id: ID!) {
+  node(id: $id, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      ratingInsights {
+        toolId
+        toolType
+        academicCriteriaSetId
+        average
+        genericTagId
+      }
+    }
+  }
+}

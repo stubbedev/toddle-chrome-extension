@@ -1,0 +1,20 @@
+fragment studentTranscriptDetailsItem on Student {
+  id
+  yearGroup(filters: $yearGroupFilters) {
+    id
+    name
+  }
+  transcript(filters: $studentTranscriptFilter) {
+    template
+    values {
+      id
+      nodeId
+      value
+      termId
+      dataType
+      __typename
+    }
+    __typename
+  }
+  __typename
+}

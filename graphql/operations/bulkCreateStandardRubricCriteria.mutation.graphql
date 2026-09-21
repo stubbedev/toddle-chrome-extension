@@ -1,0 +1,11 @@
+mutation bulkCreateStandardRubricCriteria($input: [CreateStandardRubricCriteriaInput!]) {
+  planner {
+    bulkCreateStandardRubricCriteria(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...standardRubricCriteriaItem
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+fragment classItem on Course {
+  id
+  title
+  isArchived
+  isBookmark
+  learningCourse {
+    id
+    title
+    displayMetadata
+  }
+  profileImageData {
+    icon
+    color
+    acronym
+  }
+}

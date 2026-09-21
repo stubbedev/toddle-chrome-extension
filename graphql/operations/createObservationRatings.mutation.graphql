@@ -1,0 +1,7 @@
+mutation createObservationRatings($input: [IBPYPElementRatingInput!]) {
+  planner {
+    createIBPYPElementRatings(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation updateLearningCourse($input: UpdateLearningCourseInput!, $collaboratorFilters: LearningCourseCollaboratorFilters, $gradeFilters: LearningCourseGradeFilters) {
+  planner {
+    updateLearningCourse(input: $input) {
+      ...learningCourseItem
+    }
+    __typename
+  }
+}

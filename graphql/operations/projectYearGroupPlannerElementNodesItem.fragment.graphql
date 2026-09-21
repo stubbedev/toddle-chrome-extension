@@ -1,0 +1,22 @@
+fragment projectYearGroupPlannerElementNodesItem on YearGroup {
+  id
+  associatedChildPlannerElementNodes(filters: $filters) {
+    ...projectPlannerElementNodeItem
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

@@ -1,0 +1,16 @@
+fragment fieldItem on PlannerField {
+  id
+  uid
+  value
+  resolvedMinimalTree {
+    ...resolvedMinimalTreeItem
+  }
+  allResponses {
+    totalCount
+    edges {
+      node {
+        ...responseItem
+      }
+    }
+  }
+}

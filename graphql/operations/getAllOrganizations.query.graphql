@@ -1,0 +1,8 @@
+query getAllOrganizations {
+  platform {
+    allOrganization {
+      id
+      name
+    }
+  }
+}

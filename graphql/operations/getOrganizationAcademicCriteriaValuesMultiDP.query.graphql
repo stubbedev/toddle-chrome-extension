@@ -1,0 +1,22 @@
+query getOrganizationAcademicCriteriaValuesMultiDP($id: ID!, $curriculumProgramIds: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      constants {
+        academicCriteriaSets(filters: {criteriaType: CRITERIA_RUBRIC_FINAL_GRADE, curriculumProgramIds: $curriculumProgramIds}) {
+          id
+          criteriaType
+          subType
+          academicCriteriaValues {
+            id
+            label
+            description
+            abbreviation
+            displaySequence
+          }
+        }
+      }
+    }
+  }
+}

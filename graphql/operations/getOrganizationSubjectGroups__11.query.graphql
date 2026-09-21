@@ -1,0 +1,23 @@
+query getOrganizationSubjectGroups($id: ID!, $filters: SubjectGroupFilterInput, $subjectFilters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+        subjects(filters: $subjectFilters) {
+          id
+          name
+          isArchived
+          type
+          grades {
+            id
+            name
+          }
+          icon
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+query getActivityLike($id: ID!) {
+  node(id: $id, type: STUDENT_TEMPLATE_RESPONSE) {
+    id
+    ... on StudentTemplateResponse {
+      id
+      student {
+        ...userItem
+      }
+      likes {
+        totalCount
+        edges {
+          node {
+            id
+            user {
+              id
+              ...userItem
+              ... on FamilyMember {
+                children {
+                  ...userItem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

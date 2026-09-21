@@ -1,0 +1,10 @@
+fragment gradeScaleAssessmentToolItem on GradeScaleAssessmentTool {
+  id
+  gradeScaleToolData {
+    id
+    subType
+    gradeScaleEntityDetail {
+      ...gradeScaleEntityDetailsItem
+    }
+  }
+}

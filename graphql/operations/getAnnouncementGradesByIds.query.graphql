@@ -1,0 +1,17 @@
+query getAnnouncementGradesByIds($organizationId: ID!, $gradeIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(ids: $gradeIds) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+          acronym
+        }
+      }
+    }
+  }
+}

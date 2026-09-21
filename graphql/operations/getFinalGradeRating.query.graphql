@@ -1,0 +1,23 @@
+query getFinalGradeRating($id: ID!, $filters: PointAssessmentSetFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      pointAssessmentSets(filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            categories {
+              id
+              label
+              metadata
+              displaySequence
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}

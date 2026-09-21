@@ -1,0 +1,10 @@
+query getOrganizationCoursesBasicDetails($first: Int, $filters: CourseFilterInput) {
+  platform {
+    organization {
+      id
+      courses(first: $first, filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

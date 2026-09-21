@@ -1,0 +1,32 @@
+fragment conceptItem on PlannerConcept {
+  id
+  label
+  subText
+  levelId
+  parent
+  children
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+    }
+    properties {
+      isGraded
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+    }
+  }
+}

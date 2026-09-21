@@ -1,0 +1,4 @@
+fragment plannerElementNodeBasicItem on PlannerElementNode {
+  id
+  label
+}

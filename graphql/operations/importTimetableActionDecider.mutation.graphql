@@ -1,0 +1,5 @@
+mutation importTimetableActionDecider($input: ImportTimetableActionDeciderInput!) {
+  integration {
+    importTimetableActionDecider(input: $input)
+  }
+}

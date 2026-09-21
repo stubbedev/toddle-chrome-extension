@@ -1,0 +1,13 @@
+query getProjectGroupDetails($projectGroupId: ID!, $fetchStatusWiseProjects: Boolean!, $deadlineFilters: ProjectGroupDeadlineFilters, $statusWiseProjectFilters: StatusWiseProjectFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      deadlines(filters: $deadlineFilters) {
+        ...projectDeadline
+      }
+      type
+      subType
+    }
+  }
+}

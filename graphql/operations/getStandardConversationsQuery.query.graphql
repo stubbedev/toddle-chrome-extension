@@ -1,0 +1,8 @@
+query getStandardConversationsQuery($id: ID!, $academicYearId: ID, $contexts: [ACLContextEntityInput!]) {
+  node(id: $id, type: SnP_EVALUATION_CYCLE_STANDARD) {
+    id
+    ... on SnPEvaluationCycleStandard {
+      ...standardConversations
+    }
+  }
+}

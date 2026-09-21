@@ -1,0 +1,11 @@
+fragment teacherItemDetail on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  profileImage
+  email
+  designation {
+    id
+  }
+}

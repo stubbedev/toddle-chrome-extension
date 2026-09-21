@@ -1,0 +1,29 @@
+fragment studentNoteItem on StudentNote {
+  id
+  title
+  category {
+    ...studentNoteCategoryItem
+  }
+  description
+  createdBy {
+    ...staffItem
+  }
+  createdAt
+  updatedAt
+  attachments {
+    ...attachmentItem
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}

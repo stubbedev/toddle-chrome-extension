@@ -1,0 +1,17 @@
+fragment actionItem on Action {
+  id
+  label
+  subText
+  children
+  parent
+  levels {
+    id
+    value
+  }
+  levelId
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+    }
+  }
+}

@@ -1,0 +1,19 @@
+mutation updateQuestionSubmission($input: UpdateQuestionSubmissionInput!, $fetchFields: Boolean = false) {
+  content {
+    updateQuestionSubmission(input: $input) {
+      id
+      fields @include(if: $fetchFields) {
+        id
+        resolveFields {
+          id
+          ... on QuestionAttachment {
+            id
+            attachments {
+              ...questionAttachmentItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

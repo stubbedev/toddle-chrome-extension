@@ -1,0 +1,15 @@
+query getStaffGrades($id: ID!, $filters: AllGradesFilters) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      allGrades(filters: $filters) {
+        id
+        name
+        curriculumProgram {
+          id
+          acronym
+        }
+      }
+    }
+  }
+}

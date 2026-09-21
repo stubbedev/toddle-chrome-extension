@@ -1,0 +1,11 @@
+mutation updateOrgAccess($input: UpdatePlaygroundOrgAccessInput!) {
+  playground {
+    updateOrgAccess(input: $input) {
+      isSuccess
+      warning
+      orgAccess {
+        ...playgroundOrgAccessFragment
+      }
+    }
+  }
+}

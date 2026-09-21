@@ -1,0 +1,8 @@
+query getFirstExperienceStatus($id: ID!) {
+  platform {
+    staff(ids: [$id]) {
+      id
+      isSnpExplainerVideoAvailable
+    }
+  }
+}

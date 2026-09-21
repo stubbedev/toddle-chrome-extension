@@ -1,0 +1,9 @@
+mutation deleteUnitImportInstruction($input: DeleteUnitImportInstructionInput!) {
+  ai {
+    deleteUnitImportInstruction(input: $input) {
+      isSuccess
+      warning
+      response
+    }
+  }
+}

@@ -1,0 +1,24 @@
+query getClassesByIds($ids: [ID!]) {
+  multiNode(ids: $ids, type: COURSE) {
+    id
+    ... on Course {
+      ...classBasicDetails
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

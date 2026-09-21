@@ -1,0 +1,12 @@
+mutation createTemplateFieldHelpText($input: TemplateFieldHelpTextInput) {
+  planner {
+    createTemplateFieldHelpText(input: $input) {
+      id
+      uid
+      type
+      helpText {
+        id
+      }
+    }
+  }
+}

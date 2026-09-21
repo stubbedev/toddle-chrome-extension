@@ -1,0 +1,8 @@
+mutation importQuestionFromSchoolLibraryV2($input: ImportQuestionToWorksheetV2Input!) {
+  content {
+    importQuestionFromSchoolLibraryV2(input: $input) {
+      isSuccess
+      questionIds
+    }
+  }
+}

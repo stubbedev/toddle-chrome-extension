@@ -1,0 +1,52 @@
+query GetExternalAssessmentTemplates($curriculumProgramId: ID!, $input: ExternalAssessmentTemplatesInput!) {
+  node(id: $curriculumProgramId, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      externalAssessmentTemplateFeed(input: $input) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          cursor
+          node {
+            id
+            uid
+            name
+            status
+            isArchived
+            testType {
+              id
+              name
+            }
+            globalGrades {
+              id
+              name
+            }
+            curriculumPrograms {
+              id
+              label
+              programType
+            }
+            createdBy {
+              ...userNameFields
+              profileImage
+            }
+            createdAt
+            updatedBy {
+              ...userNameFields
+              profileImage
+            }
+            updatedAt
+            associatedRecordSets {
+              totalCount
+            }
+            draftColumns {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

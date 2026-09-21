@@ -1,0 +1,9 @@
+query getBehaviourIncidentExport($input: BehaviourIncidentExportInput) {
+  platform {
+    organization {
+      behaviourIncidentExport(input: $input) {
+        url
+      }
+    }
+  }
+}

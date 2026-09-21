@@ -1,0 +1,13 @@
+fragment playgroundOrgAccessFragment on PlaygroundOrgAccess {
+  id
+  organizationName
+  status
+  validTill
+  isSuspended
+  claimedAt
+  signups {
+    id
+    email
+    signedUpAt
+  }
+}

@@ -1,0 +1,5 @@
+mutation validateTranscriptDataSourceMutation($input: ValidateTranscriptDataSourceInput!) {
+  documentation {
+    validateTranscriptDataSource(input: $input)
+  }
+}

@@ -1,0 +1,14 @@
+query getNotificationsV2($id: ID!, $after: String, $type: ENTITY_TYPE_ENUM!, $filters: NotificationFilters, $notificationCategoryFilter: [NOTIFICATION_CATEGORY_ENUM!]) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+    ... on Student {
+      ...studentItem
+    }
+    ... on FamilyMember {
+      ...parentItem
+    }
+  }
+}

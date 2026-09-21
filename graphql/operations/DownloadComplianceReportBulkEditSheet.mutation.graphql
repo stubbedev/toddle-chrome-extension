@@ -1,0 +1,11 @@
+mutation DownloadComplianceReportBulkEditSheet($input: DownloadComplianceReportBulkEditSheetInput!) {
+  complianceReport {
+    downloadComplianceReportBulkEditSheet(input: $input) {
+      isSuccess
+      warning
+      url
+      activityLogId
+      status
+    }
+  }
+}

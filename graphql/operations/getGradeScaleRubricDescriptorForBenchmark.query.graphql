@@ -1,0 +1,13 @@
+query getGradeScaleRubricDescriptorForBenchmark($id: ID!, $descriptorFilters: standardGradeScaleValueDescriptorFilters) {
+  node(id: $id, type: PLANNER_BENCHMARK) {
+    id
+    ... on PlannerBenchmark {
+      id
+      standardsWrapper {
+        standardGradeScaleValueDescriptor(filters: $descriptorFilters) {
+          ...standardGradeScaleValueDescriptor
+        }
+      }
+    }
+  }
+}

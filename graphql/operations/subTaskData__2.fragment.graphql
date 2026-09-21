@@ -1,0 +1,6 @@
+fragment subTaskData on IntegrationSubTask {
+  id
+  parsedData
+  type
+  displaySequence
+}

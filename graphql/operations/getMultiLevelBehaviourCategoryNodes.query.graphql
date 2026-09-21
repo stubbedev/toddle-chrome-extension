@@ -1,0 +1,48 @@
+query getMultiLevelBehaviourCategoryNodes($id: ID!, $type: MULTI_LEVEL_NODE_TYPE!, $behaviourCategoryFilters: BehaviourCategoryFilters, $includeDefaultOutcomes: Boolean = false, $includeUserCurriculums: Boolean = false, $includeUserRnPRoles: Boolean = false) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      getMultiLevelNodes(input: {type: $type, behaviourCategoryFilters: $behaviourCategoryFilters}) {
+        type
+        rootNodes
+        nodes {
+          id
+          ... on BehaviourCategory {
+            name
+            color
+            isSeverityLinked
+            parentCategory {
+              id
+              name
+            }
+            children
+            level
+            rootCategory {
+              id
+              name
+              iconData
+              color
+              sentiment {
+                id
+                label
+              }
+              curriculumPrograms {
+                id
+              }
+              pointsSetup {
+                id
+                isEnabled
+                minPoints
+                maxPoints
+              }
+            }
+            defaultOutcomes @include(if: $includeDefaultOutcomes) {
+              ...defaultOutcomeItem
+            }
+          }
+        }
+        draftId
+      }
+    }
+  }
+}

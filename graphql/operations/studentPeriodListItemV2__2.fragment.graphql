@@ -1,0 +1,7 @@
+fragment studentPeriodListItemV2 on Student {
+  id
+  ...studentNameFields
+  enrolledPeriodsV2(filters: $periodsFilters) {
+    ...selectedPeriodItemV2
+  }
+}

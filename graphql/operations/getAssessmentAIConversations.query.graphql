@@ -1,0 +1,16 @@
+query getAssessmentAIConversations($id: ID!) {
+  node(id: $id, type: ASSESSMENT) {
+    id
+    ... on Assessment {
+      aiConversation {
+        edges {
+          node {
+            id
+            entityType
+            entitySubType
+          }
+        }
+      }
+    }
+  }
+}

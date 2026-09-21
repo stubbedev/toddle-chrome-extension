@@ -1,0 +1,5 @@
+query bulkDownlaodOrgData($filters: BulkDownloadOrganizationDataFilters!) {
+  platform {
+    bulkDownloadOrganizationData(filters: $filters)
+  }
+}

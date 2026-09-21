@@ -1,0 +1,11 @@
+query getVisitorCount($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(filters: {roles: [visitor]}) {
+        totalCount
+      }
+    }
+  }
+}

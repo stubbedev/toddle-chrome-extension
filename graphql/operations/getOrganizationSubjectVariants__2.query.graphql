@@ -1,0 +1,27 @@
+query getOrganizationSubjectVariants($id: ID!) {
+  node(id: $id, type: IB_DP_CURRICULUM_PROGRAM) {
+    ... on IbDpCurriculumProgram {
+      id
+      subjectVariants {
+        subject {
+          name
+          id
+          isArchived
+        }
+        subjectGroup {
+          id
+          name
+          type
+        }
+        level {
+          id
+          label
+        }
+        responseLanguages {
+          id
+          label
+        }
+      }
+    }
+  }
+}

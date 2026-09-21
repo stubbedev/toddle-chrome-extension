@@ -1,0 +1,7 @@
+query getPypAtlSet($id: ID!, $grades: [ID!]) {
+  node(id: $id, type: PYP_ATL) {
+    ... on ATLSet {
+      ...atlSetItem
+    }
+  }
+}

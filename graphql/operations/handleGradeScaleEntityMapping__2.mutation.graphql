@@ -1,0 +1,21 @@
+query getCurriculumGradeScalesBasic($id: ID!, $filters: GradeScaleFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      gradeScale(filters: $filters) {
+        ...gradeScaleBasicConnectionItem
+      }
+    }
+  }
+}
+
+mutation handleGradeScaleEntityMapping($input: [GradeScaleEntityMappingInput!]!) {
+  planner {
+    handleGradeScaleEntityMapping(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+  }
+}

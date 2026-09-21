@@ -1,0 +1,19 @@
+fragment snpEvaluationCycleItem on SnPEvaluationCycle {
+  id
+  isArchived
+  title
+  createdAt
+  year
+  month
+  availableTabs
+  curriculumProgram {
+    id
+    type
+    label
+  }
+  set {
+    id
+    title
+  }
+  cycleType
+}

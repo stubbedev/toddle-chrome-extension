@@ -1,0 +1,12 @@
+fragment projectGroupStudent on Student {
+  ...userItem
+  isArchived
+  grades
+  courses {
+    id
+    grades {
+      id
+      name
+    }
+  }
+}

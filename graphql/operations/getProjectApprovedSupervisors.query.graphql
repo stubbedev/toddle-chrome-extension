@@ -1,0 +1,17 @@
+query getProjectApprovedSupervisors($projectGroupId: ID!, $filters: ProjectGroupSupervisorFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: $filters) {
+        edges {
+          node {
+            id
+            staff {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

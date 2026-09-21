@@ -1,0 +1,14 @@
+query getUbdAssessmentTypesMultiNode($ids: [ID!], $type: ENTITY_TYPE_ENUM_MULTI_NODE!) {
+  multiNode(ids: $ids, type: $type) {
+    id
+    ... on UBDCurriculumProgram {
+      id
+      assessmentTypes {
+        id
+        uid
+        label
+        metadata
+      }
+    }
+  }
+}

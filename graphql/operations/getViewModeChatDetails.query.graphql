@@ -1,0 +1,32 @@
+query getViewModeChatDetails($id: ID!, $organizationId: ID, $memberPreviewInput: UserV2Input, $fetchSentimentScore: Boolean = false) {
+  node(id: $id, type: CHAT) {
+    ... on Chat {
+      id
+      label
+      description
+      type
+      profileImageData {
+        url
+        icon
+      }
+      personalChatUsers {
+        id
+        ...userDetailItem
+      }
+      usersV2(input: $memberPreviewInput) {
+        totalCount
+        edges {
+          node {
+            id
+            ...userDetailItem
+          }
+        }
+      }
+      messagesV2 {
+        totalCount(input: {hasFlaggedMessage: true})
+        totalCount
+      }
+      sentimentScore @include(if: $fetchSentimentScore)
+    }
+  }
+}

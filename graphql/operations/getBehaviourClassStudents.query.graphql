@@ -1,0 +1,37 @@
+query getBehaviourClassStudents($ids: [ID!]) {
+  multiNode(ids: $ids, type: COURSE) {
+    id
+    ... on Course {
+      id
+      students {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            preferredName
+            pronouns
+            prefix
+            suffix
+            gender
+            alertTypes {
+              ...alertTypeFields
+            }
+            yearGroup {
+              id
+              curriculumProgram {
+                id
+              }
+              grade {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

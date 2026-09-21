@@ -1,0 +1,8 @@
+query getQuestionLibraryQuestionV2($id: ID!) {
+  node(id: $id, type: QUESTION) {
+    id
+    ... on Question {
+      ...libraryQuestionItem
+    }
+  }
+}

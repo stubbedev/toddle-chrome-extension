@@ -1,0 +1,16 @@
+query getTeacherCourseSyncInitData($learningCourseId: ID!, $filters: TeacherSyncCourseInitFilters!, $childFilters: LearningCourseFlowFilter) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      teacherCourseSyncInitData(filters: $filters) {
+        ...courseFlowItemTitle
+      }
+    }
+  }
+}
+
+mutation handleTeacherCourseAssociation($input: InitBluePrintCourseTeacherCourseSyncInput!) {
+  planner {
+    initBluePrintCourseTeacherCourseSync(input: $input)
+  }
+}

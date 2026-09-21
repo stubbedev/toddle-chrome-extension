@@ -1,0 +1,32 @@
+query getStudentSessions($studentId: ID!, $filters: StudentActivityFilters!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      attendanceActivities(filters: $filters) {
+        edges {
+          node {
+            ...attendanceActivityFields
+            parent {
+              ... on ActivitySession {
+                id
+                name
+                __typename
+              }
+              ... on CalendarEventSession {
+                id
+                calendarEventItem {
+                  id
+                  label
+                  __typename
+                }
+                startDateTime
+                endDateTime
+                __typename
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

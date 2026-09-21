@@ -1,0 +1,25 @@
+query getPlannerElementSets($curriculumProgramId: ID!, $curriculumNodeInterfaceType: ENTITY_TYPE_ENUM!, $category: [PLANNER_ELEMENT_SET_CATEGORY_ENUM!], $elementTypesPYP: [String!], $elementTypes: [PLANNER_ELEMENT_TYPE_ENUM]) {
+  node(id: $curriculumProgramId, type: $curriculumNodeInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      plannerElementSets(category: $category, elementTypes: $elementTypesPYP) {
+        ...plannerElementSetItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      plannerElementSets(category: $category, elementTypes: $elementTypes) {
+        ...plannerElementSetItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      plannerElementSets(category: $category, elementTypes: $elementTypes) {
+        ...plannerElementSetItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      plannerElementSets(category: $category, elementTypes: $elementTypes) {
+        ...plannerElementSetItem
+      }
+    }
+  }
+}

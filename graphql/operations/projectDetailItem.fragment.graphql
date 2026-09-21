@@ -1,0 +1,67 @@
+fragment projectDetailItem on Project {
+  id
+  projectGroup {
+    id
+    type
+  }
+  supervisors {
+    ...userNameFields
+    profileImage
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+  }
+  studentCollaborators {
+    id
+    student {
+      ...userNameFields
+      profileImage
+    }
+    ibPYPElementRatings {
+      id
+      ibPYPElementId
+      ibPYPElementType
+      value
+      academicCriteriaSet {
+        id
+        label
+        criteriaType
+      }
+      academicCriteriaValue {
+        id
+        label
+        abbreviation
+      }
+    }
+    toolResponses(userFilter: ALL) {
+      id
+      rowId
+      columnId
+      subjectiveResponse
+      creatorType
+    }
+    assessmentRemarks {
+      id
+      message
+      isLocked
+      lockingState {
+        state
+      }
+    }
+    fields(filters: $projectFieldFilters) {
+      ...projectFieldItem
+    }
+  }
+  status
+  reportStatus
+  assessmentRemarks {
+    id
+    message
+    isLocked
+    lockingState {
+      state
+    }
+  }
+  fields(filters: $projectFieldFilters) {
+    ...projectFieldItem
+  }
+}

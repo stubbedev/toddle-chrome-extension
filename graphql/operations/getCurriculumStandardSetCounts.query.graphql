@@ -1,0 +1,25 @@
+query getCurriculumStandardSetCounts($id: ID!, $type: ENTITY_TYPE_ENUM!, $subjectIds: [ID!], $setId: ID!, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: $type) {
+    id
+    ... on UBDCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {status: [PUBLISHED, ARCHIVED, PARTIALLY_PUBLISHED], subjects: $subjectIds, plannerElementIds: [$setId]}) {
+        ...subjectStandardCountFragment
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {status: [PUBLISHED, ARCHIVED, PARTIALLY_PUBLISHED], subjects: $subjectIds, plannerElementIds: [$setId]}) {
+        ...subjectStandardCountFragment
+      }
+    }
+    ... on IbPypCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {status: [PUBLISHED, ARCHIVED, PARTIALLY_PUBLISHED], subjects: $subjectIds, plannerElementIds: [$setId]}) {
+        ...subjectStandardCountFragmentPYP
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {status: [PUBLISHED, ARCHIVED, PARTIALLY_PUBLISHED], subjects: $subjectIds, plannerElementIds: [$setId]}) {
+        ...subjectStandardCountFragment
+      }
+    }
+  }
+}

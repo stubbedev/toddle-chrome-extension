@@ -1,0 +1,18 @@
+query getStudentSubjectGrade($studentId: ID!, $studentSubjectGradeFilter: StudentSubjectGradeFilter!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      studentSubjectGrades(filters: $studentSubjectGradeFilter) {
+        subject {
+          id
+          name
+        }
+        grade {
+          id
+          name
+        }
+      }
+    }
+  }
+}

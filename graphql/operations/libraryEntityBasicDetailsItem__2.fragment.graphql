@@ -1,0 +1,16 @@
+fragment organizationResourceQuestionFeedItem on OrganizationResource {
+  id
+  resourceType
+  item {
+    ...questionFeedItem
+  }
+  isSavedForLibrary
+  isLibraryPremium
+  showLibraryPremiumBannerForUser
+}
+
+fragment libraryEntityBasicDetailsItem on LibraryGenericEntity {
+  id
+  type
+  label
+}

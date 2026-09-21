@@ -1,0 +1,8 @@
+mutation deleteSinglePointRubricStandard($id: ID!) {
+  planner {
+    deleteSinglePointRubricStandard(input: {id: $id}) {
+      isSuccess
+      warning
+    }
+  }
+}

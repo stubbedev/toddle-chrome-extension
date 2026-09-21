@@ -1,0 +1,8 @@
+query guidanceDocumentsQuery($id: ID!, $filters: AttachmentFilterInput!) {
+  node(id: $id, type: SnP_EVALUATION_CYCLE) {
+    id
+    ... on SnPEvaluationCycle {
+      ...guidanceDocuments
+    }
+  }
+}

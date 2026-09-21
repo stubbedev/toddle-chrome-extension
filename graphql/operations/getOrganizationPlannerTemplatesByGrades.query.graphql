@@ -1,0 +1,19 @@
+query getOrganizationPlannerTemplatesByGrades($id: ID!, $gradeIds: [ID!], $plannerTemplateFilters: TemplateFilters, $templateFilters: OrganizationTemplateFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      grades(ids: $gradeIds) {
+        id
+        plannerTemplates(filters: $plannerTemplateFilters) {
+          id
+          subType
+        }
+      }
+      templates(filters: $templateFilters) {
+        id
+        body
+        unitType
+      }
+    }
+  }
+}

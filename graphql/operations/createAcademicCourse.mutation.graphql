@@ -1,0 +1,12 @@
+mutation createAcademicCourse($input: CreateAcademicCourseInput!) {
+  planner {
+    createAcademicCourse(input: $input) {
+      id
+      label
+      code
+      learningCourses {
+        totalCount
+      }
+    }
+  }
+}

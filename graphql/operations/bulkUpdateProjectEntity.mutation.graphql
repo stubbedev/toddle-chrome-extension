@@ -1,0 +1,8 @@
+mutation bulkUpdateProjectEntity($input: BulkUpdateProjectEntityInput!) {
+  documentation {
+    bulkUpdateProjectEntity(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment messagesSummary on AssignmentMessagesSummary {
+  unreadMessages(first: $messagesSummaryItemCount) {
+    ...lastMessage
+  }
+  unreadMessagesCount
+}

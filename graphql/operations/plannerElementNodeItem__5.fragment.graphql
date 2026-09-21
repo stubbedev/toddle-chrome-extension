@@ -1,0 +1,85 @@
+fragment plannerElementNodeItem on PlannerElementNode {
+  id
+  uid
+  displaySequence
+  label
+  subText
+  code
+  type
+  subText
+  depth
+  children
+  parent
+  subType
+  isLeaf
+  metadata
+  updatedAt
+  gradingType
+  plannerElementNodeWrapper {
+    properties {
+      isGradedStandard
+    }
+  }
+  dataSetNodeWrapper {
+    properties {
+      isPowerStandard
+      isArchived
+      isGraded
+      grades {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+        isArchived
+      }
+      tags {
+        id
+        label
+      }
+      subjectGroups {
+        id
+        name
+      }
+    }
+  }
+  standardsWrapper {
+    standardSet {
+      id
+      title
+    }
+    properties {
+      isGradedStandard
+    }
+  }
+  associatedParents {
+    id
+    ... on Grade {
+      id
+      name
+    }
+    ... on Subject {
+      id
+      name
+      isArchived
+    }
+    ... on SubjectGroup {
+      ...subjectGroupBasicDetailsItem
+    }
+    ... on PlannerElementNode {
+      id
+      label
+      type
+      metadata
+    }
+  }
+  genericTags {
+    id
+    label
+    icon {
+      id
+      url
+    }
+  }
+}

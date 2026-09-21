@@ -1,0 +1,6 @@
+fragment studentAssignmentSubmissionAttachmentGroupsItem on StudentAssignmentSubmission {
+  id
+  attachmentGroups {
+    ...attachmentGroupItem
+  }
+}

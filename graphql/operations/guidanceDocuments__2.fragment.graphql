@@ -1,0 +1,16 @@
+fragment guidanceDocuments on SnPEvaluationCycle {
+  id
+  set {
+    id
+    guidanceDocuments {
+      id
+      displaySequence
+      localeLabelKey
+      localeSubTextKey
+      icon
+      title
+      description
+      attachments(filters: $filters)
+    }
+  }
+}

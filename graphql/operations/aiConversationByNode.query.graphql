@@ -1,0 +1,29 @@
+query aiConversationByNode($id: ID!, $first: Int!, $after: String) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages(first: $first, after: $after, orderBy: CREATED_AT, orderByDirection: ASC) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...aiMessageItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment identityPermissionsConfigurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+  description
+}

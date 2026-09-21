@@ -1,0 +1,16 @@
+mutation createSchoolCalendarTag($label: String, $colorCode: String) {
+  platform {
+    createSchoolCalendarTag(input: {label: $label, colorCode: $colorCode}) {
+      warning
+      response {
+        ...calendarEventTagItem
+        attendanceOptions {
+          id
+          label
+          abbreviation
+          color
+        }
+      }
+    }
+  }
+}

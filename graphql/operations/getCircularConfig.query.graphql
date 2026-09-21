@@ -1,0 +1,13 @@
+query getCircularConfig($id: ID!, $input: ShowReviewFeedTabsInput!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      circularConfig {
+        showReviewFeedTabs(input: $input) {
+          toReview
+          underReview
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+mutation createConfiguration($input: ConfigurationToolGenericInput!) {
+  platform {
+    createConfiguration(input: $input) {
+      id
+      configuration
+      configurationGroup
+      dependentEntities {
+        id
+        entityGroup
+      }
+      description
+      valueType
+      value
+    }
+  }
+}

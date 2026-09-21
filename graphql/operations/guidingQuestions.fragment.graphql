@@ -1,0 +1,8 @@
+fragment guidingQuestions on ProjectGroupGuidingQuestion {
+  id
+  question
+  grades {
+    id
+    name
+  }
+}

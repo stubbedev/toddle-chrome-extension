@@ -1,0 +1,80 @@
+query getMultiSetsStandardsForStandardsGradebook($plannerElementNodeSetIds: [ID!]!, $filters: PlannerElementNodeFilters) {
+  multiNode(ids: $plannerElementNodeSetIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      title
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        __typename
+        ... on PlannerBenchmarkSetWrapper {
+          publishedData(filters: $filters) {
+            edges {
+              node {
+                id
+                label
+                code
+                type
+                children
+                parent
+                depth
+                gradingType
+                dataSetNodeWrapper {
+                  properties {
+                    isGraded
+                    isPowerStandard
+                    isArchived
+                    gradeScaleGradingDetails {
+                      gradeScale {
+                        id
+                      }
+                      gradingType
+                      isGraded
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $filters) {
+            edges {
+              node {
+                id
+                label
+                code
+                type
+                children
+                parent
+                depth
+                gradingType
+                dataSetNodeWrapper {
+                  properties {
+                    isGraded
+                    isPowerStandard
+                    isArchived
+                    gradeScaleGradingDetails {
+                      gradeScale {
+                        id
+                      }
+                      gradingType
+                      isGraded
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

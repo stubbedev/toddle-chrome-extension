@@ -1,0 +1,8 @@
+mutation changeUnitPlanTemplate($input: ChangeUnitPlanTemplateInput!) {
+  planner {
+    changeUnitPlanTemplate(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

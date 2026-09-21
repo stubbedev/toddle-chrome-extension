@@ -1,0 +1,19 @@
+fragment homepageWidgetFields on HomepageWidget {
+  id
+  widgetType
+  showWidget
+  layout {
+    ...gridLayoutItemFields
+  }
+  contents {
+    ...homepageWidgetContentFields
+  }
+}
+
+fragment gridLayoutItemFields on GridLayoutItem {
+  i
+  x
+  y
+  w
+  h
+}

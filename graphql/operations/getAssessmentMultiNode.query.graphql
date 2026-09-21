@@ -1,0 +1,8 @@
+query getAssessmentMultiNode($ids: [ID!]) {
+  multiNode(ids: $ids, type: ASSESSMENT) {
+    id
+    ... on Assessment {
+      ...completeAssessmentDetails
+    }
+  }
+}

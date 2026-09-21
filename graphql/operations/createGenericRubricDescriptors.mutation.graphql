@@ -1,0 +1,33 @@
+mutation createGenericRubricDescriptors($input: [CreateGenericRubricDescriptorInput!]!) {
+  planner {
+    createGenericRubricDescriptors(input: $input) {
+      isSuccess
+      warning
+      response {
+        id
+        label
+        description
+        displaySequence
+        score
+        gradeScaleValue {
+          id
+          label
+          description
+          abbreviation
+          displaySequence
+        }
+        standardGradeScaleValueDescriptor {
+          id
+          description
+          gradeScaleValue {
+            id
+            label
+            description
+            abbreviation
+            displaySequence
+          }
+        }
+      }
+    }
+  }
+}

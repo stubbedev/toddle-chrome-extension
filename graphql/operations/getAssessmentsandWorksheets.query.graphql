@@ -1,0 +1,35 @@
+query getAssessmentsandWorksheets($ids: [ID!], $filters: WorksheetQuestionInsightsFilters) {
+  multiNode(ids: $ids, type: ASSESSMENT) {
+    ... on Assessment {
+      id
+      title {
+        ...assessmentFieldItem
+      }
+      image {
+        ...assessmentFieldItem
+      }
+      assessmentType {
+        ...assessmentFieldItem
+      }
+      taskType {
+        id
+        type
+        label
+      }
+      unitPlan {
+        id
+        title {
+          uid
+          value
+        }
+      }
+      questionsInsights(filters: $filters)
+    }
+  }
+}
+
+mutation excludeUnitPlanFromInsights($excludedIds: [ID!]) {
+  planner {
+    updateUnitPlanInclusionStatusInInsights(input: {excludedIds: $excludedIds})
+  }
+}

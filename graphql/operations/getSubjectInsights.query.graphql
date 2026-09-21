@@ -1,0 +1,17 @@
+query getSubjectInsights($id: ID!, $filters: UnitPlanInsightsFilter) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      unitPlanInsights(filters: $filters) {
+        totalCount
+        plannerNode {
+          id
+        }
+        unitPlans {
+          id
+        }
+      }
+    }
+  }
+}

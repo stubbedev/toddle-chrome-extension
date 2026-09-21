@@ -1,0 +1,39 @@
+query getStandardsForCourse($learningCourseId: ID!, $filters: PlannerElementNodeFilters, $isPYPCurriculum: Boolean! = false, $skipLockingInfo: Boolean! = false, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      standardsWrapper(filters: $filters, orderByDirection: $orderByDirection) @skip(if: $isPYPCurriculum) {
+        standardsEdge {
+          standardSet {
+            id
+            title
+          }
+          standards {
+            ...dataSetNodeWrapperFragment
+            lockingInfo(filters: {learningCourseId: $learningCourseId}) @skip(if: $skipLockingInfo) {
+              isLocked
+            }
+            isSyncedWithAllTeacherCourseV2(filters: {learningCourseId: $learningCourseId}) @skip(if: $skipLockingInfo) {
+              isConflictExists
+            }
+            isSyncedFromParentCourse(filters: {learningCourseId: $learningCourseId})
+          }
+        }
+      }
+      benchmarksWrapper(filters: $filters, orderByDirection: $orderByDirection) @include(if: $isPYPCurriculum) {
+        standardsEdge {
+          standardSet {
+            id
+            title
+          }
+          standards {
+            ...dataSetNodeWrapperFragmentPyp
+            lockingInfo(filters: {learningCourseId: $learningCourseId}) @skip(if: $skipLockingInfo) {
+              isLocked
+            }
+          }
+        }
+      }
+    }
+  }
+}

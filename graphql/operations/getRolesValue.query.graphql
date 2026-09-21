@@ -1,0 +1,17 @@
+query getRolesValue($ids: [ID!]) {
+  multiNode(ids: $ids, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      uid
+      label
+      rolesValue(filters: {levels: [COURSE]}) {
+        role {
+          id
+          label
+          description
+        }
+        value
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+fragment organizationResourceParentItem on OrganizationResource {
+  id
+  label
+  resourceType
+  childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+    resourceTypeBasedCount {
+      totalCount
+    }
+    edges {
+      node {
+        ...organizationResourceSectionItem
+      }
+    }
+  }
+}

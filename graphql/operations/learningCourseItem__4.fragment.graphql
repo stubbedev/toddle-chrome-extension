@@ -1,0 +1,82 @@
+fragment learningCourseItem on LearningCourse {
+  id
+  type
+  title
+  state
+  code
+  academicCourse {
+    id
+    label
+    code
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  includeAllGradingPeriods
+  gradingPeriods {
+    edges {
+      node {
+        id
+        label
+      }
+    }
+  }
+  isArchived
+  displayName
+  displayMetadata
+  classesV2(filters: $classesFilters) {
+    totalCount
+    archivedCount
+  }
+  subjects {
+    id
+    name
+    ibOfferedSubject {
+      id
+      contentSubject {
+        id
+        assessmentYearTitle
+      }
+    }
+  }
+  grades(filters: $gradeFilters) {
+    id
+    name
+  }
+  subjectGroup {
+    id
+    name
+  }
+  createdBy {
+    id
+    type
+    firstName
+    middleName
+    lastName
+    profileImage
+  }
+  collaborators(filters: $collaboratorFilters) {
+    totalCount
+    edges {
+      node {
+        id
+        type
+        firstName
+        middleName
+        lastName
+        preferredName
+        prefix
+        suffix
+        pronouns
+        profileImage
+      }
+    }
+  }
+  childCourses(filters: {status: ACTIVE}) {
+    id
+    title
+    displayMetadata
+  }
+}

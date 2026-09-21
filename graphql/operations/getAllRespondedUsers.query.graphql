@@ -1,0 +1,52 @@
+query getAllRespondedUsers($id: ID!, $organizationId: ID!) {
+  node(id: $id, type: MESSAGEV2_FORM) {
+    ... on MessageV2Form {
+      id
+      respondents {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            type
+            profileImage
+            ... on Student {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+              }
+            }
+            ... on Staff {
+              displayRole
+              preferredName
+              pronouns
+              prefix
+              suffix
+            }
+            ... on FamilyMember {
+              children(organizationId: $organizationId) {
+                id
+                profileImage
+                firstName
+                middleName
+                lastName
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

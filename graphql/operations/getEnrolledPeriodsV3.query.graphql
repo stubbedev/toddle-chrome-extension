@@ -1,0 +1,227 @@
+query getEnrolledPeriodsV3($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodsFilters: PeriodFilterOptions, $timetableSlotAttendanceFilters: TimetableSlotAttendanceFilters!, $shouldIncludeAttendance: Boolean!, $timetableFilter: TimetableFilterOptions!, $shouldIncludeTimetables: Boolean!) {
+  node(id: $id, type: $type) {
+    ... on Student {
+      id
+      ...studentNameFields
+      profileImage
+      enrolledPeriodsV3(filters: $periodsFilters) {
+        date
+        isSelected
+        day
+        rotationEntity {
+          id
+          label
+        }
+        location
+        locationV2 {
+          id
+          label
+        }
+        course {
+          id
+          title
+          isArchived
+          learningCourse {
+            id
+          }
+          primaryGrade {
+            id
+            curriculumProgram {
+              id
+              type
+            }
+          }
+          curriculumProgram {
+            id
+          }
+          grades {
+            id
+          }
+          __typename
+        }
+        period {
+          id
+          label
+          type
+          isDefault
+          startTime
+          endTime
+          sequence
+          isDefault
+          abbreviation
+        }
+        teachers {
+          staff {
+            id
+            profileImage
+            ...staffNameFields
+          }
+          type
+        }
+        subject
+        startTime
+        endTime
+        __typename
+      }
+      __typename
+    }
+    ... on Staff {
+      id
+      ...staffNameFields
+      enrolledPeriodsV3(filters: $periodsFilters) {
+        attendance(filters: $timetableSlotAttendanceFilters) @include(if: $shouldIncludeAttendance) {
+          attendanceMarkedStatus
+        }
+        date
+        isSelected
+        day
+        rotationEntity {
+          id
+          label
+        }
+        location
+        locationV2 {
+          id
+          label
+        }
+        course {
+          id
+          title
+          isArchived
+          learningCourse {
+            id
+          }
+          primaryGrade {
+            id
+            curriculumProgram {
+              id
+              type
+              timetables(filters: $timetableFilter) @include(if: $shouldIncludeTimetables) {
+                id
+                label
+                timetableTemplate {
+                  id
+                  label
+                  dayCycle {
+                    id
+                    cycleMode
+                    countHolidayAsRotationDay
+                    rotationEntities {
+                      id
+                      label
+                      abbreviation
+                      entityType
+                    }
+                    dayPatterns {
+                      id
+                      weekdays
+                      relation
+                      rotationEntities {
+                        rotationEntity {
+                          id
+                          label
+                          abbreviation
+                          entityType
+                        }
+                        isStartCycle
+                      }
+                    }
+                  }
+                  bellSchedules {
+                    id
+                    weekDay
+                    rotationEntity {
+                      id
+                      label
+                      abbreviation
+                      entityType
+                    }
+                    bellSchedule {
+                      id
+                      label
+                      periodsEdge {
+                        totalCount
+                        periods {
+                          startTime
+                          endTime
+                          period {
+                            id
+                            label
+                            type
+                            abbreviation
+                            startTime
+                            endTime
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                grades {
+                  id
+                  name
+                }
+                startValidity {
+                  validityDate
+                  validityType
+                  validityEntityId
+                }
+                endValidity {
+                  validityDate
+                  validityType
+                  validityEntityId
+                }
+                startCycleWith {
+                  rotationEntity {
+                    id
+                    label
+                    abbreviation
+                  }
+                  sequence
+                }
+                status
+                timetableTemplate {
+                  id
+                  label
+                }
+                createdBy {
+                  id
+                  ...staffNameFields
+                }
+              }
+            }
+          }
+          curriculumProgram {
+            id
+            type
+          }
+          grades {
+            id
+          }
+        }
+        period {
+          id
+          label
+          type
+          isDefault
+          startTime
+          endTime
+          sequence
+          isDefault
+          abbreviation
+        }
+        teachers {
+          staff {
+            id
+            profileImage
+            ...staffNameFields
+          }
+          type
+        }
+        subject
+        startTime
+        endTime
+      }
+    }
+  }
+}

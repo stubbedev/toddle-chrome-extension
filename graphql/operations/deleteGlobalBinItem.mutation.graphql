@@ -1,0 +1,8 @@
+mutation deleteGlobalBinItem($input: DeleteGlobalBinItemInput!) {
+  platform {
+    deleteGlobalBinItem(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

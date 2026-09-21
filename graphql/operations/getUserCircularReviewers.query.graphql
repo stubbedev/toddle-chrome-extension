@@ -1,0 +1,10 @@
+query getUserCircularReviewers($id: ID!, $reviewerFilters: StaffCircularReviewersFilter!) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      circularReviewers(filters: $reviewerFilters) {
+        id
+      }
+    }
+  }
+}

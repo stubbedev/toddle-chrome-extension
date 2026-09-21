@@ -1,0 +1,11 @@
+mutation bulkCreateSinglePointRubricStandard($input: [SinglePointRubricStandardCreateInput!]) {
+  planner {
+    bulkCreateSinglePointRubricStandard(input: $input) {
+      isSuccessful
+      warnings
+      response {
+        ...singlePointRubricStandardItem
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+query getCurriculumLevels($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $levelsFilters: GenericTagFilters = {types: [LEVELS]}) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+        type
+        globalTag {
+          id
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+      }
+    }
+  }
+}

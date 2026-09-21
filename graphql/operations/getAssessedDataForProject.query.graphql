@@ -1,0 +1,23 @@
+query getAssessedDataForProject($id: ID!) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      students {
+        id
+      }
+      ibPYPElementRatings {
+        ...ratingItem
+      }
+      toolResponses(userFilter: ALL) {
+        ...toolResponseItem
+      }
+      ibPYPElementRemarks {
+        id
+        message
+        ibPYPElementId
+        ibPYPElementType
+      }
+    }
+  }
+}

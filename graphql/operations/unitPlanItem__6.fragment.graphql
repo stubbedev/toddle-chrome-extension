@@ -1,0 +1,17 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  unitType {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+  allFields {
+    ...unitPlanFieldItemWithResponseFilter
+  }
+  isImported
+  enabledSections {
+    userType
+    sections
+  }
+  isSharedWithStudents
+  isSharedWithFamilies
+  shareWithUserType
+}

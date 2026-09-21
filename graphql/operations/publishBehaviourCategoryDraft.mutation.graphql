@@ -1,0 +1,5 @@
+mutation publishBehaviourCategoryDraft($input: BehaviourCategoryDraftPublishInput!) {
+  platform {
+    publishBehaviourCategoryDraft(input: $input)
+  }
+}

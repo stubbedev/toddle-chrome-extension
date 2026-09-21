@@ -1,0 +1,22 @@
+query getCalendarEventTypesCreatorsFeed($input: CalendarEventTypesCreatorsFeedInput!) {
+  platform {
+    calendarEventTypesCreatorsFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          firstName
+          lastName
+          profileImage
+        }
+      }
+    }
+  }
+}

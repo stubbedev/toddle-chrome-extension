@@ -1,0 +1,5 @@
+mutation updateUnitPlanInclusionInGrade($input: PYPPOIUnitGradeMappingUpdateInput!) {
+  planner {
+    upsertPYPPOIUnitGradeMapping(input: $input)
+  }
+}

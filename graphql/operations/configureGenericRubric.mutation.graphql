@@ -1,0 +1,16 @@
+mutation configureGenericRubric($input: ConfigureGenericRubricInput!) {
+  planner {
+    configureGenericRubric(input: $input) {
+      isSuccess
+      warning
+      response {
+        id
+        assessmentToolItem {
+          ... on GenericRubric {
+            ...genericRubricItem
+          }
+        }
+      }
+    }
+  }
+}

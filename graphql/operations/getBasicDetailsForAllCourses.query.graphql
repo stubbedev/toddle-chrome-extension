@@ -1,0 +1,32 @@
+query getBasicDetailsForAllCourses($organizationId: ID!, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            isArchived
+            genericTags {
+              id
+            }
+            learningCourse {
+              id
+              subjectLevelMap {
+                subject {
+                  id
+                }
+                associatedLevels {
+                  id
+                }
+              }
+            }
+          }
+        }
+        __typename
+      }
+    }
+    __typename
+  }
+}

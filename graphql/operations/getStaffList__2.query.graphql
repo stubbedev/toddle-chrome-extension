@@ -1,0 +1,36 @@
+query getStaffList($organizationId: ID!, $searchText: String, $grades: [ID!], $courses: [ID!], $archivalState: ARCHIVAL_STATE_ENUM, $curriculumProgramIds: [ID!], $userArchivedFilters: UserArchivedFilters, $academicYearIds: [ID!], $skipTitle: Boolean = false, $after: String) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(first: 20, after: $after, filters: {searchText: $searchText, grades: $grades, courses: $courses, archivalState: $archivalState, curriculumProgramIds: $curriculumProgramIds, academicYearIds: $academicYearIds}) {
+        totalCount
+        edges {
+          node {
+            isArchivedV2(filters: $userArchivedFilters)
+            ...staffCoursesItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

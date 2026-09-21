@@ -1,0 +1,11 @@
+mutation updateUserV2($input: UserUpdateInput!) {
+  platform {
+    updateUserV2(input: $input) {
+      warning
+      isSuccess
+      user {
+        ...externalUserItem
+      }
+    }
+  }
+}

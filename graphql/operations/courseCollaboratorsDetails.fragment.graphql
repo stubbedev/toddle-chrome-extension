@@ -1,0 +1,18 @@
+fragment courseCollaboratorsDetails on Course {
+  collaborator(first: $first, after: $after, filters: $collaboratorsFilters) {
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        firstName
+        lastName
+        profileImage
+        isArchived
+        middleName
+      }
+    }
+  }
+}

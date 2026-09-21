@@ -1,0 +1,7 @@
+mutation updateBehaviourCategoryDraftNodes($input: BehaviourCategoryDraftNodesUpdateInput!) {
+  platform {
+    updateBehaviourCategoryDraftNodes(input: $input) {
+      id
+    }
+  }
+}

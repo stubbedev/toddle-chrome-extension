@@ -1,0 +1,5 @@
+mutation deleteAllInteractionResponses($input: DeleteAllInteractionResponsesInput!) {
+  platform {
+    deleteAllInteractionResponses(input: $input)
+  }
+}

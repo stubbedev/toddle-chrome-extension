@@ -1,0 +1,50 @@
+query getCourseFeed($organizationId: ID!, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $courseGradeFilters: CourseGradeFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        edges {
+          node {
+            id
+            title
+            sourcedId
+            profileImage
+            isArchived
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+            genericTags {
+              id
+              label
+              type
+            }
+            grade(filters: $courseGradeFilters) {
+              ...gradeItem
+            }
+            grades(filters: $courseGradeFilters) {
+              ...gradeItem
+            }
+            primaryGrade {
+              ...gradeItem
+            }
+            subjects(filters: {archivalState: ALL}) {
+              ...subjectWithSubjectGroupItem
+            }
+            subjectGroups {
+              id
+              name
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

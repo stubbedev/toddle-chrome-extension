@@ -1,0 +1,27 @@
+query classesTableData($id: ID!, $filters: CourseFilterInput, $dates: DateRange!, $first: Int!, $after: String!, $routineMode: ROUTINE_MODE, $curriculumId: [ID], $filter: AttendanceOptionsSetFilterOptions) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      ...attendanceOptionsDetailsItem
+      ...coursesDetailsItem
+    }
+  }
+}
+
+fragment coursePeriodListItemV2 on Course {
+  periodsV2(filters: {routineMode: $routineMode}) {
+    edges {
+      node {
+        id
+        period {
+          id
+          label
+        }
+        rotationDay
+        day
+        isSelected
+      }
+    }
+  }
+}

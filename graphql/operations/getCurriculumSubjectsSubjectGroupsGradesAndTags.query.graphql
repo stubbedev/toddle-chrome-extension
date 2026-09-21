@@ -1,0 +1,23 @@
+query getCurriculumSubjectsSubjectGroupsGradesAndTags($orgId: ID!, $curriculumProgramId: ID!, $shouldSkipSubjects: Boolean = false, $shouldSkipGrades: Boolean = false, $shouldSkipGenericTags: Boolean = false, $shouldSkipSubjectGroups: Boolean = false, $genericTagsFilter: GenericTagsFilter) {
+  node(id: $orgId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      subjects(filters: {curriculumProgramIds: [$curriculumProgramId], archivalState: ACTIVE}) @skip(if: $shouldSkipSubjects) {
+        id
+        name
+      }
+      grades(filters: {curriculumProgramIds: [$curriculumProgramId]}) @skip(if: $shouldSkipGrades) {
+        id
+        name
+      }
+      genericTagsV2(filters: $genericTagsFilter) @skip(if: $shouldSkipGenericTags) {
+        id
+        label
+      }
+      subjectGroups(filters: {curriculumProgramIds: [$curriculumProgramId]}) @skip(if: $shouldSkipSubjectGroups) {
+        id
+        name
+      }
+    }
+  }
+}

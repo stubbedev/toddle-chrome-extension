@@ -1,0 +1,7 @@
+mutation updateUserAddress($id: ID!, $line1: String, $line2: String, $city: String, $state: String, $zipcode: String, $country: String) {
+  platform {
+    updateUser(input: {address: {line1: $line1, line2: $line2, city: $city, state: $state, zipcode: $zipcode, country: $country}, id: $id}) {
+      ...studentOtherDetailsItem
+    }
+  }
+}

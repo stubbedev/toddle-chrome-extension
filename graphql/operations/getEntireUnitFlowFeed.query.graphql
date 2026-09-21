@@ -1,0 +1,61 @@
+query getEntireUnitFlowFeed($parentId: ID!, $filters: EntityFlowResourceFilter) {
+  node(id: $parentId, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      unitFlowFeed {
+        unitFlowId
+        unitResourceId
+        unitFlowFlatFeed(orderBy: DISPLAY_SEQUENCE, filters: $filters, orderByDirection: ASC, first: 10000) {
+          edges {
+            node {
+              id
+              label
+              depth
+              itemType
+              parent {
+                id
+              }
+              item {
+                id
+                ... on Assessment {
+                  id
+                }
+                ... on Attachment {
+                  id
+                }
+                ... on EntityFlowResource {
+                  id
+                  attachment {
+                    id
+                  }
+                }
+              }
+              isRepeated
+              children(filters: $filters) {
+                id
+              }
+              childrenHierarchyInfo(filters: $filters) {
+                maxDepth
+                totalCount
+                totalCountWithFolder
+              }
+            }
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+            __typename
+          }
+          resourceBasedCount {
+            fileCount
+            totalCount
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

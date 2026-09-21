@@ -1,0 +1,44 @@
+query getOrganizationStructure($id: ID!, $curriculumProgramFilters: CurriculumProgramFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      logo
+      attachments {
+        ...attachmentBasicDetailsItem
+      }
+      yearGroups {
+        curriculumProgram {
+          id
+        }
+        examSession {
+          id
+          session
+        }
+      }
+      curriculumPrograms(filters: $curriculumProgramFilters) {
+        id
+        label
+        acronym
+        platformId
+        programDataLanguages
+        type
+        programType
+        buddy {
+          id
+          email
+          firstName
+          lastName
+        }
+        accountProgram {
+          id
+        }
+        academicProgram {
+          id
+          label
+          type
+          acronym
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation upsertGPAAddedValues($input: UpsertGPAAddedValuesInput) {
+  platform {
+    upsertGPAAddedValues(input: $input)
+  }
+}

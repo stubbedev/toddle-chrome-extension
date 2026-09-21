@@ -1,0 +1,8 @@
+mutation deleteAttachments($attachmentIds: [ID]!, $deleteCondition: DeleteAttachmentConditionInput, $deleteFromKnowledgeBase: Boolean) {
+  platform {
+    deleteAttachments(attachmentIds: $attachmentIds, deleteCondition: $deleteCondition, deleteFromKnowledgeBase: $deleteFromKnowledgeBase) {
+      isSuccess
+      warning
+    }
+  }
+}

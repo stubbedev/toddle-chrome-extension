@@ -1,0 +1,15 @@
+query UserAuthoringToolPermissions($input: UserAuthoringToolPermissionsInput!) {
+  content {
+    userAuthoringToolPermissions(input: $input) {
+      id
+      module
+      permission
+      curriculumProgram {
+        id
+      }
+      subject {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation updateProjectGroupSupervisorApprovalStatus($id: ID!, $approvalStatus: PROJECT_GROUP_SUPERVISOR_APPROVAL_STATUS_ENUM!, $supervisorIds: [ID!]!) {
+  documentation {
+    updateProjectGroupSupervisorApprovalStatus(input: {projectGroupId: $id, approvalStatus: $approvalStatus, supervisorIds: $supervisorIds}) {
+      isSuccess
+      warning
+    }
+  }
+}

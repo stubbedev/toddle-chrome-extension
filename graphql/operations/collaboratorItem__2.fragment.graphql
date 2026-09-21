@@ -1,0 +1,102 @@
+query getSubjectViewSidePanel($id: ID!, $filters: CourseWiseProjectsFilters, $projectTaskFilters: ProjectTaskFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      name
+      type
+      courseWiseProjects(filters: $filters) {
+        course {
+          id
+          title
+          allStudents {
+            totalCount
+          }
+          allCollaborators {
+            edges {
+              node {
+                ...collaboratorItem
+              }
+            }
+          }
+        }
+        projects {
+          id
+          isAcademicHonestyLocked
+          tasks(filters: $projectTaskFilters) {
+            id
+            task {
+              submission {
+                id
+                type
+              }
+            }
+            isSubmissionTurnedIn
+          }
+          students {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            suffix
+            pronouns
+            type
+            courseMap {
+              id
+              course {
+                id
+                subjects {
+                  id
+                }
+              }
+              tags {
+                id
+                type
+                label
+              }
+            }
+          }
+          finalProjectReports {
+            id
+            name
+            type
+            mimeType
+            url
+            thumbUrl
+            title
+            metadata
+            streamUrl
+            parentType
+            createdBy {
+              id
+              type
+            }
+          }
+          projectReports {
+            isRead
+          }
+          fields {
+            ...fieldsResolvedMinimalTreeFragmentItem
+          }
+        }
+      }
+      subject {
+        id
+        name
+      }
+      projects {
+        totalCount
+      }
+    }
+  }
+}
+
+fragment collaboratorItem on Staff {
+  id
+  firstName
+  lastName
+  middleName
+  profileImage
+  role
+  type
+}

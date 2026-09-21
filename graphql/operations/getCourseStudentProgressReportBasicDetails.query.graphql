@@ -1,0 +1,8 @@
+query getCourseStudentProgressReportBasicDetails($reportId: ID!, $skipParam: Boolean!) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      ...courseStudentProgressReportItem
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getOrganizationTemplatesAndGrades($id: ID!, $gradeFilters: GradeFilterInput, $templateFilters: OrganizationTemplateFilter, $unitPlanFilters: TemplateUnitPlanFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationTemplateAndGradeItem
+    }
+  }
+}

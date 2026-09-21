@@ -1,0 +1,6 @@
+fragment singlePointRubricStandardItem on SinglePointRubricStandard {
+  id
+  title
+  subTitle
+  displaySequence
+}

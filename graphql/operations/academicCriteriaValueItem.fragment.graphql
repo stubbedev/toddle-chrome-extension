@@ -1,0 +1,6 @@
+fragment academicCriteriaValueItem on AcademicCriteriaValue {
+  id
+  label
+  abbreviation
+  displaySequence
+}

@@ -1,0 +1,55 @@
+fragment assignedStudentItem on StudentAssignment {
+  id
+  assignment {
+    id
+    publishedAt
+    timedTestDuration
+    isFixedStartTime
+    isTimedTestEnabled
+    closeSubmissionDate
+    isSafeBrowserEnabled
+  }
+  student {
+    ...studentItem
+    __typename
+  }
+  submission(showOnlySubmitted: $showOnlySubmitted) {
+    id
+    response
+    endTime
+    isPaused
+    isLockScreenEnabled
+    isOnScreenCalculatorEnabled
+    questionSubmissions {
+      totalQuestionCount
+      totalQuestionAttempted
+      edges {
+        node {
+          id
+          isQuestionAttempted
+          question {
+            id
+            questionType {
+              uid
+            }
+          }
+          __typename
+        }
+      }
+    }
+    status
+    statusV2
+    submittedAt
+    __typename
+  }
+  events(filters: $entityEventsFilter) {
+    id
+    eventType
+    eventTime
+    duration
+    reason
+    metadata
+    __typename
+  }
+  __typename
+}

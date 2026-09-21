@@ -1,0 +1,27 @@
+query getImportCalendarEventsFeed($input: CalendarEventsFeedInput!) {
+  platform {
+    calendarEventsFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          label
+          isFullDayEvent
+          startDateTime
+          endDateTime
+          eventTag {
+            id
+            label
+            colorCode
+          }
+          sharedWith
+        }
+      }
+    }
+  }
+}

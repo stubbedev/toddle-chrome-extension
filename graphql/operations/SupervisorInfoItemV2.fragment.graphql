@@ -1,0 +1,17 @@
+fragment SupervisorInfoItemV2 on Staff {
+  ...userNameFields
+  email
+  profileImage
+  role
+  curriculumPrograms {
+    id
+    acronym
+  }
+  isArchived
+  isArchivedV2(filters: {academicYearId: $academicYearId})
+  otherDetails {
+    id
+    organizationName
+    phoneNumber
+  }
+}

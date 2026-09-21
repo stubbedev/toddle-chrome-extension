@@ -1,0 +1,44 @@
+query getCurriculumInsightsDownload($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: InsightDownloadUrlFilters!) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      curriculumInsights {
+        insightDownloadUrl(filters: $filters) {
+          url
+          isSuccess
+          longRunningTaskCreated
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      curriculumInsights {
+        insightDownloadUrl(filters: $filters) {
+          url
+          isSuccess
+          longRunningTaskCreated
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      curriculumInsights {
+        insightDownloadUrl(filters: $filters) {
+          url
+          isSuccess
+          longRunningTaskCreated
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      curriculumInsights {
+        insightDownloadUrl(filters: $filters) {
+          url
+          isSuccess
+          longRunningTaskCreated
+        }
+      }
+    }
+  }
+}

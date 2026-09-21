@@ -1,0 +1,5 @@
+mutation reorderQuestion($questionId: ID!, $putAfterQuestionId: ID, $parentId: ID!) {
+  content {
+    reorderQuestion(input: {questionId: $questionId, putAfterQuestionId: $putAfterQuestionId, parentId: $parentId})
+  }
+}

@@ -1,0 +1,17 @@
+query getContextualHelpSearchResults($input: contextualHelpSearchInput!) {
+  cms {
+    searchContextualHelp(input: $input) {
+      totalResults
+      results {
+        contentId
+        title
+        contentSnippet
+        confidenceScore
+        curriculumPrograms {
+          id
+          label
+        }
+      }
+    }
+  }
+}

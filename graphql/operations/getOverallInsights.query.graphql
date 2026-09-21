@@ -1,0 +1,30 @@
+query getOverallInsights($curriculumProgramId: ID!, $curriculumProgramType: ENTITY_TYPE_ENUM!, $filters: OverallProgrammeInsightFilters!) {
+  node(id: $curriculumProgramId, type: $curriculumProgramType) {
+    id
+    ... on CurriculumProgram {
+      overallProgrammeInsights(filters: $filters) {
+        plannerNode {
+          id
+        }
+        insights {
+          grade {
+            id
+            name
+          }
+          unitPlanData {
+            unitPlans {
+              id
+            }
+            totalCount
+          }
+        }
+        totalUnitPlanData {
+          unitPlans {
+            id
+          }
+          totalCount
+        }
+      }
+    }
+  }
+}

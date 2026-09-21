@@ -1,0 +1,28 @@
+fragment learningCourseItems on LearningCourse {
+  subjects {
+    id
+    name
+  }
+  curriculumProgram {
+    id
+    type
+    label
+    academicSetupType
+  }
+  curriculumMapsDepartments {
+    id
+    name
+    parentDepartment {
+      id
+      name
+    }
+  }
+  grades {
+    id
+    name
+    parentAccountGrade {
+      id
+      name
+    }
+  }
+}

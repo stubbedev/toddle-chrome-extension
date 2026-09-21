@@ -1,0 +1,19 @@
+query getStaffsBasedOnPermissionAndContexts($permissionId: ID!, $contexts: [ACLContextEntityInput!], $academicYearId: ID) {
+  node(id: $permissionId, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      type
+      permission
+      enabledUsers(context: $contexts, academicYearId: $academicYearId) {
+        ... on Staff {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+          email
+        }
+      }
+    }
+  }
+}

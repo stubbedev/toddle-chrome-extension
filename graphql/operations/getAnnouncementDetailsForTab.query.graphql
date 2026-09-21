@@ -1,0 +1,13 @@
+query getAnnouncementDetailsForTab($id: ID!, $academicYearId: ID!) {
+  node(id: $id, type: CIRCULAR) {
+    id
+    ... on Circular {
+      state
+      createdBy {
+        id
+      }
+      createdIn
+      isSharedWithMe(input: {academicYearId: $academicYearId})
+    }
+  }
+}

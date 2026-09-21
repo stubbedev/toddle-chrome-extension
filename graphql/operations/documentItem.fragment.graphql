@@ -1,0 +1,6 @@
+fragment documentItem on Document {
+  id
+  blocks {
+    ...documentBlockItem
+  }
+}

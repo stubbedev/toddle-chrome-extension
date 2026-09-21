@@ -1,0 +1,26 @@
+query getYearGroupStudents($id: ID!, $yearGroupStudentFilters: GroupStudentFilter) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      students(filters: $yearGroupStudentFilters) {
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            middleName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            type
+            isArchived
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+      }
+    }
+  }
+}

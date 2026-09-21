@@ -1,0 +1,34 @@
+query getProductUpdates($id: ID!) {
+  node(id: $id, type: PRODUCT_UPDATE_V2) {
+    ... on ProductUpdatesV2 {
+      id
+      title
+      releaseDate
+      releaseItems {
+        id
+        isBeta
+        title
+        redirectUrl
+        description
+        version
+        displaySequence
+        categories {
+          id
+          type
+          title
+          group
+          displaySequence
+          color
+        }
+        module {
+          id
+          label
+          isNewModule
+          moduleKey
+        }
+        betaRequestStatus
+        isBetaRequestAllowed
+      }
+    }
+  }
+}

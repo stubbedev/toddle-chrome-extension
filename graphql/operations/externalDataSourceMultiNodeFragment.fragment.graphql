@@ -1,0 +1,4 @@
+fragment externalDataSourceMultiNodeFragment on OrganizationResource {
+  id
+  metadata
+}

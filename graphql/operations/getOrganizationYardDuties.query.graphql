@@ -1,0 +1,17 @@
+query getOrganizationYardDuties($id: ID!, $yardDutiesFilters: YardDutyFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      yardDuties(filters: $yardDutiesFilters) {
+        id
+        label
+        location {
+          id
+          label
+          abbreviation
+        }
+      }
+    }
+  }
+}

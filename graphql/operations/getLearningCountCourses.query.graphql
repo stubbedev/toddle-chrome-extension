@@ -1,0 +1,55 @@
+query getLearningCountCourses($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse {
+        count {
+          totalCount
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse {
+        count {
+          totalCount
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse {
+        count {
+          totalCount
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse {
+        count {
+          totalCount
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      learningCourse {
+        count {
+          totalCount
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+      }
+    }
+  }
+}

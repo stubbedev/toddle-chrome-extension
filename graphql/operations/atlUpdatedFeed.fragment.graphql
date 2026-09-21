@@ -1,0 +1,34 @@
+fragment atlUpdatedFeed on PlannerATLSetWrapper {
+  dataSetEditChanges(filters: {locale: $defaultLocale}) {
+    updatedFeed(first: $first, after: $after) {
+      totalCount
+      edges {
+        node {
+          id
+          oldValue {
+            parentData {
+              id
+              uid
+            }
+          }
+          newValue {
+            ...basicDetailsItem
+          }
+          updatedColumnData {
+            ...updatedColumnDataItem
+          }
+        }
+      }
+      pageInfo {
+        ...pageInfoFields
+      }
+    }
+  }
+}
+
+fragment updatedColumnDataItem on UpdatedColumnData {
+  gradeScaleId
+  columnName
+  oldValue
+  newValue
+}

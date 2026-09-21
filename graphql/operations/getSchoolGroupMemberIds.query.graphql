@@ -1,0 +1,10 @@
+query getSchoolGroupMemberIds($groupId: ID!) {
+  platform {
+    schoolGroup(id: $groupId) {
+      id
+      memberUserIds(filters: {userTypes: [staff], status: ALL})
+      memberUserIds(filters: {userTypes: [student], status: ALL})
+      memberUserIds(filters: {userTypes: [parent], status: ALL})
+    }
+  }
+}

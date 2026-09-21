@@ -1,0 +1,20 @@
+fragment rubricItem on Rubric {
+  id
+  title
+  criterias {
+    ...criteriaItem
+  }
+  indicators {
+    ...indicatorItem
+  }
+  descriptors {
+    ...descriptorItem
+  }
+  createdBy {
+    ...staffItem
+  }
+  updatedAt
+  updatedBy {
+    ...staffItem
+  }
+}

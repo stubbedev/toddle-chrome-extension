@@ -1,0 +1,33 @@
+query getOrganizationAdmin($organizationId: ID!, $type: ENTITY_TYPE_ENUM!, $curriculumProgramId: ID!, $academicYearIds: [ID!], $entityType: [String!], $skipTitle: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(filters: {roles: [admin], academicYearIds: $academicYearIds}) {
+        edges {
+          node {
+            ...staff
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  node(id: $curriculumProgramId, type: $type) {
+    id
+    ... on IbPypCurriculumProgram {
+      ...moduleAdmin
+    }
+    ... on IbDpCurriculumProgram {
+      ...moduleAdmin
+    }
+    ... on IbMypCurriculumProgram {
+      ...moduleAdmin
+    }
+    ... on UBDCurriculumProgram {
+      ...moduleAdmin
+    }
+  }
+}

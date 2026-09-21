@@ -1,0 +1,8 @@
+mutation bulkAssignmentGradeRatings($ratings: [BulkAssignmentGradeRatingsInput!]) {
+  platform {
+    bulkAssignmentGradeRatings(input: $ratings) {
+      isSuccess
+      warning
+    }
+  }
+}

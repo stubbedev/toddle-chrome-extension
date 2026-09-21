@@ -1,0 +1,7 @@
+mutation deleteMemories($input: DeleteAiMemoriesInput!) {
+  ai {
+    deleteAiMemories(input: $input) {
+      isSuccess
+    }
+  }
+}

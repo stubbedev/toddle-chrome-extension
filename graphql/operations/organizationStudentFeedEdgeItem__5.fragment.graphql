@@ -1,0 +1,18 @@
+fragment organizationStudentFeedEdgeItem on Organization {
+  id
+  familyMembers(filters: $familyMembersCountFilter) {
+    totalCount
+  }
+  students(first: 15, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    edges {
+      node {
+        ...studentItem
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

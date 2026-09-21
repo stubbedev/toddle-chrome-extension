@@ -1,0 +1,54 @@
+query getUserCoursesV2Paginated($id: ID!, $first: Int, $after: String, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!, $getGrades: Boolean!, $getCurriculumProgram: Boolean!, $getAssociatedProgram: Boolean = false, $getLearningCourse: Boolean = false, $getTotalCount: Boolean = false) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount @include(if: $getTotalCount)
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            isArchived
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            deletedBy {
+              id
+            }
+            grades @include(if: $getGrades) {
+              id
+              name
+              curriculumProgram @include(if: $getAssociatedProgram) {
+                id
+                label
+                acronym
+              }
+            }
+            curriculumProgram @include(if: $getCurriculumProgram) {
+              id
+              type
+              label
+              acronym
+            }
+            learningCourse @include(if: $getLearningCourse) {
+              id
+              title
+              academicCourse {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

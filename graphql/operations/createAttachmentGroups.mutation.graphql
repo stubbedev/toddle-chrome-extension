@@ -1,0 +1,7 @@
+mutation createAttachmentGroups($input: [AttachmentGroupInput!]) {
+  platform {
+    createAttachmentGroups(input: $input) {
+      ...attachmentGroupItem
+    }
+  }
+}

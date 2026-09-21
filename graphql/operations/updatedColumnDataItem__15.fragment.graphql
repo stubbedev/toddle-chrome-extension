@@ -1,0 +1,22 @@
+fragment learnerProfileRemovedFeed on PlannerLearnerProfileSetWrapper {
+  dataSetEditChanges(filters: {locale: $defaultLocale}) {
+    removedFeed(first: $first, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...publishedBasicDetailsLearnerProfileItem
+        }
+      }
+      pageInfo {
+        ...pageInfoFields
+      }
+    }
+  }
+}
+
+fragment updatedColumnDataItem on UpdatedColumnData {
+  gradeScaleId
+  columnName
+  oldValue
+  newValue
+}

@@ -1,0 +1,11 @@
+query getSubjects($organizationId: ID!, $filters: SubjectFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      subjects(filters: $filters) {
+        id
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getCourseProgressReportFeed($courseId: ID!, $searchText: String!, $academicTermIds: [ID!]) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      ...courseProgressReportItem
+    }
+  }
+}

@@ -1,0 +1,54 @@
+fragment attachmentItem on Attachment {
+  id
+  name
+  type
+  mimeType
+  url
+  signedUrl
+  thumbUrl
+  title
+  metadata
+  streamUrl
+  parentType
+  isRead
+  similarityReport {
+    ...similarityItem
+  }
+  createdBy {
+    ...userNameFields
+  }
+  lockingState {
+    state
+    scheduledAt
+  }
+  questionAttachment {
+    ... on QuestionSubmission {
+      id
+      questionScore
+      score {
+        id
+        value
+      }
+    }
+    ... on Question {
+      id
+      questionScore
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

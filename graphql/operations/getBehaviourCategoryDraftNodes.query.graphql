@@ -1,0 +1,12 @@
+query getBehaviourCategoryDraftNodes($organizationId: ID!, $input: BehaviourCategoryDraftNodesInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      behaviourCategoryDraftNodes(input: $input) {
+        id
+        rootNodes
+        nodes
+      }
+    }
+  }
+}

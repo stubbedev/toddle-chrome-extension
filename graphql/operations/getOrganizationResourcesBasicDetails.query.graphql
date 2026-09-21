@@ -1,0 +1,11 @@
+query getOrganizationResourcesBasicDetails($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $types: [ORGANIZATION_RESOURCE_TYPE_ENUM!], $visibleTo: [ORGANIZATION_RESOURCE_VISIBLE_TO_ENUM!], $resourceType: ORGANIZATION_RESOURCE_RESOURCE_TYPE_ENUM, $filters: OrganizationResourceFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Organization {
+      id
+      organizationResources(types: $types, visibleTo: $visibleTo, resourceType: $resourceType, filters: $filters) {
+        ...organizationResourceBasicDetailsItem
+      }
+    }
+  }
+}

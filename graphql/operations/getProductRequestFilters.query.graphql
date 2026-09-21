@@ -1,0 +1,25 @@
+query getProductRequestFilters($filters: ProductUpdatesV2ModuleFilter) {
+  platform {
+    buddies {
+      id
+      firstName
+      lastName
+    }
+  }
+  cms {
+    modules(filters: $filters) {
+      id
+      label
+      moduleKey
+    }
+    techTeams {
+      id
+      teamLabel
+    }
+    productUpdatesDetailsV2 {
+      id
+      title
+    }
+    __typename
+  }
+}

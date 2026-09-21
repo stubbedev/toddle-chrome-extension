@@ -1,0 +1,17 @@
+query getSupervisorPortfolios($id: ID!, $filters: StudentProjectPortfolioFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $filters) {
+        edges {
+          node {
+            id
+            student {
+              ...studentInfo
+            }
+          }
+        }
+      }
+    }
+  }
+}

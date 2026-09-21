@@ -1,0 +1,55 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  assessmentType {
+    id
+    uid
+    value
+  }
+  fields(uids: ["lp", "centralIdea", "concepts", "atls", "benchmarks", "lois", "learningStandardMYP", "learningStandardUBD", "subjectStandardDP"]) {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldBenchmarkSet {
+        id
+        benchmarks {
+          id
+          standardsWrapper {
+            standardSet {
+              id
+              title
+            }
+            properties {
+              isGradedStandard
+            }
+          }
+        }
+      }
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        type
+        nodes {
+          id
+          gradingType
+          standardsWrapper {
+            standardSet {
+              id
+              title
+            }
+            properties {
+              isGradedStandard
+            }
+          }
+        }
+      }
+    }
+  }
+}

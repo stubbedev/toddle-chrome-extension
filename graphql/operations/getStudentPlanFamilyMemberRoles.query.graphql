@@ -1,0 +1,13 @@
+query getStudentPlanFamilyMemberRoles($ids: [ID!], $studentId: ID!, $academicYearId: ID) {
+  platform {
+    familyMember(ids: $ids) {
+      id
+      rnpRoleContextDetail(filters: {roleModule: ["RNP"], contextFilters: [{contextType: "STUDENT", contextId: $studentId}], academicYearId: $academicYearId}) {
+        id
+        role {
+          id
+        }
+      }
+    }
+  }
+}

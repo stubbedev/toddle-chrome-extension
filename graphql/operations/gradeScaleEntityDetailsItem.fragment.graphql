@@ -1,0 +1,33 @@
+fragment gradeScaleEntityDetailsItem on GradeScaleEntityDetail {
+  id
+  entityType
+  gradeScale {
+    id
+    gradingType
+    displayName
+    templateName
+  }
+  gradeScaleValues {
+    id
+    label
+    description
+    color
+    abbreviation
+    displaySequence
+    gradeScaleValueScores {
+      id
+      minValue
+      maxValue
+      gradeValue
+      subjectLevel {
+        id
+        label
+        abbreviation
+      }
+    }
+  }
+  entityDetail {
+    subjectId
+    gradeId
+  }
+}

@@ -1,0 +1,11 @@
+mutation createStandardRubricDescriptor($input: CreateStandardRubricDescriptorInput!) {
+  planner {
+    createStandardRubricDescriptor(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...standardRubricDescriptorItem
+      }
+    }
+  }
+}

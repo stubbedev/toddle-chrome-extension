@@ -1,0 +1,11 @@
+query getAssociatedCoursesForPYP($id: ID!) {
+  node(id: $id, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      associatedCoursesForPYP {
+        id
+        title
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation updateStandardRubricDescriptors($input: [UpdateStandardRubricDescriptorInput!]) {
+  planner {
+    updateStandardRubricDescriptors(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...standardRubricDescriptorItem
+      }
+    }
+  }
+}

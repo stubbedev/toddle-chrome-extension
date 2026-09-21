@@ -1,0 +1,19 @@
+fragment gradeItem on Grade {
+  id
+  name
+  globalGrade {
+    id
+    uid
+    name
+    constants
+  }
+  curriculumProgram {
+    id
+    type
+    nodeInterfaceType
+    label
+    acronym
+    academicSetupType
+  }
+  displaySequence
+}

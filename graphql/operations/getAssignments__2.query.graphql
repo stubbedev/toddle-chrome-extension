@@ -1,0 +1,76 @@
+query getAssignments($id: ID!, $first: Int, $after: String, $filters: AssignmentFeedFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      assignments(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            course {
+              id
+              title
+            }
+            createdBy {
+              id
+              profileImage
+              firstName
+              lastName
+            }
+            content {
+              ... on Assessment {
+                id
+                title {
+                  id
+                  value
+                }
+                category {
+                  id
+                  label
+                }
+                questions {
+                  totalCount
+                  edges {
+                    id
+                    parentIdV2
+                    sequence
+                    parentTypeV2
+                    questionType {
+                      id
+                      uid
+                    }
+                  }
+                }
+                allFields {
+                  id
+                  uid
+                  resolvedMinimalTree {
+                    id
+                    ... on ResolvedFieldUnitPlan {
+                      id
+                      unitPlan {
+                        id
+                        title {
+                          id
+                          uid
+                          value
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            isPrivate
+            deadline
+          }
+        }
+      }
+    }
+  }
+}

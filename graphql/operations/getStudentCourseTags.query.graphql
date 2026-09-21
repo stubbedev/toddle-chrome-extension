@@ -1,0 +1,8 @@
+query getStudentCourseTags($id: ID!, $courseIdsFilter: UserCourseMapFilters!) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      ...studentCourseTags
+    }
+  }
+}

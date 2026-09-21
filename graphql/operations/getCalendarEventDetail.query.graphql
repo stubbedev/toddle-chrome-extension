@@ -1,0 +1,39 @@
+query getCalendarEventDetail($input: CalendarEventsFeedInput!) {
+  platform {
+    calendarEventsFeed(input: $input) {
+      edges {
+        node {
+          id
+          label
+          description
+          location
+          isFullDayEvent
+          startDateTime
+          endDateTime
+          state
+          eventTag {
+            id
+            label
+            colorCode
+          }
+          sharedWith
+          attachments {
+            id
+            type
+            name
+            url
+            metadata
+            displaySequence
+            mimeType
+          }
+          eventReminders {
+            reminderOffset
+            channels
+            triggerDayOffset
+            triggerTimeOffset
+          }
+        }
+      }
+    }
+  }
+}

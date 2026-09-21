@@ -1,0 +1,11 @@
+query getAdvancedFilterStudentAlertTypeOptions($organizationId: ID!, $filters: StudentAlertTypeFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      studentAlertTypes(filters: $filters) {
+        id
+        name
+      }
+    }
+  }
+}

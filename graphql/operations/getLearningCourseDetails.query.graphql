@@ -1,0 +1,141 @@
+query getLearningCourseDetails($learningCourseId: ID!, $userArchivedFilters: UserArchivedFilters, $classFilters: LearningCourseClassFilter, $termFilters: TermFilters, $gradeFilters: LearningCourseGradeFilters) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      isArchived
+      isClassFlowEnabled
+      type
+      courseSubjectType
+      title
+      bluePrintCourse {
+        id
+        title
+      }
+      lockingInfo {
+        isLocked
+        pageTypes
+      }
+      updatedAt
+      academicCourse {
+        id
+      }
+      curriculumProgram {
+        id
+      }
+      academicYears {
+        id
+        startDate
+        endDate
+      }
+      startDate
+      endDate
+      associatedLevels {
+        id
+        label
+        abbreviation
+        isArchived
+      }
+      primaryGrade(filters: $gradeFilters) {
+        id
+        name
+      }
+      classes(filters: $classFilters) {
+        id
+        title
+        isActive
+        isArchived
+        projectGroups(filters: {projectGroupSubTypes: [INTERNAL_ASSESSMENT, EXTERNAL_ASSESSMENT]}) {
+          ...basicProjectGroupDetails
+        }
+        profileImageData {
+          icon
+          color
+          acronym
+          url
+        }
+        primaryGrade {
+          id
+        }
+        students {
+          totalCount
+          edges {
+            node {
+              ...studentItem
+            }
+          }
+        }
+        subjects {
+          id
+          type
+          name
+          metadata
+          __typename
+        }
+      }
+      grades(filters: $gradeFilters) {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+        isArchived
+        type
+        recommendedPhase {
+          gradeId
+          phaseId
+        }
+        subjectGroup {
+          id
+          name
+          type
+        }
+        metadata
+      }
+      aiConversation {
+        edges {
+          node {
+            id
+            entityType
+            entitySubType
+            metadata
+          }
+        }
+      }
+      standardsWrapper {
+        standardsEdge {
+          standardSet {
+            id
+            title
+            subject {
+              id
+            }
+          }
+        }
+      }
+      benchmarksWrapper {
+        standardsEdge {
+          standardSet {
+            id
+            title
+            subject {
+              id
+            }
+          }
+        }
+      }
+      displayMetadata
+      gradingPeriods(filters: $termFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            label
+            lockingStatus
+          }
+        }
+      }
+    }
+  }
+}

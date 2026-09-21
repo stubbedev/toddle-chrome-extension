@@ -1,0 +1,24 @@
+query getStudentsRatingsForStandardsGradebook($studentIds: [ID!], $filtersForGeneric: ibPYPElementRatingFiltersForGeneric) {
+  multiNode(ids: $studentIds, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      ibPYPElementRatings(dataSet: STANDARD_CALCULATED_RATING, filtersForGeneric: $filtersForGeneric) {
+        id
+        ibPYPElementId
+        ibPYPElementType
+        academicCriteriaSet {
+          id
+        }
+        academicCriteriaValue {
+          id
+          color
+        }
+        isComputedRating
+        isMasteryRating
+        value
+        percentValue
+      }
+    }
+  }
+}

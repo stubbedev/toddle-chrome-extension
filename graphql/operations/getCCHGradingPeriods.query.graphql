@@ -1,0 +1,20 @@
+query getCCHGradingPeriods($id: ID!, $gradingPeriodsFilters: TermFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      academicYears {
+        id
+        terms(filters: $gradingPeriodsFilters) {
+          id
+          label
+          startDate
+          endDate
+          curriculumProgram {
+            id
+          }
+        }
+      }
+    }
+  }
+}

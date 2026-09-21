@@ -1,0 +1,40 @@
+query getOrganizationFamilyMembers($organizationId: ID!, $first: Int, $after: String, $filters: FamilyMembersFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      familyMembers(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            ... on FamilyMember {
+              firstName
+              middleName
+              lastName
+              preferredName
+              prefix
+              suffix
+              pronouns
+              profileImage
+              email
+              children(organizationId: $organizationId) {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+                prefix
+                suffix
+                pronouns
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

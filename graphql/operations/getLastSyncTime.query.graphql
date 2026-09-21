@@ -1,0 +1,15 @@
+query getLastSyncTime($id: ID!, $lastSyncTimeFilterInput: LastSyncTimeFilterInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      analytics {
+        lastSyncTime(filter: $lastSyncTimeFilterInput) {
+          entityId
+          entityType
+          timestamp
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+mutation createWeeklyPlannerSection($input: CreateWeeklyPlannerSectionInput!) {
+  planner {
+    createWeeklyPlannerSection(input: $input) {
+      id
+      title
+      startDate
+      endDate
+      startTime
+      endTime
+      colorCode
+      class {
+        id
+        title
+      }
+    }
+  }
+}

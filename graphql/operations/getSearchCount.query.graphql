@@ -1,0 +1,19 @@
+query getSearchCount($organizationId: ID!, $messageInput: MessageFeedInput, $usersInput: MessageV2UserInput, $channelInput: ChatFeedInput, $attachmentInput: MessageV2AttachmentInput, $userFilterNotApplied: Boolean = true) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messages {
+        totalCount(input: $messageInput)
+      }
+      messageV2Users @include(if: $userFilterNotApplied) {
+        totalCount(input: $usersInput)
+      }
+      chats @include(if: $userFilterNotApplied) {
+        totalCount(input: $channelInput)
+      }
+      messageV2Attachments {
+        totalCount(input: $attachmentInput)
+      }
+    }
+  }
+}

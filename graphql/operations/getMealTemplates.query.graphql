@@ -1,0 +1,19 @@
+query getMealTemplates($organizationId: ID!, $filters: OrganizationPostTemplateDataSetFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      postTemplateDataSet(filters: $filters) {
+        id
+        title
+        startDate
+        endDate
+        mappedTemplates(filters: {states: [PUBLISHED]}) {
+          id
+          title
+        }
+        updatedAt
+      }
+    }
+  }
+}

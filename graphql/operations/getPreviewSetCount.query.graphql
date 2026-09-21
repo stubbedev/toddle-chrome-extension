@@ -1,0 +1,11 @@
+query getPreviewSetCount($id: ID!, $orgId: ID!, $curriculumProgramId: ID, $grades: [ID!]) {
+  planner {
+    standardBenchmarkSetV2(id: $id, organizationId: $orgId, curriculumProgramId: $curriculumProgramId, benchmarkFilters: {searchText: "", grades: $grades}) {
+      id
+      title
+      benchmarks {
+        totalCount
+      }
+    }
+  }
+}

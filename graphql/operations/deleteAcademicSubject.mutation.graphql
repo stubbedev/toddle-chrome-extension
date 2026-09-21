@@ -1,0 +1,9 @@
+mutation deleteAcademicSubject($id: ID!) {
+  platform {
+    deleteAcademicSubject(input: {id: $id}) {
+      isSuccess
+      warning
+      id
+    }
+  }
+}

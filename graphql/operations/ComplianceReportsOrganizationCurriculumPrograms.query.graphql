@@ -1,0 +1,13 @@
+query ComplianceReportsOrganizationCurriculumPrograms($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms {
+        id
+        label
+        acronym
+      }
+    }
+  }
+}

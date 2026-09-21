@@ -1,0 +1,7 @@
+mutation updateWeeklyPlannerSection($input: UpdateWeeklyPlannerSectionInput!) {
+  planner {
+    updateWeeklyPlannerSection(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getCourseStudentProgressReportFeed($reportId: ID!, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $filters: TaskStudentProgressReportFilter, $orderByInput: StudentProgressReportOrderByInput, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      studentProgressReport(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection, orderByInput: $orderByInput) {
+        id
+        status
+        student {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+          isArchived
+          isArchivedV2(filters: $userArchivedFilters)
+          prefix
+        }
+      }
+    }
+  }
+}

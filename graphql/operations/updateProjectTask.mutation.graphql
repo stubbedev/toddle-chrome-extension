@@ -1,0 +1,8 @@
+mutation updateProjectTask($input: UpdateProjectTaskInput!) {
+  project {
+    updateProjectTask(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

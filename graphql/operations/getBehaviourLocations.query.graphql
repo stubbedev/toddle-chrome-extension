@@ -1,0 +1,16 @@
+query getBehaviourLocations($id: ID!, $locationFilters: BehaviourLocationFilters, $includeCurriculumProgram: Boolean = false) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourLocations(filters: $locationFilters) {
+        id
+        name
+        curriculumProgram @include(if: $includeCurriculumProgram) {
+          id
+          label
+          acronym
+        }
+      }
+    }
+  }
+}

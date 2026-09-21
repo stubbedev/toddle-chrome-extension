@@ -1,0 +1,23 @@
+query getCurriculumAttendanceOptionsForProgressReport($id: ID!, $curriculumId: [ID], $filter: AttendanceOptionsSetFilterOptions) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      curriculumPrograms(curriculumIds: $curriculumId) {
+        id
+        attendanceOptionSet(filter: $filter) {
+          id
+          attendanceOptions {
+            id
+            value
+          }
+          attendanceCategories {
+            id
+            attendanceOptions {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+query getStudentAlertTypes($id: ID!, $filters: StudentAlertTypeFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      studentAlertTypes(filters: $filters) {
+        id
+        name
+        icon
+      }
+    }
+  }
+}

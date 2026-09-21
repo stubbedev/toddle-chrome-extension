@@ -1,0 +1,35 @@
+fragment studentAssigmentSubmissionItem on StudentAssignmentSubmission {
+  id
+  response
+  questionSubmissions {
+    totalCount
+    totalQuestionCount
+    totalQuestionAttempted
+  }
+  status
+  statusV2
+  submittedAt
+  returnedAt
+  isPaused
+  endTime
+  isLockScreenEnabled
+  isOnScreenCalculatorEnabled
+  isDraftSubmission
+  evaluations {
+    toolResponses(filters: {userFilter: $userFilter}) {
+      id
+      toolId
+      toolType
+      toolResponses {
+        ...toolResponseItem
+      }
+    }
+    ibPYPElementRatings {
+      id
+      value
+      ibPYPElementType
+    }
+    isEvaluated
+    isSharedWithStudent
+  }
+}

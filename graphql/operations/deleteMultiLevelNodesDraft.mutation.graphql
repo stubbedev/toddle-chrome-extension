@@ -1,0 +1,8 @@
+mutation deleteMultiLevelNodesDraft($draftId: ID) {
+  organizationManagement {
+    deleteMultiLevelNodesDraft(input: {id: $draftId}) {
+      isSuccess
+      warning
+    }
+  }
+}

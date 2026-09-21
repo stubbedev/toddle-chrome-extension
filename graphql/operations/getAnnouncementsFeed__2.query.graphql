@@ -1,0 +1,65 @@
+query getAnnouncementsFeed($organizationId: ID!, $first: Int, $after: String, $orderBy: ORDERBY_FIELD_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $states: [CIRCULAR_STATE_ENUM!], $createdBy: CIRCULAR_CREATED_BY_FILTER_ENUM, $curriculumProgramIds: [ID!], $academicYearId: ID!, $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM, $courseIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      circularFeedV3(input: {first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, states: $states, createdBy: $createdBy, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, createdIn: $createdIn, courseIds: $courseIds}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            publishedAt
+            sharedWith
+            emailSharedWith
+            entityMap {
+              entityType
+              courses {
+                id
+                title
+                isArchived
+                profileImageData {
+                  icon
+                  color
+                  acronym
+                  url
+                }
+                deletedBy {
+                  id
+                }
+              }
+              grades {
+                id
+                name
+              }
+              schoolGroups {
+                id
+                name
+                profileImageData {
+                  url
+                  icon
+                  color
+                  acronym
+                }
+                memberCount(filters: {userTypes: [staff]})
+                memberCount(filters: {userTypes: [student]})
+                memberCount(filters: {userTypes: [parent]})
+              }
+              curriculumPrograms {
+                id
+                label
+                acronym
+              }
+              users {
+                ...userDetailItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

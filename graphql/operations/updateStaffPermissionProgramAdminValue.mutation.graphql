@@ -1,0 +1,8 @@
+mutation updateStaffPermissionProgramAdminValue($updatedValues: [UpdateStaffPermissionProgramAdminValueInput!]!) {
+  platform {
+    updateStaffPermissionProgramAdminValue(input: $updatedValues) {
+      id
+    }
+    __typename
+  }
+}

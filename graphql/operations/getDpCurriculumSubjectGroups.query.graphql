@@ -1,0 +1,16 @@
+query getDpCurriculumSubjectGroups($organizationId: ID!, $filters: SubjectGroupFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      subjectGroups(filters: $filters) {
+        id
+        name
+        type
+        displaySequence
+        globalSubjectGroup {
+          id
+        }
+      }
+    }
+  }
+}

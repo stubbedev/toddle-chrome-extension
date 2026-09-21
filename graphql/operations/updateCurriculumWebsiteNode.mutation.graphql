@@ -1,0 +1,17 @@
+mutation updateCurriculumWebsiteNode($input: UpdateCurriculumWebsiteNodeInput!) {
+  planner {
+    updateCurriculumWebsiteNode(input: $input) {
+      isSuccess
+      node {
+        id
+        content {
+          id
+          attachments {
+            id
+            url
+          }
+        }
+      }
+    }
+  }
+}

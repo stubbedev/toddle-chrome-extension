@@ -1,0 +1,20 @@
+mutation updateLearningTerm($input: UpdateLearningTermInput!) {
+  planner {
+    updateLearningTerm(input: $input) {
+      id
+      label
+      abbreviation
+      startDate
+      endDate
+      academicYear {
+        id
+        startDate
+        endDate
+      }
+      curriculumProgram {
+        id
+        type
+      }
+    }
+  }
+}

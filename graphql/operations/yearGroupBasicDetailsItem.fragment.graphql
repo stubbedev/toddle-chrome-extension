@@ -1,0 +1,12 @@
+fragment yearGroupBasicDetailsItem on YearGroup {
+  id
+  name
+  grade(filters: $yearGroupGradeFilters) {
+    id
+    name
+  }
+  curriculumProgram {
+    id
+    type
+  }
+}

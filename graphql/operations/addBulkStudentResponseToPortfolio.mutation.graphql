@@ -1,0 +1,8 @@
+mutation addBulkStudentResponseToPortfolio($input: AddBulkStudentResponseToPortfolioInput!) {
+  content {
+    addBulkStudentResponseToPortfolio(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

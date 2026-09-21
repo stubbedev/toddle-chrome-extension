@@ -1,0 +1,23 @@
+query getAITutorEvaluationExistsForStudentAssignment($id: ID!) {
+  node(id: $id, type: STUDENT_ASSIGNMENT) {
+    id
+    ... on StudentAssignment {
+      id
+      ibPYPElementRatings(filters: {isFetchDeletedAiRatings: true}) {
+        ...ratingItem
+        metadata
+      }
+      elementRemarks(filters: {isFetchDeletedAiRatings: true}) {
+        ...elementRemarkItem
+      }
+      toolResponsesV2(filters: {userFilter: ALL, isFetchDeletedAiRatings: true}) {
+        id
+        toolId
+        toolType
+        toolResponses {
+          ...toolResponseItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+fragment plannerElementNodeItem on PlannerElementNode {
+  id
+  label
+  subText
+}

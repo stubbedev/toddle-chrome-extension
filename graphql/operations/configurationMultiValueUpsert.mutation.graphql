@@ -1,0 +1,5 @@
+mutation configurationMultiValueUpsert($input: ConfigurationMultiValueUpsertInput!) {
+  platform {
+    executeConfigurationMultiValueUpsert(input: $input)
+  }
+}

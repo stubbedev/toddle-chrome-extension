@@ -1,0 +1,35 @@
+fragment studentProgressReportConfigurationUnitsFeedItemV2 on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  theme {
+    id
+    resolvedMinimalTree {
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+    }
+  }
+  subjects {
+    id
+    resolvedMinimalTree {
+      ... on ResolvedFieldSubjectSet {
+        id
+        subjects {
+          id
+          name
+        }
+      }
+    }
+  }
+}

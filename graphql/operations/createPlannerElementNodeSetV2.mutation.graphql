@@ -1,0 +1,7 @@
+mutation createPlannerElementNodeSetV2($input: CreatePlannerElementNodeSetV2Input!) {
+  planner {
+    createPlannerElementNodeSetV2(input: $input) {
+      id
+    }
+  }
+}

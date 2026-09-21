@@ -1,0 +1,81 @@
+query getTimetableActivitySessions($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: ActivitySessionFilters!, $includeAttendance: Boolean!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      activitySessions(filters: $filters) {
+        id
+        name
+        startDate
+        endDate
+        startTime
+        endTime
+        activityGroup {
+          id
+          name
+          curriculumProgram {
+            id
+          }
+        }
+        activityType {
+          id
+          color
+        }
+        location {
+          id
+          label
+        }
+        students @include(if: $includeAttendance) {
+          id
+          firstName
+          lastName
+          profileImage
+        }
+        attendance @include(if: $includeAttendance) {
+          id
+          student {
+            id
+          }
+        }
+      }
+    }
+    ... on Student {
+      id
+      activitySessions(filters: $filters) {
+        id
+        name
+        startDate
+        endDate
+        startTime
+        endTime
+        activityGroup {
+          id
+          name
+          curriculumProgram {
+            id
+          }
+        }
+        activityType {
+          id
+          color
+        }
+        location {
+          id
+          label
+        }
+        students @include(if: $includeAttendance) {
+          id
+          firstName
+          lastName
+          profileImage
+        }
+        attendance @include(if: $includeAttendance) {
+          id
+          student {
+            id
+          }
+        }
+      }
+    }
+  }
+}

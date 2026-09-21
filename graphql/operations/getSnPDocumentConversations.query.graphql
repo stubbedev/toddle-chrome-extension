@@ -1,0 +1,7 @@
+query getSnPDocumentConversations($id: ID!, $academicYearId: ID, $contexts: [ACLContextEntityInput!]) {
+  node(id: $id, type: SnP_DOCUMENT_CATEGORY) {
+    ... on SnPDocumentCategory {
+      ...documentConversations
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation createOrganizationLocation($input: CreateOrganizationLocationInput!) {
+  platform {
+    createOrganizationLocation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

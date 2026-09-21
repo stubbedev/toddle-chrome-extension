@@ -1,0 +1,7 @@
+mutation deleteStudentPlanTypeTemplateAttachments($attachmentIds: [ID]!) {
+  platform {
+    deleteAttachments(attachmentIds: $attachmentIds) {
+      isSuccess
+    }
+  }
+}

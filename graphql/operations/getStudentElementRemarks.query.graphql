@@ -1,0 +1,34 @@
+query getStudentElementRemarks($id: ID!, $courseUserMapFilters: CourseUserMapFilter, $elementRemarksFilters: ibPypElementRemarkFilter) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      userMap(filters: $courseUserMapFilters) {
+        edges {
+          node {
+            id
+            user {
+              id
+              ... on Student {
+                id
+                ibPypElementRemarks(filters: $elementRemarksFilters) {
+                  id
+                  ibPYPElementId
+                  ibPYPElementType
+                  parentType
+                  message
+                  remarkType
+                  genericTag {
+                    id
+                  }
+                  academicTerm {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

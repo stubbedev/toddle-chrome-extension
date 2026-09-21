@@ -1,0 +1,15 @@
+fragment organizationProgressReportTemplateItem on Organization {
+  id
+  progressReportTemplates(filters: $filters) {
+    totalCount
+    edges {
+      node {
+        ...progressReportTemplateItem
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

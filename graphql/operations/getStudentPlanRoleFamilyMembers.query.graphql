@@ -1,0 +1,23 @@
+query getStudentPlanRoleFamilyMembers($roleId: ID!, $searchText: String, $first: Int, $after: String, $filters: RnPRoleContextDetailFilterInput) {
+  node(id: $roleId, type: RNP_ROLE) {
+    ... on RnPRole {
+      id
+      assignedFamilyMembers(first: $first, after: $after, searchText: $searchText, orderBy: FULL_NAME, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

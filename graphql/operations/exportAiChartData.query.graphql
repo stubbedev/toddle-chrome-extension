@@ -1,0 +1,12 @@
+query exportAiChartData($id: ID!, $input: ExportAiGraphDataInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        exportAiGraphData(input: $input) {
+          downloadUrl
+        }
+      }
+    }
+  }
+}

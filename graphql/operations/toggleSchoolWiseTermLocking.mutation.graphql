@@ -1,0 +1,8 @@
+mutation toggleSchoolWiseTermLocking($input: UpdateAcademicTermInput!) {
+  organizationManagement {
+    updateAcademicTerm(input: $input) {
+      id
+      lockingStatus
+    }
+  }
+}

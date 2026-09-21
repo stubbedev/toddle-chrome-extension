@@ -1,0 +1,8 @@
+query getStaffCoursesStudents($id: ID!, $searchText: String, $filters: CourseFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+  }
+}

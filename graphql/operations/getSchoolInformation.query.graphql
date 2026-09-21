@@ -1,0 +1,31 @@
+query getSchoolInformation($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      name
+      curriculumPrograms(filters: {programType: ALL}) {
+        id
+        label
+        displayName
+        attachments {
+          id
+          title
+          url
+          parentType
+        }
+        programDataLanguages
+        address {
+          id
+          line1
+          city
+          state
+          zipcode
+          country
+          phoneNumber
+          email
+        }
+        websiteLink
+      }
+    }
+  }
+}

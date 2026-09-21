@@ -1,0 +1,98 @@
+fragment unitPlan on UnitPlan {
+  id
+  templateId
+  unitType {
+    id
+    uid
+    value
+  }
+  state
+  owner {
+    id
+  }
+  resolvedGrades {
+    id
+    name
+  }
+  courses {
+    ...courseGradeItem
+  }
+  title {
+    id
+    uid
+    value
+  }
+  unitCode {
+    id
+    uid
+    value
+  }
+  createdBy {
+    id
+    firstName
+    lastName
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  subjects {
+    id
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  derivedStatus(region: $region)
+  publishedDate(region: $region)
+  academicYears {
+    ...academicYearItem
+  }
+  allCollaborators(filters: $collaboratorsFilter) {
+    isEditPermission
+    edges {
+      permission
+      node {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+  exceptionalCollaborators(filters: $exceptionalCollaboratorsFilter) {
+    totalCount
+    edges {
+      node {
+        id
+      }
+      permission
+    }
+  }
+  createdAt
+  image {
+    id
+    uid
+    value
+  }
+  defaultStaffAccess
+  isSharedWithFamilies
+  isSharedWithStudents
+  allFields {
+    id
+    uid
+    value
+  }
+  isImported
+  ...unitSectionsSharingItem
+}
+
+fragment resolvedMinimalTreeItem on ResolvedFieldValue {
+  id
+  type
+  ... on ResolvedFieldSubjectSet {
+    id
+    subjects {
+      id
+      name
+    }
+  }
+}

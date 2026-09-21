@@ -1,0 +1,22 @@
+query getStudentMembership($id: ID!, $filters: ExamRegistrationStudentFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      allStudents(filters: $filters) {
+        id
+        category
+        isExcluded
+        firstName
+        lastName
+        student {
+          id
+          profileImage
+        }
+        anticipatedSessionRegistrationDetails {
+          id
+          session
+        }
+      }
+    }
+  }
+}

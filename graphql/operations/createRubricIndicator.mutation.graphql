@@ -1,0 +1,12 @@
+mutation createRubricIndicator($rubricId: ID!, $createdBy: ID!, $label: String!, $putAfterItemId: ID) {
+  planner {
+    createRubricIndicator(input: {createdBy: $createdBy, rubricId: $rubricId, label: $label, putAfterItemId: $putAfterItemId}) {
+      indicator {
+        ...indicatorItem
+      }
+      descriptors {
+        ...descriptorItem
+      }
+    }
+  }
+}

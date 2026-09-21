@@ -1,0 +1,5 @@
+mutation updateYearGroupTermsSources($input: AcademicTermTranscriptDataSourceUpdateInput) {
+  documentation {
+    updateAcademicTermTranscriptDataSource(input: $input)
+  }
+}

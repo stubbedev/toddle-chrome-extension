@@ -1,0 +1,58 @@
+fragment learningCourseListItem on LearningCourse {
+  id
+  title
+  isArchived
+  displayMetadata
+  childCourses {
+    id
+  }
+  grades {
+    id
+  }
+  subjects {
+    id
+  }
+  subjectGroup {
+    id
+  }
+  gradingPeriods {
+    edges {
+      node {
+        id
+        label
+        startDate
+        endDate
+        academicYear {
+          id
+          startDate
+          endDate
+        }
+      }
+    }
+  }
+  responseLanguage {
+    id
+  }
+  academicYears {
+    id
+  }
+  associatedLevels {
+    id
+    label
+    type
+  }
+  subjectLevelMap {
+    subject {
+      id
+    }
+    associatedLevels {
+      id
+    }
+  }
+  academicCourse {
+    id
+    students(filters: $academicCourseStudentsFilters) {
+      id
+    }
+  }
+}

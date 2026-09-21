@@ -1,0 +1,41 @@
+query getStandardSets($id: ID!, $type: ENTITY_TYPE_ENUM!, $plannerElementNodeSetFilters: PlannerElementNodeSetFilters, $plannerElementNodeFilters: PlannerElementNodeFilters, $isPYPCurriculum: Boolean! = false, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: $type) {
+    ... on CurriculumProgram {
+      plannerElementNodeSets(filters: $plannerElementNodeSetFilters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+    ... on LearningCourse {
+      id
+      standardsWrapper(filters: $plannerElementNodeFilters, orderByDirection: $orderByDirection) @skip(if: $isPYPCurriculum) {
+        standardsEdge {
+          standardSet {
+            id
+            title
+          }
+          standards {
+            id
+          }
+        }
+        totalCount
+      }
+      benchmarksWrapper(filters: $plannerElementNodeFilters, orderByDirection: $orderByDirection) @include(if: $isPYPCurriculum) {
+        standardsEdge {
+          standardSet {
+            id
+            title
+          }
+          standards {
+            id
+          }
+        }
+        totalCount
+      }
+    }
+  }
+}

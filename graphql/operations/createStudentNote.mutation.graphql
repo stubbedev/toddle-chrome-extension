@@ -1,0 +1,7 @@
+mutation createStudentNote($title: String, $category: ID!, $description: String, $student: ID!, $attachments: [AttachmentInput!]) {
+  platform {
+    createStudentNote(input: {title: $title, category: $category, description: $description, student: $student, attachments: $attachments}) {
+      ...studentNoteItem
+    }
+  }
+}

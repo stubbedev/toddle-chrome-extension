@@ -1,0 +1,7 @@
+mutation createWeeklyPlannerTemplate($input: CreateWeeklyPlannerTemplateInput!) {
+  planner {
+    createWeeklyPlannerTemplate(input: $input) {
+      ...classPlannerItem
+    }
+  }
+}

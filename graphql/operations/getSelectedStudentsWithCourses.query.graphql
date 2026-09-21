@@ -1,0 +1,24 @@
+query getSelectedStudentsWithCourses($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      students(filters: $filters) {
+        edges {
+          node {
+            id
+            courses {
+              id
+              learningCourse {
+                id
+                academicCourse {
+                  id
+                  code
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

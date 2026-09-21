@@ -1,0 +1,7 @@
+mutation manageExternalAssessmentRecordSetStudents($input: ManageExternalAssessmentRecordSetStudentsInput!) {
+  externalAssessment {
+    manageExternalAssessmentRecordSetStudents(input: $input) {
+      isSuccess
+    }
+  }
+}

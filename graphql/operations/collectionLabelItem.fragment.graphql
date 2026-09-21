@@ -1,0 +1,12 @@
+fragment collectionLabelItem on OrganizationResourceConnection {
+  edges {
+    node {
+      id
+      label
+      entity {
+        id
+        ...subjectItem
+      }
+    }
+  }
+}

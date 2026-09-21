@@ -1,0 +1,119 @@
+query getResourceListV2($input: ResourceBankInput!) {
+  platform {
+    resourceBankSearchResultV2(input: $input) {
+      edges {
+        node {
+          ...resourceBankItem
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      errorMessage
+    }
+  }
+}
+
+fragment notificationItem on Notification {
+  id
+  type
+  primaryEntity
+  isNew
+  isRead
+  metadata
+  category
+  createdBy {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+    type
+    profileImage
+    ... on Student {
+      preferredName
+      pronouns
+      suffix
+    }
+  }
+  createdAt
+  updatedBy {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+    ... on Student {
+      preferredName
+      pronouns
+      suffix
+    }
+  }
+  course {
+    ...courseItem
+    grades {
+      id
+      name
+    }
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  courses {
+    id
+    title
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  updatedAt
+  contextData {
+    ... on Grade {
+      id
+      name
+    }
+    ... on Course {
+      id
+      title
+      learningCourse {
+        id
+        title
+        academicCourse {
+          id
+          label
+        }
+      }
+    }
+    ... on YearGroup {
+      id
+      name
+    }
+    ... on Student {
+      id
+      firstName
+      lastName
+      middleName
+      type
+      preferredName
+      pronouns
+      suffix
+    }
+    ... on BehaviourIncident {
+      id
+      uid
+      category {
+        id
+        rootCategory {
+          id
+          name
+        }
+      }
+    }
+  }
+  messageData
+  extensionType
+  extensionData
+}

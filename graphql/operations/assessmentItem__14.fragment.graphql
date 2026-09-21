@@ -1,0 +1,24 @@
+fragment assessmentItem on Assessment {
+  id
+  unitPlan {
+    id
+    subjects {
+      id
+      resolvedMinimalTree {
+        ... on ResolvedFieldSubjectSet {
+          id
+          type
+          subjects {
+            id
+            name
+            isDeleted
+            isArchived
+          }
+        }
+      }
+    }
+  }
+  fields(uids: $uids) {
+    ...PlannerFieldItem
+  }
+}

@@ -1,0 +1,13 @@
+query getProjectSupervisorAndStudents($projectId: ID!) {
+  node(id: $projectId, type: PROJECT) {
+    ... on Project {
+      id
+      supervisors {
+        ...userItem
+      }
+      students {
+        ...userItem
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+query getProjectDetailsQuery($id: ID!, $studentProjectPortfolioFilter: StudentProjectPortfolioFilter, $academicYearId: ID, $completionStatusFilters: CompletionStatusFilter, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      projectComments(filters: {projectCommentType: PROJECT_TASK}) {
+        totalCount
+        unreadCountV2
+      }
+      notificationBadgeCounts {
+        unreadPostCount
+        unreadPostCommentCount
+        unreadCommentCount
+        unreadAcademicHonestyCount
+        unreadAttachmentCount
+        unreadPendingReviewLogCount
+        unreadResolvedReviewLogCount
+        unreadPendingReviewLogCommentCount
+        unreadResolvedReviewLogCommentCount
+        unreadAttachmentAnnotatedCount
+        unreadProjectEvidenceCommentCount
+        unreadProjectTasksCommentsCount
+        unreadProjectPresentationCommentsCount
+      }
+      studentCollaborators(filters: {roles: [COLLABORATOR]}) {
+        student {
+          ...studentInfo
+          type
+        }
+      }
+      students {
+        ...userItem
+        studentProjectPortfolio(filters: $studentProjectPortfolioFilter) {
+          id
+          completionStatus(filters: $completionStatusFilters) {
+            isComplete
+            markedCompletedAt
+            markedCompletedBy {
+              ...userNameFields
+            }
+          }
+        }
+        alertTypes {
+          ...alertTypeFields
+        }
+      }
+      reportStatus
+      status
+      supervisors(filters: {approvalStatus: [APPROVED, PENDING]}) {
+        isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+        ...SupervisorInfoItemV2
+      }
+      grades {
+        id
+        name
+      }
+      template {
+        id
+        name
+        body
+        type
+        helpEnabledFields {
+          id
+          uid
+          type
+          helpText {
+            id
+            title
+            content
+            subtitle
+          }
+        }
+      }
+      fields {
+        ...projectFieldItem
+      }
+      projectGroup {
+        id
+        name
+        subject {
+          id
+          name
+        }
+      }
+    }
+  }
+}

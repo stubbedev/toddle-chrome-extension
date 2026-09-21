@@ -1,0 +1,68 @@
+query getMultiLevelBehaviourCategoryNodesWithOutcomes($id: ID!, $type: MULTI_LEVEL_NODE_TYPE!, $behaviourCategoryFilters: BehaviourCategoryFilters, $includeDefaultOutcomes: Boolean = true) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      getMultiLevelNodes(input: {type: $type, behaviourCategoryFilters: $behaviourCategoryFilters}) {
+        type
+        rootNodes
+        nodes {
+          id
+          ... on BehaviourCategory {
+            name
+            code
+            incidentCount
+            color
+            parentCategory {
+              id
+              name
+            }
+            children
+            level
+            defaultOutcomes @include(if: $includeDefaultOutcomes) {
+              id
+              points
+              severity {
+                id
+              }
+              appliedActions {
+                id
+                canOverride
+                action {
+                  id
+                  title
+                  state
+                  metadata
+                }
+              }
+              description
+              confidentialNote
+              attachments {
+                ...attachmentItem
+              }
+              confidentialAttachments {
+                ...attachmentItem
+              }
+              accessibilityMap {
+                ...behaviourAccessibilityMapItem
+              }
+            }
+            rootCategory {
+              id
+              name
+              iconData
+              color
+              sentiment {
+                id
+                label
+              }
+              curriculumPrograms {
+                id
+              }
+            }
+          }
+        }
+        draftId
+      }
+    }
+  }
+}

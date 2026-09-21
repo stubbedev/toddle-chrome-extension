@@ -1,0 +1,5 @@
+mutation configurationCacheFlush($input: ConfigurationCacheFlushInput!) {
+  platform {
+    flushConfigurationCache(input: $input)
+  }
+}

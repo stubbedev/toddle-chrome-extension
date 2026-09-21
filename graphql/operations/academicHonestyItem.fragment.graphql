@@ -1,0 +1,16 @@
+fragment academicHonestyItem on ProjectAcademicHonesty {
+  id
+  description
+  meetingDate
+  isRead
+  isLocked
+  isStarred
+  displaySequence
+  lockingState {
+    state
+    scheduledAt
+  }
+  createdBy {
+    ...userItem
+  }
+}

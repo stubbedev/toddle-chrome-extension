@@ -1,0 +1,41 @@
+query getPypPlannerThemeNodes($id: ID!, $elementTypes: [String!], $type: ENTITY_TYPE_ENUM!, $filters: PlannerBenchmarkFilter, $themeFilters: PlannerThemeFilters) {
+  node(id: $id, type: $type) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      plannerElementSets(elementTypes: $elementTypes) {
+        id
+        type
+        label
+        ... on PlannerThemeSet {
+          nodes(filters: $themeFilters) {
+            id
+            label
+            descriptor
+            focusAreas {
+              id
+              label
+            }
+          }
+        }
+        ... on PlannerBenchmarkSet {
+          rootNodes
+          nodes(filters: $filters) {
+            id
+            label
+            subText
+            code
+            type
+            parent
+            children
+            depth
+            grades {
+              id
+            }
+            subject
+          }
+        }
+      }
+    }
+  }
+}

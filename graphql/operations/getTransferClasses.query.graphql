@@ -1,0 +1,67 @@
+query getTransferClasses($organizationId: ID!, $filters: CourseFilterInput, $after: String) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      courses(first: 30, after: $after, orderBy: LEARNING_COURSE_TITLE, orderByDirection: ASC, filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            profileImageData {
+              url
+              icon
+              color
+              acronym
+            }
+            genericTags {
+              id
+              label
+              type
+              abbreviation
+            }
+            subjectLevelMap {
+              subject {
+                id
+                name
+              }
+              associatedLevels {
+                id
+                label
+                abbreviation
+              }
+            }
+            curriculumProgram {
+              id
+              label
+              acronym
+              logo
+              type
+              academicSetupType
+            }
+            learningCourse {
+              id
+              title
+              displayMetadata
+              academicCourse {
+                id
+                code
+              }
+              subjects {
+                id
+                name
+              }
+              grades {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

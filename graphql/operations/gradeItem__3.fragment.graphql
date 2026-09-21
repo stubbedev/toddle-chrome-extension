@@ -1,0 +1,17 @@
+fragment gradeItem on Grade {
+  id
+  name
+  globalGrade {
+    id
+    uid
+    name
+    constants
+  }
+  students(filters: $gradeStudentsFilters) {
+    totalCount
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  displaySequence
+}

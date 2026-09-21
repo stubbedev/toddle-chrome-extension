@@ -1,0 +1,13 @@
+query getEvaluatedButNotSharedAssignmentsCountByTerm($id: ID!, $termFilters: TermFilters, $assignmentFeedFilters: AssignmentFeedFilters) {
+  node(id: $id, type: ACADEMIC_YEAR) {
+    ... on AcademicYear {
+      id
+      terms(filters: $termFilters) {
+        id
+        assignments(filters: $assignmentFeedFilters) {
+          totalCount
+        }
+      }
+    }
+  }
+}

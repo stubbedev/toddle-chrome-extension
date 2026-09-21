@@ -1,0 +1,16 @@
+query getStudentProjectPortfolioDetails($id: ID!) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      notificationBadgeCounts {
+        learningOutcomesCommentCount
+        feedbackCommentCount
+        feedbackCount
+        interviewCount
+      }
+      fields {
+        ...projectFieldItem
+      }
+    }
+  }
+}

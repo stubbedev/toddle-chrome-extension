@@ -1,0 +1,21 @@
+query getCalendarEventItems($id: ID!, $timetableFilter: TimetableFilterOptions!, $curriculumIds: [ID!]!, $calendarEventsFilters: RoutineCalendarEventFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        timetables(filters: $timetableFilter) {
+          id
+          label
+          calendarEventItems(filters: $calendarEventsFilters) {
+            id
+            startDateTime
+            endDateTime
+            label
+          }
+        }
+      }
+    }
+  }
+}

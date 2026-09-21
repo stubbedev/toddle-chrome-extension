@@ -1,0 +1,116 @@
+query getOrganizationSubjects($id: ID!, $filters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        ...organizationSubjectItem
+        icon
+        grades {
+          id
+        }
+      }
+    }
+  }
+}
+
+fragment ratingItem on IBPYPElementRating {
+  id
+  academicYear {
+    id
+    startDate
+    endDate
+    terms {
+      id
+    }
+  }
+  academicTerm {
+    id
+    label
+    startDate
+    endDate
+  }
+  parent {
+    id
+    ... on StudentAssessmentEvaluation {
+      id
+      assessment {
+        id
+        title {
+          id
+          value
+        }
+        assessmentType {
+          id
+          value
+        }
+        image {
+          id
+          value
+        }
+      }
+      assessmentEvaluation {
+        id
+      }
+    }
+    ... on StudentProgressReport {
+      id
+      courseProgressReportTask {
+        id
+        title
+      }
+    }
+    ... on Post {
+      id
+      title
+      attachments {
+        ...attachmentItem
+      }
+    }
+    ... on ImportedEntity {
+      id
+      type
+      name
+    }
+    ... on StudentAssignment {
+      id
+      assignment {
+        id
+        contentType
+        course {
+          id
+        }
+        content {
+          id
+          ... on Assessment {
+            id
+            title {
+              id
+              value
+            }
+            assessmentType {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+          }
+          ... on AssignmentResource {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+  createdBy {
+    ...staffItem
+  }
+  publishedAt
+  parentType
+  academicCriteriaValue {
+    ...criteriaValueItem
+  }
+}

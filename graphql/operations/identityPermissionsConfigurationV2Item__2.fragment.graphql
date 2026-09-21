@@ -1,0 +1,22 @@
+fragment identityPermissionsConfigurationResponseItem on ConfigurationResponse {
+  configurations @include(if: $isSettingsPage) {
+    ...configurationV2SettingItem
+  }
+  configurations @skip(if: $isSettingsPage) {
+    ...identityPermissionsConfigurationV2Item
+  }
+  entityGroups @include(if: $isAdminPage) {
+    entityId
+    entityType
+  }
+}
+
+fragment identityPermissionsConfigurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+  description
+}

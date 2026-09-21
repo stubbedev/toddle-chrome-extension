@@ -1,0 +1,25 @@
+query previewAcademicSubjectToSchoolsMapping($academicSubjectId: ID!, $schoolCurriculumProgramIds: [ID!]!) {
+  platform {
+    previewAcademicSubjectToSchoolsMapping(input: {academicSubjectId: $academicSubjectId, schoolCurriculumProgramIds: $schoolCurriculumProgramIds}) {
+      academicSubjectId
+      mappedTo {
+        schoolCurriculumProgramId
+        existingChildSubjectId
+        alreadyMapped
+        departmentToCreate {
+          id
+          name
+          type
+        }
+        levelsToCreate {
+          id
+          label
+        }
+      }
+      cannotBeMapped {
+        schoolCurriculumProgramId
+        missingGradeIds
+      }
+    }
+  }
+}

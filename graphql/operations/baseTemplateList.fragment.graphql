@@ -1,0 +1,4 @@
+fragment baseTemplateList on ProgressReportBaseTemplate {
+  id
+  name
+}

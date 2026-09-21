@@ -1,0 +1,10 @@
+fragment attachmentGroupItem on AttachmentGroup {
+  id
+  metadata
+  attachments {
+    ...attachmentItem
+  }
+  studentTemplate {
+    id
+  }
+}

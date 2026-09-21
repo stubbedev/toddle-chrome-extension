@@ -1,0 +1,27 @@
+query getAllStudentExamRegistration($id: ID!, $filters: ExamRegistrationStudentFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      allStudents(filters: $filters) {
+        id
+        firstName
+        lastName
+        isLocked
+        updatedAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+        isExcluded
+        student {
+          id
+          profileImage
+          alertTypes {
+            ...alertTypeFields
+          }
+        }
+      }
+    }
+  }
+}

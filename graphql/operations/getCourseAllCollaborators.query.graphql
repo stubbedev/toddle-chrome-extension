@@ -1,0 +1,14 @@
+query getCourseAllCollaborators($id: ID!) {
+  node(id: $id, type: COURSE) {
+    ... on Course {
+      id
+      allCollaborators {
+        edges {
+          node {
+            ...staffItem
+          }
+        }
+      }
+    }
+  }
+}

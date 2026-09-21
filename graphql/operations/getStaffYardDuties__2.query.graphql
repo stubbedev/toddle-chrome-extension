@@ -1,0 +1,34 @@
+query getStaffYardDuties($id: ID!, $academicYearId: ID, $yardDutyFilters: YardDutySlotFilter) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      yardDutySlots(filters: $yardDutyFilters) {
+        date
+        day
+        teachers {
+          staff {
+            id
+            ...staffNameFields
+            profileImage
+            email
+            isArchived
+            isArchivedV2(filters: {academicYearId: $academicYearId})
+          }
+          type
+        }
+        isSelected
+        yardDuty {
+          id
+          label
+          location {
+            id
+            label
+            abbreviation
+          }
+        }
+        startTime
+        endTime
+      }
+    }
+  }
+}

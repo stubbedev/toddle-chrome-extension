@@ -1,0 +1,34 @@
+query getProjectStudentCriteriaDetails($id: ID!, $filtersForGeneric: ibPYPElementRatingFiltersForGeneric, $elementIds: [ID!]) {
+  node(id: $id, type: PROJECT) {
+    ... on Project {
+      id
+      students {
+        id
+        ibPYPElementRatings(dataSet: PROJECT_ASSESSMENT, filtersForGeneric: $filtersForGeneric) {
+          id
+          value
+          ibPYPElementId
+          isComputedRating
+          academicCriteriaSet {
+            id
+            criteriaType
+          }
+          academicCriteriaValue {
+            id
+            label
+            abbreviation
+          }
+        }
+        ibPypElementRemarks(elementTypes: [PROJECT_GROUP], elementIds: $elementIds) {
+          id
+          message
+          ibPYPElementId
+          ibPYPElementType
+        }
+      }
+      assessmentRemarks {
+        ...remarkMessage
+      }
+    }
+  }
+}

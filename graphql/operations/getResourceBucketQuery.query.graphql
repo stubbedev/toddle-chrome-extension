@@ -1,0 +1,23 @@
+query getResourceBucketQuery($ids: [ID!], $type: ENTITY_TYPE_ENUM_MULTI_NODE!, $resourceFilters: resourceLibraryFilter) {
+  multiNode(ids: $ids, type: $type) {
+    id
+    ... on UnitPlan {
+      id
+      resourceLibrary(filters: $resourceFilters) {
+        leCount
+        assessmentCount
+        edges {
+          type
+          node {
+            ... on Assessment {
+              ...assessmentItem
+            }
+            ... on LearningEngagement {
+              ...leItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+query getSelectedStudentsExcusalDetails($id: ID!, $studentsFilters: OrgConnectionFilterInput, $studentExcusalFilters: AttendanceExcusalFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(filters: $studentsFilters) {
+        edges {
+          node {
+            id
+            ...studentNameFields
+            familyMembers {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+            studentAttendanceExcusals(filters: $studentExcusalFilters) {
+              edges {
+                node {
+                  id
+                  status
+                  startDate
+                  endDate
+                  startTime
+                  endTime
+                  durationType
+                  periods {
+                    id
+                    label
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

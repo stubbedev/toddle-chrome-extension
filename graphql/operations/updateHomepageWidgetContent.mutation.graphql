@@ -1,0 +1,11 @@
+mutation updateHomepageWidgetContent($input: UpdateHomepageWidgetContentInput!) {
+  platform {
+    updateHomepageWidgetContent(input: $input) {
+      isSuccess
+      warning
+      homepageWidget {
+        ...homepageWidgetFields
+      }
+    }
+  }
+}

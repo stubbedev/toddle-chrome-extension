@@ -1,0 +1,5 @@
+fragment baseTemplateItemDetails on ProgressReportBaseTemplate {
+  id
+  name
+  body
+}

@@ -1,0 +1,11 @@
+mutation deleteMealTemplate($ids: [ID!]!) {
+  documentation {
+    deletePostTemplateDataSet(input: {ids: $ids}) {
+      isSuccess
+      warning
+      error {
+        message
+      }
+    }
+  }
+}

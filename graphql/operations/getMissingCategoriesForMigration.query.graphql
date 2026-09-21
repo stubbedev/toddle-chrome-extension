@@ -1,0 +1,14 @@
+query getMissingCategoriesForMigration($input: MissingCategoriesForAcademicTermMigrationInput!) {
+  documentation {
+    internalToolsData {
+      progressReport {
+        missingCategoriesForAcademicTermMigration(input: $input) {
+          id
+          subjectName
+          gradeName
+          categoryName
+        }
+      }
+    }
+  }
+}

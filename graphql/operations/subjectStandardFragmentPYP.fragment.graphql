@@ -1,0 +1,14 @@
+fragment subjectStandardFragmentPYP on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      title
+      subject {
+        id
+        name
+        isArchived
+      }
+      isArchived
+    }
+  }
+}

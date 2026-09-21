@@ -1,0 +1,11 @@
+mutation updateStudentPlan($input: UpdateStudentPlanInput!) {
+  documentation {
+    updateStudentPlan(input: $input) {
+      isSuccess
+      studentPlan {
+        id
+        status
+      }
+    }
+  }
+}

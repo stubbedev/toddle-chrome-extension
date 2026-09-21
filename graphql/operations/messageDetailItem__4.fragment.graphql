@@ -1,0 +1,16 @@
+fragment messageDetailItem on MessageV2 {
+  id
+  label
+  createdAt
+  sentimentScore @skip(if: $isSentimentHidden)
+  createdBy {
+    id
+    firstName
+    lastName
+    middleName
+    type
+  }
+  attachments {
+    id
+  }
+}

@@ -1,0 +1,9 @@
+mutation platformMutations($id: ID!) {
+  platform {
+    removeToddleBuddy(id: $id) {
+      id
+      isSuccess
+      warning
+    }
+  }
+}

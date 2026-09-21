@@ -1,0 +1,22 @@
+fragment benchmarkRemovedFeed on PlannerBenchmarkSetWrapper {
+  dataSetEditChanges(filters: {locale: $defaultLocale}) {
+    removedFeed(first: $first, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...publishedBasicDetailsBenchmarkItem
+        }
+      }
+      pageInfo {
+        ...pageInfoFields
+      }
+    }
+  }
+}
+
+fragment updatedColumnDataItem on UpdatedColumnData {
+  gradeScaleId
+  columnName
+  oldValue
+  newValue
+}

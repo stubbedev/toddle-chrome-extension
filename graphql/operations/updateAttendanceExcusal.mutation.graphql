@@ -1,0 +1,20 @@
+mutation updateAttendanceExcusal($excusalId: ID!, $durationType: ATTENDANCE_EXCUSAL_DURATION_TYPE_ENUM, $startDate: String, $endDate: String, $reason: String, $periodIds: [ID!], $newAttachments: [AttachmentInput!], $removedAttachments: [ID!], $curriculumProgramId: ID!, $academicYearId: ID!, $attendanceOptionId: ID, $reasonId: ID, $startTime: String, $endTime: String, $notifiedBy: ID, $notifiedVia: ATTENDANCE_NOTIFICATION_CHANNEL_ENUM, $recurrenceSetting: ExcusalRecurrenceSettingInput) {
+  platform {
+    updateAttendanceExcusal(input: {excusalId: $excusalId, durationType: $durationType, startDate: $startDate, endDate: $endDate, reason: $reason, periodIds: $periodIds, newAttachments: $newAttachments, removedAttachments: $removedAttachments, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId, attendanceOptionId: $attendanceOptionId, reasonId: $reasonId, startTime: $startTime, endTime: $endTime, notifiedBy: $notifiedBy, notifiedVia: $notifiedVia, recurrenceSetting: $recurrenceSetting}) {
+      response {
+        ...attendanceExcusalItem
+        isRecurringEvent
+        seriesParentId
+        recurrenceSetting {
+          frequency
+          weekDays
+          interval
+          endDate
+          monthDays
+          setPositions
+          count
+        }
+      }
+    }
+  }
+}

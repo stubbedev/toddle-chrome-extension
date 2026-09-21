@@ -1,0 +1,14 @@
+query getStateWiseCount($id: ID!, $input: BehaviourIncidentFeedInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourIncidentFeed(input: $input) {
+        stateWiseCount {
+          draft
+          published
+          resolved
+        }
+      }
+    }
+  }
+}

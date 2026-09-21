@@ -1,0 +1,39 @@
+query getSubjectPOI($id: ID!, $filters: SubjectVerticalOverviewFilters) {
+  node(id: $id, type: SUBJECT) {
+    ... on Subject {
+      id
+      plannerElementNodeVerticalInsight(filters: $filters) {
+        plannerNode {
+          id
+        }
+        edges {
+          grade {
+            id
+            name
+          }
+          unitPlanData {
+            unitPlans {
+              id
+            }
+            totalCount
+          }
+          assessmentData {
+            assessments {
+              id
+            }
+            totalCount
+          }
+          questionsData {
+            questions {
+              id
+              assessmentDataV2 {
+                id
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

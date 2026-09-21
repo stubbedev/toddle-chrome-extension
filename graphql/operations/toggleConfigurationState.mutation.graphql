@@ -1,0 +1,5 @@
+mutation toggleConfigurationState($input: ConfigurationStateToggleInput!) {
+  platform {
+    toggleConfigurationState(input: $input)
+  }
+}

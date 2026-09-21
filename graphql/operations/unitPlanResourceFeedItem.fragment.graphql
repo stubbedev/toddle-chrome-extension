@@ -1,0 +1,9 @@
+fragment unitPlanResourceFeedItem on UnitPlan {
+  id
+  organizationResources(searchText: $searchText) {
+    ...organizationResourceItem
+  }
+  unitFlowResources {
+    ...unitFlowResourcesItem
+  }
+}

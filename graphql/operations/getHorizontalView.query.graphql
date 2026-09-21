@@ -1,0 +1,67 @@
+query getHorizontalView($id: ID!, $uids: [String!], $detailedView: Boolean = true, $isDP: Boolean = false, $filters: HorizontalViewFilterInput, $subjectFilters: SubjectFilters) {
+  node(id: $id, type: GRADE) {
+    id
+    ... on Grade {
+      id
+      name
+      subjects(filters: $subjectFilters) @skip(if: $isDP) {
+        id
+        name
+        isArchived
+        subjectGroup {
+          id
+        }
+      }
+      subjects(filters: $subjectFilters) @include(if: $isDP) {
+        id
+        name
+        type
+        isArchived
+        subjectGroup {
+          id
+          name
+        }
+        variants {
+          level {
+            id
+            label
+          }
+        }
+        contentSubject {
+          id
+          assessmentYearTitle
+        }
+      }
+      plannerElementNodeHorizontalInsight(filters: $filters) {
+        plannerNode {
+          id
+          label
+          type
+        }
+        edges {
+          subject {
+            id
+          }
+          unitPlans @include(if: $detailedView) {
+            id
+            fields(uids: $uids) {
+              ...unitPlanFieldDetails
+            }
+            startDate
+            endDate
+          }
+          unitPlans @skip(if: $detailedView) {
+            id
+          }
+          totalCount
+        }
+        unitPlanData {
+          totalCount
+          unitPlans {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+fragment allEvidenceTypesItem on EvidenceInterface {
+  id
+  ... on Attachment {
+    ...attachmentItem
+  }
+  ... on Post {
+    ...postItem
+  }
+}
+
+fragment curriculumProgramBasicDetailsItem on CurriculumProgram {
+  id
+  type
+  acronym
+  nodeInterfaceType
+}

@@ -1,0 +1,17 @@
+mutation createSubjectGroup($name: String!, $uid: String, $curriculumProgramId: ID!, $profileImageData: JSON, $type: SUBJECT_GROUP_TYPE_ENUM) {
+  platform {
+    createSubjectGroup(input: {name: $name, uid: $uid, profileImageData: $profileImageData, curriculumProgramId: $curriculumProgramId, type: $type}) {
+      isSuccess
+      warning
+      subjectGroup {
+        id
+        name
+        uid
+        type
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

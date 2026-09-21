@@ -1,0 +1,15 @@
+query getActionsAppliedSchools($ids: [ID!]) {
+  multiNode(ids: $ids, type: BEHAVIOUR_ACTION) {
+    ... on BehaviourAction {
+      id
+      appliedSchools(input: {fetchAll: true}) {
+        edges {
+          node {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

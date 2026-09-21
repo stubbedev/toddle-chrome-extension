@@ -1,0 +1,4 @@
+fragment gradeItem on Grade {
+  id
+  name
+}

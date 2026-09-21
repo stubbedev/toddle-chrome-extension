@@ -1,0 +1,8 @@
+mutation prepareDraftForAcademicYearTransitionStates($input: PrepareDraftForAcademicYearTransitionStatesInput!) {
+  planner {
+    prepareDraftForAcademicYearTransitionStates(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

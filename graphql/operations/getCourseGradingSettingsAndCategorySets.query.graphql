@@ -1,0 +1,16 @@
+query getCourseGradingSettingsAndCategorySets($id: ID!, $filters: GradingConfigurationFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      gradingMethodology {
+        id
+        gradingMethodologyTypes
+      }
+      gradingConfigurations(filters: $filters) {
+        ...GradingConfigurationFragment
+        ...GradingCategorySetsFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getAnalyticsDataExport($id: ID!, $exportFilters: MetricDataExportFilterInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      analytics {
+        metricDataExport(filter: $exportFilters) {
+          url
+        }
+      }
+    }
+  }
+}

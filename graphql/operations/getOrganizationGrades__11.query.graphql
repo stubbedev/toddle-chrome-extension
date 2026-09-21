@@ -1,0 +1,43 @@
+query getOrganizationGrades($id: ID!, $filters: AssignmentFeedFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades {
+        assignmentCount(filters: $filters)
+        curriculumProgram {
+          ...curriculumProgramBasicDetailsItem
+        }
+        ...gradeItem
+      }
+    }
+  }
+}
+
+fragment worksheetItem on FlowSectionItem {
+  id
+  title {
+    id
+    value
+  }
+  createdBy {
+    id
+    profileImage
+    firstName
+    lastName
+  }
+  fields(uids: ["subjectLevel"]) {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldGenericTags {
+        id
+        type
+        genericTags {
+          id
+          label
+        }
+      }
+    }
+  }
+}

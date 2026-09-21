@@ -1,0 +1,21 @@
+mutation duplicateBehaviourCategory($input: DuplicateBehaviourCategoryInput!) {
+  platform {
+    duplicateBehaviourCategory(input: $input) {
+      id
+      name
+      color
+      sentiment {
+        id
+        label
+      }
+      curriculumPrograms {
+        id
+        label
+        acronym
+      }
+      pointsSetup {
+        ...behaviourCategoryPointsSetupFragment
+      }
+    }
+  }
+}

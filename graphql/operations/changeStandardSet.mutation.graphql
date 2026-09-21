@@ -1,0 +1,13 @@
+mutation changeStandardSet($id: ID!, $standardSet: ID, $name: String, $changeStandardSet: Boolean) {
+  platform {
+    updateSubjectV2(input: {id: $id, standardSet: $standardSet, name: $name, changeStandardSet: $changeStandardSet}) {
+      isSuccess
+      warning
+      subject {
+        ...subjectItem
+      }
+      __typename
+    }
+    __typename
+  }
+}

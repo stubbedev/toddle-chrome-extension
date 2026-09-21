@@ -1,0 +1,24 @@
+fragment projectDeadline on ProjectDeadline {
+  id
+  project {
+    id
+  }
+  deadline {
+    id
+    title
+    deadlineDate
+    description
+    isDeadlineAllDay
+    projectGroup {
+      ...projectGroupInfo
+      yearGroup {
+        id
+        name
+      }
+    }
+    createdBy {
+      ...supervisorInfo
+    }
+  }
+  isDeadlineCompleted
+}

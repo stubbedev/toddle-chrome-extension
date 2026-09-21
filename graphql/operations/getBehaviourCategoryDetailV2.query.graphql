@@ -1,0 +1,67 @@
+query getBehaviourCategoryDetailV2($id: ID!, $includeEditChanges: Boolean = false, $includeAvailableActions: Boolean = true) {
+  node(id: $id, type: BEHAVIOUR_CATEGORY) {
+    ... on BehaviourCategory {
+      id
+      name
+      sourcedId
+      color
+      iconData
+      isArchived
+      isSeverityLinked
+      isPushedFromAccount
+      status
+      appliedSchoolsCount
+      updatedAt
+      categoryDraftDiff @include(if: $includeEditChanges) {
+        subCategoryEditChanges {
+          added {
+            id
+          }
+          updated {
+            id
+            updatedColumnData {
+              columnName
+            }
+          }
+        }
+        summary {
+          basicDetails
+          levels
+          availableActions
+          subCategories
+          outcomes
+          pointsSetup
+          total
+        }
+      }
+      sentiment {
+        id
+        label
+        value
+      }
+      severities(input: {first: 100}) {
+        edges {
+          node {
+            id
+            name
+            color
+            level
+          }
+        }
+      }
+      availableActions(input: {first: 100}) @include(if: $includeAvailableActions) {
+        edges {
+          node {
+            id
+            title
+            isArchived
+            metadata
+          }
+        }
+      }
+      pointsSetup {
+        ...BehaviourCategoryPointsSetup
+      }
+    }
+  }
+}

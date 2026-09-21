@@ -1,0 +1,8 @@
+query getPostTranslation($id: ID!, $translationFilter: TranslatedLabelFilter) {
+  node(id: $id, type: POST) {
+    id
+    ... on Post {
+      ...translationPostItem
+    }
+  }
+}

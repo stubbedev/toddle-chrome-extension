@@ -1,0 +1,5 @@
+mutation markCircularsPublished($input: markCircularsPublishedInput) {
+  platform {
+    markCircularsPublished(input: $input)
+  }
+}

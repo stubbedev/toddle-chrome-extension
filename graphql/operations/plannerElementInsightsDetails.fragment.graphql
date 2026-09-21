@@ -1,0 +1,208 @@
+query getPlannerElementOverviewInsights($id: ID!, $context: PlannerElementInsightsContext!, $filters: PlannerElementInsightsFilters!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      curriculumInsights {
+        plannerElementInsights {
+          plannerElementInsights(filters: $filters, context: $context) {
+            ...plannerElementInsightsDetails
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      curriculumInsights {
+        plannerElementInsights {
+          plannerElementInsights(filters: $filters, context: $context) {
+            ...plannerElementInsightsDetails
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      curriculumInsights {
+        plannerElementInsights {
+          plannerElementInsights(filters: $filters, context: $context) {
+            ...plannerElementInsightsDetails
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      curriculumInsights {
+        plannerElementInsights {
+          plannerElementInsights(filters: $filters, context: $context) {
+            ...plannerElementInsightsDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment plannerElementInsightsDetails on PlannerElementInsightsResponse {
+  elementType
+  insights {
+    edges {
+      node {
+        id
+        ... on PlannerElementNodeInsight {
+          id
+          type
+          element {
+            id
+            label
+            type
+            parent
+            depth
+            children
+            associatedParents {
+              ... on SubjectGroup {
+                id
+                name
+              }
+              ... on Subject {
+                id
+                name
+              }
+            }
+          }
+          unitPlans
+          learningCourses
+          assessments
+          insight {
+            columnId
+            unitPlans {
+              id
+            }
+            learningCourses {
+              id
+            }
+            assessmentIds
+          }
+          assignmentInsight {
+            plannedAssignments
+            taughtAssignments
+            assessedAssignments
+          }
+        }
+        ... on PlanningATLInsight {
+          id
+          type
+          element {
+            id
+            label
+            parent
+            depth
+            children
+          }
+          unitPlans
+          learningCourses
+          assessments
+          insight {
+            columnId
+            unitPlans {
+              id
+            }
+            learningCourses {
+              id
+            }
+            assessmentIds
+          }
+          assignmentInsight {
+            plannedAssignments
+            taughtAssignments
+            assessedAssignments
+          }
+        }
+        ... on PlanningLPAInsight {
+          id
+          type
+          element {
+            id
+            label
+            parent
+            children
+          }
+          unitPlans
+          learningCourses
+          assessments
+          insight {
+            columnId
+            unitPlans {
+              id
+            }
+            learningCourses {
+              id
+            }
+            assessmentIds
+          }
+          assignmentInsight {
+            plannedAssignments
+            taughtAssignments
+            assessedAssignments
+          }
+        }
+        ... on PlanningConceptInsight {
+          id
+          type
+          element {
+            id
+            label
+            parent
+            children
+          }
+          unitPlans
+          learningCourses
+          assessments
+          insight {
+            columnId
+            unitPlans {
+              id
+            }
+            learningCourses {
+              id
+            }
+            assessmentIds
+          }
+          assignmentInsight {
+            plannedAssignments
+            taughtAssignments
+            assessedAssignments
+          }
+        }
+        ... on PlannerThemeInsight {
+          id
+          type
+          element {
+            id
+            label
+            associatedChildren {
+              id
+              label
+            }
+          }
+          unitPlans
+          learningCourses
+          insight {
+            columnId
+            unitPlans {
+              id
+            }
+            learningCourses {
+              id
+            }
+          }
+          assignmentInsight {
+            plannedAssignments
+            taughtAssignments
+            assessedAssignments
+          }
+        }
+      }
+    }
+  }
+}

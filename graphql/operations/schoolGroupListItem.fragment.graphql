@@ -1,0 +1,25 @@
+fragment schoolGroupListItem on SchoolGroup {
+  id
+  sourcedId
+  name
+  description
+  type
+  conditions
+  curriculumProgramId
+  academicYearId
+  isArchived
+  createdAt
+  updatedAt
+  profileImageData {
+    url
+    icon
+    color
+    acronym
+  }
+  createdBy {
+    ...schoolGroupUserItem
+  }
+  updatedBy {
+    ...schoolGroupUserItem
+  }
+}

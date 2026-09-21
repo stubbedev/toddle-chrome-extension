@@ -1,0 +1,61 @@
+query getCurriculumProgramsFeed($organizationId: ID!, $input: CurriculumProgramsFeedInput) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      curriculumProgramsFeed(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            ...schoolsCurriculumProgramBasicDetailsItem
+            schoolCalendarEventTypesFeed(input: {first: 0}) {
+              lastModifiedAt
+              lastModifiedBy {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+                profileImage
+              }
+              feed {
+                totalCount
+              }
+            }
+            schoolCalendarEventsFeed(input: {first: 0}) {
+              lastModifiedAt
+              lastModifiedBy {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+                profileImage
+              }
+              feed {
+                totalCount
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment schoolsCurriculumProgramBasicDetailsItem on CurriculumProgram {
+  id
+  nodeInterfaceType
+  label
+  acronym
+  academicSetupType
+  programType
+  academicProgram {
+    id
+    type
+  }
+}

@@ -1,0 +1,8 @@
+mutation bulkUpdateEntityLockingStatus($input: BulkUpdateEntityLockingStatusInput!) {
+  platform {
+    bulkUpdateEntityLockingStatus(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

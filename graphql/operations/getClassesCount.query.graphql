@@ -1,0 +1,11 @@
+query getClassesCount($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(first: 1000) {
+        totalCount
+      }
+    }
+  }
+}

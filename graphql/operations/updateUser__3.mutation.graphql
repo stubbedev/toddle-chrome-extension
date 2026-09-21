@@ -1,0 +1,9 @@
+mutation updateUser($id: ID!, $firstName: String, $middleName: String, $lastName: String, $prefix: String, $suffix: String, $preferredName: String, $phoneNumber: String, $personalEmail: String, $dob: String, $line1: String, $line2: String, $city: String, $state: String, $zipcode: String, $country: String, $profileImage: String, $displayRole: String, $pronouns: String, $curriculumProgramsFilters: UserCurriculumProgramFilter, $userArchivedFilters: UserArchivedFilters) {
+  platform {
+    updateUserV2(input: {id: $id, firstName: $firstName, middleName: $middleName, lastName: $lastName, prefix: $prefix, suffix: $suffix, preferredName: $preferredName, profileImage: $profileImage, displayRole: $displayRole, pronouns: $pronouns, otherDetails: {dob: $dob, phoneNumber: $phoneNumber, personalEmail: $personalEmail}, address: {line1: $line1, line2: $line2, city: $city, state: $state, zipcode: $zipcode, country: $country}}) {
+      user {
+        ...teacherBasicDetails
+      }
+    }
+  }
+}

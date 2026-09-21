@@ -1,0 +1,14 @@
+query getWorkbookSchoolTemplateQuery($types: [ORGANIZATION_RESOURCE_TYPE_ENUM!], $organizationId: ID!, $curriculumProgramId: ID!, $searchText: String!, $first: Int, $after: String, $status: ORGANIZATION_RESOURCE_STATUS_ENUM, $states: [ORGANIZATION_RESOURCE_STATE_ENUM], $courseIds: [ID!], $createdBy: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      workbookTemplates(curriculumProgramId: $curriculumProgramId) {
+        isSuccess
+        warning
+        organizationResource {
+          ...organizationResourceBasicDetailsItem
+        }
+      }
+    }
+  }
+}

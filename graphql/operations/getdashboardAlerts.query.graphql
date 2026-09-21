@@ -1,0 +1,27 @@
+query getdashboardAlerts($id: ID!, $input: DashboardAlertFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        dashboardAlerts(filter: $input) {
+          totalCount
+          edges {
+            id
+            insightDashboardId
+            alertFrequency
+            alertSchedule
+            weekDay
+            subscribers {
+              id
+              firstName
+              middleName
+              lastName
+              email
+              profileImage
+            }
+          }
+        }
+      }
+    }
+  }
+}

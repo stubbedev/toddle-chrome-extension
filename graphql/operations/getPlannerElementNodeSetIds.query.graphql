@@ -1,0 +1,11 @@
+query getPlannerElementNodeSetIds($id: ID!, $plannerElementNodeSetFilters: PlannerElementNodeSetFilters) {
+  node(id: $id, type: IB_MYP_CURRICULUM_PROGRAM) {
+    id
+    ... on IbMypCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $plannerElementNodeSetFilters) {
+        ...plannerElementNodeSetItem
+      }
+    }
+  }
+}

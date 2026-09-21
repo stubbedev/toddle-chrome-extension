@@ -1,0 +1,129 @@
+query getStudentPlanDetails($planId: ID!) {
+  node(id: $planId, type: STUDENT_PLAN) {
+    ... on StudentPlan {
+      id
+      status
+      startDate
+      endDate
+      isSharedWithFamily
+      isSharedWithStudent
+      reviewMeetings {
+        ...studentPlanReviewMeetingItem
+      }
+      collaborators {
+        edges {
+          node {
+            user {
+              id
+            }
+          }
+        }
+      }
+      subjects {
+        id
+      }
+      detailsAttachments {
+        id
+        url
+        name
+        type
+        title
+        mimeType
+        metadata
+        signedUrl
+        thumbUrl
+      }
+      datasets {
+        totalCount
+        edges {
+          node {
+            datasetType
+            datasetId
+            dataset {
+              ... on PlannerElementNode {
+                id
+                displaySequence
+                label
+                subText
+                code
+                type
+                depth
+                parent
+                children
+                dataSetNodeWrapper {
+                  plannerElementNodeSet {
+                    id
+                    title
+                  }
+                  properties {
+                    isArchived
+                    isPowerStandard
+                    weight
+                    subjects {
+                      id
+                      name
+                      isArchived
+                    }
+                    grades {
+                      id
+                      name
+                    }
+                    tags {
+                      id
+                      label
+                    }
+                    subjectGroups {
+                      id
+                      name
+                    }
+                    associatedPlannerElementNodes {
+                      id
+                    }
+                  }
+                }
+              }
+              ... on PlannerBenchmark {
+                id
+                displaySequence
+                label
+                subText
+                code
+                depth
+                parent
+                children
+                dataSetNodeWrapper {
+                  standardSet {
+                    id
+                    title
+                  }
+                  properties {
+                    isArchived
+                    isPowerStandard
+                    weight
+                    grades {
+                      id
+                      name
+                    }
+                    tags {
+                      id
+                      label
+                    }
+                    subject {
+                      id
+                      name
+                      isArchived
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      planType {
+        id
+        metadata
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+fragment questionAttachmentItem on Attachment {
+  id
+  thumbUrl
+  mimeType
+  name
+  parentType
+  questionAttachment {
+    ... on QuestionSubmission {
+      id
+    }
+  }
+  similarityReport {
+    submissionId
+  }
+  streamUrl
+  title
+  type
+  isRead
+  lockingState {
+    state
+    scheduledAt
+  }
+  createdBy {
+    id
+    type
+  }
+  url
+  signedUrl
+  metadata
+}

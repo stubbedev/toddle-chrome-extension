@@ -1,0 +1,26 @@
+query getOrganizationStaff($id: ID!, $staffFilters: OrgConnectionFilterInput, $allGradesFilters: AllGradesFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(orderBy: FIRST_NAME, orderByDirection: ASC, filters: $staffFilters) {
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+            coursesV2 {
+              totalCount
+            }
+            studentsRelation {
+              totalCount
+            }
+            allGrades(filters: $allGradesFilters) {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

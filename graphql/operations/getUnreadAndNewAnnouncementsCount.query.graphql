@@ -1,0 +1,11 @@
+query getUnreadAndNewAnnouncementsCount($organizationId: ID!, $createdAfter: String, $createdBefore: String, $curriculumProgramIds: [ID!], $academicYearId: ID, $studentIds: [ID!], $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM, $courseIds: [ID!], $getNewCount: Boolean = false, $createdBy: CIRCULAR_CREATED_BY_FILTER_ENUM = OTHERS) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      circularFeedV3 {
+        totalCount(input: {createdBy: OTHERS, states: [PUBLISHED], createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, isNew: true, createdIn: $createdIn, courseIds: $courseIds}) @include(if: $getNewCount)
+        ...unreadAnnouncementsCountItem
+      }
+    }
+  }
+}

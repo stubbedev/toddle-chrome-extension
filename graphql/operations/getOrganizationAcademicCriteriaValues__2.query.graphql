@@ -1,0 +1,32 @@
+query getOrganizationAcademicCriteriaValues($id: ID!, $filters: RatingLevelsFilter, $finalGradeFilters: RatingLevelsFilter, $fetchFinalGrade: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      constants {
+        ratingLevels(filters: $filters) {
+          ...basicOrganizationElementRatingsItem
+        }
+        ratingLevels(filters: $finalGradeFilters) @include(if: $fetchFinalGrade) {
+          ...basicOrganizationElementRatingsItem
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

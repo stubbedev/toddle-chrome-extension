@@ -1,0 +1,8 @@
+mutation createMealTemplate($title: String, $curriculumProgramId: ID!, $type: POST_TEMPLATE_DATASET_TYPE_ENUM!, $startDate: String, $endDate: String, $values: [CreatePostTemplateDataSetValuesInput!]) {
+  documentation {
+    createPostTemplateDataSet(input: {title: $title, curriculumProgramId: $curriculumProgramId, type: $type, startDate: $startDate, endDate: $endDate, values: $values}) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,20 @@
+query getPlaygroundOrgAccessFeed($id: ID!, $input: PlaygroundOrgAccessFeedInput) {
+  playground {
+    accessLink(id: $id) {
+      ...playgroundAccessLinkFragment
+      orgAccessFeed(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            ...playgroundOrgAccessFragment
+          }
+        }
+      }
+    }
+  }
+}

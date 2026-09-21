@@ -1,0 +1,19 @@
+query getCurriculumWebsiteTemplates($websiteId: ID!, $learningCourseId: ID!) {
+  node(id: $websiteId, type: CURRICULUM_WEBSITE) {
+    ... on CurriculumWebsite {
+      id
+      templates(filters: {learningCourseIds: [$learningCourseId], inclusionStatus: INCLUDED}) {
+        id
+        body
+        unitType
+        academicTemplate {
+          id
+        }
+        curriculumProgram {
+          id
+          academicSetupType
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+query getSchoolEventTypesFeed($input: CalendarEventTypesFeedInput!) {
+  platform {
+    calendarEventTypesFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          uid
+          label
+          colorCode
+          parentEventTypeId {
+            id
+          }
+          associatedEvents {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

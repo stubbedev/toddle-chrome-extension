@@ -1,0 +1,28 @@
+fragment projectGroupSupervisorApprovalInfoItem on ProjectGroupSupervisor {
+  id
+  staff {
+    ...supervisorInfo
+    role
+    otherDetails {
+      id
+      organizationName
+      phoneNumber
+    }
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+    curriculumPrograms {
+      id
+      acronym
+    }
+  }
+  approvalStatus
+  invitedBy {
+    ...userNameFields
+    profileImage
+    ... on Student {
+      alertTypes {
+        ...alertTypeFields
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation deleteSubjectGroup($id: ID!) {
+  platform {
+    deleteSubjectGroup(input: {id: $id})
+    __typename
+  }
+}

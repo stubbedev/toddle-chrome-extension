@@ -1,0 +1,21 @@
+query getLearningCourseStandardIds($id: ID!, $filters: PlannerElementNodeFilters, $isPYPCurriculum: Boolean! = false) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      standardsWrapper(filters: $filters) @skip(if: $isPYPCurriculum) {
+        standardsEdge {
+          standards {
+            id
+          }
+        }
+      }
+      benchmarksWrapper(filters: $filters) @include(if: $isPYPCurriculum) {
+        standardsEdge {
+          standards {
+            id
+          }
+        }
+      }
+    }
+  }
+}

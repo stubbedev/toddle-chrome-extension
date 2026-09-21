@@ -1,0 +1,8 @@
+mutation archiveSubjectVariants($input: SubjectVariantInput!) {
+  platform {
+    archiveSubjectVariants(input: $input) {
+      id
+      name
+    }
+  }
+}

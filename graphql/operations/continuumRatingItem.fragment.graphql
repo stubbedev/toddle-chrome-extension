@@ -1,0 +1,28 @@
+fragment continuumRatingItem on IBPYPElementRating {
+  id
+  ibPYPElementId
+  publishedAt
+  updatedBy {
+    ...userIdentityBasicDetailItem
+  }
+  conversation {
+    id
+    messages(first: $first, after: $after, filters: $filters) {
+      totalCount
+    }
+  }
+  color(filters: $colorFilters) {
+    id
+    type
+    color {
+      ... on ContinuumColor {
+        id
+        value
+        label
+        __typename
+      }
+    }
+    __typename
+  }
+  __typename
+}

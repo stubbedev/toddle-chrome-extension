@@ -1,0 +1,57 @@
+query getStudentPlanTypeAccess($planTypeId: ID!) {
+  node(id: $planTypeId, type: STUDENT_PLAN_TYPE) {
+    ... on StudentPlanType {
+      id
+      defaultAccess {
+        accessLevel
+        source
+        role {
+          id
+          label
+          assignedUserCount
+          isSuperAdmin
+        }
+      }
+      additionalAccess {
+        accessLevel
+        source
+        role {
+          id
+          label
+          assignedUserCount
+          isSuperAdmin
+        }
+        user {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+          rnpRoleContextDetail {
+            id
+            role {
+              id
+            }
+          }
+        }
+      }
+      familyAccessMode
+      familyAccess {
+        accessLevel
+        role {
+          id
+          label
+          description
+          displaySequence
+          assignedFamilyMembers {
+            totalCount
+          }
+        }
+      }
+      sharedSections {
+        userType
+        sections
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query getValidStudentWithSourceId($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationStudentFeedEdgeItem
+      __typename
+    }
+    __typename
+  }
+}

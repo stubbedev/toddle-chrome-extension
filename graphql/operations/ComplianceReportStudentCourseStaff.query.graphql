@@ -1,0 +1,28 @@
+query ComplianceReportStudentCourseStaff($id: ID!, $userCourseMapFilters: UserCourseMapFilters, $collaboratorFilters: CollaboratorFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      courseMap(filters: $userCourseMapFilters) {
+        id
+        course {
+          id
+          title
+          allCollaborators(filters: $collaboratorFilters) {
+            edges {
+              node {
+                id
+                firstName
+                lastName
+                middleName
+                preferredName
+                profileImage
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

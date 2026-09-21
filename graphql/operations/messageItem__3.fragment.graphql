@@ -1,0 +1,17 @@
+fragment messageItem on MessageV2 {
+  id
+  label
+  createdBy {
+    ...userDetailItem
+  }
+  createdAt
+  chat {
+    id
+    label
+    type
+    personalChatReceiverUser {
+      ...userDetailItem
+    }
+  }
+  cursor
+}

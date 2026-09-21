@@ -1,0 +1,30 @@
+query AuthoringToolOrganizationStaff($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff {
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            email
+            profileImage
+            ... on Staff {
+              id
+              preferredName
+              displayRole
+              curriculumPrograms {
+                id
+                type
+                acronym
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

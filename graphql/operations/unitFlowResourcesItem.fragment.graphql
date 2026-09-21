@@ -1,0 +1,25 @@
+fragment unitFlowResourcesItem on OrganizationResource {
+  id
+  resourceType
+  type
+  label
+  isImportedFromDiffOrg
+  children {
+    id
+    label
+    type
+    resourceType
+    item {
+      id
+      ... on OrganizationResource {
+        id
+        label
+        type
+        resourceType
+      }
+      ... on Assessment {
+        id
+      }
+    }
+  }
+}

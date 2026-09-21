@@ -1,0 +1,19 @@
+query getTimetableGrades($id: ID!, $filters: TimetableFilterOptions!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms {
+        id
+        timetables(filters: $filters) {
+          id
+          label
+          grades {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

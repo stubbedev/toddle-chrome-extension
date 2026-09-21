@@ -1,0 +1,15 @@
+query ComplianceReportDataFields($filters: ComplianceReportDataFieldFilters) {
+  complianceReport {
+    complianceReportDataFields(filters: $filters) {
+      id
+      fieldUid
+      name
+      type
+      isPresentOnToddle
+      isRequired
+      isEditable
+      isMappingRequired
+      config
+    }
+  }
+}

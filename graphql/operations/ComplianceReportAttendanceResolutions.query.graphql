@@ -1,0 +1,17 @@
+query ComplianceReportAttendanceResolutions($id: ID!, $input: AttendanceResolutionsInput!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      attendanceResolutions(input: $input) {
+        reason
+        startDate
+        endDate
+        addedBy {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}

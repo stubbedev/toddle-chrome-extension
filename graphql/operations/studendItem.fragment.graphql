@@ -1,0 +1,17 @@
+fragment studendItem on Student {
+  id
+  assignments(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    edges {
+      node {
+        ...assignmentProgressSummaryItem
+      }
+    }
+    totalCount
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

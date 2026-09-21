@@ -1,0 +1,68 @@
+query integrationSyncCalendarOverallSummary($jobId: ID!, $first: Int!, $after: String, $academicYearId: ID!, $curriculumProgramId: ID!) {
+  integration {
+    integrationSyncCalendarOverallSummary(input: {jobId: $jobId, first: $first, after: $after, academicYearId: $academicYearId, curriculumProgramId: $curriculumProgramId}) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          changeType
+          change {
+            startDate
+            endDate
+            subType
+            prevValue
+            updatedValue
+          }
+          affectedClasses {
+            totalCount
+            classes {
+              id
+              title
+            }
+          }
+          affectedEntities {
+            type
+            totalCount
+            entities {
+              __typename
+              ... on Course {
+                ...courseDetailsItem
+              }
+              ... on Staff {
+                ...staffDetailsItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation integrationValidateSyncCalendarData($service: INTEGRATION_SERVICE_NAME!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  integration {
+    integrationValidateSyncCalendarData(input: {service: $service, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId}) {
+      allow
+      message
+      job {
+        id
+      }
+    }
+  }
+}
+
+mutation integrationValidateSyncCalendarData($service: INTEGRATION_SERVICE_NAME!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  integration {
+    integrationValidateSyncCalendarData(input: {service: $service, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId}) {
+      allow
+      message
+      job {
+        id
+      }
+    }
+  }
+}

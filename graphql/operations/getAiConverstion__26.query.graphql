@@ -1,0 +1,134 @@
+query getRootNodesFromNodeSet($id: ID!, $nodesFilters: PlannerElementNodeFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            edges {
+              node {
+                ...plannerElementRootNodeItem
+              }
+            }
+          }
+        }
+        ... on PlannerBenchmarkSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            edges {
+              node {
+                ...plannerBenchmarkRootItem
+              }
+            }
+          }
+        }
+        ... on PlannerATLSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            edges {
+              node {
+                ...plannerATLRootItem
+              }
+            }
+          }
+        }
+        ... on PlannerLearnerProfileSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            edges {
+              node {
+                ...plannerLearnerProfileRootItem
+              }
+            }
+          }
+        }
+        ... on PlannerConceptSetWrapper {
+          publishedData(filters: $nodesFilters) {
+            edges {
+              node {
+                ...plannerConceptRootItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

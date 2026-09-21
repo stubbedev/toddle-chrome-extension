@@ -1,0 +1,33 @@
+query getGradeUsersV3($organizationId: ID!, $first: Int, $after: String, $filters: OrganizationGradeV2FilterInput, $skipStudents: Boolean = true, $skipStaff: Boolean = true, $skipFamilyMembers: Boolean = true, $includeCurriculumPrograms: Boolean = true) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      gradesV2(input: {first: $first, after: $after, filter: $filters}) {
+        totalCount(input: {filter: $filters})
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            name
+            curriculumProgram {
+              id
+              label
+            }
+            allStaffs @skip(if: $skipStaff) {
+              ...userDetailItemV2
+            }
+            allStudents @skip(if: $skipStudents) {
+              ...userDetailItemV2
+            }
+            allParents @skip(if: $skipFamilyMembers) {
+              ...userDetailItemV2
+            }
+          }
+        }
+      }
+    }
+  }
+}

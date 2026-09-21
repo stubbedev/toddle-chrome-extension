@@ -1,0 +1,12 @@
+mutation createLevel($input: [GenericTagInsertInput!]!) {
+  platform {
+    insertGenericTagsV2(input: $input) {
+      id
+      label
+      abbreviation
+      type
+      isArchived
+      reportDisplayName
+    }
+  }
+}

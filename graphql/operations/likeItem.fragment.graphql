@@ -1,0 +1,28 @@
+fragment likeItem on Like {
+  id
+  user {
+    id
+    firstName
+    lastName
+    middleName
+    type
+    ... on Student {
+      pronouns
+      preferredName
+      suffix
+      prefix
+    }
+    ... on Staff {
+      preferredName
+      prefix
+      suffix
+      pronouns
+    }
+    ... on FamilyMember {
+      preferredName
+      prefix
+      suffix
+      pronouns
+    }
+  }
+}

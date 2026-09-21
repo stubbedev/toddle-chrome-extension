@@ -1,0 +1,10 @@
+mutation updateSchoolCalendarTag($id: ID!, $label: String, $colorCode: String) {
+  platform {
+    updateSchoolCalendarTag(input: {id: $id, label: $label, colorCode: $colorCode}) {
+      warning
+      response {
+        ...calendarEventTagItem
+      }
+    }
+  }
+}

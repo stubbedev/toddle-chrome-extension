@@ -1,0 +1,15 @@
+query getImportOrgAcademicYears($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      academicYears {
+        id
+        label
+        startDate
+        endDate
+        isCurrentAcademicYear
+        isUpcomingAcademicYear
+      }
+    }
+  }
+}

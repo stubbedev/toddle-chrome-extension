@@ -1,0 +1,52 @@
+query getProjectCriteriaDetails($id: ID!, $studentCourseFilters: UserCourseMapFilters) {
+  node(id: $id, type: PROJECT) {
+    ... on Project {
+      id
+      students {
+        id
+        courseMap(filters: $studentCourseFilters) {
+          id
+          tags {
+            id
+            type
+          }
+          subjectWiseLevel {
+            level {
+              id
+              type
+            }
+          }
+        }
+      }
+      assessmentRemarks {
+        ...remarkMessage
+      }
+      ibPYPElementRatings {
+        id
+        value
+        ibPYPElementId
+        ibPYPElementType
+        isComputedRating
+        academicCriteriaSet {
+          id
+          criteriaType
+        }
+        academicCriteriaValue {
+          id
+          label
+          abbreviation
+        }
+      }
+      ibPYPElementRemarks {
+        id
+        message
+        ibPYPElementId
+        ibPYPElementType
+      }
+      toolResponses(userFilter: ALL) {
+        ...toolResponseItem
+        __typename
+      }
+    }
+  }
+}

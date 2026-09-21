@@ -1,0 +1,7 @@
+mutation integrationCreateSubTask($jobId: ID!, $parsedData: JSON!, $type: INTEGRATION_SUB_TASK_TYPE_DATA_ENUM!, $displaySequence: Int!) {
+  integration {
+    integrationCreateSubTask(input: {jobId: $jobId, parsedData: $parsedData, type: $type, displaySequence: $displaySequence}) {
+      ...subTaskData
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation bookmarkClass($input: UpdateCourseAsBookmarkInput!) {
+  platform {
+    updateCourseAsBookmark(input: $input)
+  }
+}

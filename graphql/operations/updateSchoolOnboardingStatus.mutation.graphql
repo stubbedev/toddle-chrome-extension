@@ -1,0 +1,8 @@
+mutation updateSchoolOnboardingStatus($input: SchoolOnboardingStatusInput!) {
+  platform {
+    updateSchoolOnboardingStatus(input: $input) {
+      message
+      status
+    }
+  }
+}

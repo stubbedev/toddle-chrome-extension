@@ -1,0 +1,20 @@
+fragment progressReportCourseSectionCompletionStatsItem on ProgressReportCourseSectionCompleteStats {
+  id
+  total
+  pending
+  completed
+  notAssessed
+  course {
+    id
+    title
+    subjects {
+      id
+      name
+    }
+  }
+  sections
+  courseProgressReportTask {
+    id
+    title
+  }
+}

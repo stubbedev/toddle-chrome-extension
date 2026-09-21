@@ -1,0 +1,32 @@
+query getCurriculumGrades($id: ID!, $filters: CurriculumProgramGradeFilters, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      grades(filters: $filters) {
+        id
+        name
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      grades(filters: $filters) {
+        id
+        name
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      grades(filters: $filters) {
+        id
+        name
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      grades(filters: $filters) {
+        id
+        name
+      }
+    }
+  }
+}

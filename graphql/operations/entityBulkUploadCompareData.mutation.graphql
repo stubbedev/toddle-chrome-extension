@@ -1,0 +1,10 @@
+mutation entityBulkUploadCompareData($input: EntityBulkUploadCompareDataInput!) {
+  platform {
+    entityBulkUploadCompareData(input: $input) {
+      isSuccess
+      sheetUrl
+      message
+      activityLogId
+    }
+  }
+}

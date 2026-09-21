@@ -1,0 +1,32 @@
+fragment portfolioProjectInfo on Project {
+  id
+  status
+  type
+  reportStatus
+  allPostsCount
+  isRead
+  isCasExternalPortingDone
+  isArchived
+  archivedBy {
+    id
+  }
+  students {
+    ...userNameFields
+    profileImage
+  }
+  supervisors {
+    ...userNameFields
+    profileImage
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+    isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+    role
+  }
+  cascadeUpdateAt
+  cascadeUpdateBy {
+    ...userNameFields
+  }
+  updatedBy {
+    ...userNameFields
+  }
+}

@@ -1,0 +1,31 @@
+fragment continuumBasicDetails on Continuum {
+  id
+  label
+  updatedAt
+  createdBy {
+    id
+    firstName
+    lastName
+  }
+  associatedEntities {
+    id
+    ... on Grade {
+      id
+      name
+      __typename
+    }
+    ... on Subject {
+      id
+      name
+      isArchived
+      __typename
+    }
+    __typename
+  }
+  colors {
+    id
+    value
+    label
+    type
+  }
+}

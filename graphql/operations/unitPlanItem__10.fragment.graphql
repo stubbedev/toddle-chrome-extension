@@ -1,0 +1,44 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  centralIdea {
+    id
+    value
+  }
+  unitType {
+    id
+    value
+  }
+  subjects {
+    id
+    value
+  }
+  theme {
+    id
+    value
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+  grades
+  fields(uids: ["lp", "centralIdea", "concepts", "atls", "benchmarks", "lois", "learningStandardMYP", "learningStandardUBD", "subjectStandardDP"]) {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  templateId
+}

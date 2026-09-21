@@ -1,0 +1,15 @@
+query getCurriculumIBGradeScale($id: ID!, $gradeScaleFilters: GradeScaleFilters, $gradingSetupEntityFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      gradeScale(filters: $gradeScaleFilters) {
+        edges {
+          node {
+            ...IBGradeScaleCurriculumFragment
+          }
+        }
+      }
+    }
+  }
+}

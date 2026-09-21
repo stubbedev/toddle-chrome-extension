@@ -1,0 +1,13 @@
+query getCalendarEventTypeOptions($input: CalendarEventTypesFeedInput!) {
+  platform {
+    calendarEventTypesFeed(input: $input) {
+      edges {
+        node {
+          id
+          label
+          colorCode
+        }
+      }
+    }
+  }
+}

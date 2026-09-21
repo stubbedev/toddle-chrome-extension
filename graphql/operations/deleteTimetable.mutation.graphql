@@ -1,0 +1,5 @@
+mutation deleteTimetable($input: DeleteTimetableInput!) {
+  platform {
+    deleteTimetable(input: $input)
+  }
+}

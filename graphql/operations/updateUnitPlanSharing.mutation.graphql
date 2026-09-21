@@ -1,0 +1,7 @@
+mutation updateUnitPlanSharing($input: UnitPlanUpdateInput!) {
+  planner {
+    updateUnitPlan(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation worksheetRaceConditionHandling($input: worksheetRaceConditionHandlingInput!) {
+  content {
+    worksheetAiPostProcessing(input: $input)
+  }
+}

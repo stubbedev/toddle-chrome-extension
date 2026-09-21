@@ -1,0 +1,61 @@
+query getConversationUsersSentiment($id: ID!, $organizationId: ID!, $input: UserV2Input!) {
+  node(id: $id, type: CHAT) {
+    ... on Chat {
+      id
+      usersV2(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            type
+            profileImage
+            messageV2SentimentScore
+            ... on Student {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+              }
+            }
+            ... on Staff {
+              displayRole
+              preferredName
+              pronouns
+              prefix
+              suffix
+            }
+            ... on FamilyMember {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              children(organizationId: $organizationId) {
+                id
+                profileImage
+                firstName
+                middleName
+                lastName
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

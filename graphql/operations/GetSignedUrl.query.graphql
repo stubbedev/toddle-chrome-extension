@@ -1,0 +1,12 @@
+query GetSignedUrl($input: SignedUrlsInput!) {
+  content {
+    getSignedUrl(input: $input) {
+      signedUrls {
+        originalUrl
+        signedUrl
+      }
+      isSuccess
+      warning
+    }
+  }
+}

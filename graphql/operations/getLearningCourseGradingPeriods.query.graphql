@@ -1,0 +1,10 @@
+query getLearningCourseGradingPeriods($learningCourseId: ID!, $filters: TermFilters) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      gradingPeriods(filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

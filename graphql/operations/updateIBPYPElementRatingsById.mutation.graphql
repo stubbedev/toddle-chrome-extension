@@ -1,0 +1,7 @@
+mutation updateIBPYPElementRatingsById($input: [UpdateIBPYPElementRatingByIdInput!]!) {
+  planner {
+    updateIBPYPElementRatingsById(input: $input) {
+      isSuccess
+    }
+  }
+}

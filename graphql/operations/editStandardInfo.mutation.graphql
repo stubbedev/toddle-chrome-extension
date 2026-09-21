@@ -1,0 +1,15 @@
+mutation editStandardInfo($input: StandardInfo!) {
+  planner {
+    updateStandardInfo(input: $input) {
+      id
+      title
+      description
+      globalSubjects
+      code
+      curriculumName
+      country
+      state
+      curriculumTypes
+    }
+  }
+}

@@ -1,0 +1,4 @@
+fragment projectGroupBasicDetailsItem on ProjectGroupCategory {
+  id
+  type
+}

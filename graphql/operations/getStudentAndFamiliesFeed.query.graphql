@@ -1,0 +1,75 @@
+query getStudentAndFamiliesFeed($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $familiesFilter: FamiliesFiltersInput, $first: Int) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationStudentFeedEdgeItem
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment organizationStudentFeedEdgeItem on Organization {
+  id
+  students(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    edges {
+      node {
+        ...studentItem
+      }
+    }
+  }
+}
+
+fragment studentItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  pronouns
+  preferredName
+  suffix
+  prefix
+  type
+  familyInviteCode
+  signInCode
+  sourceId
+  alertTypes {
+    ...alertTypeFields
+  }
+  families(filters: $familiesFilter) {
+    id
+    status
+    familyMember {
+      id
+      lastName
+      middleName
+      firstName
+      pronouns
+      preferredName
+      suffix
+      prefix
+      type
+      email
+      isCreatedByOrg
+      rnpRoleContextDetail {
+        id
+        role {
+          id
+          label
+          displayUid
+          isDefaultRole
+        }
+        contextType
+        context {
+          id
+        }
+      }
+      __typename
+    }
+    createdAt
+    lastUpdatedAt
+    __typename
+  }
+  email
+}

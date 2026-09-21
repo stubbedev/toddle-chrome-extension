@@ -1,0 +1,12 @@
+fragment snpSetItem on SnPSet {
+  id
+  frameworks {
+    id
+    code
+    localeLabelKey
+    label
+    standards {
+      ...snpStandardItem
+    }
+  }
+}

@@ -1,0 +1,53 @@
+fragment gradeBookInfo on Project {
+  id
+  students {
+    ...userNameFields
+    profileImage
+  }
+  assessmentRemarks {
+    id
+    message
+  }
+  ibPYPElementRatings {
+    id
+    ibPYPElementId
+    ibPYPElementType
+    value
+    createdAt
+    createdByV2 {
+      ...userNameFields
+      profileImage
+    }
+    academicCriteriaSet {
+      id
+      label
+      criteriaType
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      color
+    }
+  }
+  ibPYPElementRemarks {
+    id
+    message
+    ibPYPElementId
+    ibPYPElementType
+  }
+  toolResponses(userFilter: ALL) {
+    id
+    rowId
+    columnId
+    subjectiveResponse
+    creatorType
+  }
+  fields(filters: $projectFieldFilters) {
+    id
+    uid
+    value
+    pseudoFieldUid
+  }
+  ...projectDetailItem
+}

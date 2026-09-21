@@ -1,0 +1,7 @@
+mutation createProgressReportTemplate($name: String!, $grades: [String!], $body: JSON!, $curriculumProgramId: ID, $gradingPeriodType: PROGRESS_REPORT_GRADING_PERIOD_TYPE_ENUM, $academicYearId: ID) {
+  documentation {
+    createProgressReportTemplate(input: {name: $name, grades: $grades, body: $body, curriculumProgramId: $curriculumProgramId, gradingPeriodType: $gradingPeriodType, academicYearId: $academicYearId}) {
+      ...progressReportTemplateItem
+    }
+  }
+}

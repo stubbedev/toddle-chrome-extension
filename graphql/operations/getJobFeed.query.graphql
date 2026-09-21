@@ -1,0 +1,30 @@
+query getJobFeed($id: ID!, $first: Int, $afterV2: String, $curriculumProgramId: ID, $filters: OrganizationIntegrationJobFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      jobFeed(first: $first, afterV2: $afterV2, filters: $filters, curriculumProgramId: $curriculumProgramId) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            status
+            serviceName
+            createdAt
+            createdBy {
+              id
+              ...staffNameFields
+            }
+            metadata
+            s3Url
+          }
+        }
+      }
+    }
+  }
+}

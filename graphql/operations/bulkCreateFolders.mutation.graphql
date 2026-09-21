@@ -1,0 +1,8 @@
+mutation bulkCreateFolders($input: BulkCreateFoldersInput!) {
+  documentation {
+    bulkCreateFolders(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

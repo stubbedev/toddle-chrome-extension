@@ -1,0 +1,5 @@
+mutation clearWeeklyPlannerSectionContent($input: ClearWeeklyPlannerSectionContentInput!) {
+  planner {
+    clearWeeklyPlannerSectionContent(input: $input)
+  }
+}

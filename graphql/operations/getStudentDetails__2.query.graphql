@@ -1,0 +1,30 @@
+query getStudentDetails($ids: [ID!]!, $userArchivedFilters: UserArchivedFilters, $studentCurriculumProgramFilter: StudentCurriculumProgramFilter) {
+  multiNode(ids: $ids, type: STUDENT) {
+    ... on Student {
+      ...userNameFields
+      sourceId
+      profileImage
+      isArchivedV2(filters: $userArchivedFilters)
+      curriculumPrograms(filters: $studentCurriculumProgramFilter) {
+        id
+        label
+      }
+      yearGroup {
+        id
+        name
+        grade {
+          id
+          name
+          globalGrade {
+            id
+            name
+          }
+          curriculumProgram {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+query getFlaggedConversationMessages($id: ID!, $input: MessageFeedInput!, $isSentimentHidden: Boolean!) {
+  node(id: $id, type: CHAT) {
+    ... on Chat {
+      id
+      messagesV2(input: $input) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            cursor
+            label
+            createdAt
+            sentimentScore @skip(if: $isSentimentHidden)
+            createdBy {
+              id
+              firstName
+              lastName
+              middleName
+              type
+            }
+            attachments {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+query getStudentBasicDetails($studentId: ID!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      firstName
+      middleName
+      lastName
+      profileImage
+      gender
+      yearGroup {
+        id
+        name
+        grade {
+          id
+          name
+        }
+      }
+      otherDetails {
+        id
+        dob
+      }
+      nccdCategory
+      studentPlans(filters: {statuses: [ACTIVE]}) {
+        id
+        createdAt
+        activatedAt
+        planType {
+          id
+          name
+          flagIcon
+          metadata
+          activeStudentPlansCount
+        }
+        collaborators {
+          edges {
+            node {
+              user {
+                id
+                firstName
+                middleName
+                lastName
+                profileImage
+              }
+            }
+          }
+        }
+        startDate
+        endDate
+      }
+      subjects {
+        id
+        name
+      }
+    }
+  }
+}

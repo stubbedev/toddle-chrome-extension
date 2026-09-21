@@ -1,0 +1,14 @@
+fragment questionSubmissionInsightsDetailsItem on QuestionSubmission {
+  id
+  isQuestionAttempted
+  question {
+    id
+  }
+  fields {
+    ...questionFieldsItem
+  }
+  ibPYPElementRatings {
+    ...ratingItem
+  }
+  isQuestionAttempted
+}

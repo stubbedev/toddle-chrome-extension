@@ -1,0 +1,21 @@
+query getFilteredPostCount($id: ID!, $filters: PostFilterInput, $folderIds: [ID!], $isShowHiddenFromStudents: Boolean, $postCountFilters: PostCountFilterInput) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      posts(filters: $filters) {
+        totalCount
+      }
+      postCount(folderIds: $folderIds, isShowHiddenFromStudents: $isShowHiddenFromStudents, filters: $postCountFilters) {
+        draft
+        published
+        inApproval
+        unTagged {
+          draft
+          published
+          inApproval
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation resetUserAnnouncementsNewCount($ids: [ID!], $curriculumProgramIds: [ID!], $studentIds: [ID!], $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM, $courseIds: [ID!]) {
+  platform {
+    resetUserCircularNewCount(ids: $ids, curriculumProgramIds: $curriculumProgramIds, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds)
+  }
+}

@@ -1,0 +1,4 @@
+fragment lpaItem on PlannerLearnerProfile {
+  id
+  label
+}

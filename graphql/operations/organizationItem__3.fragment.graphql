@@ -1,0 +1,9 @@
+fragment organizationItem on Organization {
+  id
+  name
+  logo
+  code
+  attachments {
+    ...attachmentBasicDetailsItem
+  }
+}

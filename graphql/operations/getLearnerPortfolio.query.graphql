@@ -1,0 +1,15 @@
+query getLearnerPortfolio($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: ChildLearnerPortfolioInput) {
+  node(id: $id, type: $type) {
+    id
+    ... on Student {
+      learnerPortfolio {
+        id
+      }
+    }
+    ... on FamilyMember {
+      childrenLearnerPortfolio(filters: $filters) {
+        id
+      }
+    }
+  }
+}

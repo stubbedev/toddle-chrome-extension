@@ -1,0 +1,5 @@
+mutation deletePlannerElementNodeSet($input: DeletePlannerElementNodeSetInput!) {
+  planner {
+    deletePlannerElementNodeSet(input: $input)
+  }
+}

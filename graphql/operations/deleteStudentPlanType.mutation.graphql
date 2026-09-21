@@ -1,0 +1,8 @@
+mutation deleteStudentPlanType($input: DeleteStudentPlanTypeInput!) {
+  documentation {
+    deleteStudentPlanType(input: $input) {
+      isSuccess
+      id
+    }
+  }
+}

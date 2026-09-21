@@ -1,0 +1,9 @@
+mutation platformMutation($input: AddToddleBuddyInput!) {
+  platform {
+    addToddleBuddy(input: $input) {
+      id
+      isSuccess
+      warning
+    }
+  }
+}

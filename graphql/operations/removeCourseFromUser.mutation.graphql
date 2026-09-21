@@ -1,0 +1,7 @@
+mutation removeCourseFromUser($userId: ID!, $courseIds: [ID!], $aclUnassignedUserRoles: [ID!]) {
+  platform {
+    removeCourseFromUser(userId: $userId, courseIds: $courseIds, aclUnassignedUserRoles: $aclUnassignedUserRoles) {
+      id
+    }
+  }
+}

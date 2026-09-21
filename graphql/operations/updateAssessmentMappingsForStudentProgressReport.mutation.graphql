@@ -1,0 +1,5 @@
+mutation updateAssessmentMappingsForStudentProgressReport($input: UpdateAssessmentMappingsForStudentProgressReportInput!) {
+  documentation {
+    updateAssessmentMappingsForStudentProgressReport(input: $input)
+  }
+}

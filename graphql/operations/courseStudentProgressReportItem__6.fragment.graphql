@@ -1,0 +1,46 @@
+fragment courseStudentProgressReportItem on CourseProgressReportTask {
+  id
+  title
+  deadlineDate @skip(if: $skipParam)
+  course @skip(if: $skipParam) {
+    ...courseItem
+    grades {
+      id
+    }
+  }
+  progressReportTaskGroup {
+    id
+    academicTerm @skip(if: $skipParam) {
+      id
+    }
+    showStudentReflectionProgress
+    template {
+      id
+      gradingPeriodType
+    }
+  }
+  parentEntity {
+    ... on Grade {
+      id
+      name
+    }
+    ... on Course {
+      ...courseItem
+    }
+  }
+  unitPlans @skip(if: $skipParam) {
+    id
+  }
+  reportSubjects {
+    id
+    name
+  }
+  completionStatusReportCount @skip(if: $skipParam) {
+    count
+    status
+  }
+  reportStatusCount @skip(if: $skipParam) {
+    status
+    count
+  }
+}

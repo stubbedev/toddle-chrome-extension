@@ -1,0 +1,5 @@
+mutation clearTimetableItemContent($input: ClearTimetableSlotContentInput!) {
+  platform {
+    clearTimetableItemContent(input: $input)
+  }
+}

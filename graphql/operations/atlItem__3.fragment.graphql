@@ -1,0 +1,46 @@
+fragment atlItem on PlannerATL {
+  id
+  label
+  children
+  parent
+  levelId
+  levels {
+    id
+    value
+  }
+  depth
+  isLeaf
+  displaySequence
+  atlCategory {
+    id
+  }
+  subText
+  grades {
+    id
+    name
+  }
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+    }
+    properties {
+      isGraded
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+    }
+  }
+}

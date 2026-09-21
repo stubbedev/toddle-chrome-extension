@@ -1,0 +1,7 @@
+query getProjectGroupCourse($id: ID!, $projectFilters: ProjectFilter, $courseFilters: CourseFilter, $projectGroupProjectFilters: ProjectGroupProjectsFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      ...projectGroupCoursesItem
+    }
+  }
+}

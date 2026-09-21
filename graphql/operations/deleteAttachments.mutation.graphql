@@ -1,0 +1,8 @@
+mutation deleteAttachments($attachmentIds: [ID]!) {
+  platform {
+    deleteAttachments(attachmentIds: $attachmentIds) {
+      isSuccess
+      warning
+    }
+  }
+}

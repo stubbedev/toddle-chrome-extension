@@ -1,0 +1,8 @@
+mutation removeGenericRubricDescriptors($input: [ID!]) {
+  planner {
+    removeGenericRubricDescriptors(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

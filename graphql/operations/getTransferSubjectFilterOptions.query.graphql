@@ -1,0 +1,17 @@
+query getTransferSubjectFilterOptions($organizationId: ID!, $filters: SubjectFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+          acronym
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation editProject($projectId: ID!, $addedSupervisors: [ID!], $removedSupervisors: [ID!], $removedStudents: [ID!], $addedStudents: [ID!], $removedStudentCollaborators: [ID!], $addedStudentCollaborators: [ID!]) {
+  documentation {
+    assignProjectParticipants(input: {projectId: $projectId, supervisor: {added: $addedSupervisors, removed: $removedSupervisors}, student: {added: $addedStudents, removed: $removedStudents}, studentCollaborators: {added: $addedStudentCollaborators, removed: $removedStudentCollaborators}})
+  }
+}

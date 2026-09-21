@@ -1,0 +1,10 @@
+query getProgressReportTaskGroupCurriculum($progressReportTaskGroupId: ID!) {
+  node(id: $progressReportTaskGroupId, type: PROGRESS_REPORT_TASK_GROUP) {
+    ... on ProgressReportTaskGroup {
+      id
+      curriculumProgram {
+        id
+      }
+    }
+  }
+}

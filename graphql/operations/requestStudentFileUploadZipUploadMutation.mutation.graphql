@@ -1,0 +1,12 @@
+mutation requestStudentFileUploadZipUploadMutation($input: RequestStudentFileUploadZipUploadInput!) {
+  platform {
+    requestStudentFileUploadZipUpload(input: $input) {
+      isSuccess
+      warning
+      jobId
+      presignedUrl
+      s3Key
+      expiresAt
+    }
+  }
+}

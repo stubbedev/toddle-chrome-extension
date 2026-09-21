@@ -1,0 +1,43 @@
+query getMultiNodeStudentRatingDetail($ids: [ID!], $filtersForGeneric: ibPYPElementRatingFiltersForGeneric) {
+  multiNode(ids: $ids, type: STUDENT) {
+    ... on Student {
+      ...userNameFields
+      profileImage
+      registrationCategory
+      ibPYPElementRatings(dataSet: PROJECT_ASSESSMENT, filtersForGeneric: $filtersForGeneric) {
+        id
+        value
+        ibPYPElementId
+        isComputedRating
+        createdAt
+        createdByV2 {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+          type
+        }
+        academicCriteriaSet {
+          id
+          criteriaType
+        }
+        academicCriteriaValue {
+          id
+          label
+          abbreviation
+          color
+        }
+        parent {
+          id
+          ... on Project {
+            projectGroup {
+              id
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+}

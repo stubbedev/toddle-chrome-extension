@@ -1,0 +1,14 @@
+fragment postItem on Post {
+  id
+  comments {
+    ... on CommentConnection {
+      totalCount
+      unreadCount
+      messageEdges {
+        node {
+          ...messageItem
+        }
+      }
+    }
+  }
+}

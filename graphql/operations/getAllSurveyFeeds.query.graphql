@@ -1,0 +1,27 @@
+query getAllSurveyFeeds {
+  platform {
+    getAllSurveys {
+      isSuccess
+      warning
+      surveys {
+        surveyId
+        surveyTitle
+        startDate
+        endDate
+        pageUrl
+        description
+        stages {
+          stageId
+          surveyId
+          question
+          questionType
+          questionSubtext
+          questionOptions
+          stageOrder
+          dependsOnStageId
+          dependencyAnswer
+        }
+      }
+    }
+  }
+}

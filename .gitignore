@@ -1,0 +1,18 @@
+.devenv/
+devenv.local.nix
+.direnv/
+out/
+__pycache__/
+
+# decompiled APK artifacts (not for version control)
+resources/
+smali/
+sources/
+split_config.*.apk
+*.apks
+*.apk
+Toddle-Educator_0.45_apkcube.apks_Decompiler.com.zip
+
+# extension
+extension/node_modules/
+extension/dist/

@@ -1,0 +1,15 @@
+mutation updatePinnedChart($input: UpdatePinnedChartInput!) {
+  platform {
+    updatePinnedChart(input: $input) {
+      chartId
+      messageId
+      aiMessage {
+        ...pinnedChartMessageFragment
+      }
+      dashboardId
+      conversationId
+      graphData
+      chartTitle
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query getYearGroupsAndProjectGroups($id: ID!, $filters: YearGroupFilter, $yearGroupGradeFilters: YearGroupGradeFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      yearGroups(filters: $filters) {
+        id
+        grade(filters: $yearGroupGradeFilters) {
+          id
+          name
+        }
+        projectGroups(filters: {projectGroupsToDisplay: ALL}) {
+          id
+          name
+          type
+          isEnabled
+        }
+      }
+    }
+  }
+}

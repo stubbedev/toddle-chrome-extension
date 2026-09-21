@@ -1,0 +1,395 @@
+fragment postItem on Post {
+  id
+  title
+  ibPYPElementRatings {
+    ...postRatingsItem
+  }
+  titleTranslationItem(filters: $translationFilter) {
+    label
+    showTranslate
+    sourceLanguage
+    translatedLabel
+  }
+  attachments {
+    ...attachmentItem
+    displaySequence
+  }
+  createdBy {
+    ...userItem
+  }
+  comments {
+    totalCount
+    unreadCount
+    messageEdges {
+      node {
+        ...messageItem
+      }
+    }
+  }
+  likes {
+    totalCount
+    edges {
+      node {
+        ...likeItem
+      }
+    }
+  }
+  seen {
+    totalCount
+    edges {
+      node {
+        ...postSeenItem
+      }
+    }
+  }
+  createdAt
+  publishedAt
+  students {
+    totalCount
+    edges {
+      node {
+        ...studentItem
+        alertTypes {
+          ...alertTypeFields
+        }
+      }
+    }
+  }
+  unitPlan {
+    allFields {
+      ...unitPlanAllFields
+    }
+    ...unitPlanItem
+  }
+  resourceType
+  resourceItem {
+    id
+    title {
+      id
+      value
+    }
+    image {
+      id
+      value
+    }
+    templateId
+    ... on Assessment {
+      assessmentType {
+        id
+        value
+      }
+      taskType {
+        id
+        type
+        label
+      }
+    }
+  }
+  elementPYP {
+    id
+    fieldUID
+    value
+    parentType
+    subject {
+      id
+      name
+    }
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  folders {
+    ...folderItem
+  }
+  taggedPractices {
+    ...taggedPracticesDetails
+  }
+  state
+  aiConversation {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+  course {
+    id
+    title
+    learningCourse {
+      id
+    }
+  }
+  academicTerm {
+    id
+    label
+    startDate
+    endDate
+  }
+  postTaggedEntity {
+    id
+    entityType
+    entity {
+      ... on UnitPlan {
+        allFields {
+          ...unitPlanAllFields
+        }
+        ...unitPlanItem
+      }
+      ... on Assessment {
+        ...assessmentItem
+        unitPlan {
+          ...unitPlanItem
+        }
+      }
+    }
+  }
+  isPrivate
+  isDeleted
+  isHiddenFromStudents
+  rejectComment
+  isStudentIndividuallyRated
+  items {
+    item {
+      id
+      ... on StudentAssignment {
+        id
+        isEvaluated
+        isSharedWithStudent
+        student {
+          ...studentItem
+        }
+        submission {
+          id
+          response
+          attachmentGroups {
+            id
+            attachments {
+              ...attachmentItem
+            }
+          }
+        }
+        toolResponsesV2(filters: {userFilter: ALL}) {
+          id
+          toolId
+          toolType
+          toolResponses {
+            ...toolResponseItem
+          }
+        }
+        ibPYPElementRatings {
+          ...ratingItem
+        }
+        elementRemarks(filters: {creatorTypes: [STAFF]}) {
+          id
+          message
+          ibPYPElementId
+          ibPYPElementType
+        }
+        assignment {
+          id
+          isStudentEvaluationEnabled
+          isTeacherEvaluationEnabled
+          content {
+            ... on Assessment {
+              id
+              title {
+                id
+                value
+              }
+              assessmentTools {
+                edges {
+                  node {
+                    id
+                    assessmentToolItem {
+                      id
+                      ... on MypObjectiveRubric {
+                        id
+                        label
+                      }
+                      ... on ScoreAssessmentTool {
+                        id
+                        scoreToolData {
+                          id
+                          maxScore
+                        }
+                      }
+                    }
+                    assessmentToolType
+                    isTeacherEvaluationEnable
+                    isStudentEvaluationEnable
+                  }
+                }
+              }
+              assessmentToolType
+              allFields {
+                id
+                uid
+                value
+                resolvedMinimalTree {
+                  ...resolvedMinimalTreeItem
+                }
+              }
+              template {
+                ...templateItem
+              }
+              isLearningGoalsEvaluationEnabled
+            }
+          }
+        }
+      }
+      ... on StudentActivity {
+        id
+        metadata
+        startTime
+        endTime
+        description
+        individuallyTracked
+        activityType
+        attachmentGroups {
+          id
+          attachments {
+            ...attachmentItem
+          }
+          displaySequence
+          metadata
+        }
+        student {
+          ...studentItem
+        }
+        ibPYPElementRatings {
+          id
+          academicCriteriaSet {
+            id
+            label
+            displaySequence
+          }
+          academicCriteriaValue {
+            id
+            label
+            metadata
+          }
+          metadata
+        }
+        ...activityLikesAndComments
+      }
+    }
+    itemType
+  }
+  curriculumProgram {
+    id
+    type
+    nodeInterfaceType
+  }
+  course {
+    id
+    grade {
+      id
+    }
+    primaryGrade {
+      id
+    }
+  }
+}
+
+fragment notificationItem on Notification {
+  id
+  type
+  primaryEntity
+  isNew
+  isRead
+  metadata
+  category
+  createdBy {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+    type
+    profileImage
+    ... on Student {
+      preferredName
+      pronouns
+      suffix
+    }
+  }
+  createdAt
+  updatedBy {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+    ... on Student {
+      preferredName
+      pronouns
+      suffix
+    }
+  }
+  course {
+    ...courseItem
+    grades {
+      id
+      name
+    }
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  courses {
+    id
+    title
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  updatedAt
+  contextData {
+    ... on Grade {
+      id
+      name
+    }
+    ... on Course {
+      id
+      title
+      learningCourse {
+        id
+        title
+        academicCourse {
+          id
+          label
+        }
+      }
+    }
+    ... on YearGroup {
+      id
+      name
+    }
+    ... on Student {
+      id
+      firstName
+      lastName
+      middleName
+      type
+      preferredName
+      pronouns
+      suffix
+    }
+    ... on BehaviourIncident {
+      id
+      uid
+      category {
+        id
+        rootCategory {
+          id
+          name
+        }
+      }
+    }
+  }
+  messageData
+  extensionType
+  extensionData
+}

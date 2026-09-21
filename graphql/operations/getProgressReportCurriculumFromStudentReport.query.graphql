@@ -1,0 +1,16 @@
+query getProgressReportCurriculumFromStudentReport($studentProgressReportId: ID!) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    ... on StudentProgressReport {
+      id
+      courseProgressReportTask {
+        id
+        progressReportTaskGroup {
+          id
+          curriculumProgram {
+            id
+          }
+        }
+      }
+    }
+  }
+}

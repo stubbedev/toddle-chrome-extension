@@ -1,0 +1,40 @@
+fragment aiMessageItem on AiMessage {
+  id
+  role
+  authorType
+  content
+  metadata
+  createdBy {
+    ...staffItem
+    ...studentItem
+  }
+  votes {
+    myVote
+  }
+  usageMetricsId
+  parentMessage {
+    id
+  }
+  attachments {
+    id
+    name
+    type
+    mimeType
+    url
+    thumbUrl
+    signedUrl
+    title
+    metadata
+    streamUrl
+    parentType
+    createdBy {
+      id
+      type
+    }
+    toddleDoc {
+      id
+      value
+    }
+    createdAt
+  }
+}

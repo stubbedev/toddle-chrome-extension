@@ -1,0 +1,18 @@
+query getStudentSubjects($id: ID!, $subjectFilters: SubjectFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        variants {
+          level {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

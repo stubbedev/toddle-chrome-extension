@@ -1,0 +1,20 @@
+query getOrganizationFeed($filters: OrganizationFeedConnectionFilter) {
+  platform {
+    organizationFeed(first: 1, filters: $filters) {
+      totalCount
+      edges {
+        node {
+          ...organizationFeedDetailsItem
+          __typename
+        }
+      }
+    }
+    __typename
+  }
+}
+
+fragment libraryEntityBasicDetailsItem on LibraryGenericEntity {
+  id
+  type
+  label
+}

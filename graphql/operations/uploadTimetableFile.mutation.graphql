@@ -1,0 +1,157 @@
+mutation uploadTimetableFile($input: UploadTimetableFileInput!) {
+  integration {
+    uploadTimetableFile(input: $input) {
+      uploadStatus
+      errorData
+      timetableFileData {
+        columnsData {
+          mappings {
+            toolColumn
+            toddleColumn
+            toolType
+          }
+          toolColumns
+        }
+        periodsData {
+          toolPeriods {
+            id
+            name
+            abbreviation
+          }
+          mappings {
+            toolPeriod {
+              id
+              name
+              abbreviation
+            }
+            toddlePeriod {
+              id
+              label
+            }
+          }
+        }
+        teachersData {
+          toolTeachers {
+            id
+            email
+            name
+          }
+          mappings {
+            toolTeacher {
+              id
+              email
+              name
+            }
+            toddleTeacher {
+              id
+              email
+              firstName
+              middleName
+              lastName
+              profileImage
+            }
+          }
+        }
+        locationData {
+          toolLocations {
+            id
+            name
+            abbreviation
+          }
+          mappings {
+            toolLocation {
+              id
+              name
+              abbreviation
+            }
+            toddleLocation {
+              id
+              label
+              abbreviation
+            }
+          }
+        }
+        classesData {
+          toolClasses {
+            id
+            name
+          }
+          mappings {
+            toolClass {
+              id
+              name
+            }
+            toddleClass {
+              id
+              title
+              primaryGrade {
+                id
+                name
+              }
+            }
+          }
+        }
+        dayData {
+          toolDays {
+            id
+            name
+            abbreviation
+          }
+          mappings {
+            toolDay {
+              id
+              name
+              abbreviation
+            }
+            toddleDay {
+              day
+              rotationDay {
+                id
+                label
+                abbreviation
+              }
+              rotationEntity {
+                id
+                label
+                abbreviation
+              }
+            }
+          }
+        }
+        yardDutyData {
+          toolYardDuties {
+            id
+            name
+            abbreviation
+            location {
+              id
+              name
+              abbreviation
+            }
+          }
+          mappings {
+            toolYardDuty {
+              id
+              name
+              abbreviation
+              location {
+                id
+                name
+                abbreviation
+              }
+            }
+            toddleYardDuty {
+              id
+              label
+              location {
+                id
+                label
+                abbreviation
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

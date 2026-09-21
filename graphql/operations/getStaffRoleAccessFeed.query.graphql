@@ -1,0 +1,30 @@
+query getStaffRoleAccessFeed($organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $permissionCurriculumId: ID) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        userCount {
+          role
+          totalCount
+          __typename
+        }
+        edges {
+          node {
+            id
+            ... on Staff {
+              displayRole
+              curriculumDefaultAccess(curriculumProgramId: $permissionCurriculumId)
+              ...teacherItemDetail
+              ...staffPermissions
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+  }
+}

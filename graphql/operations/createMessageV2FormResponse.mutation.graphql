@@ -1,0 +1,7 @@
+mutation createMessageV2FormResponse($input: CreateFormResponseInput!) {
+  platform {
+    createFormResponse(input: $input) {
+      id
+    }
+  }
+}

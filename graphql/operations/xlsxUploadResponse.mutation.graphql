@@ -1,0 +1,8 @@
+mutation xlsxUploadResponse($input: UnitPlanXlsxUploadActionInput!) {
+  planner {
+    unitPlanXlsxUploadAction(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

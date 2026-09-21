@@ -1,0 +1,42 @@
+query getSyllabusInsights($id: ID!, $context: PlannerElementInsightsContext!, $filters: PlannerElementInsightsFilters!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbDpCurriculumProgram {
+      id
+      curriculumInsights {
+        plannerElementInsights {
+          plannerElementInsights(filters: $filters, context: $context) {
+            ...syllabusInsightsDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment syllabusInsightsDetails on PlannerElementInsightsResponse {
+  elementType
+  insights {
+    edges {
+      node {
+        id
+        ... on PlannerElementNodeInsight {
+          id
+          type
+          unitPlans
+          element {
+            id
+            label
+            type
+            parent
+            depth
+            children
+            genericTags {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

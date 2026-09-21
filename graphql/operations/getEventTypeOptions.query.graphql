@@ -1,0 +1,12 @@
+query getEventTypeOptions($organizationId: ID!) {
+  platform {
+    organization(id: $organizationId) {
+      id
+      calendarEventTags {
+        id
+        label
+        colorCode
+      }
+    }
+  }
+}

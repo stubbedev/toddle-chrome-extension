@@ -1,0 +1,32 @@
+query getTeacherProjectsAndClasses($id: ID!, $academicYear: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      projectGroups(filters: {academicYears: [$academicYear], yearGroupArchivalState: ALL, skipAdminCheck: true, checkCoreAccess: true}) {
+        id
+        curriculumProgram {
+          id
+          type
+          acronym
+        }
+      }
+      courses(filters: {archivalState: ALL, academicYear: $academicYear}) {
+        id
+        curriculumProgram {
+          id
+        }
+      }
+      learningCourses(filters: {academicYears: [$academicYear]}) {
+        edges {
+          node {
+            id
+            curriculumProgram {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

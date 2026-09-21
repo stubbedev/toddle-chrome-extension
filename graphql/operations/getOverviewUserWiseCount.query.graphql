@@ -1,0 +1,31 @@
+query getOverviewUserWiseCount($organizationId: ID!, $input: TotalChatMessageInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      messageV2Analytics {
+        totalChatMessages(input: $input) {
+          totalChatMessagesFromUser {
+            ...totalChatMessagesFromUser
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment messageDetailItem on MessageV2 {
+  id
+  label
+  createdAt
+  cursor
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+  }
+  attachments {
+    id
+  }
+}

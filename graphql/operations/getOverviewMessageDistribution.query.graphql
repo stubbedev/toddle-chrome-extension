@@ -1,0 +1,39 @@
+query getOverviewMessageDistribution($organizationId: ID!, $input: TotalChatMessageInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      messageV2Analytics {
+        totalChatMessages(input: $input) {
+          totalChatMessagesFromPersonalChat {
+            totalMessagesFromStaffWithStaff {
+              totalCount
+            }
+            totalMessagesFromStaffWithStudent {
+              totalCount
+            }
+            totalMessagesFromStaffWithFamily {
+              totalCount
+            }
+          }
+          totalChatMessagesFromChannel {
+            totalMessagesFromSystemManagedChannel {
+              totalCount
+            }
+            totalMessagesFromFamilyChannel {
+              totalCount
+            }
+            totalMessagesFromCustomChannel {
+              totalCount
+            }
+            totalMessagesFromPublicChannel {
+              totalCount
+            }
+            totalMessagesFromDepartmentChannel {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query getCoursesByIdsQuery($ids: [ID!]) {
+  multiNode(ids: $ids, type: COURSE) {
+    ... on Course {
+      id
+      title
+      learningCourse {
+        id
+        title
+      }
+      profileImageData {
+        url
+        icon
+        color
+        acronym
+        __typename
+      }
+    }
+  }
+}

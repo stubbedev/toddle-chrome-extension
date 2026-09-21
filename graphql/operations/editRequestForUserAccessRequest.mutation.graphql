@@ -1,0 +1,10 @@
+mutation editRequestForUserAccessRequest($input: EditRequestForMultiAccessIdentityInput) {
+  platform {
+    editRequestForMultiAccessIdentityUserAccess(input: $input) {
+      isSuccess
+      warning
+      __typename
+    }
+    __typename
+  }
+}

@@ -1,0 +1,74 @@
+fragment learningCourseItem on LearningCourse {
+  id
+  title
+  displayName
+  code
+  curriculumProgram {
+    id
+  }
+  primaryGrade(filters: $gradeFilters) {
+    ...gradeItem
+  }
+  grades(filters: $gradeFilters) {
+    ...gradeItem
+  }
+  displayMetadata
+  subjects {
+    id
+    name
+    isArchived
+    grades {
+      id
+      name
+    }
+    subjectGroup {
+      id
+      name
+      type
+      globalSubjectGroup {
+        id
+        constants
+      }
+    }
+    associatedLevels {
+      id
+      label
+      type
+    }
+    isArchived
+  }
+  associatedLevels {
+    id
+    label
+    type
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  responseLanguage {
+    id
+    label
+    type
+  }
+  gradingPeriods {
+    edges {
+      node {
+        id
+        label
+        startDate
+        endDate
+        academicYear {
+          id
+          startDate
+          endDate
+        }
+      }
+    }
+  }
+  subjectGroup {
+    id
+    name
+  }
+}

@@ -1,0 +1,7 @@
+mutation editCourse($id: ID!, $updatedBy: ID, $title: String, $grades: [String!], $subjectIds: [ID!], $profileImage: String, $studentsToAdd: [ID!], $studentsToRemove: [ID!], $collaboratorsAddWithId: [ID!], $collaboratorsRemoveWithId: [ID!], $isArchived: Boolean, $removedTags: [ID!], $addedTags: [ID!], $studentsWithSubjectLevel: [StudentsWithSubjectLevelInput!], $academicYears: UpdateArrayInput, $responseLanguage: ID, $sourcedId: String, $subjectLevels: UpdateArrayInput, $academicYearId: ID, $collaboratorsAddWithIdAndAclUserRole: [collaboratorsAddWithIdAndAclUserRoleInput!], $collaboratorsUpdateWithIdAndAclUserRole: [collaboratorsAddWithIdAndAclUserRoleInput!], $allCollaboratorsRemoveInput: AllCollaboratorsRemoveInput) {
+  platform {
+    updateCourse(input: {id: $id, title: $title, grades: $grades, updatedBy: $updatedBy, subjectIds: $subjectIds, profileImage: $profileImage, studentsToAdd: $studentsToAdd, studentsToRemove: $studentsToRemove, collaboratorsAddWithId: $collaboratorsAddWithId, collaboratorsRemoveWithId: $collaboratorsRemoveWithId, isArchived: $isArchived, removedTags: $removedTags, addedTags: $addedTags, studentsWithSubjectLevel: $studentsWithSubjectLevel, academicYears: $academicYears, responseLanguage: $responseLanguage, sourcedId: $sourcedId, subjectLevels: $subjectLevels, collaboratorsAddWithIdAndAclUserRole: $collaboratorsAddWithIdAndAclUserRole, collaboratorsUpdateWithIdAndAclUserRole: $collaboratorsUpdateWithIdAndAclUserRole, allCollaboratorsRemoveInput: $allCollaboratorsRemoveInput}) {
+      ...courseItem
+    }
+  }
+}

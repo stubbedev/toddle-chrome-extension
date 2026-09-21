@@ -1,0 +1,21 @@
+query getAnnouncementRecipientReadSummary($announcementId: ID!, $academicYearId: ID!) {
+  node(id: $announcementId, type: CIRCULAR) {
+    id
+    ... on Circular {
+      recipientReadSummary(input: {academicYearId: $academicYearId}) {
+        read {
+          total
+          staff
+          student
+          parent
+        }
+        unread {
+          total
+          staff
+          student
+          parent
+        }
+      }
+    }
+  }
+}

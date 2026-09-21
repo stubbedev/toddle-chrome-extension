@@ -1,0 +1,12 @@
+mutation archiveSchoolGroup($input: SchoolGroupIdInput!) {
+  platform {
+    archiveSchoolGroup(input: $input) {
+      isSuccess
+      warning
+      schoolGroup {
+        id
+        isArchived
+      }
+    }
+  }
+}

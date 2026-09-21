@@ -1,0 +1,18 @@
+mutation updateAttachment($newAttachment: AttachmentUpdateInput!) {
+  platform {
+    updateAttachment(input: $newAttachment) {
+      id
+      ... on Attachment {
+        type
+        title
+        url
+        name
+        mimeType
+        thumbUrl
+        description
+        streamUrl
+        metadata
+      }
+    }
+  }
+}

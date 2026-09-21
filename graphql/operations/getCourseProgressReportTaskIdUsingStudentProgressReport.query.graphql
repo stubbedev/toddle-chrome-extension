@@ -1,0 +1,10 @@
+query getCourseProgressReportTaskIdUsingStudentProgressReport($id: ID!) {
+  node(id: $id, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      courseProgressReportTask {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query downloadGradebookDataAsExcelForTranscriptQuery($id: ID!, $input: DownloadExcelTemplateForTranscriptInput!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      downloadGradebookDataAsExcelForTranscript(input: $input) {
+        ...downloadExcelResponseItem
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

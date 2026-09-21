@@ -1,0 +1,16 @@
+query getDPSubjectLevelVariants($id: ID!) {
+  node(id: $id, type: IB_DP_CURRICULUM_PROGRAM) {
+    ... on IbDpCurriculumProgram {
+      id
+      subjectVariants(filters: {archivalState: ALL}) {
+        level {
+          id
+          label
+          globalTag {
+            id
+          }
+        }
+      }
+    }
+  }
+}

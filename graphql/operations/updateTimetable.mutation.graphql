@@ -1,0 +1,8 @@
+mutation updateTimetable($input: UpdateTimetableInput!) {
+  platform {
+    updateTimetable(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

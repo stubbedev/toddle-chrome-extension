@@ -1,0 +1,17 @@
+query getStaffList($organizationId: ID!, $archivalState: ARCHIVAL_STATE_ENUM, $curriculumProgramIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: {archivalState: $archivalState, curriculumProgramIds: $curriculumProgramIds}) {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+          }
+        }
+      }
+    }
+  }
+}

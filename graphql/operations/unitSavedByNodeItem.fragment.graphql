@@ -1,0 +1,6 @@
+fragment unitSavedByNodeItem on UnitPlan {
+  id
+  savedBy {
+    id
+  }
+}

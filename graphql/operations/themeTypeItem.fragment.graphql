@@ -1,0 +1,4 @@
+fragment themeTypeItem on Theme {
+  id
+  label
+}

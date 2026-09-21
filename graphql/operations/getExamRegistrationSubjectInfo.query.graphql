@@ -1,0 +1,10 @@
+query getExamRegistrationSubjectInfo($id: ID!, $filters: ExamRegistrationStudentFilterInput, $subjectFilters: ExamRegistrationUserSubjectsFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      allStudents(filters: $filters) {
+        ...ibisExamRegStudent
+      }
+    }
+  }
+}

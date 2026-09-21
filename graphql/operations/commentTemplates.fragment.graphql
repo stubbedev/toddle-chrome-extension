@@ -1,0 +1,35 @@
+fragment commentTemplates on GradingCommentTemplate {
+  id
+  title
+  comment
+  type
+  updatedAt
+  createdBy {
+    id
+    profileImage
+    firstName
+    middleName
+    lastName
+    prefix
+    preferredName
+    pronouns
+    suffix
+  }
+  grades {
+    id
+    name
+  }
+  subjects {
+    id
+    name
+  }
+  characterCount
+  mappedTags {
+    id
+    title
+    columnTag {
+      id
+      title
+    }
+  }
+}

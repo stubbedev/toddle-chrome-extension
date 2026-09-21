@@ -1,0 +1,9 @@
+mutation startStudentFileUploadRunMutation($input: StartStudentFileUploadRunInput!) {
+  platform {
+    startStudentFileUploadRun(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+  }
+}

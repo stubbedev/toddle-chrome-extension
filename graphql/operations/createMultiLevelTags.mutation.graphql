@@ -1,0 +1,13 @@
+mutation createMultiLevelTags($input: [GenericTagInsertInput!]!) {
+  platform {
+    insertGenericTagsV2(input: $input) {
+      id
+      label
+      icon {
+        id
+        url
+      }
+      displaySequence
+    }
+  }
+}

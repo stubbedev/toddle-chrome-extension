@@ -1,0 +1,40 @@
+query getSubjectOverviewV2($id: ID!, $uids: [String!], $filters: UnitPlansV2FeedFilters!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $includeAllFields: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      unitPlansV2(filters: $filters, first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+          __typename
+        }
+        edges {
+          node {
+            id
+            templateId
+            startDate
+            endDate
+            title {
+              ...plannerFieldNodeItem
+            }
+            image {
+              ...mediaFieldNodeItem
+            }
+            subjects {
+              id
+              value
+            }
+            fields(uids: $uids) {
+              ...unitPlanFieldBasicDetailsItem
+            }
+            allFields @include(if: $includeAllFields) {
+              ...unitPlanFieldBasicDetailsItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

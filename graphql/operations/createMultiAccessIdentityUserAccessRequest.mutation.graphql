@@ -1,0 +1,10 @@
+mutation createMultiAccessIdentityUserAccessRequest($input: AddRequestForMultiAccessIdentityUserAccessInput) {
+  platform {
+    addRequestForMultiAccessIdentityUserAccess(input: $input) {
+      isSuccess
+      warning
+      __typename
+    }
+    __typename
+  }
+}

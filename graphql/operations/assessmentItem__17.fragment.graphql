@@ -1,0 +1,46 @@
+fragment assignmentItem on Assignment {
+  id
+  deadline
+  state {
+    state
+    publishedAt
+  }
+  contentType
+  content {
+    id
+    ... on Assessment {
+      ...assessmentItem
+    }
+  }
+}
+
+fragment assessmentItem on Assessment {
+  id
+  type
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+  }
+  image {
+    id
+    value
+  }
+  category {
+    id
+    label
+  }
+  fields(uids: ["subjectLevel"]) {
+    id
+    uid
+    value
+  }
+}

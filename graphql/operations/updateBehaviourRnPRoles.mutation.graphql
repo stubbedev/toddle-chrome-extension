@@ -1,0 +1,8 @@
+mutation updateBehaviourRnPRoles($input: BulkAssignUserRnPRolesInput!) {
+  acl {
+    updateUserRnpRoles(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

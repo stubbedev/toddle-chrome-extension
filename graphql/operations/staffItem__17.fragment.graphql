@@ -1,0 +1,27 @@
+fragment staffItem on Staff {
+  id
+  entityRelationMap(filters: $entityRelationMapFilters) {
+    edges {
+      node {
+        relatedEntity {
+          ... on Staff {
+            id
+            firstName
+            lastName
+            middleName
+            email
+            isArchived
+            prefix
+            suffix
+            pronouns
+            preferredName
+          }
+        }
+        relationType
+        entityType
+        relatedEntityType
+      }
+      cursor
+    }
+  }
+}

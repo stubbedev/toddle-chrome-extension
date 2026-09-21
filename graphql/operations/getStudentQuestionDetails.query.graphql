@@ -1,0 +1,25 @@
+query getStudentQuestionDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $orgResourceFilters: OrganizationResourceFilter, $showAssessmentTools: Boolean = false) {
+  node(id: $id, type: $type) {
+    ... on Assessment {
+      id
+      isDeleted
+      title {
+        id
+        uid
+        value
+      }
+      description {
+        id
+        uid
+        value
+      }
+      organizationResourcesV2(first: null, filters: $orgResourceFilters) {
+        edges {
+          node {
+            ...organizationResourceParentItem
+          }
+        }
+      }
+    }
+  }
+}

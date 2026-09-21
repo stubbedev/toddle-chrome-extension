@@ -1,0 +1,25 @@
+query getScoreAggregationConfiguration($id: ID!, $filters: ScoreAggregationConfigurationFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      scoreAggregationConfiguration(filters: $filters) {
+        id
+        grade {
+          id
+        }
+        academicTerm {
+          id
+        }
+        academicCriteriaSet {
+          id
+          criteriaType
+        }
+        aggregateCriteriaSets {
+          id
+          subType
+        }
+      }
+    }
+  }
+}

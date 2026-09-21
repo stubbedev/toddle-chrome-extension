@@ -1,0 +1,7 @@
+mutation updateUser($input: UserUpdateInput!) {
+  platform {
+    updateUser(input: $input) {
+      ...externalUserItem
+    }
+  }
+}

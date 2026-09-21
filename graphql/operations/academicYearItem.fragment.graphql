@@ -1,0 +1,5 @@
+fragment academicYearItem on AcademicYear {
+  id
+  startDate
+  endDate
+}

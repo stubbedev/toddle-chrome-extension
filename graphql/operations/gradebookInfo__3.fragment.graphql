@@ -1,0 +1,47 @@
+fragment gradebookInfo on Project {
+  id
+  students {
+    id
+    profileImage
+    firstName
+    middleName
+    lastName
+    registrationCategory
+    preferredName
+    suffix
+    pronouns
+    type
+    alertTypes {
+      ...alertTypeFields
+    }
+  }
+  ibPYPElementRatings {
+    id
+    ibPYPElementId
+    ibPYPElementType
+    value
+    academicCriteriaSet {
+      label
+      criteriaType
+      id
+      academicCriteriaValues {
+        abbreviation
+        description
+        id
+        label
+      }
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+    }
+  }
+  ibPYPElementRemarks {
+    id
+    message
+    ibPYPElementId
+    ibPYPElementType
+  }
+  ...projectDetailItem
+}

@@ -1,0 +1,21 @@
+fragment courseFlowOutlineItem on LearningCourseFlow {
+  id
+  label
+  depth
+  children(filters: $filters) {
+    id
+  }
+  parent {
+    id
+  }
+  itemType
+  item {
+    id
+    ... on Assessment {
+      title {
+        id
+        value
+      }
+    }
+  }
+}

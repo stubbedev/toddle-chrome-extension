@@ -1,0 +1,11 @@
+mutation createGenericRubricCriterias($input: [CreateGenericRubricCriteriaInput!]!) {
+  planner {
+    createGenericRubricCriterias(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...genericRubricCriteriaItem
+      }
+    }
+  }
+}

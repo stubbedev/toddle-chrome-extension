@@ -1,0 +1,5 @@
+mutation addConfigurationValues($input: [ConfigurationValueByRegionUpdateInput]!) {
+  platform {
+    setConfiguartionValueWithRegionId(input: $input)
+  }
+}

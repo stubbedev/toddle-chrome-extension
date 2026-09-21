@@ -1,0 +1,19 @@
+query getBehaviourActionsQuery($id: ID!, $filters: BehaviourActionFilters, $includeCurriculumProgram: Boolean = false) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourActions(filters: $filters) {
+        id
+        title
+        type
+        state
+        metadata
+        curriculumProgram @include(if: $includeCurriculumProgram) {
+          id
+          label
+          acronym
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+fragment staffItem on Staff {
+  id
+  calendarEvents(filters: $filters) {
+    id
+    startTime
+    endTime
+    itemType
+    attendanceTakers {
+      id
+      firstName
+      lastName
+      profileImage
+    }
+    sessions {
+      id
+      startDateTime
+      endDateTime
+    }
+    item {
+      id
+      ... on Assignment {
+        ...assignmentItem
+        course {
+          id
+          title
+        }
+      }
+      ... on CalendarEventItem {
+        ...calendarEventItemStaff
+      }
+      ... on CalendarEvent {
+        ...calendarEvent
+      }
+      ... on ProjectGroupDeadline {
+        id
+        deadlineDate
+        title
+        isDeadlineAllDay
+        description
+        createdBy {
+          ...supervisorInfo
+        }
+        projectGroup {
+          ...calendarProjectGroupItem
+        }
+      }
+      ... on ProjectGroupTask {
+        id
+        dueOn
+        title
+        isDeadlineAllDay
+        description
+        createdBy {
+          ...supervisorInfo
+        }
+        projectGroup {
+          ...calendarProjectGroupItem
+        }
+      }
+    }
+  }
+}
+
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}

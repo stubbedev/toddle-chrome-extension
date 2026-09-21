@@ -1,0 +1,8 @@
+query getTemplateFields($ids: [ID!], $templateFieldPropertyValuesFilters: TemplateFieldPropertyValuesFilter, $templateFieldConfigFilter: TemplateFieldConfigFilter, $templateFieldPlannerElementSetFilters: TemplateFieldPlannerElementSetFilters) {
+  multiNode(ids: $ids, type: TEMPLATE_FIELD) {
+    id
+    ... on TemplateField {
+      ...templateFieldItem
+    }
+  }
+}

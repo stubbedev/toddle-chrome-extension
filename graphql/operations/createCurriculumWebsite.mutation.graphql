@@ -1,0 +1,10 @@
+mutation createCurriculumWebsite($input: CreateCurriculumWebsiteInput!) {
+  planner {
+    createCurriculumWebsite(input: $input) {
+      isSuccess
+      curriculumWebsite {
+        id
+      }
+    }
+  }
+}

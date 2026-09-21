@@ -1,0 +1,20 @@
+fragment activityLikesAndComments on StudentActivity {
+  id
+  comments {
+    totalCount
+    unreadCountV2
+    messageEdges {
+      node {
+        ...messageItem
+      }
+    }
+  }
+  likes {
+    totalCount
+    edges {
+      node {
+        ...likeItem
+      }
+    }
+  }
+}

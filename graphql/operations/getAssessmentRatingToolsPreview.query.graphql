@@ -1,0 +1,16 @@
+query getAssessmentRatingToolsPreview($id: ID!) {
+  node(id: $id, type: ASSESSMENT) {
+    id
+    ... on Assessment {
+      id
+      allFields {
+        id
+        uid
+        value
+        resolvedMinimalTree {
+          ...resolvedMinimalTreeItem
+        }
+      }
+    }
+  }
+}

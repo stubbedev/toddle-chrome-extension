@@ -1,0 +1,20 @@
+query getProjectGroupCourseAcademicYears($id: ID!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      courses {
+        edges {
+          node {
+            id
+            title
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation deleteProcessJournal($id: ID!) {
+  documentation {
+    deletePost(id: $id) {
+      isSuccess
+    }
+  }
+}

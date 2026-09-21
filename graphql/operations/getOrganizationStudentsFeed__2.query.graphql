@@ -1,0 +1,25 @@
+query getOrganizationStudentsFeed($filters: OrgConnectionFilterInput, $userArchivedFilters: UserArchivedFilters) {
+  platform {
+    organization {
+      id
+      students(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            email
+            firstName
+            sourceId
+            lastName
+            profileImage
+            isArchived
+            isArchivedV2(filters: $userArchivedFilters)
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+      }
+    }
+  }
+}

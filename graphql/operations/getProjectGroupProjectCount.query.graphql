@@ -1,0 +1,10 @@
+query getProjectGroupProjectCount($id: ID!, $filters: ProjectGroupProjectsFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      projects(filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

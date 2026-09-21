@@ -1,0 +1,5 @@
+mutation deleteChecklist($id: ID!) {
+  planner {
+    deleteChecklist(input: {id: $id})
+  }
+}

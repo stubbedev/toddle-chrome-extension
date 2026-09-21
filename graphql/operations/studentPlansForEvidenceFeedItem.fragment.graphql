@@ -1,0 +1,61 @@
+query getStudentPlansForEvidence($id: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentPlansFeedInput!, $planFilters: StudentPlansFeedFilters, $evidenceFilters: StudentPlanEvidenceFeedFilters) {
+  node(id: $id, type: $type) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlansForEvidenceFeedItem
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlansForEvidenceFeedItem
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlansForEvidenceFeedItem
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentPlansForEvidenceFeedItem
+      }
+    }
+  }
+}
+
+fragment studentPlansForEvidenceFeedItem on CurriculumProgramStudentPlan {
+  studentPlanStudentFeed(input: $input) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        firstName
+        lastName
+        middleName
+        preferredName
+        profileImage
+        studentPlans(filters: $planFilters) {
+          id
+          planType {
+            id
+            name
+            flagIcon
+            metadata
+          }
+          evidence(filters: $evidenceFilters) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

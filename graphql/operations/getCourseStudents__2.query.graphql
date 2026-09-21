@@ -1,0 +1,87 @@
+query getCourseStudents($courseID: ID!, $academicYearId: ID!, $useSubjectLevelFilter: Boolean = false) {
+  node(id: $courseID, type: COURSE) {
+    id
+    ... on Course {
+      genericTags {
+        id
+        label
+        type
+      }
+      userMap(filters: {archivalState: ALL, userTypes: [student], academicYearIds: [$academicYearId]}) {
+        ...userMapItem
+      }
+    }
+  }
+}
+
+query getClassFeed($organizationId: ID!, $first: Int, $after: String, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationCourseFeedEdgeItem
+    }
+  }
+}
+
+fragment organizationCourseFeedEdgeItem on Organization {
+  id
+  courses(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    edges {
+      node {
+        ...courseItem
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
+fragment courseItem on Course {
+  id
+  title
+  genericTags {
+    id
+    label
+    type
+  }
+  profileImageData {
+    url
+    icon
+    color
+    acronym
+  }
+  subjects {
+    id
+  }
+  genericTags {
+    id
+    label
+    abbreviation
+  }
+  subjectLevelMap {
+    subject {
+      id
+      name
+    }
+    associatedLevels {
+      id
+      label
+      abbreviation
+    }
+  }
+  curriculumProgram {
+    id
+    type
+    academicSetupType
+  }
+  learningCourse {
+    id
+    title
+    academicCourse {
+      id
+      code
+    }
+  }
+}

@@ -1,0 +1,15 @@
+mutation markConversationAsRead($id: ID!, $excludeItemTypesV2: [String!], $includeItemTypesV2: [String!], $unreadMessageItemTypes: [String!]) {
+  platform {
+    markConversationAsReadV2(input: {conversation: $id, excludeItemTypesV2: $excludeItemTypesV2, includeItemTypesV2: $includeItemTypesV2}) {
+      ... on Conversation {
+        id
+        unreadMessageCount
+        unreadMessageCounts(filters: {includeItemTypesV2: $unreadMessageItemTypes}) {
+          itemTypeV2
+          itemType
+          count
+        }
+      }
+    }
+  }
+}

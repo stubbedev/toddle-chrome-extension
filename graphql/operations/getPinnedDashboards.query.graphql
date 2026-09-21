@@ -1,0 +1,14 @@
+query getPinnedDashboards($id: ID!, $input: PinnedChartFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        pinnedCharts(filter: $input) {
+          edges {
+            dashboardId
+          }
+        }
+      }
+    }
+  }
+}

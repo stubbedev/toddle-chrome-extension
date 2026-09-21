@@ -1,0 +1,10 @@
+query getCommentOfNode($id: ID!, $first: Int, $after: String, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on StudentGoal {
+      ...studentGoalItem
+    }
+    ... on GoalTask {
+      ...studentGoalTaskItem
+    }
+  }
+}

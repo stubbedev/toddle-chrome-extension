@@ -1,0 +1,9 @@
+mutation addClassDraft($input: ClassDraftAddInput!) {
+  planner {
+    addClassDraft(input: $input) {
+      key
+      isExisting
+    }
+    __typename
+  }
+}

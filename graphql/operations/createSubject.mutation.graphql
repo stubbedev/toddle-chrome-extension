@@ -1,0 +1,36 @@
+mutation createSubject($name: String!, $grades: [ID!], $icon: String, $iconType: SUBJECT_ICON_TYPE_ENUM = ICON, $subjectGroupId: ID, $curriculumProgramId: ID, $levelIds: [ID!], $orgSubjectVariants: [OrgSubjectVariantInput!], $presetSubjectId: ID, $code: String, $courseType: SUBJECT_COURSE_TYPE_ENUM, $type: SUBJECT_TYPE_ENUM) {
+  platform {
+    createSubjectV2(input: {name: $name, icon: $icon, iconType: $iconType, grades: $grades, subjectGroupId: $subjectGroupId, curriculumProgramId: $curriculumProgramId, levelIds: $levelIds, orgSubjectVariants: $orgSubjectVariants, presetSubjectId: $presetSubjectId, code: $code, courseType: $courseType, type: $type}) {
+      isSuccess
+      warning
+      subject {
+        id
+        name
+        code
+        courseType
+        icon
+        iconType
+        subjectGroup {
+          id
+          name
+          type
+        }
+        associatedLevels {
+          id
+          label
+          type
+        }
+        grades {
+          id
+          name
+        }
+        learningCourses {
+          id
+          title
+          state
+          displayName
+        }
+      }
+    }
+  }
+}

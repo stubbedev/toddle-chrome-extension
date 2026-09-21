@@ -1,0 +1,14 @@
+query getOrgTeachersStudentNumberDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students {
+        totalCount
+      }
+      staff {
+        totalCount
+      }
+    }
+  }
+}

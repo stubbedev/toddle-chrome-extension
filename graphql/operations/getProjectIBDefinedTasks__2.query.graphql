@@ -1,0 +1,46 @@
+query getProjectIBDefinedTasks($id: ID!, $projectTaskFilters: ProjectTaskFilters) {
+  node(id: $id, type: PROJECT) {
+    ... on Project {
+      id
+      tasks(filters: $projectTaskFilters) {
+        id
+        task {
+          id
+          title
+          description
+          dueOn
+          closesOn
+          isStudentSubmissionEnabled
+          isDeadlineAllDay
+          submission {
+            id
+            fieldUID
+            type
+            title
+          }
+        }
+        isComplete
+        isSubmissionTurnedIn
+        latestSubmissionResponse {
+          id
+          isLocked
+          isReturned
+          isTurnedIn
+          status
+          submission {
+            id
+            fieldUID
+            items {
+              id
+              title
+              fieldUID
+            }
+          }
+          itemResponses {
+            ...projectTaskSubmissionItemResponseItem
+          }
+        }
+      }
+    }
+  }
+}

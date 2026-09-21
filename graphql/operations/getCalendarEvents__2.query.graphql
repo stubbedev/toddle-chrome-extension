@@ -1,0 +1,7 @@
+query getCalendarEvents($rangeBeginStartDate: String!, $rangeEndStartDate: String!) {
+  school {
+    calendarEvents(rangeBeginStartDate: $rangeBeginStartDate, rangeEndStartDate: $rangeEndStartDate) {
+      ...calendarEvent
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query getOrganizationUnitPlanIds($id: ID!, $filters: UnitPlansV2FeedFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      unitPlansV2(first: 10000, filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            grades
+            isIncludedInInsights
+          }
+        }
+      }
+    }
+  }
+}

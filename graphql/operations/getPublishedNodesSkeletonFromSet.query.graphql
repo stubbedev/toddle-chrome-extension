@@ -1,0 +1,69 @@
+query getPublishedNodesSkeletonFromSet($id: ID!, $nodesFilters: PlannerElementNodeFilters, $nodeSetFilters: PlannerElementNodeSetsByPlannerElementFilters, $first: Int!, $after: String) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      plannerElementNodeSets(filters: $nodeSetFilters) {
+        id
+        plannerElementNodeSetWrapperV2 {
+          ... on PlannerElementNodeSetWrapper {
+            publishedData(filters: $nodesFilters, first: $first, after: $after) {
+              totalCount
+              pageInfo {
+                endCursor
+                hasNextPage
+              }
+              edges {
+                cursor
+                node {
+                  id
+                  depth
+                  parent
+                  label
+                  children
+                }
+              }
+            }
+          }
+          ... on PlannerBenchmarkSetWrapper {
+            publishedData(filters: $nodesFilters, first: $first, after: $after) {
+              totalCount
+              pageInfo {
+                endCursor
+                hasNextPage
+              }
+              edges {
+                cursor
+                node {
+                  id
+                  depth
+                  parent
+                  label
+                  children
+                }
+              }
+            }
+          }
+          ... on PlannerATLSetWrapper {
+            publishedData(filters: $nodesFilters, first: $first, after: $after) {
+              totalCount
+              pageInfo {
+                endCursor
+                hasNextPage
+              }
+              edges {
+                cursor
+                node {
+                  id
+                  depth
+                  parent
+                  label
+                  children
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

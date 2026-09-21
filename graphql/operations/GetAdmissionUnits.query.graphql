@@ -1,0 +1,17 @@
+query GetAdmissionUnits {
+  admission {
+    admissionUnits {
+      id
+      name
+      curriculumPrograms {
+        id
+        label
+        acronym
+        grades {
+          id
+          name
+        }
+      }
+    }
+  }
+}

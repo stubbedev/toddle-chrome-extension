@@ -1,0 +1,46 @@
+fragment weeklyPlannerSectionItem on WeeklyPlannerSection {
+  id
+  items {
+    id
+    itemType
+    isItemDragged
+    item {
+      ... on Attachment {
+        ...attachmentItem
+      }
+      ... on Assessment {
+        ...assessmentItem
+        assignments {
+          edges {
+            state {
+              state
+            }
+          }
+        }
+      }
+      ... on Assignment {
+        id
+        contentType
+        state {
+          state
+        }
+        content {
+          __typename
+          ... on Assessment {
+            ...assessmentItem
+            learningCourse {
+              id
+              permissions {
+                isManageAssignmentsAndResourcesInCourseFlow
+              }
+            }
+          }
+        }
+      }
+      ... on LearningCourseFlow {
+        ...learningCourseFlowItem
+      }
+    }
+  }
+  __typename
+}

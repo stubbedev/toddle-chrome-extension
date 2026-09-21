@@ -1,0 +1,10 @@
+mutation updatePointAssessmentSet($input: [UpdatePointAssessmentSetInput!]) {
+  planner {
+    updatePointAssessmentSet(input: $input) {
+      warning
+      response {
+        id
+      }
+    }
+  }
+}

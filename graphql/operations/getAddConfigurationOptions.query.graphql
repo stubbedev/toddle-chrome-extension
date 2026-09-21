@@ -1,0 +1,17 @@
+query getAddConfigurationOptions {
+  platform {
+    configurationToolMutationOptions {
+      configurationGroupOptions
+      presetDependentEntities {
+        id
+        entityGroup
+      }
+      ownerTeams
+      validitySupportingEntities
+      supportedAppTypes
+      supportedACLControlParameterTypes
+      supportedACLPortalTypes
+      supportedACLModules
+    }
+  }
+}

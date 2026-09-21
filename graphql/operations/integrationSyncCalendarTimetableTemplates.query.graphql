@@ -1,0 +1,30 @@
+query integrationSyncCalendarTimetableTemplates($jobId: ID!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  integration {
+    integrationSyncCalendarTimetableTemplates(input: {jobId: $jobId, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId}) {
+      label
+      serviceId
+      toddleId
+      grades {
+        id
+        name
+      }
+      schedule {
+        weekday
+        rotationDay {
+          serviceId
+          label
+        }
+        bellSchedule {
+          serviceId
+          periods {
+            abbreviation
+            label
+            serviceId
+            startTime
+            endTime
+          }
+        }
+      }
+    }
+  }
+}

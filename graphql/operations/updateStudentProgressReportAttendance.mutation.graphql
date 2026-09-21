@@ -1,0 +1,7 @@
+mutation updateStudentProgressReportAttendance($input: UpdateStudentProgressReportAttendanceInputV2!) {
+  documentation {
+    updateStudentProgressReportAttendanceV2(input: $input) {
+      id
+    }
+  }
+}

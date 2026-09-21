@@ -1,0 +1,28 @@
+query getWeeklyPlannerTemplateSections($id: ID!, $filters: WeeklyPlannerSectionFilters) {
+  node(id: $id, type: WEEKLY_PLANNER_TEMPLATE) {
+    id
+    ... on WeeklyPlannerTemplate {
+      id
+      title
+      startDate
+      endDate
+      enabledSections {
+        sections
+      }
+      defaultAccessState
+      courses {
+        id
+        title
+        primaryGrade {
+          id
+        }
+        __typename
+      }
+      sections(filters: $filters) {
+        ...weeklyPlannerSectionItem
+      }
+      __typename
+    }
+    __typename
+  }
+}

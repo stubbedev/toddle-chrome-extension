@@ -1,0 +1,44 @@
+query getAssociatedClasses($learningCourseId: ID!, $searchText: String, $status: ARCHIVAL_STATE_ENUM, $collaboratorFilters: CollaboratorFilters) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      ...learningCourseItem
+    }
+  }
+}
+
+fragment learningCourseItem on LearningCourse {
+  id
+  isArchived
+  classes(filters: {searchText: $searchText, status: $status}) {
+    id
+    title
+    profileImageData {
+      url
+      icon
+      color
+      acronym
+    }
+    isActive
+    isArchived
+    students(filters: {archivalState: ALL}) {
+      totalCount
+      archivedCount
+    }
+    allCollaborators(filters: $collaboratorFilters) {
+      totalCount
+      archivedCount
+    }
+    assignments {
+      totalCount
+    }
+    gradingPeriods {
+      edges {
+        node {
+          id
+          label
+        }
+      }
+    }
+    __typename
+  }
+}

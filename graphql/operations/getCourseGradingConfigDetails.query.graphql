@@ -1,0 +1,18 @@
+query getCourseGradingConfigDetails($id: ID!, $gradingConfigFilters: GradingConfigurationFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      gradingConfigurations(filters: $gradingConfigFilters) {
+        id
+        ...GradingConfigurationFragment
+        ...GradingCategorySetsFragment
+        ...CumulativeTermWeightsFragment
+      }
+      gradingMethodology {
+        id
+        gradingMethodologyTypes
+      }
+    }
+  }
+}

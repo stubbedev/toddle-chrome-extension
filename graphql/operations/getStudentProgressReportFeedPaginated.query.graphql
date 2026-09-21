@@ -1,0 +1,45 @@
+query getStudentProgressReportFeedPaginated($reportId: ID!, $filters: TaskStudentProgressReportsFilter) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      studentProgressReports(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            id
+            status
+            sectionCompleteStatus {
+              section
+              isCompleted
+            }
+            student {
+              id
+              firstName
+              middleName
+              lastName
+              profileImage
+              email
+              preferredName
+              suffix
+              pronouns
+              type
+              isDevUser
+              isArchived
+              sourceId
+              prefix
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

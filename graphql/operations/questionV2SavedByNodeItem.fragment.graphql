@@ -1,0 +1,4 @@
+fragment questionV2SavedByNodeItem on Question {
+  id
+  isSavedForLibrary
+}

@@ -1,0 +1,26 @@
+fragment organizationChildResourceItemV2 on OrganizationResource {
+  id
+  label
+  childrenV2(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+    resourceTypeBasedCount {
+      folderCount
+      fileCount
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        ...organizationResourceItemV3
+      }
+    }
+  }
+  isDeleted
+  visibleTo
+  resourceType
+  parentHierarchy {
+    id
+    label
+  }
+}

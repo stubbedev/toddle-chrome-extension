@@ -1,0 +1,38 @@
+query getProjectGroupDeadlinesV2($projectGroupId: ID!) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      tasks {
+        edges {
+          node {
+            id
+            title
+            description
+            dueOn
+            closesOn
+            isStudentSubmissionEnabled
+            isDeadlineAllDay
+            responses {
+              id
+              isComplete
+              latestSubmissionResponse {
+                id
+                status
+              }
+              project {
+                id
+                students {
+                  id
+                  firstName
+                  middleName
+                  lastName
+                  profileImage
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query getStudentRatings($studentId: ID!, $filtersForRecentMost: ibPYPElementRatingFilterForRecentMost, $startDate: String, $endDate: String) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      ibPYPElementRatings(filtersForRecentMost: $filtersForRecentMost, startDate: $startDate, endDate: $endDate, dataSet: MOST_RECENT) {
+        id
+        ibPYPElementId
+        isComputedRating
+        academicCriteriaSet {
+          id
+        }
+        academicCriteriaValue {
+          id
+        }
+      }
+    }
+  }
+}

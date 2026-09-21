@@ -1,0 +1,11 @@
+mutation createAdminAttendanceExcusal($studentIds: [ID!], $durationType: ATTENDANCE_EXCUSAL_DURATION_TYPE_ENUM, $startDate: String, $endDate: String, $reason: String, $periodIds: [ID!], $attachments: [AttachmentInput!], $curriculumProgramId: ID, $academicYearId: ID, $attendanceOptionId: ID) {
+  platform {
+    createAdminAttendanceExcusal(input: {studentIds: $studentIds, durationType: $durationType, startDate: $startDate, endDate: $endDate, reason: $reason, periodIds: $periodIds, attachments: $attachments, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId, attendanceOptionId: $attendanceOptionId}) {
+      warning
+      isSuccess
+      response {
+        id
+      }
+    }
+  }
+}

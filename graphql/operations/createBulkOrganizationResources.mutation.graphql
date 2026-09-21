@@ -1,0 +1,14 @@
+mutation createBulkOrganizationResources($input: OrganizationBulkResourceInput!) {
+  platform {
+    createBulkOrganizationResources(input: $input) {
+      id
+      label
+      resourceType
+      metadata
+      attachment {
+        id
+        name
+      }
+    }
+  }
+}

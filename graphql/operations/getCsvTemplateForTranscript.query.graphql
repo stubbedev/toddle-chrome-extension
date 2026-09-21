@@ -1,0 +1,8 @@
+query getCsvTemplateForTranscript($id: ID!, $input: DownloadCsvDataTemplateForTranscriptInput!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      downloadCsvDataTemplateForTranscript(input: $input)
+    }
+  }
+}

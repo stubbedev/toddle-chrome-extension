@@ -1,0 +1,14 @@
+mutation calendarEntityValidationAction($input: SchoolCalendarSheetValidationActionInput!) {
+  platform {
+    schoolCalendarSheetValidationAction(input: $input) {
+      uploadStatus
+      successData {
+        added
+        __typename
+      }
+      errorData
+      __typename
+    }
+    __typename
+  }
+}

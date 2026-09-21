@@ -1,0 +1,13 @@
+fragment lpItem on PlannerLearnerProfile {
+  id
+  label
+  subText
+  levelId
+  parent
+  children
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+    }
+  }
+}

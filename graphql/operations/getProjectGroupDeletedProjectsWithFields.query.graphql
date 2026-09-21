@@ -1,0 +1,37 @@
+query getProjectGroupDeletedProjectsWithFields($id: ID!, $projectFilters: ProjectGroupProjectsFilters, $projectFieldFilters: PlannerFieldFilter, $academicYearId: ID, $isServiceAsAction: Boolean!, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      type
+      projects(filters: $projectFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...projectInfoProgress
+            fields(filters: $projectFieldFilters) {
+              id
+              uid
+              value
+              pseudoFieldUid
+            }
+            academicYear @include(if: $isServiceAsAction) {
+              id
+              startDate
+              endDate
+            }
+            studentCollaborators {
+              id
+              student {
+                ...userNameFields
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

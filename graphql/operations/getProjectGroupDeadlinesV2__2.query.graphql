@@ -1,0 +1,75 @@
+query getProjectGroupDeadlinesV2($projectGroupId: ID!, $projectTaskFilters: ProjectGroupTaskFilters, $projectGroupTaskResponsesFilters: ProjectGroupTaskResponsesFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      tasks(filters: $projectTaskFilters) {
+        edges {
+          node {
+            id
+            title
+            description
+            dueOn
+            closesOn
+            isStudentSubmissionEnabled
+            status
+            isDeadlineAllDay
+            responses(filters: $projectGroupTaskResponsesFilters) {
+              id
+              isComplete
+              isSubmissionTurnedIn
+              isSubmissionLocked
+              project {
+                id
+                students {
+                  ...userNameFields
+                  profileImage
+                }
+              }
+            }
+            resources {
+              edges {
+                node {
+                  id
+                  label
+                  attachment {
+                    id
+                    name
+                    type
+                    mimeType
+                    url
+                    signedUrl
+                    thumbUrl
+                    title
+                    metadata
+                    streamUrl
+                    parentType
+                  }
+                }
+              }
+            }
+            submission {
+              id
+              type
+              items {
+                id
+                template {
+                  id
+                  name
+                  type
+                  mimeType
+                  url
+                  signedUrl
+                  thumbUrl
+                  title
+                  metadata
+                  streamUrl
+                  parentType
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

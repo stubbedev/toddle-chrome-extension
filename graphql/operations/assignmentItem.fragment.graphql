@@ -1,0 +1,46 @@
+fragment assignmentItem on Assignment {
+  id
+  contentType
+  state {
+    state
+    publishedAt
+    updatedAt
+  }
+  createdBy {
+    id
+    email
+    firstName
+    lastName
+    middleName
+    profileImage
+  }
+  content {
+    id
+    ... on Assessment {
+      id
+      title {
+        id
+        value
+      }
+      assessmentType {
+        id
+        value
+      }
+      taskType {
+        id
+        type
+        label
+      }
+    }
+    ... on AssignmentResource {
+      id
+      label
+      title
+    }
+  }
+  deadline
+  publishedAt
+  closeSubmissionDate
+  visibility
+  isPrivate
+}

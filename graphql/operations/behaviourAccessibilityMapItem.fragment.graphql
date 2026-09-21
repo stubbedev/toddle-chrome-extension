@@ -1,0 +1,26 @@
+fragment behaviourAccessibilityMapItem on AccessibilityMap {
+  id
+  type
+  shouldNotify
+  notificationScope
+  entityId
+  users {
+    id
+    firstName
+    middleName
+    lastName
+    profileImage
+    type
+    ... on Staff {
+      prefix
+      suffix
+      preferredName
+      pronouns
+    }
+  }
+  details {
+    id
+    type
+    value
+  }
+}

@@ -1,0 +1,199 @@
+query getLearningCourseDetails($id: ID!, $gradeFilters: LearningCourseGradeFilters, $shouldFetchSchoolEntityMappings: Boolean = false, $schoolEntityMappingCurriculumProgramIds: [ID!]) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      title
+      displayName
+      code
+      courseSubjectType
+      academicCourse {
+        id
+      }
+      curriculumProgram {
+        id
+      }
+      primaryGrade(filters: $gradeFilters) {
+        ...gradeItem
+      }
+      grades(filters: $gradeFilters) {
+        ...gradeItem
+      }
+      displayMetadata
+      includeAllGradingPeriods
+      subjects {
+        id
+        name
+        isArchived
+        grades {
+          id
+          name
+        }
+        subjectGroup {
+          id
+          name
+          type
+          globalSubjectGroup {
+            id
+            constants
+          }
+        }
+        associatedLevels {
+          id
+          label
+          type
+        }
+        isArchived
+      }
+      associatedLevels {
+        id
+        label
+        type
+      }
+      associatedLevelWiseStudentCount {
+        associatedLevel {
+          id
+        }
+        studentCount
+      }
+      academicYears {
+        id
+        startDate
+        endDate
+      }
+      responseLanguage {
+        id
+        label
+        type
+      }
+      gradingPeriods {
+        edges {
+          node {
+            id
+            label
+            startDate
+            endDate
+            academicYear {
+              id
+              startDate
+              endDate
+            }
+          }
+        }
+      }
+      subjectGroup {
+        id
+        name
+      }
+      subjectLevelMap {
+        subject {
+          id
+        }
+        associatedLevels {
+          id
+        }
+        associatedLevelWiseStudentCount {
+          associatedLevel {
+            id
+          }
+          studentCount
+        }
+      }
+      bluePrintCourse {
+        id
+        title
+        displayMetadata
+      }
+      childCourses {
+        id
+      }
+      availableBlueprintCourses(input: {highlightDisabled: true}) {
+        id
+        title
+        displayMetadata
+        childCourses {
+          id
+        }
+        grades {
+          id
+        }
+        subjects {
+          id
+        }
+        gradingPeriods {
+          edges {
+            node {
+              id
+              label
+              startDate
+              endDate
+              academicYear {
+                id
+                startDate
+                endDate
+              }
+            }
+          }
+        }
+        responseLanguage {
+          id
+        }
+        academicYears {
+          id
+        }
+        associatedLevels {
+          id
+          label
+          type
+        }
+        subjectLevelMap {
+          subject {
+            id
+          }
+          associatedLevels {
+            id
+          }
+        }
+        isLearningCourseAvailableForAssociation
+      }
+      isCourseEmpty
+      schoolEntityMappings(filter: {curriculumProgramIds: $schoolEntityMappingCurriculumProgramIds}) @include(if: $shouldFetchSchoolEntityMappings) {
+        primaryGrades {
+          id
+        }
+        grades {
+          id
+        }
+        subjects {
+          id
+        }
+        subjectGroups {
+          id
+        }
+        academicCourses {
+          id
+        }
+        responseLanguage {
+          id
+        }
+        terms {
+          id
+          academicYear {
+            id
+          }
+        }
+        associatedLevels {
+          id
+        }
+        subjectLevelMap {
+          subject {
+            id
+          }
+          associatedLevels {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation createColumnGroup($input: [CreateExternalAssessmentColumnGroupInput!]!) {
+  externalAssessment {
+    createExternalAssessmentColumnGroups(input: $input) {
+      isSuccess
+      columnGroups {
+        id
+        name
+      }
+    }
+  }
+}

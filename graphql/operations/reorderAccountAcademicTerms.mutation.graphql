@@ -1,0 +1,8 @@
+mutation reorderAccountAcademicTerms($input: ReorderAccountAcademicTermsInput!) {
+  organizationManagement {
+    reorderAccountAcademicTerms(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

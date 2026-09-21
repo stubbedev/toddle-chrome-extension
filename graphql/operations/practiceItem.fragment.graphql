@@ -1,0 +1,7 @@
+fragment practiceItem on SnPPractice {
+  id
+  code
+  type
+  localeLabelKey
+  label
+}

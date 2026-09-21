@@ -1,0 +1,13 @@
+mutation createColumn($input: [CreateExternalAssessmentColumnInput!]!) {
+  externalAssessment {
+    createExternalAssessmentColumns(input: $input) {
+      isSuccess
+      columns {
+        id
+        name
+        columnType
+        config
+      }
+    }
+  }
+}

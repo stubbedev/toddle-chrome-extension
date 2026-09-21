@@ -1,0 +1,6 @@
+mutation bulkCopyAcademicTerms($input: bulkCopyAcademicTermsInput!) {
+  platform {
+    bulkCopyAcademicTerms(input: $input)
+    __typename
+  }
+}

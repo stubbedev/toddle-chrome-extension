@@ -1,0 +1,8 @@
+query getGradingCommentTypes {
+  documentation {
+    gradingCommentTypes {
+      id
+      type
+    }
+  }
+}

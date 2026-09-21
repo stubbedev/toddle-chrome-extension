@@ -1,0 +1,65 @@
+query getEntireResourcesFeed($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $orderBy: ORDER_BY_ENUM, $filters: OrganizationResourceFilter, $learningCourseFilters: LearningCourseFlowFilter, $classFilters: AssessmentAssignmentsFilters) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Course {
+      id
+      organizationResourcesFlatFeed(first: 10000, orderBy: $orderBy, filters: $filters, orderByDirection: ASC) {
+        edges {
+          node {
+            id
+            resourceType
+            depth
+            state
+            parentResource {
+              id
+            }
+            item {
+              ... on Assignment {
+                id
+              }
+            }
+            childrenHierarchyInfo(filters: $filters) {
+              totalCount
+            }
+          }
+        }
+        resourceTypeBasedCount {
+          totalCount
+        }
+      }
+    }
+    ... on LearningCourse {
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 10000, orderBy: $orderBy, filters: $learningCourseFilters) {
+          edges {
+            node {
+              id
+              depth
+              itemType
+              state
+              item {
+                ... on Assessment {
+                  id
+                  assignments(filters: $classFilters) {
+                    edges {
+                      id
+                    }
+                  }
+                }
+              }
+              parent {
+                id
+              }
+              childrenHierarchyInfo(filters: $learningCourseFilters) {
+                totalCount
+              }
+            }
+          }
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

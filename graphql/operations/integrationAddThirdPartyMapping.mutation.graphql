@@ -1,0 +1,5 @@
+mutation integrationAddThirdPartyMapping($input: IntegrationThirdPartyMappingInput!) {
+  integration {
+    integrationAddThirdPartyMapping(input: $input)
+  }
+}

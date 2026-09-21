@@ -1,0 +1,48 @@
+query getCalendarEventTypesFeed($input: CalendarEventTypesFeedInput!, $curriculumProgramsInput: CalendarEventTagCurriculumProgramsInput!, $associatedEventsInput: CalendarEventTagAssociatedEventsInput!) {
+  platform {
+    calendarEventTypesFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          uniqueId
+          label
+          uid
+          colorCode
+          state
+          draftStateChanges
+          parentEventTypeId {
+            id
+          }
+          createdAt
+          updatedAt
+          createdBy {
+            id
+            firstName
+            lastName
+            profileImage
+          }
+          updatedBy {
+            id
+            firstName
+            lastName
+            profileImage
+          }
+          curriculumPrograms(input: $curriculumProgramsInput) {
+            totalCount
+          }
+          associatedEvents(input: $associatedEventsInput) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

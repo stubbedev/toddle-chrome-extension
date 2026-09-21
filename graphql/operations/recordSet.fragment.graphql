@@ -1,0 +1,29 @@
+fragment recordSet on ExternalAssessmentRecordSet {
+  id
+  uid
+  name
+  displayName
+  status
+  isArchived
+  template {
+    id
+    name
+    testType {
+      id
+      name
+    }
+  }
+  students {
+    totalCount
+  }
+  createdBy {
+    ...userNameFields
+    profileImage
+  }
+  createdAt
+  updatedBy {
+    ...userNameFields
+    profileImage
+  }
+  updatedAt
+}

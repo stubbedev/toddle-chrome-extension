@@ -1,0 +1,9 @@
+query ComplianceReportSetupGrades($input: ComplianceReportSetupGradesInput!) {
+  complianceReport {
+    complianceReportSetupGrades(input: $input) {
+      id
+      name
+      globalGradeLabel
+    }
+  }
+}

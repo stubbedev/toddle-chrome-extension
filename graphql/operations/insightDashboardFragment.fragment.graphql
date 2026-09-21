@@ -1,0 +1,22 @@
+fragment insightDashboardFragment on InsightDashboard {
+  id
+  name
+  description
+  sequence
+  organizationId
+  lastRefreshedAt
+  createdBy
+  createdByV2 {
+    id
+    firstName
+    middleName
+    lastName
+    profileImage
+  }
+  updatedBy
+  isPinned
+  isDeleted
+  createdAt
+  updatedAt
+  isEmailDigestLinked
+}

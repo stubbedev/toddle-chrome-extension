@@ -1,0 +1,19 @@
+query getExternalAssessmentRecordSetIds($curriculumProgramId: ID!, $input: ExternalAssessmentRecordSetFeedInput!) {
+  node(id: $curriculumProgramId, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      externalAssessmentRecordSetFeed(input: $input) {
+        edges {
+          node {
+            id
+            status
+            isArchived
+            students {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

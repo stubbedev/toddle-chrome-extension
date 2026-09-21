@@ -1,0 +1,67 @@
+query getStudentCourseMap($id: ID!, $userCourseMapFilters: UserCourseMapFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      courseMap(filters: $userCourseMapFilters) {
+        course {
+          id
+          title
+          genericTags {
+            id
+            label
+            type
+            abbreviation
+          }
+          profileImageData {
+            url
+            icon
+            color
+            acronym
+          }
+          subjects {
+            id
+          }
+          subjectLevelMap {
+            subject {
+              id
+              name
+            }
+            associatedLevels {
+              id
+              label
+              abbreviation
+            }
+          }
+          curriculumProgram {
+            id
+            type
+            academicSetupType
+          }
+          learningCourse {
+            id
+            title
+            academicCourse {
+              id
+              code
+            }
+          }
+        }
+        subjectWiseLevel {
+          level {
+            id
+            label
+            abbreviation
+          }
+          subject {
+            id
+          }
+        }
+        tags {
+          id
+          label
+          abbreviation
+        }
+      }
+    }
+  }
+}

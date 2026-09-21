@@ -1,0 +1,32 @@
+fragment fieldsResolvedMinimalTreeFragmentItem on PlannerField {
+  id
+  uid
+  value
+  pseudoFieldUid
+  children
+  isComplete
+  attachments {
+    ...attachmentItem
+  }
+  comments {
+    unreadCountV2
+  }
+  resolvedMinimalTree {
+    id
+    type
+    ... on ResolvedFieldPlannerElementSet {
+      id
+      type
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        type
+        nodes {
+          id
+          label
+          type
+          metadata
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation generateFileFolderZipUrl($input: JSON!) {
+  integration {
+    generateFileFolderZipUrl(input: $input)
+  }
+}

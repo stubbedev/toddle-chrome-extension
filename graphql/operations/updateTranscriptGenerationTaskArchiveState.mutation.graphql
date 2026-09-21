@@ -1,0 +1,5 @@
+mutation updateTranscriptGenerationTaskArchiveState($ids: [ID!], $isArchived: Boolean!) {
+  documentation {
+    updateTranscriptGenerationTaskArchiveState(input: {ids: $ids, isArchived: $isArchived})
+  }
+}

@@ -1,0 +1,27 @@
+fragment dataSetNodeWrapperFragmentPyp on PlannerBenchmark {
+  id
+  uid
+  label
+  subText
+  gradingType
+  code
+  depth
+  parentData {
+    id
+  }
+  dataSetNodeWrapper {
+    properties {
+      isArchived
+      isPowerStandard
+      weight
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation createStudentProfileSection($title: String, $curriculumProgramId: ID) {
+  platform {
+    createStudentProfileSection(input: {title: $title, curriculumProgramId: $curriculumProgramId}) {
+      ...studentProfileSectionItem
+    }
+  }
+}

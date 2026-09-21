@@ -1,0 +1,14 @@
+query getBehaviourPointSystemConfig($id: ID!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      pointSystemConfiguration {
+        id
+        isEnabled
+        canAddPoints
+        isStudentBalanceEnabled
+      }
+    }
+  }
+}

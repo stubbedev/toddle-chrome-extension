@@ -1,0 +1,15 @@
+query getUserCourses($id: ID!, $filters: CourseFilter, $courseGradeFilters: CourseGradeFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      courses(filters: $filters) {
+        id
+        title
+        primaryGrade(filters: $courseGradeFilters) {
+          id
+          name
+        }
+      }
+    }
+  }
+}

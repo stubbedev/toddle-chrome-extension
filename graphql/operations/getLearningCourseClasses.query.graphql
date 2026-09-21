@@ -1,0 +1,43 @@
+query getLearningCourseClasses($id: ID!, $classFilters: LearningCourseClassFilter) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      classes(filters: $classFilters) {
+        id
+        title
+        isActive
+        isArchived
+        profileImageData {
+          icon
+          color
+          acronym
+        }
+        students {
+          totalCount
+          edges {
+            node {
+              id
+            }
+          }
+        }
+        students(filters: {archivalState: ARCHIVED}) {
+          edges {
+            node {
+              id
+              type
+              firstName
+              middleName
+              lastName
+              preferredName
+              prefix
+              suffix
+              pronouns
+              profileImage
+            }
+          }
+        }
+      }
+    }
+  }
+}

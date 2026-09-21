@@ -1,0 +1,11 @@
+mutation deleteProgressReportTemplate($id: ID!) {
+  documentation {
+    deleteProgressReportTemplate(input: {id: $id}) {
+      isSuccess
+      warning
+      error {
+        status
+      }
+    }
+  }
+}

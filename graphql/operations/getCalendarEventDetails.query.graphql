@@ -1,0 +1,222 @@
+query getCalendarEventDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $statusWiseProjectFilters: StatusWiseProjectFilters, $calendarUserType: String, $associatedEntitiesFilters: AssociatedEntitiesFilters, $organizationId: ID!, $skipAssociatedEntities: Boolean! = false, $skipUserDetails: Boolean! = false) {
+  node(id: $id, type: $type) {
+    id
+    ... on PlatformCalendarEvent {
+      id
+      startTime
+      endTime
+      calendars {
+        id
+        parentType
+        parent {
+          ... on Course {
+            ...courseItem
+          }
+        }
+      }
+      itemType
+      attendanceTakers {
+        id
+        firstName
+        lastName
+        profileImage
+      }
+      sessions {
+        id
+        startDateTime
+        endDateTime
+      }
+      item(calendarUserType: $calendarUserType) {
+        id
+        ... on Assignment {
+          id
+          publishedAt
+          visibility
+          closeSubmissionDate
+          isStudentSubmissionEnabled
+          isPrivate
+          deadline
+          createdBy {
+            ...staffItem
+          }
+          assignedStudents {
+            id
+            student {
+              id
+              ...studentItem @skip(if: $skipUserDetails)
+            }
+            submission {
+              statusV2
+              submittedAt
+            }
+            lockingState {
+              state
+            }
+          }
+          summaryCounts {
+            unlockedSubmissions
+            __typename
+          }
+          counts {
+            totalAssignedStudents
+            totalSubmissions
+            totalDraftSubmissions
+          }
+          state {
+            state
+            publishedAt
+            updatedAt
+          }
+          contentType
+          content {
+            id
+            ... on Assessment {
+              id
+              title {
+                id
+                value
+              }
+              academicTerm {
+                id
+                lockingStatus
+              }
+              assessmentType {
+                id
+                value
+              }
+              taskType {
+                id
+                type
+                label
+              }
+              lockingInfo {
+                isLocked
+              }
+            }
+            ... on AssignmentResource {
+              id
+              label
+              title
+              meeting {
+                ...meetingItem
+              }
+            }
+          }
+          isFixedStartTime
+        }
+        ... on CalendarEventItem {
+          id
+          label
+          isFullDayEvent
+          startDateTime
+          endDateTime
+          eventType
+          location
+          isFullDayEvent
+          description
+          eventTag {
+            id
+            label
+            colorCode
+            uid
+          }
+          createdBy {
+            ...staffItem
+          }
+          meeting {
+            ...meetingItem
+          }
+          recurringSetting {
+            frequency
+            weekDays
+            interval
+            endDate
+            monthDays
+            setPositions
+            count
+            timezone
+          }
+          metadata {
+            skipNonOperationalDays
+            recurrenceType
+          }
+          associatedEntities(filters: $associatedEntitiesFilters) @skip(if: $skipAssociatedEntities) {
+            id
+            ... on Grade {
+              id
+              name
+              curriculumProgram {
+                id
+                label
+                acronym
+              }
+            }
+            ... on Course {
+              id
+              title
+              grades {
+                id
+                name
+              }
+            }
+          }
+          sharedWith
+          isUserParticipant
+          attachments {
+            id
+            type
+            name
+            url
+            metadata
+            displaySequence
+            mimeType
+          }
+          eventReminders {
+            reminderOffset
+            channels
+            triggerDayOffset
+            triggerTimeOffset
+          }
+          users {
+            id
+            type
+            ...userDetailItem @skip(if: $skipUserDetails)
+          }
+        }
+        ... on CalendarEvent {
+          id
+          startDate
+          endDate
+          title
+          location
+          description
+          grades
+          tag {
+            id
+            label
+            colorCode
+            uid
+          }
+          author {
+            id
+            firstName
+            lastName
+            middleName
+          }
+        }
+        ... on ProjectDeadline {
+          ...projectDeadline
+        }
+        ... on ProjectGroupDeadline {
+          ...deadlineDetails
+        }
+        ... on ProjectGroupTask {
+          ...projectGroupTaskItem
+        }
+        ... on ProjectTaskResponse {
+          ...projectTaskItem
+        }
+      }
+    }
+  }
+}

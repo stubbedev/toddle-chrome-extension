@@ -1,0 +1,20 @@
+mutation createLearningTerm($input: CreateLearningTermInput!) {
+  planner {
+    createLearningTerm(input: $input) {
+      id
+      label
+      abbreviation
+      startDate
+      endDate
+      academicYear {
+        id
+        startDate
+        endDate
+      }
+      curriculumProgram {
+        id
+        type
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+query getOrganizationCourseFeed($first: Int = 10, $after: String, $filters: CourseFilterInput, $courseGradeFilters: CourseGradeFilters, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $curriculumWiseCountFilters: CurriculumWiseCountFilters) {
+  platform {
+    organization {
+      id
+      courses(first: $first, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        totalCount
+        curriculumWiseCount(filters: $curriculumWiseCountFilters) {
+          curriculumProgram {
+            id
+            type
+            acronym
+          }
+          count
+        }
+        edges {
+          node {
+            id
+            title
+            profileImage
+            grades(filters: $courseGradeFilters) {
+              id
+              name
+            }
+            genericTags {
+              id
+              label
+              type
+            }
+            subjectGroups {
+              id
+              name
+              type
+            }
+            subjects(filters: {archivalState: ALL}) {
+              id
+              name
+              subjectGroup {
+                id
+                name
+                type
+                displaySequence
+              }
+            }
+            curriculumProgram {
+              id
+              type
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

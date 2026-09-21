@@ -1,0 +1,7 @@
+query getSnPDocumentCategory($id: ID!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: SnP_DOCUMENT_CATEGORY) {
+    ... on SnPDocumentCategory {
+      ...snpDocumentCategoryItem
+    }
+  }
+}

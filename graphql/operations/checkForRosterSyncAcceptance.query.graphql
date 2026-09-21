@@ -1,0 +1,14 @@
+query checkForRosterSyncAcceptance($input: CheckForRosterSyncAcceptanceInput!) {
+  integration {
+    checkForRosterSyncAcceptance(input: $input) {
+      hasErrors
+      totalErrors
+      entities {
+        dataType
+        addedErrors
+        editedErrors
+        totalErrors
+      }
+    }
+  }
+}

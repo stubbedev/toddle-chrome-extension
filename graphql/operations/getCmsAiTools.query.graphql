@@ -1,0 +1,13 @@
+query getCmsAiTools {
+  cms {
+    aiTools {
+      id
+      name
+      description
+      version
+      schema
+      toolHandler
+      status
+    }
+  }
+}

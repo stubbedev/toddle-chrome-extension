@@ -1,0 +1,44 @@
+fragment classPlannerItem on WeeklyPlannerTemplate {
+  id
+  title
+  startDate
+  endDate
+  createdAt
+  enabledSections {
+    sections
+  }
+  createdBy {
+    ...userNameFields
+  }
+  enabledSections {
+    sections
+  }
+  updatedAt
+  updatedBy {
+    ...userNameFields
+  }
+  courses {
+    id
+    title
+    primaryGrade {
+      id
+    }
+    learningCourse {
+      id
+      title
+    }
+    profileImageData {
+      icon
+      color
+      acronym
+      url
+    }
+  }
+  associatedClasses {
+    id
+  }
+  defaultAccessState
+  isSharedWithFamilies
+  isSharedWithStudents
+  __typename
+}

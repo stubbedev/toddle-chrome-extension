@@ -1,0 +1,7 @@
+mutation duplicatePlannerElementNodeSet($input: DuplicatePlannerElementNodeSetInput!) {
+  planner {
+    duplicatePlannerElementNodeSet(input: $input) {
+      id
+    }
+  }
+}

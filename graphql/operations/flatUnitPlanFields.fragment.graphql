@@ -1,0 +1,13 @@
+fragment flatUnitPlanFields on Course {
+  flatUnitPlans {
+    edges {
+      node {
+        id
+        title {
+          id
+          value
+        }
+      }
+    }
+  }
+}

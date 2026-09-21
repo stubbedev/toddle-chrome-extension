@@ -1,0 +1,47 @@
+fragment assignedStudentItem on StudentAssignment {
+  id
+  student {
+    ...studentItem
+    ... on Student {
+      id
+      alertTypes {
+        ...alertTypeFields
+      }
+    }
+  }
+  isSubmitted
+  isEvaluated
+  isSharedWithStudent
+  isEvaluationApplicable
+  toolResponsesV2(filters: {userFilter: ALL}) {
+    id
+    toolId
+    toolType
+    toolResponses {
+      ...toolResponseItem
+    }
+  }
+  ibPYPElementRatings {
+    id
+    value
+    ibPYPElementId
+    ibPYPElementType
+    academicCriteriaValue {
+      id
+      label
+    }
+    academicCriteriaSet {
+      id
+    }
+  }
+  submission {
+    id
+    questionSubmissions {
+      edges {
+        node {
+          ...questionSubmissionInsightsDetailsItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getAIPrompts($filters: PromptFilters!) {
+  ai {
+    prompts(filters: $filters) {
+      id
+      action
+      promptFields {
+        field
+        type
+      }
+      metadata
+    }
+  }
+}

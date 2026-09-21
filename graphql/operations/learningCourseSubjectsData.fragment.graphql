@@ -1,0 +1,6 @@
+fragment learningCourseSubjectsData on LearningCourse {
+  id
+  subjects {
+    ...learningCourseSubjectsItem
+  }
+}

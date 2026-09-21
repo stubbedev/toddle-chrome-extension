@@ -1,0 +1,12 @@
+query getSummaryEmailSchedule($input: SummaryEmailScheduleInput!) {
+  platform {
+    summaryEmailSchedule(input: $input) {
+      lastSentSummaryTimestamp
+      upcomingScheduledSummaryTimestamp
+      currentSummaryDateTimeRange {
+        startDateTime
+        endDateTime
+      }
+    }
+  }
+}

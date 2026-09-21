@@ -1,0 +1,4 @@
+fragment staffFragment on Staff {
+  ...userNameFields
+  profileImage
+}

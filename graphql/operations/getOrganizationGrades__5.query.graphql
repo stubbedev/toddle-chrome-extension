@@ -1,0 +1,20 @@
+query getOrganizationGrades($organizationId: ID!, $gradeFilters: GradeFilterInput, $getCurriculumProgram: Boolean!, $skipCount: Boolean! = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(filters: $gradeFilters) {
+        id
+        name
+        staffCount @skip(if: $skipCount)
+        studentCount @skip(if: $skipCount)
+        familyMemberCount @skip(if: $skipCount)
+        curriculumProgram @include(if: $getCurriculumProgram) {
+          acronym
+          label
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+query getAiUsageMetrics($id: ID!) {
+  node(id: $id, type: AI_USAGE_METRICS) {
+    id
+    ... on AiUsageMetrics {
+      id
+      type
+      inputText
+      responseText
+      promptTokens
+      completionTokens
+      cachedPromptTokens
+      model
+      temperature
+      metadata
+      entityType
+      entityId
+      prompt {
+        id
+        metadata
+      }
+    }
+  }
+}

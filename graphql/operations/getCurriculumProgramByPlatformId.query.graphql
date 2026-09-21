@@ -1,0 +1,10 @@
+query getCurriculumProgramByPlatformId($id: String!) {
+  planner {
+    curriculumProgramDataByPlatformId(id: $id) {
+      error
+      subscriptionPlan
+      subscriptionStatus
+      crmId
+    }
+  }
+}

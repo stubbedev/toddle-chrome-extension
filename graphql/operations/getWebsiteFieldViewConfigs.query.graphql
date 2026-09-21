@@ -1,0 +1,12 @@
+query getWebsiteFieldViewConfigs($websiteId: ID!, $templateIds: [ID!]) {
+  node(id: $websiteId, type: CURRICULUM_WEBSITE) {
+    ... on CurriculumWebsite {
+      id
+      fieldViewConfigs(filters: {templateIds: $templateIds}) {
+        templateId
+        fieldUid
+        isEnabled
+      }
+    }
+  }
+}

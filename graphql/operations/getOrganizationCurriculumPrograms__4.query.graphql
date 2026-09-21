@@ -1,0 +1,38 @@
+query getOrganizationCurriculumPrograms($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(filters: {programType: ALL}) {
+        id
+        label
+        academicSetupType
+        ... on IbMypCurriculumProgram {
+          id
+          nodeInterfaceType
+          type
+        }
+        ... on IbPypCurriculumProgram {
+          id
+          nodeInterfaceType
+          type
+        }
+        ... on UBDCurriculumProgram {
+          id
+          nodeInterfaceType
+          type
+        }
+        ... on IbDpCurriculumProgram {
+          id
+          nodeInterfaceType
+          type
+        }
+        ... on GenericCurriculumProgram {
+          id
+          nodeInterfaceType
+          type
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+fragment projectTaskResponseItem on ProjectTaskResponse {
+  id
+  task {
+    id
+    title
+    description
+    dueOn
+    closesOn
+    submission {
+      id
+      type
+    }
+  }
+  isComplete
+  latestSubmissionResponse {
+    id
+    status
+  }
+}

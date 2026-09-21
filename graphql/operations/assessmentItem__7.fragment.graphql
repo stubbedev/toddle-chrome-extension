@@ -1,0 +1,66 @@
+fragment assessmentItem on Assessment {
+  id
+  type
+  title {
+    id
+    value
+  }
+  academicTerm {
+    id
+    label
+    lockingStatus
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+    color
+    displaySequence
+    metaData
+  }
+  image {
+    id
+    value
+  }
+  category {
+    id
+    label
+  }
+  globalCategories {
+    id
+    name
+  }
+  lockingInfo {
+    isLocked
+  }
+  isSyncedFromBluePrintCourse(filters: $syncedBluePrintItemFilters)
+  isSyncedWithAllTeacherCourseV2(filters: $syncedBluePrintItemFilters) {
+    isConflictExists
+    status
+  }
+  assignments(filters: $assessmentAssignmentsFilters) {
+    edges {
+      id
+      state {
+        state
+      }
+      course {
+        id
+      }
+      assignedStudents(studentIds: $studentIds) @skip(if: $skipAssignedStudents) {
+        id
+        status
+        submission {
+          id
+          statusV2
+        }
+        isEvaluationApplicable
+        isEvaluated
+      }
+    }
+  }
+}

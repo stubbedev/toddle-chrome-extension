@@ -1,0 +1,6 @@
+fragment projectGroupStudentsItem on Student {
+  ...studentInfo
+  studentProjectPortfolio(filters: $studentProjectPortfolioFilter) {
+    ...projectGroupStudentPortfolioInfoItem
+  }
+}

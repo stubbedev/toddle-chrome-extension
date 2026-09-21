@@ -1,0 +1,24 @@
+query getStaffCourses($id: ID!, $first: Int, $after: String, $filters: CourseFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      coursesV2(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            curriculumProgram {
+              id
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

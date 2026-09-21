@@ -1,0 +1,11 @@
+mutation integrationValidateSyncCalendarData($service: INTEGRATION_SERVICE_NAME!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  integration {
+    integrationValidateSyncCalendarData(input: {service: $service, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId}) {
+      allow
+      message
+      job {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+query getStudentProgressReportBasicDetails($studentProgressReportId: ID!, $userArchivedFilters: UserArchivedFilters, $staffStudentRelationFilters: StaffStudentRelationFilter) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      coverSheetBackgroundUrl
+      status
+      completedSections
+      studentReflectionEditInfo {
+        isReflectionEditable
+        isDeadlinePassed
+      }
+      studentReflectionFeedback {
+        id
+        label
+        isResolved
+        createdBy {
+          ...staffItem
+        }
+      }
+      student {
+        ...studentItem
+        isArchivedV2(filters: $userArchivedFilters)
+        gender
+        preferredName
+        prefix
+        address {
+          id
+          line1
+          line2
+          city
+        }
+        alertTypes {
+          ...alertTypeFields
+        }
+        otherDetails {
+          id
+          dob
+          primaryNationality
+          birthPlaceLocale
+          lastNameLocale
+          dobLocale
+          religionLocale
+          pronouns
+          personalEmail
+          languages
+          secondaryNationality
+          firstNameLocale
+          primaryNationalityLocale
+          seventhAdditionalField
+          eighthAdditionalField
+        }
+        staffRelation(filters: $staffStudentRelationFilters) {
+          edges {
+            node {
+              id
+              firstName
+              middleName
+              lastName
+            }
+          }
+        }
+      }
+    }
+  }
+}

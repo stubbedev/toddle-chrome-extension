@@ -1,0 +1,7 @@
+mutation PlannerCreateIBPYPElementRatings($input: [IBPYPElementRatingInput!]) {
+  planner {
+    createIBPYPElementRatings(input: $input) {
+      ...basicIBPYPElementRatingItem
+    }
+  }
+}

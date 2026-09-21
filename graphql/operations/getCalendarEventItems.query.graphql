@@ -1,0 +1,13 @@
+query getCalendarEventItems($rangeBeginStartDate: String!, $rangeEndStartDate: String!, $filters: CalendarEventFilter) {
+  platform {
+    calendarEventItems(rangeBeginStartDate: $rangeBeginStartDate, rangeEndStartDate: $rangeEndStartDate, filters: $filters) {
+      id
+      startDateTime
+      endDateTime
+      label
+      associatedEntities(filters: {entityTypes: ["GRADE"]}) {
+        id
+      }
+    }
+  }
+}

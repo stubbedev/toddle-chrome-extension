@@ -1,0 +1,8 @@
+mutation updateProfileImage($input: [bulkUpdateUserProfileImageInput!]) {
+  platform {
+    bulkUpdateUserProfileImage(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

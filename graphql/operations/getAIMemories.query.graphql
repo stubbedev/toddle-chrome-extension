@@ -1,0 +1,14 @@
+query getAIMemories($entityType: String!) {
+  ai {
+    aiMemory(entityType: $entityType) {
+      edges {
+        node {
+          id
+          memory
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+}

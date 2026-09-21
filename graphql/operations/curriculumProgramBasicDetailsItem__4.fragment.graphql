@@ -1,0 +1,35 @@
+fragment responseItem on Response {
+  id
+  message
+  createdBy {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+    ... on Student {
+      ...studentItem
+    }
+  }
+  evidence {
+    ...allEvidenceTypesItem
+  }
+  createdAt
+  updatedAt
+}
+
+fragment allEvidenceTypesItem on EvidenceInterface {
+  id
+  ... on Attachment {
+    ...attachmentItem
+  }
+  ... on Post {
+    ...postItem
+  }
+}
+
+fragment curriculumProgramBasicDetailsItem on CurriculumProgram {
+  id
+  type
+  acronym
+  nodeInterfaceType
+}

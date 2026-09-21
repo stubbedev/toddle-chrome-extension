@@ -1,0 +1,32 @@
+query getPermissionEnabledUsers($id: ID!, $first: Int, $after: String, $searchText: String, $academicYearId: ID, $enabledUsersFilter: ACLEnabledUsersFilterInput!) {
+  node(id: $id, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      uid
+      enabledUsersV2(first: $first, after: $after, searchText: $searchText, filters: $enabledUsersFilter, academicYearId: $academicYearId) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ... on Staff {
+              id
+              firstName
+              middleName
+              lastName
+              profileImage
+              preferredName
+              pronouns
+              prefix
+              suffix
+              email
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+}

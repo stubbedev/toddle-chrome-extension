@@ -1,0 +1,11 @@
+fragment studentProjectPortfolioFeedbackItem on StudentProjectPortfolio {
+  id
+  feedback {
+    totalCount
+    edges {
+      node {
+        ...feedbackPostItem
+      }
+    }
+  }
+}

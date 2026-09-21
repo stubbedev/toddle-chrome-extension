@@ -1,0 +1,20 @@
+mutation updateAcademicSubject($id: ID!, $name: String!, $code: String, $reportDisplayName: String, $gradeIds: [ID!], $levelIds: [ID!], $departmentId: ID, $icon: String, $iconType: SUBJECT_ICON_TYPE_ENUM, $metadata: JSON, $isArchived: Boolean, $orgSubjectVariants: OrgSubjectVariantUpdateInput, $courseType: SUBJECT_COURSE_TYPE_ENUM) {
+  platform {
+    updateAcademicSubject(input: {id: $id, name: $name, code: $code, reportDisplayName: $reportDisplayName, gradeIds: $gradeIds, levelIds: $levelIds, departmentId: $departmentId, icon: $icon, iconType: $iconType, metadata: $metadata, isArchived: $isArchived, orgSubjectVariants: $orgSubjectVariants, courseType: $courseType}) {
+      isSuccess
+      warning
+      subject {
+        id
+        name
+        code
+        courseType
+        reportDisplayName
+        icon
+        iconType
+        isArchived
+        type
+        metadata
+      }
+    }
+  }
+}

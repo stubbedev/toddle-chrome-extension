@@ -1,0 +1,27 @@
+query getCalendarUids($id: ID!, $type: ENTITY_TYPE_ENUM!, $studentId: ID) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      calendars {
+        type
+        uid
+      }
+      __typename
+    }
+    ... on Student {
+      calendars {
+        type
+        uid
+      }
+      __typename
+    }
+    ... on FamilyMember {
+      calendars(studentId: $studentId) {
+        type
+        uid
+      }
+      __typename
+    }
+    __typename
+  }
+}

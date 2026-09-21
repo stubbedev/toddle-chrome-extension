@@ -1,0 +1,5 @@
+mutation setIsPortedFalseForGeneratedTemplates($portingEntityType: PORT_PROGRESS_REPORT_TEMPLATES_ENTITY_TYPE_ENUM!, $portingEntitySubType: PORT_PROGRESS_REPORT_TEMPLATES_ENTITY_SUB_TYPE_ENUM, $organizationIds: [ID!]!) {
+  documentation {
+    setProgressReportTemplatesIsPortedFalse(input: {portingEntityType: $portingEntityType, portingEntitySubType: $portingEntitySubType, organizationIds: $organizationIds})
+  }
+}

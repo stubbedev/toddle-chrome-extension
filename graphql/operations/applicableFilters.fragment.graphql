@@ -1,0 +1,9 @@
+fragment applicableFilters on GlobalConstants {
+  moduleFacets(module: $module) {
+    label
+    levels
+    options
+    attributes
+    entityType
+  }
+}

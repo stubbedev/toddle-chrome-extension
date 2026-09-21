@@ -1,0 +1,10 @@
+mutation updateYardDuty($input: UpdateYardDutyInput!) {
+  platform {
+    updateYardDuty(input: $input) {
+      isSuccess
+      warning
+      __typename
+    }
+    __typename
+  }
+}

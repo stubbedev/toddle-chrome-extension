@@ -1,0 +1,42 @@
+query getOrganizationProgressReportTaskGroupFeed($organizationId: ID!, $searchText: String, $academicYearId: ID, $curriculumProgramIds: [ID!], $after: String, $academicTermIds: [ID!], $orderBy: PROGRESS_REPORT_ORDER_BY_FIELD_ENUM) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      progressReportTaskGroups(first: 20, after: $after, filters: {searchText: $searchText, academicYearId: $academicYearId, curriculumProgramIds: $curriculumProgramIds, academicTermIds: $academicTermIds, orderBy: $orderBy}) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            completionStatus
+            createdAt
+            deadlineDate
+            template {
+              id
+              version
+            }
+            courseProgressReportTasks {
+              id
+              parentEntity {
+                id
+                ... on Grade {
+                  id
+                  name
+                }
+              }
+            }
+            academicTerms {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

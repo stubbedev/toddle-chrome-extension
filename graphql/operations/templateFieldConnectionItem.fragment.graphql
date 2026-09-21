@@ -1,0 +1,25 @@
+fragment templateFieldConnectionItem on TemplateFieldConnection {
+  edges {
+    node {
+      id
+      uid
+      config(filter: $templateFieldConfigFilter) {
+        id
+        globalFieldProperty {
+          id
+          property
+        }
+        parentId
+        children
+        values(filters: $fieldPropertyValuesFilters) {
+          id
+          value
+          configLevel {
+            id
+            type
+          }
+        }
+      }
+    }
+  }
+}

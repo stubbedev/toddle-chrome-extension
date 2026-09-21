@@ -1,0 +1,7 @@
+fragment organizationResourceBasicDetailsItem on OrganizationResource {
+  id
+  label
+  attachment {
+    ...attachmentItem
+  }
+}

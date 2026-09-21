@@ -1,0 +1,8 @@
+mutation transitionAYTForProSchools($input: TranistionAYTForProInput!) {
+  platform {
+    transitionAYTForPro(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

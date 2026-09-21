@@ -1,0 +1,54 @@
+mutation updateAttendanceExcusalSeries($input: UpdateAttendanceExcusalSeriesInput!) {
+  platform {
+    updateAttendanceExcusalSeries(input: $input) {
+      warning
+      response {
+        id
+        startDate
+        endDate
+        startTime
+        endTime
+        reason
+        status
+        durationType
+        isRecurringEvent
+        seriesParentId
+        recurrenceSetting {
+          frequency
+          weekDays
+          interval
+          endDate
+          monthDays
+          setPositions
+          count
+        }
+        excusalReason {
+          id
+          name
+        }
+        attendanceOption {
+          id
+          label
+          abbreviation
+          color
+          attendanceCategory {
+            id
+            color
+          }
+        }
+        attachments {
+          id
+          type
+          title
+          url
+          name
+          mimeType
+          thumbUrl
+          streamUrl
+          description
+          metadata
+        }
+      }
+    }
+  }
+}

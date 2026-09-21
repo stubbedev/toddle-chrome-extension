@@ -1,0 +1,5 @@
+mutation updateConfigurationEntityValue($input: [ConfigurationValueUpdateByIdInputV2!]!) {
+  platform {
+    updateConfigurationValueByIdV2(input: $input)
+  }
+}

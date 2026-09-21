@@ -1,0 +1,7 @@
+mutation updateWebsiteSettings($input: UpdateWebsiteSettingsInput!) {
+  planner {
+    updateWebsiteSettings(input: $input) {
+      isSuccess
+    }
+  }
+}

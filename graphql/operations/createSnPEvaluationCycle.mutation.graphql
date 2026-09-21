@@ -1,0 +1,7 @@
+mutation createSnPEvaluationCycle($input: [SnpEvaluationCycleCreateInputV2!]) {
+  platform {
+    createSnpEvaluationCycleV2(input: $input) {
+      id
+    }
+  }
+}

@@ -1,0 +1,20 @@
+query getGradeUsers($organizationId: ID!, $filters: GradeFilterInput, $skipStudents: Boolean!, $skipStaff: Boolean!, $skipFamilyMembers: Boolean!, $allStudentsFilters: GradeAllStudentsFiltersInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: $filters) {
+        id
+        name
+        allStaffs @skip(if: $skipStaff) {
+          ...userDetailItem
+        }
+        allStudents(filters: $allStudentsFilters) @skip(if: $skipStudents) {
+          ...userDetailItem
+        }
+        allParents @skip(if: $skipFamilyMembers) {
+          ...userDetailItem
+        }
+      }
+    }
+  }
+}

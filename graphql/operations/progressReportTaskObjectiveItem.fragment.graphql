@@ -1,0 +1,63 @@
+fragment progressReportTaskObjectiveItem on ProgressReportTaskGroup {
+  id
+  title
+  courseProgressReportTasks(filters: $courseProgressReportTaskFilters) {
+    id
+    parentEntity {
+      id
+      ... on Grade {
+        id
+        name
+      }
+    }
+    reportSubjects {
+      id
+      name
+      associatedChildPlannerElementNodes(filters: $associatedChildPlannerElementFilters) {
+        id
+        label
+      }
+    }
+    studentProgressReport(filters: $studentReportFilters) {
+      id
+      student {
+        id
+        firstName
+        middleName
+        lastName
+        profileImage
+        isArchived
+        isArchivedV2(filters: $userArchivedFilters)
+        prefix
+      }
+      plannerElementNodes(filters: {elementType: MYP_OBJECTIVES}) {
+        id
+        label
+        dataSetNodeWrapper {
+          properties {
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+      mypCriteria(filters: $mypCriteriaFilters) {
+        id
+        label
+        dataSetNodeWrapper {
+          properties {
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+      reportSubjects {
+        id
+      }
+      status
+    }
+  }
+}

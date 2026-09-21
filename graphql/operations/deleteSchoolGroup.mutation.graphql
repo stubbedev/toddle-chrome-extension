@@ -1,0 +1,12 @@
+mutation deleteSchoolGroup($input: SchoolGroupIdInput!) {
+  platform {
+    deleteSchoolGroup(input: $input) {
+      isSuccess
+      warning
+      schoolGroup {
+        id
+        isArchived
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+query getCourseDetailsBatch($ids: [ID!]!) {
+  multiNode(ids: $ids, type: COURSE) {
+    id
+    ... on Course {
+      id
+      title
+      students {
+        totalCount
+      }
+      collaborator {
+        totalCount
+      }
+      familyMembers {
+        totalCount
+      }
+    }
+  }
+}

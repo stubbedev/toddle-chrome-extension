@@ -1,0 +1,28 @@
+fragment postItem on Post {
+  id
+  students {
+    edges {
+      node {
+        ...userItem
+      }
+    }
+  }
+  seen {
+    totalCount
+    edges {
+      node {
+        id
+        user {
+          id
+          type
+          ...userItem
+          ... on FamilyMember {
+            children {
+              ...userItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

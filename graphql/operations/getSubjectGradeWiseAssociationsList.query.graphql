@@ -1,0 +1,74 @@
+query getSubjectGradeWiseAssociationsList($id: ID!, $unitPlanFilters: UnitPlanFilter, $subjectUnitPlanFilter: SubjectUnitPlansFilterInput, $classesFilters: GradeCourseFilter, $fetchUnitsList: Boolean!, $fetchClassList: Boolean!, $fetchUnitsListV2: Boolean = false) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      unitPlans(filters: $subjectUnitPlanFilter) @include(if: $fetchUnitsListV2) {
+        edges {
+          node {
+            id
+            ...unitPlanItem
+          }
+        }
+      }
+      grades {
+        id
+        unitPlans(filters: $unitPlanFilters) @include(if: $fetchUnitsList) {
+          id
+          ...unitPlanItem
+        }
+        courses(first: null, filters: $classesFilters) @include(if: $fetchClassList) {
+          totalCount
+          edges {
+            node {
+              id
+              title
+              isArchived
+              unitPlans(filters: $unitPlanFilters) {
+                totalCount
+              }
+              academicYears {
+                id
+                startDate
+                endDate
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment unitPlanItem on UnitPlan {
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  theme {
+    id
+    resolvedMinimalTree {
+      id
+      ... on ResolvedFieldThemeSet {
+        id
+        themes {
+          id
+          label
+        }
+      }
+    }
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  resourceLibrary {
+    leCount
+    assessmentCount
+  }
+}

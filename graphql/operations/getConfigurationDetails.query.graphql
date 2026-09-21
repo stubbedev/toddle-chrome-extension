@@ -1,0 +1,53 @@
+query getConfigurationDetails($id: ID!) {
+  node(id: $id, type: CONFIGURATION) {
+    ... on ConfigurationV2 {
+      id
+      configuration
+      aclModules
+      aclPortalTypes
+      aclControlParameterType
+      configurationGroup
+      dependentEntities {
+        id
+        entityGroup
+      }
+      configurationView {
+        id
+        categoryKey
+        viewGroupKey
+        subGroupKey
+        labelKey
+        metadata
+        uiType
+        displaySequence
+        platform
+      }
+      description
+      valueType
+      ownerTeam
+      value
+      validEntityGroups {
+        entityGroupId
+        entities {
+          entityId
+          entityType
+        }
+      }
+      lockedEntityGroups {
+        entityGroupId
+        entities {
+          entityId
+          entityType
+        }
+      }
+      parentConfigurations {
+        id
+        configuration
+      }
+      childConfigurations {
+        id
+        configuration
+      }
+    }
+  }
+}

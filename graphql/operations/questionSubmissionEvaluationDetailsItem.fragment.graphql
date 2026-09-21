@@ -1,0 +1,20 @@
+fragment questionSubmissionEvaluationDetailsItem on QuestionSubmission {
+  id
+  question {
+    id
+  }
+  toolResponsesV2(filters: {userFilter: ALL}) {
+    id
+    toolId
+    toolType
+    toolResponses {
+      ...toolResponseItem
+    }
+  }
+  ibPYPElementRatings {
+    ...ratingItem
+  }
+  elementRemarks {
+    ...remarkItem
+  }
+}

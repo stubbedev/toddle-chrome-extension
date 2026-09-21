@@ -1,0 +1,52 @@
+query getStaffFeed($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYear: ID) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+            email
+            role
+            displayRole
+            designation {
+              id
+              title
+              description
+            }
+            sourceId
+            status
+            isArchived
+            isArchivedV2(filters: {academicYearId: $academicYear})
+            rnpRoleContextDetail {
+              id
+              contextType
+              context {
+                id
+                ... on CurriculumProgram {
+                  label
+                  acronym
+                  curriculum {
+                    id
+                    type
+                  }
+                }
+              }
+              role {
+                id
+                label
+                description
+                globalLevel
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

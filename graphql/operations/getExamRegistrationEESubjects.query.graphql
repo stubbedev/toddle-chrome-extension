@@ -1,0 +1,39 @@
+query getExamRegistrationEESubjects($id: ID!, $filters: SubjectFilterInput, $plannerNodeFilters: AssociatedChildPlannerElementNodesFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        type
+        subjectGroup {
+          id
+          name
+          type
+        }
+        metadata
+        variants {
+          level {
+            id
+            label
+          }
+          responseLanguages {
+            id
+            label
+          }
+        }
+        associatedChildPlannerElementNodes(filters: $plannerNodeFilters) {
+          id
+          label
+          type
+        }
+        flatVariants {
+          responseLanguage {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

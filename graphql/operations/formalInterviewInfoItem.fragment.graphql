@@ -1,0 +1,9 @@
+fragment formalInterviewInfoItem on ProjectAcademicHonesty {
+  id
+  description
+  meetingDate
+  isLocked
+  attachments {
+    ...attachmentItem
+  }
+}

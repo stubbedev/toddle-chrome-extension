@@ -1,0 +1,8 @@
+mutation addUnitPlanFieldMapping($input: UnitPlanFieldMappingInput!) {
+  planner {
+    addUnitPlanFieldMapping(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

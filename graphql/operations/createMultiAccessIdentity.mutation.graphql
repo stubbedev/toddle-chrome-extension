@@ -1,0 +1,7 @@
+mutation createMultiAccessIdentity($input: CreateMultiAccessIdentityInput) {
+  platform {
+    createMultiAccessIdentity(input: $input) {
+      id
+    }
+  }
+}

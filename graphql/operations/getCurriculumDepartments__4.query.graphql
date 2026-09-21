@@ -1,0 +1,32 @@
+query getCurriculumDepartments($id: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $filters: SubjectGroupFilterInput) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+      }
+    }
+  }
+}

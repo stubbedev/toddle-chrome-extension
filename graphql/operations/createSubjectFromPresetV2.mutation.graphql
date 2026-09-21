@@ -1,0 +1,12 @@
+mutation createSubjectFromPresetV2($input: SubjectVariantsInput!) {
+  platform {
+    createSubjectFromPresetV2(input: $input) {
+      isSuccess
+      warning
+      subject {
+        id
+        name
+      }
+    }
+  }
+}

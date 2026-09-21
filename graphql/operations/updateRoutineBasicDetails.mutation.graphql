@@ -1,0 +1,11 @@
+mutation updateRoutineBasicDetails($input: UpdateRoutineBasicDetailsInput!) {
+  platform {
+    updateRoutineBasicDetails(input: $input) {
+      isSuccess
+      warning
+      routine {
+        id
+      }
+    }
+  }
+}

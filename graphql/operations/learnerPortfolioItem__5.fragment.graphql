@@ -1,0 +1,68 @@
+fragment subjectItem on Subject {
+  id
+  name
+  icon
+  grades {
+    id
+    name
+  }
+  isArchived
+  benchmarkRootNode {
+    ...benchmarkItem
+  }
+  globalSubject
+  framework
+  snsChildren
+  standardSet {
+    ...standardSetItem
+  }
+  subjectLevelLabels {
+    cuLevelName
+    strandLevelName
+    loLevelName
+  }
+  type
+  tags {
+    id
+    key
+    value
+  }
+  associatedLevels {
+    id
+    label
+    isArchived
+  }
+  variants {
+    level {
+      ...basicGenericTagItem
+    }
+    responseLanguages {
+      ...basicGenericTagItem
+    }
+  }
+  flatVariants(filters: {archivalState: ALL}) {
+    isArchived
+    level {
+      ...basicGenericTagItem
+    }
+    responseLanguage {
+      ...basicGenericTagItem
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

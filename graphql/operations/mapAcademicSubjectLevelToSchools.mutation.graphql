@@ -1,0 +1,17 @@
+mutation mapAcademicSubjectLevelToSchools($input: MapAcademicSubjectLevelToSchoolsInput!) {
+  platform {
+    mapAcademicSubjectLevelToSchools(input: $input) {
+      isSuccess
+      warning
+      academicLevelId
+      mapped {
+        schoolCurriculumProgramId
+        childLevelId
+      }
+      unmapped {
+        schoolCurriculumProgramId
+        childLevelId
+      }
+    }
+  }
+}

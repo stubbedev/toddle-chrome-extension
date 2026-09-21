@@ -1,0 +1,8 @@
+fragment cycleBasicDetailsItem on SnPEvaluationCycle {
+  id
+  title
+  set {
+    id
+  }
+  cycleType
+}

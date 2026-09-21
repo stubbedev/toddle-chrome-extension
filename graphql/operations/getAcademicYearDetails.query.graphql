@@ -1,0 +1,16 @@
+query getAcademicYearDetails($id: ID!, $termFilters: TermFilters) {
+  node(id: $id, type: ACADEMIC_YEAR) {
+    id
+    ... on AcademicYear {
+      id
+      startDate
+      endDate
+      terms(filters: $termFilters) {
+        id
+        label
+        startDate
+        endDate
+      }
+    }
+  }
+}

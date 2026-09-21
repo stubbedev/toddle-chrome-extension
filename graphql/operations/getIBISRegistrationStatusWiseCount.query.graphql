@@ -1,0 +1,11 @@
+query getIBISRegistrationStatusWiseCount($id: ID!, $filters: ExamRegistrationStudentFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      registrationStatusWiseStudentCount(filters: $filters) {
+        status
+        count
+      }
+    }
+  }
+}

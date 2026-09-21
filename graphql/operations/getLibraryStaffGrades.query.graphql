@@ -1,0 +1,19 @@
+query getLibraryStaffGrades($id: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      libraryEntities(entityTypes: LIBRARY_GRADE) {
+        edges {
+          node {
+            ... on LibraryGenericEntity {
+              id
+              label
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+}

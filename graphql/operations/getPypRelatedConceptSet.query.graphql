@@ -1,0 +1,7 @@
+query getPypRelatedConceptSet($id: ID!, $subjects: [ID!] = [], $concepts: [ID!] = []) {
+  node(id: $id, type: PYP_RELATED_CONCEPT) {
+    ... on PlannerRelatedConceptSet {
+      ...relatedConceptSetItem
+    }
+  }
+}

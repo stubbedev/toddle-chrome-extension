@@ -1,0 +1,33 @@
+fragment transcriptTasksItem on StudentTranscriptGenerationTaskConnection {
+  totalCount
+  pageInfo {
+    endCursor
+    hasNextPage
+    hasPreviousPage
+    startCursor
+  }
+  edges {
+    id
+    label
+    createdAt
+    isArchived
+    transcripts {
+      id
+      student {
+        id
+        firstName
+        middleName
+        lastName
+        profileImage
+        pronouns
+        preferredName
+        suffix
+        prefix
+        type
+      }
+      status
+      createdAt
+    }
+    batchType
+  }
+}

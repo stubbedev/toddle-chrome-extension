@@ -1,0 +1,10 @@
+mutation publishPlatformCalendarEvents($input: PublishPlatformCalendarEventsInput!) {
+  platform {
+    publishPlatformCalendarEvents(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+    __typename
+  }
+}

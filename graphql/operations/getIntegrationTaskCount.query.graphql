@@ -1,0 +1,9 @@
+query getIntegrationTaskCount($id: ID!, $filters: IntegrationTaskCountFilter!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      integrationTaskCount(filters: $filters)
+    }
+  }
+}

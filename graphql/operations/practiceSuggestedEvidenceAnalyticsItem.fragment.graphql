@@ -1,0 +1,7 @@
+fragment practiceSuggestedEvidenceAnalyticsItem on SnPPractice {
+  id
+  suggestedEvidence(filters: $suggestedEvidenceFilters) {
+    totalCount
+    newEvidenceCount
+  }
+}

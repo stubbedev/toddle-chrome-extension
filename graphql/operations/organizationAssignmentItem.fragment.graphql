@@ -1,0 +1,16 @@
+fragment organizationAssignmentItem on Organization {
+  id
+  assignments(first: $first, after: $after, filters: {courseIds: $courseIds, subjectIds: $subjectIds, states: $states, categoryIds: $categoryIds, searchText: $searchText, academicTermIds: $academicTermIds, assessmentTypes: $assessmentTypes, excludedAssessmentTypes: $excludedAssessmentTypes, groupTypes: $groupTypes, isTeacherEvaluationEnabled: $isTeacherEvaluationEnabled, isAssessmentScoringEnabled: $isAssessmentScoringEnabled, contentTypes: $contentTypes, assessmentToolTypes: $assessmentToolTypes, includedStudentIds: $includedStudentIds, primaryGradeId: $primaryGradeId, isExcludedFromFinalGradeCalculation: $isExcludedFromFinalGradeCalculation}) {
+    edges {
+      node {
+        ...assignmentProgressSummaryItem
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

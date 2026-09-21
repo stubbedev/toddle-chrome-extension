@@ -1,0 +1,13 @@
+query getTimetableOrganizationTemplatesWithType($id: ID!, $filters: OrganizationTemplateFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      templates(filters: $filters) {
+        id
+        body
+        type
+        assessmentType
+      }
+    }
+  }
+}

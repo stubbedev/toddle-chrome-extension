@@ -1,0 +1,31 @@
+query getOrganizationStaffMembers($organizationId: ID!, $first: Int, $after: String, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            ... on Staff {
+              firstName
+              middleName
+              lastName
+              preferredName
+              prefix
+              suffix
+              pronouns
+              profileImage
+              displayRole
+              role
+            }
+          }
+        }
+      }
+    }
+  }
+}

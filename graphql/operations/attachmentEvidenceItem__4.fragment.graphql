@@ -1,0 +1,63 @@
+fragment snpDocumentCategoryItem on SnPDocumentCategory {
+  id
+  title
+  localeLabelKey
+  status {
+    ...statusItem
+  }
+  createdAt
+  description
+  localeSubTextKey
+  userDescription {
+    id
+    description
+  }
+  isDefaultDocumentCategory
+  taggedEvidence(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        ...snpDocumentCategoryEvidence
+      }
+    }
+  }
+  i18nHelpText {
+    ...helpTextBasicDetails
+  }
+}
+
+fragment attachmentEvidenceItem on Attachment {
+  id
+  type
+  title
+  streamUrl
+  url
+  signedUrl
+  name
+  mimeType
+  thumbUrl
+  description
+  metadata
+  resolvedParentEntity {
+    ... on AttachmentGroup {
+      resolvedParentEntity {
+        ... on StudentAssignmentSubmission {
+          id
+          assignment {
+            id
+            assignedStudents {
+              id
+              submission {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

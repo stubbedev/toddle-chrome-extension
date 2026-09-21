@@ -1,0 +1,18 @@
+query getOrganizationSubjectGroups($organizationId: ID!, $filters: SubjectGroupFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+          type
+          nodeInterfaceType
+        }
+      }
+    }
+  }
+}

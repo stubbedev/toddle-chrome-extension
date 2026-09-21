@@ -1,0 +1,7 @@
+query getOrganizationDetails($id: ID!, $globalConstantsFilter: GlobalConstantsFilterOptions, $curriculumProgramFilters: CurriculumProgramFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      ...organizationDetailsItem
+    }
+  }
+}

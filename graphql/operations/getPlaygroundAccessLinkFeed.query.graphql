@@ -1,0 +1,17 @@
+query getPlaygroundAccessLinkFeed($input: PlaygroundAccessLinkFeedInput) {
+  playground {
+    accessLinkFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          ...playgroundAccessLinkFragment
+        }
+      }
+    }
+  }
+}

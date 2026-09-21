@@ -1,0 +1,11 @@
+query getCourseGradingCategorySets($id: ID!, $filters: GradingConfigurationFilters, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      gradingConfigurations(filters: $filters) {
+        ...GradingCategorySetsFragmentWithGradeScaleValues
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation updateProjectFieldValuesForStudentAndProjectGroupsMutation($projectGroupTypes: [String!]!, $studentId: ID!, $fieldUpdateData: [fieldUpdateDataInput!]!) {
+  documentation {
+    updateProjectFieldValuesForStudentAndProjectGroups(input: {projectGroupTypes: $projectGroupTypes, studentId: $studentId, fieldUpdateData: $fieldUpdateData}) {
+      isSuccess
+      warning
+    }
+  }
+}

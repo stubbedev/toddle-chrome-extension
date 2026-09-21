@@ -1,0 +1,12 @@
+query getOrganizationGrades($organizationId: ID!, $gradeFilters: GradeFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(filters: $gradeFilters) {
+        id
+        name
+      }
+    }
+  }
+}

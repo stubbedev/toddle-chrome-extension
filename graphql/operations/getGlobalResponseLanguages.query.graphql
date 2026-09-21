@@ -1,0 +1,8 @@
+query getGlobalResponseLanguages($filters: GlobalGenericTagFilters) {
+  globalConstants {
+    globalGenericTags(filters: $filters) {
+      id
+      label
+    }
+  }
+}

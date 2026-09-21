@@ -1,0 +1,21 @@
+query getCalendarEventsTrimmed($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: UserCoursesCalendarFilter!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      calendarEvents(filters: $filters) {
+        id
+        startTime
+        endTime
+      }
+    }
+    ... on Student {
+      id
+      calendarEvents(filters: $filters) {
+        id
+        startTime
+        endTime
+      }
+    }
+  }
+}

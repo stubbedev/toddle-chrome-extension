@@ -1,0 +1,31 @@
+query getTrendOverPastWeekByUserTypeQuery($organizationId: ID!, $input: TotalChatMessageInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      messageV2Analytics {
+        totalChatMessages(input: $input) {
+          totalChatMessagesFromUser {
+            totalMessagesFromStaff {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromStudent {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+            totalMessagesFromFamily {
+              dateWiseCount {
+                date
+                count
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

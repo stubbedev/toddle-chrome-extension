@@ -1,0 +1,21 @@
+fragment studentPlanReviewMeetingItem on StudentPlanReviewMeeting {
+  platformCalendarEvent {
+    id
+    startTime
+    endTime
+    item {
+      ... on CalendarEventItem {
+        id
+        label
+        users {
+          id
+          firstName
+          lastName
+          middleName
+          type
+          profileImage
+        }
+      }
+    }
+  }
+}

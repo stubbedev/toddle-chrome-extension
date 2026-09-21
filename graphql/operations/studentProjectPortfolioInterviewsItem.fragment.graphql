@@ -1,0 +1,13 @@
+fragment studentProjectPortfolioInterviewsItem on StudentProjectPortfolio {
+  id
+  interviews {
+    edges {
+      node {
+        ...interviewInfoItem
+      }
+    }
+  }
+  interviewAndFeedbackCounts {
+    interviewCount
+  }
+}

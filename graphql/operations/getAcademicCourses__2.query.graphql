@@ -1,0 +1,40 @@
+query getAcademicCourses($id: ID!, $academicCourseFilters: AcademicCourseFilters, $learningCourseFilters: LearningCourseAcademicCourseFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      academicCourses(filters: $academicCourseFilters, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+        id
+        label
+        code
+        isArchived
+        createdAt
+        createdBy {
+          id
+          firstName
+          middleName
+          lastName
+        }
+        updatedAt
+        updatedBy {
+          id
+          firstName
+          middleName
+          lastName
+        }
+        learningCourses(filters: $learningCourseFilters) {
+          totalCount
+        }
+        childAcademicCourses {
+          id
+          curriculumProgram {
+            id
+            label
+          }
+          learningCourses(filters: $learningCourseFilters) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

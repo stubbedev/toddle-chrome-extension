@@ -1,0 +1,20 @@
+mutation updateProject($projectId: ID!, $status: String, $reportStatus: String, $type: PROJECT_TYPE_ENUM, $statusMessage: String, $isCompleted: Boolean, $fields: [UpdatePlannerFieldInput!], $isCasExternalPortingDone: Boolean) {
+  documentation {
+    updateProject(input: {status: $status, id: $projectId, reportStatus: $reportStatus, type: $type, statusMessage: $statusMessage, isCompleted: $isCompleted, fields: $fields, isCasExternalPortingDone: $isCasExternalPortingDone}) {
+      id
+      status
+      reportStatus
+      type
+      isCompleted
+      markedCompletedBy {
+        ...userNameFields
+      }
+      markedCompletedAt
+      fields {
+        id
+        uid
+        value
+      }
+    }
+  }
+}

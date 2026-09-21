@@ -1,0 +1,16 @@
+mutation bulkCreateRubricIndicators($input: [RubricIndicatorInput!]) {
+  planner {
+    bulkCreateRubricIndicators(input: $input) {
+      isSuccessful
+      warnings
+      response {
+        indicator {
+          ...indicatorItem
+        }
+        descriptors {
+          ...descriptorItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query GetAccountGrades($input: AccountGradesInput!) {
+  admission {
+    accountGrades(input: $input) {
+      id
+      name
+    }
+  }
+}

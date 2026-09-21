@@ -1,0 +1,66 @@
+fragment studentDetailsItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  gender
+  type
+  profileImage
+  email
+  isArchived
+  isArchivedV2(filters: $userArchivedFilters)
+  familyInviteCode
+  parentStatus
+  signInCode
+  sourceId
+  alertTypes {
+    ...alertTypeFields
+  }
+  ...studentAdditionalInfoItem
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $courseFilters) {
+    ...courseItem
+  }
+  families {
+    id
+  }
+  projectGroups(filters: {projectGroupSubTypes: [CORE, INTERNAL_ASSESSMENT, EXTERNAL_ASSESSMENT]}) {
+    id
+    projects(filters: {students: [$studentId]}) {
+      edges {
+        node {
+          id
+          reportStatus
+        }
+      }
+    }
+    type
+  }
+  yearGroup {
+    id
+    name
+    curriculumProgram {
+      id
+      label
+    }
+    grade {
+      id
+      name
+    }
+  }
+  studentProjectPortfolios {
+    id
+    isComplete
+    projectGroup {
+      id
+      name
+    }
+  }
+  otherDetails {
+    id
+    dob
+  }
+}

@@ -1,0 +1,7 @@
+fragment announcementBasicInfoItem on Circular {
+  id
+  state
+  createdBy {
+    id
+  }
+}

@@ -1,0 +1,11 @@
+mutation updateYearGroup($input: YearGroupUpdateInput!) {
+  platform {
+    updateYearGroup(input: $input) {
+      isSuccess
+      warning
+      yearGroups {
+        ...basicYearGroupDetails
+      }
+    }
+  }
+}

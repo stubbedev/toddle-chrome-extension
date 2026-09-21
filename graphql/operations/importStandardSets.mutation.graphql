@@ -1,0 +1,5 @@
+mutation importStandardSets($input: ImportStandardSetInput!) {
+  planner {
+    importStandardSet(input: $input)
+  }
+}

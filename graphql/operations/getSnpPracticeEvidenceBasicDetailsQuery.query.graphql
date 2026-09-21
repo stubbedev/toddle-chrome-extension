@@ -1,0 +1,8 @@
+query getSnpPracticeEvidenceBasicDetailsQuery($id: ID!, $filters: SnpPracticeEvidenceFilters!) {
+  node(id: $id, type: SnP_PRACTICE) {
+    id
+    ... on SnPPractice {
+      ...evidenceBasicDetailsItem
+    }
+  }
+}

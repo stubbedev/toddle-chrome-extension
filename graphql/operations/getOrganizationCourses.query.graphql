@@ -1,0 +1,16 @@
+query getOrganizationCourses($organizationId: ID!, $courseFilters: CourseFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $courseFilters) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}

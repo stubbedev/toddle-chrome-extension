@@ -1,0 +1,8 @@
+query progressReportGeneratedTemplate($organizationId: ID!, $grades: [ID!], $curriculumType: CURRICULUM_PROGRAM_TYPE_ENUM, $type: PROGRESS_REPORT_TEMPLATE_TYPE_ENUM, $baseTemplate: JSON, $gradingPeriodType: PROGRESS_REPORT_GRADING_PERIOD_TYPE_ENUM, $curriculumProgramId: ID, $baseTemplateId: String, $locale: String, $createdAt: String, $academicYearId: ID) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationGeneratedTemplateItem
+    }
+  }
+}

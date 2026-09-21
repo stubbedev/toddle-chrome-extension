@@ -1,0 +1,30 @@
+query getAiConversationsFlaggedMessages($id: ID!) {
+  node(id: $id, type: STUDENT_ASSIGNMENT) {
+    ... on StudentAssignment {
+      id
+      aiConversations(orderBy: CREATED_AT, orderByDirection: DESC) {
+        edges {
+          node {
+            ...aiConversationForFlaggedMessagesItem
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

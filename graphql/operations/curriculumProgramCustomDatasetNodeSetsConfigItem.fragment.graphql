@@ -1,0 +1,21 @@
+fragment curriculumProgramCustomDatasetNodeSetsConfigItem on CurriculumProgram {
+  id
+  plannerElementNodeSets(filters: $filters) {
+    edges {
+      node {
+        id
+        title
+        type
+        isArchived
+        config(filters: $nodeSetConfigFilters) {
+          id
+          value
+          globalProperty {
+            id
+            property
+          }
+        }
+      }
+    }
+  }
+}

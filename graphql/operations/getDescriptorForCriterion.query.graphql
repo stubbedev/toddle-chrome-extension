@@ -1,0 +1,5 @@
+query getDescriptorForCriterion($input: DescriptorForCriterionInput!) {
+  planner {
+    getDescriptorForCriterion(input: $input)
+  }
+}

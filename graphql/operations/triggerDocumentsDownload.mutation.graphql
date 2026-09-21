@@ -1,0 +1,8 @@
+mutation triggerDocumentsDownload($input: SnPEvidenceZipDownloadInput!) {
+  platform {
+    snpEvidenceZipDownload(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

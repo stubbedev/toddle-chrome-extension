@@ -1,0 +1,9 @@
+fragment staffPeriodListItemV2 on Staff {
+  id
+  firstName
+  lastName
+  middleName
+  enrolledPeriodsV2(filters: $periodFilters) {
+    ...selectedPeriodItemV2
+  }
+}

@@ -1,0 +1,7 @@
+mutation createPost($createdBy: ID!, $attachments: [AttachmentInput!], $state: PostStateEnum!, $publishedBy: ID!) {
+  documentation {
+    createPost(input: {createdBy: $createdBy, attachments: $attachments, state: $state, publishedBy: $publishedBy}) {
+      id
+    }
+  }
+}

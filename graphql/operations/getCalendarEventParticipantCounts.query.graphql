@@ -1,0 +1,20 @@
+query getCalendarEventParticipantCounts($id: ID!, $type: ENTITY_TYPE_ENUM!, $academicYearId: ID) {
+  node(id: $id, type: $type) {
+    id
+    ... on PlatformCalendarEvent {
+      id
+      item {
+        id
+        ... on CalendarEventItem {
+          id
+          participantsFeed(input: {filters: {academicYearId: $academicYearId}}) {
+            userTypeCounts {
+              userType
+              count
+            }
+          }
+        }
+      }
+    }
+  }
+}

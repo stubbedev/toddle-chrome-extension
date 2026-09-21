@@ -1,0 +1,8 @@
+query getCourseFlowMultiNode($ids: [ID!], $assessmentAssignmentsFilters: AssessmentAssignmentsFilters, $studentIds: [ID!], $skipAssignedStudents: Boolean! = true, $stateFilters: LearningCourseFlowStateFilter, $filters: LearningCourseFlowFilter, $syncedBluePrintItemFilters: SyncedBluePrintItemFilter, $assessmentFieldUids: [String!], $includeCourseSyncStatus: Boolean = false) {
+  multiNode(ids: $ids, type: LEARNING_COURSE_FLOW) {
+    id
+    ... on LearningCourseFlow {
+      ...courseFlowResource
+    }
+  }
+}

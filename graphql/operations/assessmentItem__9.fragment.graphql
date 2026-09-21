@@ -1,0 +1,21 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  assessmentType {
+    id
+    uid
+    value
+  }
+  taskType {
+    id
+    type
+    label
+  }
+}

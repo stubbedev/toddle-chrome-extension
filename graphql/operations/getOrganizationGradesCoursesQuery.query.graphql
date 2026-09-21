@@ -1,0 +1,24 @@
+query getOrganizationGradesCoursesQuery($id: ID!, $gradesIds: [ID!], $gradeFilters: GradeFilterInput, $gradeCourseFilter: GradeCourseFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(ids: $gradesIds, filters: $gradeFilters) {
+        id
+        name
+        courses(filters: $gradeCourseFilter) {
+          edges {
+            node {
+              id
+              title
+              primaryGrade {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

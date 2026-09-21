@@ -1,0 +1,14 @@
+query getOrganizationExamSession($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      examSessions {
+        id
+        session
+        month
+        year
+      }
+    }
+  }
+}

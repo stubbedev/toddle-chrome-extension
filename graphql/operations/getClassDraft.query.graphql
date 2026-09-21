@@ -1,0 +1,70 @@
+query getClassDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!, $draftFilters: [DraftFilterInput!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        draftClasses(filters: {academicYearId: $academicYearId, draftFilters: $draftFilters}) {
+          key
+          title
+          isExisting
+          profileImageData
+          associatedGrades {
+            grade {
+              id
+              name
+            }
+            isPrimary
+            academicYear {
+              id
+            }
+          }
+          primaryGrades {
+            grade {
+              id
+              name
+            }
+            academicYear {
+              id
+            }
+          }
+          associatedSubjects {
+            key
+            name
+          }
+          associatedLevels {
+            levelDraft {
+              key
+              label
+            }
+            studentCount
+          }
+          associatedStudentWithLevels {
+            student {
+              id
+            }
+            level {
+              key
+            }
+          }
+          associatedStaffWithRnPRoles {
+            staff {
+              id
+            }
+          }
+          associatedStudents {
+            id
+          }
+          associatedGlobalResponseLanguage {
+            id
+            label
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateStudentProgressReportStatusV2($bulkStudentProgressReportStateUpdateInput: BulkStudentProgressReportStateUpdateInput!) {
+  documentation {
+    updateStudentProgressReportStateV2(input: $bulkStudentProgressReportStateUpdateInput) {
+      ...studentProgressReportStatusItem
+    }
+  }
+}

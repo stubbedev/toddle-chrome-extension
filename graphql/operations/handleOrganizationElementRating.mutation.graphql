@@ -1,0 +1,7 @@
+mutation handleOrganizationElementRating($userId: ID!, $pypElements: [OrganizationElementRatingValueInput!]) {
+  platform {
+    handleOrganizationElementRating(input: {userId: $userId, organizationPYPElements: $pypElements}) {
+      ...ratingItem
+    }
+  }
+}

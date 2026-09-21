@@ -1,0 +1,31 @@
+query getUserLearningCourseClasses($id: ID!, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            title
+            isArchived
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            deletedBy {
+              id
+            }
+            grades {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

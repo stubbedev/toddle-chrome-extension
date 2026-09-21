@@ -1,0 +1,22 @@
+query getTeacherTimetablePeriods($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodsFilters: PeriodFilterOptions, $permissionFilters: TimetableSlotPermissionFilters, $termFilters: TermFilters, $attendanceFilters: TimetableSlotAttendanceFilters!, $itemFilter: TimetableSlotItemsFilters, $isToddleV2TimetableEnabled: Boolean!) {
+  node(id: $id, type: $type) {
+    ... on Student {
+      id
+      ...studentPeriodListItemV2 @skip(if: $isToddleV2TimetableEnabled)
+      ...studentNameFields @include(if: $isToddleV2TimetableEnabled)
+      enrolledPeriodsV3(filters: $periodsFilters) @include(if: $isToddleV2TimetableEnabled) {
+        ...selectedPeriodItemV3
+      }
+    }
+    ... on Staff {
+      id
+      ...staffPeriodListItemV2 @skip(if: $isToddleV2TimetableEnabled)
+      firstName @include(if: $isToddleV2TimetableEnabled)
+      lastName @include(if: $isToddleV2TimetableEnabled)
+      middleName @include(if: $isToddleV2TimetableEnabled)
+      enrolledPeriodsV3(filters: $periodsFilters) @include(if: $isToddleV2TimetableEnabled) {
+        ...selectedPeriodItemV3
+      }
+    }
+  }
+}

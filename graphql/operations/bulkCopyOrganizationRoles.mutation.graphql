@@ -1,0 +1,6 @@
+mutation bulkCopyOrganizationRoles($input: bulkCopyOrganizationRolesInput!) {
+  platform {
+    bulkCopyOrganizationRoles(input: $input)
+    __typename
+  }
+}

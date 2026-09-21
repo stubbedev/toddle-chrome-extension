@@ -1,0 +1,18 @@
+fragment unitPlanWithChildrenItem on OrganizationResource {
+  ...unitPlanItem
+  childrenV2(orderBy: $orderBy, filters: $filters) {
+    edges {
+      node {
+        id
+        label
+        resourceType
+        displaySequence
+      }
+    }
+  }
+  childrenHierarchyInfo(filters: $filters) {
+    maxDepth
+    totalCount
+    totalCountWithFolder
+  }
+}

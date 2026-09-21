@@ -1,0 +1,36 @@
+query getStaffList($organizationId: ID!, $first: Int, $after: String, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ... on Staff {
+              id
+              prefix
+              suffix
+              firstName
+              preferredName
+              middleName
+              lastName
+              pronouns
+              profileImage
+              email
+              roles
+              type
+              role
+              curriculumPrograms {
+                ...curriculumProgramBasicDetailsItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

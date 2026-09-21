@@ -1,0 +1,10 @@
+mutation bulkLogoutUsersMutation($bulkLogoutUsersInput: BulkLogoutUsersInput!) {
+  platform {
+    bulkLogoutUsers(input: $bulkLogoutUsersInput) {
+      ids
+      isSuccess
+      loggedOutUsersCount
+      activityLogId
+    }
+  }
+}

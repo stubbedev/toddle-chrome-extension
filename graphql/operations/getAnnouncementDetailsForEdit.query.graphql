@@ -1,0 +1,72 @@
+query getAnnouncementDetailsForEdit($id: ID!, $academicYearId: ID!, $organizationId: ID!) {
+  node(id: $id, type: CIRCULAR) {
+    id
+    ... on Circular {
+      ...announcementItem
+      createdIn
+      createdAt
+      updatedAt
+      isSharedWithMe(input: {academicYearId: $academicYearId})
+      attachments {
+        ...attachmentItem
+      }
+      aiConversation {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      sharedWith
+      emailSharedWith
+      sendEmail
+      entityMap {
+        entityType
+        courses {
+          id
+          title
+          isArchived
+          profileImageData {
+            icon
+            color
+            acronym
+            url
+          }
+          deletedBy {
+            id
+          }
+        }
+        grades {
+          id
+          name
+        }
+        schoolGroups {
+          id
+          name
+          profileImageData {
+            url
+            icon
+            color
+            acronym
+          }
+          memberCount(filters: {userTypes: [staff]})
+          memberCount(filters: {userTypes: [student]})
+          memberCount(filters: {userTypes: [parent]})
+        }
+        curriculumPrograms {
+          id
+          acronym
+          label
+        }
+        users {
+          ...userDetailItem
+          ... on Student {
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+      }
+    }
+  }
+}

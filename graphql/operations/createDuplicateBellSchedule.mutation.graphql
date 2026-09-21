@@ -1,0 +1,8 @@
+mutation createDuplicateBellSchedule($input: [CreateDuplicateBellScheduleInput!]!) {
+  platform {
+    createDuplicateBellSchedule(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

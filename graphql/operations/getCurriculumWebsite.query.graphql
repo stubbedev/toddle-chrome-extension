@@ -1,0 +1,41 @@
+query getCurriculumWebsite($websiteId: ID!) {
+  node(id: $websiteId, type: CURRICULUM_WEBSITE) {
+    ... on CurriculumWebsite {
+      id
+      title
+      status
+      slug
+      curriculumPrograms {
+        id
+        type
+        label
+        academicSetupType
+      }
+      metadata
+      rootNode {
+        id
+        content {
+          id
+          type
+          isEnabled
+          value
+          attachments {
+            id
+            url
+          }
+        }
+        children {
+          edges {
+            node {
+              id
+              itemType
+              mapType
+              label
+              isEnabled
+            }
+          }
+        }
+      }
+    }
+  }
+}

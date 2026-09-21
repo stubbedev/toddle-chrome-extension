@@ -1,0 +1,5 @@
+fragment organizationTemplateAndGradeItem on Organization {
+  id
+  ...templatesItem
+  ...gradesItem
+}

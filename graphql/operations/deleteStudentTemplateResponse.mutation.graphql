@@ -1,0 +1,11 @@
+mutation deleteStudentTemplateResponse($input: DeleteStudentTemplateResponseInput!) {
+  documentation {
+    deleteStudentTemplateResponse(input: $input) {
+      isSuccess
+      warning
+      studentTemplateResponse {
+        id
+      }
+    }
+  }
+}

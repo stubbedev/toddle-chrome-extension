@@ -1,0 +1,55 @@
+query getCourseUsersV3($id: ID!, $organizationId: ID!, $first: Int, $after: String, $filters: CourseFilter, $skipStudents: Boolean = true, $skipStaff: Boolean = true, $skipFamilyMembers: Boolean = true, $includeCurriculumPrograms: Boolean = true) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      coursesV2(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            grades {
+              id
+              name
+            }
+            curriculumProgram {
+              id
+              label
+            }
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            students @skip(if: $skipStudents) {
+              edges {
+                node {
+                  ...userDetailItemV2
+                }
+              }
+            }
+            collaborator @skip(if: $skipStaff) {
+              edges {
+                node {
+                  ...userDetailItemV2
+                }
+              }
+            }
+            familyMembers @skip(if: $skipFamilyMembers) {
+              edges {
+                node {
+                  ...userDetailItemV2
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

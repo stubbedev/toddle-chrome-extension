@@ -1,0 +1,17 @@
+fragment singlePointRubricItem on SinglePointRubric {
+  id
+  title
+  criterias {
+    ...singlePointRubricCriteriaItem
+  }
+  standards {
+    ...singlePointRubricStandardItem
+  }
+  createdBy {
+    ...staffItem
+  }
+  updatedAt
+  updatedBy {
+    ...staffItem
+  }
+}

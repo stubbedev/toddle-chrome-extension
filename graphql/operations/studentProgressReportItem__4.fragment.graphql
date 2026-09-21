@@ -1,0 +1,22 @@
+fragment studentProgressReportItem on StudentProgressReport {
+  id
+  student {
+    ...studentItem
+    prefix
+  }
+  attendanceSummaryV2 {
+    ...studentProgressReportAttendanceItemV2
+  }
+  ratings(filters: $ratingFilters) {
+    ...progressReportRatingItem
+  }
+  remarks(filters: $remarkFilters) {
+    ...progressReportRemarkItem
+  }
+  completedSections
+  status
+  sectionCompleteStatus {
+    section
+    isCompleted
+  }
+}

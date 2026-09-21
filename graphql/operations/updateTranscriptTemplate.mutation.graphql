@@ -1,0 +1,8 @@
+mutation updateTranscriptTemplate($id: ID!, $body: JSON!) {
+  documentation {
+    updateProgressReportTemplate(input: {id: $id, body: $body}) {
+      id
+      body
+    }
+  }
+}

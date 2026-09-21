@@ -1,0 +1,8 @@
+query getProgressReportAsCsv($id: ID!, $csvInput: ReportTaskCsvDownloadForTranscriptInput!) {
+  node(id: $id, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      downloadAsCsvForTranscript(input: $csvInput)
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation setOrgFlagConfigurationValues($input: [ConfigurationValueUpdateInput]!) {
+  platform {
+    setMultipleConfigurationValueForEntityGroups(input: $input)
+  }
+}

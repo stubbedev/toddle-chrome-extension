@@ -1,0 +1,23 @@
+query getConversationsSummaries($id: ID!, $input: MessageFeedInput!) {
+  node(id: $id, type: CHAT) {
+    ... on Chat {
+      id
+      messagesV2(input: $input) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            cursor
+            summaryRange {
+              start
+              end
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+mutation addEvidencesForStudentGoal($input: StudentGoalEvidenceInput!) {
+  documentation {
+    addEvidencesForStudentGoal(input: $input) {
+      id
+      evidenceType
+      evidenceItem {
+        ... on Post {
+          id
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

@@ -1,0 +1,101 @@
+query hydratePublishedNodesBasic($ids: [ID!]!, $type: ENTITY_TYPE_ENUM_MULTI_NODE!, $lockingInfoFilters: LockingInfoFiltersInput, $skipLockingInfo: Boolean = true, $hasNodeCountFilters: Boolean! = false, $nodeCountFilters: DataSetNodeCountWrapperFilters, $includeForAssignments: Boolean = false) {
+  multiNode(ids: $ids, type: $type) {
+    ... on PlannerElementNode {
+      ...plannerElementNodeItem
+    }
+    ... on PlannerBenchmark {
+      ...plannerBenchmarkItem
+      levelId @include(if: $includeForAssignments)
+      type @include(if: $includeForAssignments)
+    }
+    ... on PlannerATL {
+      ...plannerATLItem
+    }
+    ... on PlannerLearnerProfile {
+      ...plannerLearnerProfileItem
+    }
+    ... on PlannerConcept {
+      ...plannerConceptItem
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+fragment setProgressReportFragmentItem on ProgressReportTaskGroup {
+  id
+  title
+  subtitle
+  attendanceMode
+  academicTerms {
+    id
+    lockingStatus
+    associatedAcademicTermEntities {
+      id
+      academicTerm {
+        id
+        lockingStatus
+      }
+    }
+  }
+  academicYearId
+  template {
+    id
+    gradingPeriodType
+  }
+  courseProgressReportTasks(searchText: $searchText) {
+    ...progressReportItem
+  }
+}

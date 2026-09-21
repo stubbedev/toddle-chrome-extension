@@ -1,0 +1,27 @@
+query getEventAssociatedSchools($feedInput: CalendarEventsFeedInput!, $schoolsInput: CalendarEventAssociatedSchoolsInput!) {
+  platform {
+    calendarEventsFeed(input: $feedInput) {
+      edges {
+        node {
+          id
+          associatedSchools(input: $schoolsInput) {
+            totalCount
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              startCursor
+              endCursor
+            }
+            edges {
+              cursor
+              node {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

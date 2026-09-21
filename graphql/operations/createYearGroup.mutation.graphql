@@ -1,0 +1,11 @@
+mutation createYearGroup($input: CreateYearGroupInput!, $yearGroupGradeFilters: YearGroupGradeFilters, $yearGroupStudentFilters: GroupStudentFilter, $academicYearGradeMapFilters: AcademicYearGradeMapFilters) {
+  platform {
+    createYearGroup(input: $input) {
+      isSuccess
+      warning
+      yearGroup {
+        ...basicYearGroupDetails
+      }
+    }
+  }
+}

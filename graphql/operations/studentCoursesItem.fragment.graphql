@@ -1,0 +1,52 @@
+fragment studentCoursesItem on Student {
+  id
+  firstName
+  lastName
+  pronouns
+  preferredName
+  prefix
+  suffix
+  courseMap(filters: $filters) {
+    isUserRemovedFromCourse
+    course {
+      id
+      title
+      enabledModules(filters: $enabledModulesFilters)
+      aclControlParameters(filters: $aclControlParameterFilter) {
+        id
+        uid
+        permission
+        value
+      }
+      learningCourse {
+        id
+        title
+        displayName
+        academicCourse {
+          id
+          label
+        }
+      }
+      profileImage
+      isArchived
+      isBookmark
+      folders {
+        id
+        name
+        color
+        totalPostCount(filters: $postFilters)
+      }
+      curriculumProgram {
+        id
+      }
+      profileImageData {
+        url
+        icon
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  __typename
+}

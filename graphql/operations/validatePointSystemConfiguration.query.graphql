@@ -1,0 +1,15 @@
+query validatePointSystemConfiguration($input: UpsertPointSystemConfigurationInput!) {
+  platform {
+    validatePointSystemConfiguration(input: $input) {
+      isSuccess
+      error
+      validCurriculumProgramIds
+      errorData {
+        curriculumProgramId
+        code
+        message
+        count
+      }
+    }
+  }
+}

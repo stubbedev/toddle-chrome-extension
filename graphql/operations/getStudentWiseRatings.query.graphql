@@ -1,0 +1,45 @@
+query getStudentWiseRatings($id: ID!, $courseUserMapFilters: CourseUserMapFilter, $filtersForGeneric: ibPYPElementRatingFiltersForGeneric, $shouldFetchRatingInsights: Boolean = false) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      userMap(filters: $courseUserMapFilters) {
+        edges {
+          node {
+            id
+            user {
+              id
+              ... on Student {
+                ...StudentRatingsItem
+              }
+            }
+            tags {
+              id
+              label
+              abbreviation
+              reportDisplayName
+            }
+            subjectWiseLevel {
+              level {
+                id
+                label
+                abbreviation
+                reportDisplayName
+              }
+              subject {
+                id
+              }
+            }
+          }
+        }
+      }
+      courseStudentAverageRatings(filtersForGeneric: $filtersForGeneric) @include(if: $shouldFetchRatingInsights) {
+        globalCategoryId
+        academicTermId
+        academicCriteriaSetId
+        average
+        studentCount
+        genericTagId
+      }
+    }
+  }
+}

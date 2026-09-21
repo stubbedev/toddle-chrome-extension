@@ -1,0 +1,26 @@
+query getSchoolGroupsDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        draftSchoolGroups(filters: {academicYearId: $academicYearId}) {
+          key
+          presetSchoolGroupId
+          name
+          type
+          sourcedId
+          profileImageData
+          isSelected
+          conflict
+          sourceMemberCounts {
+            staff
+            student
+            parent
+          }
+        }
+      }
+    }
+  }
+}

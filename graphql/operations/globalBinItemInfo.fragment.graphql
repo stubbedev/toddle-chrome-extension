@@ -1,0 +1,35 @@
+fragment globalBinItemInfo on GlobalBinItem {
+  id
+  entityType
+  entityId
+  entityName
+  curriculumProgram {
+    id
+    label
+    programType
+  }
+  entityCreatedBy {
+    ...globalBinStaffInfo
+  }
+  deletedBy {
+    ...globalBinStaffInfo
+  }
+  deletedAt
+  metadata
+  source {
+    id
+    name
+    type
+  }
+}
+
+fragment globalBinStaffInfo on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+}

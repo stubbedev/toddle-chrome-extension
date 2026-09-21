@@ -1,0 +1,22 @@
+query getNotificationConfigurationView($configurationViewFilters: ConfigurationViewFilters) {
+  platform {
+    notificationConfigurationView(filters: $configurationViewFilters) {
+      ...configurationViewItem
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

@@ -1,0 +1,10 @@
+fragment staffCourses on Staff {
+  id
+  coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $courseFilters) {
+    edges {
+      node {
+        ...singleCourseV2
+      }
+    }
+  }
+}

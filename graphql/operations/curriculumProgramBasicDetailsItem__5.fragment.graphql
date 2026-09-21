@@ -1,0 +1,100 @@
+fragment resolvedMinimalTreeItem on ResolvedFieldValue {
+  id
+  type
+  ... on ResolvedFieldBenchmarkSet {
+    id
+    benchmarks {
+      ...benchmarkItem
+    }
+  }
+  ... on ResolvedFieldConceptSet {
+    id
+    concepts {
+      ...conceptItem
+    }
+  }
+  ... on ResolvedFieldActionSet {
+    id
+    actions {
+      ...actionItem
+    }
+  }
+  ... on ResolvedFieldLPSet {
+    id
+    learnerProfiles {
+      ...lpItem
+    }
+  }
+  ... on ResolvedFieldThemeSet {
+    id
+    themes {
+      ...themeItem
+    }
+  }
+  ... on ResolvedFieldSubjectSet {
+    id
+    subjects {
+      ...subjectItem
+      benchmarkRootNode {
+        ...benchmarkItem
+      }
+    }
+  }
+  ... on ResolvedFieldATLSet {
+    id
+    atls {
+      ...atlItem
+    }
+  }
+  ... on ResolvedFieldRelatedConceptSet {
+    id
+    relatedConcepts {
+      ...relatedConceptItem
+    }
+  }
+  ... on ResolvedFieldPlannerElementSet {
+    id
+    type
+    nodes {
+      ...plannerElementNodeItem
+    }
+  }
+  ... on ResolvedFieldSubjectGroup {
+    id
+    type
+    subjectGroups {
+      ...subjectGroupBasicDetailsItem
+    }
+  }
+  ... on ResolvedFieldGenericTags {
+    id
+    genericTags {
+      id
+      label
+    }
+  }
+  ... on ResolvedFieldVideoAttachment {
+    id
+    type
+    attachment {
+      id
+      type
+      url
+      thumbUrl
+    }
+  }
+  ... on ResolvedFieldObjectiveLevel {
+    id
+    type
+    nodes {
+      ...plannerElementNodeItem
+    }
+  }
+}
+
+fragment curriculumProgramBasicDetailsItem on CurriculumProgram {
+  id
+  type
+  acronym
+  nodeInterfaceType
+}

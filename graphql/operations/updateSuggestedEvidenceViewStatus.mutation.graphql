@@ -1,0 +1,5 @@
+mutation updateSuggestedEvidenceViewStatus($staffId: ID!, $practiceId: ID!, $cycleId: ID!) {
+  platform {
+    updateUserSnpEvidenceViewStatus(input: {userId: $staffId, practiceId: $practiceId, evaluationCycleId: $cycleId})
+  }
+}

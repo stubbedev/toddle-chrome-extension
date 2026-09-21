@@ -1,0 +1,7 @@
+mutation updateProjectDeadline($input: UpdateProjectGroupDeadlineInput!, $fetchStatusWiseProjects: Boolean!, $statusWiseProjectFilters: StatusWiseProjectFilters) {
+  documentation {
+    updateProjectGroupDeadline(input: $input) {
+      ...projectDeadline
+    }
+  }
+}

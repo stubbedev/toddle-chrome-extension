@@ -1,0 +1,91 @@
+fragment teacherAssignmentItem on Assignment {
+  id
+  isStudentSubmissionEnabled
+  isTeacherEvaluationEnabled
+  isClassDiscussionEnabled
+  isSimilarityCheckEnabled
+  isExcludedFromFinalGradeCalculation
+  isPrivate
+  course {
+    id
+    title
+  }
+  state {
+    state
+    publishedAt
+    updatedAt
+  }
+  publishedAt
+  deadline
+  createdAt
+  closeSubmissionDate
+  content {
+    id
+    ... on Assessment {
+      id
+      title {
+        id
+        value
+        __typename
+      }
+      assessmentType {
+        id
+        value
+        __typename
+      }
+      taskType {
+        id
+        type
+        label
+      }
+      category {
+        id
+        label
+        __typename
+      }
+      __typename
+    }
+    ... on AssignmentResource {
+      id
+      label
+      title
+      __typename
+    }
+    __typename
+  }
+  summaryCounts {
+    assigned
+    evaluated
+    turnedIn
+    evaluationShared
+    draftSubmissions
+    newSubmissionsCount
+    evaluationPending
+    evaluationSharedPending
+    evaluationApplicable
+    __typename
+  }
+  messagesSummary @include(if: $includeMessagesSummary) {
+    ...messagesSummary
+    __typename
+  }
+  classDiscussion @include(if: $includeMessagesSummary) {
+    ...classDiscussion
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

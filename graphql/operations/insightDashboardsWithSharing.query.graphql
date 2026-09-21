@@ -1,0 +1,36 @@
+query insightDashboardsWithSharing($id: ID!, $input: InsightDashboardFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        insightDashboards(filter: $input) {
+          totalCount
+          edges {
+            ...insightDashboardFragment
+            myPermissionType
+            accessibilityMap {
+              id
+              entityType
+              entityId
+              permissionType
+              user {
+                id
+                firstName
+                lastName
+              }
+              role {
+                id
+                label
+                globalLevel
+              }
+            }
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+      }
+    }
+  }
+}

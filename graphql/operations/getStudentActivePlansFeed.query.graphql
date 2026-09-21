@@ -1,0 +1,44 @@
+query getStudentActivePlansFeed($id: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentPlansFeedInput!, $filters: StudentPlansFeedFilters) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentActivePlansFeedFragment
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentActivePlansFeedFragment
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentActivePlansFeedFragment
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      studentPlanWrapper {
+        ...studentActivePlansFeedFragment
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

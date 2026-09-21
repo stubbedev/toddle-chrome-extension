@@ -1,0 +1,37 @@
+query getTOKGradebookYearGroupStudents($id: ID!, $studentFilters: GroupStudentFilter, $projectFilters: ProjectFilter, $filtersForGeneric: ibPYPElementRatingFiltersForGeneric, $projectFieldFilters: PlannerFieldFilter, $academicYearId: ID) {
+  node(id: $id, type: YEAR_GROUP) {
+    ... on YearGroup {
+      id
+      students(filters: $studentFilters) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...projectGradebookStudentInfoItem
+            projects(filters: $projectFilters) {
+              ...projectDetailItem
+              ibPYPElementRatings(filters: {academicCriteriaSetTypes: [PROJECT_OVERALL_PROGRESS]}) {
+                id
+                ibPYPElementId
+                ibPYPElementType
+                value
+                academicCriteriaSet {
+                  id
+                  label
+                  criteriaType
+                }
+                academicCriteriaValue {
+                  id
+                  label
+                  abbreviation
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

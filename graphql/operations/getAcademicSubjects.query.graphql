@@ -1,0 +1,132 @@
+query getAcademicSubjects($id: ID!, $filters: SubjectFilterInput, $flatSubjectVariantFilters: FlatSubjectVariantFilterInput, $learningCourseFilters: SubjectLearningCourseFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        icon
+        iconType
+        presetSubjectId
+        grades {
+          id
+          name
+        }
+        subjectGroup {
+          id
+          name
+          type
+          displaySequence
+          globalSubjectGroup {
+            id
+          }
+        }
+        associatedLevels {
+          id
+          label
+          type
+        }
+        childSubjects {
+          id
+          curriculumProgram {
+            id
+          }
+          learningCourses(filters: $learningCourseFilters) {
+            id
+            title
+            displayMetadata
+            type
+            isArchived
+          }
+        }
+        code
+        courseType
+        isArchived
+        metadata
+        ibOfferedSubject {
+          id
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+          globalSubjectGroup {
+            id
+            name
+            type
+          }
+        }
+        flatVariants(filters: $flatSubjectVariantFilters) {
+          level {
+            id
+            label
+            associatedLearningCourses {
+              id
+              title
+              subjects {
+                parentSubject {
+                  id
+                }
+              }
+              displayMetadata
+              type
+              academicCourse {
+                id
+                label
+              }
+              academicYears {
+                id
+                startDate
+                endDate
+              }
+              isArchived
+            }
+            globalTag {
+              id
+            }
+          }
+          responseLanguage {
+            id
+            label
+            globalTag {
+              id
+            }
+          }
+          learningCourses {
+            id
+            title
+            displayMetadata
+            type
+            academicCourse {
+              id
+              label
+            }
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+            isArchived
+          }
+          isArchived
+        }
+        associatedSchools {
+          id
+          label
+        }
+        createdAt
+        createdBy {
+          id
+          firstName
+          lastName
+        }
+        updatedAt
+        updatedBy {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}

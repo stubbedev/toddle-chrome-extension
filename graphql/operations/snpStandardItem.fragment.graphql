@@ -1,0 +1,15 @@
+fragment snpStandardItem on SnPStandard {
+  id
+  code
+  localeLabelKey
+  label
+  localeSubTextKey
+  subText
+  practicesV2(orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+    edges {
+      node {
+        ...practiceItem
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation toggleCurriculumWebsiteNodeEnabled($input: ToggleCurriculumWebsiteNodeEnabledInput!) {
+  planner {
+    toggleCurriculumWebsiteNodeEnabled(input: $input) {
+      isSuccess
+    }
+  }
+}

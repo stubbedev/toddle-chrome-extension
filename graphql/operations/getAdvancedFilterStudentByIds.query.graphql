@@ -1,0 +1,10 @@
+query getAdvancedFilterStudentByIds($ids: [ID!]) {
+  multiNode(ids: $ids, type: STUDENT) {
+    id
+    ... on Student {
+      firstName
+      middleName
+      lastName
+    }
+  }
+}

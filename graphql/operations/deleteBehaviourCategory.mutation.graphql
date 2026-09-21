@@ -1,0 +1,5 @@
+mutation deleteBehaviourCategory($input: BehaviourCategoryDeleteInput!) {
+  platform {
+    deleteBehaviourCategory(input: $input)
+  }
+}

@@ -1,0 +1,8 @@
+query getTeacherBasicDetails($id: ID!, $curriculumProgramsFilters: UserCurriculumProgramFilter, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      ...teacherBasicDetails
+    }
+  }
+}

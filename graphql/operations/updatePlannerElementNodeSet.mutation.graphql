@@ -1,0 +1,7 @@
+mutation updatePlannerElementNodeSet($input: UpdatPlannerElementNodeSetInput!) {
+  planner {
+    updatePlannerElementNodeSet(input: $input) {
+      id
+    }
+  }
+}

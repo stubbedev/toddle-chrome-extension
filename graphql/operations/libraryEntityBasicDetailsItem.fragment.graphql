@@ -1,0 +1,5 @@
+fragment libraryEntityBasicDetailsItem on LibraryGenericEntity {
+  id
+  type
+  label
+}

@@ -1,0 +1,7 @@
+mutation updateSnpDocumentCategoryV2($input: SnpDocumentCategoryUpdateInput!) {
+  platform {
+    updateSnpDocumentCategoryV2(input: $input) {
+      ...responseItem
+    }
+  }
+}

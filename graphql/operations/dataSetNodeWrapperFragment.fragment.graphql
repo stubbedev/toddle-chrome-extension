@@ -1,0 +1,31 @@
+fragment dataSetNodeWrapperFragment on PlannerElementNode {
+  id
+  uid
+  label
+  subText
+  gradingType
+  code
+  depth
+  parentData {
+    id
+  }
+  dataSetNodeWrapper {
+    properties {
+      isArchived
+      isPowerStandard
+      weight
+      subjects {
+        id
+        name
+      }
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

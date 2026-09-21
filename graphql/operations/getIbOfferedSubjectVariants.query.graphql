@@ -1,0 +1,39 @@
+query getIbOfferedSubjectVariants($subjectVariantFilters: IbOfferedSubjectVariantFilters, $subjectGroupFilters: GlobalSubjectGroupFilters, $globalTagFilters: GlobalGenericTagFilters) {
+  globalConstants {
+    ibOfferedSubjectVariants(filters: $subjectVariantFilters) {
+      subject {
+        id
+        name
+        contentSubject {
+          id
+          assessmentYearTitle
+        }
+      }
+      subjectGroup {
+        id
+        name
+        type
+        displaySequence
+      }
+      level {
+        id
+        label
+      }
+      responseLanguages {
+        id
+        label
+      }
+    }
+    globalSubjectGroups(filters: $subjectGroupFilters) {
+      id
+      name
+      type
+      displaySequence
+    }
+    globalGenericTags(filters: $globalTagFilters) {
+      id
+      label
+      type
+    }
+  }
+}

@@ -1,0 +1,95 @@
+query getLearningCoursesFeed($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $orderByDirection: ORDER_BY_DIRECTION, $orderBy: ORDER_BY_ENUM, $collaboratorFilters: LearningCourseCollaboratorFilters, $classesFilters: LearningCourseClassFilter, $filters: LearningCourseFilters, $after: String, $gradeFilters: LearningCourseGradeFilters) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse(first: 20, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        count {
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse(first: 20, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        count {
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(first: 20, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        count {
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse(first: 20, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        count {
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      learningCourse(first: 20, after: $after, orderByDirection: $orderByDirection, orderBy: $orderBy, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        count {
+          teacherCourseCount
+          bluePrintCourseCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation updateTemplateDetails($input: TemplateDetailsInput!) {
+  planner {
+    updateTemplateDetails(input: $input)
+  }
+}

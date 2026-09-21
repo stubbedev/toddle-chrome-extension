@@ -1,0 +1,11 @@
+mutation upsertHomepageLayout($input: UpsertHomepageLayoutInput!) {
+  platform {
+    upsertHomepageLayout(input: $input) {
+      isSuccess
+      warning
+      homepageLayout {
+        ...homepageLayoutFields
+      }
+    }
+  }
+}

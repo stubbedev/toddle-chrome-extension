@@ -1,0 +1,7 @@
+mutation updateStudentProfileResponse($id: ID!, $title: String, $attachments: [AttachmentInput!]) {
+  platform {
+    updateStudentProfileResponse(input: {id: $id, title: $title, attachments: $attachments}) {
+      ...studentProfileResponseItem
+    }
+  }
+}

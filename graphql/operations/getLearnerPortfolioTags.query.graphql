@@ -1,0 +1,12 @@
+query getLearnerPortfolioTags($id: ID!, $filters: LearnerPortfolioTagFilters) {
+  node(id: $id, type: STUDENT_LEARNER_PORTFOLIO) {
+    id
+    ... on StudentLearnerPortfolio {
+      id
+      tags(input: $filters) {
+        id
+        name
+      }
+    }
+  }
+}

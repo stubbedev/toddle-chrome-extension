@@ -1,0 +1,10 @@
+fragment staffItem on Staff {
+  id
+  coursesV2(filters: $filters) {
+    edges {
+      node {
+        ...courseItem
+      }
+    }
+  }
+}

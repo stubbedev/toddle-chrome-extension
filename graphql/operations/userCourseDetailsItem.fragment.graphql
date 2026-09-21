@@ -1,0 +1,30 @@
+fragment userCourseDetailsItem on Course {
+  id
+  title
+  isArchived
+  deletedBy {
+    id
+  }
+  grades(filters: $courseGradeFilters) @include(if: $getGrades) {
+    id
+    name
+    curriculumProgram @include(if: $getAssociatedProgram) {
+      id
+      acronym
+    }
+  }
+  curriculumProgram @include(if: $getCurriculumProgram) {
+    id
+    type
+    label
+    acronym
+  }
+  learningCourse @include(if: $getLearningCourse) {
+    id
+    title
+    academicCourse {
+      id
+      label
+    }
+  }
+}

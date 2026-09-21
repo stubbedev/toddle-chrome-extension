@@ -1,0 +1,39 @@
+query getTimetableRotationDays($id: ID!, $curriculumProgramIds: [ID!], $timetableFilters: TimetableFilterOptions!, $timetableDatesFilters: RoutineDatesFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        timetables(filters: $timetableFilters) {
+          id
+          label
+          timetableTemplate {
+            dayCycle {
+              cycleMode
+            }
+          }
+          timetableDates(filters: $timetableDatesFilters) {
+            date
+            rotationEntity {
+              id
+              label
+              abbreviation
+            }
+            bellSchedule {
+              id
+              periodsEdge {
+                periods {
+                  period {
+                    id
+                  }
+                  isDefault
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

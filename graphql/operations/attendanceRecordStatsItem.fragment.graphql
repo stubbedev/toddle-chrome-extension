@@ -1,0 +1,5 @@
+fragment attendanceRecordStatsItem on AttendanceFilteredStatistic {
+  totalCount
+  filteredCount
+  percentage
+}

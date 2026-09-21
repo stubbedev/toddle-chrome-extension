@@ -1,0 +1,12 @@
+mutation updateLevel($input: UpdateGenericTagInput!) {
+  platform {
+    updateGenericTags(input: $input) {
+      id
+      label
+      abbreviation
+      type
+      isArchived
+      reportDisplayName
+    }
+  }
+}

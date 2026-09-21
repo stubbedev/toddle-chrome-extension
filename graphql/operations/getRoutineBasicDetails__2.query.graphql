@@ -1,0 +1,27 @@
+query getRoutineBasicDetails($id: ID!, $filter: RoutineFilterOptions!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms {
+        id
+        routines(filter: $filter) {
+          id
+          label
+          routineMode
+          startDate
+          endDate
+          grades {
+            id
+            name
+          }
+          rotationDays {
+            id
+            label
+            abbreviation
+          }
+        }
+      }
+    }
+  }
+}

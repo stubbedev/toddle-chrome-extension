@@ -1,0 +1,14 @@
+fragment studentBasicDetailsItem on Student {
+  id
+  sourceId
+  firstName
+  middleName
+  lastName
+  preferredName
+  suffix
+  pronouns
+  gender
+  type
+  profileImage
+  email
+}

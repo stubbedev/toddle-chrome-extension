@@ -1,0 +1,8 @@
+query getOrganizationAssignmentsProgressSummary($organizationId: ID!, $courseIds: [ID!], $subjectIds: [ID!], $states: [ASSIGNMENT_STATE_ENUM!], $categoryIds: [ID!], $searchText: String, $academicTermIds: [ID!], $assessmentTypes: [String!], $excludedAssessmentTypes: [String!], $groupTypes: [ASSESSMENT_TYPE_ENUM!], $isTeacherEvaluationEnabled: Boolean, $isAssessmentScoringEnabled: Boolean, $contentTypes: [ASSIGNMENT_CONTENT_TYPE_ENUM!], $assessmentToolTypes: [ASSESSMENT_EVALUATION_TYPE_ENUM!], $includedStudentIds: [ID!], $primaryGradeId: ID, $isExcludedFromFinalGradeCalculation: Boolean, $first: Int, $after: String, $assessmentFieldUids: [String!] = ["measureAssessing", "objectivesMYP", "interdisciplinaryCriteriaMYP", "subjectLevel", "atls", "benchmarks", "concepts", "lp", "learningStandardUBD", "atlsUBD", "learningStandardMYP", "atlsMYP", "subjectStandardDP", "atlDP", "learnerProfileDP", "syllabusContentDP"]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationAssignmentItem
+    }
+  }
+}

@@ -1,0 +1,15 @@
+query contextualHelpContent($input: ContextualHelpContentInput!) {
+  cms {
+    contextualHelpContent(input: $input) {
+      id
+      title
+      contentMarkdown
+      locale
+      tag {
+        id
+        pageIdentifierTag
+        hasContent
+      }
+    }
+  }
+}

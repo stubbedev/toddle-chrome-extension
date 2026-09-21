@@ -1,0 +1,8 @@
+query getGlobalSubjects($filters: GlobalSubjectFilters) {
+  platform {
+    allGlobalSubjects(filters: $filters) {
+      id
+      title
+    }
+  }
+}

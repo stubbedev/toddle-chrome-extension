@@ -1,0 +1,11 @@
+query getSubjectCumulativeTermWeights($id: ID!, $filters: SubjectGradingConfigurationFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      gradingConfigurations(filters: $filters) {
+        ...CumulativeTermWeightsFragment
+      }
+    }
+  }
+}

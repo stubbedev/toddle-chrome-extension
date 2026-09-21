@@ -1,0 +1,10 @@
+query getStaffBasicDetails($id: ID!) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      ...staffNameFields
+      profileImage
+      email
+    }
+  }
+}

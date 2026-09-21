@@ -1,0 +1,55 @@
+fragment courseItem on Course {
+  id
+  userMap(filters: $filters) {
+    edges {
+      node {
+        id
+        user {
+          id
+          ... on Student {
+            ...studentItem
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+        }
+        isRemovedFromClass
+        tags {
+          id
+          type
+          label
+          abbreviation
+          displaySequence
+        }
+        subjectWiseLevel {
+          level {
+            id
+            type
+            label
+            abbreviation
+            displaySequence
+          }
+          subject {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

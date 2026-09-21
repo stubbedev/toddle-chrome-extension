@@ -1,0 +1,53 @@
+query getCourseStudents($courseID: ID!, $academicYearId: ID!, $useSubjectLevelFilter: Boolean = false) {
+  node(id: $courseID, type: COURSE) {
+    id
+    ... on Course {
+      genericTags {
+        id
+        label
+        type
+      }
+      userMap(filters: {archivalState: ALL, userTypes: [student], academicYearIds: [$academicYearId]}) {
+        ...userMapItem
+      }
+    }
+  }
+}
+
+fragment userMapItem on CourseUserMapConnection {
+  edges {
+    node {
+      id
+      user {
+        ... on Student {
+          id
+          firstName
+          middleName
+          preferredName
+          prefix
+          suffix
+          pronouns
+          type
+          lastName
+          isArchived
+          isArchivedV2(filters: {academicYearId: $academicYearId})
+          profileImage
+        }
+      }
+      tags {
+        id
+        label
+      }
+      subjectWiseLevel @include(if: $useSubjectLevelFilter) {
+        subject {
+          id
+        }
+        level {
+          id
+          label
+          abbreviation
+        }
+      }
+    }
+  }
+}

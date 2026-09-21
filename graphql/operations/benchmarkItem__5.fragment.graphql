@@ -1,0 +1,28 @@
+fragment benchmarkItem on PlannerBenchmark {
+  id
+  label
+  subText
+  children
+  parent
+  benchmarkQuestionCount {
+    count
+    color
+    url
+    yearSplit
+  }
+  subject
+  depth
+  code
+  grades {
+    id
+    name
+  }
+  tags {
+    id
+    label
+  }
+  resolvedSubject {
+    id
+    isArchived
+  }
+}

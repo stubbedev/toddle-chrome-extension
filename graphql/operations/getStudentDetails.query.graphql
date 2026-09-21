@@ -1,0 +1,49 @@
+query getStudentDetails($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      firstName
+      middleName
+      lastName
+      profileImage
+      registrationCategory
+      preferredName
+      suffix
+      pronouns
+      type
+      studentProjectPortfolios {
+        id
+        isComplete
+        projectGroup {
+          id
+          name
+        }
+      }
+      projectGroups(filters: {projectGroupSubTypes: [CORE, INTERNAL_ASSESSMENT, EXTERNAL_ASSESSMENT], subjectArchivalState: ALL}) {
+        id
+        type
+        subType
+        projects(filters: {students: [$id]}) {
+          edges {
+            node {
+              id
+              reportStatus
+            }
+          }
+        }
+      }
+      yearGroup {
+        id
+        examRegistration {
+          id
+          studentByUserId(id: $id) {
+            id
+            personalCode
+            category
+          }
+        }
+      }
+    }
+  }
+}

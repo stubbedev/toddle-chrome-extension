@@ -1,0 +1,23 @@
+query getAssessmentQuestions($id: ID!, $type: ENTITY_TYPE_ENUM!, $orgResourceFilters: OrganizationResourceFilter) {
+  node(id: $id, type: $type) {
+    ... on Assessment {
+      id
+      organizationResourcesV2(first: null, filters: $orgResourceFilters) {
+        edges {
+          node {
+            ...organizationResourceParentItem
+          }
+        }
+      }
+      libraryGrades {
+        ...libraryEntityBasicDetailsItem
+      }
+      librarySubjects {
+        ...libraryEntityBasicDetailsItem
+      }
+      isLibraryPremium
+      showLibraryPremiumBannerForUser
+      ...assessmentSavedByNodeItem
+    }
+  }
+}

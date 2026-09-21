@@ -1,0 +1,19 @@
+query GetExternalAssessmentRecordSets($curriculumProgramId: ID!, $input: ExternalAssessmentRecordSetFeedInput!) {
+  node(id: $curriculumProgramId, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      externalAssessmentRecordSetFeed(input: $input) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          cursor
+          node {
+            ...recordSet
+          }
+        }
+      }
+    }
+  }
+}

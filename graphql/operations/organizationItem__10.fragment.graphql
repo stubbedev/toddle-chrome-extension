@@ -1,0 +1,14 @@
+fragment organizationItem on Organization {
+  id
+  singlePointRubrics(filters: $filters) {
+    id
+    title
+    createdBy {
+      ...singlePointRubricListStaffItem
+    }
+    updatedBy {
+      ...singlePointRubricListStaffItem
+    }
+    updatedAt
+  }
+}

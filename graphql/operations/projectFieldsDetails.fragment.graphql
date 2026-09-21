@@ -1,0 +1,29 @@
+fragment projectFieldsDetails on Project {
+  id
+  fields(filters: $filters) {
+    id
+    uid
+    value
+    comments {
+      unreadCountV2
+    }
+    resolvedMinimalTree {
+      id
+      type
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        type
+        ... on ResolvedFieldPlannerElementSet {
+          id
+          type
+          nodes {
+            id
+            label
+            type
+            metadata
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+query getProjectGroupCategories($organizationId: ID!, $filters: ProjectGroupCategoryFilters) {
+  node(type: ORGANIZATION, id: $organizationId) {
+    ... on Organization {
+      id
+      projectGroupCategories(filters: $filters) {
+        id
+        category
+        type
+        curriculumProgram {
+          id
+          type
+        }
+      }
+    }
+  }
+}

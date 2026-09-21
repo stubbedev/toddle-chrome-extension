@@ -1,0 +1,9 @@
+mutation UpsertIntegrationExclusions($input: UpsertIntegrationExclusionsInput!) {
+  integration {
+    upsertIntegrationExclusions(input: $input) {
+      isSuccess
+      message
+      warning
+    }
+  }
+}

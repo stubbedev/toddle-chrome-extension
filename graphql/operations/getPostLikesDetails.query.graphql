@@ -1,0 +1,7 @@
+query getPostLikesDetails($id: ID!) {
+  node(id: $id, type: POST) {
+    ... on Post {
+      ...postItem
+    }
+  }
+}

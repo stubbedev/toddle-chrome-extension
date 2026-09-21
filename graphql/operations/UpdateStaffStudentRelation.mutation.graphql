@@ -1,0 +1,8 @@
+mutation UpdateStaffStudentRelation($input: UpdateStaffStudentRelationInput!) {
+  platform {
+    updateStaffStudentRelation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

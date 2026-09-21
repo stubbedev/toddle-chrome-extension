@@ -1,0 +1,7 @@
+mutation reorderCurriculumWebsiteNode($input: ReorderCurriculumWebsiteNodeInput!) {
+  planner {
+    reorderCurriculumWebsiteNode(input: $input) {
+      isSuccess
+    }
+  }
+}

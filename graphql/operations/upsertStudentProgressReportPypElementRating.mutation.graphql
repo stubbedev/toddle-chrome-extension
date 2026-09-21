@@ -1,0 +1,7 @@
+mutation upsertStudentProgressReportPypElementRating($nodeId: ID!, $studentProgressReportId: ID!, $academicCriteriaValueId: ID!, $academicCriteriaSetId: ID!, $ibPYPElementId: ID, $ibPYPElementType: IB_PYP_ELEMENT_RATING_TYPE_ENUM!, $academicTermId: ID) {
+  documentation {
+    upsertStudentProgressReportPypElementRating(input: {nodeId: $nodeId, studentProgressReportId: $studentProgressReportId, academicCriteriaValueId: $academicCriteriaValueId, academicCriteriaSetId: $academicCriteriaSetId, ibPYPElementId: $ibPYPElementId, ibPYPElementType: $ibPYPElementType, academicTermId: $academicTermId}) {
+      ...progressReportRatingItem
+    }
+  }
+}

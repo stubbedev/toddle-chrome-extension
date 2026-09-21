@@ -1,0 +1,36 @@
+query getSyncHistory($id: ID!, $filters: LogGroupConnectionFilters!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      parentCourse {
+        id
+        title
+      }
+      logGroupConnection(filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            syncedAt
+            syncedBy {
+              ...userNameFields
+              profileImage
+            }
+            metadata
+            isConflictExists
+            countDetails {
+              totalChanges
+              courses {
+                id
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

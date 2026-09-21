@@ -1,0 +1,4 @@
+fragment questionSavedByNodeItem on OrganizationResource {
+  id
+  isSavedForLibrary
+}

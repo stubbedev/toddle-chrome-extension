@@ -1,0 +1,22 @@
+query getLearningCourses($organizationId: ID!, $after: String, $filters: LearningCourseFilters, $gradeFilters: LearningCourseGradeFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(first: 50, after: $after, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        count {
+          totalCount
+        }
+      }
+    }
+  }
+}

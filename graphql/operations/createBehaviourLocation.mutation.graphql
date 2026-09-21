@@ -1,0 +1,8 @@
+mutation createBehaviourLocation($input: BehaviourLocationCreateInput!) {
+  platform {
+    createBehaviourLocation(input: $input) {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getUnitPlannerField($id: ID!, $learningCourseId: ID!, $filters: SyncTemplateFieldsFilters!) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      syncTemplateFields(filters: $filters) {
+        id
+        label
+        children {
+          id
+        }
+        item {
+          id
+          ... on PlannerField {
+            lockingInfo(filters: {learningCourseId: $learningCourseId}) {
+              isLocked
+            }
+          }
+        }
+      }
+    }
+  }
+}

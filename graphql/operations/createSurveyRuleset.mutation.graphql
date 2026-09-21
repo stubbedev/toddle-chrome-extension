@@ -1,0 +1,20 @@
+mutation createSurveyRuleset($input: CreateSurveyRulesetInput!) {
+  platform {
+    createSurveyRuleset(input: $input) {
+      isSuccess
+      warning
+      ruleset {
+        id
+        name
+        rules {
+          ruleId
+          ruleType
+          ruleValue
+          operator
+          ruleOrder
+          afterGroupCondition
+        }
+      }
+    }
+  }
+}

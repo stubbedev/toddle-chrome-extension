@@ -1,0 +1,7 @@
+mutation updateProcessJournal($input: PostCompleteUpdateInput!) {
+  documentation {
+    updatePost(input: $input) {
+      ...processJournalItem
+    }
+  }
+}

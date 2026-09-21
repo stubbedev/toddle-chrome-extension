@@ -1,0 +1,8 @@
+query getCourseFlowMultiNode($ids: [ID!], $stateFilters: LearningCourseFlowStateFilter, $filters: LearningCourseFlowFilter) {
+  multiNode(ids: $ids, type: LEARNING_COURSE_FLOW) {
+    id
+    ... on LearningCourseFlow {
+      ...courseFlowResource
+    }
+  }
+}

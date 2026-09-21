@@ -1,0 +1,25 @@
+fragment fieldScoreItem on ResolvedFieldScore {
+  id
+  type
+  isUsingScore
+  maxScore
+  category {
+    id
+    label
+    colorCode
+    set {
+      id
+      associatedEntities {
+        id
+        ... on Course {
+          id
+          title
+        }
+        ... on Subject {
+          id
+          name
+        }
+      }
+    }
+  }
+}

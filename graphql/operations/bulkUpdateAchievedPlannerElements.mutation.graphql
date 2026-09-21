@@ -1,0 +1,6 @@
+mutation bulkUpdateAchievedPlannerElements($input: BulkUpdateAchievedPlannerElementsInput!) {
+  planner {
+    bulkUpdateAchievedPlannerElements(input: $input)
+    __typename
+  }
+}

@@ -1,0 +1,9 @@
+mutation generateAttendanceReportV3($input: GenerateAttendanceReportV3Input!) {
+  platform {
+    generateAttendanceReportV3(input: $input) {
+      isSuccess
+      warning
+      responseType
+    }
+  }
+}

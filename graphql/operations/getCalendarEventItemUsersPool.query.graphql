@@ -1,0 +1,19 @@
+query getCalendarEventItemUsersPool($organizationId: ID!, $getStudentFamilyMembers: Boolean!, $getOnlyUserId: Boolean!, $first: Int, $after: String, $before: String, $orderBy: OrderByEnum, $orderByDirection: ORDER_BY_DIRECTION, $filters: CalendarEventItemUsersFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      calendarEventItemUsers(first: $first, after: $after, before: $before, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        pageInfo @skip(if: $getOnlyUserId) {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            ...userItem @skip(if: $getOnlyUserId)
+          }
+        }
+      }
+    }
+  }
+}

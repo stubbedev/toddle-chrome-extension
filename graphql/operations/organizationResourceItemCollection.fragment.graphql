@@ -1,0 +1,13 @@
+fragment organizationResourceItemCollection on OrganizationResource {
+  id
+  label
+  type
+  resourceType
+  entity {
+    id
+    ...subjectItem
+  }
+  childrenV2(filters: $collectionFilters) {
+    ...collectionItem
+  }
+}

@@ -1,0 +1,42 @@
+fragment publishedReportSubjectSummaryItem on PublishedStudentProgressReport {
+  id
+  studentProgressReport {
+    id
+    publishedReport {
+      id
+      template
+      __typename
+    }
+  }
+  subjectSummary {
+    subject {
+      id
+      name
+      isArchived
+    }
+    objectives {
+      id
+      label
+      type
+    }
+    ibPYPElementRatings {
+      ...ibPYPElementRatingsItem
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

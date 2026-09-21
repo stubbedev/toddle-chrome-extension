@@ -1,0 +1,20 @@
+query getOrganizationAcademicYearTerms($organizationId: ID!, $termFilters: TermFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      academicYears {
+        id
+        startDate
+        endDate
+        terms(filters: $termFilters) {
+          id
+          label
+          startDate
+          endDate
+          type
+        }
+      }
+    }
+  }
+}

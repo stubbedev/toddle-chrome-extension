@@ -1,0 +1,25 @@
+query getStaffList($organizationId: ID!, $searchText: String, $grades: [ID!], $courses: [ID!], $archivalState: ARCHIVAL_STATE_ENUM, $curriculumProgramIds: [ID!], $userArchivedFilters: UserArchivedFilters, $academicYearIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: {searchText: $searchText, grades: $grades, courses: $courses, archivalState: $archivalState, curriculumProgramIds: $curriculumProgramIds, academicYearIds: $academicYearIds}) {
+        totalCount
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+            email
+            roles
+            role
+            isArchived
+            isArchivedV2(filters: $userArchivedFilters)
+            courses {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}

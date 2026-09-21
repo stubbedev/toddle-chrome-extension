@@ -1,0 +1,10 @@
+mutation createTimetableSlotResource($input: CreateLearningCourseFlowResourceInput!) {
+  planner {
+    createLearningCourseFlowResource(input: $input) {
+      id
+      item {
+        id
+      }
+    }
+  }
+}

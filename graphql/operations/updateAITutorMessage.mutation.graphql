@@ -1,0 +1,20 @@
+mutation updateAITutorMessage($input: UpdateAiMessageInput!) {
+  ai {
+    updateAiMessage(input: $input) {
+      isSuccess
+      response {
+        conversation {
+          id
+          messages {
+            totalCount
+            edges {
+              node {
+                ...aiMessageItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

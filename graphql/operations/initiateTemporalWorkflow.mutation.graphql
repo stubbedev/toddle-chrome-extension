@@ -1,0 +1,8 @@
+mutation initiateTemporalWorkflow($input: InitiateTemporalWorkflowInput!) {
+  integration {
+    initiateTemporalWorkflow(input: $input) {
+      isSuccess
+      message
+    }
+  }
+}

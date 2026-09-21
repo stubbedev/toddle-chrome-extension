@@ -1,0 +1,43 @@
+query getBehaviourSchoolWiseConfigurations($id: ID!, $filters: BehaviourSchoolWiseConfigFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourSchoolWiseConfigurations(filters: $filters) {
+        curriculumProgram {
+          id
+          label
+          type
+          acronym
+          academicProgram {
+            id
+            label
+          }
+          attachments {
+            url
+          }
+        }
+        pushedActionsCount
+        pushedLocationsCount
+        pushedCategoriesCount
+        schoolCreatedActionsCount
+        schoolCreatedLocationsCount
+        schoolCreatedCategoriesCount
+        lastUpdatedBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+        lastUpdatedAt
+      }
+    }
+  }
+}

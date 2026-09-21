@@ -1,0 +1,12 @@
+query getYearGroupName($id: ID!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      yearGroup {
+        id
+        name
+        isArchived
+      }
+    }
+  }
+}

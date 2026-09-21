@@ -1,0 +1,73 @@
+fragment courseItem on LearningCourse {
+  id
+  title
+  state
+  isBookmarked
+  type
+  subjects {
+    id
+    name
+    subjectGroup {
+      id
+      name
+    }
+    ibOfferedSubject {
+      id
+      contentSubject {
+        id
+        assessmentYearTitle
+      }
+    }
+  }
+  grades(filters: $gradeFilters) {
+    id
+    name
+  }
+  subjectGroup {
+    id
+    name
+  }
+  associatedLevels {
+    id
+    abbreviation
+  }
+  subjectLevelMap {
+    associatedLevels {
+      id
+      abbreviation
+    }
+  }
+  gradingPeriods(filters: $termFilters) {
+    edges {
+      node {
+        id
+        label
+      }
+    }
+  }
+  classes(filters: $classesFilters) {
+    id
+    title
+    isArchived
+    profileImageData {
+      url
+      icon
+      color
+      acronym
+    }
+  }
+  childCourses {
+    id
+    title
+  }
+  displayMetadata
+  academicCourse {
+    id
+    code
+  }
+  curriculumProgram {
+    id
+    label
+    isPrimary
+  }
+}

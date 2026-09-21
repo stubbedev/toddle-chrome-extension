@@ -1,0 +1,51 @@
+fragment studentOtherDetailsItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  type
+  gender
+  email
+  sourceId
+  profileImage
+  enrollmentDate
+  withdrawalDate
+  nccdCategory
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  personalContacts {
+    ...personalContactsItem
+  }
+  address {
+    ...addressItem
+  }
+  otherDetails {
+    ...otherDetailsItem
+  }
+  academicYears {
+    ...academicYearItem
+  }
+}
+
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}

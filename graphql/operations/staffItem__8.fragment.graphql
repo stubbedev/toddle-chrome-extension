@@ -1,0 +1,17 @@
+fragment staffItem on Staff {
+  id
+  ...staffNameFields
+  profileImage
+  email
+  showPitchScreen
+  role
+  showClassSelectionScreen
+  showBifurcationScreen
+  isDevUser
+  isArchived
+  entityTags {
+    id
+    key
+    value
+  }
+}

@@ -1,0 +1,48 @@
+fragment learningCourse on LearningCourse {
+  id
+  subjects {
+    id
+    name
+    grades {
+      id
+      name
+    }
+    subjectGroup {
+      id
+      name
+    }
+    isArchived
+    recommendedPhase {
+      gradeId
+      phaseId
+    }
+  }
+  grades {
+    id
+    name
+    subjects {
+      id
+      name
+      isArchived
+      subjectGroup {
+        id
+        name
+      }
+    }
+    yearGroup {
+      id
+      name
+      examSession {
+        id
+        year
+      }
+    }
+    displaySequence
+    globalGrade {
+      id
+      uid
+      name
+      constants
+    }
+  }
+}

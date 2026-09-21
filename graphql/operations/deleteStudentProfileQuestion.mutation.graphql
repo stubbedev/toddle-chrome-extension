@@ -1,0 +1,5 @@
+mutation deleteStudentProfileQuestion($id: ID!) {
+  platform {
+    deleteStudentProfileQuestion(input: {id: $id})
+  }
+}

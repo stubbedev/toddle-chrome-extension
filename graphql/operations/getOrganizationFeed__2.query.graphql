@@ -1,0 +1,36 @@
+query getOrganizationFeed($filters: OrganizationFeedConnectionFilter, $after: String, $tagFilters: TagFilters, $globalConstantsFilter: GlobalConstantsFilterOptions, $fetchGlobalConstants: Boolean = false) {
+  platform {
+    toddleBuddies
+    buddies {
+      id
+      firstName
+      lastName
+    }
+    organizationFeed(first: 20, filters: $filters, after: $after) {
+      totalCount
+      feedAnalytics
+      onboardingAnalytics
+      transitionAnalytics
+      subscriptionPlanAnalytics
+      edges {
+        node {
+          ...organisationFeedDetailsItem
+          tags(filters: $tagFilters) {
+            id
+            value
+            key
+          }
+          globalConstants(filter: $globalConstantsFilter) @include(if: $fetchGlobalConstants) {
+            id
+            name
+            value
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

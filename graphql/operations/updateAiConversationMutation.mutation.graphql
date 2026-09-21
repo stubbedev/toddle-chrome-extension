@@ -1,0 +1,7 @@
+mutation updateAiConversationMutation($input: UpdateAiConversationInput!) {
+  ai {
+    updateAiConversation(input: $input) {
+      isSuccess
+    }
+  }
+}

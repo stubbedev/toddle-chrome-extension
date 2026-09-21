@@ -1,0 +1,5 @@
+query getProjectYearGroupPlannerElementNodesQuery($id: ID!, $filters: AssociatedChildPlannerElementNodesFilters) {
+  node(id: $id, type: YEAR_GROUP) {
+    ...projectYearGroupPlannerElementNodesItem
+  }
+}

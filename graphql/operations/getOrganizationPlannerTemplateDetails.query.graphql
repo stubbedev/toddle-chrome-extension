@@ -1,0 +1,10 @@
+query getOrganizationPlannerTemplateDetails {
+  platform {
+    organization {
+      id
+      plannerTemplate {
+        ...templateItem
+      }
+    }
+  }
+}

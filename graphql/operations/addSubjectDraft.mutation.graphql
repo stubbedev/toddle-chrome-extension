@@ -1,0 +1,22 @@
+mutation addSubjectDraft($input: SubjectDraftAddInput!) {
+  planner {
+    addSubjectDraft(input: $input) {
+      ...subjectDraftFields
+    }
+    __typename
+  }
+}
+
+query getOrganizationDepartments($organizationId: ID!, $filters: SubjectGroupFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        name
+        displaySequence
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+query getUserCoursesV2IdsForScopeCheck($id: ID!, $first: Int, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(first: $first, filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

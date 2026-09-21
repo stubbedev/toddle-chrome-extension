@@ -1,0 +1,6 @@
+fragment mediaFieldNodeItem on PlannerField {
+  ...plannerFieldNodeItem
+  resolvedMinimalTree {
+    ...resolvedFieldVideoAttachmentItem
+  }
+}

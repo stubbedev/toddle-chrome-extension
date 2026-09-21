@@ -1,0 +1,69 @@
+query getCalendarEventDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $calendarUserType: String) {
+  node(id: $id, type: $type) {
+    id
+    ... on PlatformCalendarEvent {
+      id
+      startTime
+      endTime
+      item(calendarUserType: $calendarUserType) {
+        id
+        ... on CalendarEventItem {
+          id
+          label
+          location
+          description
+          sharedWith
+          eventReminders {
+            reminderOffset
+            channels
+            triggerDayOffset
+            triggerTimeOffset
+          }
+          attachments {
+            id
+            type
+            name
+            title
+            url
+            mimeType
+            signedUrl
+            thumbUrl
+            metadata
+          }
+          users {
+            id
+            type
+            firstName
+            middleName
+            lastName
+            profileImage
+          }
+          createdBy {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+          }
+          recurringSetting {
+            frequency
+            weekDays
+            interval
+            endDate
+            monthDays
+            setPositions
+            count
+            timezone
+          }
+          metadata {
+            recurrenceType
+            skipNonOperationalDays
+          }
+          meeting {
+            ...studentPlanMeetingDetails
+          }
+        }
+      }
+    }
+  }
+}

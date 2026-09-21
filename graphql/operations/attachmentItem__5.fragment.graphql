@@ -1,0 +1,7 @@
+fragment attachmentItem on Attachment {
+  ...attachmentBasicDetailsItem
+  mimeType
+  title
+  streamUrl
+  parentType
+}

@@ -1,0 +1,23 @@
+query getCourseFlowOutline($id: ID!, $filters: LearningCourseFlowFilter, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on Course {
+      id
+      classFlowFeedWrapper {
+        learningCourseFlowFeedOutline(filters: $filters) {
+          ...courseFlowOutlineItem
+        }
+      }
+      __typename
+    }
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeedOutline(filters: $filters) {
+          ...courseFlowOutlineItem
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

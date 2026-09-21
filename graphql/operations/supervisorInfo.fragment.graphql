@@ -1,0 +1,10 @@
+fragment supervisorInfo on Staff {
+  ...userNameFields
+  email
+  profileImage
+  curriculumPrograms {
+    acronym
+    id
+  }
+  isArchived
+}

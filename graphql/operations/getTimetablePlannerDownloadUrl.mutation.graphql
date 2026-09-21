@@ -1,0 +1,10 @@
+mutation getTimetablePlannerDownloadUrl($input: TimetablePlannerDownloadUrlInput!) {
+  platform {
+    timetablePlannerDownloadUrl(input: $input) {
+      url
+      isSuccess
+      warning
+      longRunningTaskCreated
+    }
+  }
+}

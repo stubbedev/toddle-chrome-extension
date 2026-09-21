@@ -1,0 +1,8 @@
+mutation updateDeadlineV2Mutation($input: UpdateProjectGroupTaskInput!) {
+  project {
+    updateTask(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

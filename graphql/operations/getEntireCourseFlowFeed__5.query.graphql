@@ -1,0 +1,33 @@
+query getEntireCourseFlowFeed($id: ID!, $filters: LearningCourseFlowFilter) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 10000, filters: $filters) {
+          edges {
+            node {
+              id
+              label
+              depth
+              itemType
+              parent {
+                id
+              }
+              children(filters: $filters) {
+                id
+              }
+              childrenHierarchyInfo(filters: $filters) {
+                maxDepth
+                totalCount
+                totalCountWithFolder
+              }
+            }
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

@@ -1,0 +1,3 @@
+fragment unreadAnnouncementsCountItem on CircularConnectionV3 {
+  totalCount(input: {createdBy: $createdBy, states: [PUBLISHED], createdAfter: $createdAfter, createdBefore: $createdBefore, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, isRead: false, createdIn: $createdIn, courseIds: $courseIds})
+}

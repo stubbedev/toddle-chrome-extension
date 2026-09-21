@@ -1,0 +1,8 @@
+mutation importQuestionFromSchoolLibrary($input: ImportQuestionFromSchoolLibraryInput!) {
+  content {
+    importQuestionFromSchoolLibrary(input: $input) {
+      isSuccess
+      questionIds
+    }
+  }
+}

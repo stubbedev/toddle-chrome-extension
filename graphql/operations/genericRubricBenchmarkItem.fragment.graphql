@@ -1,0 +1,16 @@
+fragment genericRubricBenchmarkItem on PlannerBenchmark {
+  id
+  label
+  code
+  type
+  standardsWrapper {
+    standardSet {
+      id
+      type
+      title
+      subject {
+        id
+      }
+    }
+  }
+}

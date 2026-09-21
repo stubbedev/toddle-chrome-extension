@@ -1,0 +1,41 @@
+query getUserDetailsWithLinkedIdentities($id: ID!, $type: ENTITY_TYPE_ENUM!, $first: Int, $after: String, $searchText: String, $curriculumProgramFilters: CurriculumProgramFilters, $globalConstantsFilter: GlobalConstantsFilterOptions, $fetchGlobalConstants: Boolean = false) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      email
+      linkedIdentityUsersV2(first: $first, after: $after, searchText: $searchText) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edgesV2 {
+          node {
+            id
+            identityId
+            firstName
+            lastName
+            type
+            email
+            expiresAt
+            isDA
+            organizationV2 {
+              ...organisationFeedDetailsItem
+              globalConstants(filter: $globalConstantsFilter) @include(if: $fetchGlobalConstants) {
+                id
+                name
+                value
+              }
+            }
+            jwt
+            designation {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}

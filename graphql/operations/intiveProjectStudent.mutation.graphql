@@ -1,0 +1,5 @@
+mutation intiveProjectStudent($projectGroupId: ID!, $studentIdsToInvite: [ID!], $projectIdsToRemove: [ID!]) {
+  documentation {
+    inviteProjectStudents(input: {projectGroupId: $projectGroupId, studentIdsToInvite: $studentIdsToInvite, projectIdsToRemove: $projectIdsToRemove})
+  }
+}

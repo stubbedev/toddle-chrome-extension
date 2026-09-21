@@ -1,0 +1,19 @@
+query getPPGradebookProjectGroupStudentsWithProjects($id: ID!, $projectGradebookFilters: ProjectGroupProjectsFilters, $projectFieldFilters: PlannerFieldFilter, $filtersForGeneric: ibPYPElementRatingFiltersForGeneric, $academicYearId: ID) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectGradebookFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...gradebookInfo
+          }
+        }
+      }
+    }
+  }
+}

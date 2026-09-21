@@ -1,0 +1,9 @@
+mutation createAttachmentSchoolHandoverFormMutation($input: [AttachmentInput!]) {
+  platform {
+    createAttachment(input: $input) {
+      id
+      type
+      title
+    }
+  }
+}

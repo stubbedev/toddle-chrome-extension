@@ -1,0 +1,21 @@
+query orgFlagsConsoleOrgDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      academicYears(fetchStatus: ALL) {
+        id
+        label
+        startDate
+        endDate
+        isCurrentAcademicYear
+      }
+      curriculumPrograms(filters: {programType: SCHOOL}) {
+        id
+        label
+        type
+      }
+    }
+  }
+}

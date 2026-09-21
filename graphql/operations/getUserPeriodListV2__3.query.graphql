@@ -1,0 +1,74 @@
+query getUserPeriodListV2($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodFilters: PeriodFilterOptions) {
+  node(id: $id, type: $type) {
+    ... on Student {
+      id
+      ...studentNameFields
+      enrolledPeriodsV2(filters: $periodFilters) {
+        date
+        isSelected
+        day
+        rotationDay {
+          id
+          label
+        }
+        location
+        locationV2 {
+          id
+          label
+        }
+        course {
+          ...courseItem
+        }
+        period {
+          ...periodItem
+        }
+        teachers {
+          ...staffItem
+        }
+        subject
+        startTime
+        endTime
+      }
+    }
+    ... on Staff {
+      id
+      ...staffNameFields
+      enrolledPeriodsV2(filters: $periodFilters) {
+        date
+        isSelected
+        day
+        rotationDay {
+          id
+          label
+        }
+        location
+        locationV2 {
+          id
+          label
+        }
+        course {
+          ...courseItem
+          curriculumProgram {
+            id
+          }
+        }
+        period {
+          ...periodItem
+        }
+        teachers {
+          ...staffItem
+        }
+        teachersV2 {
+          staff {
+            ...staffItem
+          }
+          type
+        }
+        groupKey
+        subject
+        startTime
+        endTime
+      }
+    }
+  }
+}

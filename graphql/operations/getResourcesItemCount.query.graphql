@@ -1,0 +1,35 @@
+query getResourcesItemCount($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: OrganizationResourceFilter, $learningCourseFilters: LearningCourseFlowFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Course {
+      id
+      organizationResourcesFlatFeed(filters: $filters) {
+        resourceTypeBasedCount {
+          totalCount
+        }
+      }
+      organizationResourcesFlatFeed(filters: {types: [CLASS_MATERIAL]}) {
+        resourceTypeBasedCount {
+          totalCount
+        }
+      }
+    }
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(filters: $learningCourseFilters) {
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed {
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

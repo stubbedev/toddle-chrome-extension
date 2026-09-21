@@ -1,0 +1,20 @@
+fragment homepageWidgetContentFields on HomepageWidgetContent {
+  id
+  ... on HomepageWidgetAttachmentContent {
+    attachment {
+      id
+      url
+      title
+      type
+      thumbUrl
+      description
+    }
+  }
+  ... on HomepageWidgetLtiAppContent {
+    entityId
+    payload
+  }
+  ... on HomepageWidgetCustomContent {
+    payload
+  }
+}

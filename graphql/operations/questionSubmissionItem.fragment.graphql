@@ -1,0 +1,24 @@
+fragment questionSubmissionItem on QuestionSubmission {
+  id
+  isQuestionAttempted
+  fields {
+    ...questionFieldsItem
+  }
+  question {
+    id
+  }
+  toolResponsesV2(filters: {userFilter: $userFilter}) {
+    id
+    toolId
+    toolType
+    toolResponses {
+      ...toolResponseItem
+    }
+  }
+  ibPYPElementRatings {
+    ...ratingItem
+  }
+  elementRemarks {
+    ...remarkItem
+  }
+}

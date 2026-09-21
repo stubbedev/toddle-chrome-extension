@@ -1,0 +1,59 @@
+query getAllCurriculumLearningCourses($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $filters: LearningCourseFilters) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse(first: 10000, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse(first: 10000, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(first: 10000, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse(first: 10000, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            subjectGroup {
+              ...subjectGroupBasicDetailsItem
+            }
+            subjects {
+              id
+              subjectGroup {
+                id
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

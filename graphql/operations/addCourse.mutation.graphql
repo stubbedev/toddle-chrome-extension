@@ -1,0 +1,7 @@
+mutation addCourse($title: String, $grades: [String!], $isActive: Boolean, $subjectIds: [ID!], $isClassroom: Boolean, $studentsToAdd: [ID!], $profileImage: String, $curriculumProgramId: ID, $newStudents: [UserInput!], $collaboratorsAddWithId: [ID!], $tags: [ID!], $academicYears: [ID!], $subjectGroupIds: [ID!], $responseLanguageIds: [ID!], $subjectLevelIds: [ID!], $studentsWithSubjectLevel: [StudentsWithSubjectLevelInput!], $sourcedId: String, $academicYearId: ID, $collaboratorsAddWithIdAndAclUserRole: [collaboratorsAddWithIdAndAclUserRoleInput!]) {
+  platform {
+    addCourse(input: {title: $title, grades: $grades, isActive: $isActive, subjectIds: $subjectIds, isClassroom: $isClassroom, newStudents: $newStudents, profileImage: $profileImage, studentsToAdd: $studentsToAdd, curriculumProgramId: $curriculumProgramId, collaboratorsAddWithId: $collaboratorsAddWithId, tags: $tags, academicYears: $academicYears, subjectGroupIds: $subjectGroupIds, responseLanguageIds: $responseLanguageIds, subjectLevelIds: $subjectLevelIds, studentsWithSubjectLevel: $studentsWithSubjectLevel, sourcedId: $sourcedId, collaboratorsAddWithIdAndAclUserRole: $collaboratorsAddWithIdAndAclUserRole}) {
+      ...courseItem
+    }
+  }
+}

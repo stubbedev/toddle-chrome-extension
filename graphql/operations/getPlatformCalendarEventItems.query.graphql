@@ -1,0 +1,19 @@
+query getPlatformCalendarEventItems($rangeBeginStartDate: String!, $rangeEndStartDate: String!, $filters: CalendarEventFilter) {
+  platform {
+    calendarEventItems(rangeBeginStartDate: $rangeBeginStartDate, rangeEndStartDate: $rangeEndStartDate, filters: $filters) {
+      id
+      startDateTime
+      endDateTime
+      label
+      eventTag {
+        id
+        colorCode
+      }
+      associatedEntities {
+        ... on Grade {
+          id
+        }
+      }
+    }
+  }
+}

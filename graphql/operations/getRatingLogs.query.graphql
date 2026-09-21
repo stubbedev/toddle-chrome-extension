@@ -1,0 +1,20 @@
+query getRatingLogs($input: RatingLogsInput!) {
+  documentation {
+    internalToolsData {
+      progressReport {
+        ratingLogs(input: $input) {
+          courseName
+          gradeName
+          studentName
+          teacherName
+          subjectName
+          learningGoalLabel
+          criteriaLabel
+          oldRatingValue
+          newRatingValue
+          updatedAt
+        }
+      }
+    }
+  }
+}

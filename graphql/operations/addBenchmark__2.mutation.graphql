@@ -1,0 +1,7 @@
+mutation addBenchmark($label: String!, $levelId: ID!, $subject: ID!, $levels: JSON, $grades: [ID!], $clearAllBenchmarkForL0: Boolean, $plannerElementSetId: ID) {
+  planner {
+    addBenchmark(input: {label: $label, levelId: $levelId, subject: $subject, levels: $levels, grades: $grades, clearAllBenchmarkForL0: $clearAllBenchmarkForL0, plannerElementSetId: $plannerElementSetId}) {
+      id
+    }
+  }
+}

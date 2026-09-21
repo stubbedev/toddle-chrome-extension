@@ -1,0 +1,23 @@
+query getSyncStatus($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      teacherCourseChangeSyncDataV3(filters: {teacherCourseIds: [], page: GRADING_PAGE}) {
+        id
+        itemType
+        children {
+          id
+        }
+        lockingInfo(filters: {learningCourseId: $id}) {
+          isLocked
+        }
+        isSyncedWithAllTeacherCourseV2(filters: {learningCourseId: $id}) {
+          isConflictExists
+        }
+      }
+      lockingInfo {
+        pageTypes
+      }
+    }
+  }
+}

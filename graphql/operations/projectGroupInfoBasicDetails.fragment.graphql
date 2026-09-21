@@ -1,0 +1,31 @@
+fragment projectGroupInfoBasicDetails on ProjectGroup {
+  id
+  name
+  type
+  yearGroup {
+    id
+    name
+  }
+  subType
+  subject {
+    id
+    name
+    ibOfferedSubject {
+      id
+      contentSubject {
+        id
+        assessmentYearTitle
+      }
+    }
+  }
+  courses {
+    edges {
+      node {
+        id
+        calendar {
+          id
+        }
+      }
+    }
+  }
+}

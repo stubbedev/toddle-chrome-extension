@@ -1,0 +1,10 @@
+mutation addAcademicTermDraft($input: AcademicTermDraftAddInput!) {
+  planner {
+    addAcademicTermDraft(input: $input) {
+      key
+      label
+      startDate
+      endDate
+    }
+  }
+}

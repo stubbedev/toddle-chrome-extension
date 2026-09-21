@@ -1,0 +1,30 @@
+query getLearnerPortfolioFolders($id: ID!) {
+  node(id: $id, type: STUDENT_LEARNER_PORTFOLIO) {
+    id
+    ... on StudentLearnerPortfolio {
+      id
+      student {
+        id
+        firstName
+        lastName
+        yearGroup {
+          id
+          name
+        }
+      }
+      learnerPortfolioResources {
+        id
+        label
+        type
+        resourceType
+        metadata
+        isArchived
+        status
+        entity {
+          id
+          ...subjectItem
+        }
+      }
+    }
+  }
+}

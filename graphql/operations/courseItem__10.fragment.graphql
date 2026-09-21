@@ -1,0 +1,41 @@
+fragment courseItem on Course {
+  id
+  title
+  isArchived
+  curriculumProgram {
+    id
+    type
+    label
+  }
+  primaryGrade {
+    id
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  learningCourse {
+    id
+    title
+    isClassFlowEnabled
+    gradingPeriods(filters: $termFilters) {
+      totalCount
+      edges {
+        node {
+          id
+          label
+          lockingStatus
+        }
+      }
+    }
+    primaryGrade {
+      id
+    }
+  }
+  students {
+    totalCount
+  }
+  grades {
+    id
+  }
+}

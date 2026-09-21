@@ -1,0 +1,11 @@
+mutation bulkCreateStandardRubricDescriptors($input: [CreateStandardRubricDescriptorInput!]) {
+  planner {
+    bulkCreateStandardRubricDescriptors(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...standardRubricDescriptorItem
+      }
+    }
+  }
+}

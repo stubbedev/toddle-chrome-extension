@@ -1,0 +1,18 @@
+query getFilterOptionsQuery($id: ID!, $subjectFilters: SubjectFilterInput, $subjectGroupFilters: SubjectGroupFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        isArchived
+      }
+      subjectGroups(filters: $subjectGroupFilters) {
+        id
+        name
+        isArchived
+      }
+    }
+  }
+}

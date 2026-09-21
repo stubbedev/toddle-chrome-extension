@@ -1,0 +1,6 @@
+fragment plannerElementSetBasicDetailsItem on PlannerElementSet {
+  id
+  label
+  type
+  isIncludedInInsights
+}

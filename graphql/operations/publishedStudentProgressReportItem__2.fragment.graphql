@@ -1,0 +1,44 @@
+fragment publishedStudentProgressReportItem on Student {
+  id
+  publishedProgressReports {
+    id
+    filteredNodes
+    publishedAt
+    studentProgressReport {
+      id
+      courseProgressReportTask {
+        id
+        title
+        parentEntity {
+          id
+          ... on Grade {
+            id
+            name
+          }
+          ... on Course {
+            id
+            title
+          }
+        }
+        progressReportTaskGroup {
+          id
+          title
+          academicTerms {
+            id
+            label
+          }
+          academicYear {
+            id
+            startDate
+            endDate
+            isCurrentAcademicYear
+          }
+        }
+        curriculumProgram {
+          id
+          type
+        }
+      }
+    }
+  }
+}

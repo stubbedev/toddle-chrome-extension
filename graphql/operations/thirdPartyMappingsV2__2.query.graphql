@@ -1,0 +1,16 @@
+query thirdPartyMappingsV2($id: ID!, $filters: ThirdPartyMappingV2Filters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      thirdPartyMappingsV2(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            toddleEntity
+            thirdPartyEntity
+          }
+        }
+      }
+    }
+  }
+}

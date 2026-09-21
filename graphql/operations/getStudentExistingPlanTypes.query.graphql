@@ -1,0 +1,15 @@
+query getStudentExistingPlanTypes($studentId: ID!, $studentPlanFilters: StudentPlansFeedFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      studentPlans(filters: $studentPlanFilters) {
+        id
+        status
+        planType {
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+fragment subjectItem on Subject {
+  id
+  name
+  icon
+  iconType
+  type
+  grades {
+    id
+    name
+  }
+  courses {
+    edges {
+      node {
+        ...courseGradeItem
+      }
+    }
+    totalCount
+  }
+  isArchived
+  assignmentCount(filters: $assignmentCountFilters, curriculumProgramType: $curriculumProgramType)
+}

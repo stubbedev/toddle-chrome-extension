@@ -1,0 +1,39 @@
+fragment questionItem on Question {
+  id
+  questionType {
+    id
+    uid
+    config
+  }
+  children {
+    edges {
+      id
+      sequence
+    }
+  }
+  questionTitleV2 {
+    id
+    uid
+    value
+  }
+  parentIdV2
+  parentTypeV2
+  sequence
+  questionScoreV2
+  updatedAt
+  presetQuestionId
+  assessmentTools {
+    totalCount
+    edges {
+      node {
+        ...questionAssessmentToolItem
+      }
+    }
+  }
+  fields {
+    ...questionFieldsItem
+  }
+  answerFields {
+    ...questionFieldsItem
+  }
+}

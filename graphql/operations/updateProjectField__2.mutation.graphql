@@ -1,0 +1,14 @@
+mutation updateProjectField($input: BulkUpdateProjectInput!) {
+  documentation {
+    bulkUpdateProject(input: $input) {
+      isSuccess
+      warning
+      projects {
+        id
+        fields {
+          id
+        }
+      }
+    }
+  }
+}

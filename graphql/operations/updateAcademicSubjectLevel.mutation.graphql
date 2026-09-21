@@ -1,0 +1,17 @@
+mutation updateAcademicSubjectLevel($input: UpdateAcademicSubjectLevelInput!) {
+  platform {
+    updateAcademicSubjectLevel(input: $input) {
+      isSuccess
+      warning
+      subjectLevel {
+        id
+        uid
+        label
+        abbreviation
+        reportDisplayName
+        displaySequence
+        isArchived
+      }
+    }
+  }
+}

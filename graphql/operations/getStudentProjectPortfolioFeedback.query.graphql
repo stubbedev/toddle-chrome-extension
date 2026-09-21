@@ -1,0 +1,8 @@
+query getStudentProjectPortfolioFeedback($id: ID!) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    id
+    ... on StudentProjectPortfolio {
+      ...studentProjectPortfolioFeedbackItem
+    }
+  }
+}

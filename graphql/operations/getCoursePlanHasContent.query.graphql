@@ -1,0 +1,16 @@
+query getCoursePlanHasContent($learningCourseId: ID!, $filters: LearningCourseFlowFilter) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 1, filters: $filters) {
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+    }
+    __typename
+  }
+}

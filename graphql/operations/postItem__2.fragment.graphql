@@ -1,0 +1,14 @@
+fragment postItem on Post {
+  id
+  title
+  attachments {
+    ...attachmentItem
+  }
+  createdAt
+  publishedAt
+  comments {
+    totalCount
+    unreadCount
+  }
+  state
+}

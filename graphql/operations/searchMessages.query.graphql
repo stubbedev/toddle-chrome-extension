@@ -1,0 +1,29 @@
+query searchMessages($input: MessageFeedInput!, $organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messages(input: $input) {
+        totalCount(input: $input)
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            label
+            cursor
+            chat {
+              id
+              type
+            }
+            createdBy {
+              ...createdByName
+              profileImage
+            }
+          }
+        }
+      }
+    }
+  }
+}

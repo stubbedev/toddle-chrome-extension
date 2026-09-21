@@ -1,0 +1,5 @@
+mutation markCircularAsReviewed($input: MarkCircularReviewedInput) {
+  platform {
+    markCircularAsReviewed(input: $input)
+  }
+}

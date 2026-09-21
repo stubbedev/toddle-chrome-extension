@@ -1,0 +1,33 @@
+query getDPSubjectGroups($id: ID!, $filters: SubjectGroupFilterInput, $subjectFilters: SubjectFilterInput, $flatSubjectVariantFilters: FlatSubjectVariantFilterInput, $plannerNodeFilters: AssociatedChildPlannerElementNodesFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      subjectGroups(filters: $filters) {
+        id
+        name
+        subjects(filters: $subjectFilters) {
+          id
+          name
+          metadata
+          associatedChildPlannerElementNodes(filters: $plannerNodeFilters) {
+            id
+            label
+            type
+            isLeaf
+            children
+            subText
+            metadata
+          }
+          flatVariants(filters: $flatSubjectVariantFilters) {
+            responseLanguage {
+              id
+              label
+            }
+            isArchived
+          }
+          isArchived
+        }
+      }
+    }
+  }
+}

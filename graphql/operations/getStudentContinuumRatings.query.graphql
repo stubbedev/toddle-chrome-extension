@@ -1,0 +1,19 @@
+query getStudentContinuumRatings($id: ID!, $continuumFilters: ContinuumRatingsFilter, $after: String, $first: Int, $filters: MessagesFilters, $colorFilters: IBPYPElementRatingColorFilters, $academicYearId: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      ...studentItem
+      continuumRatings(filters: $continuumFilters) {
+        continuum {
+          id
+          __typename
+        }
+        lastUpdatedAt
+        ratings {
+          ...continuumRatingItem
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

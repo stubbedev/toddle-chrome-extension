@@ -1,0 +1,8 @@
+query getStaffById($ids: [ID!], $skipTitle: Boolean = false) {
+  multiNode(ids: $ids, type: STAFF) {
+    id
+    ... on Staff {
+      ...staff
+    }
+  }
+}

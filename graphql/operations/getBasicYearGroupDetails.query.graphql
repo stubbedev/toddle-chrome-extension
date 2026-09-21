@@ -1,0 +1,16 @@
+query getBasicYearGroupDetails($id: ID!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      id
+      name
+      grade {
+        id
+      }
+      examSession {
+        id
+        year
+      }
+    }
+  }
+}

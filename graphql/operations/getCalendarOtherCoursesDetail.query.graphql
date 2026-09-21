@@ -1,0 +1,15 @@
+query getCalendarOtherCoursesDetail($id: ID!, $filters: CourseFilterInput, $enabledModulesFilters: EnabledModulesFiltersInput, $aclControlParameterFilter: ACLControlParameterFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        edges {
+          node {
+            ...courseItem
+          }
+        }
+      }
+    }
+  }
+}

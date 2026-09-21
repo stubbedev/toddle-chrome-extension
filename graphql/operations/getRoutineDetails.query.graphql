@@ -1,0 +1,20 @@
+query getRoutineDetails($id: ID!) {
+  node(id: $id, type: ROUTINE) {
+    ... on Routine {
+      id
+      label
+      startDate
+      endDate
+      routineMode
+      grades {
+        id
+        name
+      }
+      rotationDays {
+        id
+        label
+        abbreviation
+      }
+    }
+  }
+}

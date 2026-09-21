@@ -1,0 +1,21 @@
+query getBehaviourIncidentAccessibilityPreview($organizationId: ID!, $academicYearId: ID!, $studentIds: [ID!]!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      behaviourIncidentAccessibilityPreview(input: {academicYearId: $academicYearId, studentIds: $studentIds}) {
+        id
+        type
+        entityId
+        shouldNotify
+        notificationScope
+        roleAccessType
+        details {
+          id
+          type
+          value
+        }
+      }
+    }
+  }
+}

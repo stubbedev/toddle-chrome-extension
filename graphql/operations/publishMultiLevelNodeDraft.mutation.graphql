@@ -1,0 +1,5 @@
+mutation publishMultiLevelNodeDraft($draftId: ID!, $plannerElementSetId: ID) {
+  planner {
+    publishMultiLevelNodeDraft(draftId: $draftId, plannerElementSetId: $plannerElementSetId)
+  }
+}

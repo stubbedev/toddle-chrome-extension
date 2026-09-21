@@ -1,0 +1,17 @@
+fragment genericRubricPlannerElementNodeItem on PlannerElementNode {
+  id
+  label
+  code
+  type
+  gradingType
+  standardsWrapper {
+    standardSet {
+      id
+      type
+      title
+      subject {
+        id
+      }
+    }
+  }
+}

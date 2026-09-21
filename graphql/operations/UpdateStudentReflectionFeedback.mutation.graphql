@@ -1,0 +1,9 @@
+mutation UpdateStudentReflectionFeedback($input: UpdateStudentReflectionFeedbackInput!) {
+  documentation {
+    updateStudentReflectionFeedback(input: $input) {
+      isSuccess
+      warning
+      studentProgressReportId
+    }
+  }
+}

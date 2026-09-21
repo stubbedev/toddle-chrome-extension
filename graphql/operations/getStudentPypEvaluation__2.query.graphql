@@ -1,0 +1,11 @@
+query getStudentPypEvaluation($studentId: ID!, $filtersForRatingHistory: ibPYPElementRatingFiltersForRatingHistory, $endDate: String, $curriculumProgramId: ID) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      ibPYPElementRatings(filtersForRatingHistory: $filtersForRatingHistory, dataSet: RATING_HISTORY, endDate: $endDate, curriculumProgramId: $curriculumProgramId) {
+        ...ratingItem
+      }
+    }
+  }
+}

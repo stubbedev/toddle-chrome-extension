@@ -1,0 +1,79 @@
+query getYearGroupWiseStudentDrafts($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        label
+        subscriptionPlan {
+          id
+        }
+        draftYearGroups(filters: {academicYearId: $academicYearId}) {
+          key
+          name
+          isExisting
+          grade {
+            id
+            name
+            displaySequence
+          }
+          existingGrade {
+            id
+            name
+            displaySequence
+          }
+          associatedStudents {
+            ...studentBasicDetails
+          }
+          withdrawingStudents {
+            ...studentBasicDetails
+          }
+          promotedOrDemotedTo {
+            student {
+              ...studentBasicDetails
+            }
+            yearGroup {
+              key
+              name
+              grade {
+                displaySequence
+              }
+            }
+          }
+          promotedOrDemotedFrom {
+            student {
+              ...studentBasicDetails
+            }
+            yearGroup {
+              key
+              name
+              grade {
+                displaySequence
+              }
+              existingGrade {
+                displaySequence
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment studentBasicDetails on Student {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  type
+  profileImage
+  email
+  sourceId
+  isArchivedV2(filters: {academicYearId: $academicYearId})
+}

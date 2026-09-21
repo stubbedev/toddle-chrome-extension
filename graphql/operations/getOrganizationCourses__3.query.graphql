@@ -1,0 +1,54 @@
+query getOrganizationCourses($id: ID!, $courseFilters: CourseFilterInput, $courseGradeFilters: CourseGradeFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $courseFilters) {
+        edges {
+          node {
+            id
+            title
+            grades(filters: $courseGradeFilters) {
+              id
+              name
+            }
+            primaryGrade(filters: $courseGradeFilters) {
+              id
+              name
+            }
+            subjects {
+              id
+              name
+            }
+            genericTags {
+              id
+              label
+              type
+            }
+            learningCourse {
+              id
+              title
+              associatedLevels {
+                id
+                label
+                type
+              }
+              subjectLevelMap {
+                learningCourseSubjectMapId
+                subject {
+                  id
+                  name
+                }
+                associatedLevels {
+                  id
+                  label
+                  type
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

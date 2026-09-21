@@ -1,0 +1,19 @@
+query getAssessmentToolsByQuestionSubmissionId($id: ID!) {
+  node(id: $id, type: QUESTION_SUBMISSION) {
+    id
+    ... on QuestionSubmission {
+      id
+      question {
+        id
+        assessmentTools {
+          totalCount
+          edges {
+            node {
+              ...questionAssessmentToolItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

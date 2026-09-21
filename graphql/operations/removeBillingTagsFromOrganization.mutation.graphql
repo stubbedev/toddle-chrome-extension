@@ -1,0 +1,11 @@
+mutation removeBillingTagsFromOrganization($input: [TagEntityMapInput!]) {
+  platform {
+    deleteEntityTagMapping(input: $input) {
+      response {
+        tagId
+        entityId
+        entityType
+      }
+    }
+  }
+}

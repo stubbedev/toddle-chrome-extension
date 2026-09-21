@@ -1,0 +1,13 @@
+query getChecklistPlannerElementSetDetails($id: ID!) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      label
+      nodes {
+        id
+        label
+      }
+    }
+  }
+}

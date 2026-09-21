@@ -1,0 +1,14 @@
+fragment studentProgressReportConfigurationUnitsFeedItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  fields(uids: $fieldUids) {
+    ...unitplanFieldBasicDetailsItem
+  }
+}

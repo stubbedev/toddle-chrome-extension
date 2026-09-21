@@ -1,0 +1,7 @@
+mutation createAcademicTerm($input: CreateAcademicTermInput!) {
+  organizationManagement {
+    createAcademicTerm(input: $input) {
+      ...termBasicDetailsItem
+    }
+  }
+}

@@ -1,0 +1,28 @@
+query getAssessment($id: ID!, $uids: [String!]) {
+  node(id: $id, type: ASSESSMENT) {
+    ... on Assessment {
+      id
+      unitPlan {
+        id
+        subjects {
+          id
+          resolvedMinimalTree {
+            ... on ResolvedFieldSubjectSet {
+              id
+              type
+              subjects {
+                id
+                name
+                isDeleted
+                isArchived
+              }
+            }
+          }
+        }
+      }
+      fields(uids: $uids) {
+        ...PlannerFieldItem
+      }
+    }
+  }
+}

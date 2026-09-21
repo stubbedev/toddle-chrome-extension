@@ -1,0 +1,68 @@
+fragment subjectStandardItem on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      title
+      isArchived
+      subject {
+        id
+        ibOfferedSubject {
+          id
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+        }
+      }
+      academicNodeSet {
+        id
+        curriculumProgram {
+          id
+          label
+        }
+      }
+      schoolNodeSets {
+        id
+        curriculumProgram {
+          id
+          label
+        }
+      }
+      gradeScales {
+        ...gradeScaleItem
+        gradeScaleEntityDetails {
+          id
+          updatedAt
+          updatedBy {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+          }
+        }
+      }
+      plannerElementNodeSetWrapperV2 {
+        __typename
+        ... on PlannerBenchmarkSetWrapper {
+          publishedData {
+            totalCount
+          }
+        }
+        ... on PlannerElementNodeSetWrapper {
+          publishedData {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment gradeScaleItem on GradeScale {
+  id
+  type
+  displayName
+  templateName
+  description
+}

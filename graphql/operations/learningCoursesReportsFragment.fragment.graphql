@@ -1,0 +1,28 @@
+fragment learningCoursesReportsFragment on LearningCourseConnection {
+  edges {
+    node {
+      id
+      title
+      displayName
+      isArchived
+      academicCourse {
+        id
+        label
+        code
+      }
+      subjects {
+        id
+        name
+      }
+      subjectGroup {
+        id
+        name
+      }
+      associatedLevels {
+        id
+        label
+        abbreviation
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+mutation addUser($email: String, $userType: USER_TYPE_ENUM!, $courses: [ID!], $firstName: String, $lastName: String, $profileImage: String, $designation: ID, $sourceId: String, $curriculumProgramId: ID, $snpEvaluationCycles: [ID!], $tags: [ID!], $yearGroupId: ID, $registrationCategory: REGISTRATION_CATEGORY_TYPE_ENUM, $nccdCategory: NCCD_CATEGORY_ENUM, $courseTagMap: [CourseTagMapInput!], $staffRelationMap: [StaffRelationMapInput!], $gender: String, $otherDetails: OtherUserDetailsInput) {
+  platform {
+    addUser(input: {email: $email, userType: $userType, courses: $courses, firstName: $firstName, lastName: $lastName, profileImage: $profileImage, designation: $designation, sourceId: $sourceId, curriculumProgramId: $curriculumProgramId, snpEvaluationCycles: $snpEvaluationCycles, tags: $tags, yearGroupId: $yearGroupId, registrationCategory: $registrationCategory, nccdCategory: $nccdCategory, courseTagMap: $courseTagMap, staffRelationMap: $staffRelationMap, gender: $gender, otherDetails: $otherDetails}) {
+      ...userItem
+    }
+  }
+}
+
+fragment ratingItem on IBPYPElementRating {
+  id
+  academicYear {
+    id
+    startDate
+    endDate
+    terms {
+      id
+    }
+  }
+  academicTerm {
+    id
+    label
+    startDate
+    endDate
+  }
+  parent {
+    id
+    ... on StudentAssessmentEvaluation {
+      id
+      assessment {
+        id
+        title {
+          id
+          value
+        }
+        assessmentType {
+          id
+          value
+        }
+        image {
+          id
+          value
+        }
+      }
+      assessmentEvaluation {
+        id
+      }
+    }
+    ... on StudentProgressReport {
+      id
+      courseProgressReportTask {
+        id
+        title
+      }
+    }
+    ... on Post {
+      id
+      title
+      attachments {
+        ...attachmentItem
+      }
+    }
+    ... on ImportedEntity {
+      id
+      type
+      name
+    }
+    ... on StudentAssignment {
+      id
+      assignment {
+        id
+        contentType
+        course {
+          id
+        }
+        content {
+          id
+          ... on Assessment {
+            id
+            title {
+              id
+              value
+            }
+            assessmentType {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+          }
+          ... on AssignmentResource {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+  createdBy {
+    ...staffItem
+  }
+  publishedAt
+  parentType
+  academicCriteriaValue {
+    ...criteriaValueItem
+  }
+}

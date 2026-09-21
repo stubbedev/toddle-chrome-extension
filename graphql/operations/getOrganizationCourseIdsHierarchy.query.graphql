@@ -1,0 +1,21 @@
+query getOrganizationCourseIdsHierarchy($organizationId: ID!, $courseFilters: CourseFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(filters: $courseFilters) {
+        edges {
+          node {
+            id
+            grades {
+              id
+            }
+            curriculumProgram {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

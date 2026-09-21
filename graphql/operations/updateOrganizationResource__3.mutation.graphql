@@ -1,0 +1,8 @@
+mutation updateOrganizationResource($input: OrganizationResourceUpdateInput!) {
+  platform {
+    updateOrganizationResource(input: $input) {
+      id
+      label
+    }
+  }
+}

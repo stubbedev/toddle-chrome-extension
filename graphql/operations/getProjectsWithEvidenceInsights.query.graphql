@@ -1,0 +1,26 @@
+query getProjectsWithEvidenceInsights($ids: [ID!], $filters: PlannerFieldFilter, $evidenceFilters: ProjectEvidenceInsightFilters) {
+  multiNode(ids: $ids, type: PROJECT) {
+    ... on Project {
+      id
+      title {
+        id
+        value
+      }
+      fields(filters: $filters) {
+        id
+        uid
+        value
+      }
+      evidenceInsights(filters: $evidenceFilters) {
+        evidence {
+          edges {
+            node {
+              id
+            }
+          }
+          totalCount
+        }
+      }
+    }
+  }
+}

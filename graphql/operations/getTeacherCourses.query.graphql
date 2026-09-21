@@ -1,0 +1,31 @@
+query getTeacherCourses($id: ID!, $first: Int, $after: String, $academicYear: ID!, $filters: CourseFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      coursesV2(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            isArchived
+            profileImageData {
+              url
+              icon
+              color
+              acronym
+            }
+            grades(filters: {academicYearId: $academicYear}) {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

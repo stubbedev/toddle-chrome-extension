@@ -1,0 +1,23 @@
+fragment projectInfoItem on Project {
+  id
+  supervisors {
+    ...supervisorInfo
+  }
+  students {
+    ...studentInfo
+  }
+  status
+  studentCollaborators(filters: {roles: [COLLABORATOR]}) {
+    student {
+      ...studentInfo
+    }
+  }
+  reportStatus
+  finalProjectReports {
+    id
+  }
+  isAcademicHonestyLocked
+  ibPYPElementRatings {
+    ...basicIBPYPElementRatingItem
+  }
+}

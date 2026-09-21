@@ -1,0 +1,11 @@
+query getProjectGroupDetails($id: ID!, $assessmentToolFilters: AssessmentToolFilters, $skipStaffGuidance: Boolean!, $skipStudentGuidance: Boolean!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      overview
+      customizableStaffGuidance @skip(if: $skipStaffGuidance)
+      customizableStudentGuidance @skip(if: $skipStudentGuidance)
+      ...projectGroupWithAssessmentToolsItem
+    }
+  }
+}

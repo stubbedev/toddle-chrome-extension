@@ -1,0 +1,15 @@
+query fetchOrganizationTPSEntities($id: ID!, $tpsEntitiesFilter: TPSEntitiesInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      tpsEntities(input: $tpsEntitiesFilter) {
+        totalCount
+        nodes {
+          id
+          type
+          value
+        }
+      }
+    }
+  }
+}

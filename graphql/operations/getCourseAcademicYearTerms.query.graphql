@@ -1,0 +1,36 @@
+query getCourseAcademicYearTerms($id: ID!, $curriculumProgramIds: [ID!], $learningCourseIds: [ID!]) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      id
+      academicYears {
+        id
+        isCurrentAcademicYear
+        startDate
+        endDate
+        terms(filters: {learningCourseIds: $learningCourseIds, curriculumProgramIds: $curriculumProgramIds}) {
+          id
+          label
+          startDate
+          endDate
+          type
+          lockingStatus
+          associatedAcademicTermEntities {
+            id
+            academicTerm {
+              id
+              label
+              type
+              startDate
+            }
+            cumulativeAcademicTermWeightages {
+              id
+              weightage
+              percentage
+            }
+          }
+        }
+      }
+    }
+  }
+}

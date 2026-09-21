@@ -1,0 +1,20 @@
+query getUserPeriodListV2($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodFilters: PeriodFilterOptions) {
+  node(id: $id, type: $type) {
+    ... on Student {
+      id
+      enrolledPeriodsV2(filters: $periodFilters) {
+        date
+        isSelected
+        day
+        rotationDay {
+          id
+          label
+        }
+        period {
+          id
+          label
+        }
+      }
+    }
+  }
+}

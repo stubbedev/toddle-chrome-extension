@@ -1,0 +1,7 @@
+query getVisitorDetails($id: ID!, $snpFilters: SnPEvaluationCycleFilter) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      ...visitorItem
+    }
+  }
+}

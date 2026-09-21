@@ -1,0 +1,14 @@
+query getToddleAcademyModules($moduleFilters: AcademyModuleFilter, $videosFilter: AcademyVideoFilter) {
+  cms {
+    academyModules(filters: $moduleFilters) {
+      id
+      title
+      description
+      imageUrl
+      color
+      videos(filters: $videosFilter) {
+        count
+      }
+    }
+  }
+}

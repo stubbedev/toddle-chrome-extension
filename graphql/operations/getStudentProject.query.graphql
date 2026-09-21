@@ -1,0 +1,40 @@
+query getStudentProject($studentId: ID!, $projectGroupId: ID!, $projectFieldFilters: PlannerFieldFilter, $studentCourseFilters: UserCourseMapFilters, $projectStudentsCollaboratorFilters: ProjectStudentsCollaboratorFilters, $skipCourseDetails: Boolean!) {
+  node(id: $studentId, type: STUDENT) {
+    ... on Student {
+      id
+      projects(filters: {projectGroupId: $projectGroupId}) {
+        ...projectInfo
+        academicHonesty {
+          id
+          isLocked
+          lockingState {
+            state
+          }
+          createdBy {
+            id
+          }
+          description
+        }
+        studentCollaborators(filters: $projectStudentsCollaboratorFilters) {
+          id
+          academicHonesty(filters: {orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC}) {
+            ...academicHonestyItem
+          }
+        }
+        ibPYPElementRatings(filters: {academicCriteriaSetTypes: [PROJECT_OVERALL_PROGRESS]}) {
+          id
+          academicCriteriaSet {
+            criteriaType
+            id
+          }
+          academicCriteriaValue {
+            id
+            label
+            color
+            abbreviation
+          }
+        }
+      }
+    }
+  }
+}

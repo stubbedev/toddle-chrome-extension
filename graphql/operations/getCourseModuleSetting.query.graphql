@@ -1,0 +1,11 @@
+query getCourseModuleSetting($organizationId: ID!, $courseFilters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $configurationFilters: CourseConfigurationFiltersInput, $includeConfigs: Boolean! = true) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...courseModuleSetting
+      __typename
+    }
+    __typename
+  }
+  __typename
+}

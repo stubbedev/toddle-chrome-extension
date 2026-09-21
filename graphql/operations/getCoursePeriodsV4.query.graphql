@@ -1,0 +1,25 @@
+query getCoursePeriodsV4($id: ID!, $periodsFilters: PeriodFilterOptions) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      periodsV4(filters: $periodsFilters) {
+        edges {
+          node {
+            isSelected
+            rotationEntity {
+              id
+              label
+              abbreviation
+              entityType
+            }
+            day
+            period {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation createBehaviourAction($input: BehaviourActionCreateInput!) {
+  platform {
+    createBehaviourAction(input: $input) {
+      ...actionDetails
+    }
+  }
+}

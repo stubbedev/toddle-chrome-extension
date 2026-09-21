@@ -1,0 +1,22 @@
+fragment learningCourseItem on LearningCourse {
+  id
+  title
+  type
+  isArchived
+  grades(filters: $gradeFilters) {
+    id
+    name
+  }
+  subjects {
+    id
+    name
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  courseFlowItemCounts {
+    unitPlanCount
+  }
+}

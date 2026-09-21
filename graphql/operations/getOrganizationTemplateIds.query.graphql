@@ -1,0 +1,13 @@
+query getOrganizationTemplateIds($id: ID!, $filters: OrganizationTemplateFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      templates(filters: $filters) {
+        id
+        baseTemplate {
+          id
+        }
+      }
+    }
+  }
+}

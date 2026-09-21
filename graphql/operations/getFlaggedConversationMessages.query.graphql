@@ -1,0 +1,35 @@
+query getFlaggedConversationMessages($chatId: ID!, $input: MessageFeedInput!) {
+  node(id: $chatId, type: CHAT) {
+    ... on Chat {
+      id
+      messagesV2(input: $input) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...messageDetailItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment messageDetailItem on MessageV2 {
+  id
+  label
+  createdAt
+  cursor
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+  }
+  attachments {
+    id
+  }
+}

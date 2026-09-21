@@ -1,0 +1,7 @@
+mutation createCourseFlowResource($input: CreateLearningCourseFlowResourceInput!, $assessmentAssignmentsFilters: AssessmentAssignmentsFilters, $studentIds: [ID!], $skipAssignedStudents: Boolean! = true, $stateFilters: LearningCourseFlowStateFilter, $filters: LearningCourseFlowFilter, $syncedBluePrintItemFilters: SyncedBluePrintItemFilter, $assessmentFieldUids: [String!], $includeCourseSyncStatus: Boolean = false) {
+  planner {
+    createLearningCourseFlowResource(input: $input) {
+      ...courseFlowResource
+    }
+  }
+}

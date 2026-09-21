@@ -1,0 +1,31 @@
+fragment projectGroupWithAssessmentToolsItem on ProjectGroup {
+  assessmentTools(filters: $assessmentToolFilters) {
+    id
+    ... on MypObjectiveRubric {
+      id
+      label
+      genericTags {
+        id
+        label
+      }
+      criteria {
+        id
+        label
+        type
+        highestMark
+        parent
+        children
+        subText
+        objectiveRubricDescriptors {
+          id
+          achievementLevel {
+            id
+            label
+            subText
+          }
+          label
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+fragment globalSubjects on GlobalSubject {
+  id
+  title
+  icon
+  sequence
+  type
+  curriculumType
+}

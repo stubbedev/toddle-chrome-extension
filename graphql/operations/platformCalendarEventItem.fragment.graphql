@@ -1,0 +1,37 @@
+fragment platformCalendarEventItem on PlatformCalendarEvent {
+  id
+  startTime
+  endTime
+  calendars {
+    id
+    parentType
+    parent {
+      ... on Course {
+        id
+      }
+      ... on Student {
+        id
+      }
+    }
+  }
+  itemType
+  item {
+    ... on Assignment {
+      id
+    }
+    ... on CalendarEventItem {
+      id
+    }
+  }
+  attendanceTakers {
+    id
+    firstName
+    lastName
+    profileImage
+  }
+  sessions {
+    id
+    startDateTime
+    endDateTime
+  }
+}

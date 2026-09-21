@@ -1,0 +1,7 @@
+mutation createChecklist($input: ChecklistInput!) {
+  planner {
+    createChecklist(input: $input) {
+      ...checklist
+    }
+  }
+}

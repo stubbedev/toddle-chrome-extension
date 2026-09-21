@@ -1,0 +1,43 @@
+query getCalendarEventTypeEvents($feedInput: CalendarEventTypesFeedInput!, $eventsInput: CalendarEventTagAssociatedEventsInput!) {
+  platform {
+    calendarEventTypesFeed(input: $feedInput) {
+      edges {
+        node {
+          id
+          associatedEvents(input: $eventsInput) {
+            totalCount
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              startCursor
+              endCursor
+            }
+            edges {
+              cursor
+              node {
+                id
+                label
+                isFullDayEvent
+                startDateTime
+                endDateTime
+                metadata {
+                  recurrenceType
+                }
+                recurringSetting {
+                  frequency
+                  weekDays
+                  interval
+                  endDate
+                  monthDays
+                  setPositions
+                  count
+                  timezone
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

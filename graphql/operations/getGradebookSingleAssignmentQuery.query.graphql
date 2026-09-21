@@ -1,0 +1,10 @@
+query getGradebookSingleAssignmentQuery($id: ID!, $assessmentToolsFilters: AssessmentToolFilters, $aclControlParametersFilters: ACLControlParameterFilter, $assessmentFieldUids: [String!] = ["measureAssessing", "objectivesMYP", "interdisciplinaryCriteriaMYP", "subjectLevel", "atls", "benchmarks", "concepts", "lp", "learningStandardUBD", "atlsUBD", "learningStandardMYP", "atlsMYP", "subjectStandardDP", "atlDP", "learnerProfileDP", "syllabusContentDP", "lpMYP", "aiEvaluation", "subjects"]) {
+  node(id: $id, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      ...assignmentProgressSummaryItem
+      __typename
+    }
+    __typename
+  }
+}

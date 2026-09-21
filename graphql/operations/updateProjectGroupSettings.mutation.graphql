@@ -1,0 +1,8 @@
+mutation updateProjectGroupSettings($projectGroupId: ID!, $settings: [ProjectGroupSettingsInput!]) {
+  project {
+    updateProjectGroupSettings(input: {projectGroupId: $projectGroupId, settingArray: $settings}) {
+      isSuccess
+      warning
+    }
+  }
+}

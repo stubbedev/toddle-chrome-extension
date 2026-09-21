@@ -1,0 +1,11 @@
+mutation updateExternalAssessmentTestTypes($input: [UpdateExternalAssessmentTestTypeInput!]!) {
+  externalAssessment {
+    updateExternalAssessmentTestTypes(input: $input) {
+      isSuccess
+      testTypes {
+        id
+        name
+      }
+    }
+  }
+}

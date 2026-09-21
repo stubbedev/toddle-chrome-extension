@@ -1,0 +1,8 @@
+mutation deleteUser($id: ID!) {
+  platform {
+    deleteUser(input: {id: $id}) {
+      warning
+      isSuccess
+    }
+  }
+}

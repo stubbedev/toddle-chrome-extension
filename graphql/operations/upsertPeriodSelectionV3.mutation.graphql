@@ -1,0 +1,10 @@
+mutation upsertPeriodSelectionV3($periodSelections: [PeriodSelectionInputV2!]) {
+  platform {
+    upsertPeriodSelectionV3(input: $periodSelections) {
+      warning
+      response {
+        id
+      }
+    }
+  }
+}

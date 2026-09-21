@@ -1,0 +1,60 @@
+fragment learningCourseFlowItem on LearningCourseFlow {
+  id
+  label
+  state
+  item {
+    ... on Assessment {
+      ...assessmentItem
+      assignments(filters: $classFilters) {
+        edges {
+          id
+          deadline
+          contentType
+          state {
+            state
+            publishedAt
+          }
+        }
+      }
+    }
+    ... on Attachment {
+      ...attachmentItem
+      type
+      title
+    }
+    ... on UnitPlan {
+      ...unitPlanItem
+    }
+  }
+}
+
+fragment assessmentItem on Assessment {
+  id
+  type
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+  }
+  image {
+    id
+    value
+  }
+  category {
+    id
+    label
+  }
+  fields(uids: ["subjectLevel"]) {
+    id
+    uid
+    value
+  }
+}

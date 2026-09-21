@@ -1,0 +1,8 @@
+mutation startOrgCopyPipeline($input: StartOrgCopyPipelineInput!) {
+  platform {
+    startOrgCopyPipeline(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,7 @@
+query getUnitPlansMultiNode($ids: [ID!]!, $responseFilter: ResponseFilter) {
+  multiNode(ids: $ids, type: UNIT_PLAN) {
+    ... on UnitPlan {
+      ...unitPlanDetailsItem
+    }
+  }
+}

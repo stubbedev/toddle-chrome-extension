@@ -1,0 +1,13 @@
+fragment conceptItem on PlannerConcept {
+  id
+  label
+  subText
+  levelId
+  parent
+  children
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+    }
+  }
+}

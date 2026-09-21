@@ -1,0 +1,13 @@
+mutation createTags($input: [GenericTagInsertInput!]!) {
+  platform {
+    insertGenericTagsV2(input: $input) {
+      id
+      label
+      displaySequence
+      icon {
+        id
+        url
+      }
+    }
+  }
+}

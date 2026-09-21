@@ -1,0 +1,23 @@
+query getUserStudents($id: ID!, $after: String, $orderBy: ORDER_BY_ENUM, $filters: StudentsInUserClassesFilters!, $studentCurriculumProgramFilters: StudentCurriculumProgramFilter!) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      studentsAssociatedInUserClasses(input: {first: 20, filters: $filters, after: $after, orderBy: $orderBy}) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...studentItem
+            curriculumPrograms(filters: $studentCurriculumProgramFilters) {
+              id
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

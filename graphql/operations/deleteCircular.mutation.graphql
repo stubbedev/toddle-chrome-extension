@@ -1,0 +1,7 @@
+mutation deleteCircular($id: ID!) {
+  school {
+    deleteCircular(input: {id: $id}) {
+      isSuccess
+    }
+  }
+}

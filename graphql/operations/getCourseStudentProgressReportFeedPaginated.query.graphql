@@ -1,0 +1,8 @@
+query getCourseStudentProgressReportFeedPaginated($reportId: ID!, $filters: TaskStudentProgressReportsFilter, $courseFilters: CourseFilter, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      ...courseStudentProgressReportItem
+    }
+  }
+}

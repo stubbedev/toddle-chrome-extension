@@ -1,0 +1,59 @@
+fragment projectInfo on Project {
+  id
+  status
+  reportStatus
+  completedDeadlines {
+    completedAt
+    deadline {
+      id
+      deadlineDate
+    }
+  }
+  fields(filters: $projectFieldFilters) {
+    id
+    uid
+    pseudoFieldUid
+    isComplete
+    attachments {
+      id
+      type
+    }
+    value
+    resolvedMinimalTree {
+      id
+      type
+      ... on ResolvedFieldPlannerElementSet {
+        id
+        type
+        ... on ResolvedFieldPlannerElementSet {
+          id
+          type
+          nodes {
+            id
+            label
+            type
+          }
+        }
+      }
+    }
+  }
+  students {
+    ...studentInfo
+  }
+  supervisors {
+    ...userNameFields
+    profileImage
+  }
+  cascadeUpdateAt
+  cascadeUpdateBy {
+    ...userNameFields
+  }
+  createdAt
+  createdBy {
+    ...userNameFields
+  }
+  updatedAt
+  updatedBy {
+    ...userNameFields
+  }
+}

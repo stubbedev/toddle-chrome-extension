@@ -1,0 +1,12 @@
+mutation assignmentBulkAction($id: ID!, $studentAssignmentIds: [ID!], $isLockScreenEnabled: Boolean, $lockState: LOCKING_STATE_ENUM, $isOnScreenCalculatorEnabled: Boolean) {
+  platform {
+    assignmentBulkAction(input: {id: $id, lockState: $lockState, isLockScreenEnabled: $isLockScreenEnabled, studentAssignmentIds: $studentAssignmentIds, isOnScreenCalculatorEnabled: $isOnScreenCalculatorEnabled}) {
+      response {
+        id
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

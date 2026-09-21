@@ -1,0 +1,9 @@
+mutation bulkCreateChecklistItems($input: [ChecklistItemInputComplete!]) {
+  planner {
+    bulkCreateChecklistItems(input: $input) {
+      response {
+        ...checklistItem
+      }
+    }
+  }
+}

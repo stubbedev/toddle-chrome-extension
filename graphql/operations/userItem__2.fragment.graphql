@@ -1,0 +1,16 @@
+fragment userItem on User {
+  ...userNameFields
+  email
+  profileImage
+  ... on Student {
+    sourceId
+    alertTypes {
+      ...alertTypeFields
+    }
+  }
+  ... on Staff {
+    role
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+  }
+}

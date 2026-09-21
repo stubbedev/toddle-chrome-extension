@@ -1,0 +1,60 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  templateId
+  startDate
+  endDate
+  enabledSections {
+    userType
+    sections
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  grades
+  unitType {
+    ...fieldItem
+  }
+  title {
+    ...fieldItem
+  }
+  theme {
+    ...fieldItem
+  }
+  duration {
+    ...fieldItem
+  }
+  image {
+    ...fieldItem
+  }
+  subjects {
+    ...fieldItem
+  }
+  owner {
+    ...staffItem
+  }
+  createdAt
+  allFields {
+    ...fieldItem
+  }
+  classDates {
+    classId
+    startDate
+    endDate
+    className
+  }
+  resources {
+    ...resourceConnectionItem
+  }
+  leTemplate
+  assessmentTemplate
+  learningCourse {
+    id
+  }
+}
+
+fragment curriculumProgramBasicDetailsItem on CurriculumProgram {
+  id
+  type
+  acronym
+  nodeInterfaceType
+}

@@ -1,0 +1,50 @@
+query getAccountDepartments($id: ID!, $filters: SubjectGroupFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjectGroups(filters: $filters) {
+        id
+        uid
+        name
+        profileImageData
+        isArchived
+        type
+        childDepartments {
+          id
+          subjects {
+            id
+            name
+            icon
+            iconType
+            ibOfferedSubject {
+              id
+              contentSubject {
+                id
+                assessmentYearTitle
+              }
+            }
+          }
+          learningCourses {
+            id
+            title
+            displayMetadata
+            classes {
+              id
+              title
+            }
+          }
+          curriculumProgram {
+            id
+            label
+            type
+            acronym
+          }
+        }
+        globalSubjectGroup {
+          id
+        }
+      }
+    }
+  }
+}

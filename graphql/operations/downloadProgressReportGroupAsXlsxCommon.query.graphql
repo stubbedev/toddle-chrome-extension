@@ -1,0 +1,13 @@
+query downloadProgressReportGroupAsXlsxCommon($taskGroupId: ID!, $courseProgressReportTaskIds: [ID!], $fileOrganization: [PROGRESS_REPORT_DOWNLOAD_FILE_ORGANIZATION_ENUM!], $exportType: PROGRESS_REPORT_DOWNLOAD_DATA_TYPES!) {
+  node(id: $taskGroupId, type: PROGRESS_REPORT_TASK_GROUP) {
+    id
+    ... on ProgressReportTaskGroup {
+      excelDataDownload(filters: {courseProgressReportTaskIds: $courseProgressReportTaskIds, fileOrganization: $fileOrganization, downloadTypes: [$exportType]}) {
+        error
+        isSuccess
+        url
+        filename
+      }
+    }
+  }
+}

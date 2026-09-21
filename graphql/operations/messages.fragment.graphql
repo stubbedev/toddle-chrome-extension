@@ -1,0 +1,29 @@
+fragment messages on Conversation {
+  id
+  messages(after: $after, first: $first, filters: $filters) {
+    totalCount
+    unreadCount
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        ...messageItem
+      }
+    }
+  }
+  pinMessages(after: $after, first: $first, filters: $filters) {
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        ...messageItem
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+fragment gradeScaleEntityDetailItem on GradeScaleEntityDetail {
+  id
+  gradeScaleValues {
+    id
+    abbreviation
+    label
+    description
+    displaySequence
+    color
+    gradeScaleValueScores {
+      id
+      minValue
+      maxValue
+      gradeValue
+      isMasteryLevel
+    }
+  }
+  gradeValueCalculateTypeDetail {
+    id
+    gradeValueCalculateType
+  }
+  gradeScale {
+    id
+    type
+    displayName
+    templateName
+    description
+    templateUid
+    gradingType
+    isUseForMastery
+    isUseForCreditGPACalculation
+    specialGradeTemplate {
+      id
+      displayName
+      templateName
+    }
+    updatedAt
+    isArchived
+  }
+}

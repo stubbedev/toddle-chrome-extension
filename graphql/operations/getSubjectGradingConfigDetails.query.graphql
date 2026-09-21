@@ -1,0 +1,18 @@
+query getSubjectGradingConfigDetails($id: ID!, $gradingConfigFilters: SubjectGradingConfigurationFilters, $gradingMethodologyFilters: SubjectGradingMethodologyFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      gradingConfigurations(filters: $gradingConfigFilters) {
+        id
+        ...GradingConfigurationFragment
+        ...GradingCategorySetsFragment
+        ...CumulativeTermWeightsFragment
+      }
+      gradingMethodologies(filters: $gradingMethodologyFilters) {
+        id
+        gradingMethodologyTypes
+      }
+    }
+  }
+}

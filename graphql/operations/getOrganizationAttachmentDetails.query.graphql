@@ -1,0 +1,7 @@
+query getOrganizationAttachmentDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      ...organizationAttachmentDetailsItem
+    }
+  }
+}

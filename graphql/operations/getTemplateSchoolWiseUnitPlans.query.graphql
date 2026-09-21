@@ -1,0 +1,31 @@
+query getTemplateSchoolWiseUnitPlans($id: ID!, $unitPlanFilters: TemplateUnitPlanFilters) {
+  node(id: $id, type: PLANNER_TEMPLATE) {
+    id
+    ... on PlannerTemplate {
+      id
+      unitPlans(filters: $unitPlanFilters) {
+        edges {
+          node {
+            id
+            curriculumProgram {
+              id
+              label
+            }
+            title {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+            grades
+            resourceLibrary {
+              leCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+query getGlobalSubjectGroups($subjectGroupFilters: GlobalSubjectGroupFilters) {
+  globalConstants {
+    globalSubjectGroups(filters: $subjectGroupFilters) {
+      id
+      name
+      sourceSubjects {
+        id
+        name
+      }
+    }
+  }
+}

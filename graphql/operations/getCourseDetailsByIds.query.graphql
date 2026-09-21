@@ -1,0 +1,13 @@
+query getCourseDetailsByIds($courseIds: [ID!]) {
+  multiNode(ids: $courseIds, type: COURSE) {
+    id
+    ... on Course {
+      title
+      grades {
+        id
+        name
+        displaySequence
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+fragment websiteContentUpdate on CurriculumWebsiteNode {
+  id
+  content {
+    id
+    type
+    value
+    isEnabled
+    attachments {
+      id
+      url
+    }
+  }
+}

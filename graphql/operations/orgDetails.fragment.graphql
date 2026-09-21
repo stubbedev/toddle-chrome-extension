@@ -1,0 +1,4 @@
+fragment orgDetails on Organization {
+  id
+  region
+}

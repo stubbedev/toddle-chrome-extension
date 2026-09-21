@@ -1,0 +1,64 @@
+query getAttendanceExcusals($id: ID!, $isStaffRelation: Boolean!, $staffRelationFilters: StaffStudentRelationFilter) {
+  node(id: $id, type: ATTENDANCE_EXCUSAL) {
+    id
+    ... on AttendanceExcusal {
+      id
+      startDate
+      endDate
+      reason
+      durationType
+      periods {
+        id
+        label
+        abbreviation
+      }
+      createdBy {
+        id
+        ...parentNameFields
+      }
+      createdAt
+      conversation {
+        id
+        users {
+          id
+        }
+      }
+      attachments {
+        id
+        title
+        type
+        url
+        thumbUrl
+        mimeType
+        metadata
+      }
+      attendanceOption {
+        id
+        label
+        color
+        attendanceCategory {
+          id
+          color
+        }
+      }
+      student {
+        id
+        ...studentNameFields
+        profileImage
+        courses {
+          id
+          title
+        }
+        staffRelation(filters: $staffRelationFilters) @include(if: $isStaffRelation) {
+          edges {
+            node {
+              ... on Staff {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

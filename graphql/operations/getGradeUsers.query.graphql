@@ -1,0 +1,27 @@
+query getGradeUsers($organizationId: ID!, $filters: GradeFilterInput, $skipStudents: Boolean!, $skipStaff: Boolean!, $skipFamilyMembers: Boolean!, $allStudentsFilters: GradeAllStudentsFiltersInput, $getOnlyUserId: Boolean!, $getCurriculumProgram: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: $filters) {
+        id
+        name
+        curriculumProgram @include(if: $getCurriculumProgram) {
+          id
+          label
+        }
+        allStaffs @skip(if: $skipStaff) {
+          id
+          ...userDetailItem @skip(if: $getOnlyUserId)
+        }
+        allStudents(filters: $allStudentsFilters) @skip(if: $skipStudents) {
+          id
+          ...userDetailItem @skip(if: $getOnlyUserId)
+        }
+        allParents @skip(if: $skipFamilyMembers) {
+          id
+          ...userDetailItem @skip(if: $getOnlyUserId)
+        }
+      }
+    }
+  }
+}

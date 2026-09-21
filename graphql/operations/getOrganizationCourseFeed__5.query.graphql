@@ -1,0 +1,30 @@
+query getOrganizationCourseFeed($after: String, $filters: CourseFilterInput, $courseGradeFilters: CourseGradeFilters, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  platform {
+    organization {
+      id
+      courses(after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            title
+            profileImage
+            grades(filters: $courseGradeFilters) {
+              id
+              name
+            }
+            genericTags {
+              id
+              label
+              type
+            }
+            curriculumProgram {
+              id
+              type
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

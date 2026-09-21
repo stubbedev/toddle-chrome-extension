@@ -1,0 +1,19 @@
+query getUnitPlanFeed($id: ID!, $filters: UnitPlansV2FeedFilters!, $filterByWorksheets: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      unitPlansV2(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...unitPlanItem
+            courses {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

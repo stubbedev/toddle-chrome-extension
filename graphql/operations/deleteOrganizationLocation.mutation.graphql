@@ -1,0 +1,8 @@
+mutation deleteOrganizationLocation($input: DeleteOrganizationLocationInput!) {
+  platform {
+    deleteOrganizationLocation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

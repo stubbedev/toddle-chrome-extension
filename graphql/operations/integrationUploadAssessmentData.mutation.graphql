@@ -1,0 +1,7 @@
+mutation integrationUploadAssessmentData($input: IntegrationUploadAssessmentDataInput!) {
+  integration {
+    integrationUploadAssessmentData(input: $input) {
+      uploadStatus
+    }
+  }
+}

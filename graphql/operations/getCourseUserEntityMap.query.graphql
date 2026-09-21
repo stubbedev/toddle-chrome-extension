@@ -1,0 +1,36 @@
+query getCourseUserEntityMap($ids: [ID!], $entityFilters: CourseUserEntityMapFilters, $userMapFilter: CourseUserMapFilter) {
+  platform {
+    course(ids: $ids) {
+      id
+      userMap(filters: $userMapFilter) {
+        edges {
+          node {
+            id
+            isRemovedFromClass
+            entities(filters: $entityFilters) {
+              id
+              user {
+                id
+                firstName
+                middleName
+                lastName
+              }
+              entityType
+              entity {
+                id
+                ... on Subject {
+                  id
+                  name
+                }
+                ... on LearningCourse {
+                  id
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

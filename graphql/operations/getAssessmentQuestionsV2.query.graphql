@@ -1,0 +1,13 @@
+query getAssessmentQuestionsV2($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on Assessment {
+      id
+      questions {
+        totalCount
+        edges {
+          ...questionItem
+        }
+      }
+    }
+  }
+}

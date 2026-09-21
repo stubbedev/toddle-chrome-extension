@@ -1,0 +1,66 @@
+query getGradePOI($id: ID!, $uids: [String!], $filters: OverallProgrammeInsightFilters) {
+  node(id: $id, type: IB_PYP_CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      ... on IbPypCurriculumProgram {
+        id
+        gradePOI(filters: $filters) {
+          theme {
+            id
+            label
+          }
+          grade {
+            id
+            name
+          }
+          unitPlans {
+            id
+            startDate
+            endDate
+            subjects {
+              id
+              value
+            }
+            fields(uids: $uids) {
+              id
+              uid
+              value
+              resolvedMinimalTree {
+                id
+                ... on ResolvedFieldRelatedConceptSet {
+                  id
+                  relatedConcepts {
+                    ...relatedConceptItem
+                  }
+                }
+                ... on ResolvedFieldConceptSet {
+                  id
+                  type
+                  concepts {
+                    ...conceptItem
+                  }
+                }
+                ... on ResolvedFieldLPSet {
+                  id
+                  type
+                  learnerProfiles {
+                    ...lpItem
+                  }
+                }
+                ... on ResolvedFieldATLSet {
+                  id
+                  type
+                  atls {
+                    ...atlItem
+                  }
+                }
+                ...resolvedFieldVideoAttachmentItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

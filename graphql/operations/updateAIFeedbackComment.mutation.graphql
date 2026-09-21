@@ -1,0 +1,7 @@
+mutation updateAIFeedbackComment($input: UpdateAIUsageMetricsInput!) {
+  ai {
+    updateAIUsageMetrics(input: $input) {
+      isSuccess
+    }
+  }
+}

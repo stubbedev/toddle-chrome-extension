@@ -1,0 +1,5 @@
+query getTransferOutSelectStudentsFeed($cpId: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentTransferRequestsInput!) {
+  node(id: $cpId, type: $type) {
+    ...aytTransferOutFeedFields
+  }
+}

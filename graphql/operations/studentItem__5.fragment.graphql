@@ -1,0 +1,6 @@
+fragment studentItem on Student {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...courseItem
+  }
+}

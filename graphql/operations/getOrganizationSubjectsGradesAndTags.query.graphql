@@ -1,0 +1,19 @@
+query getOrganizationSubjectsGradesAndTags($orgId: ID!, $curriculumProgramId: ID!, $genericTagsFilter: GenericTagsFilter) {
+  node(id: $orgId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      subjects(filters: {curriculumProgramIds: [$curriculumProgramId], archivalState: ACTIVE}) {
+        id
+        name
+      }
+      grades(filters: {curriculumProgramIds: [$curriculumProgramId]}) {
+        id
+        name
+      }
+      genericTagsV2(filters: $genericTagsFilter) {
+        id
+        label
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getStaffListById($ids: [ID!]) {
+  multiNode(ids: $ids, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      firstName
+      middleName
+      lastName
+      profileImage
+      preferredName
+      prefix
+      suffix
+      pronouns
+      email
+      type
+      role
+      curriculumPrograms {
+        ...curriculumProgramBasicDetailsItem
+      }
+    }
+  }
+}

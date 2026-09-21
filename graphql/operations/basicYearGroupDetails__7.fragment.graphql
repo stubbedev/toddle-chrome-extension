@@ -1,0 +1,45 @@
+mutation bulkCreateYearGroups($input: [CreateYearGroupInput!]!, $yearGroupGradeFilters: YearGroupGradeFilters, $yearGroupStudentFilters: GroupStudentFilter, $academicYearGradeMapFilters: AcademicYearGradeMapFilters, $allStudentsFilters: YearGroupAllStudentsFiltersInput) {
+  platform {
+    bulkCreateYearGroups(input: $input) {
+      isSuccess
+      warning
+      yearGroups {
+        ...basicYearGroupDetails
+      }
+    }
+  }
+}
+
+fragment basicYearGroupDetails on YearGroup {
+  id
+  name
+  curriculumProgram {
+    id
+  }
+  grade(filters: $yearGroupGradeFilters) {
+    id
+    name
+    displaySequence
+    courses {
+      totalCount
+    }
+  }
+  students(filters: $yearGroupStudentFilters) {
+    totalCount
+  }
+  allStudents(filters: $allStudentsFilters) {
+    id
+  }
+  academicYearGradeMap(filters: $academicYearGradeMapFilters) {
+    grade {
+      id
+      name
+    }
+  }
+  examSession {
+    id
+    session
+    year
+  }
+  isArchived
+}

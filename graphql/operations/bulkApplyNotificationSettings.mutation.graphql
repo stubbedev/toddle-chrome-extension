@@ -1,0 +1,11 @@
+mutation bulkApplyNotificationSettings($input: BulkApplyNotificationSettingsInput!) {
+  platform {
+    bulkApplyNotificationSettings(input: $input) {
+      isSuccess
+      warning
+      jobId
+      __typename
+    }
+    __typename
+  }
+}

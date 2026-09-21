@@ -1,0 +1,4 @@
+fragment templateBodyOnly on PlannerTemplate {
+  id
+  body
+}

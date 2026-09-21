@@ -1,0 +1,4 @@
+fragment unitPlanTypeItem on UnitPlanTypeFacet {
+  id
+  label
+}

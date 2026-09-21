@@ -1,0 +1,8 @@
+query getGradeScaleDetails($id: ID!) {
+  node(id: $id, type: GRADE_SCALE_TOOL) {
+    id
+    ... on GradeScaleEntityDetail {
+      ...gradeScaleEntityDetailItem
+    }
+  }
+}

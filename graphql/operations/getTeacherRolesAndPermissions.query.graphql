@@ -1,0 +1,9 @@
+query getTeacherRolesAndPermissions($teacherId: ID!, $permissionCurriculumId: ID) {
+  node(id: $teacherId, type: STAFF) {
+    id
+    ... on Staff {
+      ...staffPermissions
+      curriculumDefaultAccess(curriculumProgramId: $permissionCurriculumId)
+    }
+  }
+}

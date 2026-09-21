@@ -1,0 +1,11 @@
+mutation createTemplateField($input: CreateTemplateFieldInput!, $templateFieldPropertyValuesFilters: TemplateFieldPropertyValuesFilter, $templateFieldConfigFilter: TemplateFieldConfigFilter, $templateFieldPlannerElementSetFilters: TemplateFieldPlannerElementSetFilters) {
+  planner {
+    createTemplateField(input: $input) {
+      isSuccess
+      warning
+      templateField {
+        ...templateFieldItem
+      }
+    }
+  }
+}

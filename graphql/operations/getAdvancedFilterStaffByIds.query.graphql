@@ -1,0 +1,15 @@
+query getAdvancedFilterStaffByIds($ids: [ID!]) {
+  multiNode(ids: $ids, type: STAFF) {
+    id
+    ... on Staff {
+      firstName
+      middleName
+      lastName
+      preferredName
+      prefix
+      suffix
+      pronouns
+      role
+    }
+  }
+}

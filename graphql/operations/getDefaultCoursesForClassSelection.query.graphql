@@ -1,0 +1,16 @@
+query getDefaultCoursesForClassSelection($studentProgressReportId: ID!, $filters: CourseFilters) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      courses(filters: $filters) {
+        id
+        title
+        learningCourse {
+          id
+          courseSubjectType
+        }
+      }
+    }
+  }
+}

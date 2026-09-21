@@ -1,0 +1,11 @@
+mutation createEventLink($input: CreatePlaygroundEventLinkInput!) {
+  playground {
+    createEventLink(input: $input) {
+      isSuccess
+      warning
+      accessLink {
+        ...playgroundAccessLinkFragment
+      }
+    }
+  }
+}

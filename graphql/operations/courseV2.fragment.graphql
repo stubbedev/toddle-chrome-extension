@@ -1,0 +1,49 @@
+fragment courseV2 on Course {
+  id
+  title
+  isBookmark
+  profileImageData {
+    url
+    icon
+  }
+  gradesWithAcademicYear {
+    grade {
+      id
+      name
+    }
+    academicYear {
+      id
+      startDate
+      endDate
+    }
+  }
+  grade {
+    id
+    name
+  }
+  subjects {
+    id
+    name
+  }
+  grades(filters: $courseGradeFilters) {
+    id
+    name
+  }
+  genericTags(filters: {types: SUBJECT_LEVEL}) {
+    id
+    label
+    type
+  }
+  primaryGrade(filters: $courseGradeFilters) {
+    id
+    name
+  }
+  subjectGroups {
+    id
+    name
+    type
+  }
+  academicYears {
+    id
+  }
+}

@@ -1,0 +1,46 @@
+query integrationSyncCalendarClassTimetable($jobId: ID!, $courseIds: [ID!], $startDate: String, $endDate: String, $academicYearId: ID!, $curriculumProgramId: ID!) {
+  integration {
+    integrationSyncCalendarClassTimetable(input: {jobId: $jobId, courseIds: $courseIds, startDate: $startDate, endDate: $endDate, academicYearId: $academicYearId, curriculumProgramId: $curriculumProgramId}) {
+      routine {
+        serviceId
+        schedule {
+          rotationDay {
+            label
+            serviceId
+          }
+        }
+      }
+      timetable {
+        date
+        course {
+          id
+          title
+        }
+        period {
+          id
+          label
+          abbreviation
+        }
+        day
+        rotationDay {
+          id
+          label
+        }
+        location
+        locationV2 {
+          id
+          label
+        }
+        startTime
+        endTime
+        teachers {
+          id
+          profileImage
+          firstName
+          lastName
+          middleName
+        }
+      }
+    }
+  }
+}

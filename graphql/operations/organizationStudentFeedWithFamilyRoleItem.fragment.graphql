@@ -1,0 +1,29 @@
+fragment organizationStudentFeedWithFamilyRoleItem on Organization {
+  ...organizationStudentFeedEdgeItem
+  students(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    edges {
+      node {
+        id
+        families(filters: $familiesFilter) {
+          id
+          familyMember {
+            id
+            rnpRoleContextDetail {
+              id
+              role {
+                id
+                label
+                displayUid
+                isDefaultRole
+              }
+              contextType
+              context {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

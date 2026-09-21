@@ -1,0 +1,24 @@
+query termGradeStudentWiseCriteria($studentId: ID!, $filters: TermGradeStudentWiseCriteriaFilter) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      termGradeStudentWiseCriteria(filters: $filters) {
+        id
+        student {
+          id
+        }
+        grade {
+          id
+        }
+        criteria {
+          id
+          label
+        }
+        academicTerm {
+          id
+        }
+      }
+    }
+  }
+}

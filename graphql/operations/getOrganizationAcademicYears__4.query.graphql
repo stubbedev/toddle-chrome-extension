@@ -1,0 +1,14 @@
+query getOrganizationAcademicYears {
+  platform {
+    organization {
+      academicYears {
+        id
+        startDate
+        endDate
+        isCurrentAcademicYear
+        isUpcomingAcademicYear
+        transitionReviewStatus
+      }
+    }
+  }
+}

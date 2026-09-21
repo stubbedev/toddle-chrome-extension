@@ -1,0 +1,7 @@
+mutation updateSinglePointRubric($id: ID!, $title: String!) {
+  planner {
+    updateSinglePointRubric(input: {id: $id, title: $title}) {
+      id
+    }
+  }
+}

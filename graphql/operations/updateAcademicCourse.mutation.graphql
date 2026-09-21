@@ -1,0 +1,12 @@
+mutation updateAcademicCourse($input: UpdateAcademicCourseInput!) {
+  planner {
+    updateAcademicCourse(input: $input) {
+      id
+      code
+      label
+      learningCourses {
+        totalCount
+      }
+    }
+  }
+}

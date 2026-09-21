@@ -1,0 +1,9 @@
+mutation startSafeExamBrowserWorksheet($input: SafeExamBrowserUrlInput) {
+  content {
+    startSafeExamBrowserWorksheet(input: $input) {
+      isSuccess
+      url
+      warning
+    }
+  }
+}

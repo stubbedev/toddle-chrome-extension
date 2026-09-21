@@ -1,0 +1,5 @@
+mutation upsertTimetableUpdateEvent($input: [BulkUpsertTimetableUpdateEventInput!]) {
+  platform {
+    bulkUpsertTimetableUpdateEvent(input: $input)
+  }
+}

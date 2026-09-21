@@ -1,0 +1,8 @@
+mutation upsertRoutineUpdateEvent($input: [UpsertRoutineUpdateEventInput!]) {
+  platform {
+    upsertRoutineUpdateEvent(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

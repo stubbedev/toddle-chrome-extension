@@ -1,0 +1,8 @@
+query getCalendarImportTemplate($organizationId: ID!, $curriculumProgramId: ID) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      organizationDataBulkDownload(type: "BLANK_ROSTER", subType: "SCHOOL_CALENDAR", curriculumProgramId: $curriculumProgramId)
+    }
+  }
+}

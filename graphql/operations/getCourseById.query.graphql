@@ -1,0 +1,8 @@
+query getCourseById($ids: [ID!]) {
+  multiNode(ids: $ids, type: COURSE) {
+    id
+    ... on Course {
+      ...courseItem
+    }
+  }
+}

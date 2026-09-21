@@ -1,0 +1,15 @@
+query getSummaryEmailDetails($input: SummaryEmailDetailsInput!) {
+  platform {
+    summaryEmailDetails(input: $input) {
+      logs {
+        id
+        status
+        emailSentDate
+        finalSentStudentsCount
+        subscribedParentsCount
+        finalSentParentsCount
+        errorMessage
+      }
+    }
+  }
+}

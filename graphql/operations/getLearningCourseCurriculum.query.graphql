@@ -1,0 +1,10 @@
+query getLearningCourseCurriculum($learningCourseId: ID!) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      curriculumProgram {
+        id
+      }
+    }
+  }
+}

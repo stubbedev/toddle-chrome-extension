@@ -1,0 +1,7 @@
+mutation updateMessageV2Form($input: UpdateMessageV2FormInput!) {
+  platform {
+    updateMessageV2Form(input: $input) {
+      id
+    }
+  }
+}

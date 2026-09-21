@@ -1,0 +1,10 @@
+mutation createPlatformCalendarEvent($label: String!, $startAt: String, $description: String, $durationInMin: Int, $recurrenceSetting: RecurrenceSettingInput, $metadata: CalendarEventItemMetadataInput, $meeting: MeetingInput, $courseIds: [ID!], $userIds: [ID!], $location: String, $startDateTime: String, $endDateTime: String, $categoryId: ID, $entityIds: [ID!], $isFullDayEvent: Boolean, $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $entityType: CALENDAR_EVENT_ITEM_ENTITY_TYPE_ENUM, $attachments: [AttachmentInput!], $sharedWith: [CALENDAR_EVENT_ITEM_SHARED_WITH_ENUM!], $eventReminders: [EventReminderInput!], $shouldNotifyParticipants: Boolean, $shouldUseNewMeetingInfra: Boolean, $attendanceTakerUserIds: [ID!], $sessions: [CalendarEventSessionInput!]) {
+  platform {
+    createPlatformCalendarEvent(input: {label: $label, startAt: $startAt, description: $description, durationInMin: $durationInMin, recurrenceSetting: $recurrenceSetting, meeting: $meeting, courseIds: $courseIds, userIds: $userIds, location: $location, startDateTime: $startDateTime, endDateTime: $endDateTime, categoryId: $categoryId, entityIds: $entityIds, isFullDayEvent: $isFullDayEvent, eventType: $eventType, entityType: $entityType, attachments: $attachments, sharedWith: $sharedWith, eventReminders: $eventReminders, shouldNotifyParticipants: $shouldNotifyParticipants, metadata: $metadata, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra, attendanceTakerUserIds: $attendanceTakerUserIds, sessions: $sessions}) {
+      response {
+        ...platformCalendarEventItem
+      }
+      warning
+    }
+  }
+}

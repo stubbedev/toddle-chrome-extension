@@ -1,0 +1,20 @@
+query getInsightsIncludedUnitCount($id: ID!, $curriculumProgramIds: [ID!], $academicYears: [ID!], $fetchTransdisciplinaryCount: Boolean!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      unitPlansV2(filters: {curriculumProgramIds: $curriculumProgramIds, academicYears: $academicYears, hasClass: true}) {
+        totalCount
+      }
+      unitPlansV2(filters: {curriculumProgramIds: $curriculumProgramIds, academicYears: $academicYears, isIncludedInInsights: false, hasClass: true}) {
+        totalCount
+      }
+      unitPlansV2(filters: {curriculumProgramIds: $curriculumProgramIds, academicYears: $academicYears, isIncludedInInsights: true, hasClass: true}) {
+        totalCount
+      }
+      unitPlansV2(filters: {curriculumProgramIds: $curriculumProgramIds, academicYears: $academicYears, isIncludedInInsights: true, unitType: "ibInquiry", hasClass: true}) @include(if: $fetchTransdisciplinaryCount) {
+        totalCount
+      }
+    }
+  }
+}

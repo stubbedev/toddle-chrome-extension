@@ -1,0 +1,8 @@
+query getTeacherFeed($organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYear: ID, $selectedAcademicYearId: ID, $courseFilters: CourseFilter, $skipCourses: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationStaffFeedEdgeItem
+    }
+  }
+}

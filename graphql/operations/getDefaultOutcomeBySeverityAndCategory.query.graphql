@@ -1,0 +1,13 @@
+query getDefaultOutcomeBySeverityAndCategory($id: ID!, $filters: BehaviourSeverityFilters, $defaultOutcomeFilters: BehaviourDefaultOutcomeFilters, $includeUserCurriculums: Boolean = false, $includeUserRnPRoles: Boolean = false) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourSeverities(filters: $filters) {
+        id
+        defaultOutcomes(filters: $defaultOutcomeFilters) {
+          ...defaultOutcomeItem
+        }
+      }
+    }
+  }
+}

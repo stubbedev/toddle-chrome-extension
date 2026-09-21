@@ -1,0 +1,15 @@
+mutation manageBehaviourSeverities($input: ManageBehaviourSeveritiesInput!) {
+  platform {
+    manageBehaviourSeverities(input: $input) {
+      isSuccess
+      warning
+      severities {
+        id
+        name
+        level
+        color
+        associatedIncidentsCount
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+query getAnnouncementsFeed($organizationId: ID!, $first: Int, $after: String, $orderBy: ORDERBY_FIELD_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $searchText: String, $createdAfter: String, $createdBefore: String, $studentIds: [ID!], $states: [CIRCULAR_STATE_ENUM!], $sharedWith: [CIRCULAR_SHARED_WITH_ENUM!], $createdBy: CIRCULAR_CREATED_BY_FILTER_ENUM, $createdByIds: [ID!], $curriculumProgramIds: [ID!], $academicYearId: ID!, $getFilteredAnnouncementsCount: Boolean = false, $isRead: Boolean, $courseIds: [ID!], $isRecipientsVisible: Boolean = false, $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      circularFeedV3(input: {first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, searchText: $searchText, createdAfter: $createdAfter, createdBefore: $createdBefore, states: $states, createdBy: $createdBy, createdByIds: $createdByIds, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, sharedWith: $sharedWith, isRead: $isRead, courseIds: $courseIds, createdIn: $createdIn}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...announcementItem
+            coursesV2(input: {academicYearId: $academicYearId}) @include(if: $isRecipientsVisible) {
+              totalCount
+            }
+            recipients(input: {academicYearId: $academicYearId}) @include(if: $isRecipientsVisible) {
+              totalCount
+            }
+            entityMap {
+              entityType
+              schoolGroups {
+                id
+              }
+            }
+          }
+        }
+        totalCount(input: {searchText: $searchText, createdAfter: $createdAfter, createdBefore: $createdBefore, states: $states, createdBy: $createdBy, createdByIds: $createdByIds, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds, isRead: $isRead, sharedWith: $sharedWith}) @include(if: $getFilteredAnnouncementsCount)
+      }
+    }
+  }
+}

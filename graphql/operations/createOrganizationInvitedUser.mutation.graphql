@@ -1,0 +1,10 @@
+mutation createOrganizationInvitedUser($users: [UserInput!], $academicYear: ID) {
+  platform {
+    addUsers(input: $users) {
+      warning
+      response {
+        ...teacherItem
+      }
+    }
+  }
+}

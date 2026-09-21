@@ -1,0 +1,29 @@
+fragment progressReportObjectiveFeed on ProgressReportTaskGroup {
+  id
+  gradeSubjectObjectivesWrapper(filters: $filters) {
+    grades {
+      id
+      name
+    }
+    gradeSubjectObjectives {
+      subject {
+        id
+        name
+        associatedChildPlannerElementNodes(filters: $associatedChildPlannerElementFilters) {
+          id
+          label
+        }
+      }
+      gradeObjective {
+        grade {
+          id
+          name
+        }
+        objective {
+          id
+          label
+        }
+      }
+    }
+  }
+}

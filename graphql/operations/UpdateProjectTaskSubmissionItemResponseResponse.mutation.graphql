@@ -1,0 +1,8 @@
+mutation UpdateProjectTaskSubmissionItemResponseResponse($input: UpdateProjectTaskSubmissionItemResponseInput!) {
+  project {
+    updateSubmissionItemResponse(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

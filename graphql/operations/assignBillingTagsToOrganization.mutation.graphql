@@ -1,0 +1,11 @@
+mutation assignBillingTagsToOrganization($input: [TagEntityMapInput!]) {
+  platform {
+    upsertEntityTagsMapping(input: $input) {
+      response {
+        tagId
+        entityId
+        entityType
+      }
+    }
+  }
+}

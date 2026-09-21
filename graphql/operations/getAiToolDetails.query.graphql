@@ -1,0 +1,16 @@
+query getAiToolDetails($filters: AiToolDetailFiltersInput) {
+  ai {
+    aiToolDetails(filters: $filters) {
+      id
+      name
+      description
+      schema
+      toolHandler
+      version
+      displaySequence
+      createdBy
+      createdAt
+      updatedAt
+    }
+  }
+}

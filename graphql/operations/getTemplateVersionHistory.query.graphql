@@ -1,0 +1,13 @@
+query getTemplateVersionHistory($input: ReportTemplateVersionHistoryInput!) {
+  documentation {
+    internalToolsData {
+      progressReport {
+        templateVersionHistory(input: $input) {
+          id
+          updatedBy
+          updatedAt
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+query getLearningCoursesCollaborators($ids: [ID!], $first: Int, $after: String, $filters: LearningCourseCollaboratorFilters) {
+  multiNode(ids: $ids, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      collaborators(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...collaboratorBasicDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+query getUnitPlanSharingContext($unitPlanId: ID!) {
+  node(id: $unitPlanId, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      unitType {
+        id
+        value
+      }
+      subjects {
+        id
+        resolvedMinimalTree {
+          ... on ResolvedFieldSubjectSet {
+            id
+            type
+            subjects {
+              id
+              name
+            }
+          }
+        }
+      }
+      learningCourse {
+        id
+        type
+        title
+        isArchived
+        curriculumProgram {
+          id
+        }
+        primaryGrade {
+          id
+          name
+        }
+        bluePrintCourse {
+          id
+        }
+        lockingInfo {
+          isLocked
+        }
+      }
+      learningCourses {
+        id
+        type
+        title
+        isArchived
+        curriculumProgram {
+          id
+        }
+        primaryGrade {
+          id
+          name
+        }
+        bluePrintCourse {
+          id
+        }
+        lockingInfo {
+          isLocked
+        }
+      }
+      unshareRestrictedLearningCourseIds
+    }
+  }
+}

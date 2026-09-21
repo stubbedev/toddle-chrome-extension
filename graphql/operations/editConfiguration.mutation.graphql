@@ -1,0 +1,8 @@
+mutation editConfiguration($input: ConfigurationToolGenericInput!) {
+  platform {
+    editConfiguration(input: $input) {
+      id
+      configuration
+    }
+  }
+}

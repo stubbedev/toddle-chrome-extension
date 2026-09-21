@@ -1,0 +1,17 @@
+query getUserCoursesId($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: CourseFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      courses(filters: $filters) {
+        id
+      }
+    }
+    ... on Student {
+      id
+      courses(filters: $filters) {
+        id
+      }
+    }
+  }
+}

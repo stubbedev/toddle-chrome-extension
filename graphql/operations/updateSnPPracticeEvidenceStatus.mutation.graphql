@@ -1,0 +1,7 @@
+mutation updateSnPPracticeEvidenceStatus($input: SnPPracticeEvidenceStatusUpdateInput!) {
+  platform {
+    updateSnPPracticeEvidenceStatus(input: $input) {
+      id
+    }
+  }
+}

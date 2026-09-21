@@ -1,0 +1,10 @@
+mutation generateProgressReportsZipFileUrl($input: ProgressReportsZipFileUrlInput!) {
+  documentation {
+    generateProgressReportsZipFileUrl(input: $input) {
+      isSuccess
+      isLongRunningTaskCreated
+      fileUrl
+      fileName
+    }
+  }
+}

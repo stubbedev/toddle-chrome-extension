@@ -1,0 +1,12 @@
+query getTaggedLESubjects($id: ID!, $type: ENTITY_TYPE_ENUM!, $subjectUids: [String!]) {
+  node(id: $id, type: $type) {
+    id
+    ... on Assessment {
+      fields(uids: $subjectUids) {
+        id
+        uid
+        value
+      }
+    }
+  }
+}

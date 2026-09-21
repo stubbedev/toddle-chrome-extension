@@ -1,0 +1,10 @@
+mutation pushCalendarEventsToCurriculumPrograms($input: PushCalendarEventsToCurriculumProgramsInput!) {
+  platform {
+    pushCalendarEventsToCurriculumPrograms(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+    __typename
+  }
+}

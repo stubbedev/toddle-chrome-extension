@@ -1,0 +1,8 @@
+query getDocumentCategoryEvidenceBasicDetailsQuery($id: ID!, $filters: SnPDocumentCategoryEvidenceFilter) {
+  node(id: $id, type: SnP_DOCUMENT_CATEGORY) {
+    id
+    ... on SnPDocumentCategory {
+      ...evidenceBasicDetailsItem
+    }
+  }
+}

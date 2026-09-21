@@ -1,0 +1,27 @@
+query getPlannerElementEvidences($id: ID!, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      posts(filters: $plannerElementEvidenceFilters) {
+        edges {
+          node {
+            ...processJournalItem
+            ... on Post {
+              items(filters: {itemType: [PROJECT]}) {
+                itemType
+                item {
+                  ... on Project {
+                    id
+                    title {
+                      value
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

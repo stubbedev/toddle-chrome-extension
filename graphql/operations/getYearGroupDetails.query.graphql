@@ -1,0 +1,16 @@
+query getYearGroupDetails($id: ID!, $projectGroupFilters: ProjectGroupFilters, $yearGroupGradeFilters: YearGroupGradeFilters, $yearGroupStudentFilters: GroupStudentFilter) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      ...basicYearGroupDetails
+      examSession {
+        id
+        session
+        month
+      }
+      projectGroups(filters: $projectGroupFilters) {
+        ...projectGroupBasicDetails
+      }
+    }
+  }
+}

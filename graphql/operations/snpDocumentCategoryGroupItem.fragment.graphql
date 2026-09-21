@@ -1,0 +1,12 @@
+fragment snpDocumentCategoryGroupItem on SnPDocumentCategoryGroup {
+  id
+  title
+  localeLabelKey
+  description
+  localeSubTextKey
+  displaySequence
+  isCustomCategoryAllowed
+  documentCategories {
+    ...snpDocumentCategoryItem
+  }
+}

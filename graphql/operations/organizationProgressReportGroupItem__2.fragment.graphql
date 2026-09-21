@@ -1,0 +1,65 @@
+fragment organizationProgressReportGroupItem on Organization {
+  id
+  progressReportTaskGroups(first: 12, after: $after, filters: {searchText: $searchText, academicYearId: $academicYearId, curriculumProgramIds: $curriculumProgramIds}) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        title
+        subtitle
+        attendanceMode
+        studentReflectionAuthor
+        studentReflectionDeadline
+        createdAt
+        deadlineDate
+        footerDate
+        pdfFilenameFormat
+        reportingDates {
+          startDate
+          endDate
+        }
+        courseProgressReportTasks {
+          id
+          canArchive
+          course {
+            id
+            title
+            isArchived
+            grades {
+              id
+              name
+            }
+          }
+          parentEntity {
+            id
+            ... on Grade {
+              id
+              name
+            }
+          }
+        }
+        template {
+          id
+          name
+          version
+          grades {
+            id
+          }
+          gradingPeriodType
+        }
+        academicTerm {
+          id
+          label
+        }
+        academicTerms {
+          id
+          label
+        }
+      }
+    }
+  }
+}

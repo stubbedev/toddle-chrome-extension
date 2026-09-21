@@ -1,0 +1,21 @@
+query previewBulkAcademicSubjectsUpdate($input: PreviewBulkAcademicSubjectsUpdateInput!) {
+  platform {
+    previewBulkAcademicSubjectsUpdate(input: $input) {
+      previews {
+        academicSubjectId
+        rejection {
+          code
+          message
+        }
+        willBeUpdated {
+          schoolCurriculumProgramId
+          childSubjectId
+          departmentToCreate {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

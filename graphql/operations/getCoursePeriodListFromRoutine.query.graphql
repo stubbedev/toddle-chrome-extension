@@ -1,0 +1,34 @@
+query getCoursePeriodListFromRoutine($id: ID!, $curriculumProgramIds: [ID!], $routineFilters: RoutineFilterOptions!, $routineDatesFilters: RoutineDatesFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        routines(filter: $routineFilters) {
+          id
+          routineDates(filters: $routineDatesFilters) {
+            bellSchedule {
+              id
+              label
+              periodsEdge {
+                totalCount
+                periods {
+                  period {
+                    id
+                    label
+                    type
+                    isDefault
+                    sequence
+                  }
+                  startTime
+                  endTime
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

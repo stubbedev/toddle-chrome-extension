@@ -1,0 +1,33 @@
+fragment postItem on Post {
+  id
+  students {
+    edges {
+      node {
+        ...userItem
+      }
+    }
+  }
+  likes {
+    totalCount
+    edges {
+      node {
+        id
+        user {
+          id
+          type
+          ...userItem
+          ... on Student {
+            alertTypes {
+              ...alertTypeFields
+            }
+          }
+          ... on FamilyMember {
+            children {
+              ...userItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

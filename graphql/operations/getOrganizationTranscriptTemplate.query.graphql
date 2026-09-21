@@ -1,0 +1,10 @@
+query getOrganizationTranscriptTemplate($organizationId: ID!, $filters: ProgressReportTemplateFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationTranscriptTemplateItem
+      __typename
+    }
+    __typename
+  }
+}

@@ -1,0 +1,8 @@
+mutation aiExtractQuestions($input: AiExtractQuestionsInput!) {
+  content {
+    aiExtractQuestions(input: $input) {
+      isSuccess
+    }
+    __typename
+  }
+}

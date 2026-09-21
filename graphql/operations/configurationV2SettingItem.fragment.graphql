@@ -1,0 +1,52 @@
+query getReviewPermissionByCurriculumProgram($configurationEntityGroupFilters: [ConfigurationEntityGroupFilter!], $isAdminPage: Boolean!, $isSettingsPage: Boolean!) {
+  platform {
+    configuration(filters: {configurationEntityGroupFilters: $configurationEntityGroupFilters, isSettingsPage: $isSettingsPage}) {
+      ...configurationResponseItem
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment configurationResponseItem on ConfigurationResponse {
+  configurations @include(if: $isSettingsPage) {
+    ...configurationV2SettingItem
+    __typename
+  }
+  configurations @skip(if: $isSettingsPage) {
+    ...configurationV2Item
+    __typename
+  }
+  entityGroups @include(if: $isAdminPage) {
+    entityId
+    entityType
+    __typename
+  }
+  __typename
+}
+
+fragment configurationV2SettingItem on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  aclControlParameterType
+  valueType
+  value
+  configurationGroup
+  parentConfigurations {
+    id
+    __typename
+  }
+  __typename
+}
+
+fragment configurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  aclControlParameterType
+  valueType
+  value
+  isLocked
+  __typename
+}

@@ -1,0 +1,10 @@
+fragment staffItem on Staff {
+  id
+  coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    edges {
+      node {
+        ...courseItem
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+mutation updateStudentReflectionStatus($studentProgressReportIds: [ID!]!, $studentReflectionStatus: STUDENT_REFLECTION_STATUS_ENUM!) {
+  documentation {
+    updateStudentReflectionStatus(input: {studentProgressReportIds: $studentProgressReportIds, studentReflectionStatus: $studentReflectionStatus}) {
+      isSuccess
+      warning
+      studentProgressReportId
+    }
+  }
+}

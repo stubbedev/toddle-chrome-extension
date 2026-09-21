@@ -1,0 +1,15 @@
+query getCurriculumBellSchedulesBasicDetails($id: ID!, $curriculumIds: [ID], $filter: BellScheduleFilterOptions!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        bellSchedules(filter: $filter) {
+          id
+          label
+        }
+      }
+    }
+  }
+}

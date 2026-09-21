@@ -1,0 +1,5 @@
+mutation deleteConfigurationValue($ids: [ID!]!, $isDeleted: Boolean) {
+  platform {
+    updateConfigurationValueById(input: {ids: $ids, isDeleted: $isDeleted})
+  }
+}

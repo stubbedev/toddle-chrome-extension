@@ -1,0 +1,9 @@
+fragment studentItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  preferredName
+  suffix
+  pronouns
+}

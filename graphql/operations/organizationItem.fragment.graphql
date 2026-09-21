@@ -1,0 +1,13 @@
+fragment organizationItem on OrganizationPreset {
+  id
+  name
+  city
+  ibCode
+  country
+  domains
+  plannerFormat
+  copyDataFromOrg
+  isRostered
+  isFree
+  demoUnitPlanIds
+}

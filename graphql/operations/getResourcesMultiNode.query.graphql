@@ -1,0 +1,11 @@
+query getResourcesMultiNode($ids: [ID!], $parentType: ENTITY_TYPE_ENUM_MULTI_NODE!, $classFilters: AssessmentAssignmentsFilters) {
+  multiNode(ids: $ids, type: $parentType) {
+    id
+    ... on OrganizationResource {
+      ...organizationResourceItem
+    }
+    ... on LearningCourseFlow {
+      ...learningCourseFlowItem
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment leCollectionSavedByNodeItem on LECollection {
+  id
+  savedBy {
+    id
+  }
+}

@@ -1,0 +1,8 @@
+mutation DeleteComplianceReport($input: DeleteComplianceReportInput!) {
+  complianceReport {
+    deleteComplianceReport(input: $input) {
+      isSuccess
+      id
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mutation rejectAttendanceExcusal($excusalId: ID!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  platform {
+    updateAttendanceExcusal(input: {excusalId: $excusalId, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId, status: REJECTED}) {
+      response {
+        id
+        status
+      }
+    }
+  }
+}

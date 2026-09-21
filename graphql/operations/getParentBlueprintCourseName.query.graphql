@@ -1,0 +1,11 @@
+query getParentBlueprintCourseName($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      parentCourse {
+        id
+        title
+      }
+    }
+  }
+}

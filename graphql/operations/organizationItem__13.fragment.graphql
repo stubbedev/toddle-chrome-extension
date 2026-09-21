@@ -1,0 +1,25 @@
+fragment organizationItem on Organization {
+  id
+  staff(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    edges {
+      node {
+        id
+        ... on Staff {
+          id
+          firstName
+          middleName
+          lastName
+          preferredName
+          prefix
+          suffix
+          pronouns
+          isArchivedV2(filters: {academicYearId: $academicYearId})
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

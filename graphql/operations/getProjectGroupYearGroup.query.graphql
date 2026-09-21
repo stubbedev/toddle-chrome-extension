@@ -1,0 +1,17 @@
+query getProjectGroupYearGroup($id: ID!, $gradeFilters: YearGroupGradeFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      ...basicProjectGroupDetails
+      yearGroup {
+        id
+        name
+        isArchived
+        grade(filters: $gradeFilters) {
+          id
+          name
+          displaySequence
+        }
+      }
+    }
+  }
+}

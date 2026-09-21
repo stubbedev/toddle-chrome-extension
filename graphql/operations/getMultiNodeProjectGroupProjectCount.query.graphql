@@ -1,0 +1,10 @@
+query getMultiNodeProjectGroupProjectCount($ids: [ID!], $filters: ProjectGroupProjectsFilters) {
+  multiNode(ids: $ids, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      projects(filters: $filters) {
+        totalCount
+      }
+    }
+  }
+}

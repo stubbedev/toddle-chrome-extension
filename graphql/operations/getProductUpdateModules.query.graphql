@@ -1,0 +1,8 @@
+query getProductUpdateModules($filters: ProductUpdatesV2ModuleFilter) {
+  cms {
+    modules(filters: $filters) {
+      id
+      label
+    }
+  }
+}

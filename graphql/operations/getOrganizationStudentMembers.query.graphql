@@ -1,0 +1,64 @@
+query getOrganizationStudentMembers($organizationId: ID!, $first: Int, $after: String, $filters: OrgConnectionFilterInput, $getStudentFamilyMembers: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      students(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            ... on Student {
+              firstName
+              middleName
+              lastName
+              preferredName
+              prefix
+              suffix
+              pronouns
+              profileImage
+              sourceId
+              alertTypes {
+                id
+                name
+                icon
+              }
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+              }
+              familyMembers @include(if: $getStudentFamilyMembers) {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+                prefix
+                suffix
+                pronouns
+                type
+                profileImage
+                children(organizationId: $organizationId) {
+                  id
+                  firstName
+                  middleName
+                  lastName
+                  preferredName
+                  prefix
+                  suffix
+                  pronouns
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

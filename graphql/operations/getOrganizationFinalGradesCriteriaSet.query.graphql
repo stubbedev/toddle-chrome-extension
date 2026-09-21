@@ -1,0 +1,28 @@
+query getOrganizationFinalGradesCriteriaSet($organizationId: ID!, $curriculumProgramId: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: {curriculumProgramIds: $curriculumProgramId, criteriaTypes: [FINAL_GRADE, IL_FINAL_GRADE]}) {
+          ...academicCriteriaSetFinalGradeItem
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

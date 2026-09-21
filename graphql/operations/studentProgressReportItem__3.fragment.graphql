@@ -1,0 +1,4 @@
+fragment studentProgressReportItem on StudentProgressReport {
+  id
+  template(filters: $templateFilters)
+}

@@ -1,0 +1,5 @@
+fragment checklistItem on ChecklistItem {
+  id
+  label
+  displaySequence
+}

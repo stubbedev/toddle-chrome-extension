@@ -1,0 +1,16 @@
+query getProjectGroupSelectedReportTemplateQuery($projectGroupId: ID!) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      selectedProjectReportTemplate {
+        ...attachmentItem
+        presetAttachment {
+          ...attachmentItem
+        }
+        parentProjectGroupReport {
+          ...attachmentItem
+        }
+      }
+    }
+  }
+}

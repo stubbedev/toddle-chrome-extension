@@ -1,0 +1,37 @@
+fragment projectGradebookStudentInfoItem on Student {
+  ...userNameFields
+  profileImage
+  registrationCategory
+  alertTypes {
+    ...alertTypeFields
+  }
+  ibPypElementRemarks(elementTypes: [PROJECT_GROUP]) {
+    id
+    message
+    ibPYPElementId
+    ibPYPElementType
+  }
+  ibPYPElementRatings(dataSet: PROJECT_ASSESSMENT, filtersForGeneric: $filtersForGeneric) {
+    id
+    value
+    ibPYPElementId
+    isComputedRating
+    academicCriteriaSet {
+      id
+      criteriaType
+    }
+    academicCriteriaValue {
+      id
+      label
+    }
+    parent {
+      id
+      ... on Project {
+        projectGroup {
+          id
+          type
+        }
+      }
+    }
+  }
+}

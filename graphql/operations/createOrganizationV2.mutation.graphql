@@ -1,0 +1,11 @@
+mutation createOrganizationV2($input: OrganizationCreateV2Input!, $curriculumProgramFilters: CurriculumProgramFilters) {
+  platform {
+    createOrganizationV2(input: $input) {
+      isSuccess
+      warning
+      organization {
+        ...organizationItem
+      }
+    }
+  }
+}

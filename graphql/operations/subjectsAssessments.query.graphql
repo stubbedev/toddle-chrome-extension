@@ -1,0 +1,26 @@
+query subjectsAssessments($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      name
+      subjectGroups {
+        id
+        name
+        subjects {
+          icon
+          id
+          name
+          contentSubject {
+            id
+            name
+            assessmentYearTitle
+            assessmentYearStartsFrom
+            assessmentYearEndsOn
+            subjectCenterGuide
+          }
+        }
+      }
+    }
+  }
+}

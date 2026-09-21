@@ -1,0 +1,9 @@
+mutation bulkApplyGradingPeriods($input: BulkUpsertSchoolAcademicTermsForAcademicYearInput!) {
+  organizationManagement {
+    bulkUpsertSchoolAcademicTermsForAcademicYear(input: $input) {
+      isSuccess
+      warning
+      academicTermIds
+    }
+  }
+}

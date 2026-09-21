@@ -1,0 +1,12 @@
+query getBehaviourSentimentsV2($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourSentiments {
+        id
+        label
+        value
+      }
+    }
+  }
+}

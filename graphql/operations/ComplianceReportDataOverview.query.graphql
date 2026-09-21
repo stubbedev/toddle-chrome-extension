@@ -1,0 +1,30 @@
+query ComplianceReportDataOverview($id: ID!, $input: DataOverviewInput!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      dataStatus
+      dataOverview(input: $input) {
+        sidebarUid
+        navStatuses {
+          sidebarUid
+          incompleteCount
+        }
+        rows {
+          entityId
+          identityCells {
+            fieldUid
+            values
+          }
+          statusCells {
+            sidebarUid
+            statusType
+            incompleteCount
+            incompleteFields {
+              fieldUid
+            }
+          }
+        }
+      }
+    }
+  }
+}

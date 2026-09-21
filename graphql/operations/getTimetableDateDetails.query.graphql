@@ -1,0 +1,50 @@
+query getTimetableDateDetails($id: ID!, $timetableFilter: TimetableFilterOptions!, $curriculumIds: [ID!]!, $timetableDatesFilter: RoutineDatesFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        timetables(filters: $timetableFilter) {
+          id
+          label
+          status
+          timetableTemplate {
+            id
+            label
+            dayCycle {
+              id
+              label
+              cycleMode
+            }
+          }
+          timetableDates(filters: $timetableDatesFilter) {
+            date
+            rotationEntity {
+              id
+              label
+              abbreviation
+            }
+            bellSchedule {
+              id
+              label
+              periodsEdge {
+                periods {
+                  period {
+                    id
+                    label
+                    abbreviation
+                    type
+                    isDefault
+                  }
+                  startTime
+                  endTime
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

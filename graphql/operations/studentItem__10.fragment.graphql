@@ -1,0 +1,15 @@
+fragment studentItem on Student {
+  id
+  notification(appType: WEB, filters: $filters, notificationCategoryFilter: $notificationCategoryFilter) {
+    ...notificationConnectionItem
+    edge(first: 30, after: $after) {
+      cursor
+      node {
+        ...notificationItem
+      }
+    }
+    pageInfo(first: 30, after: $after) {
+      ...pageInfoItem
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateFamilyInvitationStatus($input: UpdateFamilyInvitationStatusInput) {
+  platform {
+    updateFamilyInvitationStatus(input: $input) {
+      id
+    }
+  }
+}

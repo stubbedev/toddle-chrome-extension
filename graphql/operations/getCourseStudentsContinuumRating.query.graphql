@@ -1,0 +1,21 @@
+query getCourseStudentsContinuumRating($id: ID!, $studentFilters: CourseFilter, $after: String, $continuumFilters: ContinuumRatingsFilter, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYearId: ID!) {
+  node(id: $id, type: COURSE) {
+    ... on Course {
+      id
+      students(after: $after, filters: $studentFilters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            ...studentItem
+            continuumRatings(filters: $continuumFilters) {
+              continuum {
+                id
+              }
+              lastUpdatedAt
+            }
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

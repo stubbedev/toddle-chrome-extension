@@ -1,0 +1,12 @@
+mutation createSchoolGroup($input: CreateSchoolGroupInput!) {
+  platform {
+    createSchoolGroup(input: $input) {
+      isSuccess
+      warning
+      schoolGroup {
+        ...schoolGroupListItem
+        ...schoolGroupCounts
+      }
+    }
+  }
+}

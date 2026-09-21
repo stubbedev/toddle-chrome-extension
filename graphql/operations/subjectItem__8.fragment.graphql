@@ -1,0 +1,17 @@
+fragment subjectItem on Subject {
+  id
+  name
+  isArchived
+  gradingMethodologies(filters: $subjectGradingMethodologyFilters) {
+    id
+    entityDetail {
+      subjectId
+      gradeId
+    }
+    entityType
+    gradingMethodologyTypes
+  }
+  plannerElementNodeSet {
+    ...standardSetItem
+  }
+}

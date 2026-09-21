@@ -1,0 +1,8 @@
+query getStudentFeedWithFamilyRole($organizationId: ID!, $after: String, $filters: OrgConnectionFilterInput, $postFilters: PostFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $familiesFilter: FamiliesFiltersInput, $staffFilter: StaffStudentRelationFilter, $withStaffRelation: Boolean! = false, $familyMembersCountFilter: FamilyMembersFilterInput, $familyStatus: TotalCountsByFamilyStatusFilters, $userCourseMapFilters: UserCourseMapFilters, $userYearGroupMapFilters: YearGroupFilters, $courseGradeFilters: CourseGradeFilters, $yearGroupGradeFilters: YearGroupGradeFilters, $studentCurriculumProgramFilter: StudentCurriculumProgramFilter, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationStudentFeedWithFamilyRoleItem
+    }
+  }
+}

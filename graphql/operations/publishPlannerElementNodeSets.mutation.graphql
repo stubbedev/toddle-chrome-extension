@@ -1,0 +1,8 @@
+mutation publishPlannerElementNodeSets($input: PublishPlannerElementNodeSetsInput!) {
+  planner {
+    publishPlannerElementNodeSets(input: $input) {
+      isSuccess
+      jobId
+    }
+  }
+}

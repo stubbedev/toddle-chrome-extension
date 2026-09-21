@@ -1,0 +1,18 @@
+fragment chatDetailsItem on Chat {
+  id
+  lastActiveAt
+  conversation {
+    id
+    type
+    isActive
+    unreadMessageCount
+    users {
+      ...userItem
+      ... on FamilyMember {
+        children(organizationId: $organizationId) {
+          ...childItem
+        }
+      }
+    }
+  }
+}

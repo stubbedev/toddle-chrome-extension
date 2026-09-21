@@ -1,0 +1,8 @@
+mutation upsertScoreGradeAggregationInclusionMap($input: [UpsertScoreGradeAggregationInclusionMapInput!]!) {
+  platform {
+    upsertScoreGradeAggregationInclusionMap(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

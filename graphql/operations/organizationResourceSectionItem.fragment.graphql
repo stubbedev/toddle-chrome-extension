@@ -1,0 +1,25 @@
+fragment organizationResourceSectionItem on OrganizationResource {
+  id
+  label
+  type
+  resourceType
+  item {
+    ... on Question {
+      id
+      fields {
+        id
+        uid
+      }
+    }
+  }
+  childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+    resourceTypeBasedCount {
+      totalCount
+    }
+    edges {
+      node {
+        ...organizationResourceQuestionItem
+      }
+    }
+  }
+}

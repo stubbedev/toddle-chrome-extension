@@ -1,0 +1,25 @@
+query getFieldsCount($id: ID!, $type: ENTITY_TYPE_ENUM!, $templateFieldFilters: TemplateFieldFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on IbPypCurriculumProgram {
+      templateField(filters: $templateFieldFilters) {
+        totalCount
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      templateField(filters: $templateFieldFilters) {
+        totalCount
+      }
+    }
+    ... on UBDCurriculumProgram {
+      templateField(filters: $templateFieldFilters) {
+        totalCount
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      templateField(filters: $templateFieldFilters) {
+        totalCount
+      }
+    }
+  }
+}

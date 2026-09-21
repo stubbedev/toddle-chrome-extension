@@ -1,0 +1,62 @@
+fragment standardSetItem on PlannerElementNodeSet {
+  id
+  title
+  isArchived
+  subject {
+    id
+    name
+  }
+  gradingConfigurationWrapper {
+    gradeScale {
+      id
+    }
+    gradingConfiguration {
+      id
+      settings {
+        uid
+        value
+        groupType
+      }
+    }
+  }
+  gradeScales {
+    id
+    displayName
+    description
+    type
+    gradingType
+    isArchived
+    isUseForMastery
+    minValue
+    maxValue
+    calculateStandardGradesUsing
+    gradeScaleEntityDetails {
+      id
+      gradeScaleValues {
+        id
+        abbreviation
+        label
+        description
+        color
+        gradeScaleValueScores {
+          id
+          minValue
+          maxValue
+        }
+      }
+    }
+  }
+  plannerElementNodeSetWrapperV2 {
+    __typename
+    ... on PlannerBenchmarkSetWrapper {
+      publishedData {
+        totalCount
+      }
+    }
+    ... on PlannerElementNodeSetWrapper {
+      publishedData {
+        totalCount
+      }
+    }
+  }
+}

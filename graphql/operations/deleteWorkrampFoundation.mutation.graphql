@@ -1,0 +1,8 @@
+mutation deleteWorkrampFoundation($input: DeleteWorkrampFoundationInput!) {
+  platform {
+    deleteWorkrampFoundation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

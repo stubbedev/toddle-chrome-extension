@@ -1,0 +1,10 @@
+query getYearGroupTerms($id: ID!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      ...yearGroupTermItem
+      __typename
+    }
+    __typename
+  }
+}

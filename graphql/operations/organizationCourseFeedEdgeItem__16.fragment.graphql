@@ -1,0 +1,53 @@
+fragment organizationCourseFeedEdgeItem on Organization {
+  id
+  courses(first: 20, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    archivedCount
+    edges {
+      node {
+        ...courseItem
+        __typename
+      }
+      __typename
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment organizationResourceItem on Assessment {
+  id
+  organizationResourcesV2 {
+    edges {
+      node {
+        id
+        childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+          edges {
+            node {
+              id
+              item {
+                id
+              }
+              label
+              childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+                edges {
+                  node {
+                    id
+                    item {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+fragment resolvedMinimalTreeItem on ResolvedFieldValue {
+  id
+  type
+  ... on ResolvedFieldPlannerElementSet {
+    id
+    type
+    nodes {
+      ...plannerElementNodeWithAssocParentsItem
+    }
+  }
+  ... on ResolvedFieldSubjectGroup {
+    id
+    type
+    subjectGroups {
+      id
+      name
+    }
+  }
+  ...resolvedFieldVideoAttachmentItem
+}

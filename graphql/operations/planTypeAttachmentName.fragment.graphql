@@ -1,0 +1,4 @@
+fragment planTypeAttachmentName on Attachment {
+  id
+  name
+}

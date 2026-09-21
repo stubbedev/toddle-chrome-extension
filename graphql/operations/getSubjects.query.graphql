@@ -1,0 +1,17 @@
+query getSubjects($id: ID!, $subjectFilters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        curriculumProgram {
+          id
+          acronym
+          type
+          nodeInterfaceType
+        }
+      }
+    }
+  }
+}

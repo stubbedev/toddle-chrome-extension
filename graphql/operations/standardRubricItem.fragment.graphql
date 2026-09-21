@@ -1,0 +1,27 @@
+fragment standardRubricItem on StandardRubric {
+  id
+  label
+  standardRubricCriterias {
+    ...standardRubricCriteriaItem
+  }
+  associateScoreTool {
+    id
+    scoreToolData {
+      id
+      maxScore
+      isCustomMaxScore
+    }
+  }
+  createdBy {
+    ...staffItem
+  }
+  gradeScale {
+    id
+    gradingType
+  }
+  updatedAt
+  updatedBy {
+    ...staffItem
+  }
+  metadata
+}

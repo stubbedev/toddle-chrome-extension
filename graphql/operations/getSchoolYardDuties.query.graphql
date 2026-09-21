@@ -1,0 +1,22 @@
+query getSchoolYardDuties($id: ID!, $yardDutiesFilters: YardDutyFilters!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      yardDuties(filters: $yardDutiesFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            label
+            location {
+              id
+              label
+              abbreviation
+            }
+          }
+        }
+      }
+    }
+  }
+}

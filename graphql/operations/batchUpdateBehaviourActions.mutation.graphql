@@ -1,0 +1,13 @@
+mutation batchUpdateBehaviourActions($input: BatchUpdateBehaviourActionsInput!) {
+  platform {
+    batchUpdateBehaviourActions(input: $input) {
+      isSuccess
+      errors {
+        entityId
+        code
+        message
+        incidentCount
+      }
+    }
+  }
+}

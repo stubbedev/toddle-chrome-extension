@@ -1,0 +1,46 @@
+query getCurriculumClasses($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $filters: CurriculumProgramConnectionsFilters!) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      classes(first: 10000, filters: $filters) {
+        edges {
+          node {
+            ...classBasicDetailsItem
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      classes(first: 10000, filters: $filters) {
+        edges {
+          node {
+            ...classBasicDetailsItem
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      classes(first: 10000, filters: $filters) {
+        edges {
+          node {
+            ...classBasicDetailsItem
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      classes(first: 10000, filters: $filters) {
+        edges {
+          node {
+            ...classBasicDetailsItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment gradeBasicDetailsItem on Grade {
+  id
+  name
+}

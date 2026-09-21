@@ -1,0 +1,48 @@
+query getStudentFinalGradesRatings($id: ID!, $filtersForGeneric: ibPYPElementRatingFiltersForGeneric) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      firstName
+      ibPYPElementRatings(dataSet: FINAL_GRADES, filtersForGeneric: $filtersForGeneric) {
+        id
+        academicCriteriaValue {
+          id
+          label
+          abbreviation
+          displaySequence
+          color
+        }
+        academicCriteriaSet {
+          id
+          label
+          criteriaType
+          subType
+        }
+        ibPYPElementId
+        ibPYPElementType
+        isComputedRating
+        isRemoved
+        category {
+          id
+        }
+        globalCategory {
+          id
+        }
+        parentType
+        parent {
+          id
+          ... on StudentAssignment {
+            id
+            isSharedWithStudent
+          }
+        }
+        academicTerm {
+          id
+        }
+        value
+        metadata
+      }
+    }
+  }
+}

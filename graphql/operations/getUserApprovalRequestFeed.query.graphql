@@ -1,0 +1,20 @@
+query getUserApprovalRequestFeed($searchText: String) {
+  organizationManagement {
+    userApprovalRequestFeed(filters: {searchText: $searchText}) {
+      id
+      firstName
+      lastName
+      email
+      role
+      url
+      webUrl
+      createdAt
+      designation {
+        ...designationItem
+      }
+      organizationPreset {
+        ...organizationItem
+      }
+    }
+  }
+}

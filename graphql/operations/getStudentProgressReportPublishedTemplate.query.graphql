@@ -1,0 +1,8 @@
+query getStudentProgressReportPublishedTemplate($studentProgressReportId: ID!, $templateFilters: StudentReportTemplateFilter) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      ...studentProgressReportItem
+    }
+  }
+}

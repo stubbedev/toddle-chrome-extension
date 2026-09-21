@@ -1,0 +1,10 @@
+query getProjectGroupExternalSupervisorPendingApprovalCount($projectGroupId: ID!, $academicYearIds: [ID!]) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: {approvalStatus: [PENDING], supervisorType: EXTERNAL, academicYearIds: $academicYearIds}) {
+        totalCount
+      }
+    }
+  }
+}

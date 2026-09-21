@@ -1,0 +1,29 @@
+fragment projectGroupCoursesItem on ProjectGroup {
+  id
+  projects(filters: $projectGroupProjectFilters) {
+    totalCount
+  }
+  courses {
+    edges {
+      node {
+        id
+        title
+        students(filters: $courseFilters) {
+          edges {
+            node {
+              id
+              projects(filters: $projectFilters) {
+                id
+                title {
+                  id
+                  value
+                }
+              }
+              ...studentInfo
+            }
+          }
+        }
+      }
+    }
+  }
+}

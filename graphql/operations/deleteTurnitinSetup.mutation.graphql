@@ -1,0 +1,5 @@
+mutation deleteTurnitinSetup($input: DeleteTurnitinSetupInput!) {
+  integration {
+    deleteTurnitinSetup(input: $input)
+  }
+}

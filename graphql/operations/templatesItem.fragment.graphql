@@ -1,0 +1,5 @@
+fragment templatesItem on Organization {
+  templates(filters: $templateFilters) {
+    ...templateItem
+  }
+}

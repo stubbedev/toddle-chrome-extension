@@ -1,0 +1,8 @@
+query getCourseUserMap($id: ID!, $filters: CourseUserMapFilter, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      ...courseItem
+    }
+  }
+}

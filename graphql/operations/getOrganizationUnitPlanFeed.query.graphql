@@ -1,0 +1,23 @@
+query getOrganizationUnitPlanFeed($id: ID!, $filters: UnitPlansV2FeedFilters!, $showCollaborators: Boolean! = true, $after: String, $centralRepoInput: UnitCentralRepoConfigInput, $first: Int! = 24, $collaboratorsFilter: CollaboratorFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      unitPlansV2(first: $first, after: $after, filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...unitPlanItem
+            learningCourse {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}

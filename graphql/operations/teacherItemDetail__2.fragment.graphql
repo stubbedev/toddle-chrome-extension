@@ -1,0 +1,24 @@
+fragment teacherItemDetail on Staff {
+  id
+  firstName
+  lastName
+  profileImage
+  email
+  designation {
+    id
+  }
+  organization {
+    id
+    name
+    tags {
+      id
+      key
+      value
+    }
+  }
+  entityTags {
+    id
+    key
+    value
+  }
+}

@@ -1,0 +1,75 @@
+query getSchoolSuccessFormDetails($id: ID!) {
+  node(id: $id, type: SCHOOL_HANDOVER_FORM_RESPONSE) {
+    id
+    ... on GenericFormResponse {
+      id
+      form {
+        id
+        name
+        sections {
+          id
+          name
+          isPublishAllow
+          fields {
+            id
+            name
+            fieldInputType
+            fieldDescription
+            configuration
+            required
+            fieldOptions {
+              id
+              name
+            }
+            dependentFields {
+              field {
+                id
+                name
+                fieldInputType
+                fieldDescription
+                configuration
+                required
+                fieldOptions {
+                  id
+                  name
+                }
+              }
+              fieldOption {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+      fieldValues {
+        id
+        field {
+          id
+          name
+        }
+        value
+      }
+      attachments {
+        id
+        name
+        url
+        name
+        description
+        type
+        title
+        mimeType
+        thumbUrl
+        description
+        streamUrl
+        metadata
+      }
+      organization {
+        id
+        name
+      }
+      salesPerson
+      state
+    }
+  }
+}

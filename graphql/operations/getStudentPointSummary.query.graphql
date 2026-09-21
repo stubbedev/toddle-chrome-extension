@@ -1,0 +1,16 @@
+query getStudentPointSummary($id: ID!, $behaviourOverviewInput: BehaviourOverviewInput, $studentPointSummaryInput: StudentPointSummaryInput) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      behaviourOverview(input: $behaviourOverviewInput) {
+        pointSummary(input: $studentPointSummaryInput) {
+          startingBalance
+          meritTotal
+          demeritTotal
+          netTotal
+        }
+      }
+    }
+  }
+}

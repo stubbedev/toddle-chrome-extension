@@ -1,0 +1,77 @@
+query getStudentPortfolioDetails($id: ID!, $filters: StudentProjectPortfolioFilters, $academicYearId: ID, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!, $projectCountFilter: ProjectCountFilter, $ibPYPElementRatingsFilters: ibPYPElementRatingsFilter, $completionStatusFilters: CompletionStatusFilter) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...portfolioProgress
+            totalEvidencesCount
+            student {
+              ...userItem
+              alertTypes {
+                ...alertTypeFields
+              }
+              registrationCategory
+            }
+            staff {
+              ...supervisorInfo
+            }
+            plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+              id
+              plannerElementNode {
+                id
+                label
+                subText
+                metadata
+              }
+              isAchieved
+              grade {
+                id
+                name
+              }
+            }
+            projectCounts {
+              projectsCount(filters: $projectCountFilter)
+              experiencesCount
+            }
+            cascadeUpdateAt
+            cascadeUpdateBy {
+              ...userNameFields
+            }
+            createdAt
+            createdBy {
+              ...userNameFields
+            }
+            notificationBadgeCounts {
+              interestsAndGoalsCommentCount
+              learningOutcomesCommentCount
+              feedbackCount
+              feedbackCommentCount
+              totalUnreadCountsOfPortfolioProjects
+              newProjectCount
+              interviewCount
+            }
+            ibPYPElementRatings(filters: $ibPYPElementRatingsFilters) {
+              id
+              academicCriteriaSet {
+                id
+                criteriaType
+              }
+              academicCriteriaValue {
+                id
+                label
+                color
+                abbreviation
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

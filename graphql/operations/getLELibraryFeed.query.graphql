@@ -1,0 +1,85 @@
+query getLELibraryFeed($id: ID!, $filters: AssessmentOrganizationFilters, $after: String, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      assessments(first: 16, filters: $filters, after: $after) {
+        totalCount
+        edges {
+          node {
+            id
+            title {
+              id
+              value
+            }
+            image {
+              id
+              value
+            }
+            assessmentType {
+              id
+              value
+            }
+            taskType {
+              id
+              type
+              label
+            }
+            type
+            assessmentToolType
+            createdBy {
+              isArchivedV2(filters: $userArchivedFilters)
+              ...userItem
+            }
+            createdAt
+            grades {
+              id
+              name
+            }
+            unitPlan {
+              id
+            }
+            assessmentTools {
+              edges {
+                node {
+                  id
+                  assessmentToolItem {
+                    id
+                    ... on CommentAssessmentTool {
+                      id
+                    }
+                    ... on ScoreAssessmentTool {
+                      id
+                      scoreToolData {
+                        id
+                        maxScore
+                      }
+                    }
+                  }
+                  assessmentToolType
+                }
+              }
+            }
+            organizationResourcesV2(first: null, filters: {types: WORKSHEET_RESOURCE, resourceTypes: FOLDER}) {
+              resourceTypeBasedCount {
+                totalCount
+                questionStatusWiseCount {
+                  status
+                  count
+                }
+                questionTypeWiseCount {
+                  questionTypeUid
+                  count
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

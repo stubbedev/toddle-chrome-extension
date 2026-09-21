@@ -1,0 +1,11 @@
+query getCourseCumulativeTermWeights($id: ID!, $filters: GradingConfigurationFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      gradingConfigurations(filters: $filters) {
+        ...CumulativeTermWeightsFragment
+      }
+    }
+  }
+}

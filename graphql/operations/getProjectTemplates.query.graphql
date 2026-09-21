@@ -1,0 +1,9 @@
+query getProjectTemplates($id: ID!) {
+  node(id: $id, type: PLANNER_TEMPLATE) {
+    ... on PlannerTemplate {
+      id
+      name
+      body
+    }
+  }
+}

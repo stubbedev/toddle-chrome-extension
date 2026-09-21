@@ -1,0 +1,8 @@
+mutation bulkUploadByFile($url: String!, $type: BULK_UPLOAD_TYPE_ENUM!, $organizationId: ID, $inputs: JSON) {
+  platform {
+    bulkUploadByFile(input: {url: $url, type: $type, organizationId: $organizationId, inputs: $inputs}) {
+      successful
+      errorsJSON
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation deleteCurriculumWebsite($input: DeleteCurriculumWebsiteInput!) {
+  planner {
+    deleteCurriculumWebsite(input: $input) {
+      isSuccess
+    }
+  }
+}

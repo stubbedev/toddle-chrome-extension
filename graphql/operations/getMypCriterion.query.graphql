@@ -1,0 +1,15 @@
+query getMypCriterion($curriculumProgramId: ID!) {
+  node(id: $curriculumProgramId, type: IB_MYP_CURRICULUM_PROGRAM) {
+    id
+    ... on IbMypCurriculumProgram {
+      id
+      plannerElementSets(elementTypes: [MYP_LEARNING_OBJECTIVES]) {
+        id
+        nodes {
+          id
+          ...plannerElementNodeBasicItem
+        }
+      }
+    }
+  }
+}

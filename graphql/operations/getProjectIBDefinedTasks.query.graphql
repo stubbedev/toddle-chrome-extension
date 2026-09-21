@@ -1,0 +1,16 @@
+query getProjectIBDefinedTasks($id: ID!, $projectTaskFilters: ProjectTaskFilters) {
+  node(id: $id, type: PROJECT) {
+    ... on Project {
+      id
+      reportStatus
+      fields {
+        id
+        uid
+        value
+      }
+      tasks(filters: $projectTaskFilters) {
+        ...projectTaskResponseItem
+      }
+    }
+  }
+}

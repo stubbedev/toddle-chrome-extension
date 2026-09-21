@@ -1,0 +1,16 @@
+query getOrganizationGlobalConstants($organizationId: ID!, $filter: GlobalConstantsFilterOptions) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      globalConstants(filter: $filter) {
+        id
+        name
+        value
+        curriculumProgram {
+          id
+          type
+        }
+      }
+    }
+  }
+}

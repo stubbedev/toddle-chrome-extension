@@ -1,0 +1,7 @@
+fragment projectGroupStudentsItem on Student {
+  ...studentInfo
+  registrationCategory
+  projects(filters: {projectGroupId: $id, projectArchivalState: ACTIVE}) @include(if: $fetchProjects) {
+    ...projectGroupStudentProjectInfoItem
+  }
+}

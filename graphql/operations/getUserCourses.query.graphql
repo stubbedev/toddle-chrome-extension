@@ -1,0 +1,11 @@
+query getUserCourses($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: CourseFilter, $isCurriculumProgramFree: Boolean! = false, $courseGradeFilters: CourseGradeFilters, $enabledModulesFilters: EnabledModulesFiltersInput) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+    ... on Student {
+      ...studentCourseItem
+    }
+  }
+}

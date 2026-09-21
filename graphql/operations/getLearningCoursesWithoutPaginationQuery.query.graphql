@@ -1,0 +1,19 @@
+query getLearningCoursesWithoutPaginationQuery($organizationId: ID!, $filters: LearningCourseFilters, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      learningCourses(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            ...courseItem
+            curriculumProgram {
+              id
+              label
+              isPrimary
+            }
+          }
+        }
+      }
+    }
+  }
+}

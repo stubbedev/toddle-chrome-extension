@@ -1,0 +1,22 @@
+query getStudentProgressReportDetails($studentProgressReportId: ID!, $remarkFilters: StudentReportRemarkFilter, $ratingFilters: StudentReportRatingFilter, $shouldFetchNewEntitiesOnly: Boolean!, $shouldSkipGpaAssociatedData: Boolean!) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      attendanceSummaryV2 {
+        ...studentProgressReportAttendanceItemV2
+      }
+      ratings(filters: $ratingFilters) @skip(if: $shouldFetchNewEntitiesOnly) {
+        ...progressReportRatingItem
+      }
+      remarks(filters: $remarkFilters) {
+        ...progressReportRemarkItem
+      }
+      gpaAssociatedData @skip(if: $shouldSkipGpaAssociatedData) {
+        ...gpaAssociatedDataItem
+      }
+      completedSections
+      reportProjectNodes
+    }
+  }
+}

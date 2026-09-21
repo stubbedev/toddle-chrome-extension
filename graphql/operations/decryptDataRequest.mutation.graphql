@@ -1,0 +1,10 @@
+mutation decryptDataRequest($input: EncryptDataInput!) {
+  platform {
+    decryptDataRequest(input: $input) {
+      isSuccess
+      processedText
+      __typename
+    }
+    __typename
+  }
+}

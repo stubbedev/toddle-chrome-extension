@@ -1,0 +1,6 @@
+fragment curriculumProgramStandardSetsItem on CurriculumProgram {
+  id
+  plannerElementNodeSets(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    ...subjectStandardItem
+  }
+}

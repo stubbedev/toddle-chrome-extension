@@ -1,0 +1,5 @@
+mutation shareCourseFlowResource($input: ShareLearningCourseFlowResourceInput!) {
+  planner {
+    shareLearningCourseFlowResource(input: $input)
+  }
+}

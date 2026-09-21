@@ -1,0 +1,7 @@
+mutation handleSnPEvidenceInPractice($cycleId: ID!, $practiceId: ID!, $removedEvidence: [ID!], $addedEvidence: [SnPEvidenceAddInput!], $evidenceStatus: SNP_EVIDENCE_STATUS_ENUM) {
+  platform {
+    handleSnPEvidenceInPractice(input: {evaluationCycleId: $cycleId, id: $practiceId, removedEvidence: $removedEvidence, addedEvidence: $addedEvidence, evidenceStatus: $evidenceStatus}) {
+      id
+    }
+  }
+}

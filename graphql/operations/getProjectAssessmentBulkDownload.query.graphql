@@ -1,0 +1,9 @@
+query getProjectAssessmentBulkDownload($id: ID!, $projectIds: [ID!], $academicYearIds: [ID!]) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      assessmentCsvExport(filters: {projectIds: $projectIds, academicYearIds: $academicYearIds})
+    }
+  }
+}

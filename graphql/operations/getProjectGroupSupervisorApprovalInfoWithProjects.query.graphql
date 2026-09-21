@@ -1,0 +1,26 @@
+query getProjectGroupSupervisorApprovalInfoWithProjects($projectGroupId: ID!, $filters: ProjectGroupSupervisorFilters, $projectFieldFilters: PlannerFieldFilter, $projectFilters: ProjectGroupSupervisorProjectsFilters, $academicYearId: ID) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...projectGroupSupervisorApprovalInfoItem
+            projects(filters: $projectFilters) {
+              id
+              fields(filters: $projectFieldFilters) {
+                id
+                uid
+                value
+              }
+              students {
+                ...studentInfo
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

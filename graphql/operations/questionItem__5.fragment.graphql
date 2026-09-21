@@ -1,0 +1,64 @@
+fragment questionItem on Question {
+  id
+  questionType {
+    id
+    uid
+    config
+  }
+  children {
+    edges {
+      id
+      sequence
+    }
+  }
+  questionTitleV2 {
+    id
+    uid
+    value
+  }
+  parentIdV2
+  parentTypeV2
+  sequence
+  libraryUid
+  questionScoreV2
+  updatedAt
+  metadata
+  presetQuestionId
+  assessmentTools {
+    totalCount
+    edges {
+      node {
+        ...questionAssessmentToolItem
+      }
+    }
+  }
+  fields {
+    ...questionFieldsItem
+  }
+  answerFields {
+    ...questionFieldsItem
+  }
+  associatedEntities {
+    id
+    ... on Subject {
+      id
+      name
+    }
+    ... on GenericTag {
+      id
+      label
+    }
+    ... on PlannerElementNode {
+      id
+      label
+      depth
+    }
+  }
+  aiConversation {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}

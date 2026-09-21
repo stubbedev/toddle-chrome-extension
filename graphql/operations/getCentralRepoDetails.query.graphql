@@ -1,0 +1,37 @@
+query getCentralRepoDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      tags {
+        id
+        key
+        value
+      }
+      repoOrganization {
+        commonCourseId
+        subjects {
+          id
+          name
+          tags {
+            id
+            key
+            value
+          }
+        }
+        grades {
+          id
+          name
+        }
+        curriculumPrograms {
+          id
+          type
+          curriculum {
+            id
+            label
+            type
+          }
+        }
+      }
+    }
+  }
+}

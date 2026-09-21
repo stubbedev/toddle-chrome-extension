@@ -1,0 +1,12 @@
+query getLTIIntegrationsCreds($input: LTIIntegrationsCredsQueryInput!, $includeMetadata: Boolean = false) {
+  integration {
+    getLTIIntegrationsCreds(input: $input) {
+      id
+      entityType
+      entityId
+      serviceName
+      name
+      metadata @include(if: $includeMetadata)
+    }
+  }
+}

@@ -1,0 +1,77 @@
+query getMultiUserPeriodListV3($ids: [ID!], $periodFilters: PeriodFilterOptions) {
+  multiNode(ids: $ids, type: STUDENT) {
+    ... on Student {
+      ...studentPeriodListItem
+    }
+  }
+}
+
+fragment studentPeriodListItem on Student {
+  id
+  ...studentNameFields
+  enrolledPeriodsV3(filters: $periodFilters) {
+    ...selectedPeriodItem
+  }
+}
+
+fragment selectedPeriodItem on TimetableSlotV2 {
+  date
+  isSelected
+  day
+  rotationEntity {
+    id
+    label
+  }
+  location
+  course {
+    ...courseItem
+  }
+  period {
+    ...periodItem
+    abbreviation
+  }
+  teachers {
+    staff {
+      ...staffItem
+    }
+  }
+  subject
+  startTime
+  endTime
+}
+
+fragment courseItem on Course {
+  id
+  title
+  isArchived
+}
+
+fragment periodItem on Period {
+  id
+  label
+  type
+  isDefault
+  startTime
+  endTime
+  sequence
+  isDefault
+  abbreviation
+}
+
+fragment staffItem on Staff {
+  id
+  ...staffNameFields
+  profileImage
+  email
+  showPitchScreen
+  role
+  showClassSelectionScreen
+  showBifurcationScreen
+  isDevUser
+  isArchived
+  entityTags {
+    id
+    key
+    value
+  }
+}

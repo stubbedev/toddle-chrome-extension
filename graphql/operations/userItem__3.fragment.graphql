@@ -1,0 +1,42 @@
+fragment userItem on User {
+  ...userDetailItem
+  ... on Student {
+    sourceId
+    isArchived
+    isDeleted
+    preferredName
+    pronouns
+    prefix
+    suffix
+    yearGroup {
+      id
+      grade {
+        id
+        name
+      }
+    }
+    familyMembers @include(if: $getStudentFamilyMembers) {
+      id
+      firstName
+      lastName
+      middleName
+      type
+      profileImage
+      preferredName
+      pronouns
+      suffix
+      prefix
+      children(organizationId: $organizationId) {
+        id
+        firstName
+        lastName
+        middleName
+        preferredName
+        pronouns
+        suffix
+        prefix
+        sourceId
+      }
+    }
+  }
+}

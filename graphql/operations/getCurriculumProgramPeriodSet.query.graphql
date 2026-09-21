@@ -1,0 +1,11 @@
+query getCurriculumProgramPeriodSet($id: ID!, $periodSetFilter: PeriodSetFilterOptions, $selectedCurriculumId: [ID]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $selectedCurriculumId) {
+        ...curriculumProgramItem
+      }
+    }
+  }
+}

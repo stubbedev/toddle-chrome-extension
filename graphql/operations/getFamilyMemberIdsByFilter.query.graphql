@@ -1,0 +1,8 @@
+query getFamilyMemberIdsByFilter($organizationId: ID!, $filters: FamilyMembersFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      familyMemberIdsByFilter(filters: $filters)
+    }
+  }
+}

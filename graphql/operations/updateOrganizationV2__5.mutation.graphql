@@ -1,0 +1,49 @@
+mutation updateOrganizationV2($input: OrganizationUpdateV2Input) {
+  platform {
+    updateOrganizationV2(input: $input) {
+      isSuccess
+      warning
+      organization {
+        id
+        name
+        logo
+        banner
+        attachments {
+          id
+          url
+          thumbUrl
+          metadata
+          name
+          type
+        }
+        region
+        curriculumPrograms(filters: {programType: ALL}) {
+          id
+          label
+          displayName
+          accountProgram {
+            id
+          }
+          attachments {
+            id
+            name
+            title
+            url
+            parentType
+          }
+          address {
+            id
+            line1
+            city
+            state
+            zipcode
+            country
+            phoneNumber
+            email
+          }
+          websiteLink
+        }
+      }
+    }
+  }
+}

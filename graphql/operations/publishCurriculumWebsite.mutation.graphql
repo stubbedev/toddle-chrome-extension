@@ -1,0 +1,9 @@
+mutation publishCurriculumWebsite($input: PublishCurriculumWebsiteInput!, $includeWorkflowId: Boolean!) {
+  planner {
+    publishCurriculumWebsite(input: $input) {
+      isSuccess
+      publishedWebsiteSnapshotId
+      jobId @include(if: $includeWorkflowId)
+    }
+  }
+}

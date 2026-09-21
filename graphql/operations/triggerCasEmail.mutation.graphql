@@ -1,0 +1,8 @@
+mutation triggerCasEmail($input: SendCasExternalInviteEmailInput!) {
+  documentation {
+    sendCasExternalInviteEmail(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

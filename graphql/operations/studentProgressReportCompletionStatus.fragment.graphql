@@ -1,0 +1,4 @@
+fragment studentProgressReportCompletionStatus on StudentProgressReport {
+  id
+  completedSections
+}

@@ -1,0 +1,7 @@
+fragment plannerElementSetItem on PlannerElementSet {
+  id
+  label
+  plannerElementNodeSets {
+    id
+  }
+}

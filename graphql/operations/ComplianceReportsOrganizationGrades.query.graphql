@@ -1,0 +1,19 @@
+query ComplianceReportsOrganizationGrades($id: ID!, $filters: GradeFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(filters: $filters) {
+        id
+        name
+        globalGrade {
+          id
+          name
+        }
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

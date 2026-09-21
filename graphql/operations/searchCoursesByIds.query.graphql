@@ -1,0 +1,25 @@
+query searchCoursesByIds($organizationId: ID!, $searchText: String!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(filters: {searchText: $searchText}) {
+        edges {
+          node {
+            id
+            title
+            students {
+              totalCount
+            }
+            collaborator {
+              totalCount
+            }
+            familyMembers {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

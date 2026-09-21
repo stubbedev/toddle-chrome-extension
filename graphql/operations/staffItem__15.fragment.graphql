@@ -1,0 +1,8 @@
+fragment staffItem on Staff {
+  id
+  ...staffNameFields
+  profileImage
+  email
+  role
+  isArchived
+}

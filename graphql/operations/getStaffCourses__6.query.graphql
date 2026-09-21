@@ -1,0 +1,21 @@
+query getStaffCourses($id: ID!, $filters: CourseFilter, $courseGradeFilters: CourseGradeFilters) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      coursesV2(filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            subjects {
+              id
+            }
+            primaryGrade(filters: $courseGradeFilters) {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

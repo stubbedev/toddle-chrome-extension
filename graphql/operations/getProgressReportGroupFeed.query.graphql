@@ -1,0 +1,8 @@
+query getProgressReportGroupFeed($organizationId: ID!, $filters: ProgressReportTaskGroupsConncetionFilter, $after: String) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...progressReportGroupItem
+    }
+  }
+}

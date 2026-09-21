@@ -1,0 +1,8 @@
+mutation updateStaffPermissionModules($updatedValues: [UpdateStaffPermissionModulesInput!]!) {
+  platform {
+    updateStaffPermissionModules(input: $updatedValues) {
+      id
+    }
+    __typename
+  }
+}

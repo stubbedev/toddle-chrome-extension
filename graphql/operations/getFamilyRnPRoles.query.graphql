@@ -1,0 +1,15 @@
+query getFamilyRnPRoles($id: ID!, $rnpViewFilters: RnpViewFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      rnpView(filters: $rnpViewFilters) {
+        id
+        ... on RnPRole {
+          id
+          label
+        }
+      }
+    }
+  }
+}

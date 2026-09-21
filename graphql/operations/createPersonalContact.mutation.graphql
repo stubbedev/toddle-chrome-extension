@@ -1,0 +1,7 @@
+mutation createPersonalContact($firstName: String, $middleName: String, $lastName: String, $email: String, $phoneNumber: String, $secondPhoneNumber: String, $thirdPhoneNumber: String, $relationship: String, $userId: ID!) {
+  platform {
+    createPersonalContact(input: {firstName: $firstName, middleName: $middleName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, secondPhoneNumber: $secondPhoneNumber, thirdPhoneNumber: $thirdPhoneNumber, relationship: $relationship, userId: $userId}) {
+      ...personalContactsItem
+    }
+  }
+}

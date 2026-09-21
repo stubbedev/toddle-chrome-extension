@@ -1,0 +1,32 @@
+query getUnitPlans($ids: [ID!], $uids: [String!], $filters: UnitInsightFilters) {
+  multiNode(ids: $ids, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      title {
+        id
+        value
+      }
+      image {
+        id
+        value
+      }
+      learningCourse {
+        id
+        title
+      }
+      courses {
+        id
+        title
+      }
+      fields(uids: $uids) {
+        ...unitPlanFieldBasicDetailsItem
+      }
+      unitInsights(filters: $filters) {
+        assessments {
+          ...assessmentDetailsItem
+        }
+      }
+    }
+  }
+}

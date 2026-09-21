@@ -1,0 +1,9 @@
+mutation updateSchoolGroupDraft($input: SchoolGroupDraftStateUpdateInput!) {
+  planner {
+    updateSchoolGroupDraft(input: $input) {
+      key
+      name
+      isSelected
+    }
+  }
+}

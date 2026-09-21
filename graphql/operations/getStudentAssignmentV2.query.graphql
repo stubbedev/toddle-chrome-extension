@@ -1,0 +1,94 @@
+query getStudentAssignmentV2($id: ID!, $userFilter: TOOL_RESPONSE_USER_FILTER_ENUM, $entityEventsFilter: EntityEventsFilter) {
+  node(id: $id, type: STUDENT_ASSIGNMENT) {
+    id
+    ... on StudentAssignment {
+      id
+      isSubmitted
+      isEvaluationApplicable
+      isSharedWithStudent
+      toolResponsesV2(filters: {userFilter: $userFilter}) {
+        id
+        toolId
+        toolType
+        toolResponses {
+          ...toolResponseItem
+        }
+      }
+      assignment {
+        id
+        contentType
+        isLockScreenEnabled
+        isSafeBrowserEnabled
+        isTimedTestEnabled
+        timedTestDuration
+        isTeacherEvaluationEnabled
+        isStudentEvaluationEnabled
+        isTeacherEvaluationEnabled
+        isStudentSubmissionEnabled
+        showStudentResponse
+        isOnScreenCalculatorEnabled
+        closeSubmissionDate
+        isFixedStartTime
+        publishedAt
+        content {
+          ... on Assessment {
+            id
+            templateId
+            taskType {
+              id
+              type
+              label
+            }
+            allFields {
+              id
+              uid
+              value
+              resolvedMinimalTree {
+                ...resolvedMinimalTreeItem
+              }
+            }
+            assessmentTools {
+              edges {
+                node {
+                  ...questionAssessmentToolItem
+                }
+              }
+            }
+          }
+        }
+        course {
+          id
+          genericTags {
+            id
+            label
+          }
+        }
+      }
+      lockingState {
+        state
+      }
+      ibPYPElementRatings {
+        id
+        value
+        ibPYPElementType
+      }
+      events(filters: $entityEventsFilter) {
+        ...entityEventTrackItem
+      }
+      submissions {
+        edges {
+          ...studentAssigmentSubmissionItem
+        }
+      }
+      conversation {
+        id
+        unreadMessageCount
+        unreadMessageCounts {
+          itemTypeV2
+          itemType
+          count
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+fragment resourceConnectionItem on PlannerResourceConnection {
+  totalCount
+  edges {
+    node {
+      ...resourceAttachmentItem
+    }
+  }
+}
+
+fragment resourceAttachmentItem on PlannerResource {
+  id
+  title
+  type
+  description
+  usedCount
+  createdBy {
+    ...staffItem
+  }
+  attachments {
+    ...attachmentItem
+  }
+}
+
+fragment curriculumProgramBasicDetailsItem on CurriculumProgram {
+  id
+  type
+  acronym
+  nodeInterfaceType
+}

@@ -1,0 +1,33 @@
+query getPinnedCharts($id: ID!, $input: PinnedChartFilterInput, $isRenderSpecEnabled: Boolean! = false) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      analytics {
+        pinnedCharts(filter: $input) {
+          totalCount
+          edges {
+            chartId
+            chartTitle
+            messageId
+            renderSpec @include(if: $isRenderSpecEnabled)
+            aiMessage {
+              ...pinnedChartMessageFragment
+            }
+            conversationId
+            graphData
+            createdBy
+            createdAt
+            isStatic
+            updatedAt
+            keyInsight
+            refreshFrequency
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+      }
+    }
+  }
+}

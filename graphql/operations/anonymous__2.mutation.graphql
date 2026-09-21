@@ -1,0 +1,5 @@
+mutation($input: UndoRedoDocumentBlockInput!) {
+  planner {
+    undoRedoDocumentBlock(input: $input)
+  }
+}

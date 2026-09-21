@@ -1,0 +1,12 @@
+query getGradePointGradeBoundaries($organizationId: ID!, $curriculumProgramIds: [ID!], $criteriaTypes: [CriteriaTypeEnum!], $gradePointGradeBoundarySubTypes: [CRITERIA_SET_SUB_TYPE_ENUM!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: {curriculumProgramIds: $curriculumProgramIds, criteriaTypes: $criteriaTypes, gradePointGradeBoundarySubTypes: $gradePointGradeBoundarySubTypes}) {
+          ...gradePointGradeBoundaryCriteriaSetItem
+        }
+      }
+    }
+  }
+}

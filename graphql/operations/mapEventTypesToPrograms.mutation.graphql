@@ -1,0 +1,8 @@
+mutation mapEventTypesToPrograms($input: MapEventTypesToProgramsInput!) {
+  platform {
+    mapEventTypesToPrograms(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

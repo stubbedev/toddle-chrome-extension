@@ -1,0 +1,33 @@
+fragment deadline on ProjectGroupDeadline {
+  id
+  deadlineDate
+  title
+  description
+  isDeadlineAllDay
+  statusWiseProjects(filters: $statusWiseProjectFilters) {
+    completedProjects {
+      id
+      students {
+        ...userNameFields
+        profileImage
+      }
+    }
+    pendingProjects {
+      id
+      students {
+        ...userNameFields
+        profileImage
+      }
+    }
+  }
+  projectGroup {
+    ...projectGroupInfo
+    yearGroup {
+      id
+      name
+    }
+  }
+  createdBy {
+    ...supervisorInfo
+  }
+}

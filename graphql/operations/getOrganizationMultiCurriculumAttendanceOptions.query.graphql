@@ -1,0 +1,27 @@
+query getOrganizationMultiCurriculumAttendanceOptions($id: ID!, $organizationAttendanceFilters: OrganizationAttendanceFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      attendanceV2(filters: $organizationAttendanceFilters) {
+        attendanceOptionSet {
+          attendanceOptions {
+            curriculumProgramSettings {
+              settings {
+                value
+              }
+            }
+            attendanceOption {
+              id
+            }
+          }
+          attendanceCategories {
+            id
+            attendanceOptions {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateAiContextCategoryUserPreferenceForProgressReport($input: UpdateAiContextCategoryUserPreferenceInputs!) {
+  documentation {
+    updateAiContextCategoryUserPreferenceForProgressReport(input: $input) {
+      isSuccess
+    }
+  }
+}

@@ -1,0 +1,7 @@
+query getBenchmarkStandardSets($globalSubjects: [ID!], $searchText: String) {
+  globalConstants {
+    benchmarkStandardSets(globalSubjects: $globalSubjects, searchText: $searchText) {
+      ...standardSetItem
+    }
+  }
+}

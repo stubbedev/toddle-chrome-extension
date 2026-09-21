@@ -1,0 +1,49 @@
+query getPlannerElementNodeSetIdsForReports($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: PlannerElementNodeSetFilters) {
+  node(id: $id, type: $type) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $filters) {
+        edges {
+          node {
+            id
+            type
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $filters) {
+        edges {
+          node {
+            id
+            type
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $filters) {
+        edges {
+          node {
+            id
+            type
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: $filters) {
+        edges {
+          node {
+            id
+            type
+          }
+        }
+      }
+    }
+  }
+}

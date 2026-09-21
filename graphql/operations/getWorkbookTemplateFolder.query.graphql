@@ -1,0 +1,35 @@
+query getWorkbookTemplateFolder($id: ID!, $types: ENTITY_TYPE_ENUM!, $searchText: String, $first: Int, $after: String, $states: [ORGANIZATION_RESOURCE_STATE_ENUM]) {
+  node(id: $id, type: $types) {
+    id
+    ... on OrganizationResource {
+      childrenV2(first: $first, after: $after, filters: {searchText: $searchText, states: $states}) {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            ... on OrganizationResource {
+              id
+              label
+              type
+              resourceType
+              state
+              attachment {
+                ...attachmentFragment
+              }
+              createdBy {
+                id
+                firstName
+                middleName
+                lastName
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

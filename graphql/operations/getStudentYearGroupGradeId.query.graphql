@@ -1,0 +1,14 @@
+query getStudentYearGroupGradeId($studentId: ID!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      yearGroup {
+        id
+        grade {
+          id
+        }
+      }
+    }
+  }
+}

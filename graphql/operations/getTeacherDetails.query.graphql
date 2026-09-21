@@ -1,0 +1,6 @@
+query getTeacherDetails($id: ID!, $academicYear: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ...teacherItem
+  }
+}

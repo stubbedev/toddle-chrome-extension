@@ -1,0 +1,49 @@
+query getMapleBearGradeAssociationList($id: ID!, $unitPlansFeedFilters: UnitPlansV2FeedFilters, $unitPlanFilters: UnitPlanFilter, $classesFilters: CourseFilterInput, $coursesFilters: SubjectCourseFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      allRegionTags {
+        id
+        region
+        courses(filters: $classesFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              title
+              grade {
+                id
+              }
+              unitPlans(filters: $unitPlanFilters) {
+                totalCount
+              }
+              academicYears {
+                id
+                startDate
+                endDate
+              }
+              gradesWithAcademicYear {
+                grade {
+                  id
+                  name
+                }
+                academicYear {
+                  id
+                  startDate
+                  endDate
+                }
+              }
+            }
+          }
+        }
+        unitPlans(filters: $unitPlansFeedFilters) {
+          totalCount
+        }
+      }
+      courses(filters: $coursesFilters) {
+        totalCount
+      }
+    }
+  }
+}

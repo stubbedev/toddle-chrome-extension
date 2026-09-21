@@ -1,0 +1,17 @@
+query getOrganizationGrades($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades {
+        id
+        globalGrade {
+          id
+          name
+        }
+        curriculumProgram {
+          id
+        }
+      }
+    }
+  }
+}

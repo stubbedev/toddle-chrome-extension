@@ -1,0 +1,13 @@
+mutation updateAttachment($input: AttachmentUpdateInput!) {
+  platform {
+    updateAttachment(input: $input) {
+      ...attachmentItem
+      modalityAttachment {
+        ... on ModalityFile {
+          id
+          content
+        }
+      }
+    }
+  }
+}

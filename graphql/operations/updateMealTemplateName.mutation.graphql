@@ -1,0 +1,8 @@
+mutation updateMealTemplateName($id: ID!, $title: String) {
+  documentation {
+    updatePostTemplateDataSet(input: {id: $id, title: $title}) {
+      isSuccess
+      warning
+    }
+  }
+}

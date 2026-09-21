@@ -1,0 +1,5 @@
+mutation inviteProjectGroupSupervisor($projectGroupId: ID!, $addedArray: [ID!], $removedArray: [ID!]) {
+  documentation {
+    inviteProjectGroupSupervisors(input: {projectGroupId: $projectGroupId, staff: {added: $addedArray, removed: $removedArray}})
+  }
+}

@@ -1,0 +1,8 @@
+mutation updateFoodCodes($input: PostTemplateItemCodeUpdateInput!) {
+  documentation {
+    updatePostTemplateItemCode(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getSubTaskFeed($id: ID!, $filters: IntegrationSubTaskFeedFilterInput) {
+  node(id: $id, type: INTEGRATION_JOB) {
+    id
+    ... on IntegrationJob {
+      ...subTaskFeedEdgeItem
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation integrationUpdateSyncMetaDataV3($service: INTEGRATION_SERVICE_NAME!, $metadata: JSON!, $entityId: ID, $entityType: INTEGRATION_CONFIG_ENTITY_TYPE_ENUM, $module: INTEGRATION_CONFIG_MODULE_ENUM, $cascadeToMembers: Boolean, $isRawAuthentication: Boolean) {
+  integration {
+    integrationUpdateSyncMetaData(input: {service: $service, metadata: $metadata, entityId: $entityId, entityType: $entityType, module: $module, cascadeToMembers: $cascadeToMembers, isRawAuthentication: $isRawAuthentication})
+  }
+}

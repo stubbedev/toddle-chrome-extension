@@ -1,0 +1,11 @@
+mutation addUserV2($email: String, $userType: USER_TYPE_ENUM!, $courses: [ID!], $firstName: String, $middleName: String, $lastName: String, $pronouns: String, $preferredName: String, $prefix: String, $suffix: String, $profileImage: String, $designation: ID, $sourceId: String, $curriculumProgramId: ID, $curriculumProgramIds: [ID!], $snpEvaluationCycles: [ID!], $tags: [ID!], $yearGroupId: ID, $registrationCategory: REGISTRATION_CATEGORY_TYPE_ENUM, $nccdCategory: NCCD_CATEGORY_ENUM, $courseTagMap: [CourseTagMapInput!], $staffRelationMap: [StaffRelationMapInput!], $gender: String, $otherDetails: OtherUserDetailsInput, $mergeUserWithSameEmail: Boolean, $allCourseMap: AllCourseMapInput, $displayRole: String, $academicYearId: ID, $aclUserRoles: ACLUserRolesInput, $curriculumAcademicYearMap: [CurriculumAcademicYearMapInput!], $enrollmentDate: String) {
+  platform {
+    addUserV2(input: {email: $email, userType: $userType, courses: $courses, firstName: $firstName, middleName: $middleName, lastName: $lastName, pronouns: $pronouns, preferredName: $preferredName, prefix: $prefix, suffix: $suffix, profileImage: $profileImage, designation: $designation, sourceId: $sourceId, curriculumProgramId: $curriculumProgramId, snpEvaluationCycles: $snpEvaluationCycles, tags: $tags, yearGroupId: $yearGroupId, registrationCategory: $registrationCategory, nccdCategory: $nccdCategory, courseTagMap: $courseTagMap, staffRelationMap: $staffRelationMap, gender: $gender, otherDetails: $otherDetails, mergeUserWithSameEmail: $mergeUserWithSameEmail, allCourseMap: $allCourseMap, displayRole: $displayRole, academicYearId: $academicYearId, curriculumProgramIds: $curriculumProgramIds, aclUserRoles: $aclUserRoles, curriculumAcademicYearMap: $curriculumAcademicYearMap, enrollmentDate: $enrollmentDate}) {
+      isSuccess
+      warning
+      user {
+        ...userItem
+      }
+    }
+  }
+}

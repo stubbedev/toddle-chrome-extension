@@ -1,0 +1,24 @@
+query getEntireCoursesFeed($organizationId: ID!, $filters: LearningCourseFilters, $gradeFilters: LearningCourseGradeFilters, $termFilters: TermFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(first: 10000, filters: $filters) {
+        edges {
+          node {
+            ...courseItem
+          }
+        }
+        count {
+          totalCount
+        }
+      }
+    }
+  }
+}
+
+mutation handleTeacherCourseAssociation($input: InitBluePrintCourseTeacherCourseSyncInput!) {
+  planner {
+    initBluePrintCourseTeacherCourseSync(input: $input)
+  }
+}

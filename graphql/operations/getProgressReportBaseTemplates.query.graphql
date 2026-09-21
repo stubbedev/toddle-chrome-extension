@@ -1,0 +1,12 @@
+query getProgressReportBaseTemplates($organizationId: ID!, $filters: ProgressReportBaseTemplateFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      progressReportBaseTemplates(filters: $filters) {
+        id
+        name
+        type
+      }
+    }
+  }
+}

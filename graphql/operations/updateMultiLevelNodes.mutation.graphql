@@ -1,0 +1,5 @@
+mutation updateMultiLevelNodes($draftId: ID!, $rootNodes: [ID!] = [], $removedNodes: [ID!] = [], $updatedNodes: [JSON!] = []) {
+  organizationManagement {
+    updateMultiLevelNodesDraft(input: {id: $draftId, rootNodes: $rootNodes, removedNodes: $removedNodes, updatedNodes: $updatedNodes})
+  }
+}

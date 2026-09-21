@@ -1,0 +1,120 @@
+query getCourseDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!, $draftFilters: [DraftFilterInput!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        draftCourses(filters: {academicYearId: $academicYearId, draftFilters: $draftFilters}) {
+          key
+          title
+          type
+          courseSubjectType
+          profileImageData
+          associatedSubjectWiseLevels {
+            subjectDraft {
+              key
+              name
+              type
+            }
+            associatedLevelDrafts {
+              key
+              label
+              reportDisplayName
+              type
+            }
+            associatedLevelWiseStudentCount {
+              levelDraft {
+                key
+                label
+              }
+              studentCount
+            }
+          }
+          academicCourse {
+            key
+            label
+            code
+          }
+          associatedStaffWithRnPRoles {
+            staff {
+              id
+            }
+          }
+          associatedGrades {
+            grade {
+              id
+              name
+            }
+            isPrimary
+            academicYear {
+              id
+              startDate
+            }
+          }
+          primaryGrades {
+            grade {
+              id
+              name
+            }
+            isPrimary
+            academicYear {
+              id
+              startDate
+            }
+          }
+          associatedGradingPeriods {
+            key
+            label
+            startDate
+            endDate
+          }
+          associatedDepartment {
+            id
+            name
+            type
+          }
+          associatedSubjects {
+            key
+            name
+            type
+          }
+          associatedLevels {
+            levelDraft {
+              key
+              label
+              reportDisplayName
+              associatedSubjects {
+                key
+                name
+                type
+              }
+            }
+            studentCount
+          }
+          associatedClasses {
+            key
+            title
+            profileImageData
+            isExisting
+            associatedStaffWithRnPRoles {
+              staff {
+                id
+              }
+            }
+            associatedStudents {
+              id
+            }
+          }
+          associatedGlobalResponseLanguage {
+            id
+            label
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

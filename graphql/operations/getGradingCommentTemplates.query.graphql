@@ -1,0 +1,44 @@
+query getGradingCommentTemplates($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: GradingCommentTemplateFilterOptions, $paginated: Boolean!) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        ...commentTemplatesPaginatedFeed @include(if: $paginated)
+        ...commentTemplatesWithoutPaginatedFeed @skip(if: $paginated)
+      }
+      gradingCommentTemplateTags {
+        ...commentTemplatesTags
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        ...commentTemplatesPaginatedFeed @include(if: $paginated)
+        ...commentTemplatesWithoutPaginatedFeed @skip(if: $paginated)
+      }
+      gradingCommentTemplateTags {
+        ...commentTemplatesTags
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        ...commentTemplatesPaginatedFeed @include(if: $paginated)
+        ...commentTemplatesWithoutPaginatedFeed @skip(if: $paginated)
+      }
+      gradingCommentTemplateTags {
+        ...commentTemplatesTags
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        ...commentTemplatesPaginatedFeed @include(if: $paginated)
+        ...commentTemplatesWithoutPaginatedFeed @skip(if: $paginated)
+      }
+      gradingCommentTemplateTags {
+        ...commentTemplatesTags
+      }
+    }
+  }
+}

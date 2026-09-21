@@ -1,0 +1,89 @@
+fragment courseItem on Course {
+  id
+  title
+  sourcedId
+  profileImage
+  profileImageData {
+    url
+    icon
+    color
+    acronym
+  }
+  isArchived
+  isMappedToMe
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  genericTags {
+    id
+    label
+    type
+  }
+  students(filters: {archivalState: ALL, academicYear: $academicYearId}) {
+    totalCount
+    archivedCount
+  }
+  grades(filters: {academicYearId: $academicYearId}) {
+    id
+    name
+    displaySequence
+  }
+  primaryGrade {
+    id
+    name
+    displaySequence
+  }
+  subjects(filters: {archivalState: ALL}) {
+    id
+    name
+    type
+    icon
+    contentSubject {
+      id
+      assessmentYearTitle
+    }
+    ibOfferedSubject {
+      id
+      contentSubject {
+        id
+        assessmentYearTitle
+      }
+      globalSubjectGroup {
+        id
+        name
+      }
+    }
+    subjectGroup {
+      id
+      name
+      constants
+      type
+    }
+  }
+  subjectGroups {
+    id
+    name
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  allCollaborators(filters: $collaboratorFilters) {
+    totalCount
+    archivedCount
+  }
+  learningCourse {
+    id
+    title
+    isArchived
+  }
+  assignments {
+    totalCount
+  }
+  tags {
+    id
+    key
+    value
+  }
+}

@@ -1,0 +1,80 @@
+fragment studentTransferRequest on StudentTransferRequest {
+  id
+  uid
+  status
+  triggerType
+  transferDate
+  workflowId
+  student {
+    ...userNameFields
+    email
+    profileImage
+    isArchived
+  }
+  originCurriculumPrograms {
+    id
+    label
+    acronym
+    logo
+  }
+  originYearGroups {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  destinationCurriculumProgram {
+    id
+    label
+    acronym
+    logo
+  }
+  destinationAcademicYear {
+    id
+    startDate
+    endDate
+  }
+  enrollmentMetadata {
+    yearGroup {
+      id
+      name
+    }
+    classes {
+      id
+      title
+    }
+    registrationCategory
+  }
+  scheduledBy {
+    id
+    firstName
+    lastName
+  }
+  scheduledAt
+  cancelledBy {
+    id
+    firstName
+    lastName
+  }
+  cancelledAt
+  rejectedBy {
+    id
+    firstName
+    lastName
+  }
+  rejectedAt
+  enrolledBy {
+    id
+    firstName
+    lastName
+  }
+  enrolledAt
+  restoredBy {
+    id
+    firstName
+    lastName
+  }
+  restoredAt
+}

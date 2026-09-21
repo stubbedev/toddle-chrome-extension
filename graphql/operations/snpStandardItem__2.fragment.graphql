@@ -1,0 +1,10 @@
+fragment snpStandardItem on SnPStandard {
+  id
+  practicesV2(orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+    edges {
+      node {
+        ...practiceItem
+      }
+    }
+  }
+}

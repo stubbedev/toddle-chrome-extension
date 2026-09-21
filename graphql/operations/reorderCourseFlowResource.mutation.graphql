@@ -1,0 +1,5 @@
+mutation reorderCourseFlowResource($input: ReorderLearningCourseFlowResourceInput!) {
+  planner {
+    reorderLearningCourseFlowResource(input: $input)
+  }
+}

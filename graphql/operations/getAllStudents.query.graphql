@@ -1,0 +1,39 @@
+query getAllStudents($after: String, $organizationId: ID!, $filters: OrgConnectionFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYears: [ID!], $staffFilter: StaffStudentRelationFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(first: 30, after: $after, filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            profileImage
+            type
+            coursesV2(filters: {archivalState: ALL, academicYears: $academicYears}) {
+              totalCount
+              archivedCount
+            }
+            staffRelation(filters: $staffFilter) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

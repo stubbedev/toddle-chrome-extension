@@ -1,0 +1,22 @@
+query getTaggedCoursesByIds($ids: [ID!]) {
+  multiNode(ids: $ids, type: LEARNING_COURSE) {
+    id
+    ...learningCourseItem
+  }
+}
+
+fragment learningCourseItem on LearningCourse {
+  id
+  title
+  code
+  type
+  displayMetadata
+  curriculumProgram {
+    id
+    label
+  }
+  grades {
+    id
+    name
+  }
+}

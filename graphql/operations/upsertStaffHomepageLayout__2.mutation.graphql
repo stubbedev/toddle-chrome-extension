@@ -1,0 +1,18 @@
+fragment familyStudentItem on Student {
+  id
+  courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+    ...studentCourseItem
+  }
+}
+
+mutation upsertStaffHomepageLayout($input: UpsertHomepageLayoutInput!) {
+  platform {
+    upsertHomepageLayout(input: $input) {
+      isSuccess
+      warning
+      homepageLayout {
+        ...homepageLayoutFields
+      }
+    }
+  }
+}

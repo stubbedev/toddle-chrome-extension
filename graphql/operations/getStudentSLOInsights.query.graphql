@@ -1,0 +1,30 @@
+query getStudentSLOInsights($id: ID!, $insightSpecificsFilter: ProjectGroupPlannerElementInsightSpecificsFilter, $addressedInProjectsFilter: PlannerFieldFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      projectGroupPlannerElementInsightSpecifics(filters: $insightSpecificsFilter) {
+        node {
+          id
+          label
+        }
+        addressedInProjects {
+          id
+          title {
+            id
+            value
+          }
+          fields(filters: $addressedInProjectsFilter) {
+            id
+            uid
+            value
+          }
+        }
+        evidenceInPosts {
+          id
+          title
+        }
+      }
+    }
+  }
+}

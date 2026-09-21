@@ -1,0 +1,28 @@
+query getSubjectsDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        subjectDrafts(filters: {academicYearId: $academicYearId}) {
+          key
+          name
+          ibOfferedSubject {
+            contentSubject {
+              assessmentYearTitle
+            }
+          }
+          addedGrades {
+            id
+            name
+          }
+          existingGrades {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

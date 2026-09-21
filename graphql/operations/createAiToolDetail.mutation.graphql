@@ -1,0 +1,20 @@
+mutation createAiToolDetail($input: CreateAiToolDetailInput!) {
+  ai {
+    createAiToolDetail(input: $input) {
+      isSuccess
+      warning
+      response {
+        id
+        name
+        description
+        schema
+        toolHandler
+        version
+        displaySequence
+        createdBy
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}

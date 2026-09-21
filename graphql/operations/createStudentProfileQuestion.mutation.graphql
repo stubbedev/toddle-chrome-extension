@@ -1,0 +1,7 @@
+mutation createStudentProfileQuestion($title: String, $sectionId: ID!) {
+  platform {
+    createStudentProfileQuestion(input: {title: $title, sectionId: $sectionId}) {
+      ...studentProfileQuestionItem
+    }
+  }
+}

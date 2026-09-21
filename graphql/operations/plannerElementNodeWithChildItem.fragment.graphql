@@ -1,0 +1,22 @@
+fragment plannerElementNodeWithChildItem on PlannerElementNode {
+  id
+  label
+  type
+  associatedParents {
+    id
+    ... on Course {
+      id
+      title
+    }
+  }
+  associatedChildPlannerElementNodes {
+    id
+    label
+    type
+    fields {
+      id
+      uid
+      value
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation excludeCourseFromInsights($excludedIds: [ID!]) {
+  planner {
+    updateLearningCourseInclusionStatusInInsights(input: {excludedIds: $excludedIds})
+  }
+}

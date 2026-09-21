@@ -1,0 +1,11 @@
+query getOrganizationSyncStatus($id: ID!, $type: [JOB_TYPE_ENUM!], $tags: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      syncStatus(type: $type, tags: $tags) {
+        id
+        status
+      }
+    }
+  }
+}

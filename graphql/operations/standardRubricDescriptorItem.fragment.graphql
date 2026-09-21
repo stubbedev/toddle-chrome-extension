@@ -1,0 +1,19 @@
+fragment standardRubricDescriptorItem on StandardRubricDescriptor {
+  id
+  label
+  score
+  description
+  displaySequence
+  gradeScaleValue {
+    id
+    label
+    abbreviation
+  }
+  standardGradeScaleValueDescriptor {
+    id
+    description
+    gradeScaleValue {
+      id
+    }
+  }
+}

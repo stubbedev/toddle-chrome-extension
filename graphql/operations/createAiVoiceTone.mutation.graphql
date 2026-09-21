@@ -1,0 +1,11 @@
+mutation createAiVoiceTone($input: VoiceToneCreateInput!) {
+  ai {
+    createAiVoiceTone(input: $input) {
+      isSuccess
+      response {
+        id
+        ...progressReportAIVoiceTones
+      }
+    }
+  }
+}

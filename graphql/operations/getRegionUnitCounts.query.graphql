@@ -1,0 +1,5 @@
+query getRegionUnitCounts($input: RegionUnitCountInput!) {
+  planner {
+    getRegionUnitCounts(input: $input)
+  }
+}

@@ -1,0 +1,8 @@
+fragment responseItem on SnPDocumentCategory {
+  id
+  title
+  userDescription {
+    id
+    description
+  }
+}

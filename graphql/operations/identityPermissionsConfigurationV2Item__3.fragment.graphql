@@ -1,0 +1,27 @@
+query importSubjectStandardsJobs($input: ImportSubjectStandardsJobsInput!) {
+  platform {
+    importSubjectStandardsJobs(input: $input) {
+      totalCount
+      edges {
+        node {
+          ...importSubjectStandardsJobItem
+        }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
+
+fragment identityPermissionsConfigurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+  description
+}

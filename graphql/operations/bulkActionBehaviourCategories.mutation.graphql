@@ -1,0 +1,12 @@
+mutation bulkActionBehaviourCategories($input: BulkActionBehaviourCategoriesInput!) {
+  platform {
+    bulkActionBehaviourCategories(input: $input) {
+      isSuccess
+      errors {
+        entityId
+        code
+        message
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+mutation updateDependentGradeScale($input: AcademicCriteriaSetUpdateInput!) {
+  planner {
+    updateAcademicCriteriaSet(input: $input) {
+      id
+      label
+      __typename
+    }
+  }
+}

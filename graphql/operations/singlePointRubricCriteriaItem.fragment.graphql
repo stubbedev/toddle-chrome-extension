@@ -1,0 +1,6 @@
+fragment singlePointRubricCriteriaItem on SinglePointRubricCriteria {
+  id
+  title
+  subTitle
+  isCriteriaStandardColumn
+}

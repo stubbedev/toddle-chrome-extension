@@ -1,0 +1,15 @@
+query getTurnitinGrades($id: ID!, $curriculumProgramIds: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: {curriculumProgramIds: $curriculumProgramIds}) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+        }
+      }
+    }
+  }
+}

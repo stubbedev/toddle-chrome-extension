@@ -1,0 +1,16 @@
+query getTemplateVersionChanges($input: ReportTemplateVersionChangesInput!) {
+  documentation {
+    internalToolsData {
+      progressReport {
+        templateVersionChanges(input: $input) {
+          section
+          path
+          field
+          action
+          oldValue
+          newValue
+        }
+      }
+    }
+  }
+}

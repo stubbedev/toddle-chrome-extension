@@ -1,0 +1,16 @@
+query getOrganizationResourcesFeedV2($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: OrganizationResourceFilter, $orderBy: ORDER_BY_ENUM) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on UnitPlan {
+      id
+      organizationResourcesFlatFeedOutline(filters: $filters) {
+        id
+        label
+        depth
+        ...outlineWithChildrenItem
+      }
+      __typename
+    }
+    __typename
+  }
+}

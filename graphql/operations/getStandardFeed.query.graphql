@@ -1,0 +1,16 @@
+query getStandardFeed($filters: standardBenchmarkSetFeedConnectionFilter, $after: String) {
+  planner {
+    standardBenchmarkSetFeed(first: 20, filters: $filters, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...standardItem
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

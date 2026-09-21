@@ -1,0 +1,7 @@
+mutation updateHelpText($input: [UpdateHelpTextInput!]!) {
+  planner {
+    updateHelpText(input: $input) {
+      id
+    }
+  }
+}

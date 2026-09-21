@@ -1,0 +1,10 @@
+fragment questionSubmissionConnectionItem on QuestionSubmissionConnection {
+  totalCount
+  totalQuestionCount
+  totalQuestionAttempted
+  edges {
+    node {
+      ...questionSubmissionItem
+    }
+  }
+}

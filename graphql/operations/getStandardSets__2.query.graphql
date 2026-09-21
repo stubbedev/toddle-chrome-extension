@@ -1,0 +1,57 @@
+query getStandardSets($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: PlannerElementNodeSetFilters, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: $type) {
+    id
+    ... on UBDCurriculumProgram {
+      plannerElementNodeSets(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            title
+            subject {
+              id
+            }
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      plannerElementNodeSets(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            title
+            subject {
+              id
+            }
+          }
+        }
+      }
+    }
+    ... on IbPypCurriculumProgram {
+      plannerElementNodeSets(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            title
+            subject {
+              id
+            }
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      plannerElementNodeSets(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        edges {
+          node {
+            id
+            title
+            subject {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

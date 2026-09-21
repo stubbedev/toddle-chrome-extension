@@ -1,0 +1,36 @@
+query getStudentProjectPortfolioProjects($id: ID!, $projectFilters: ProjectFilter, $filters: PlannerFieldFilter, $academicYearId: ID, $isServiceAsAction: Boolean!, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      projects(filters: $projectFilters) {
+        totalCount
+        edges {
+          node {
+            ...portfolioProjectInfo
+            ...projectFieldsDetails
+            createdBy {
+              id
+            }
+            academicYear @include(if: $isServiceAsAction) {
+              id
+              startDate
+              endDate
+            }
+            notificationBadgeCounts {
+              unreadPostCount
+              unreadPostCommentCount
+              unreadCommentCount
+              unreadAcademicHonestyCount
+              unreadAttachmentCount
+              unreadPendingReviewLogCount
+              unreadResolvedReviewLogCount
+              unreadPendingReviewLogCommentCount
+              unreadResolvedReviewLogCommentCount
+              unreadProjectEvidenceCommentCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

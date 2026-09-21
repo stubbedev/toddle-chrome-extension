@@ -1,0 +1,8 @@
+mutation deleteAccountAcademicTerm($input: DeleteAccountAcademicTermInput!) {
+  organizationManagement {
+    deleteAccountAcademicTerm(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

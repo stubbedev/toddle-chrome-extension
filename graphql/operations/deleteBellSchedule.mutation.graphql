@@ -1,0 +1,8 @@
+mutation deleteBellSchedule($input: DeleteBellScheduleInput!) {
+  platform {
+    deleteBellSchedule(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

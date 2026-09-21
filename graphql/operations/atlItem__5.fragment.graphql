@@ -1,0 +1,33 @@
+fragment atlItem on PlannerATL {
+  id
+  label
+  children
+  parent
+  levelId
+  levels {
+    id
+    value
+  }
+  depth
+  isLeaf
+  displaySequence
+  atlCategory {
+    id
+  }
+  subText
+  isArchived
+  grades {
+    id
+    name
+  }
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+      isArchived
+      grades {
+        id
+        name
+      }
+    }
+  }
+}

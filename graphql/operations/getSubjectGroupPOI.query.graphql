@@ -1,0 +1,46 @@
+query getSubjectGroupPOI($id: ID!, $filters: SubjectGroupPOIFilterInput, $uids: [String!], $showDetailedView: Boolean!) {
+  node(id: $id, type: SUBJECT_GROUP) {
+    id
+    ... on SubjectGroup {
+      id
+      plannerElementNodeVerticalInsight(filters: $filters) {
+        unitPlanData {
+          totalCount
+          unitPlans {
+            id
+          }
+        }
+        plannerNode {
+          id
+          type
+        }
+        edges {
+          subject {
+            id
+            name
+          }
+          grade {
+            id
+            name
+          }
+          unitPlanData {
+            unitPlans @include(if: $showDetailedView) {
+              id
+              fields(uids: $uids) {
+                ...unitPlanFieldBasicDetailsItem
+              }
+              startDate
+              endDate
+              __typename
+            }
+            unitPlans @skip(if: $showDetailedView) {
+              id
+              __typename
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

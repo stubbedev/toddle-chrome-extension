@@ -1,0 +1,7 @@
+mutation addCourseToUser($userId: ID!, $courseIds: [ID!], $role: COURSE_USER_ROLE_ENUM!, $aclAssignedUserRoles: [ACLAssignedRoleInput!], $courseTagMap: [CourseTagMapInput!], $academicYearId: ID) {
+  platform {
+    addCourseToUser(userId: $userId, courseIds: $courseIds, role: $role, aclAssignedUserRoles: $aclAssignedUserRoles, courseTagMap: $courseTagMap, academicYearId: $academicYearId) {
+      id
+    }
+  }
+}

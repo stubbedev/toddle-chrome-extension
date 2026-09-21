@@ -1,0 +1,44 @@
+query getGradingCommentTemplateIds($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: GradingCommentTemplateFilterOptions) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      gradingCommentTemplates(filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

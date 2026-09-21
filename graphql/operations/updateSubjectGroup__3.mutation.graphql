@@ -1,0 +1,22 @@
+mutation updateSubjectGroup($id: ID!, $name: String, $uid: String, $profileImageData: JSON, $type: SUBJECT_GROUP_TYPE_ENUM, $removedCurriculumPrograms: [ID!], $addedCurriculumPrograms: [ID!]) {
+  platform {
+    updateSubjectGroup(input: {id: $id, name: $name, uid: $uid, profileImageData: $profileImageData, type: $type, removedCurriculumPrograms: $removedCurriculumPrograms, addedCurriculumPrograms: $addedCurriculumPrograms}) {
+      isSuccess
+      warning
+      subjectGroup {
+        id
+        name
+        uid
+        type
+        profileImageData
+        curriculumProgram {
+          id
+          label
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

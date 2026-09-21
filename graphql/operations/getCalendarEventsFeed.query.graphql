@@ -1,0 +1,45 @@
+query getCalendarEventsFeed($input: CalendarEventsFeedInput!) {
+  platform {
+    calendarEventsFeed(input: $input) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          label
+          state
+          startDateTime
+          endDateTime
+          isFullDayEvent
+          eventTag {
+            id
+            label
+            colorCode
+          }
+          createdAt
+          createdBy {
+            id
+            firstName
+            lastName
+            profileImage
+          }
+          updatedAt
+          updatedBy {
+            id
+            firstName
+            lastName
+            profileImage
+          }
+          associatedSchools(input: {first: 1}) {
+            totalCount
+          }
+          sharedWith
+        }
+      }
+    }
+  }
+}

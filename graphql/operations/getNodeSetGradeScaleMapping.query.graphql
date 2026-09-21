@@ -1,0 +1,21 @@
+query getNodeSetGradeScaleMapping($id: ID!, $filters: DataSetGradingConfigurationFilters, $includeMappingMode: Boolean!) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    id
+    ... on PlannerElementNodeSet {
+      id
+      gradeScales {
+        id
+        displayName
+        templateName
+      }
+      dataSetGradingConfigurations(filters: $filters) @include(if: $includeMappingMode) {
+        id
+        settings {
+          id
+          uid
+          value
+        }
+      }
+    }
+  }
+}

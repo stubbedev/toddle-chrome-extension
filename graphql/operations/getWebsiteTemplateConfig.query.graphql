@@ -1,0 +1,18 @@
+query getWebsiteTemplateConfig($websiteId: ID!, $curriculumProgramIds: [ID!]) {
+  node(id: $websiteId, type: CURRICULUM_WEBSITE) {
+    ... on CurriculumWebsite {
+      id
+      templates {
+        id
+        name
+        type
+        body
+        curriculumProgram(filters: {curriculumProgramIds: $curriculumProgramIds}) {
+          id
+          label
+          academicSetupType
+        }
+      }
+    }
+  }
+}

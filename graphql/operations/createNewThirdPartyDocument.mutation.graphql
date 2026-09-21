@@ -1,0 +1,9 @@
+mutation createNewThirdPartyDocument($serviceType: THIRD_PARTY_SERVICE_TYPE!, $type: THIRD_PARTY_DRIVE_DOCUMENT_TYPE, $name: String!, $documentType: DRIVE_DOCUMENT_TYPE!, $curriculumProgramId: ID, $learningCourseId: ID, $classId: ID, $submissionId: ID, $academicYearId: ID) {
+  platform {
+    createNewThirdPartyDocument(input: {serviceType: $serviceType, type: $type, document: {name: $name, documentType: $documentType}, curriculumProgramId: $curriculumProgramId, learningCourseId: $learningCourseId, classId: $classId, submissionId: $submissionId, academicYearId: $academicYearId}) {
+      isSuccess
+      warning
+      data
+    }
+  }
+}

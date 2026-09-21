@@ -1,0 +1,19 @@
+fragment unitPlanResourceFeedItemV2 on UnitPlan {
+  id
+  organizationResourcesConnection(searchText: $searchText, after: $after, first: 12) {
+    edges {
+      node {
+        ...organizationResourceItemV2
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    resourceTypeBasedCount {
+      totalCount
+    }
+  }
+}

@@ -1,0 +1,45 @@
+query getAssociatedClassesForSharing($learningCourseId: ID!, $classFilters: LearningCourseClassFilter, $aclControlParameterFilter: ACLControlParameterFilter) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      classes(filters: $classFilters) {
+        ...classWithStudents
+      }
+    }
+  }
+}
+
+fragment classWithStudents on Course {
+  id
+  title
+  isActive
+  isArchived
+  profileImageData {
+    icon
+    color
+    acronym
+  }
+  students {
+    totalCount
+    edges {
+      node {
+        id
+        firstName
+        middleName
+        lastName
+        preferredName
+        suffix
+        pronouns
+        type
+        profileImage
+      }
+    }
+  }
+  aclControlParameters(filters: $aclControlParameterFilter) {
+    id
+    uid
+    permission
+    value
+  }
+}

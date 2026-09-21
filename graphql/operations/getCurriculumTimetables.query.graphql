@@ -1,0 +1,103 @@
+query getCurriculumTimetables($id: ID!, $timetableFilter: TimetableFilterOptions!, $curriculumIds: [ID!]!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        timetables(filters: $timetableFilter) {
+          id
+          label
+          timetableTemplate {
+            id
+            label
+            dayCycle {
+              id
+              cycleMode
+              rotationEntities {
+                id
+                label
+                abbreviation
+                entityType
+              }
+              dayPatterns {
+                id
+                weekdays
+                relation
+                rotationEntities {
+                  rotationEntity {
+                    id
+                    label
+                    abbreviation
+                    entityType
+                  }
+                  isStartCycle
+                }
+              }
+            }
+            bellSchedules {
+              id
+              weekDay
+              rotationEntity {
+                id
+                label
+                abbreviation
+                entityType
+              }
+              bellSchedule {
+                id
+                label
+                periodsEdge {
+                  totalCount
+                  periods {
+                    startTime
+                    endTime
+                    period {
+                      id
+                      label
+                      type
+                      abbreviation
+                      startTime
+                      endTime
+                    }
+                  }
+                }
+              }
+            }
+          }
+          grades {
+            id
+            name
+          }
+          startValidity {
+            validityDate
+            validityType
+            validityEntityId
+          }
+          endValidity {
+            validityDate
+            validityType
+            validityEntityId
+          }
+          startCycleWith {
+            rotationEntity {
+              id
+              label
+              abbreviation
+            }
+            sequence
+          }
+          status
+          timetableTemplate {
+            id
+            label
+          }
+          createdBy {
+            id
+            ...staffNameFields
+          }
+        }
+      }
+    }
+  }
+}

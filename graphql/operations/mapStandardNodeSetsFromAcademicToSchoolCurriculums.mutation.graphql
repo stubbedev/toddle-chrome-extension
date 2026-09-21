@@ -1,0 +1,8 @@
+mutation mapStandardNodeSetsFromAcademicToSchoolCurriculums($input: MapDataSetsFromAcademicToSchoolCurriculumsInput!) {
+  planner {
+    mapStandardNodeSetsFromAcademicToSchoolCurriculums(input: $input) {
+      isSuccess
+      jobId
+    }
+  }
+}

@@ -1,0 +1,32 @@
+query getOrganizationSubjects($id: ID!, $filters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      subjects(filters: $filters) {
+        id
+        name
+        icon
+        grades {
+          id
+          name
+        }
+        subjectGroup {
+          id
+          name
+        }
+        ibOfferedSubject {
+          id
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+          globalSubjectGroup {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

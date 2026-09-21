@@ -1,0 +1,8 @@
+fragment ProjectGroupCurriculum on ProjectGroup {
+  id
+  type
+  curriculumProgram {
+    id
+    type
+  }
+}

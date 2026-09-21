@@ -1,0 +1,8 @@
+mutation createSubjectVariants($input: SubjectVariantInput!) {
+  platform {
+    createSubjectVariants(input: $input) {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,12 @@
+fragment subjectStandardCountFragment on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      standardSetWrapper {
+        publishedStandards {
+          totalCount
+        }
+      }
+    }
+  }
+}

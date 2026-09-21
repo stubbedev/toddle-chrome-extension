@@ -1,0 +1,15 @@
+query allClassesOfOrganisation($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+}

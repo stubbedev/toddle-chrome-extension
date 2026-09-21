@@ -1,0 +1,5 @@
+mutation moveCircularsToDraft($input: moveCircularsToDraftInput) {
+  platform {
+    moveCircularsToDraft(input: $input)
+  }
+}

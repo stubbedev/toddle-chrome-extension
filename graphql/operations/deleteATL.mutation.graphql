@@ -1,0 +1,5 @@
+mutation deleteATL($id: ID!) {
+  planner {
+    deleteATL(input: {id: $id})
+  }
+}

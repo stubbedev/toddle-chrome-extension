@@ -1,0 +1,28 @@
+fragment commentTemplatesWithoutPaginatedFeed on GradingCommentTemplateConnection {
+  totalCount
+  createdByStaff {
+    id
+    firstName
+    middleName
+    lastName
+    profileImage
+    prefix
+    preferredName
+    pronouns
+    suffix
+  }
+  edges {
+    node {
+      id
+      grades {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+      }
+      type
+    }
+  }
+}

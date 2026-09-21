@@ -1,0 +1,16 @@
+mutation createRoutineBasicDetails($input: CreateRoutineBasicDetailsInput!) {
+  platform {
+    createRoutineBasicDetails(input: $input) {
+      isSuccess
+      warning
+      routine {
+        id
+        rotationDays {
+          id
+          label
+        }
+        routineMode
+      }
+    }
+  }
+}

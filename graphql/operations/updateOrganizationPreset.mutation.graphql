@@ -1,0 +1,7 @@
+mutation updateOrganizationPreset($id: ID!, $name: String!, $domains: [String!], $city: String, $country: String, $ibCode: String) {
+  organizationManagement {
+    updateOrganizationPreset(input: {id: $id, name: $name, domains: $domains, city: $city, country: $country, ibCode: $ibCode}) {
+      ...organizationItem
+    }
+  }
+}

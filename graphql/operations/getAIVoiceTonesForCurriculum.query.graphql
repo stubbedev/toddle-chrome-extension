@@ -1,0 +1,14 @@
+query getAIVoiceTonesForCurriculum($organizationId: ID!, $curriculumIds: [ID]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        voiceTones {
+          ...progressReportAIVoiceTones
+          isGlobalDefault
+        }
+      }
+    }
+  }
+}

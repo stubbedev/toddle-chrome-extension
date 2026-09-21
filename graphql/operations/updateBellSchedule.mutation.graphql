@@ -1,0 +1,8 @@
+mutation updateBellSchedule($input: UpdateBellScheduleInput!) {
+  platform {
+    updateBellSchedule(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

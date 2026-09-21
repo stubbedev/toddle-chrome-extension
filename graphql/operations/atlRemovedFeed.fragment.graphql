@@ -1,0 +1,22 @@
+fragment atlRemovedFeed on PlannerATLSetWrapper {
+  dataSetEditChanges(filters: {locale: $defaultLocale}) {
+    removedFeed(first: $first, after: $after) {
+      totalCount
+      edges {
+        node {
+          ...publishedBasicDetailsATLItem
+        }
+      }
+      pageInfo {
+        ...pageInfoFields
+      }
+    }
+  }
+}
+
+fragment updatedColumnDataItem on UpdatedColumnData {
+  gradeScaleId
+  columnName
+  oldValue
+  newValue
+}

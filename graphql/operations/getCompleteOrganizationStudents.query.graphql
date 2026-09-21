@@ -1,0 +1,14 @@
+query getCompleteOrganizationStudents($filters: OrgConnectionFilterInput) {
+  platform {
+    organization {
+      id
+      students(filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

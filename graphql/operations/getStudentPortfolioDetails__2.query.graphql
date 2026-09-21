@@ -1,0 +1,30 @@
+query getStudentPortfolioDetails($id: ID!, $filters: StudentProjectPortfolioFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      studentProjectPortfolio(filters: $filters) {
+        edges {
+          node {
+            ...portfolioProgress
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment portfolioProgress on StudentProjectPortfolio {
+  id
+  student {
+    id
+    firstName
+    middleName
+    lastName
+    preferredName
+    suffix
+    pronouns
+    type
+  }
+  isComplete
+  __typename
+}

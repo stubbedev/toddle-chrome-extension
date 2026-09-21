@@ -1,0 +1,28 @@
+query getGradingCategories($id: ID!, $filters: GlobalCategoryFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      globalCategory(filters: $filters) {
+        edges {
+          node {
+            ...GlobalCategoryFragment
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+
+mutation integrationUploadAssessmentData($input: IntegrationUploadAssessmentDataInput!) {
+  integration {
+    integrationUploadAssessmentData(input: $input) {
+      uploadStatus
+    }
+  }
+}

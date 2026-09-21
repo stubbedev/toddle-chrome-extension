@@ -1,0 +1,5 @@
+mutation updateConfigurablePermission($id: ID!, $permissions: [ConfigurablePermissionToggleInput!]!) {
+  platform {
+    toggleOrganizationConfigurablePermission(input: {organizationId: $id, permissions: $permissions})
+  }
+}

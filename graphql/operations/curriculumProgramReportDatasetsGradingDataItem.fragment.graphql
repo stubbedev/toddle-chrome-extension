@@ -1,0 +1,15 @@
+fragment curriculumProgramReportDatasetsGradingDataItem on CurriculumProgram {
+  id
+  plannerElementNodeSets(filters: $customDatasetFilters) {
+    edges {
+      node {
+        id
+        title
+        type
+        gradeScales {
+          id
+        }
+      }
+    }
+  }
+}

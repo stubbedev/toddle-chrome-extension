@@ -1,0 +1,26 @@
+fragment projectInfoProgress on Project {
+  id
+  status
+  type
+  reportStatus
+  createdBy {
+    id
+    __typename
+  }
+  deletedAt
+  deletedBy {
+    ...userNameFields
+    ... on Student {
+      alertTypes {
+        ...alertTypeFields
+      }
+    }
+  }
+  students {
+    ...studentInfo
+  }
+  supervisors {
+    isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+    ...supervisorInfo
+  }
+}

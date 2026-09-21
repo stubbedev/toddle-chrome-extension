@@ -1,0 +1,10 @@
+query getIBISRegistrationDataExport($id: ID!, $type: IBIS_DATA_EXPORT_TYPE!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      registrationDataExport(type: $type) {
+        url
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation addIntegrationConfigDetails($input: AddIntegrationConfigInput!) {
+  integration {
+    addIntegrationConfigDetails(input: $input)
+    __typename
+  }
+}

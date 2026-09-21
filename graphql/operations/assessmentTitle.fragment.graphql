@@ -1,0 +1,8 @@
+fragment assessmentTitle on Assessment {
+  id
+  title {
+    id
+    uid
+    value
+  }
+}

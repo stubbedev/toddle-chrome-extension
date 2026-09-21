@@ -1,0 +1,9 @@
+mutation updateOrganizationV2($id: ID!, $name: String, $code: String, $addedAttachments: [AttachmentInput!], $removedAttachments: [ID!]) {
+  platform {
+    updateOrganizationV2(input: {id: $id, name: $name, code: $code, addedAttachments: $addedAttachments, removedAttachments: $removedAttachments}) {
+      organization {
+        ...organizationItem
+      }
+    }
+  }
+}

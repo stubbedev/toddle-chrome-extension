@@ -1,0 +1,16 @@
+query getLibraryQuestionV2($id: ID!, $libraryBannerFilters: LibraryPremiumBannerFilters) {
+  node(id: $id, type: QUESTION) {
+    id
+    ... on Question {
+      isSavedForLibrary
+      isLibraryPremium
+      showLibraryPremiumBannerForUser(filters: $libraryBannerFilters)
+      ...questionItem
+      children {
+        edges {
+          ...questionItem
+        }
+      }
+    }
+  }
+}

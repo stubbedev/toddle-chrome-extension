@@ -1,0 +1,23 @@
+query getAttendanceReportStaff($id: ID!, $first: Int, $after: String, $filters: OrgConnectionFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(filters: $filters, first: $first, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            profileImage
+            roles
+          }
+        }
+      }
+    }
+  }
+}

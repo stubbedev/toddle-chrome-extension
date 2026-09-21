@@ -1,0 +1,41 @@
+fragment organizationResourceBasicDetailsItem on OrganizationResource {
+  id
+  label
+  type
+  resourceType
+  state
+  attachment {
+    ...attachmentFragment
+  }
+  childrenV2(first: $first, after: $after, filters: {types: $types, searchText: $searchText, states: $states, status: $status, courseIds: $courseIds, createdBy: $createdBy}) {
+    resourceTypeBasedCount {
+      totalCount
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        ... on OrganizationResource {
+          id
+          label
+          type
+          resourceType
+          status
+          state
+          attachment {
+            ...attachmentFragment
+          }
+          createdBy {
+            id
+            firstName
+            middleName
+            lastName
+          }
+        }
+      }
+    }
+  }
+}

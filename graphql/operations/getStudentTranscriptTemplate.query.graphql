@@ -1,0 +1,8 @@
+query getStudentTranscriptTemplate($id: ID!, $studentTranscriptFilter: StudentTranscriptFilter, $yearGroupFilters: YearGroupFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      ...studentTranscriptDetailsItem
+    }
+  }
+}

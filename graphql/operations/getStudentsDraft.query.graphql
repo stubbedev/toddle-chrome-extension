@@ -1,0 +1,51 @@
+query getStudentsDraft($organizationId: ID!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: [$curriculumProgramId]) {
+        id
+        draftStudents(filters: {academicYearId: $academicYearId}) {
+          key
+          yearGroup {
+            key
+            name
+            grade {
+              id
+            }
+          }
+          student {
+            id
+            email
+            sourceId
+            firstName
+            middleName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            type
+            lastName
+            isArchived
+            isArchivedV2(filters: {academicYearId: $academicYearId})
+            profileImage
+            courses {
+              id
+            }
+          }
+          associatedClasses {
+            class {
+              key
+              associatedCourse {
+                key
+                academicCourse {
+                  key
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

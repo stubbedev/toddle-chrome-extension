@@ -1,0 +1,23 @@
+fragment organizationResourceQuestionItem on OrganizationResource {
+  id
+  resourceType
+  item {
+    ...questionItem
+  }
+  isSavedForLibrary
+  isLibraryPremium
+  showLibraryPremiumBannerForUser
+  childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+    resourceTypeBasedCount {
+      totalCount
+    }
+    edges {
+      node {
+        id
+        item {
+          ...questionItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getProductUpdatesV2Feed($filters: ProductUpdatesFilterV2, $after: String, $first: Int, $orderBy: ORDERBY_FIELD_ENUM_CMS, $onlyNewContent: Boolean) {
+  cms {
+    productUpdatesFeedV2(filters: $filters, after: $after, first: $first, orderBy: $orderBy, onlyNewContent: $onlyNewContent) {
+      count
+      edges {
+        node {
+          id
+          releaseDate
+        }
+      }
+    }
+  }
+}

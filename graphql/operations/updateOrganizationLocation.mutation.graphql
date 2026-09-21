@@ -1,0 +1,8 @@
+mutation updateOrganizationLocation($input: UpdateOrganizationLocationInput!) {
+  platform {
+    updateOrganizationLocation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

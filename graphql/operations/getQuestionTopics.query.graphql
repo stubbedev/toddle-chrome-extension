@@ -1,0 +1,9 @@
+query getQuestionTopics($input: QuestionTagInput) {
+  content {
+    getQuestionTags(input: $input) {
+      id
+      label
+      type
+    }
+  }
+}

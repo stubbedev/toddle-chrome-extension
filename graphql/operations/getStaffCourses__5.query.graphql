@@ -1,0 +1,22 @@
+query getStaffCourses($id: ID!, $filters: CourseFilter, $assignmentFeedFilters: AssignmentFeedFilters) {
+  node(id: $id, type: STAFF) {
+    ... on Staff {
+      id
+      coursesV2(filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            genericFolders(type: CLASSROOM) {
+              id
+              name
+            }
+            assignments(filters: $assignmentFeedFilters) {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

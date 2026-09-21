@@ -1,0 +1,24 @@
+mutation generateLTIIntegrationCreds($input: GenerateLTIIntegrationCredsInput!) {
+  integration {
+    generateLTIIntegrationCreds(input: $input) {
+      isSuccess
+      integrationCreds {
+        id
+        parentId
+        entityType
+        entityId
+        deploymentId
+        serviceName
+        name
+        url
+        clientId
+        clientSecret
+        metadata
+        version
+        isToolEnabled
+        toddleCreds
+        apiToken
+      }
+    }
+  }
+}

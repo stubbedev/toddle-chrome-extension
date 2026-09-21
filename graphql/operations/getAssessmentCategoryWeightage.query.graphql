@@ -1,0 +1,23 @@
+query getAssessmentCategoryWeightage($id: ID!, $filters: PointAssessmentSetFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      pointAssessmentSets(filters: $filters) {
+        edges {
+          node {
+            id
+            categories {
+              id
+              metadata
+              values {
+                id
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

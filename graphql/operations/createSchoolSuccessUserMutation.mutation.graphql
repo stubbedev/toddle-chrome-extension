@@ -1,0 +1,9 @@
+mutation createSchoolSuccessUserMutation($input: createGenericFormResponseInput) {
+  platform {
+    createGenericFormResponse(input: $input) {
+      id
+      salesPerson
+      state
+    }
+  }
+}

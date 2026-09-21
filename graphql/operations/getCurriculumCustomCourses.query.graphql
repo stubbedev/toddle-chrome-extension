@@ -1,0 +1,23 @@
+query getCurriculumCustomCourses($organizationId: ID!, $customCourseTagsFilter: CustomCoursesFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...curriculumProgramsItem
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

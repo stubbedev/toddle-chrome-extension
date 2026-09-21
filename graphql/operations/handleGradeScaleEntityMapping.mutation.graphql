@@ -1,0 +1,9 @@
+mutation handleGradeScaleEntityMapping($input: [GradeScaleEntityMappingInput!]!) {
+  planner {
+    handleGradeScaleEntityMapping(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+  }
+}

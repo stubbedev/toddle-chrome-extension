@@ -1,0 +1,27 @@
+fragment projectPlannerElementNodeSetWithNodesItem on PlannerElementNodeSetWrapperV2 {
+  ... on PlannerElementNodeSetWrapper {
+    publishedData(filters: $filters) {
+      edges {
+        node {
+          ...projectPlannerElementNodeItem
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

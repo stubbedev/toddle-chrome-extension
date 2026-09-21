@@ -1,0 +1,26 @@
+query getPlannerElementNodesOfSet($id: ID!, $filters: PlannerElementNodeFilters) {
+  node(id: $id, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      plannerElementNodeSets {
+        id
+        plannerElementNodeSetWrapperV2 {
+          ... on PlannerElementNodeSetWrapper {
+            publishedData(filters: $filters) {
+              edges {
+                node {
+                  id
+                  displaySequence
+                  label
+                  subText
+                  parent
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

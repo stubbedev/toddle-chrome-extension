@@ -1,0 +1,7 @@
+mutation upsertStudentProgressReportRemark($nodeId: ID!, $studentProgressReportId: ID!, $remarkType: String, $message: String, $attachments: GenericAttachmentGroupInput) {
+  documentation {
+    upsertStudentProgressReportRemark(input: {nodeId: $nodeId, message: $message, studentProgressReportId: $studentProgressReportId, attachments: $attachments, remarkType: $remarkType}) {
+      ...progressReportRemarkItem
+    }
+  }
+}

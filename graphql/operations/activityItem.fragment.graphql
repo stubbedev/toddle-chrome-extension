@@ -1,0 +1,4 @@
+fragment activityItem on ActivityTypeFacet {
+  id
+  label
+}

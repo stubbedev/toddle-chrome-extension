@@ -1,0 +1,53 @@
+query getOrganizationCoursesPaginated($organizationId: ID!, $first: Int, $after: String, $courseFilters: CourseFilterInput, $getGrades: Boolean!, $getCurriculumProgram: Boolean!, $getAssociatedProgram: Boolean = false, $getLearningCourse: Boolean = false, $getTotalCount: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $courseFilters) {
+        totalCount @include(if: $getTotalCount)
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            grades @include(if: $getGrades) {
+              id
+              name
+              curriculumProgram @include(if: $getAssociatedProgram) {
+                id
+                acronym
+              }
+            }
+            isArchived
+            deletedBy {
+              id
+            }
+            curriculumProgram @include(if: $getCurriculumProgram) {
+              id
+              type
+              label
+              acronym
+            }
+            learningCourse @include(if: $getLearningCourse) {
+              id
+              title
+              academicCourse {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

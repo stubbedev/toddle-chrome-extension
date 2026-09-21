@@ -1,0 +1,8 @@
+mutation updateEntityStaffMappingForStudentProgressReport($input: UpdateEntityStaffMappingForStudentProgressReportInput!) {
+  documentation {
+    updateEntityStaffMappingForStudentProgressReport(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

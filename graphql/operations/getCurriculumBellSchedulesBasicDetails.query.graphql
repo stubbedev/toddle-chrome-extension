@@ -1,0 +1,25 @@
+query getCurriculumBellSchedulesBasicDetails($id: ID!, $filter: BellScheduleFilterOptions!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms {
+        id
+        bellSchedules(filter: $filter) {
+          id
+          label
+          periodsEdge {
+            totalCount
+            periods {
+              period {
+                label
+              }
+              startTime
+              endTime
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+query getCourseDetails($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Course {
+      id
+      primaryGrade {
+        id
+        plannerTemplates(filters: {templateType: [UNIT_PLAN]}) {
+          id
+          name
+          unitType
+          type
+          subType
+          curriculum {
+            id
+          }
+        }
+      }
+    }
+    ... on LearningCourse {
+      id
+      primaryGrade {
+        id
+        plannerTemplates(filters: {templateType: [UNIT_PLAN]}) {
+          id
+          name
+          unitType
+          type
+          subType
+          curriculum {
+            id
+          }
+        }
+      }
+    }
+  }
+}

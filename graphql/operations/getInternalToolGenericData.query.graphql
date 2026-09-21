@@ -1,0 +1,9 @@
+query getInternalToolGenericData($input: InternalToolsGenericApiInput!) {
+  platform {
+    internalToolsGenericQuery(input: $input) {
+      isSuccess
+      data
+      warning
+    }
+  }
+}

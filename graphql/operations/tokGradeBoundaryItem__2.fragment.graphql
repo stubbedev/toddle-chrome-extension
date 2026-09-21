@@ -1,0 +1,24 @@
+mutation createPointAssessmentSet($input: [CreatePointAssessmentSetInput!]) {
+  planner {
+    createPointAssessmentSet(input: $input) {
+      warning
+      response {
+        ...tokGradeBoundaryItem
+      }
+    }
+  }
+}
+
+fragment tokGradeBoundaryItem on PointAssessmentSet {
+  id
+  categories {
+    id
+    label
+    displaySequence
+    values {
+      id
+      minValue
+      maxValue
+    }
+  }
+}

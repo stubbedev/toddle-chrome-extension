@@ -1,0 +1,16 @@
+mutation parseExternalAssessmentBulkUploadFile($input: ParseExternalAssessmentBulkUploadFileInput!) {
+  externalAssessment {
+    parseExternalAssessmentBulkUploadFile(input: $input) {
+      isSuccess
+      error {
+        errorCode
+        metadata
+      }
+      headers {
+        column
+        columnGroup
+        index
+      }
+    }
+  }
+}

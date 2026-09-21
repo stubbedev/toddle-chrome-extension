@@ -1,0 +1,9 @@
+query getAllBillingTags($input: TagFilters!) {
+  platform {
+    allTags(input: $input) {
+      id
+      key
+      value
+    }
+  }
+}

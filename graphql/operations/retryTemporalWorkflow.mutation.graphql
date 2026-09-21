@@ -1,0 +1,15 @@
+mutation retryTemporalWorkflow($input: RetryTemporalWorkflowInput!) {
+  integration {
+    retryTemporalWorkflow(input: $input) {
+      isSuccess
+      message
+      dependantEntities {
+        isSuccess
+        dependantEntityId
+        dependantEntityName
+        dependantEntityType
+        message
+      }
+    }
+  }
+}

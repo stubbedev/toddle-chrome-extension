@@ -1,0 +1,14 @@
+query getTrainings($filters: AcademyFilters) {
+  platform {
+    academy(filters: $filters) {
+      foundations {
+        id
+        trainings {
+          id
+          name
+          workrampTrainingId
+        }
+      }
+    }
+  }
+}

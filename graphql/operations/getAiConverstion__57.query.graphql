@@ -1,0 +1,73 @@
+fragment assignedStudentItem on StudentAssignment {
+  id
+  student {
+    id
+  }
+  toolResponsesV2(filters: {userFilter: ALL, isFetchDeletedAiRatings: true}) {
+    id
+    toolId
+    toolType
+    toolResponses {
+      ...gradebookToolResponseItem
+    }
+  }
+  ibPYPElementRatings(filters: {isFetchDeletedAiRatings: true}) {
+    id
+    value
+    isDeleted
+    creatorType
+    ibPYPElementId
+    ibPYPElementType
+    evaluationJustification {
+      id
+      message
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+    }
+    academicCriteriaSet {
+      id
+    }
+  }
+  elementRemarks(filters: {isFetchDeletedAiRatings: true}) {
+    ...elementRemarkItem
+  }
+  isEvaluated
+  isSharedWithStudent
+  isEvaluationApplicable
+  status
+  isSubmitted
+  evaluatedAt
+  submission {
+    id
+    submittedAt
+    statusV2
+    systemStatus
+    overrideStatusUpdatedAt
+    overrideStatusUpdatedBy {
+      id
+      type
+    }
+  }
+  lockingState {
+    state
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

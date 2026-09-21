@@ -1,0 +1,9 @@
+mutation updateRnPRole($input: UpdateRnPRoleInput!) {
+  acl {
+    updateRnPRole(input: $input) {
+      isSuccess
+      warning
+      response
+    }
+  }
+}

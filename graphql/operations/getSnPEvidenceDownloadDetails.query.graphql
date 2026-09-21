@@ -1,0 +1,12 @@
+query getSnPEvidenceDownloadDetails($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on SnPEvaluationCycle {
+      id
+      evidenceDownload {
+        id
+        status
+        zipFileLink
+      }
+    }
+  }
+}

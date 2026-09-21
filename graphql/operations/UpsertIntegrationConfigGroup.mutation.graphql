@@ -1,0 +1,9 @@
+mutation UpsertIntegrationConfigGroup($input: UpsertIntegrationConfigGroupInput!) {
+  integration {
+    upsertIntegrationConfigGroup(input: $input) {
+      groupId
+      createdConfigIds
+      removedConfigIds
+    }
+  }
+}

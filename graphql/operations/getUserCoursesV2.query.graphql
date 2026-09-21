@@ -1,0 +1,43 @@
+query getUserCoursesV2($id: ID!, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!, $getGrades: Boolean!, $getCurriculumProgram: Boolean!, $aclControlParameterFilter: ACLControlParameterFilter) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            title
+            grades @include(if: $getGrades) {
+              id
+              name
+              displaySequence
+            }
+            curriculumProgram @include(if: $getCurriculumProgram) {
+              id
+              type
+              label
+              acronym
+            }
+            aclControlParameters(filters: $aclControlParameterFilter) {
+              id
+              uid
+              permission
+              value
+            }
+            students {
+              totalCount
+            }
+            collaborator {
+              totalCount
+            }
+            familyMembers {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

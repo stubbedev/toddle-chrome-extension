@@ -1,0 +1,33 @@
+query getStudentAttendanceRecord($first: Int, $after: String, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $showHomeroomAttendance: Boolean!, $filters: StudentAttendanceFilters, $studentAttendanceV2StatsFilters: StudentAttendanceFilters, $studentAttendanceV2HomeroomStatsFilters: StudentAttendanceFilters, $studentId: ID!) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      attendanceV2(filters: $studentAttendanceV2StatsFilters) {
+        edgeInfo {
+          totalCount
+          categoryFilteredCount
+          percentage
+        }
+      }
+      attendanceV2(filters: $studentAttendanceV2HomeroomStatsFilters) @include(if: $showHomeroomAttendance) {
+        edgeInfo {
+          totalCount
+          categoryFilteredCount
+          percentage
+        }
+      }
+      attendanceV2(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        edges {
+          node {
+            ...attendanceRecordItem
+          }
+          cursor
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

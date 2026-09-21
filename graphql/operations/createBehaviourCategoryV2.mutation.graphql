@@ -1,0 +1,9 @@
+mutation createBehaviourCategoryV2($input: CreateBehaviourCategoryV2Input!) {
+  platform {
+    createBehaviourCategoryV2(input: $input) {
+      id
+      sourcedId
+      name
+    }
+  }
+}

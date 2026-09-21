@@ -1,0 +1,13 @@
+query getFoundations($filters: AcademyFilters) {
+  platform {
+    academy(filters: $filters) {
+      foundations {
+        name
+        id
+        curriculum
+        workrampFoundationId
+        tags
+      }
+    }
+  }
+}

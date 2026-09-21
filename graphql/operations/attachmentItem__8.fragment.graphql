@@ -1,0 +1,60 @@
+fragment attachmentItem on Attachment {
+  id
+  name
+  type
+  mimeType
+  url
+  signedUrl
+  thumbUrl
+  title
+  metadata
+  streamUrl
+  parentType
+  isRead
+  similarityReport {
+    ...similarityItem
+  }
+  createdBy {
+    id
+    type
+  }
+  lockingState {
+    state
+    scheduledAt
+  }
+  questionAttachment {
+    ... on QuestionSubmission {
+      id
+      questionScore
+      score {
+        id
+        value
+      }
+    }
+    ... on Question {
+      id
+      questionScore
+    }
+  }
+}
+
+fragment staffItem on Staff {
+  id
+  firstName
+  middleName
+  lastName
+  profileImage
+  email
+  type
+  showPitchScreen
+  role
+  showClassSelectionScreen
+  showBifurcationScreen
+  isDevUser
+  isArchived
+  entityTags {
+    id
+    key
+    value
+  }
+}

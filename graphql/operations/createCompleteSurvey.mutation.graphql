@@ -1,0 +1,25 @@
+mutation createCompleteSurvey($input: CreateCompleteSurveyInput!) {
+  platform {
+    createCompleteSurvey(input: $input) {
+      isSuccess
+      warning
+      survey {
+        surveyId
+        surveyTitle
+        startDate
+        endDate
+        pageUrl
+        description
+        stages {
+          stageId
+          question
+          questionType
+          questionOptions
+          stageOrder
+          dependsOnStageId
+          dependencyAnswer
+        }
+      }
+    }
+  }
+}

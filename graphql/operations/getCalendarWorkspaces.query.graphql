@@ -1,0 +1,10 @@
+query getCalendarWorkspaces($input: CalendarWorkspacesFilter!) {
+  platform {
+    calendarWorkspaces(input: $input) {
+      id
+      provider
+      domain
+      status
+    }
+  }
+}

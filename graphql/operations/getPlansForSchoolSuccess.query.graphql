@@ -1,0 +1,8 @@
+query getPlansForSchoolSuccess($formType: FORM_TYPE_ENUM!) {
+  organizationManagement {
+    GenericForm(filters: {formType: $formType}) {
+      id
+      name
+    }
+  }
+}

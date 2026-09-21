@@ -1,0 +1,33 @@
+fragment feedbackPostItem on Post {
+  id
+  title
+  isRead
+  isHiddenFromStudents
+  createdBy {
+    ...userItem
+  }
+  updatedBy {
+    ...userItem
+  }
+  updatedAt
+  createdAt
+  attachments {
+    ...attachmentItem
+    displaySequence
+  }
+  comments {
+    totalCount
+    unreadCount
+    unreadCountV2
+    messageEdges(first: 1) {
+      node {
+        ...messageItem
+      }
+    }
+    unreadMessageEdges {
+      node {
+        ...messageItem
+      }
+    }
+  }
+}

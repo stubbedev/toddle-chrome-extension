@@ -1,0 +1,10 @@
+query getProgressReportsQuery($id: ID!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $filters: studentProgressReportFeedFilter!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      studentProgressReports(first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        ...progressReportsConnection
+      }
+    }
+  }
+}

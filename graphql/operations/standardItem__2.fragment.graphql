@@ -1,0 +1,13 @@
+fragment standardItem on BenchmarkStandardSet {
+  id
+  title
+  description
+  globalSubjects
+  curriculumName
+  country
+  state
+  framework
+  code
+  curriculumTypes
+  benchmarksCount
+}

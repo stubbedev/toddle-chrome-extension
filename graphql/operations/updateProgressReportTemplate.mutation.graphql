@@ -1,0 +1,7 @@
+mutation updateProgressReportTemplate($id: ID!, $name: String, $grades: [String!], $body: JSON, $isArchived: Boolean) {
+  documentation {
+    updateProgressReportTemplate(input: {name: $name, grades: $grades, body: $body, id: $id, isArchived: $isArchived}) {
+      ...progressReportTemplateItem
+    }
+  }
+}

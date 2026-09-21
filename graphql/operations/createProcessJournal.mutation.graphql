@@ -1,0 +1,7 @@
+mutation createProcessJournal($input: PostCompleteInput!) {
+  documentation {
+    createPost(input: $input) {
+      ...processJournalItem
+    }
+  }
+}

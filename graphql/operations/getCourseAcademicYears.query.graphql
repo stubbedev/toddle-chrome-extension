@@ -1,0 +1,20 @@
+query getCourseAcademicYears($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    ... on Course {
+      id
+      academicYears {
+        id
+        startDate
+        endDate
+      }
+    }
+    ... on LearningCourse {
+      id
+      academicYears {
+        id
+        startDate
+        endDate
+      }
+    }
+  }
+}

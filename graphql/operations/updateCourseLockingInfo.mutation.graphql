@@ -1,0 +1,7 @@
+mutation updateCourseLockingInfo($id: ID!, $entityId: ID!, $isLocked: Boolean!) {
+  planner {
+    bulkUpdateLearningCourseEntityLock(input: {learningCourseId: $id, lockType: CONTENT_LEVEL_LOCK, entityLocks: [{entityId: $entityId, entityType: PLANNER_ELEMENT_NODE, isLocked: $isLocked}]}) {
+      isSuccess
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getTestTypeAssociatedTemplates($id: ID!, $excludedTemplateIds: [ID!]) {
+  node(id: $id, type: EXTERNAL_ASSESSMENT_TEST_TYPE) {
+    id
+    ... on ExternalAssessmentTestType {
+      associatedTemplates(filters: {excludedTemplateIds: $excludedTemplateIds}) {
+        edges {
+          id
+          name
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation copyTimetableSlotContent($input: CopyTimetableContentInput!) {
+  platform {
+    copyTimetableSlotContent(input: $input)
+    __typename
+  }
+}

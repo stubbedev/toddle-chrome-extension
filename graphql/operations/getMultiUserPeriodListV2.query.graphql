@@ -1,0 +1,7 @@
+query getMultiUserPeriodListV2($ids: [ID!], $periodFilters: PeriodFilterOptions) {
+  multiNode(ids: $ids, type: STUDENT) {
+    ... on Student {
+      ...studentPeriodListItemV2
+    }
+  }
+}

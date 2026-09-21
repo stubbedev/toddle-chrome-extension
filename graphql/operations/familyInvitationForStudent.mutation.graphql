@@ -1,0 +1,11 @@
+mutation familyInvitationForStudent($parentsData: [ParentInput!], $emailLanguage: LANGUAGE_TYPE_ENUM, $inviteType: FAMILY_INVITE_TYPE_ENUM!) {
+  platform {
+    familyInvitationForStudent(input: {parentsData: $parentsData, emailLanguage: $emailLanguage, inviteType: $inviteType}) {
+      response {
+        email
+        id
+      }
+      warning
+    }
+  }
+}

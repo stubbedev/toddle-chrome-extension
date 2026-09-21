@@ -1,0 +1,8 @@
+mutation generateExternalAssessmentBulkUploadTemplate($input: GenerateExternalAssessmentBulkUploadTemplateInput!) {
+  externalAssessment {
+    generateExternalAssessmentBulkUploadTemplate(input: $input) {
+      isSuccess
+      fileUrl
+    }
+  }
+}

@@ -1,0 +1,27 @@
+fragment externalDataSourceFragment on OrganizationResource {
+  id
+  label
+  type
+  createdBy {
+    ... on Staff {
+      id
+      type
+      firstName
+      lastName
+      profileImage
+    }
+  }
+  createdAt
+  metadata
+  attachment {
+    id
+    type
+    name
+    mimeType
+    title
+    metadata
+    url
+    signedUrl
+    thumbUrl
+  }
+}

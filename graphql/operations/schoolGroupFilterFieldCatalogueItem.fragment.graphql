@@ -1,0 +1,21 @@
+fragment schoolGroupFilterFieldCatalogueItem on SchoolGroupFilterFieldCatalogue {
+  userType
+  sections {
+    uid
+    label
+    fields {
+      uid
+      label
+      dataType
+      operators
+      optionsSource
+      presentation
+      paginated
+      searchable
+    }
+  }
+  linkedEntities {
+    entity
+    scopeOptions
+  }
+}

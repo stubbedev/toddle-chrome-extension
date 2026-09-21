@@ -1,0 +1,42 @@
+fragment documentBlockItem on DocumentBlock {
+  id
+  uid
+  type
+  value
+  parentUid
+  depth
+  properties
+  nestedParentUid
+  nestedContent
+  metadata
+  displaySequence
+  entityType
+  entity {
+    id
+    ... on Assessment {
+      id
+      title {
+        id
+        value
+      }
+      assessmentType {
+        id
+        value
+      }
+      isDeleted
+    }
+    ... on UnitFlowSection {
+      id
+      title
+    }
+    ... on OrganizationResource {
+      id
+      label
+      type
+      isDeleted
+      attachment {
+        ...attachmentItem
+      }
+    }
+  }
+}

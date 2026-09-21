@@ -1,0 +1,8 @@
+mutation deleteLevelDraft($input: DraftDeleteInput!) {
+  planner {
+    deleteLevelDraft(input: $input) {
+      isSuccess
+    }
+    __typename
+  }
+}

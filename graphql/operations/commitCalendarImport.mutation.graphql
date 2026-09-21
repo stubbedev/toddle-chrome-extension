@@ -1,0 +1,9 @@
+mutation commitCalendarImport($input: SchoolCalendarSheetValidationActionInput!) {
+  platform {
+    schoolCalendarSheetUploadAction(input: $input) {
+      isSuccess
+      warning
+      response
+    }
+  }
+}

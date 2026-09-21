@@ -1,0 +1,514 @@
+query getAIContextCategories($gradingCommentTypeId: ID!, $aiContextCategoriesFilters: AiContextCategoriesFilters, $isEnabledFilters: GradingCommentAiContextCategoryUserPreferenceFilters, $unitPlanFieldUids: [String!], $studentProgressReportId: ID!, $curriculumProgramType: CURRICULUM_PROGRAM_TYPE_ENUM, $curriculumProgramId: ID, $metadata: JSON, $projectFilters: PlannerFieldFilter, $portfolioFieldFilters: PlannerFieldFilter, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!, $projectRemarkFilters: StudentReportRemarkFilter, $isCustomDatasetsEnabled: Boolean!, $shouldFetchSubjectInLearningGoals: Boolean!) {
+  node(id: $gradingCommentTypeId, type: GRADING_COMMENT_TYPE) {
+    id
+    ... on GradingCommentType {
+      id
+      type
+      description
+      aiContextCategories(filters: $aiContextCategoriesFilters) {
+        id
+        contextCategoryId
+        type
+        subType
+        name
+        isHidden
+        isRequired
+        isEnabled(filters: $isEnabledFilters)
+        context(filters: {studentProgressReportId: $studentProgressReportId, curriculumProgramType: $curriculumProgramType, curriculumProgramId: $curriculumProgramId, metadata: $metadata}) {
+          ... on Student {
+            id
+            pronouns
+            allGrades {
+              id
+              name
+            }
+            grades
+          }
+          ... on UnitPlan {
+            id
+            fields(uids: $unitPlanFieldUids) {
+              id
+              uid
+              value
+            }
+          }
+          ... on ProjectReport {
+            id
+            project {
+              id
+              reportStatus
+              fields(filters: $projectFilters) {
+                id
+                uid
+                value
+                resolvedMinimalTree {
+                  ... on ResolvedFieldSubjectSet {
+                    id
+                    type
+                    subjects {
+                      id
+                      name
+                    }
+                  }
+                  ... on ResolvedFieldPlannerElementSet {
+                    id
+                    nodes {
+                      id
+                      label
+                    }
+                  }
+                }
+              }
+            }
+            remarks(filters: $projectRemarkFilters) {
+              id
+              nodeId
+              message
+            }
+          }
+          ... on StudentProjectPortfolioReport {
+            id
+            studentProjectPortfolio {
+              id
+              isComplete
+              projects {
+                totalCount
+                edges {
+                  node {
+                    id
+                    type
+                    status
+                    fields(filters: $portfolioFieldFilters) {
+                      id
+                      uid
+                      value
+                      resolvedMinimalTree {
+                        id
+                        type
+                        ... on ResolvedFieldPlannerElementSet {
+                          id
+                          type
+                          ... on ResolvedFieldPlannerElementSet {
+                            id
+                            type
+                            nodes {
+                              id
+                              label
+                              type
+                              metadata
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+                id
+                projects {
+                  totalCount
+                }
+                plannerElementNode {
+                  id
+                  label
+                  metadata
+                }
+                isAchieved
+                ibPYPElementRatings(filters: {orderBy: CREATED_AT, orderByDirection: DESC}) {
+                  id
+                  academicCriteriaValue {
+                    id
+                    label
+                  }
+                }
+              }
+            }
+            remarks(filters: $projectRemarkFilters) {
+              id
+              nodeId
+              message
+            }
+          }
+          ... on LearningGoalsEvaluation {
+            id
+            resolvedMinimalTree {
+              ... on PlannerConcept {
+                id
+                label
+              }
+              ... on PlannerLearnerProfile {
+                id
+                label
+              }
+              ... on PlannerATL {
+                id
+                label
+                parent
+                children
+              }
+              ... on PlannerBenchmark {
+                id
+                label
+                parent
+                children
+              }
+              ... on UnitPlan {
+                id
+                title {
+                  id
+                  value
+                }
+              }
+              ... on Subject {
+                id
+                name
+              }
+              ... on LearningCourse {
+                id
+                title
+              }
+              ... on PlannerElementNode {
+                id
+                label
+                subText
+                parent
+                children
+                type
+                associatedParents {
+                  ... on Subject {
+                    id
+                    name
+                  }
+                }
+                depth
+                dataSetNodeWrapper @include(if: $isCustomDatasetsEnabled) {
+                  plannerElementNodeSet {
+                    id
+                    title
+                  }
+                }
+              }
+              ... on ProjectGroup {
+                id
+                type
+                name
+              }
+            }
+            ratings {
+              id
+              ibPYPElementType
+              ibPYPElementNode {
+                ... on PlannerConcept {
+                  id
+                  label
+                }
+                ... on PlannerLearnerProfile {
+                  id
+                  label
+                }
+                ... on PlannerATL {
+                  id
+                  label
+                }
+                ... on PlannerBenchmark {
+                  id
+                  label
+                }
+                ... on Subject {
+                  id
+                  name
+                }
+                ... on LearningCourse {
+                  id
+                  title
+                }
+                ... on PlannerElementNode {
+                  id
+                  label
+                }
+                ... on ProjectGroup {
+                  id
+                  type
+                  name
+                }
+                ... on AcademicCriteriaSet {
+                  id
+                  label
+                  criteriaType
+                }
+              }
+              academicCriteriaSet {
+                id
+                label
+                criteriaType
+              }
+              academicCriteriaValue {
+                id
+                label
+                abbreviation
+              }
+              globalCategory {
+                id
+                name
+              }
+              value
+              academicTerm {
+                id
+                label
+                startDate
+                endDate
+              }
+              subject @include(if: $shouldFetchSubjectInLearningGoals) {
+                id
+                name
+              }
+            }
+            remarks {
+              id
+              message
+              ibPYPElementId
+              ibPYPElementType
+            }
+          }
+          ... on StandardsEvaluation {
+            id
+            resolvedMinimalTree {
+              ... on PlannerBenchmark {
+                id
+                label
+                parent
+                children
+              }
+              ... on Subject {
+                id
+                name
+              }
+              ... on PlannerElementNode {
+                id
+                label
+                subText
+                parent
+                children
+                type
+                associatedParents {
+                  ... on Subject {
+                    id
+                    name
+                  }
+                }
+                depth
+              }
+            }
+            ratings {
+              id
+              ibPYPElementType
+              ibPYPElementNode {
+                ... on Subject {
+                  id
+                  name
+                }
+                ... on PlannerElementNode {
+                  id
+                  label
+                }
+              }
+              academicCriteriaSet {
+                id
+                label
+                criteriaType
+              }
+              academicCriteriaValue {
+                id
+                label
+                abbreviation
+              }
+              value
+              academicTerm {
+                id
+                label
+                startDate
+                endDate
+              }
+            }
+          }
+          ... on ATLSkillsCategoryEvaluation {
+            id
+            resolvedMinimalTree {
+              ... on PlannerATL {
+                id
+                label
+                parent
+                children
+              }
+              ... on Subject {
+                id
+                name
+              }
+              ... on PlannerElementNode {
+                id
+                label
+                subText
+                parent
+                children
+                type
+                associatedParents {
+                  ... on Subject {
+                    id
+                    name
+                  }
+                }
+                depth
+              }
+            }
+            ratings {
+              id
+              ibPYPElementType
+              ibPYPElementNode {
+                ... on PlannerATL {
+                  id
+                  label
+                }
+                ... on Subject {
+                  id
+                  name
+                }
+                ... on PlannerElementNode {
+                  id
+                  label
+                }
+              }
+              academicCriteriaSet {
+                id
+                label
+                criteriaType
+              }
+              academicCriteriaValue {
+                id
+                label
+                abbreviation
+              }
+              value
+              academicTerm {
+                id
+                label
+                startDate
+                endDate
+              }
+            }
+          }
+          ... on EntityCommentsEvaluation {
+            id
+            remarks {
+              id
+              nodeId
+              message
+              remarkType
+            }
+            resolvedMinimalTree {
+              ... on Subject {
+                id
+                name
+              }
+              ... on LearningCourse {
+                id
+                title
+              }
+            }
+          }
+          ... on Post {
+            id
+            title
+            attachments {
+              id
+              name
+              title
+            }
+            course {
+              id
+              title
+            }
+            createdAt
+            updatedAt
+          }
+          ... on StudentAssignment {
+            id
+            ibPYPElementRatings {
+              id
+              value
+              ibPYPElementType
+            }
+            toolResponsesV2 {
+              toolId
+              toolType
+            }
+            elementRemarks {
+              id
+              message
+            }
+            assignment {
+              id
+              label
+              content {
+                ... on Assessment {
+                  id
+                  academicTerm {
+                    id
+                    label
+                  }
+                  title {
+                    id
+                    value
+                  }
+                  assessmentType {
+                    id
+                    value
+                  }
+                  taskType {
+                    id
+                    type
+                    label
+                    color
+                  }
+                  assessmentTools(filters: {assessmentToolType: [SCORE]}) {
+                    edges {
+                      node {
+                        id
+                        assessmentToolItem {
+                          id
+                          ... on ScoreAssessmentTool {
+                            id
+                            scoreToolData {
+                              id
+                              maxScore
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              course {
+                id
+                title
+                learningCourse {
+                  id
+                }
+              }
+            }
+          }
+          ... on StudentProgressReportAttendanceV2 {
+            id
+            metric
+            attendanceCount
+            academicTerm {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

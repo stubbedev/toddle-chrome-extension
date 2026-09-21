@@ -1,0 +1,30 @@
+query getCourseFlowItemCountQuery($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $leAndAssessmentFilters: LearningCourseFlowFilter, $unitFlowFeedFilters: LearningCourseFlowFilter, $unitFlowResourceFilters: LearningCourseFlowFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(filters: $unitFlowFeedFilters) {
+          resourceBasedCount {
+            totalCount
+            fileCount
+            __typename
+          }
+        }
+        learningCourseFlowFeed(filters: $unitFlowResourceFilters) {
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+        }
+        learningCourseFlowFeed(filters: $leAndAssessmentFilters) {
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+        }
+      }
+    }
+    __typename
+  }
+}

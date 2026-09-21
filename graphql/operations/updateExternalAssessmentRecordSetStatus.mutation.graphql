@@ -1,0 +1,7 @@
+mutation updateExternalAssessmentRecordSetStatus($input: [UpdateExternalAssessmentRecordSetInput!]!) {
+  externalAssessment {
+    updateExternalAssessmentRecordSets(input: $input) {
+      isSuccess
+    }
+  }
+}

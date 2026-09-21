@@ -1,0 +1,4 @@
+fragment studentProfileQuestionItem on StudentProfileQuestion {
+  id
+  title
+}

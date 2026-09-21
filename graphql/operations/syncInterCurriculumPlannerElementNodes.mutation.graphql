@@ -1,0 +1,5 @@
+mutation syncInterCurriculumPlannerElementNodes($sourceId: ID!, $destinationIds: [ID!], $plannerElementType: PLANNER_ELEMENT_TYPE_ENUM!) {
+  planner {
+    syncInterCurriculumPlannerElementNodes(input: {sourceId: $sourceId, destinationIds: $destinationIds, plannerElementType: $plannerElementType})
+  }
+}

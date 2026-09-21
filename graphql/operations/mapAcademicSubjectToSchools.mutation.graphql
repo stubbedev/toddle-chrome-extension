@@ -1,0 +1,17 @@
+mutation mapAcademicSubjectToSchools($academicSubjectId: ID!, $schoolCurriculumProgramIds: [ID!]!) {
+  platform {
+    mapAcademicSubjectToSchools(input: {academicSubjectId: $academicSubjectId, schoolCurriculumProgramIds: $schoolCurriculumProgramIds}) {
+      isSuccess
+      warning
+      academicSubjectId
+      mapped {
+        schoolCurriculumProgramId
+        childSubjectId
+      }
+      unmapped {
+        schoolCurriculumProgramId
+        childSubjectId
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation shareUnitPlanWithLearningCourses($input: ShareUnitPlanWithLearningCoursesInput!) {
+  planner {
+    shareUnitPlanWithLearningCourses(input: $input)
+  }
+}

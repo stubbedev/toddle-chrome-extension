@@ -1,0 +1,71 @@
+query geSingletStudentAttendanceRecord($id: ID!, $first: Int, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $filters: StudentAttendanceFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      ...studentNameFields
+      profileImage
+      courses {
+        id
+        title
+      }
+      familyMembers {
+        id
+        firstName
+        middleName
+        lastName
+        profileImage
+      }
+      attendanceV2(first: $first, orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        edges {
+          node {
+            id
+            date
+            timeBlock {
+              id
+              uid
+              label
+            }
+            value {
+              id
+              label
+              color
+              abbreviation
+              status
+              isDefault
+              sendSMS
+              sendEmail
+              attendanceCategory {
+                id
+                color
+              }
+            }
+            remark
+            updatedBy {
+              id
+              firstName
+              lastName
+              profileImage
+            }
+            period {
+              id
+              label
+            }
+            course {
+              id
+              title
+              learningCourse {
+                id
+                title
+                academicCourse {
+                  id
+                  label
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

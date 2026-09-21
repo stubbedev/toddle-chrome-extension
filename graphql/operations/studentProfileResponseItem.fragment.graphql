@@ -1,0 +1,15 @@
+fragment studentProfileResponseItem on StudentProfileResponse {
+  id
+  title
+  studentProfileQuestion {
+    id
+  }
+  createdBy {
+    ...staffItem
+  }
+  createdAt
+  attachments {
+    ...attachmentBasicDetailsItem
+    mimeType
+  }
+}

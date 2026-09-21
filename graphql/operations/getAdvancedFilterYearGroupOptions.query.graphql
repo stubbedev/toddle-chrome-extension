@@ -1,0 +1,15 @@
+query getAdvancedFilterYearGroupOptions($organizationId: ID!, $filters: YearGroupFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      yearGroups(filters: $filters) {
+        id
+        name
+        curriculumProgram {
+          id
+          label
+        }
+      }
+    }
+  }
+}

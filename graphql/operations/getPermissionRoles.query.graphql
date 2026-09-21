@@ -1,0 +1,13 @@
+query getPermissionRoles($ids: [ID!]) {
+  multiNode(ids: $ids, type: ACL_CONTROL_PARAMETER) {
+    ... on ACLPermission {
+      id
+      uid
+      label
+      enabledRoles(levels: [ACCOUNT, PROGRAMME]) {
+        id
+        label
+      }
+    }
+  }
+}

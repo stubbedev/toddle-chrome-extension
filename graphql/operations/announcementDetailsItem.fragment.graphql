@@ -1,0 +1,8 @@
+fragment announcementDetailsItem on Circular {
+  ...announcementItem
+  isSharedWithMe(input: {academicYearId: $academicYearId})
+  recipients(input: {academicYearId: $academicYearId}) @include(if: $isRecipientsVisible) {
+    totalCount
+    readByCount
+  }
+}

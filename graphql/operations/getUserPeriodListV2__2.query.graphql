@@ -1,0 +1,10 @@
+query getUserPeriodListV2($id: ID!, $type: ENTITY_TYPE_ENUM!, $periodFilters: PeriodFilterOptions) {
+  node(id: $id, type: $type) {
+    ... on Student {
+      ...studentPeriodListItemV2
+    }
+    ... on Staff {
+      ...staffPeriodListItemV2
+    }
+  }
+}

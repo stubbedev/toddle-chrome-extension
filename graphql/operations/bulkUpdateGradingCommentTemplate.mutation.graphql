@@ -1,0 +1,7 @@
+mutation bulkUpdateGradingCommentTemplate($input: BulkUpdateGradingCommentTemplateInput!) {
+  documentation {
+    bulkUpdateGradingCommentTemplate(input: $input) {
+      isSuccess
+    }
+  }
+}

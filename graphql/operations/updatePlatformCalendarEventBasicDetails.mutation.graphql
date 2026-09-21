@@ -1,0 +1,10 @@
+mutation updatePlatformCalendarEventBasicDetails($id: ID!, $startAt: String, $durationInMin: Int, $itemType: CALENDAR_EVENT_ITEM_TYPE_ENUM!, $startDateTime: String, $endDateTime: String, $isFullDayEvent: Boolean, $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $notificationMessage: String, $shouldNotifyParticipants: Boolean, $shouldUseNewMeetingInfra: Boolean) {
+  platform {
+    updatePlatformCalendarEventBasicDetails(input: {id: $id, startAt: $startAt, durationInMin: $durationInMin, itemType: $itemType, startDateTime: $startDateTime, endDateTime: $endDateTime, isFullDayEvent: $isFullDayEvent, eventType: $eventType, notificationMessage: $notificationMessage, shouldNotifyParticipants: $shouldNotifyParticipants, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra}) {
+      response {
+        ...platformCalendarEventItem
+      }
+      warning
+    }
+  }
+}

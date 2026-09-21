@@ -1,0 +1,13 @@
+query getPlannerElementSetAssociatedCriteria($plannerElementSetId: ID!, $plannerElementNodeFilters: PlannerElementFilters) {
+  node(id: $plannerElementSetId, type: PLANNER_ELEMENT_SET) {
+    id
+    ... on PlannerElementSet {
+      id
+      label
+      nodes(filters: $plannerElementNodeFilters) {
+        id
+        label
+      }
+    }
+  }
+}

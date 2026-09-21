@@ -1,0 +1,7 @@
+mutation updateMutation($input: CircularUpdateInputV3!) {
+  school {
+    updateCircularV3(input: $input) {
+      id
+    }
+  }
+}

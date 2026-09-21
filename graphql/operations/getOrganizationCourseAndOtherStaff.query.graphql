@@ -1,0 +1,21 @@
+query getOrganizationCourseAndOtherStaff($id: ID!, $courseIds: [ID!]) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: {courses: $courseIds}) {
+        edges {
+          node {
+            ...userItem
+          }
+        }
+      }
+      staff(filters: {excludedCourseIds: $courseIds}) {
+        edges {
+          node {
+            ...userItem
+          }
+        }
+      }
+    }
+  }
+}

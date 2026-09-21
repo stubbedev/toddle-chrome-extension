@@ -1,0 +1,8 @@
+query getQuestionLibraryQuestion($id: ID!) {
+  node(id: $id, type: ORGANIZATION_RESOURCE) {
+    id
+    ... on OrganizationResource {
+      ...organizationResourceQuestionItem
+    }
+  }
+}

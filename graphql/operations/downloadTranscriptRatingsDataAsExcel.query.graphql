@@ -1,0 +1,11 @@
+query downloadTranscriptRatingsDataAsExcel($id: ID!, $input: DownloadTranscriptRatingsDataAsExcelInput!) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      downloadTranscriptRatingsDataAsExcel(input: $input) {
+        url
+        fileName
+      }
+    }
+  }
+}

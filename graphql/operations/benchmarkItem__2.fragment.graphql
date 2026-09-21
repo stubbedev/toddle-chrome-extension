@@ -1,0 +1,59 @@
+fragment benchmarkItem on PlannerBenchmark {
+  id
+  label
+  subText
+  children
+  parent
+  subject
+  levelId
+  displaySequence
+  depth
+  type
+  code
+  grades {
+    id
+    name
+  }
+  isLeaf
+  tags {
+    id
+    label
+    icon {
+      id
+      url
+    }
+  }
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      title
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+    }
+    properties {
+      isGraded
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+  gradingType
+  parentData {
+    id
+  }
+}

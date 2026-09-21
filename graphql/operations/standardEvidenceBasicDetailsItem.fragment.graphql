@@ -1,0 +1,13 @@
+fragment standardEvidenceBasicDetailsItem on SnPStandard {
+  id
+  practicesV2(orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+    edges {
+      node {
+        id
+        taggedEvidence(filters: $filters) {
+          totalCount
+        }
+      }
+    }
+  }
+}

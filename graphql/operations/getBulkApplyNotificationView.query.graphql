@@ -1,0 +1,22 @@
+query getBulkApplyNotificationView($configurationViewFilters: ConfigurationViewFilters) {
+  platform {
+    bulkApplyNotificationView(filters: $configurationViewFilters) {
+      ...configurationViewItem
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

@@ -1,0 +1,8 @@
+mutation validateBulkUploadIncident($input: BulkUploadIncidentValidateInput!) {
+  platform {
+    validateBulkUploadIncident(input: $input) {
+      uploadStatus
+      s3Url
+    }
+  }
+}

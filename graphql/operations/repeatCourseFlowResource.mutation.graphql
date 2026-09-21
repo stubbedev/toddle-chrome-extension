@@ -1,0 +1,11 @@
+mutation repeatCourseFlowResource($input: RepeatLearningCourseFlowResource!, $assessmentAssignmentsFilters: AssessmentAssignmentsFilters, $studentIds: [ID!], $skipAssignedStudents: Boolean! = true, $stateFilters: LearningCourseFlowStateFilter, $filters: LearningCourseFlowFilter, $syncedBluePrintItemFilters: SyncedBluePrintItemFilter, $assessmentFieldUids: [String!], $includeCourseSyncStatus: Boolean = false) {
+  planner {
+    repeatLearningCourseFlowResource(input: $input) {
+      isSuccess
+      error
+      courseFlowResource {
+        ...courseFlowResource
+      }
+    }
+  }
+}

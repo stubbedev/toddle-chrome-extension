@@ -1,0 +1,15 @@
+mutation createPointAssessmentSet($input: [CreatePointAssessmentSetInput!]) {
+  planner {
+    createPointAssessmentSet(input: $input) {
+      response {
+        id
+        label
+        type
+        categories {
+          id
+          label
+        }
+      }
+    }
+  }
+}

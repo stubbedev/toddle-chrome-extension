@@ -1,0 +1,21 @@
+fragment studentItem on Student {
+  id
+  firstName
+  middleName
+  lastName
+  pronouns
+  preferredName
+  suffix
+  prefix
+  profileImage
+  isArchivedV2(filters: {academicYearId: $academicYearId})
+  email
+  type
+  isDevUser
+  isArchived
+  sourceId
+  type
+  alertTypes {
+    ...alertTypeFields
+  }
+}

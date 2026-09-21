@@ -1,0 +1,97 @@
+query getLearningCourses($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!, $after: String, $filters: LearningCourseFilters) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningCourse(first: 50, after: $after, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningCourse(first: 50, after: $after, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningCourse(first: 50, after: $after, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningCourse(first: 50, after: $after, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      learningCourse(first: 50, after: $after, filters: $filters) {
+        edges {
+          node {
+            ...learningCourseItem
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}
+
+fragment learningCourseItem on LearningCourse {
+  id
+  title
+  type
+  grades {
+    id
+    name
+  }
+  primaryGrade {
+    id
+  }
+  subjects {
+    id
+    name
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+}

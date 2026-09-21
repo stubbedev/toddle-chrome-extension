@@ -1,0 +1,8 @@
+query getPlatformUserDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $entityRelationMapFilters: EntityRelationMapFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+  }
+}

@@ -1,0 +1,7 @@
+query getProgressReportBaseTemplateList {
+  documentation {
+    progressReportBaseTemplateList {
+      ...baseTemplateList
+    }
+  }
+}

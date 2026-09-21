@@ -1,0 +1,40 @@
+fragment projectTaskResponseItem on ProjectTaskResponse {
+  id
+  task {
+    id
+    title
+    description
+    dueOn
+    closesOn
+    isStudentSubmissionEnabled
+    isDeadlineAllDay
+    submission {
+      id
+      type
+    }
+  }
+  isComplete
+  isSubmissionTurnedIn
+  latestSubmissionResponse {
+    id
+    isLocked
+    lockedAt
+    isReturned
+    returnedAt
+    isTurnedIn
+    turnedInAt
+    status
+    submission {
+      id
+      fieldUID
+      items {
+        id
+        fieldUID
+        title
+      }
+    }
+    itemResponses {
+      ...projectTaskSubmissionItemResponseItem
+    }
+  }
+}

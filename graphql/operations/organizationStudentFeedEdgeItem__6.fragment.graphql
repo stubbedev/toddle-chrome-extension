@@ -1,0 +1,23 @@
+fragment organizationStudentFeedEdgeItem on Organization {
+  id
+  students(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+    totalCount
+    edges {
+      node {
+        ...studentItem
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
+mutation integrationUploadAssessmentData($input: IntegrationUploadAssessmentDataInput!) {
+  integration {
+    integrationUploadAssessmentData(input: $input) {
+      uploadStatus
+    }
+  }
+}

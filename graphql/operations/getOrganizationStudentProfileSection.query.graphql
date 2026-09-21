@@ -1,0 +1,5 @@
+query getOrganizationStudentProfileSection($organizationId: ID!, $filters: StudentProfileTemplateSectionFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ...organizationItem
+  }
+}

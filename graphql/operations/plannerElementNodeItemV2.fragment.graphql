@@ -1,0 +1,14 @@
+fragment plannerElementNodeItemV2 on PlannerElementNode {
+  id
+  label
+  depth
+  type
+  associatedParents {
+    id
+    ... on Subject {
+      id
+      name
+      isArchived
+    }
+  }
+}

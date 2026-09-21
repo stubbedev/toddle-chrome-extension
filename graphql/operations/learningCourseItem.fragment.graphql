@@ -1,0 +1,35 @@
+query getSetCourses($id: ID!) {
+  node(id: $id, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      id
+      plannerElementNodeSetWrapperV2 {
+        ... on PlannerElementNodeSetWrapper {
+          courses {
+            ...learningCourseItem
+          }
+        }
+        ... on PlannerBenchmarkSetWrapper {
+          courses {
+            ...learningCourseItem
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment learningCourseItem on LearningCourse {
+  id
+  title
+  code
+  type
+  displayMetadata
+  curriculumProgram {
+    id
+    label
+  }
+  grades {
+    id
+    name
+  }
+}

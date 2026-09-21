@@ -1,0 +1,58 @@
+query getRoutineDatesSchedule($id: ID!, $curriculumProgramIds: [ID!], $routineFilters: RoutineFilterOptions!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumProgramIds) {
+        id
+        routines(filter: $routineFilters) {
+          id
+          routineMode
+          dayPatternType
+          rotationDays {
+            id
+            label
+          }
+          dayPatterns {
+            id
+            weekdays
+            rotationDays {
+              rotationDay {
+                id
+                label
+              }
+            }
+          }
+          bellSchedules {
+            id
+            weekday
+            rotationDay {
+              id
+              label
+            }
+            bellSchedule {
+              id
+              label
+              periodsEdge {
+                totalCount
+                periods {
+                  period {
+                    id
+                    label
+                    type
+                    isDefault
+                    sequence
+                    isDefault
+                    abbreviation
+                  }
+                  startTime
+                  endTime
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

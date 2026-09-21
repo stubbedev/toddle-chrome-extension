@@ -1,0 +1,38 @@
+query getAssessmentDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $orgResourceFilters: OrganizationResourceFilter) {
+  node(id: $id, type: $type) {
+    ... on Assessment {
+      id
+      organizationResourcesV2(first: null, filters: $orgResourceFilters) {
+        edges {
+          node {
+            childrenV2 {
+              edges {
+                node {
+                  id
+                  item {
+                    id
+                  }
+                  childrenV2 {
+                    edges {
+                      node {
+                        id
+                        item {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      title {
+        id
+        uid
+        value
+      }
+    }
+  }
+}

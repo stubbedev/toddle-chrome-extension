@@ -1,0 +1,8 @@
+query getCourseProgressReportFeedCount($courseId: ID!) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      ...courseProgressReportItem
+    }
+  }
+}

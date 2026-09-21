@@ -1,0 +1,10 @@
+mutation deleteYardDuty($input: DeleteYardDutyInput!) {
+  platform {
+    deleteYardDuty(input: $input) {
+      isSuccess
+      warning
+      __typename
+    }
+    __typename
+  }
+}

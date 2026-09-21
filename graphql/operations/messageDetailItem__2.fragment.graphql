@@ -1,0 +1,57 @@
+query getUserFlaggedConversations($organizationId: ID!, $chatFeedInput: AllChatFeedInput!, $messagesV2Input: MessageFeedInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      allChats(input: $chatFeedInput) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            label
+            type
+            profileImage
+            personalChatUsers {
+              id
+              firstName
+              middleName
+              lastName
+              type
+              profileImage
+            }
+            messagesV2(input: $messagesV2Input) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              edges {
+                node {
+                  ...messageDetailItem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment messageDetailItem on MessageV2 {
+  id
+  label
+  createdAt
+  cursor
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+  }
+  attachments {
+    id
+  }
+}

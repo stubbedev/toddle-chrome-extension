@@ -1,0 +1,8 @@
+fragment subTaskData on IntegrationSubTask {
+  id
+  parsedData
+  type
+  status
+  isArchived
+  hasError
+}

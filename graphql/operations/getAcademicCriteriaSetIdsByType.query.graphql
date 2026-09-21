@@ -1,0 +1,13 @@
+query getAcademicCriteriaSetIdsByType($organizationId: ID!, $filters: academicCriteriaSetsFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: $filters) {
+          id
+          criteriaType
+        }
+      }
+    }
+  }
+}

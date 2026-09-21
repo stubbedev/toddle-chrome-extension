@@ -1,0 +1,52 @@
+query getIncidentAccessibleUsers($id: ID!, $input: BehaviourAccessibleUsersInput!) {
+  node(id: $id, type: BEHAVIOUR_INCIDENT) {
+    ... on BehaviourIncident {
+      id
+      accessibleUsers(input: $input) {
+        userType
+        sharedWithUser
+        totalCount
+        users {
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            endCursor
+          }
+          edges {
+            node {
+              id
+              firstName
+              middleName
+              profileImage
+              lastName
+              ... on Staff {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+              ... on Student {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+              ... on FamilyMember {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+              ... on Parent {
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

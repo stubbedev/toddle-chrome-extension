@@ -1,0 +1,17 @@
+query getAllCourseIds($organizationId: ID!, $filters: CourseFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses(filters: $filters) {
+        edges {
+          node {
+            id
+            students {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

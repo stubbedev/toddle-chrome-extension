@@ -1,0 +1,17 @@
+fragment basicOrganizationElementRatingsItem on OrganizationElementRatings {
+  id
+  ibPYPParentElementId
+  subType
+  academicCriteriaSets {
+    label
+    id
+    criteriaType
+    academicCriteriaValues {
+      label
+      description
+      id
+      abbreviation
+      displaySequence
+    }
+  }
+}

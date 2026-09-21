@@ -1,0 +1,12 @@
+fragment continuumNodeItem on ContinuumNode {
+  id
+  label
+  subText
+  type
+  gradingType
+  depth
+  displaySequence
+  parentId
+  children
+  __typename
+}

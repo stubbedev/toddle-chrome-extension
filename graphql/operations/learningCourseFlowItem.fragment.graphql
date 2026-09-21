@@ -1,0 +1,35 @@
+fragment learningCourseFlowItem on LearningCourseFlow {
+  id
+  label
+  displaySequence
+  parent {
+    id
+  }
+  learningCourse {
+    id
+  }
+  depth
+  itemType
+  state
+  isEditAllowed
+  isSharingAllowed
+  sharedDetails {
+    class {
+      id
+    }
+    students {
+      id
+    }
+  }
+  lockingInfo {
+    isLocked
+  }
+  item {
+    ... on Attachment {
+      ...attachmentItem
+    }
+    ... on Assessment {
+      ...assessmentItem
+    }
+  }
+}

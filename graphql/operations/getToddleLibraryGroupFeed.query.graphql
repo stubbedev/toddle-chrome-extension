@@ -1,0 +1,64 @@
+query getToddleLibraryGroupFeed($id: ID!, $seed: Float!, $filters: LibraryEntityFilter, $feedType: LIBRARY_FEED_ENUM, $collectionFilterInput: collectionFilterInput, $showOnlyAccessible: Boolean) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      libraryLanes(seed: $seed, filters: $filters, feedType: $feedType, showOnlyAccessible: $showOnlyAccessible) {
+        label
+        metaData {
+          laneType
+          laneOrder
+          entityType
+        }
+        entities {
+          totalCount
+          edges {
+            isPremium
+            isNew
+            node {
+              id
+              ... on UnitPlan {
+                id
+                ...unitPlanItem
+              }
+              ... on LECollection {
+                id
+                ...leCollectionItem
+              }
+              ... on Assessment {
+                id
+                ...assessmentItem
+              }
+              ... on MockExam {
+                id
+                label
+                isSavedForLibrary
+                worksheet {
+                  totalCount
+                  edges {
+                    node {
+                      id
+                      ...assessmentItem
+                    }
+                  }
+                }
+              }
+              ... on OrganizationResource {
+                id
+                ...organizationResourceQuestionFeedItem
+              }
+              ... on LibraryTopic {
+                id
+                image {
+                  id
+                  url
+                }
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

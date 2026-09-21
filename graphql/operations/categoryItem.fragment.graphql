@@ -1,0 +1,44 @@
+fragment categoryItem on PointAssessmentSetCategory {
+  id
+  label
+  colorCode
+  percentageWeight
+  hlWeight
+  slWeight
+  values {
+    id
+    value
+    minValue
+    maxValue
+    genericTag {
+      id
+      label
+    }
+    valueType
+    weightageType
+  }
+  gradeBoundary {
+    id
+    categories {
+      id
+      label
+      displaySequence
+      values {
+        id
+        value
+        minValue
+        maxValue
+        genericTag {
+          id
+          label
+        }
+      }
+    }
+  }
+  gradeScaleType
+  displaySequence
+  overridenCategoryScoresCount
+  assignments(filters: $assignmentFeedFilters) @skip(if: $skipAssignments) {
+    totalCount
+  }
+}

@@ -1,0 +1,18 @@
+query getAllStudentIdsExamRegistration($id: ID!, $filters: ExamRegistrationNewClassRosterStudentsInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      newClassRosterStudents(filters: $filters) {
+        id
+        firstName
+        middleName
+        lastName
+        preferredName
+        pronouns
+        suffix
+        profileImage
+        registrationCategory
+      }
+    }
+  }
+}

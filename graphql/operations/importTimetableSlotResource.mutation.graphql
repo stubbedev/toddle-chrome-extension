@@ -1,0 +1,8 @@
+mutation importTimetableSlotResource($input: ImportLearningCourseFlowResourceInput!) {
+  planner {
+    importLearningCourseFlowResource(input: $input) {
+      isSuccess
+      error
+    }
+  }
+}

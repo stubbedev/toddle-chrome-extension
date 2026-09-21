@@ -1,0 +1,55 @@
+query hydratePublishedNodesTaggedIn($ids: [ID!]!, $type: ENTITY_TYPE_ENUM_MULTI_NODE!, $nodeCountFilters: DataSetNodeCountWrapperFilters, $shouldSkipAssessment: Boolean! = false, $shouldSkipPortfolio: Boolean! = false, $shouldSkipUnitPlan: Boolean! = false, $isParentTaggingEnabled: Boolean! = false) {
+  multiNode(ids: $ids, type: $type) {
+    ... on PlannerElementNode {
+      id
+      dataSetNodeCountWrapper(filters: $nodeCountFilters) {
+        assessment @skip(if: $shouldSkipAssessment) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+        portfolio @skip(if: $shouldSkipPortfolio) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+        unitPlan @skip(if: $shouldSkipUnitPlan) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+      }
+    }
+    ... on PlannerBenchmark {
+      id
+      dataSetNodeCountWrapper(filters: $nodeCountFilters) {
+        assessment @skip(if: $shouldSkipAssessment) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+        portfolio @skip(if: $shouldSkipPortfolio) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+        unitPlan @skip(if: $shouldSkipUnitPlan) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+      }
+    }
+    ... on PlannerATL {
+      id
+      dataSetNodeCountWrapper(filters: $nodeCountFilters) {
+        assessment @skip(if: $shouldSkipAssessment) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+        portfolio @skip(if: $shouldSkipPortfolio) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+        unitPlan @skip(if: $shouldSkipUnitPlan) {
+          totalCount
+          directCount @include(if: $isParentTaggingEnabled)
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment projectGroupProgramDetailsItem on ProjectGroupCategory {
+  id
+  curriculumProgram {
+    id
+  }
+}

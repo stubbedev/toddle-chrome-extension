@@ -1,0 +1,33 @@
+query getGradingPeriodsAndLevels($id: ID!, $curriculumIds: [ID!], $gradingPeriodsFilters: TermFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        ... on IbDpCurriculumProgram {
+          levels {
+            id
+            label
+            type
+          }
+        }
+        gradingPeriods(filters: $gradingPeriodsFilters) {
+          edges {
+            node {
+              id
+              label
+              startDate
+              endDate
+              academicYear {
+                id
+              }
+              curriculumProgram {
+                id
+                nodeInterfaceType
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation commitGradingCommentTemplateExcel($input: CommitGradingCommentTemplateExcelInput!) {
+  documentation {
+    commitGradingCommentTemplateExcel(input: $input) {
+      isSuccess
+    }
+  }
+}

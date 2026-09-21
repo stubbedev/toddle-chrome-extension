@@ -1,0 +1,13 @@
+query getLearningCourseChange($learningCourseId: ID!) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      type
+      blueprintLastUnreadSync {
+        id
+        lastSynctAt
+        syncComment
+      }
+    }
+  }
+}

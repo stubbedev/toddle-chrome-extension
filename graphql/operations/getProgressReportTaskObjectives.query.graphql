@@ -1,0 +1,8 @@
+query getProgressReportTaskObjectives($id: ID!, $courseProgressReportTaskFilters: CourseProgressReportTaskFilters, $studentReportFilters: TaskStudentProgressReportFilter, $associatedChildPlannerElementFilters: AssociatedChildPlannerElementNodesFilters!, $mypCriteriaFilters: StudentProgressReportMypCriteriaFilter, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: PROGRESS_REPORT_TASK_GROUP) {
+    id
+    ... on ProgressReportTaskGroup {
+      ...progressReportTaskObjectiveItem
+    }
+  }
+}

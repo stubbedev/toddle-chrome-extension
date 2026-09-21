@@ -1,0 +1,43 @@
+fragment courseFlowItem on LearningCourseFlow {
+  id
+  label
+  depth
+  itemType
+  state
+  parent {
+    id
+  }
+  item {
+    id
+    ... on Assessment {
+      ...assessmentFields
+    }
+    ... on Attachment {
+      ...attachmentFields
+    }
+    ... on UnitPlan {
+      ...unitPlanFields
+    }
+  }
+  children(filters: $filters) {
+    id
+    label
+    itemType
+    displaySequence
+  }
+  childrenHierarchyInfo(filters: $filters) {
+    maxDepth
+    totalCount
+    totalCountWithFolder
+  }
+}
+
+fragment attachmentFields on Attachment {
+  id
+  type
+  title
+  name
+  mimeType
+  url
+  thumbUrl
+}

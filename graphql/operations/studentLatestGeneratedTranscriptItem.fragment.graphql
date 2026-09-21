@@ -1,0 +1,21 @@
+fragment studentLatestGeneratedTranscriptItem on Student {
+  id
+  uniqueOrganizationID
+  firstName
+  middleName
+  lastName
+  prefix
+  suffix
+  preferredName
+  profileImage
+  pronouns
+  type
+  transcript(filters: $studentTranscriptFilter) {
+    latestGeneratedTranscript {
+      id
+      filteredNodes
+    }
+    __typename
+  }
+  __typename
+}

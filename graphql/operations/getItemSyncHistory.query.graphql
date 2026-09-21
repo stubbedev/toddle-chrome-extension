@@ -1,0 +1,42 @@
+query getItemSyncHistory($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE_FLOW) {
+    id
+    ... on LearningCourseFlow {
+      learningCourseEntitySyncHistory {
+        id
+        syncedAt
+        syncedBy {
+          id
+          firstName
+          middleName
+          lastName
+          profileImage
+          type
+          ... on Staff {
+            preferredName
+            pronouns
+            suffix
+            prefix
+          }
+        }
+        courses {
+          id
+          title
+        }
+        syncHistory {
+          id
+          oldValue
+          newValue
+          field
+          actionType
+          added
+          removed
+          fieldConfig {
+            uiType
+            label
+          }
+        }
+      }
+    }
+  }
+}

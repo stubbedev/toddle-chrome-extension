@@ -1,0 +1,40 @@
+query multiAccessIdentityFeed($filters: MultiAccessIdentityFeedFilters) {
+  platform {
+    multiAccessIdentityFeed(filters: $filters) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          id
+          identityId
+          email
+          firstName
+          lastName
+          configuration {
+            isAccessManagerEnabled
+            isOrganizationsEnabled
+            isManageUsersEnabled
+            isInternalToolsEnabled
+            isActivateSchoolsEnabled
+            isTemplateEditorEnabled
+          }
+          tags {
+            id
+            label
+            type
+            metadata
+          }
+          linkedIdentityUsersV2 {
+            totalCount
+          }
+        }
+        cursor
+      }
+    }
+  }
+}

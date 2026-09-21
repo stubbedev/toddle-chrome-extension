@@ -1,0 +1,61 @@
+query getPreferences($configurationEntityGroupFilters: [ConfigurationEntityGroupFilter!], $isSettingsPage: Boolean!, $isCourseModuleSetting: Boolean, $isAdminNotificationManager: Boolean) {
+  platform {
+    preferences(filters: {configurationEntityGroupFilters: $configurationEntityGroupFilters}) {
+      configurations @include(if: $isSettingsPage) {
+        id
+        uidV2
+        configuration
+        aclControlParameterType
+        valueType
+        value
+        isLocked
+        state
+        channelTypeCategorizedValues(filters: {isAdminNotificationManager: $isAdminNotificationManager}) {
+          push
+          email
+          inApp
+        }
+        disabledEntityGroups(filters: {entityTypeGroups: [COURSE]}) {
+          entities {
+            entityId
+            entityType
+            resolvedEntity {
+              ... on Course {
+                id
+                title
+                curriculumProgram {
+                  id
+                  type
+                }
+              }
+            }
+          }
+        }
+        validPlatforms
+        platformCategorizedValues(isCourseModuleSetting: $isCourseModuleSetting) {
+          default
+          staff
+          parent
+          student
+        }
+        configurationGroup
+        parentConfigurations {
+          id
+        }
+      }
+      configurations @skip(if: $isSettingsPage) {
+        id
+        uidV2
+        configuration
+        aclControlParameterType
+        valueType
+        value
+        isLocked
+      }
+      entityGroups {
+        entityId
+        entityType
+      }
+    }
+  }
+}

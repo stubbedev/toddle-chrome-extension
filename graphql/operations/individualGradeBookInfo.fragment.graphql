@@ -1,0 +1,78 @@
+fragment individualGradeBookInfo on Project {
+  id
+  ibPYPElementRatings(filters: {academicCriteriaSetTypes: [PROJECT_OVERALL_PROGRESS]}) @skip(if: $isGroupSubmissionMode) {
+    id
+    value
+    academicCriteriaSet {
+      id
+      criteriaType
+    }
+    createdAt
+    createdByV2 {
+      ...userNameFields
+      profileImage
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      color
+    }
+  }
+  studentCollaborators {
+    id
+    student {
+      ...userNameFields
+      profileImage
+      alertTypes {
+        ...alertTypeFields
+      }
+    }
+    ibPYPElementRatings {
+      id
+      ibPYPElementId
+      ibPYPElementType
+      value
+      createdAt
+      createdByV2 {
+        ...userNameFields
+        profileImage
+      }
+      academicCriteriaSet {
+        id
+        label
+        criteriaType
+      }
+      academicCriteriaValue {
+        id
+        label
+        abbreviation
+        color
+      }
+    }
+    ibPYPElementRemarks {
+      id
+      message
+      ibPYPElementId
+      ibPYPElementType
+    }
+    toolResponses(userFilter: ALL) {
+      id
+      rowId
+      columnId
+      subjectiveResponse
+      creatorType
+    }
+    assessmentRemarks {
+      id
+      message
+    }
+    fields(filters: $projectFieldFilters) {
+      id
+      uid
+      value
+      pseudoFieldUid
+    }
+  }
+  ...projectDetailItem
+}

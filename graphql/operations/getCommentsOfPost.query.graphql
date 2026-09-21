@@ -1,0 +1,8 @@
+query getCommentsOfPost($id: ID!) {
+  node(id: $id, type: POST) {
+    id
+    ... on Post {
+      ...postItem
+    }
+  }
+}

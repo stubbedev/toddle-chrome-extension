@@ -1,0 +1,18 @@
+query getSubjectStandardSets($id: ID!, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      name
+      plannerElementNodeSet {
+        id
+        standardSetWrapper {
+          ...StandardSetWrapperFragment
+        }
+        gradingConfigurationWrapper {
+          ...GradingConfigurationWrapperFragment
+        }
+      }
+    }
+  }
+}

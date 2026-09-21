@@ -1,0 +1,15 @@
+fragment studentPostItem on Student {
+  id
+  posts(last: 5, after: $after, filters: $filters) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        ...postItem
+      }
+    }
+  }
+}

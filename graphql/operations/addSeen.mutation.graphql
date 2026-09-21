@@ -1,0 +1,12 @@
+mutation addSeen($input: SeenInput!) {
+  platform {
+    addSeen(input: $input) {
+      totalCount
+      edges {
+        node {
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+query getProjectGroupProjectsSubmissionsAndFields($id: ID!, $filters: ProjectGroupProjectsFilters, $fieldFilters: PlannerFieldFilter, $shouldFetchFields: Boolean!, $studentCourseFilters: UserCourseMapFilters, $skipCourseDetails: Boolean!) {
+  node(id: $id, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      projects(filters: $filters) {
+        edges {
+          node {
+            id
+            students {
+              ...studentInfo
+            }
+            finalProjectReports {
+              id
+            }
+            fields(filters: $fieldFilters) @include(if: $shouldFetchFields) {
+              id
+              uid
+              value
+              pseudoFieldUid
+              children
+              attachments {
+                ...attachmentItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

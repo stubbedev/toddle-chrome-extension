@@ -1,0 +1,20 @@
+query searchGradesByIds($organizationId: ID!, $ids: [ID!]!, $searchText: String!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(ids: $ids, filters: {searchText: $searchText}) {
+        id
+        name
+        staffCount
+        studentCount
+        familyMemberCount
+        curriculumProgram {
+          id
+          label
+          acronym
+        }
+      }
+    }
+  }
+}

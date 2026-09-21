@@ -1,0 +1,13 @@
+query orgFlagsConsoleConfigurationFeed($filters: GenericConfigurationFeedFilters) {
+  platform {
+    genericConfigurationFeed(filters: $filters) {
+      edges {
+        node {
+          id
+          configuration
+          valueType
+        }
+      }
+    }
+  }
+}

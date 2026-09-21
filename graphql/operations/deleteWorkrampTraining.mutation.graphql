@@ -1,0 +1,8 @@
+mutation deleteWorkrampTraining($input: DeleteWorkrampTrainingInput!) {
+  platform {
+    deleteWorkrampTraining(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

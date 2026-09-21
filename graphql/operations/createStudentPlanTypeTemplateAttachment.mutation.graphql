@@ -1,0 +1,9 @@
+mutation createStudentPlanTypeTemplateAttachment($type: ATTACHMENT_TYPE_ENUM!, $name: String, $createdBy: ID) {
+  platform {
+    createAttachment(input: {type: $type, name: $name, createdBy: $createdBy}) {
+      id
+      name
+      type
+    }
+  }
+}

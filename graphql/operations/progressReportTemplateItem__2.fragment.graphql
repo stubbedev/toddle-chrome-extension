@@ -1,0 +1,12 @@
+fragment progressReportTemplateItem on ProgressReportTemplate {
+  id
+  name @skip(if: $skipParam)
+  grades @skip(if: $skipParam) {
+    ...gradeItem
+  }
+  gradingPeriodType @skip(if: $skipParam)
+  body
+  locale
+  baseTemplateId
+  createdAt
+}

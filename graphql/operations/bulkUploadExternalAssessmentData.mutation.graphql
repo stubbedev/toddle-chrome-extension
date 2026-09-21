@@ -1,0 +1,9 @@
+mutation bulkUploadExternalAssessmentData($input: BulkUploadExternalAssessmentDataInput!) {
+  platform {
+    bulkUploadExternalAssessmentData(input: $input) {
+      success
+      errorData
+      updatedEntities
+    }
+  }
+}

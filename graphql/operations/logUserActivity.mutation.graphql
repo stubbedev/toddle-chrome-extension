@@ -1,0 +1,5 @@
+mutation logUserActivity($input: [LogUserActivityInput!]) {
+  platform {
+    logUserActivity(input: $input)
+  }
+}

@@ -1,0 +1,7 @@
+mutation updatePostDate($postId: ID!, $updatedBy: ID!, $state: PostStateEnum!, $createdAt: String, $publishedAt: String) {
+  documentation {
+    updatePost(input: {postId: $postId, updatedBy: $updatedBy, state: $state, createdAt: $createdAt, publishedAt: $publishedAt}) {
+      ...postItem
+    }
+  }
+}

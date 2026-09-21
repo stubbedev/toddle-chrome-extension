@@ -1,0 +1,52 @@
+fragment aiMessageItem on AiMessage {
+  id
+  role
+  authorType
+  content
+  metadata
+  createdBy {
+    ...staffItem
+    ...studentItem
+  }
+  votes {
+    myVote
+  }
+  usageMetricsId
+  parentMessage {
+    id
+  }
+  createdAt
+  attachments {
+    id
+    name
+    type
+    mimeType
+    url
+    thumbUrl
+    signedUrl
+    title
+    metadata
+    streamUrl
+    parentType
+    createdBy {
+      id
+      type
+    }
+    modalityAttachment {
+      id
+      ... on ToddleDoc {
+        id
+        value
+      }
+      ... on ModalityFile {
+        id
+        content
+        metadata
+      }
+    }
+    presetAttachment {
+      id
+    }
+    createdAt
+  }
+}

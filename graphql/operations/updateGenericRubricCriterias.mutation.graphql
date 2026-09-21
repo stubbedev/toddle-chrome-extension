@@ -1,0 +1,11 @@
+mutation updateGenericRubricCriterias($input: [UpdateGenericRubricCriteriaInput!]) {
+  planner {
+    updateGenericRubricCriterias(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...genericRubricCriteriaItem
+      }
+    }
+  }
+}

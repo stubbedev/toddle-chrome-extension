@@ -1,0 +1,73 @@
+fragment templateFieldConnectionItem on TemplateFieldConnection {
+  totalCount
+  edges {
+    node {
+      id
+      uid
+      updatedAt
+      updatedBy {
+        id
+        firstName
+        middleName
+        lastName
+      }
+      config(filter: $templateFieldConfigFilters) {
+        ...fieldConfigItem
+      }
+      templates(filters: $templateFilters) {
+        id
+        name
+        unitType
+        isPublish
+        curriculumProgram {
+          id
+          label
+        }
+        draftTemplate {
+          id
+          isDraftEdited
+        }
+        publishedTemplate {
+          id
+          curriculumProgram {
+            id
+            label
+          }
+        }
+      }
+      plannerElementSet(filters: $templateFieldPlannerElementSetFilters) {
+        id
+        label
+        plannerElementNodeSets {
+          id
+          config(filters: $plannerElementNodeSetConfigFilters) {
+            id
+            value
+            globalProperty {
+              id
+              property
+            }
+          }
+        }
+      }
+      curriculumProgram {
+        id
+        label
+      }
+      academicTemplateField {
+        id
+        curriculumProgram {
+          id
+          label
+        }
+      }
+      schoolTemplateFields {
+        id
+        curriculumProgram {
+          id
+          label
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+fragment subjectGroupWithGlobalSubjectGroupItem on SubjectGroup {
+  id
+  name
+  constants
+  globalSubjectGroup {
+    id
+    name
+    constants
+  }
+}

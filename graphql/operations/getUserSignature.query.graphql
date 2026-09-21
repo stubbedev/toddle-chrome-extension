@@ -1,0 +1,16 @@
+query getUserSignature($userId: ID!, $userType: ENTITY_TYPE_ENUM!) {
+  node(id: $userId, type: $userType) {
+    ... on Student {
+      id
+      signature {
+        ...signature
+      }
+    }
+    ... on Staff {
+      id
+      signature {
+        ...signature
+      }
+    }
+  }
+}

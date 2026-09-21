@@ -1,0 +1,14 @@
+query getIndividualAcademicHonestyList($id: ID!, $filters: ProjectStudentsCollaboratorFilters) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      studentCollaborators(filters: $filters) {
+        id
+        academicHonesty(filters: {orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC}) {
+          ...academicHonestyItem
+        }
+      }
+    }
+  }
+}

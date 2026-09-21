@@ -1,0 +1,18 @@
+mutation updateStudentActivityCriteriaSets($input: [UpdatePointAssessmentSetInput!]) {
+  planner {
+    updatePointAssessmentSet(input: $input) {
+      warning
+      response {
+        id
+        label
+        categories {
+          id
+          label
+          metadata
+          displaySequence
+        }
+        type
+      }
+    }
+  }
+}

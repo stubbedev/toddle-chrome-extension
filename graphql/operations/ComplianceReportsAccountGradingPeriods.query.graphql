@@ -1,0 +1,16 @@
+query ComplianceReportsAccountGradingPeriods($academicYearId: ID!, $curriculumProgramIds: [ID!], $curriculumProgramType: String) {
+  node(id: $academicYearId, type: ACADEMIC_YEAR) {
+    id
+    ... on AcademicYear {
+      id
+      academicTerms(filters: {curriculumProgramIds: $curriculumProgramIds, curriculumProgramType: $curriculumProgramType}) {
+        edges {
+          node {
+            id
+            label
+          }
+        }
+      }
+    }
+  }
+}

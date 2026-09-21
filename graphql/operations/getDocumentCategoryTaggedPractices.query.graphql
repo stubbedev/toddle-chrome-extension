@@ -1,0 +1,8 @@
+query getDocumentCategoryTaggedPractices($categoryId: ID!, $first: Int, $after: String, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum, $applyDashboardEvidenceCategoryOrdering: Boolean, $evidenceFilters: SnpPracticeEvidenceFilters!, $suggestedEvidenceFilters: SnpPracticeSuggestedEvidenceFilters!) {
+  node(id: $categoryId, type: SnP_DOCUMENT_CATEGORY) {
+    id
+    ... on SnPDocumentCategory {
+      ...snpDocumentCategoryItem
+    }
+  }
+}

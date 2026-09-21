@@ -1,0 +1,132 @@
+query getStudentProjectGroupDetailsSidePane($projectGroupId: ID!, $studentId: ID!, $academicYearIds: [ID!]) {
+  node(id: $studentId, type: STUDENT) {
+    ... on Student {
+      id
+      firstName
+      lastName
+      middleName
+      preferredName
+      suffix
+      pronouns
+      type
+      yearGroup {
+        id
+        name
+      }
+      courseMap {
+        id
+        course {
+          id
+          subjects {
+            id
+            name
+          }
+          allCollaborators {
+            edges {
+              node {
+                ...collaboratorItem
+              }
+            }
+          }
+        }
+        tags {
+          id
+          label
+          type
+        }
+      }
+    }
+  }
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    id
+    ... on ProjectGroup {
+      id
+      name
+      deadlines {
+        id
+        title
+      }
+      subject {
+        id
+        name
+        subjectGroup {
+          id
+          name
+        }
+      }
+      projects(filters: {students: [$studentId], academicYearIds: $academicYearIds}) {
+        edges {
+          node {
+            id
+            reportStatus
+            ibPYPElementRatings {
+              id
+              ibPYPElementId
+              value
+            }
+            completedDeadlines {
+              completedAt
+              deadline {
+                id
+                title
+                deadlineDate
+              }
+            }
+            template {
+              id
+              name
+              body
+            }
+            fields {
+              ...fieldsResolvedMinimalTreeFragmentItem
+            }
+          }
+        }
+      }
+      assessmentTools {
+        id
+        ... on MypObjectiveRubric {
+          id
+          label
+          genericTags {
+            id
+            label
+            __typename
+          }
+          criteria {
+            id
+            label
+            type
+            highestMark
+            parent
+            children
+            subText
+            objectiveRubricDescriptors {
+              id
+              achievementLevel {
+                id
+                label
+                subText
+                __typename
+              }
+              label
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+      }
+    }
+  }
+}
+
+fragment collaboratorItem on Staff {
+  id
+  firstName
+  lastName
+  middleName
+  profileImage
+  role
+  type
+}

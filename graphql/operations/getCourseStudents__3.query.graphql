@@ -1,0 +1,61 @@
+query getCourseStudents($id: ID!, $first: Int, $after: String, $academicYearId: ID!) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      curriculumProgram {
+        id
+        type
+      }
+      genericTags {
+        id
+        label
+        type
+        reportDisplayName
+      }
+      students(first: $first, after: $after, filters: {archivalState: ALL, academicYear: $academicYearId}) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            type
+            isArchived
+            isArchivedV2(filters: {academicYearId: $academicYearId})
+            profileImage
+            yearGroup {
+              id
+              name
+            }
+            courseMap(filters: {courseIds: [$id], academicYearIds: [$academicYearId]}) {
+              tags {
+                id
+                label
+                reportDisplayName
+              }
+              subjectWiseLevel {
+                subject {
+                  id
+                }
+                level {
+                  id
+                  abbreviation
+                  label
+                  reportDisplayName
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

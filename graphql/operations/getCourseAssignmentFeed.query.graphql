@@ -1,0 +1,10 @@
+query getCourseAssignmentFeed($courseId: ID!, $filters: AssignmentFeedFilters, $first: Int, $after: String, $orderBy: ASSIGNMENT_ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      ...courseAssignmentBasicDetails
+      __typename
+    }
+    __typename
+  }
+}

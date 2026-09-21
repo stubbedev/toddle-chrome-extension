@@ -1,0 +1,65 @@
+query getConnectionsPlannerElementOverviewInsights($id: ID!, $context: PlannerElementInsightsContext!, $filters: PlannerElementInsightsFilters!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbDpCurriculumProgram {
+      id
+      curriculumInsights {
+        plannerElementInsights {
+          plannerElementInsights(filters: $filters, context: $context) {
+            ...connectionsPlannerElementInsightsDetails
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment connectionsPlannerElementInsightsDetails on PlannerElementInsightsResponse {
+  elementType
+  insights {
+    edges {
+      node {
+        id
+        ... on PlannerElementNodeInsight {
+          id
+          type
+          element {
+            id
+            label
+            type
+            parent
+            depth
+            children
+            associatedParents {
+              ... on SubjectGroup {
+                id
+                name
+              }
+              ... on Subject {
+                id
+                name
+              }
+            }
+          }
+          unitPlans
+          learningCourses
+          assessments
+          insight {
+            columnId
+            unitPlans {
+              id
+            }
+            learningCourses {
+              id
+            }
+            assessmentIds
+          }
+          assignmentInsight {
+            plannedAssignments
+            taughtAssignments
+            assessedAssignments
+          }
+        }
+      }
+    }
+  }
+}

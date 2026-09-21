@@ -1,0 +1,66 @@
+query getUnitPlansOfGrade($id: ID!, $filters: UnitPlanFilter, $subjectFilters: SubjectFilters, $uids: [String!], $isDP: Boolean = false) {
+  node(id: $id, type: GRADE) {
+    id
+    ... on Grade {
+      name
+      subjects(filters: $subjectFilters) @skip(if: $isDP) {
+        id
+        name
+        isArchived
+      }
+      subjects(filters: $subjectFilters) @include(if: $isDP) {
+        id
+        name
+        type
+        subjectGroup {
+          id
+          name
+        }
+        variants {
+          level {
+            id
+            label
+          }
+        }
+        contentSubject {
+          id
+          assessmentYearTitle
+        }
+        isArchived
+      }
+      unitPlans(filters: $filters) {
+        id
+        unitType {
+          ...plannerFieldNodeItem
+        }
+        title {
+          ...plannerFieldNodeItem
+        }
+        duration {
+          ...plannerFieldNodeItem
+        }
+        image {
+          ...mediaFieldNodeItem
+        }
+        subjects {
+          ...plannerFieldNodeItem
+        }
+        fields(uids: $uids) {
+          ...plannerFieldNodeItem
+          resolvedMinimalTree @include(if: $isDP) {
+            id
+            ... on ResolvedFieldGenericTags {
+              id
+              genericTags {
+                id
+                label
+              }
+            }
+          }
+        }
+        startDate
+        endDate
+      }
+    }
+  }
+}

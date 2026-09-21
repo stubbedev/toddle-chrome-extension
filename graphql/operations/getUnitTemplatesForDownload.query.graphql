@@ -1,0 +1,44 @@
+query getUnitTemplatesForDownload($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: UnitTemplatesFilters!) {
+  node(id: $id, type: $type) {
+    ... on IbPypCurriculumProgram {
+      id
+      curriculumInsights {
+        unitTemplates(filters: $filters) {
+          id
+          body
+          unitType
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      curriculumInsights {
+        unitTemplates(filters: $filters) {
+          id
+          body
+          unitType
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      curriculumInsights {
+        unitTemplates(filters: $filters) {
+          id
+          body
+          unitType
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      curriculumInsights {
+        unitTemplates(filters: $filters) {
+          id
+          body
+          unitType
+        }
+      }
+    }
+  }
+}

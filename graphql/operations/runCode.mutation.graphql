@@ -1,0 +1,15 @@
+mutation runCode($input: RunCodeInput!) {
+  platform {
+    runCode(input: $input) {
+      isSuccess
+      stdout
+      error
+      status {
+        id
+        description
+      }
+      __typename
+    }
+    __typename
+  }
+}

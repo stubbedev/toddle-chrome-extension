@@ -1,0 +1,15 @@
+query getCurriculumGradesAndSubjects($id: ID!, $gradeFilters: GradeFilterInput, $subjectFilters: SubjectFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: $gradeFilters) {
+        id
+        name
+      }
+      subjects(filters: $subjectFilters) {
+        id
+        name
+      }
+    }
+  }
+}

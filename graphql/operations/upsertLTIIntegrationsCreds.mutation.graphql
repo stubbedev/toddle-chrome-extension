@@ -1,0 +1,8 @@
+mutation upsertLTIIntegrationsCreds($input: LTIIntegrationsCredsInput!) {
+  integration {
+    upsertLTIIntegrationsCreds(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

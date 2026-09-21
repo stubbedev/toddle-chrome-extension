@@ -1,0 +1,9 @@
+fragment moduleAdmin on CurriculumProgram {
+  id
+  moduleLvlAccessStaffs(input: {moduleNames: $entityType}) {
+    moduleName
+    staffs {
+      ...staff
+    }
+  }
+}

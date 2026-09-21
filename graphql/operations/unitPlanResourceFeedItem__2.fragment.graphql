@@ -1,0 +1,22 @@
+fragment unitPlanResourceFeedItem on UnitPlan {
+  id
+  organizationResourcesConnection(searchText: $searchText, after: $after, first: 12) @skip(if: $isUnitFlow) {
+    edges {
+      node {
+        ...organizationResourceItem
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    resourceTypeBasedCount {
+      totalCount
+    }
+  }
+  unitFlowResources @include(if: $isUnitFlow) {
+    ...unitFlowResourcesItem
+  }
+}

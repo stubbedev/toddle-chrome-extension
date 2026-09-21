@@ -1,0 +1,68 @@
+query getLearningCoursesList($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $LearningTermFilters: LearningTermFilters!) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      learningTerms(filters: $LearningTermFilters) {
+        totalCount
+        edges {
+          id
+          ...LearningTermFields
+        }
+      }
+      __typename
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      learningTerms(filters: $LearningTermFilters) {
+        totalCount
+        edges {
+          id
+          ...LearningTermFields
+        }
+      }
+      __typename
+    }
+    ... on UBDCurriculumProgram {
+      id
+      learningTerms(filters: $LearningTermFilters) {
+        totalCount
+        edges {
+          id
+          ...LearningTermFields
+        }
+      }
+      __typename
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      learningTerms(filters: $LearningTermFilters) {
+        totalCount
+        edges {
+          id
+          ...LearningTermFields
+        }
+      }
+      __typename
+    }
+    ... on GenericCurriculumProgram {
+      id
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment LearningTermFields on LearningTerm {
+  id
+  label
+  abbreviation
+  startDate
+  endDate
+  academicYear {
+    id
+  }
+  curriculumProgram {
+    id
+  }
+}

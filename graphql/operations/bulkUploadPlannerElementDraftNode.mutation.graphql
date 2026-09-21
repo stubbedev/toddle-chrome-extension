@@ -1,0 +1,9 @@
+mutation bulkUploadPlannerElementDraftNode($input: BulkUploadPlannerElementDraftNodeV2Input!) {
+  planner {
+    bulkUploadPlannerElementDraftNodeV2(input: $input) {
+      successful
+      errors
+      errorsJSON
+    }
+  }
+}

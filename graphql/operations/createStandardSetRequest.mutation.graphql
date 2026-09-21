@@ -1,0 +1,5 @@
+mutation createStandardSetRequest($standardSetName: String, $subjectName: String, $standardSetLink: String, $subjectId: String, $description: String) {
+  platform {
+    createStandardSetRequest(input: {standardSetName: $standardSetName, subjectName: $subjectName, subjectId: $subjectId, description: $description, standardSetLink: $standardSetLink})
+  }
+}

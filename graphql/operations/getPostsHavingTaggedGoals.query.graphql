@@ -1,0 +1,16 @@
+query getPostsHavingTaggedGoals($id: ID!, $last: Int, $filters: PostFilterInput, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Course {
+      id
+      posts(last: $last, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...postItem
+          }
+        }
+      }
+    }
+  }
+}

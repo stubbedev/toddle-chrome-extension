@@ -1,0 +1,37 @@
+query getProjectGroupSupervisorsWithPortfolios($projectGroupId: ID!, $filters: ProjectGroupSupervisorFilters, $portfolioFilters: ProjectGroupSupervisorPortfoliosFilters, $projectFilters: ProjectGroupSupervisorProjectsFilters, $academicYearId: ID) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      supervisors(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...projectGroupSupervisorApprovalInfoItem
+            projects(filters: $projectFilters) {
+              id
+              fields(filters: {pseudoFieldUids: ["title", "image"]}) {
+                id
+                uid
+                value
+              }
+              type
+              students {
+                ...studentInfo
+              }
+            }
+            studentProjectPortfolios(filters: $portfolioFilters) {
+              id
+              student {
+                ...studentInfo
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

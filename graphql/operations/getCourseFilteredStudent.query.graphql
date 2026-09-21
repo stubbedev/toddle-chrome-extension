@@ -1,0 +1,8 @@
+query getCourseFilteredStudent($id: ID!, $filters: CourseFilter, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $userArchivedFilters: UserArchivedFilters) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      ...courseItem
+    }
+  }
+}

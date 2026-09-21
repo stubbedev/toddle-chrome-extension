@@ -1,0 +1,8 @@
+query getCourseDetailsForPYPStandardsGradebook($subjectIds: [ID!], $subjectGradingMethodologyFilters: SubjectGradingMethodologyFilters) {
+  multiNode(ids: $subjectIds, type: SUBJECT) {
+    id
+    ... on Subject {
+      ...subjectItem
+    }
+  }
+}

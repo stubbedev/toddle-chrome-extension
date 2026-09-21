@@ -1,0 +1,15 @@
+query getOrganizationGradesSubjects($id: ID!, $filters: GradeFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      grades(filters: $filters) {
+        id
+        name
+        subjects {
+          id
+          name
+        }
+      }
+    }
+  }
+}

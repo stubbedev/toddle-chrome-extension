@@ -1,0 +1,7 @@
+mutation createProjectGroupGuidingQuestion($question: String!, $projectGroupId: ID!, $grades: [ID!]) {
+  documentation {
+    createProjectGroupGuidingQuestion(input: {question: $question, projectGroupId: $projectGroupId, grades: $grades}) {
+      id
+    }
+  }
+}

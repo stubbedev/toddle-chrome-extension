@@ -1,0 +1,86 @@
+query getCoursesDraft($organizationId: ID!, $curriculumProgramId: ID!, $filters: AcademicYearTransitionConfigurationStateFilters!, $academicYearId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: [$curriculumProgramId]) {
+        id
+        draftCourses(filters: $filters) {
+          id
+          key
+          title
+          type
+          academicCourse {
+            key
+            label
+            code
+          }
+          primaryGrades {
+            grade {
+              id
+              name
+            }
+            academicYear {
+              id
+            }
+          }
+          associatedSubjects {
+            key
+            name
+          }
+          associatedLevels {
+            levelDraft {
+              key
+              label
+              abbreviation
+            }
+          }
+          associatedSubjectWiseLevels {
+            subjectDraft {
+              key
+              name
+            }
+            associatedLevelDrafts {
+              key
+              label
+              abbreviation
+            }
+          }
+          associatedClasses {
+            id
+            key
+            title
+            profileImageData
+            associatedStudentWithLevels {
+              student {
+                id
+                firstName
+                middleName
+                lastName
+                preferredName
+                prefix
+                suffix
+                pronouns
+                type
+                isArchivedV2(filters: {academicYearId: $academicYearId})
+                profileImage
+              }
+              level {
+                key
+                label
+              }
+              subjectWiseLevels {
+                subjectDraft {
+                  key
+                }
+                associatedLevelDrafts {
+                  key
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

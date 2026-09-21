@@ -1,0 +1,8 @@
+query getChatLabel($id: ID!) {
+  node(id: $id, type: CHAT) {
+    ... on Chat {
+      id
+      label
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation editTeacherV2($firstName: String, $middleName: String, $lastName: String, $preferredName: String, $prefix: String, $suffix: String, $pronouns: String, $id: ID!, $email: String, $profileImage: String, $removedCourses: [ID!], $addedCourses: [ID!], $addedLearningCourses: [ID!], $removedLearningCourses: [ID!], $role: ORG_USER_ROLES_ENUM, $designation: ID, $status: ORG_USER_STATUS_ENUM, $isArchived: Boolean, $addedTags: [ID!], $removedTags: [ID!], $sourceId: String, $displayRole: String, $academicYear: ID, $curriculumProgramIds: [ID!], $aclUserRoles: ACLUserRolesInput) {
+  platform {
+    updateUserV2(input: {id: $id, designation: $designation, firstName: $firstName, middleName: $middleName, lastName: $lastName, preferredName: $preferredName, prefix: $prefix, suffix: $suffix, pronouns: $pronouns, profileImage: $profileImage, email: $email, addedCourses: $addedCourses, removedCourses: $removedCourses, status: $status, role: $role, isArchived: $isArchived, addedTags: $addedTags, removedTags: $removedTags, sourceId: $sourceId, displayRole: $displayRole, academicYearId: $academicYear, curriculumProgramIds: $curriculumProgramIds, aclUserRoles: $aclUserRoles, addedLearningCourses: $addedLearningCourses, removedLearningCourses: $removedLearningCourses}) {
+      warning
+      isSuccess
+      user {
+        ...teacherItem
+      }
+    }
+  }
+}

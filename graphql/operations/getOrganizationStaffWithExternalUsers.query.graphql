@@ -1,0 +1,26 @@
+query getOrganizationStaffWithExternalUsers($organizationId: ID!, $filters: OrgConnectionFilterInput, $externalSupervisorFilters: OrgConnectionFilterInput, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      staff(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...supervisorInfo
+          }
+        }
+      }
+      externalUsers(filters: $externalSupervisorFilters) {
+        totalCount
+        edges {
+          node {
+            ...externalUserItem
+            ... on Staff {
+              isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+            }
+          }
+        }
+      }
+    }
+  }
+}

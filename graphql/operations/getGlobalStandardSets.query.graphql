@@ -1,0 +1,9 @@
+query getGlobalStandardSets($searchText: String, $globalSubjects: [ID!], $unAssignedToSubject: Boolean, $curriculumType: CURRICULUM_PROGRAM_TYPE_ENUM) {
+  globalConstants {
+    benchmarkStandardSets(searchText: $searchText, globalSubjects: $globalSubjects, unAssignedToSubject: $unAssignedToSubject, curriculumType: $curriculumType) {
+      id
+      title
+      description
+    }
+  }
+}

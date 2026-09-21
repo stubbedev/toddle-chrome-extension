@@ -1,0 +1,6 @@
+fragment questionDirectFeedItemV2 on Question {
+  showLibraryPremiumBannerForUser
+  isLibraryPremium
+  isSavedForLibrary
+  ...questionFeedItemV2
+}

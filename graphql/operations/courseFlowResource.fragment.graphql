@@ -1,0 +1,27 @@
+fragment courseFlowResource on LearningCourseFlow {
+  id
+  label
+  depth
+  itemType
+  state(filters: $stateFilters)
+  parent {
+    id
+  }
+  item {
+    id
+    ... on Assessment {
+      title {
+        id
+        value
+      }
+    }
+  }
+  children(filters: $filters) {
+    id
+  }
+  childrenHierarchyInfo(filters: $filters) {
+    maxDepth
+    totalCount
+    totalCountWithFolder
+  }
+}

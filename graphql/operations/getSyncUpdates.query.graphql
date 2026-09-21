@@ -1,0 +1,18 @@
+query getSyncUpdates($id: ID!, $changesFilter: BluePrintCourseSyncAllChangesFilters) {
+  node(id: $id, type: BLUEPRINT_COURSE_LOG_GROUP) {
+    id
+    ... on LearningCourseLogGroup {
+      syncedAt
+      changes(filters: $changesFilter) {
+        path {
+          itemId
+          label
+          itemType
+        }
+        entityType
+      }
+      metadata
+      isConflictExists
+    }
+  }
+}

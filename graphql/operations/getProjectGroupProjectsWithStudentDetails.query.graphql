@@ -1,0 +1,22 @@
+query getProjectGroupProjectsWithStudentDetails($projectGroupId: ID!, $projectFilters: ProjectGroupProjectsFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            students {
+              ...userNameFields
+              profileImage
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateMultiOrganizationResources($input: [OrganizationResourceUpdateInput!]) {
+  platform {
+    updateMultiOrganizationResources(input: $input) {
+      ...organizationResourceItem
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query getAcademicCourses($id: ID!, $academicCourseFilters: AcademicCourseFilters, $academicCourseStudentsFilters: AcademicCourseStudentFilters, $learningCourseFilters: LearningCourseAcademicCourseFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      academicCourses(filters: $academicCourseFilters) {
+        id
+        label
+        code
+        isArchived
+        learningCourses(filters: $learningCourseFilters) {
+          totalCount
+        }
+        students(filters: $academicCourseStudentsFilters) {
+          id
+        }
+        parentAcademicCourse {
+          id
+        }
+      }
+    }
+  }
+}

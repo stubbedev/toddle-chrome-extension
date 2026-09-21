@@ -1,0 +1,13 @@
+fragment templateWithProgramFiltersItem on PlannerTemplate {
+  id
+  body(locale: $locale)
+  isGlobal
+  unitType
+  curriculumProgram(filters: {curriculumProgramIds: $curriculumProgramIds, programTypes: $programTypes}) {
+    id
+    academicSetupType
+  }
+  academicTemplate {
+    id
+  }
+}

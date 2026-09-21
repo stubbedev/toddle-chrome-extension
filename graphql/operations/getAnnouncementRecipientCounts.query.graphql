@@ -1,0 +1,16 @@
+query getAnnouncementRecipientCounts($id: ID!, $academicYearId: ID!) {
+  node(id: $id, type: CIRCULAR) {
+    id
+    ... on Circular {
+      id
+      recipientReadSummary(input: {academicYearId: $academicYearId}) {
+        read {
+          total
+        }
+        unread {
+          total
+        }
+      }
+    }
+  }
+}

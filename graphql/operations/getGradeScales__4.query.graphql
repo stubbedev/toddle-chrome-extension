@@ -1,0 +1,22 @@
+query getGradeScales($id: ID!, $filters: GradeScaleFilters) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    ... on CurriculumProgram {
+      id
+      gradeScale(filters: $filters) {
+        edges {
+          node {
+            id
+            type
+            templateName
+            displayName
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

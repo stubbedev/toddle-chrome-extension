@@ -1,0 +1,24 @@
+query ComplianceReportIncompleteRecords($id: ID!, $input: IncompleteRecordsInput!) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      incompleteRecords(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            entityId
+            identityCells {
+              fieldUid
+              values
+            }
+          }
+        }
+      }
+    }
+  }
+}

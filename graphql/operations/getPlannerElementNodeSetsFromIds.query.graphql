@@ -1,0 +1,7 @@
+query getPlannerElementNodeSetsFromIds($plannerElementNodeSetIds: [ID!], $plannerElementNodeFilters: PlannerElementNodeFilters) {
+  multiNode(ids: $plannerElementNodeSetIds, type: PLANNER_ELEMENT_NODE_SET) {
+    ... on PlannerElementNodeSet {
+      ...plannerElementNodeSetWithNodesItem
+    }
+  }
+}

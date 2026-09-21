@@ -1,0 +1,7 @@
+mutation createWorksheetSubmission($parentId: ID!, $assessmentId: ID!) {
+  content {
+    createWorksheetSubmission(input: {parentId: $parentId, assessmentId: $assessmentId}) {
+      id
+    }
+  }
+}

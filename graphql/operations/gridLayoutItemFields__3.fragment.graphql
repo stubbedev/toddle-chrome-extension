@@ -1,0 +1,10 @@
+fragment gridLayoutItemFields on GridLayoutItem {
+  i
+  x
+  y
+  w
+  h
+  minW
+  minH
+  maxW
+}

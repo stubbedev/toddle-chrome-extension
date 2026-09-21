@@ -1,0 +1,12 @@
+query getLearnerPortfolioCollectionsList($id: ID!) {
+  node(id: $id, type: ORGANIZATION_RESOURCE) {
+    id
+    ... on OrganizationResource {
+      id
+      label
+      childrenV2 {
+        ...collectionLabelItem
+      }
+    }
+  }
+}

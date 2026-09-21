@@ -1,0 +1,10 @@
+mutation createAiMessage($input: CreateAiMessageInput!) {
+  ai {
+    createAiMessage(input: $input) {
+      isSuccess
+      response {
+        ...aiMessageItem
+      }
+    }
+  }
+}

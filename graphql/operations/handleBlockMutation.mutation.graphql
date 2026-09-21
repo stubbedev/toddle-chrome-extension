@@ -1,0 +1,7 @@
+mutation handleBlockMutation($input: HandleDocumentBlockInput!) {
+  planner {
+    handleDocumentBlock(input: $input) {
+      ...documentBlockItem
+    }
+  }
+}

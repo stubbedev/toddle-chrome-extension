@@ -1,0 +1,13 @@
+query getOrganizationDetails($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      grades {
+        id
+        name
+        studentCount
+        displaySequence
+      }
+    }
+  }
+}

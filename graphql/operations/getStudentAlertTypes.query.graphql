@@ -1,0 +1,12 @@
+query getStudentAlertTypes($id: ID!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alertTypes {
+        id
+        name
+        icon
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+fragment templateFieldConnectionItem on TemplateFieldConnection {
+  edges {
+    node {
+      ...templateFieldItem
+    }
+  }
+}

@@ -1,0 +1,7 @@
+fragment projectGroupTotalProjectsCountItem on ProjectGroup {
+  id
+  name
+  projects {
+    totalCount
+  }
+}

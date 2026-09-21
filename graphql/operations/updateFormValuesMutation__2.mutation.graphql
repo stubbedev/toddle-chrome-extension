@@ -1,0 +1,8 @@
+mutation updateFormValuesMutation($input: UpdateFormResponseInput) {
+  platform {
+    updateGenericFormResponse(input: $input) {
+      id
+      state
+    }
+  }
+}

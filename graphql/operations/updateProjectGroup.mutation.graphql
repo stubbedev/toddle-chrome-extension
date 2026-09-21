@@ -1,0 +1,7 @@
+mutation updateProjectGroup($input: ProjectGroupUpdateInput!) {
+  documentation {
+    updateProjectGroup(input: $input) {
+      id
+    }
+  }
+}

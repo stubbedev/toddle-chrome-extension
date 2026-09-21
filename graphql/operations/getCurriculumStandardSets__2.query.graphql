@@ -1,0 +1,25 @@
+query getCurriculumStandardSets($id: ID!, $type: ENTITY_TYPE_ENUM!, $courseId: ID!, $subjects: [ID!], $setId: ID!, $orderBy: OrderByEnum, $orderByDirection: OrderByDirectionEnum) {
+  node(id: $id, type: $type) {
+    id
+    ... on UBDCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {subjects: $subjects, plannerElementIds: [$setId]}) {
+        ...subjectStandardFragment
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {subjects: $subjects, plannerElementIds: [$setId]}) {
+        ...subjectStandardFragment
+      }
+    }
+    ... on IbPypCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {subjects: $subjects, plannerElementIds: [$setId]}) {
+        ...subjectStandardFragmentPYP
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      plannerElementNodeSets(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: {subjects: $subjects, plannerElementIds: [$setId]}) {
+        ...subjectStandardFragment
+      }
+    }
+  }
+}

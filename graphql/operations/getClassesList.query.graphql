@@ -1,0 +1,25 @@
+query getClassesList($id: ID!, $coursesFilters: CourseFilter, $first: Int, $after: String, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      coursesV2(filters: $coursesFilters, first: $first, after: $after, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            primaryGrade {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+query getAnnouncementRecipients($announcementId: ID!, $academicYearId: ID!) {
+  node(id: $announcementId, type: CIRCULAR) {
+    id
+    ... on Circular {
+      sharedWith
+      recipients(input: {academicYearId: $academicYearId}) {
+        totalCount
+        readByCount
+        edges {
+          id
+          isRead
+          user {
+            id
+            firstName
+            middleName
+            lastName
+            type
+            profileImage
+            email
+            ... on Student {
+              id
+              prefix
+              suffix
+              pronouns
+              preferredName
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+            ... on Staff {
+              id
+              prefix
+              suffix
+              pronouns
+              preferredName
+            }
+            ... on FamilyMember {
+              id
+              prefix
+              suffix
+              pronouns
+              preferredName
+            }
+          }
+        }
+      }
+    }
+  }
+}

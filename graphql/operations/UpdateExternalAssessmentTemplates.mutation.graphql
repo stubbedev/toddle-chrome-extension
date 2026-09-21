@@ -1,0 +1,7 @@
+mutation UpdateExternalAssessmentTemplates($input: [UpdateExternalAssessmentTemplateInput!]!) {
+  externalAssessment {
+    updateExternalAssessmentTemplates(input: $input) {
+      isSuccess
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation createTimetable($input: CreateTimetableInput!) {
+  platform {
+    createTimetable(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

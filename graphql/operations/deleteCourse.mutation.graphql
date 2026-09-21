@@ -1,0 +1,7 @@
+mutation deleteCourse($id: ID!, $deletedBy: ID!) {
+  platform {
+    deleteCourse(input: {id: $id, deletedBy: $deletedBy}) {
+      isSuccess
+    }
+  }
+}

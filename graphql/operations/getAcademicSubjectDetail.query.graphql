@@ -1,0 +1,39 @@
+query getAcademicSubjectDetail($subjectId: ID!) {
+  node(id: $subjectId, type: SUBJECT) {
+    id
+    ... on Subject {
+      grades {
+        id
+        associatedGrades {
+          id
+        }
+      }
+      associatedLevels {
+        id
+        childLevels {
+          id
+        }
+      }
+      childSubjects {
+        id
+        curriculumProgram {
+          id
+          label
+        }
+        learningCourses {
+          id
+          title
+          grades {
+            id
+          }
+          subjectLevelMap {
+            associatedLevels {
+              id
+            }
+          }
+          type
+        }
+      }
+    }
+  }
+}

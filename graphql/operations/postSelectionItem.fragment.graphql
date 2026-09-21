@@ -1,0 +1,42 @@
+fragment postSelectionItem on Post {
+  id
+  title
+  attachments {
+    ...attachmentItem
+  }
+  createdBy {
+    ...userItem
+  }
+  items {
+    item {
+      id
+      ... on StudentAssignment {
+        id
+        assignment {
+          id
+          content {
+            id
+            ... on Assessment {
+              id
+              assessmentType {
+                id
+                value
+              }
+              isLearningGoalsEvaluationEnabled
+            }
+          }
+        }
+        submission {
+          id
+          attachmentGroups {
+            id
+            attachments {
+              ...attachmentItem
+            }
+          }
+        }
+      }
+    }
+    itemType
+  }
+}

@@ -1,0 +1,5 @@
+mutation bulkUploadStudentWizardData($input: StudentWizardDataInput!) {
+  platform {
+    bulkUploadStudentWizardData(input: $input)
+  }
+}

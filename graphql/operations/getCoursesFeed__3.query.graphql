@@ -1,0 +1,33 @@
+query getCoursesFeed($organizationId: ID!, $filters: LearningCourseFilters, $after: String) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      learningCourses(first: 20, after: $after, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            isArchived
+            academicYears {
+              id
+              startDate
+              endDate
+            }
+            curriculumProgram {
+              id
+              label
+              acronym
+              type
+              nodeInterfaceType
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}

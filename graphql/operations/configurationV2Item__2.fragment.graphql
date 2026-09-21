@@ -1,0 +1,8 @@
+fragment configurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+}

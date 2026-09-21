@@ -1,0 +1,30 @@
+query getLearningCourseChildDetails($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: LearningCourseChildCourses!, $classesFilters: LearningCourseClassFilter) {
+  node(id: $parentId, type: $parentType) {
+    ... on LearningCourse {
+      id
+      childCourses(filters: $filters) {
+        id
+        title
+        type
+        code
+        isArchived
+        classes(filters: $classesFilters) {
+          id
+          title
+        }
+        syncStatus(bluePrintCourseId: $parentId) {
+          status
+          pendingChanges
+          conflictChanges
+        }
+        lastSynced(bluePrintCourseId: $parentId) {
+          syncedAt
+          syncedBy {
+            ...userNameFields
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

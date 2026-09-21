@@ -1,0 +1,7 @@
+mutation replaceWorksheetQuestionUsingAIV2($input: ReplaceWorksheetQuestionInputV2!) {
+  content {
+    replaceWorksheetQuestionGeneratedFromAIV2(input: $input) {
+      id
+    }
+  }
+}

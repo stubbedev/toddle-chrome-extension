@@ -1,0 +1,5 @@
+mutation deleteQuestion($id: ID!) {
+  content {
+    deleteQuestion(input: {id: $id})
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateAcademicTerm($input: UpdateAcademicTermInput!) {
+  organizationManagement {
+    updateAcademicTerm(input: $input) {
+      ...termBasicDetailsItem
+    }
+  }
+}

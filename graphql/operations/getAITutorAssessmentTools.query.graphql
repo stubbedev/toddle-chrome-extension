@@ -1,0 +1,15 @@
+query getAITutorAssessmentTools($id: ID!) {
+  node(id: $id, type: ASSESSMENT) {
+    id
+    ... on Assessment {
+      assessmentTools {
+        edges {
+          node {
+            id
+            assessmentToolType
+          }
+        }
+      }
+    }
+  }
+}

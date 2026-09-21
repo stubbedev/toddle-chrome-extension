@@ -1,0 +1,7 @@
+mutation updateTranscriptYearGroup($id: ID!, $addedTerms: [ID!], $removedTerms: [ID!]) {
+  documentation {
+    updateTranscriptYearGroup(input: {id: $id, addedTerms: $addedTerms, removedTerms: $removedTerms}) {
+      id
+    }
+  }
+}

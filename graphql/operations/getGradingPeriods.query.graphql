@@ -1,0 +1,27 @@
+query getGradingPeriods($id: ID!) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      academicYears {
+        id
+        isCurrentAcademicYear
+        isUpcomingAcademicYear
+        startDate
+        endDate
+        terms {
+          id
+          label
+          abbreviation
+          type
+          startDate
+          endDate
+          curriculumProgram {
+            id
+            type
+          }
+        }
+      }
+    }
+  }
+}

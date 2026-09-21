@@ -1,0 +1,12 @@
+query getNomenclature($id: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      globalConstants(filter: {names: ["BEHAVIOUR_MODULE_NOMENCLATURE_MODULE", "BEHAVIOUR_MODULE_NOMENCLATURE_INCIDENT", "BEHAVIOUR_MODULE_NOMENCLATURE_ACTION", "BEHAVIOUR_MODULE_NOMENCLATURE_LEVEL"]}) {
+        id
+        name
+        value
+      }
+    }
+  }
+}

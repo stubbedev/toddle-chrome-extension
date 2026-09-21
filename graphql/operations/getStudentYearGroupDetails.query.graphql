@@ -1,0 +1,21 @@
+query getStudentYearGroupDetails($id: ID!, $yearGroupFilters: YearGroupFilters, $yearGroupGradeFilters: YearGroupGradeFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      academicYears {
+        id
+      }
+      yearGroup(filters: $yearGroupFilters) {
+        id
+        grade(filters: $yearGroupGradeFilters) {
+          id
+          globalGrade {
+            id
+            uid
+          }
+        }
+      }
+    }
+  }
+}

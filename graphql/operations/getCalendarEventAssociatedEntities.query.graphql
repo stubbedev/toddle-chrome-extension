@@ -1,0 +1,23 @@
+query getCalendarEventAssociatedEntities($id: ID!, $type: ENTITY_TYPE_ENUM!, $associatedEntitiesFilters: AssociatedEntitiesFilters) {
+  node(id: $id, type: $type) {
+    id
+    ... on PlatformCalendarEvent {
+      id
+      item {
+        id
+        ... on CalendarEventItem {
+          id
+          associatedEntities(filters: $associatedEntitiesFilters) {
+            id
+            ... on Grade {
+              id
+            }
+            ... on Course {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

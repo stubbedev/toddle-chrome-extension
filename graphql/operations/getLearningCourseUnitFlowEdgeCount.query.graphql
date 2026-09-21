@@ -1,0 +1,16 @@
+query getLearningCourseUnitFlowEdgeCount($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: LearningCourseFlowFilter, $first: Int) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC, filters: $filters, first: $first) {
+          resourceBasedCount {
+            totalCount
+            __typename
+          }
+        }
+      }
+    }
+  }
+}

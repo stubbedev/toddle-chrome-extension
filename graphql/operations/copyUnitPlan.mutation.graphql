@@ -1,0 +1,7 @@
+mutation copyUnitPlan($input: CopyUnitPlanInput!) {
+  planner {
+    copyUnitPlan(input: $input) {
+      id
+    }
+  }
+}

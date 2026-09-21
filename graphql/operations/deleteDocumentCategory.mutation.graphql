@@ -1,0 +1,5 @@
+mutation deleteDocumentCategory($input: DeleteInput!) {
+  platform {
+    deleteSnpDocumentCategory(input: $input)
+  }
+}

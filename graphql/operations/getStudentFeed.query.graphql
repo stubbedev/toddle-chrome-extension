@@ -1,0 +1,18 @@
+query getStudentFeed($organizationId: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      students(filters: $filters) {
+        totalCount
+        totalCountsByFamilyStatus {
+          totalCount
+          totalUnconnected
+          totalConnected
+          totalInvited
+          totalApproveRequested
+          totalPending
+        }
+      }
+    }
+  }
+}

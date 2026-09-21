@@ -1,0 +1,22 @@
+query getOrganizationCoursesQuery($id: ID!, $filters: CourseFilterInput, $assignmentFeedFilters: AssignmentFeedFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      courses(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            genericFolders(type: CLASSROOM) {
+              id
+              name
+            }
+            assignments(filters: $assignmentFeedFilters) {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query getSupportedLoginMethodServices($organizationId: ID!, $serviceInput: SupportedLoginMethodServicesInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      name
+      supportedLoginMethodServices(input: $serviceInput) {
+        service
+        type
+        requiredFields {
+          fieldName
+          displayName
+          isRequired
+          fieldType
+          placeholder
+        }
+      }
+    }
+  }
+}

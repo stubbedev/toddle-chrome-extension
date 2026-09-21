@@ -1,0 +1,8 @@
+mutation deleteDeadlineV2Mutation($input: DeleteProjectGroupTaskInput!) {
+  project {
+    deleteTask(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

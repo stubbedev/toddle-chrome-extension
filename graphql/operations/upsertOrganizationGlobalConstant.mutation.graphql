@@ -1,0 +1,9 @@
+mutation upsertOrganizationGlobalConstant($input: [OrganizationConstantInput!]) {
+  platform {
+    upsertOrganizationGlobalConstant(input: $input) {
+      id
+      name
+      value
+    }
+  }
+}

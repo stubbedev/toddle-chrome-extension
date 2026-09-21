@@ -1,0 +1,24 @@
+query syncCalendarClassList($jobId: ID!, $service: INTEGRATION_SERVICE_NAME!, $curriculumProgramId: ID!, $academicYearId: ID!, $searchText: String) {
+  integration {
+    syncCalendarClassList(input: {jobId: $jobId, service: $service, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId, searchText: $searchText}) {
+      affectedClasses {
+        ...courseDetailsItem
+      }
+      unaffectedClasses {
+        ...courseDetailsItem
+      }
+    }
+  }
+}
+
+mutation integrationValidateSyncCalendarData($service: INTEGRATION_SERVICE_NAME!, $curriculumProgramId: ID!, $academicYearId: ID!) {
+  integration {
+    integrationValidateSyncCalendarData(input: {service: $service, curriculumProgramId: $curriculumProgramId, academicYearId: $academicYearId}) {
+      allow
+      message
+      job {
+        id
+      }
+    }
+  }
+}

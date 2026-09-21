@@ -1,0 +1,54 @@
+mutation saveTurnitinConfig($input: SaveTurnitinConfigInput!) {
+  integration {
+    saveTurnitinConfig(input: $input) {
+      status
+      message
+      setups {
+        curriculumProgram {
+          id
+          label
+          acronym
+        }
+        turnitinConfig {
+          configurationId
+          valueType
+          apiUrl
+          apiKey
+          name
+        }
+        turnitinEnabledGrades {
+          configurationId
+          valueType
+          value
+        }
+        turnitinEnabledForOtherModules {
+          configurationId
+          valueType
+          value
+        }
+        turnitinEnableIndexingForClassroom {
+          configurationId
+          valueType
+          value
+        }
+        turnitinEnableIndexingForOtherModules {
+          configurationId
+          valueType
+          value
+        }
+        turnitinSearchRepositoriesForClassroom {
+          configurationId
+          valueType
+          searchRepositories
+          availableRepositories
+        }
+        turnitinSearchRepositoriesForOtherModules {
+          configurationId
+          valueType
+          searchRepositories
+          availableRepositories
+        }
+      }
+    }
+  }
+}

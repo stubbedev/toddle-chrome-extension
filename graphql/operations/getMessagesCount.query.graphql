@@ -1,0 +1,19 @@
+query getMessagesCount($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: ChatFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      chats(showArchived: false) {
+        unreadMessageCount
+        newMessageCount
+      }
+    }
+    ... on FamilyMember {
+      id
+      chats(filters: $filters) {
+        unreadMessageCount
+        newMessageCount
+      }
+    }
+  }
+}

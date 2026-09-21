@@ -1,0 +1,50 @@
+query getExternalAssessmentRecordSetDetails($id: ID!) {
+  node(id: $id, type: EXTERNAL_ASSESSMENT_RECORD_SET) {
+    id
+    ... on ExternalAssessmentRecordSet {
+      name
+      displayName
+      status
+      updatedAt
+      template {
+        id
+        name
+        globalGrades {
+          id
+          name
+        }
+        columns {
+          id
+          column {
+            id
+            name
+            columnType
+            config
+          }
+          columnGroup {
+            id
+            name
+          }
+        }
+      }
+      curriculumProgram {
+        id
+      }
+      students {
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+            sourceId
+          }
+          draftEntries {
+            column {
+              id
+            }
+            value
+          }
+        }
+      }
+    }
+  }
+}

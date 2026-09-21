@@ -1,0 +1,11 @@
+query getLearnerPortfolioYearGroupStudents($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: StudentLearnerPortfoliosFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on LearnerPortfolio {
+      id
+      studentLearnerPortfolios(filters: $filters) {
+        ...studentLearnerPortfolioItem
+      }
+    }
+  }
+}

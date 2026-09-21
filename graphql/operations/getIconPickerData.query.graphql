@@ -1,0 +1,13 @@
+query getIconPickerData($id: ID!) {
+  node(id: $id, type: COURSE) {
+    ... on Course {
+      id
+      profileImageData {
+        icon
+        url
+        color
+        acronym
+      }
+    }
+  }
+}

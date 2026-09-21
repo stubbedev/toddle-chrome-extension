@@ -1,0 +1,7 @@
+mutation importProgressReportTemplate($input: ImportProgressReportTemplateInput!) {
+  documentation {
+    importProgressReportTemplate(input: $input) {
+      ...progressReportTemplateItem
+    }
+  }
+}

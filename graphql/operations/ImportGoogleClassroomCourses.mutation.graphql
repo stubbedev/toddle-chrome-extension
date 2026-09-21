@@ -1,0 +1,7 @@
+mutation ImportGoogleClassroomCourses($input: ImportGoogleClassroomCoursesInput!) {
+  planner {
+    importGoogleClassroomCourses(input: $input) {
+      workflowId
+    }
+  }
+}

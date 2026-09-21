@@ -1,0 +1,21 @@
+query orgFlagsConsoleConfigurationValues($filters: configurationValueFilters!) {
+  platform {
+    getConfigurationValues(filters: $filters) {
+      configuration {
+        id
+        configuration
+      }
+      values {
+        id
+        value
+        entityGroup {
+          entityGroupId
+          entities {
+            entityId
+            entityType
+          }
+        }
+      }
+    }
+  }
+}

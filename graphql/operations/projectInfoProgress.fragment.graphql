@@ -1,0 +1,77 @@
+fragment projectInfoProgress on Project {
+  id
+  status
+  type
+  reportStatus
+  isCompleted
+  isArchived
+  archivedBy {
+    id
+  }
+  isRead
+  allPostsCount
+  portfolio {
+    id
+    isComplete
+  }
+  posts @skip(if: $isServiceAsAction) {
+    totalCount
+  }
+  createdBy {
+    id
+  }
+  updatedAt
+  updatedBy {
+    ...userNameFields
+  }
+  cascadeUpdateAt
+  cascadeUpdateBy {
+    ...userNameFields
+  }
+  academicHonesty(filters: {orderBy: DISPLAY_SEQUENCE}) @skip(if: $isServiceAsAction) {
+    id
+    description
+    displaySequence
+    lockingState {
+      state
+    }
+    createdBy {
+      ...userNameFields
+    }
+  }
+  students {
+    ...studentInfo
+    registrationCategory
+  }
+  supervisors {
+    isArchivedFromCurriculum(filters: $supervisorArchivedFilters)
+    ...supervisorInfo
+  }
+  academicHonestyRemarks @skip(if: $isServiceAsAction) {
+    id
+    lockingState {
+      state
+    }
+  }
+  completedDeadlines @skip(if: $isServiceAsAction) {
+    deadline {
+      id
+    }
+  }
+  isAcademicHonestyLocked @skip(if: $isServiceAsAction)
+  ibPYPElementRatings @skip(if: $isServiceAsAction) {
+    id
+    ibPYPElementId
+    value
+    academicCriteriaSet {
+      criteriaType
+      id
+    }
+    academicCriteriaValue {
+      id
+      abbreviation
+      label
+      color
+    }
+  }
+}

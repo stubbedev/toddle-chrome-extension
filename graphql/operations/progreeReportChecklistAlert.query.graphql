@@ -1,0 +1,10 @@
+query progreeReportChecklistAlert {
+  documentation {
+    progressReportChecklist {
+      isScopeAndSequenceAdded
+      isEvaluationCriteriaAdded
+      isAssessmentCriteriaAdded
+      isProgressReportTemplateAdded
+    }
+  }
+}

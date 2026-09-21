@@ -1,0 +1,8 @@
+query getOrganizationRubrics($id: ID!, $filters: AssessmentToolFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationItem
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation generateStudentTranscripts($input: StudentTranscriptStatusUpdateInput!) {
+  documentation {
+    updateStudentTranscriptStatus(input: $input)
+  }
+}

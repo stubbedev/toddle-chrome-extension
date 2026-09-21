@@ -1,0 +1,14 @@
+mutation createExternalAssessmentTestTypes($input: [CreateExternalAssessmentTestTypeInput!]!, $excludedTemplateIds: [ID!]) {
+  externalAssessment {
+    createExternalAssessmentTestTypes(input: $input) {
+      isSuccess
+      testTypes {
+        id
+        name
+        associatedTemplates(filters: {excludedTemplateIds: $excludedTemplateIds}) {
+          totalCount
+        }
+      }
+    }
+  }
+}

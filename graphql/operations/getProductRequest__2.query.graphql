@@ -1,0 +1,102 @@
+query getProductRequest($after: String, $first: Int, $orderBy: ORDER_BY_ENUM, $filters: ProductRequestFilter) {
+  platform {
+    productRequestFeedV2(filters: $filters, after: $after, first: $first, orderBy: $orderBy) {
+      count
+      automaticPendingCount
+      edges {
+        node {
+          module {
+            id
+            label
+            ownerTeams {
+              id
+              teamLabel
+              __typename
+            }
+            __typename
+          }
+          organization {
+            id
+            name
+            region
+            curriculumPrograms {
+              id
+              buddy {
+                id
+                firstName
+                lastName
+                __typename
+              }
+              __typename
+            }
+            __typename
+          }
+          productRequests {
+            id
+            betaRequestStatus
+            displayStatus
+            createdAt
+            requestedBy {
+              ... on Staff {
+                firstName
+                lastName
+                __typename
+              }
+              ... on Buddy {
+                firstName
+                lastName
+                __typename
+              }
+              __typename
+            }
+            enabledAt
+            enabledBy {
+              id
+              firstName
+              lastName
+              __typename
+            }
+            releaseItem {
+              id
+              version
+              title
+              description
+              isBeta
+              releaseMode
+              featureFlags
+              codeAssistanceStatus
+              module {
+                id
+                label
+                moduleKey
+                ownerTeams {
+                  id
+                  teamLabel
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            __typename
+          }
+          productUpdate {
+            id
+            title
+            releaseDate
+            __typename
+          }
+        }
+        cursor
+        __typename
+      }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+      }
+      __typename
+    }
+    __typename
+  }
+}

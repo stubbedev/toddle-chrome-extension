@@ -1,0 +1,8 @@
+query maxSubjectCount($id: ID!, $maxSubjectCountFilters: ExamRegistrationMaxSubjectCountFilterInput) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      maxSubjectCount(filters: $maxSubjectCountFilters)
+    }
+  }
+}

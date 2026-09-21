@@ -1,0 +1,10 @@
+query getCourseFeed($organizationId: ID!, $subjectFilter: SubjectFilterInput, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $academicYearId: ID) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationCourseFeedEdgeItem
+      __typename
+    }
+    __typename
+  }
+}

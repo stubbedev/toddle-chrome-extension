@@ -1,0 +1,8 @@
+fragment unitPlanAllFields on PlannerField {
+  id
+  uid
+  value
+  resolvedMinimalTree {
+    ...unitPlanResolvedMinimalTreeItem
+  }
+}

@@ -1,0 +1,84 @@
+fragment userDetailItem on User {
+  id
+  email
+  firstName
+  lastName
+  middleName
+  type
+  profileImage
+  ... on Student {
+    isArchived
+    isDeleted
+    preferredName
+    pronouns
+    prefix
+    suffix
+    yearGroup {
+      id
+      grade {
+        id
+        name
+      }
+    }
+    familyMembers {
+      id
+      email
+      firstName
+      lastName
+      middleName
+      type
+      profileImage
+      prefix
+      preferredName
+      pronouns
+      suffix
+      children(organizationId: $organizationId) {
+        id
+        email
+        firstName
+        lastName
+        middleName
+        preferredName
+        pronouns
+        suffix
+        prefix
+      }
+    }
+  }
+  ... on Staff {
+    isArchived
+    isDeleted
+    displayRole
+    role
+    prefix
+    preferredName
+    pronouns
+    suffix
+  }
+  ... on FamilyMember {
+    children(organizationId: $organizationId) {
+      id
+      email
+      firstName
+      lastName
+      middleName
+      preferredName
+      pronouns
+      suffix
+      prefix
+    }
+  }
+  ... on Parent {
+    children {
+      id
+      email
+      firstName
+      lastName
+      middleName
+      preferredName
+      pronouns
+      suffix
+      prefix
+    }
+  }
+}

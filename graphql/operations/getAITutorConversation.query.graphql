@@ -1,0 +1,41 @@
+query getAITutorConversation($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      entityType
+      entitySubType
+      metadata
+      messages {
+        totalCount
+        edges {
+          node {
+            ...aiMessageItem
+          }
+        }
+      }
+      attachments {
+        ...attachmentItem
+        modalityAttachment {
+          id
+          ... on ToddleDoc {
+            id
+            value
+          }
+          ... on ModalityFile {
+            id
+            content
+            metadata
+          }
+        }
+      }
+      analysisToolEvaluation(filters: {userFilter: ALL}) {
+        id
+        toolId
+        toolType
+        toolResponses {
+          ...toolResponseItem
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+fragment plannerElementNodeSetWithNodesItem on PlannerElementNodeSet {
+  id
+  title
+  type
+  plannerElementSet {
+    id
+    type
+    label
+    config {
+      id
+      config
+      valueType
+      value
+    }
+  }
+  plannerElementNodeSetWrapperV2 {
+    ... on PlannerElementNodeSetWrapper {
+      publishedData(filters: $plannerElementNonAtlFilters) {
+        edges {
+          node {
+            ...plannerElementNodeV2Item
+          }
+        }
+      }
+    }
+    ... on PlannerActionSetWrapper {
+      publishedData(filters: $plannerElementNonAtlFilters) {
+        edges {
+          node {
+            ...actionItem
+          }
+        }
+      }
+    }
+    ... on PlannerLearnerProfileSetWrapper {
+      publishedData(filters: $plannerElementNonAtlFilters) {
+        edges {
+          node {
+            ...lpItem
+          }
+        }
+      }
+    }
+    ... on PlannerConceptSetWrapper {
+      publishedData(filters: $plannerElementNonAtlFilters) {
+        edges {
+          node {
+            ...conceptItem
+          }
+        }
+      }
+    }
+    ... on PlannerRelatedConceptSetWrapper {
+      publishedData(filters: $plannerElementNonAtlFilters) {
+        edges {
+          node {
+            ...relatedConceptItem
+          }
+        }
+      }
+    }
+    ... on PlannerATLSetWrapper {
+      publishedData(filters: $plannerElementATLFilters) {
+        edges {
+          node {
+            ...atlItem
+          }
+        }
+      }
+    }
+  }
+}

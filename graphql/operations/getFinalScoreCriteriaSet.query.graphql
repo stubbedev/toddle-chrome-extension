@@ -1,0 +1,45 @@
+query getFinalScoreCriteriaSet($id: ID!, $filters: academicCriteriaSetsFilter) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: $filters) {
+          id
+          label
+          criteriaType
+          subType
+          academicCriteriaValues {
+            id
+            label
+            abbreviation
+            displaySequence
+            boundaryGuidelines
+            description
+            color
+            localGrades {
+              id
+              label
+              grade {
+                id
+                name
+              }
+              localGradeCriteriaValue {
+                id
+                label
+              }
+            }
+            scoreValues {
+              id
+              minValue
+              maxValue
+              value
+            }
+          }
+          curriculumProgram {
+            id
+          }
+        }
+      }
+    }
+  }
+}

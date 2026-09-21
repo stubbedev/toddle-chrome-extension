@@ -1,0 +1,26 @@
+mutation updateDPPointAssessmentSet($input: [UpdatePointAssessmentSetInput!]) {
+  planner {
+    updatePointAssessmentSet(input: $input) {
+      response {
+        id
+        label
+        type
+        categories {
+          id
+          label
+          values {
+            minValue
+            maxValue
+            genericTag {
+              id
+              label
+              type
+            }
+            valueType
+            weightageType
+          }
+        }
+      }
+    }
+  }
+}

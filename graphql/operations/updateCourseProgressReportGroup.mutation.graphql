@@ -1,0 +1,11 @@
+mutation updateCourseProgressReportGroup($input: ProgressReportTaskGroupUpdateInput!) {
+  documentation {
+    updateProgressReportGroup(input: $input) {
+      showWarning
+      warning
+      progressReportTaskGroup {
+        ...progressReportTaskGroupItem
+      }
+    }
+  }
+}

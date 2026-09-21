@@ -1,0 +1,9 @@
+mutation saveUnitImportInstruction($input: SaveUnitImportInstructionInput!) {
+  ai {
+    saveUnitImportInstruction(input: $input) {
+      isSuccess
+      warning
+      response
+    }
+  }
+}

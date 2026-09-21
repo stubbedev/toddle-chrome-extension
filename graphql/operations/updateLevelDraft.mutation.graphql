@@ -1,0 +1,9 @@
+mutation updateLevelDraft($id: ID!, $draftData: LevelDraftUpdateInput!) {
+  planner {
+    updateLevelDraft(id: $id, draftData: $draftData) {
+      key
+      label
+    }
+    __typename
+  }
+}

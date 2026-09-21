@@ -1,0 +1,20 @@
+query getAllSurveyRulesets {
+  platform {
+    getAllSurveyRulesets {
+      isSuccess
+      warning
+      rulesets {
+        id
+        name
+        rules {
+          ruleId
+          ruleType
+          ruleValue
+          operator
+          ruleOrder
+          afterGroupCondition
+        }
+      }
+    }
+  }
+}

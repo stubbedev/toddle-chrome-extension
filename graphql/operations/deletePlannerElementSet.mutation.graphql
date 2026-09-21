@@ -1,0 +1,8 @@
+mutation deletePlannerElementSet($input: DeletePlannerElementSetInput) {
+  planner {
+    deletePlannerElementSet(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

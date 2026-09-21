@@ -1,0 +1,36 @@
+fragment actionItem on Action {
+  id
+  label
+  subText
+  children
+  parent
+  levels {
+    id
+    value
+  }
+  levelId
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+    }
+    properties {
+      isGraded
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+    }
+  }
+}

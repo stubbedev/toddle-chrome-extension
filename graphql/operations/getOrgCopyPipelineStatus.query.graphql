@@ -1,0 +1,11 @@
+query getOrgCopyPipelineStatus {
+  platform {
+    orgCopyPipelineStatus {
+      buildNumber
+      status
+      sourceOrgId
+      destinationRegion
+      destinationEnvironment
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getAdminGradebookSummaryExport($id: ID!, $input: [GradebookSummaryExportOrganizationInput!]) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      gradebookSummaryExport(input: $input)
+    }
+  }
+}

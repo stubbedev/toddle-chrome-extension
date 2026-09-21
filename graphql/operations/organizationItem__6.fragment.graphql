@@ -1,0 +1,6 @@
+fragment organizationItem on Organization {
+  id
+  subjects(filters: $filters) {
+    ...subjectItem
+  }
+}

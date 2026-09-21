@@ -1,0 +1,11 @@
+query getRecommendedPhaseOfUnitPlanSubjects($ids: [ID!]) {
+  multiNode(ids: $ids, type: SUBJECT) {
+    ... on Subject {
+      id
+      recommendedPhase {
+        phaseId
+        gradeId
+      }
+    }
+  }
+}

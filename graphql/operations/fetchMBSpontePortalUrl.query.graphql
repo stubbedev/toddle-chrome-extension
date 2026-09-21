@@ -1,0 +1,11 @@
+query fetchMBSpontePortalUrl($input: IntegrationMapleBearSpontePortalUrlInput!) {
+  integration {
+    fetchMBSpontePortalUrl(input: $input) {
+      isSuccess
+      url
+      errorMessage
+      errorCode
+    }
+    __typename
+  }
+}

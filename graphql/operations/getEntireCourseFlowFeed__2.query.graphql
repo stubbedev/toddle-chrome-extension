@@ -1,0 +1,36 @@
+query getEntireCourseFlowFeed($id: ID!, $filters: LearningCourseFlowFilter, $type: ENTITY_TYPE_ENUM!, $stateFilters: LearningCourseFlowStateFilter, $syncedBluePrintItemFilters: SyncedBluePrintItemFilter, $assessmentFieldUids: [String!], $skipAssessmentFields: Boolean! = true, $includeCourseSyncStatus: Boolean = false, $skipSyncStatus: Boolean! = true) {
+  node(id: $id, type: $type) {
+    id
+    ... on Course {
+      classFlowFeedWrapper {
+        learningCourseFlowFeed(first: 10000, filters: $filters) {
+          edges {
+            node {
+              ...courseFlowResource
+            }
+          }
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+    }
+    ... on LearningCourse {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 10000, filters: $filters) {
+          edges {
+            node {
+              ...courseFlowResource
+            }
+          }
+          resourceBasedCount {
+            totalCount
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

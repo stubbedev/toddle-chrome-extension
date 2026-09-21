@@ -1,0 +1,37 @@
+query getUserProjectGroups($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: UserProjectGroupFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      projectGroups(filters: $filters) {
+        ...projectGroupDetailsV2
+        yearGroup {
+          id
+          grade {
+            id
+            globalGrade {
+              uid
+              id
+            }
+          }
+        }
+      }
+    }
+    ... on Student {
+      id
+      projectGroups(filters: $filters) {
+        ...basicProjectGroupDetails
+        yearGroup {
+          id
+          grade {
+            id
+            globalGrade {
+              uid
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

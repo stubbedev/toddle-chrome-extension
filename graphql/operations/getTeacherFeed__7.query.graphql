@@ -1,0 +1,26 @@
+query getTeacherFeed($id: ID!, $filters: OrgConnectionFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      staff(filters: $filters) {
+        edges {
+          node {
+            id
+            ... on Staff {
+              id
+              firstName
+              middleName
+              lastName
+              isArchived
+              preferredName
+              prefix
+              suffix
+              pronouns
+            }
+          }
+        }
+      }
+    }
+  }
+}

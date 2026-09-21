@@ -1,0 +1,46 @@
+query getStudentAlerts($id: ID!, $first: Int, $after: String, $filters: StudentAlertFilters) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      alerts(first: $first, after: $after, filters: $filters) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            id
+            title
+            description
+            createdAt
+            attachments {
+              ...attachmentItem
+            }
+            alertType {
+              ...alertTypeFields
+            }
+            studentPlan {
+              id
+              curriculumProgram {
+                id
+              }
+              planType {
+                id
+                name
+              }
+              detailsAttachments {
+                id
+                name
+                type
+                mimeType
+                metadata
+                url
+                thumbUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

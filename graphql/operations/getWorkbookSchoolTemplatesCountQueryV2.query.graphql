@@ -1,0 +1,19 @@
+query getWorkbookSchoolTemplatesCountQueryV2($types: [ORGANIZATION_RESOURCE_TYPE_ENUM!], $organizationId: ID!, $curriculumProgramId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      workbookTemplatesV2(curriculumProgramId: $curriculumProgramId) {
+        isSuccess
+        warning
+        workbookTemplateResource {
+          id
+          childrenV2(filters: {types: $types}) {
+            resourceTypeBasedCount {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

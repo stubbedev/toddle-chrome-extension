@@ -1,0 +1,10 @@
+query getStaffVoiceTone($id: ID!, $filters: StaffAIVoiceToneFilters) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      aiVoiceTone(filters: $filters) {
+        ...progressReportAIVoiceTones
+      }
+    }
+  }
+}

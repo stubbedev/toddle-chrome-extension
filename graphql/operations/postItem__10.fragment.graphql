@@ -1,0 +1,19 @@
+fragment postItem on Post {
+  id
+  comments {
+    ... on CommentConnection {
+      totalCount
+      unreadCount
+      messageEdges(first: $first, after: $after) {
+        node {
+          ...messageItem
+        }
+      }
+      unreadMessageEdges {
+        node {
+          ...messageItem
+        }
+      }
+    }
+  }
+}

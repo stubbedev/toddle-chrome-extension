@@ -1,0 +1,24 @@
+query getLearningCourseAssociatedLevels($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      associatedLevels {
+        id
+        label
+        abbreviation
+        reportDisplayName
+      }
+      subjectLevelMap {
+        subject {
+          id
+        }
+        associatedLevels {
+          id
+          label
+          abbreviation
+        }
+      }
+    }
+  }
+}

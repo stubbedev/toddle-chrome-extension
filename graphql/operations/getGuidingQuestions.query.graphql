@@ -1,0 +1,10 @@
+query getGuidingQuestions($projectGroupId: ID!, $filters: GuidingQuestionFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      guidingQuestions(filters: $filters) {
+        ...guidingQuestions
+      }
+    }
+  }
+}

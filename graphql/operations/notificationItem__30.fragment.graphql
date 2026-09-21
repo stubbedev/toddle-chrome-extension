@@ -1,0 +1,218 @@
+fragment postItem on Post {
+  id
+  title
+  attachments {
+    ...attachmentItem
+    displaySequence
+  }
+  createdBy {
+    ...userItem
+  }
+  createdAt
+  publishedAt
+  isDeleted
+  comments {
+    totalCount
+    unreadCount
+    messageEdges(first: 1) {
+      node {
+        ...messageItem
+      }
+    }
+  }
+  likes {
+    totalCount
+    edges {
+      node {
+        ...likeItem
+      }
+    }
+  }
+  seen {
+    totalCount
+    edges {
+      node {
+        ...postSeenItem
+      }
+    }
+  }
+  state
+  course {
+    id
+    title
+  }
+  students {
+    totalCount
+    edges {
+      node {
+        ...studentItem
+      }
+    }
+  }
+  postTemplate {
+    id
+    fields {
+      id
+      label
+      placeholder
+      type
+      metadata
+      dataSets {
+        id
+        title
+        type
+        startDate
+        endDate
+        values {
+          value
+          date
+          displaySequence
+          id
+          item {
+            id
+            itemName
+          }
+        }
+      }
+    }
+  }
+  isPrivate
+  isHiddenFromStudents
+  isStudentIndividuallyRated
+  items {
+    item {
+      ... on StudentTemplateResponse {
+        id
+        metadata
+        individuallyRated
+        student {
+          ...studentItem
+        }
+        fields {
+          id
+          value
+          uid
+          resolvedMinimalTree {
+            id
+            type
+            ... on ResolvedFieldAttachmentGroup {
+              attachmentGroups {
+                id
+                displaySequence
+                metadata
+                attachments {
+                  ...attachmentItem
+                }
+              }
+            }
+          }
+        }
+        ...routineLikesAndComments
+      }
+    }
+    itemType
+  }
+}
+
+fragment notificationItem on Notification {
+  id
+  type
+  primaryEntity
+  isNew
+  isRead
+  metadata
+  category
+  createdBy {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+    type
+    profileImage
+    ... on Student {
+      preferredName
+      pronouns
+      suffix
+    }
+  }
+  createdAt
+  updatedBy {
+    id
+    firstName
+    lastName
+    middleName
+    profileImage
+    ... on Student {
+      preferredName
+      pronouns
+      suffix
+    }
+  }
+  course {
+    ...courseItem
+    grades {
+      id
+      name
+    }
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  courses {
+    id
+    title
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  updatedAt
+  contextData {
+    ... on Grade {
+      id
+      name
+    }
+    ... on Course {
+      id
+      title
+      learningCourse {
+        id
+        title
+        academicCourse {
+          id
+          label
+        }
+      }
+    }
+    ... on YearGroup {
+      id
+      name
+    }
+    ... on Student {
+      id
+      firstName
+      lastName
+      middleName
+      type
+      preferredName
+      pronouns
+      suffix
+    }
+    ... on BehaviourIncident {
+      id
+      uid
+      category {
+        id
+        rootCategory {
+          id
+          name
+        }
+      }
+    }
+  }
+  messageData
+  extensionType
+  extensionData
+}

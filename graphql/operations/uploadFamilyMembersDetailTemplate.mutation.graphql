@@ -1,0 +1,16 @@
+mutation uploadFamilyMembersDetailTemplate($input: EntityBulkUploadInput!) {
+  platform {
+    entityBulkUpload(input: $input) {
+      errorData
+      successData {
+        added
+        updated
+        deleted
+        reInvited
+        mapped
+      }
+      uploadStatus
+      activityLogId
+    }
+  }
+}

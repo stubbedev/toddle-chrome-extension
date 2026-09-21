@@ -1,0 +1,15 @@
+query getCriteriaSetsForNomenclature($organizationId: ID!, $nomenclaturesFilters: academicCriteriaSetsFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      constants {
+        academicCriteriaSets(filters: $nomenclaturesFilters) {
+          id
+          label
+          criteriaType
+          subType
+        }
+      }
+    }
+  }
+}

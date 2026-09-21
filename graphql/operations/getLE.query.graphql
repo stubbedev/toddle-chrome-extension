@@ -1,0 +1,10 @@
+query getLE($id: ID!, $uids: [String!]) {
+  node(id: $id, type: LEARNING_ENGAGEMENT) {
+    ... on LearningEngagement {
+      id
+      fields(uids: $uids) {
+        ...PlannerFieldItem
+      }
+    }
+  }
+}

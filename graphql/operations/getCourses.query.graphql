@@ -1,0 +1,23 @@
+query getCourses($ids: [ID!], $filters: LearningCourseAssessmentInsightFilters) {
+  multiNode(ids: $ids, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      title
+      type
+      subjects {
+        id
+        name
+      }
+      assessmentInsights(filters: $filters) {
+        assessments {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

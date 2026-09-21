@@ -1,0 +1,30 @@
+query getCPGradebookProjectGroupProjectsWithStudentCollaborators($id: ID!, $projectGradebookFilters: ProjectGroupProjectsFilters, $projectFieldFilters: PlannerFieldFilter, $academicYearId: ID) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      projects(filters: $projectGradebookFilters) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...individualGradebookInfo
+            ibPYPElementRatings(filters: {academicCriteriaSetTypes: [PROJECT_OVERALL_PROGRESS]}) {
+              id
+              ibPYPElementId
+              academicCriteriaSet {
+                id
+                criteriaType
+              }
+              academicCriteriaValue {
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

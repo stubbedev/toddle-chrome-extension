@@ -1,0 +1,30 @@
+query getStudentBehaviourOverview($id: ID!, $behaviourOverviewInput: BehaviourOverviewInput) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      behaviourOverview(input: $behaviourOverviewInput) {
+        categoryWiseCount {
+          category {
+            id
+            name
+            color
+          }
+          count
+        }
+        subcategoryWiseCount {
+          category {
+            id
+            name
+            iconData
+            color
+            rootCategory {
+              id
+            }
+          }
+          count
+        }
+      }
+    }
+  }
+}

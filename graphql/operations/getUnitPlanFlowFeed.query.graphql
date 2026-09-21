@@ -1,0 +1,91 @@
+query getUnitPlanFlowFeed($id: ID!, $learningCourseId: ID!, $filters: LearningCourseFlowFilter!) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      learningCourseFlowFeedWrapper {
+        learningCourseFlowFeed(first: 10000, filters: $filters) {
+          edges {
+            node {
+              id
+              itemType
+              label
+              item {
+                id
+                ... on Assessment {
+                  createdAt
+                  type
+                  id
+                  title {
+                    id
+                    value
+                  }
+                  image {
+                    id
+                    value
+                  }
+                  assessmentType {
+                    id
+                    value
+                  }
+                  taskType {
+                    id
+                    label
+                  }
+                  lockingInfo {
+                    isLocked
+                  }
+                }
+                ... on Attachment {
+                  id
+                  type
+                  title
+                  name
+                  mimeType
+                  url
+                  signedUrl
+                  thumbUrl
+                  createdAt
+                }
+                ... on UnitPlan {
+                  id
+                  title {
+                    id
+                    value
+                  }
+                  createdAt
+                  isUnitFlowLocked
+                  image {
+                    id
+                    value
+                    resolvedMinimalTree {
+                      ... on ResolvedFieldVideoAttachment {
+                        id
+                        type
+                        attachment {
+                          id
+                          url
+                          thumbUrl
+                        }
+                      }
+                    }
+                  }
+                  lockingInfo {
+                    isLocked
+                  }
+                }
+              }
+              lockingInfo(filters: {learningCourseId: $learningCourseId}) {
+                isLocked
+              }
+              children {
+                id
+                itemType
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

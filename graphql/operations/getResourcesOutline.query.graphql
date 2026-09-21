@@ -1,0 +1,19 @@
+query getResourcesOutline($parentId: ID!, $parentType: ENTITY_TYPE_ENUM!, $filters: OrganizationResourceFilter) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on Course {
+      id
+      organizationResourcesFlatFeedOutline(filters: $filters) {
+        id
+        label
+        depth
+        state
+        parentResource {
+          id
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

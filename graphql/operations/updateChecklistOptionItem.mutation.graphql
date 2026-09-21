@@ -1,0 +1,7 @@
+mutation updateChecklistOptionItem($id: ID!, $updatedBy: ID!, $label: String!) {
+  planner {
+    updateChecklistOptionItem(input: {updatedBy: $updatedBy, id: $id, label: $label}) {
+      id
+    }
+  }
+}

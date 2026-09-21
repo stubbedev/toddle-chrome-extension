@@ -1,0 +1,7 @@
+mutation importResourcesToSection($sectionId: ID!, $resourceItems: [WeeklyPlannerSectionItemInput!]!) {
+  planner {
+    updateWeeklyPlannerSection(input: {id: $sectionId, editItems: {added: $resourceItems}}) {
+      ...weeklyPlannerSectionItem
+    }
+  }
+}

@@ -1,0 +1,16 @@
+query getMultiSubjectGradingSettingsAndCategorySets($ids: [ID!], $filters: SubjectGradingConfigurationFilters, $gradingMethodologyFilters: SubjectGradingMethodologyFilters) {
+  multiNode(ids: $ids, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      gradingMethodologies(filters: $gradingMethodologyFilters) {
+        id
+        gradingMethodologyTypes
+      }
+      gradingConfigurations(filters: $filters) {
+        ...GradingConfigurationFragment
+        ...GradingCategorySetsFragment
+      }
+    }
+  }
+}

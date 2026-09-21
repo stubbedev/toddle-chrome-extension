@@ -1,0 +1,93 @@
+query getPYPProgrammeInsights($id: ID!, $filters: OverallProgrammeInsightFilters) {
+  node(id: $id, type: IB_PYP_CURRICULUM_PROGRAM) {
+    id
+    ... on CurriculumProgram {
+      id
+      ... on IbPypCurriculumProgram {
+        id
+        programmeInsights(filters: $filters) {
+          ... on ATLInsight {
+            type
+            insights {
+              element {
+                id
+                label
+              }
+              programmeInsightEdge {
+                ...programmeInsightEdgeItem
+              }
+            }
+          }
+          ... on ThemeDescriptorInsight {
+            type
+            insights {
+              element {
+                id
+                label
+              }
+              programmeInsightEdge {
+                ...programmeInsightEdgeItem
+              }
+            }
+          }
+          ... on SubjectInsight {
+            type
+            insights {
+              subject {
+                id
+                name
+              }
+              programmeInsightEdge {
+                ...programmeInsightEdgeItem
+              }
+            }
+          }
+          ... on LPAInsight {
+            type
+            insights {
+              element {
+                id
+                label
+              }
+              programmeInsightEdge {
+                ...programmeInsightEdgeItem
+              }
+            }
+          }
+          ... on ConceptInsight {
+            type
+            insights {
+              element {
+                id
+                label
+              }
+              programmeInsightEdge {
+                ...programmeInsightEdgeItem
+              }
+            }
+          }
+          ... on CustomDataSetInsight {
+            type
+            insights {
+              element {
+                id
+                label
+              }
+              programmeInsightEdge {
+                ...programmeInsightEdgeItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation generateStudentFamilyInviteReport($status: [FamilyMemberStatusEnum!], $filters: GenerateStudentFamilyInviteReportFilterInput, $fileName: String) {
+  platform {
+    generateStudentFamilyInviteReport(input: {status: $status, filters: $filters, fileName: $fileName}) {
+      url
+    }
+  }
+}

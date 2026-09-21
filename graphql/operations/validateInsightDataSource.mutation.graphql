@@ -1,0 +1,11 @@
+mutation validateInsightDataSource($input: ValidateInsightDataSourceInput!) {
+  platform {
+    validateInsightDataSource(input: $input) {
+      uploadStatus
+      resourceId
+      successData
+      errorCount
+      errorData
+    }
+  }
+}

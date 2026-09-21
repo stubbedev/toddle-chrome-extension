@@ -1,0 +1,21 @@
+mutation bulkResetSecureCodes($input: BulkResetSecureCodesInput!) {
+  platform {
+    bulkResetSecureCodes(input: $input) {
+      isSuccess
+      warning
+      studentsAffected
+      classesAffected
+      transitionExpiresAt
+      transitionMode
+      hasLegacySignInCodes
+      hasLegacyInviteCodes
+      hasOldSignInCodes
+      hasOldInviteCodes
+      hasLegacyClassQRCodes
+      hasOldClassQRCodes
+      oldSignInExpiresAt
+      oldInviteExpiresAt
+      oldQrExpiresAt
+    }
+  }
+}

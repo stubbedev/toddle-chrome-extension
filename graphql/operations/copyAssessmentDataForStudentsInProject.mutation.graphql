@@ -1,0 +1,8 @@
+mutation copyAssessmentDataForStudentsInProject($input: CopyAssessmentDataForStudentsInProjectInput!) {
+  documentation {
+    copyAssessmentDataForStudentsInProject(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

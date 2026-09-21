@@ -1,0 +1,17 @@
+query importSubjectStandardsJob($id: ID!) {
+  platform {
+    importSubjectStandardsJob(id: $id) {
+      ...importSubjectStandardsJobItem
+    }
+  }
+}
+
+fragment identityPermissionsConfigurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+  description
+}

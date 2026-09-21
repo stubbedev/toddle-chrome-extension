@@ -1,0 +1,17 @@
+fragment fieldConfigItem on TemplateFieldProperty {
+  id
+  parentId
+  children
+  globalFieldProperty {
+    id
+    property
+  }
+  values(filters: $templateFieldPropertyValuesFilters) {
+    id
+    value
+    configLevel {
+      id
+      type
+    }
+  }
+}

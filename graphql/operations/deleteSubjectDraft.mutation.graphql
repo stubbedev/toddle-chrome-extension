@@ -1,0 +1,8 @@
+mutation deleteSubjectDraft($input: DraftDeleteInput!) {
+  planner {
+    deleteSubjectDraft(input: $input) {
+      isSuccess
+    }
+    __typename
+  }
+}

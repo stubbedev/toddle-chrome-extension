@@ -1,0 +1,11 @@
+mutation($apiType: INTERNAL_TOOL_API_TYPE_ENUM!, $params: JSON!) {
+  platform {
+    internalToolsGenericMutation(input: {apiType: $apiType, params: $params}) {
+      isSuccess
+      warning
+      data
+      __typename
+    }
+    __typename
+  }
+}

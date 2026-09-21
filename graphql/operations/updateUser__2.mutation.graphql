@@ -1,0 +1,11 @@
+mutation updateUser($id: ID!, $firstName: String, $middleName: String, $lastName: String, $preferredName: String, $prefix: String, $suffix: String, $gender: String, $pronouns: String, $dob: String, $enrollmentDate: String, $nccdCategory: NCCD_CATEGORY_ENUM, $primaryNationality: String, $secondaryNationality: String, $line1: String, $line2: String, $city: String, $state: String, $zipcode: String, $country: String, $email: String, $sourceId: String, $languages: [String], $nationalId: String, $birthPlace: String, $profileImage: String, $firstNameLocale: String, $lastNameLocale: String, $dobLocale: String, $birthPlaceLocale: String, $religionLocale: String, $primaryNationalityLocale: String, $seventhAdditionalField: String, $eighthAdditionalField: String, $aclUserRoles: ACLUserRolesInput) {
+  platform {
+    updateUserV2(input: {id: $id, firstName: $firstName, middleName: $middleName, lastName: $lastName, preferredName: $preferredName, prefix: $prefix, suffix: $suffix, pronouns: $pronouns, gender: $gender, email: $email, sourceId: $sourceId, profileImage: $profileImage, enrollmentDate: $enrollmentDate, nccdCategory: $nccdCategory, otherDetails: {dob: $dob, pronouns: $pronouns, primaryNationality: $primaryNationality, secondaryNationality: $secondaryNationality, languages: $languages, nationalId: $nationalId, birthPlace: $birthPlace, firstNameLocale: $firstNameLocale, lastNameLocale: $lastNameLocale, dobLocale: $dobLocale, birthPlaceLocale: $birthPlaceLocale, religionLocale: $religionLocale, primaryNationalityLocale: $primaryNationalityLocale, seventhAdditionalField: $seventhAdditionalField, eighthAdditionalField: $eighthAdditionalField}, address: {line1: $line1, line2: $line2, city: $city, state: $state, zipcode: $zipcode, country: $country}, aclUserRoles: $aclUserRoles}) {
+      warning
+      isSuccess
+      user {
+        ...studentOtherDetailsItem
+      }
+    }
+  }
+}

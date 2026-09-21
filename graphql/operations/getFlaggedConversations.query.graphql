@@ -1,0 +1,47 @@
+query getFlaggedConversations($organizationId: ID!, $chatFeedInput: AllChatFeedInput!, $messagesV2Input: MessageFeedInput!, $messagesV2TotalCountInput: MessageFeedInput!, $flaggedMessageSummaryInput: FlaggedMessageSummaryInput!, $isSentimentHidden: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      allChats(input: $chatFeedInput) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            label
+            type
+            sentimentScore @skip(if: $isSentimentHidden)
+            profileImageData {
+              url
+              icon
+            }
+            totalUsersCount
+            ...flaggedMessageSummaryItem
+            usersV2(input: {first: 2}) {
+              edges {
+                node {
+                  id
+                  firstName
+                  middleName
+                  lastName
+                  type
+                  profileImage
+                }
+              }
+            }
+            messagesV2(input: $messagesV2Input) {
+              totalCount(input: $messagesV2TotalCountInput)
+              edges {
+                node {
+                  ...messageDetailItem
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

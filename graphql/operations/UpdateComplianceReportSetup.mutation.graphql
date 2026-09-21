@@ -1,0 +1,18 @@
+mutation UpdateComplianceReportSetup($input: UpdateComplianceReportSetupInput!) {
+  complianceReport {
+    updateComplianceReportSetup(input: $input) {
+      isSuccess
+      warning
+      activityLogId
+      report {
+        id
+        dataStatus
+        studentsIncluded
+        setupValues {
+          fieldUid
+          values
+        }
+      }
+    }
+  }
+}

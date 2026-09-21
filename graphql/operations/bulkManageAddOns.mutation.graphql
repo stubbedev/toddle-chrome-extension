@@ -1,0 +1,14 @@
+mutation bulkManageAddOns($input: BulkManageAddOnsInput!) {
+  platform {
+    bulkManageAddOns(input: $input) {
+      isSuccess
+      warning
+      results {
+        addOnType
+        isSuccess
+        warning
+        data
+      }
+    }
+  }
+}

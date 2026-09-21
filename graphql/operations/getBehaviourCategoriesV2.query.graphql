@@ -1,0 +1,62 @@
+query getBehaviourCategoriesV2($id: ID!, $filters: BehaviourCategoryFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      behaviourCategories(filters: $filters) {
+        id
+        name
+        sourcedId
+        color
+        iconData
+        isArchived
+        isSeverityLinked
+        isPushedFromAccount
+        presetCategory {
+          id
+        }
+        status
+        activeDraftId
+        sentiment {
+          id
+          label
+          value
+        }
+        severitiesCount
+        subCategoriesCount
+        availableActionsCount
+        appliedSchoolsCount
+        incidentCount
+        createdAt
+        createdBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+        updatedAt
+        updatedBy {
+          id
+          firstName
+          middleName
+          lastName
+          type
+          profileImage
+          ... on Staff {
+            preferredName
+            prefix
+            suffix
+            pronouns
+          }
+        }
+      }
+    }
+  }
+}

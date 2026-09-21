@@ -1,0 +1,7 @@
+mutation addATL($label: String!, $parentId: ID, $levelId: ID!, $grades: [ID!], $levels: JSON, $subText: String, $depth: Int, $plannerElementSetId: ID) {
+  planner {
+    addATL(input: {label: $label, parentId: $parentId, levelId: $levelId, grades: $grades, levels: $levels, subText: $subText, depth: $depth, plannerElementSetId: $plannerElementSetId}) {
+      ...atlItem
+    }
+  }
+}

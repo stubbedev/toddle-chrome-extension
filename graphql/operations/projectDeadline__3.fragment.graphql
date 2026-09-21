@@ -1,0 +1,21 @@
+fragment projectDeadline on ProjectGroupDeadline {
+  id
+  deadlineDate
+  title
+  description
+  isDeadlineAllDay
+  statusWiseProjects(filters: $statusWiseProjectFilters) @include(if: $fetchStatusWiseProjects) {
+    completedProjects {
+      id
+      students {
+        ...studentInfo
+      }
+    }
+    pendingProjects {
+      id
+      students {
+        ...studentInfo
+      }
+    }
+  }
+}

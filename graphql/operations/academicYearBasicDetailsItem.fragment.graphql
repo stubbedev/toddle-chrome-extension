@@ -1,0 +1,22 @@
+fragment academicYearBasicDetailsItem on AcademicYear {
+  id
+  startDate
+  endDate
+  isCurrentAcademicYear
+  isUpcomingAcademicYear
+  isPreviousAcademicYear
+  terms(filters: $termsFilters) {
+    id
+    label
+    type
+    startDate
+    endDate
+    lockingStatus
+    curriculumProgram {
+      id
+      __typename
+    }
+    __typename
+  }
+  __typename
+}

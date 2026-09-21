@@ -1,0 +1,59 @@
+fragment unitPlanItem on UnitPlan {
+  id
+  title {
+    id
+    value
+  }
+  unitType {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  templateId
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  unitFlowFeed @include(if: $getUnitFlowId) {
+    unitFlowId
+  }
+  subjects {
+    id
+    value
+    resolvedMinimalTree {
+      ... on ResolvedFieldSubjectSet {
+        id
+        subjects {
+          id
+          name
+          isArchived
+        }
+      }
+    }
+  }
+  courses {
+    id
+    academicYears {
+      id
+      isCurrentAcademicYear
+    }
+  }
+}
+
+query getAiConverstion($id: ID!) {
+  node(id: $id, type: AI_CONVERSATION) {
+    ... on AiConversation {
+      id
+      messages {
+        totalCount
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

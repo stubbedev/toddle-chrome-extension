@@ -1,0 +1,36 @@
+query getTemplateRecordCountsForSchools($orgId: ID!, $templateIds: [ID!]!) {
+  node(id: $orgId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      curriculumPrograms {
+        id
+        grades {
+          id
+          globalGrade {
+            id
+          }
+        }
+        ... on UBDCurriculumProgram {
+          externalAssessmentRecordSetFeed(input: {filters: {templateIds: $templateIds}}) {
+            totalCount
+          }
+        }
+        ... on IbDpCurriculumProgram {
+          externalAssessmentRecordSetFeed(input: {filters: {templateIds: $templateIds}}) {
+            totalCount
+          }
+        }
+        ... on IbPypCurriculumProgram {
+          externalAssessmentRecordSetFeed(input: {filters: {templateIds: $templateIds}}) {
+            totalCount
+          }
+        }
+        ... on IbMypCurriculumProgram {
+          externalAssessmentRecordSetFeed(input: {filters: {templateIds: $templateIds}}) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

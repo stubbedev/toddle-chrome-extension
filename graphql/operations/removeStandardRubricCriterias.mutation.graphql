@@ -1,0 +1,11 @@
+mutation removeStandardRubricCriterias($input: [ID!]) {
+  planner {
+    removeStandardRubricCriterias(input: $input) {
+      isSuccess
+      warning
+      response {
+        ...standardRubricCriteriaItem
+      }
+    }
+  }
+}

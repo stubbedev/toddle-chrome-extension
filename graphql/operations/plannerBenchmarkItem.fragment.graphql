@@ -1,0 +1,73 @@
+fragment plannerBenchmarkItem on PlannerBenchmark {
+  id
+  uid
+  label
+  type
+  subText
+  gradingType
+  code
+  depth
+  parent
+  parentData {
+    id
+    uid
+  }
+  benchmarkQuestionCount {
+    count
+  }
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+      gradeScales {
+        id
+        displayName
+      }
+    }
+    properties {
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+      isGraded
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+    }
+  }
+  standardsWrapper {
+    standardSet {
+      id
+      title
+    }
+    properties {
+      isArchived
+      isPowerStandard
+      isGradedStandard
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

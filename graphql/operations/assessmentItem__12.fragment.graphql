@@ -1,0 +1,35 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  assessmentType {
+    id
+    uid
+    value
+  }
+  unitPlan {
+    id
+    title {
+      id
+      value
+    }
+  }
+  fields(uids: $uids) {
+    id
+    uid
+    value
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  fields(uids: ["subjects"]) {
+    id
+    value
+  }
+}

@@ -1,0 +1,8 @@
+mutation migrateOrganizationCourseFlowContentToClassFlow($input: MigrateOrganizationCourseFlowContentToClassFlowInput!) {
+  planner {
+    migrateOrganizationCourseFlowContentToClassFlow(input: $input) {
+      isSuccess
+      workflowId
+    }
+  }
+}

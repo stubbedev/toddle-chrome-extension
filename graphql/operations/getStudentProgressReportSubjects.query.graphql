@@ -1,0 +1,24 @@
+query getStudentProgressReportSubjects($studentProgressReportId: ID!, $reportSubjectCoursesFilters: SubjectCourseFilters, $skipLearningCourses: Boolean!) {
+  node(id: $studentProgressReportId, type: STUDENT_PROGRESS_REPORT) {
+    id
+    ... on StudentProgressReport {
+      id
+      reportSubjects @include(if: $skipLearningCourses) {
+        id
+        name
+        courses(filters: $reportSubjectCoursesFilters) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }
+      reportLearningCourses @skip(if: $skipLearningCourses) {
+        id
+        displayName
+      }
+    }
+  }
+}

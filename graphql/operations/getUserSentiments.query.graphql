@@ -1,0 +1,70 @@
+query getUserSentiments($organizationId: ID!, $input: MessageV2UserInput!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      messageV2Users(input: $input) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            type
+            profileImage
+            messageV2SentimentScore
+            ... on Student {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              yearGroup {
+                id
+                grade {
+                  id
+                  name
+                }
+                curriculumProgram {
+                  id
+                  label
+                }
+              }
+              grades
+            }
+            ... on Staff {
+              displayRole
+              preferredName
+              pronouns
+              prefix
+              suffix
+              curriculumPrograms(filters: {programTypes: [SCHOOL]}) {
+                id
+                label
+              }
+            }
+            ... on FamilyMember {
+              preferredName
+              pronouns
+              prefix
+              suffix
+              children(organizationId: $organizationId) {
+                id
+                profileImage
+                firstName
+                middleName
+                lastName
+                preferredName
+                pronouns
+                prefix
+                suffix
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

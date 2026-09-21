@@ -1,0 +1,18 @@
+fragment benchmarkStandardItem on StandardBenchmark {
+  id
+  label
+  children
+  parent
+  parentId
+  subject
+  levelId
+  displaySequence
+  depth
+  type
+  code
+  grades {
+    id
+    name
+  }
+  isLeaf
+}

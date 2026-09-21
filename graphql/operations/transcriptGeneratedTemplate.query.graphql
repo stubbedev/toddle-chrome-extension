@@ -1,0 +1,9 @@
+query transcriptGeneratedTemplate($organizationId: ID!, $baseTemplate: JSON, $type: PROGRESS_REPORT_TEMPLATE_TYPE_ENUM) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      progressReportGeneratedTemplate(type: $type, baseTemplate: $baseTemplate)
+    }
+  }
+}

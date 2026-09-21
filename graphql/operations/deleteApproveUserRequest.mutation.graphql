@@ -1,0 +1,8 @@
+mutation deleteApproveUserRequest($id: ID!) {
+  organizationManagement {
+    deleteApproveUserRequest(input: {id: $id}) {
+      warning
+      isSuccess
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment studentProfileResponsesItem on Student {
+  id
+  studentProfileResponses {
+    ...studentProfileResponseItem
+  }
+}

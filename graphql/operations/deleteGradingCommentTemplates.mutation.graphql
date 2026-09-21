@@ -1,0 +1,7 @@
+mutation deleteGradingCommentTemplates($input: DeleteGradingCommentTemplatesInput!) {
+  documentation {
+    deleteGradingCommentTemplates(input: $input) {
+      isSuccess
+    }
+  }
+}

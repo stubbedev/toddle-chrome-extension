@@ -1,0 +1,34 @@
+query getStudentTemplateResponse($id: [ID!]) {
+  multiNode(ids: $id, type: STUDENT_TEMPLATE_RESPONSE) {
+    ... on StudentTemplateResponse {
+      id
+      metadata
+      student {
+        id
+      }
+      fields {
+        id
+        value
+        uid
+        resolvedMinimalTree {
+          id
+          type
+          ... on ResolvedFieldAttachmentGroup {
+            attachmentGroups {
+              id
+              displaySequence
+              metadata
+              attachments {
+                id
+                type
+                signedUrl
+                url
+                displaySequence
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

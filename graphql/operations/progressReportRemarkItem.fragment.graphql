@@ -1,0 +1,29 @@
+fragment progressReportRemarkItem on StudentProgressReportRemark {
+  id
+  nodeId
+  remarkType
+  message
+  createdBy {
+    ...staffItem
+  }
+  createdAt
+  attachments {
+    ... on Attachment {
+      ...attachmentItem
+    }
+    ... on Post {
+      id
+      title
+      attachments {
+        ...attachmentItem
+      }
+      items {
+        item {
+          id
+          ...studentResponseItem
+        }
+        itemType
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+query getTeacherClasses($id: ID!, $first: Int, $after: String, $staffCourseFilter: CourseFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      coursesV2(first: $first, after: $after, orderBy: TITLE, orderByDirection: ASC, filters: $staffCourseFilter) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            curriculumProgram {
+              id
+            }
+            profileImageData {
+              url
+              icon
+              color
+              acronym
+            }
+          }
+        }
+      }
+    }
+  }
+}

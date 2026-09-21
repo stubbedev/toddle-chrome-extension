@@ -1,0 +1,7 @@
+mutation updateTemplate($input: UpdateTranscriptTemplateInput!) {
+  transcript {
+    updateTranscriptTemplateV3(input: $input) {
+      isSuccess
+    }
+  }
+}

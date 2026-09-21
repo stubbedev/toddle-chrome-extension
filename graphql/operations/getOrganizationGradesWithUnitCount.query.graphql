@@ -1,0 +1,16 @@
+query getOrganizationGradesWithUnitCount($id: ID!, $filters: GradeFilterInput, $unitPlanFilters: UnitPlanFilter, $searchText: String) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: $filters) {
+        id
+        name
+        displaySequence
+        unitPlans(filters: $unitPlanFilters, searchText: $searchText) {
+          id
+          isIncludedInInsights
+        }
+      }
+    }
+  }
+}

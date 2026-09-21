@@ -1,0 +1,42 @@
+query getCategorySetAssessmentRatings($academicCriteriaValueId: ID!, $assessmentRatingFilters: AcademicCriteriaValueAssessmentRatingsFilter) {
+  node(id: $academicCriteriaValueId, type: ACADEMIC_CRITERIA_VALUE) {
+    id
+    ... on AcademicCriteriaValue {
+      id
+      assessmentRatings(filters: $assessmentRatingFilters) {
+        assessment {
+          id
+          title {
+            id
+            value
+          }
+          image {
+            id
+            value
+          }
+          assessmentTools(filters: {assessmentToolType: SCORE}) {
+            edges {
+              node {
+                id
+                assessmentToolItem {
+                  ... on ScoreAssessmentTool {
+                    id
+                    scoreToolData {
+                      id
+                      maxScore
+                    }
+                  }
+                }
+                assessmentToolType
+              }
+            }
+          }
+        }
+        rating {
+          id
+          value
+        }
+      }
+    }
+  }
+}

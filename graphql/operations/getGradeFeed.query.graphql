@@ -1,0 +1,33 @@
+query getGradeFeed($curriculumProgramId: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $curriculumProgramId, type: $curriculumInterfaceType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      grades {
+        id
+        name
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      grades {
+        id
+        name
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      grades {
+        id
+        name
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      grades {
+        id
+        name
+      }
+    }
+  }
+}

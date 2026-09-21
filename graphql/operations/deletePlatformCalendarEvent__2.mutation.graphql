@@ -1,0 +1,7 @@
+mutation deletePlatformCalendarEvent($input: DeletePlatformCalendarEventInput!) {
+  platform {
+    deletePlatformCalendarEvent(input: $input) {
+      response
+    }
+  }
+}

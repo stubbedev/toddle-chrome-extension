@@ -1,0 +1,38 @@
+query getAnnouncementUsersPool($organizationId: ID!, $getStudentFamilyMembers: Boolean!, $getOnlyUserId: Boolean!, $input: AnnouncementUserInput, $includeCurriculumPrograms: Boolean = false, $getTotalCount: Boolean = true, $includeFamilyRnPRole: Boolean = false) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      announcementUsers(input: $input) {
+        pageInfo @skip(if: $getOnlyUserId) {
+          hasNextPage
+          endCursor
+        }
+        totalCount @skip(if: $getOnlyUserId) @include(if: $getTotalCount)
+        edges {
+          node {
+            id
+            ...userItemV2 @skip(if: $getOnlyUserId)
+            ... on Student {
+              alertTypes @skip(if: $getOnlyUserId) {
+                ...alertTypeFields
+              }
+            }
+            ... on FamilyMember {
+              rnpRoleContextDetail @include(if: $includeFamilyRnPRole) {
+                id
+                contextType
+                role {
+                  id
+                  label
+                }
+                context {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

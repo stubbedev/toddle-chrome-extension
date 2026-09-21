@@ -1,0 +1,28 @@
+query getCurriculumDepartmentIds($id: ID!, $curriculumInterfaceType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $curriculumInterfaceType) {
+    ... on IbPypCurriculumProgram {
+      id
+      subjectGroups {
+        id
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      subjectGroups {
+        id
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      subjectGroups {
+        id
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      subjectGroups {
+        id
+      }
+    }
+  }
+}

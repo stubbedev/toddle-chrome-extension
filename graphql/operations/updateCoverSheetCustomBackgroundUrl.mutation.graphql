@@ -1,0 +1,8 @@
+mutation updateCoverSheetCustomBackgroundUrl($id: ID!, $coverSheetBackgroundUrl: String) {
+  documentation {
+    updateStudentProgressReport(input: {id: $id, coverSheetBackgroundUrl: $coverSheetBackgroundUrl}) {
+      id
+      status
+    }
+  }
+}

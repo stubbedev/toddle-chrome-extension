@@ -1,0 +1,8 @@
+query getProgressReportTemplateFeedCount($organizationId: ID!, $filters: ProgressReportTemplateFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationProgressReportTemplateItem
+    }
+  }
+}

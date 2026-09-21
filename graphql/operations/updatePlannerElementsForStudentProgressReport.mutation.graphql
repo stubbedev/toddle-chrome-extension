@@ -1,0 +1,5 @@
+mutation updatePlannerElementsForStudentProgressReport($input: UpdatePlannerElementsForStudentProgressReportInput!) {
+  documentation {
+    updatePlannerElementsForStudentProgressReport(input: $input)
+  }
+}

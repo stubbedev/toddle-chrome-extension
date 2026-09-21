@@ -1,0 +1,16 @@
+mutation updateLearningCourse($input: UpdateLearningCourseInput!, $filters: LearningCourseCollaboratorFilters) {
+  planner {
+    updateLearningCourse(input: $input) {
+      id
+      ... on LearningCourse {
+        collaborators(filters: $filters) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

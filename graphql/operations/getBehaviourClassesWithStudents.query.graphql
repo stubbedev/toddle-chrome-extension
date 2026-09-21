@@ -1,0 +1,27 @@
+query getBehaviourClassesWithStudents($id: ID!, $first: Int, $after: String, $filters: CourseFilter) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      id
+      coursesV2(first: $first, after: $after, filters: $filters) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            curriculumProgram {
+              id
+              label
+            }
+            students {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}

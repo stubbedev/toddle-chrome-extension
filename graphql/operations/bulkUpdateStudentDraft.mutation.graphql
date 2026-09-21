@@ -1,0 +1,8 @@
+mutation bulkUpdateStudentDraft($input: [BulkStudentUpdateDraftInput!]) {
+  planner {
+    bulkUpdateStudentDraft(input: $input) {
+      key
+    }
+    __typename
+  }
+}

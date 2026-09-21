@@ -1,0 +1,63 @@
+fragment courseItem on Course {
+  id
+  title
+  sourcedId
+  profileImage
+  isArchived
+  academicYears {
+    id
+    startDate
+    endDate
+  }
+  genericTags {
+    id
+    label
+    type
+  }
+  userMap(filters: {archivalState: ALL, userTypes: [student]}) {
+    ...userMapItem
+  }
+  allPosts {
+    totalCount
+  }
+  unitPlans {
+    totalCount
+  }
+  grades {
+    ...gradeItem
+  }
+  primaryGrade {
+    ...gradeItem
+  }
+  subjects(filters: {archivalState: ALL}) {
+    ...subjectWithSubjectGroupItem
+  }
+  subjectGroups {
+    id
+    name
+  }
+  curriculumProgram {
+    ...curriculumProgramBasicDetailsItem
+  }
+  allCollaborators(filters: {archivalState: ALL}) {
+    totalCount
+    edges {
+      node {
+        id
+        firstName
+        lastName
+        isArchived
+        profileImage
+        designation {
+          id
+          title
+        }
+      }
+    }
+  }
+  tags {
+    id
+    key
+    value
+  }
+}

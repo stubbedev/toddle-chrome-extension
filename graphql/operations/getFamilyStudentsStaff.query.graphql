@@ -1,0 +1,28 @@
+query getFamilyStudentsStaff($id: ID!, $collaboratorFilters: CollaboratorFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      courses {
+        id
+        title
+        allCollaborators(filters: $collaboratorFilters) {
+          totalCount
+          edges {
+            node {
+              id
+              ... on Staff {
+                id
+                firstName
+                middleName
+                lastName
+                profileImage
+                role
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

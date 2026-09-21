@@ -1,0 +1,32 @@
+query getEntireResourcesFeed($parentId: ID!, $filters: OrganizationResourceFilter) {
+  node(id: $parentId, type: COURSE) {
+    id
+    ... on Course {
+      id
+      organizationResourcesFlatFeed(orderBy: DISPLAY_SEQUENCE, filters: $filters, orderByDirection: ASC, first: 10000) {
+        edges {
+          node {
+            id
+            label
+            depth
+            resourceType
+            attachment {
+              id
+              type
+            }
+            parentResource {
+              id
+            }
+            childrenHierarchyInfo(filters: $filters) {
+              maxDepth
+              totalCount
+              totalCountWithFolder
+            }
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

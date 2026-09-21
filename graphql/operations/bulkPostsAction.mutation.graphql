@@ -1,0 +1,5 @@
+mutation bulkPostsAction($input: PostBulkActionInput!) {
+  documentation {
+    bulkPostsAction(input: $input)
+  }
+}

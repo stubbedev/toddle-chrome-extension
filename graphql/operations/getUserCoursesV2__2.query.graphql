@@ -1,0 +1,49 @@
+query getUserCoursesV2($id: ID!, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!, $getGrades: Boolean!, $getCurriculumProgram: Boolean!, $getAssociatedProgram: Boolean = false, $getLearningCourse: Boolean = false) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            title
+            isArchived
+            profileImageData {
+              icon
+              color
+              acronym
+              url
+            }
+            deletedBy {
+              id
+            }
+            grades @include(if: $getGrades) {
+              id
+              name
+              curriculumProgram @include(if: $getAssociatedProgram) {
+                id
+                acronym
+              }
+            }
+            curriculumProgram @include(if: $getCurriculumProgram) {
+              id
+              type
+              label
+              acronym
+            }
+            learningCourse @include(if: $getLearningCourse) {
+              id
+              title
+              academicCourse {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

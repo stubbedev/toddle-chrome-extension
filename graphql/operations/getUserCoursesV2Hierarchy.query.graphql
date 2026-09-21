@@ -1,0 +1,21 @@
+query getUserCoursesV2Hierarchy($id: ID!, $filters: CourseFilter, $userType: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $userType) {
+    id
+    ... on Staff {
+      id
+      coursesV2(orderBy: TITLE, orderByDirection: ASC, filters: $filters) {
+        edges {
+          node {
+            id
+            grades {
+              id
+            }
+            curriculumProgram {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

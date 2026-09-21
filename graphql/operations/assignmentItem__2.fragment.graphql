@@ -1,0 +1,55 @@
+query getWorksheetMonitoringData($id: ID!, $studentIds: [ID!], $showOnlySubmitted: Boolean, $entityEventsFilter: EntityEventsFilter) {
+  node(id: $id, type: ASSIGNMENT) {
+    id
+    ... on Assignment {
+      ...assignmentItem
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment assignmentItem on Assignment {
+  id
+  isOnScreenCalculatorEnabled
+  isLockScreenEnabled
+  isSafeBrowserEnabled
+  content {
+    id
+    ... on Assessment {
+      id
+      taskType {
+        id
+        type
+        label
+      }
+      questions {
+        edges {
+          id
+          sequence
+          parentIdV2
+          parentTypeV2
+          questionType {
+            uid
+          }
+          questionTitleV2 {
+            id
+            uid
+            value
+          }
+        }
+      }
+      __typename
+    }
+  }
+  deadline
+  counts {
+    totalAssignedStudents
+    totalSubmissions
+  }
+  assignedStudents(studentIds: $studentIds) {
+    ...assignedStudentItem
+    __typename
+  }
+  __typename
+}

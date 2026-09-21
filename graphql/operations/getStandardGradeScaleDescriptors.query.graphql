@@ -1,0 +1,17 @@
+query getStandardGradeScaleDescriptors($ids: [ID!]) {
+  multiNode(ids: $ids, type: PLANNER_ELEMENT_NODE) {
+    id
+    ... on PlannerElementNode {
+      id
+      standardsWrapper {
+        standardGradeScaleValueDescriptor {
+          id
+          description
+          gradeScaleValue {
+            id
+          }
+        }
+      }
+    }
+  }
+}

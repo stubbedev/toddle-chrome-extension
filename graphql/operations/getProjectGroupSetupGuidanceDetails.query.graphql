@@ -1,0 +1,10 @@
+query getProjectGroupSetupGuidanceDetails($id: ID!, $filters: SetupGuidanceFilters) {
+  node(id: $id, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      setupGuidance(filters: $filters) {
+        ...attachmentItem
+      }
+    }
+  }
+}

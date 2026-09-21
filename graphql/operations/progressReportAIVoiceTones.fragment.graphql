@@ -1,0 +1,13 @@
+fragment progressReportAIVoiceTones on AiVoiceTone {
+  id
+  title
+  description
+  type
+  sampleComments {
+    id
+    comment
+  }
+  outputStructure
+  isDefault
+  isGlobalDefault
+}

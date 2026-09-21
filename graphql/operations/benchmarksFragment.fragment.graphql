@@ -1,0 +1,58 @@
+fragment benchmarksFragment on PlannerBenchmark {
+  id
+  dataSetNodeWrapper {
+    plannerElementNodeSet {
+      id
+      dataSetGradingConfigurations(filters: {type: GRADE_SCALE_MAPPING}) {
+        id
+        type
+        settings {
+          id
+          uid
+          value
+        }
+      }
+      gradeScales {
+        id
+        displayName
+      }
+    }
+    properties {
+      gradeScaleGradingDetails {
+        gradeScale {
+          id
+        }
+        gradingType
+        isGraded
+      }
+    }
+  }
+  uid
+  label
+  subText
+  gradingType
+  code
+  depth
+  levelId
+  parentData {
+    id
+  }
+  standardsWrapper {
+    standardSet {
+      id
+      title
+    }
+    properties {
+      isArchived
+      isPowerStandard
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

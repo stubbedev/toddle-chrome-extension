@@ -1,0 +1,5 @@
+mutation integrationAutoMapExistingRosterData($input: IntegrationAutoMapExistingRosterDataInput!) {
+  integration {
+    integrationAutoMapExistingRosterData(input: $input)
+  }
+}

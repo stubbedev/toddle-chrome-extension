@@ -1,0 +1,9 @@
+mutation createBehaviourCategoryDraftFromCategory($input: BehaviourCategoryDraftFromCategoryInput!) {
+  platform {
+    createBehaviourCategoryDraftFromCategory(input: $input) {
+      id
+      rootNodes
+      nodes
+    }
+  }
+}

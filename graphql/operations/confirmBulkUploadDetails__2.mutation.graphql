@@ -1,0 +1,68 @@
+fragment teacherItem on Staff {
+  id
+  profileImage
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  email
+  role
+  displayRole
+  courses(filters: $courseFilters) @skip(if: $skipCourses) {
+    id
+    title
+    isArchived
+    grades(filters: {academicYearId: $selectedAcademicYearId}) {
+      id
+      name
+    }
+    curriculumProgram {
+      id
+      type
+      acronym
+    }
+    genericTags {
+      id
+      label
+      type
+    }
+  }
+  curriculumPrograms(filters: {academicYearId: $academicYear}) {
+    id
+    label
+    type
+    acronym
+  }
+  designation {
+    ...designationItem
+  }
+  sourceId
+  status
+  isArchived
+  isArchivedV2(filters: {academicYearId: $academicYear})
+  type
+  rnpRoleContextDetail {
+    id
+    role {
+      id
+      label
+      globalLevel
+      globalRole {
+        id
+      }
+    }
+    contextType
+    context {
+      id
+    }
+  }
+}
+
+mutation confirmBulkUploadDetails($input: EntityBulkActionDeciderInput!) {
+  platform {
+    entityBulkActionDecider(input: $input)
+  }
+}

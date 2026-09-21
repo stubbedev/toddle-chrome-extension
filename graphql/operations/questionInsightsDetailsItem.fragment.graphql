@@ -1,0 +1,40 @@
+fragment questionInsightsDetailsItem on Question {
+  id
+  questionScore
+  fields {
+    ...questionFieldsItem
+  }
+  answerFields {
+    ...questionFieldsItem
+  }
+  questionType {
+    id
+    uid
+  }
+  assessmentTools {
+    totalCount
+    edges {
+      node {
+        id
+        ...questionAssessmentToolItem
+      }
+    }
+  }
+  toolInsights {
+    id
+    toolId
+    toolType
+    insights {
+      rowId
+      columnId
+      studentResponseCount
+      teacherResponseCount
+      studentsByTeacher {
+        ...studentItem
+      }
+      studentsByStudent {
+        ...studentItem
+      }
+    }
+  }
+}

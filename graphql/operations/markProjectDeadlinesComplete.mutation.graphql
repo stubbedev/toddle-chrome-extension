@@ -1,0 +1,5 @@
+mutation markProjectDeadlinesComplete($projectId: ID!, $addedArray: [ID!], $removedArray: [ID!]) {
+  documentation {
+    markProjectDeadlinesComplete(input: {projectId: $projectId, deadlines: {added: $addedArray, removed: $removedArray}})
+  }
+}

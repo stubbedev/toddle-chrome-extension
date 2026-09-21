@@ -1,0 +1,8 @@
+mutation updateBehaviourLocation($input: BehaviourLocationUpdateInput!) {
+  platform {
+    updateBehaviourLocation(input: $input) {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation bulkUploadIncidentConfirm($input: BulkUploadIncidentConfirmInput!) {
+  platform {
+    confirmBulkUploadIncident(input: $input) {
+      activityLogId
+    }
+  }
+}

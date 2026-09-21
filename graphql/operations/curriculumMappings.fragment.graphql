@@ -1,0 +1,17 @@
+fragment curriculumMappings on IntegrationConfigGroupDetailResponse {
+  id
+  curriculumMappings {
+    configId
+    curriculumId
+    module
+    isActive
+    lastSyncState
+    lastSyncedAt
+    curriculum {
+      id
+      type
+      label
+      acronym
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation deleteChecklistOption($id: ID!, $deletedBy: ID!, $checklistId: ID!) {
+  planner {
+    deleteChecklistOption(input: {deletedBy: $deletedBy, checklistId: $checklistId, id: $id})
+  }
+}

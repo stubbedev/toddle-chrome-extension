@@ -1,0 +1,16 @@
+query getAllCoursesForClassSelection($courseProgressReportTaskId: ID!, $filters: CourseFilters) {
+  node(id: $courseProgressReportTaskId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      courses(filters: $filters) {
+        id
+        title
+        learningCourse {
+          id
+          courseSubjectType
+        }
+      }
+    }
+  }
+}

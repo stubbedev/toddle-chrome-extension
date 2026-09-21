@@ -1,0 +1,21 @@
+mutation confirmImportSubjectStandardsJobFinalOutput($input: ConfirmImportSubjectStandardsJobFinalOutputInput!) {
+  platform {
+    confirmImportSubjectStandardsJobFinalOutput(input: $input) {
+      isSuccess
+      warning
+      job {
+        ...importSubjectStandardsJobItem
+      }
+    }
+  }
+}
+
+fragment identityPermissionsConfigurationV2Item on ConfigurationV2 {
+  id
+  uidV2
+  configuration
+  valueType
+  value
+  isLocked
+  description
+}

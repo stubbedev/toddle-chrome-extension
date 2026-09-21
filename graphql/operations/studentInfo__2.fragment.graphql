@@ -1,0 +1,23 @@
+fragment studentInfo on Student {
+  ...userNameFields
+  profileImage
+  sourceId
+  alertTypes {
+    ...alertTypeFields
+  }
+  courseMap(filters: $studentCourseFilters) @skip(if: $skipCourseDetails) {
+    id
+    tags {
+      id
+      label
+      type
+    }
+    subjectWiseLevel {
+      level {
+        id
+        type
+        label
+      }
+    }
+  }
+}

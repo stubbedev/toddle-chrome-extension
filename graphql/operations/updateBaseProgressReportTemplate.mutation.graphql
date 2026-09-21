@@ -1,0 +1,7 @@
+mutation updateBaseProgressReportTemplate($id: ID!, $body: JSON) {
+  documentation {
+    updateProgressReportBaseTemplate(input: {id: $id, body: $body}) {
+      ...baseTemplateItemDetails
+    }
+  }
+}

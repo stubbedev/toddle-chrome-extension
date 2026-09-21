@@ -1,0 +1,17 @@
+query getOrganizationGrades($organizationId: ID!, $gradeFilters: GradeFilterInput, $getCurriculumProgram: Boolean!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      grades(filters: $gradeFilters) {
+        id
+        name
+        curriculumProgram @include(if: $getCurriculumProgram) {
+          acronym
+          label
+          id
+        }
+      }
+    }
+  }
+}

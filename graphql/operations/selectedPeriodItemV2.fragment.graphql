@@ -1,0 +1,8 @@
+fragment selectedPeriodItemV2 on TimetableSlot {
+  date
+  isSelected
+  day
+  course {
+    ...courseItem
+  }
+}

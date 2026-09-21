@@ -1,0 +1,65 @@
+fragment benchmarkItem on PlannerBenchmark {
+  id
+  label
+  subText
+  children
+  parent
+  benchmarkQuestionCount {
+    count
+    color
+    url
+    yearSplit
+  }
+  levels {
+    id
+    value
+    count
+  }
+  subject
+  gradingType
+  levelId
+  displaySequence
+  depth
+  type
+  code
+  grades {
+    id
+    name
+  }
+  isLeaf
+  tags {
+    id
+    label
+    icon {
+      id
+      url
+    }
+  }
+  resolvedSubject {
+    id
+    isArchived
+  }
+  standardsWrapper {
+    standardSet {
+      id
+      title
+    }
+    properties {
+      isGradedStandard
+    }
+  }
+  dataSetNodeWrapper {
+    properties {
+      isGraded
+      isPowerStandard
+      grades {
+        id
+        name
+      }
+      tags {
+        id
+        label
+      }
+    }
+  }
+}

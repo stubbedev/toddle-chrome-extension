@@ -1,0 +1,5 @@
+fragment indicatorItem on IndicatorRubric {
+  id
+  label
+  displaySequence
+}

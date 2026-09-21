@@ -1,0 +1,9 @@
+mutation fetchImpersonatedGoogleClassroomAccessToken($input: ImpersonatedGoogleClassroomAccessTokenInput!) {
+  planner {
+    fetchImpersonatedGoogleClassroomAccessToken(input: $input) {
+      isSuccess
+      accessToken
+      subjectEmail
+    }
+  }
+}

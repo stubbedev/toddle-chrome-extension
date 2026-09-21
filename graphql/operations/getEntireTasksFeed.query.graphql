@@ -1,0 +1,16 @@
+query getEntireTasksFeed($courseId: ID!, $filters: AssignmentFeedFilters) {
+  node(id: $courseId, type: COURSE) {
+    id
+    ... on Course {
+      id
+      assignments(first: 10000, filters: $filters) {
+        edges {
+          node {
+            id
+          }
+        }
+        totalCount
+      }
+    }
+  }
+}

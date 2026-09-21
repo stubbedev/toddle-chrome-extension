@@ -1,0 +1,9 @@
+fragment calendarEvent on CalendarEvent {
+  id
+  title
+  startDate
+  endDate
+  tag {
+    ...calendarEventTagItem
+  }
+}

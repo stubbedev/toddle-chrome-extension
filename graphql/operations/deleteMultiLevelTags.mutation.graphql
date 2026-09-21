@@ -1,0 +1,6 @@
+mutation deleteMultiLevelTags($input: DeleteIdsInput!) {
+  platform {
+    deleteGenericTags(input: $input)
+    __typename
+  }
+}

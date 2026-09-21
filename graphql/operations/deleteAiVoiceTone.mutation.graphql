@@ -1,0 +1,5 @@
+mutation deleteAiVoiceTone($input: VoiceToneDeleteInput!) {
+  ai {
+    deleteAiVoiceTone(input: $input)
+  }
+}

@@ -1,0 +1,21 @@
+mutation createOpenApiToken($input: CreateOpenApiTokenInput!) {
+  integration {
+    createOpenApiToken(input: $input) {
+      isSuccess
+      message
+      token
+      tokenItem {
+        id
+        status
+        label
+        accessLevel
+        tokenLastSix
+        createdBy
+        createdByName
+        createdAt
+        updatedAt
+        expiresAt
+      }
+    }
+  }
+}

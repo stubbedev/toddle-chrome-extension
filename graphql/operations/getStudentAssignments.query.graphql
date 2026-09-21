@@ -1,0 +1,8 @@
+query getStudentAssignments($studentId: ID!, $first: Int, $after: String, $filters: StudentAssignmentFeedFilters, $orderBy: ASSIGNMENT_ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      ...studendItem
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query getUnitPlanResourceLibrary($id: ID!) {
+  node(id: $id, type: UNIT_PLAN) {
+    id
+    ... on UnitPlan {
+      id
+      templateId
+      __typename
+    }
+    __typename
+  }
+}

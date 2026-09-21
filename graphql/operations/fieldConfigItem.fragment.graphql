@@ -1,0 +1,9 @@
+fragment fieldConfigItem on TemplateFieldProperty {
+  id
+  globalFieldProperty {
+    ...globalFieldProperty
+  }
+  values(filters: $templateFieldPropertyValuesFilters) {
+    ...templateFieldPropertyValue
+  }
+}

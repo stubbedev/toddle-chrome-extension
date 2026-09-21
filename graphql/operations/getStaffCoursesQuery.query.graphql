@@ -1,0 +1,8 @@
+query getStaffCoursesQuery($id: ID!, $filters: CourseFilter, $courseGradeFilters: CourseGradeFilters, $isCurriculumProgramFree: Boolean! = false, $enabledModulesFilters: EnabledModulesFiltersInput) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+  }
+}

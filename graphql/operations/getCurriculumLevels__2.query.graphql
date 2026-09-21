@@ -1,0 +1,188 @@
+query getCurriculumLevels($curriculumProgramId: ID!, $curriculumType: ENTITY_TYPE_ENUM!, $levelsFilters: GenericTagFilters) {
+  node(id: $curriculumProgramId, type: $curriculumType) {
+    id
+    ... on IbPypCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+        type
+        isArchived
+        reportDisplayName
+        associatedSubjects {
+          id
+          name
+          icon
+          isArchived
+        }
+        associatedLearningCourses {
+          id
+          title
+          academicCourse {
+            id
+            label
+          }
+          type
+          isArchived
+        }
+        globalTag {
+          id
+        }
+        parentLevel {
+          id
+        }
+        associatedStudents {
+          id
+        }
+      }
+    }
+    ... on IbMypCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+        type
+        isArchived
+        reportDisplayName
+        associatedSubjects {
+          id
+          name
+          icon
+          isArchived
+        }
+        associatedLearningCourses {
+          id
+          title
+          academicCourse {
+            id
+            label
+          }
+          type
+          isArchived
+        }
+        globalTag {
+          id
+        }
+        parentLevel {
+          id
+        }
+        associatedStudents {
+          id
+        }
+      }
+    }
+    ... on UBDCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+        type
+        isArchived
+        reportDisplayName
+        associatedSubjects {
+          id
+          name
+          icon
+          isArchived
+        }
+        associatedLearningCourses {
+          id
+          title
+          academicCourse {
+            id
+            label
+          }
+          type
+          isArchived
+        }
+        parentLevel {
+          id
+        }
+        associatedStudents {
+          id
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+        type
+        isArchived
+        reportDisplayName
+        associatedSubjects {
+          id
+          name
+          icon
+          isArchived
+          ibOfferedSubject {
+            id
+            contentSubject {
+              assessmentYearTitle
+            }
+          }
+        }
+        associatedLearningCourses {
+          id
+          title
+          academicCourse {
+            id
+            label
+          }
+          type
+          isArchived
+        }
+        globalTag {
+          id
+        }
+        parentLevel {
+          id
+        }
+        associatedStudents {
+          id
+        }
+      }
+    }
+    ... on GenericCurriculumProgram {
+      id
+      levels(filters: $levelsFilters) {
+        id
+        label
+        abbreviation
+        type
+        isArchived
+        reportDisplayName
+        associatedSubjects {
+          id
+          name
+          icon
+          isArchived
+        }
+        associatedLearningCourses {
+          id
+          title
+          academicCourse {
+            id
+            label
+          }
+          type
+          isArchived
+        }
+        globalTag {
+          id
+        }
+        parentLevel {
+          id
+        }
+        associatedStudents {
+          id
+        }
+      }
+    }
+  }
+}

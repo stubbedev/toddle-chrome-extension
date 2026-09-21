@@ -1,0 +1,18 @@
+query getSchoolTemplates($id: ID!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    ... on GenericCurriculumProgram {
+      id
+      transcriptTemplates {
+        edges {
+          node {
+            id
+            name
+            curriculumPrograms {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}

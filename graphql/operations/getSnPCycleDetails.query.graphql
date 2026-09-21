@@ -1,0 +1,8 @@
+query getSnPCycleDetails($id: ID!) {
+  node(id: $id, type: SnP_EVALUATION_CYCLE) {
+    id
+    ... on SnPEvaluationCycle {
+      ...snpEvaluationCycleItem
+    }
+  }
+}

@@ -1,0 +1,17 @@
+query getOrganizationBulkActivities($organizationId: ID!, $filters: BulkUploadActivityFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      bulkUploadActivityData(filters: $filters) {
+        id
+        status
+        actionsProgress
+        response
+        bulkUploadActions {
+          id
+          status
+        }
+      }
+    }
+  }
+}

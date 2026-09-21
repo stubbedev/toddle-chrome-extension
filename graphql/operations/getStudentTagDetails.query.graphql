@@ -1,0 +1,7 @@
+query getStudentTagDetails($id: ID!, $studentCourseFilters: UserCourseMapFilters, $skipCourseDetails: Boolean!) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      ...studentInfo
+    }
+  }
+}

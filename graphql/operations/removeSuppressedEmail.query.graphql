@@ -1,0 +1,15 @@
+query removeSuppressedEmail($input: RemoveSuppressedEmailInput!) {
+  platform {
+    removeSuppressedEmail(input: $input) {
+      totalCount
+      passedCount
+      failedCount
+      results {
+        email
+        success
+        response
+        error
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation updateSignatoryMappingForStudentProgressReport($input: UpdateSignatoryMappingForStudentProgressReportInput!) {
+  documentation {
+    updateSignatoryMappingForStudentProgressReport(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

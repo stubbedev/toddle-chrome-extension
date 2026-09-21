@@ -1,0 +1,7 @@
+mutation createAttachment($input: [AttachmentInput!]) {
+  platform {
+    createAttachment(input: $input) {
+      ...attachmentItemV2
+    }
+  }
+}

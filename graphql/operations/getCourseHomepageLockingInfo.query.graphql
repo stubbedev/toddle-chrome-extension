@@ -1,0 +1,11 @@
+query getCourseHomepageLockingInfo($id: ID!) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      lockingInfo {
+        pageTypes
+      }
+    }
+  }
+}

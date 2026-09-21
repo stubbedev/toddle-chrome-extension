@@ -1,0 +1,5 @@
+mutation deleteRubricCriteria($rubricId: ID!, $deletedBy: ID!, $id: ID!) {
+  planner {
+    deleteRubricCriteria(input: {deletedBy: $deletedBy, rubricId: $rubricId, id: $id})
+  }
+}

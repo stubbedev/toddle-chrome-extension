@@ -1,0 +1,5 @@
+fragment deadline on ProjectGroupDeadline {
+  id
+  deadlineDate
+  title
+}

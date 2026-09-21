@@ -1,0 +1,18 @@
+fragment formalInterviewInfoItemV2 on ProjectAcademicHonesty {
+  id
+  description
+  meetingDate
+  displaySequence
+  isRead
+  lockingState {
+    state
+    scheduledAt
+  }
+  createdBy {
+    ...userItem
+  }
+  attachments(filters: {orderByDirection: ASC, orderBy: DISPLAY_SEQUENCE}) {
+    ...attachmentItem
+    displaySequence
+  }
+}

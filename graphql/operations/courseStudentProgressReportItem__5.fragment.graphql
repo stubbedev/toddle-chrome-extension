@@ -1,0 +1,21 @@
+fragment courseStudentProgressReportItem on CourseProgressReportTask {
+  id
+  title
+  deadlineDate
+  parentEntity {
+    ... on Grade {
+      id
+      name
+    }
+    ... on Course {
+      ...courseItem
+    }
+  }
+  unitPlans {
+    id
+  }
+  reportStatusCount {
+    status
+    count
+  }
+}

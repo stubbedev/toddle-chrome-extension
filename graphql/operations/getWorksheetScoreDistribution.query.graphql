@@ -1,0 +1,147 @@
+query getWorksheetScoreDistribution($assignmentId: ID!, $courseIds: [ID!]) {
+  node(id: $assignmentId, type: ASSIGNMENT) {
+    ... on Assignment {
+      id
+      state {
+        state
+      }
+      content {
+        ... on Assessment {
+          id
+          academicTerm {
+            id
+          }
+          fields(uids: ["measureAssessing", "objectivesMYP", "interdisciplinaryCriteriaMYP"]) {
+            id
+            uid
+            value
+            resolvedMinimalTree {
+              ...resolvedMinimalTreeItem
+            }
+          }
+          allFields {
+            id
+            uid
+            value
+            resolvedMinimalTree {
+              ...resolvedMinimalTreeItem
+            }
+          }
+          assessmentTools {
+            edges {
+              node {
+                id
+                ...questionAssessmentToolItem
+              }
+            }
+          }
+          organizationResources {
+            id
+            childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+              edges {
+                node {
+                  id
+                  label
+                  childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+                    resourceTypeBasedCount {
+                      totalCount
+                    }
+                    edges {
+                      node {
+                        id
+                        item {
+                          ...questionScoreAndToolDetailsItem
+                        }
+                        childrenV2(first: null, orderBy: DISPLAY_SEQUENCE, orderByDirection: ASC) {
+                          resourceTypeBasedCount {
+                            totalCount
+                          }
+                          edges {
+                            node {
+                              id
+                              item {
+                                ...questionScoreAndToolDetailsItem
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      assignedStudents {
+        id
+        status
+        isSubmitted
+        isEvaluated
+        isSharedWithStudent
+        isEvaluationApplicable
+        student {
+          ...studentItem
+          courseMap(filters: {courseIds: $courseIds}) {
+            id
+            tags {
+              id
+              label
+            }
+            subjectWiseLevel {
+              level {
+                id
+                label
+                abbreviation
+              }
+              subject {
+                id
+              }
+            }
+          }
+          alertTypes {
+            ...alertTypeFields
+          }
+        }
+        toolResponsesV2(filters: {userFilter: ALL}) {
+          id
+          toolId
+          toolType
+          toolResponses {
+            ...toolResponseItem
+          }
+        }
+        ibPYPElementRatings {
+          id
+          value
+          ibPYPElementId
+          ibPYPElementType
+          academicCriteriaValue {
+            id
+            label
+          }
+          academicCriteriaSet {
+            id
+          }
+        }
+        elementRemarks {
+          id
+          message
+          ibPYPElementId
+          ibPYPElementType
+        }
+        submission {
+          id
+          questionSubmissions {
+            edges {
+              node {
+                ...questionSubmissionEvaluationDetailsItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

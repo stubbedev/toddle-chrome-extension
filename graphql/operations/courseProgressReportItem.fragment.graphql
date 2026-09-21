@@ -1,0 +1,11 @@
+fragment courseProgressReportItem on Course {
+  id
+  courseProgressReportTasks(filters: {searchText: $searchText, academicTermIds: $academicTermIds}) {
+    totalCount
+    edges {
+      node {
+        ...progressReportItem
+      }
+    }
+  }
+}

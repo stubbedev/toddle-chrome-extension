@@ -1,0 +1,11 @@
+fragment projectDetailItem on Project {
+  id
+  supervisors {
+    ...userNameFields
+    profileImage
+    isArchived
+    isArchivedV2(filters: {academicYearId: $academicYearId})
+  }
+  status
+  reportStatus
+}

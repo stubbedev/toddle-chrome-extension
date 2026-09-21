@@ -1,0 +1,5 @@
+mutation createLibraryBookmark($entityId: ID!, $entityType: LIBRARY_ENTITY_TYPE_ENUM!, $followType: LIBRARY_FOLLOW_TYPE_ENUM!) {
+  library {
+    createLibraryBookmark(input: {entityId: $entityId, entityType: $entityType, followType: $followType})
+  }
+}

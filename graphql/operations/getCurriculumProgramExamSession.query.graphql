@@ -1,0 +1,14 @@
+query getCurriculumProgramExamSession($id: ID!) {
+  node(id: $id, type: IB_DP_CURRICULUM_PROGRAM) {
+    id
+    ... on IbDpCurriculumProgram {
+      id
+      examSessions {
+        id
+        session
+        month
+        year
+      }
+    }
+  }
+}

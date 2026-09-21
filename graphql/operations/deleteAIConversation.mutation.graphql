@@ -1,0 +1,8 @@
+mutation deleteAIConversation($input: DeleteAiConversationInput!) {
+  ai {
+    deleteAiConversation(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

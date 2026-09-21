@@ -1,0 +1,11 @@
+mutation updateAccountDetails($input: OrganizationUpdateV2Input!, $curriculumProgramFilters: CurriculumProgramFilters) {
+  platform {
+    updateOrganizationV2(input: $input) {
+      isSuccess
+      warning
+      organization {
+        ...organizationItem
+      }
+    }
+  }
+}

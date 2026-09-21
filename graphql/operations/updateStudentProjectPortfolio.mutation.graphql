@@ -1,0 +1,7 @@
+mutation updateStudentProjectPortfolio($input: UpdateStudentProjectPortfolioInput!) {
+  documentation {
+    updateStudentProjectPortfolio(input: $input) {
+      id
+    }
+  }
+}

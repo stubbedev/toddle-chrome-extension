@@ -1,0 +1,9 @@
+mutation mapAcademicEntityToSchools($input: MapAcademicEntityToSchoolsInput!) {
+  planner {
+    mapAcademicEntityToSchools(input: $input) {
+      isSuccess
+      syncId
+      warning
+    }
+  }
+}

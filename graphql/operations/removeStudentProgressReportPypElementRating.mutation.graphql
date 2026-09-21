@@ -1,0 +1,5 @@
+mutation removeStudentProgressReportPypElementRating($nodeId: ID!, $studentProgressReportId: ID!, $academicCriteriaSetId: ID!, $academicCriteriaValueId: ID!, $ibPYPElementId: ID, $ibPYPElementType: IB_PYP_ELEMENT_RATING_TYPE_ENUM!, $academicTermId: ID) {
+  documentation {
+    removeStudentProgressReportIBPYPElementRating(input: {nodeId: $nodeId, studentProgressReportId: $studentProgressReportId, academicCriteriaSetId: $academicCriteriaSetId, academicCriteriaValueId: $academicCriteriaValueId, ibPYPElementId: $ibPYPElementId, ibPYPElementType: $ibPYPElementType, academicTermId: $academicTermId})
+  }
+}

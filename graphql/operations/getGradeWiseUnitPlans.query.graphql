@@ -1,0 +1,38 @@
+query getGradeWiseUnitPlans($organizationId: ID!, $gradeFilters: GradeFilterInput, $unitPlanFilters: UnitPlanFilter) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      grades(filters: $gradeFilters) {
+        id
+        name
+        unitPlans(filters: $unitPlanFilters) {
+          id
+          title {
+            id
+            value
+          }
+          image {
+            id
+            value
+          }
+          theme {
+            id
+            resolvedMinimalTree {
+              id
+              ... on ResolvedFieldThemeSet {
+                id
+                themes {
+                  id
+                  label
+                }
+              }
+            }
+          }
+          resourceLibrary {
+            leCount
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+fragment folderItem on Folder {
+  id
+  name
+  color
+}

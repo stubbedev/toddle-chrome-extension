@@ -1,0 +1,9 @@
+mutation copyEntitiesToSchools($input: CopyEntitiesToSchoolsInput!) {
+  planner {
+    copyEntitiesToSchools(input: $input) {
+      isSuccess
+      warning
+      jobId
+    }
+  }
+}

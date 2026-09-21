@@ -1,0 +1,18 @@
+mutation updateWorkrampFoundation($input: UpdateWorkrampFoundationInput!) {
+  platform {
+    updateWorkrampFoundation(input: $input) {
+      foundation {
+        id
+        name
+        curriculum
+        trainings {
+          id
+          name
+        }
+        tags
+      }
+      isSuccess
+      warning
+    }
+  }
+}

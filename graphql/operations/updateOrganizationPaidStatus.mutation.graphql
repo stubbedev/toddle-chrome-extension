@@ -1,0 +1,5 @@
+mutation updateOrganizationPaidStatus($organizationId: ID!, $isPaid: Boolean!) {
+  organizationManagement {
+    updateOrganizationPaidStatus(input: {organizationId: $organizationId, isPaid: $isPaid})
+  }
+}

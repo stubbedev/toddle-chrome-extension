@@ -1,0 +1,145 @@
+query getGradingHistoryForLearningGoals($id: ID!, $dataSet: IB_PYP_RATING_DATA_SET_ENUM!, $curriculumProgramId: ID, $filtersRatingHistory: ibPYPElementRatingFiltersForRatingHistory, $postAclFilters: ACLControlParameterFilter, $assignmentAclFilters: ACLControlParameterFilter) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      ibPYPElementRatings(dataSet: $dataSet, curriculumProgramId: $curriculumProgramId, filtersForRatingHistory: $filtersRatingHistory) {
+        id
+        value
+        ibPYPElementId
+        ibPYPElementType
+        parentType
+        academicYear {
+          id
+        }
+        academicTerm {
+          id
+          label
+        }
+        academicCriteriaValue {
+          id
+          label
+          abbreviation
+          color
+          description
+        }
+        evidence {
+          id
+          metadata
+          mimeType
+          name
+          type
+          url
+        }
+        publishedAt
+        createdAt
+        createdByV2 {
+          id
+          firstName
+          lastName
+          middleName
+          type
+        }
+        description
+        parent {
+          id
+          ... on ImportedEntity {
+            id
+            type
+            name
+          }
+          ... on Post {
+            id
+            title
+            publishedAt
+            isPrivate
+            isHiddenFromStudents
+            attachments {
+              id
+              title
+              type
+            }
+            course {
+              id
+              title
+              learningCourse {
+                id
+                displayName
+              }
+              aclControlParameters(filters: $postAclFilters) {
+                id
+                permission
+                value
+              }
+            }
+          }
+          ... on StudentProgressReport {
+            id
+            status
+            courseProgressReportTask {
+              id
+              title
+              progressReportTaskGroup {
+                id
+              }
+              course {
+                id
+                title
+                learningCourse {
+                  id
+                  displayName
+                }
+              }
+            }
+          }
+          ... on StudentAssignment {
+            id
+            isEvaluated
+            isSharedWithStudent
+            assignment {
+              id
+              createdAt
+              publishedAt
+              isExcludedFromFinalGradeCalculation
+              course {
+                id
+                title
+                learningCourse {
+                  id
+                  displayName
+                }
+                aclControlParameters(filters: $assignmentAclFilters) {
+                  id
+                  permission
+                  value
+                }
+              }
+              content {
+                id
+                ... on Assessment {
+                  id
+                  assessmentType {
+                    id
+                    value
+                  }
+                  taskType {
+                    id
+                    type
+                    label
+                  }
+                  academicTerm {
+                    id
+                    label
+                  }
+                  title {
+                    id
+                    value
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

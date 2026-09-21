@@ -1,0 +1,9 @@
+mutation logoutStudentWithSignInCodeResetMutation($id: ID!, $updateStudentSignInCode: Boolean) {
+  platform {
+    updateUser(input: {id: $id, logoutUser: true, updateStudentSignInCode: $updateStudentSignInCode}) {
+      ... on Student {
+        signInCode
+      }
+    }
+  }
+}

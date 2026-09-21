@@ -1,0 +1,5 @@
+mutation deleteUserVoiceToneSelection($input: UserVoiceToneSelectionRemoveInput!) {
+  ai {
+    deleteUserVoiceToneSelection(input: $input)
+  }
+}

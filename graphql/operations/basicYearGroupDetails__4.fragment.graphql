@@ -1,0 +1,24 @@
+fragment basicYearGroupDetails on YearGroup {
+  id
+  name
+  curriculumProgram {
+    id
+    type
+  }
+  grade(filters: $yearGroupGradeFilters) {
+    id
+    name
+    displaySequence
+    courses {
+      totalCount
+    }
+  }
+  students(filters: $groupStudentFilters) {
+    totalCount
+  }
+  selectedTranscriptTerms {
+    id
+  }
+  isArchived
+  archivedAt
+}

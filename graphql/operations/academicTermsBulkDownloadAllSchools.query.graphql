@@ -1,0 +1,8 @@
+query academicTermsBulkDownloadAllSchools($organizationId: ID!, $academicYearIds: [ID!]) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      organizationDataBulkDownload(type: "academicTerms", filters: {academicYearIds: $academicYearIds})
+    }
+  }
+}

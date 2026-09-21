@@ -1,0 +1,14 @@
+query getAssociatedDataOfAcademicTerm($input: AssociatedDataOfAcademicTermInput!) {
+  documentation {
+    internalToolsData {
+      progressReport {
+        associatedDataOfAcademicTerm(input: $input) {
+          id
+          type
+          name
+          url
+        }
+      }
+    }
+  }
+}

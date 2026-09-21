@@ -1,0 +1,8 @@
+fragment plannerElementNodeSetItem on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      type
+    }
+  }
+}

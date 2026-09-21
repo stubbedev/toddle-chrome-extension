@@ -1,0 +1,17 @@
+fragment checklist on Checklist {
+  id
+  title
+  checklistItems {
+    ...checklistItem
+  }
+  checklistOptionItems {
+    ...checklistOption
+  }
+  createdBy {
+    ...staffItem
+  }
+  updatedAt
+  updatedBy {
+    ...staffItem
+  }
+}

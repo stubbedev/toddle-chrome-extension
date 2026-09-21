@@ -1,0 +1,11 @@
+mutation upsertStudentTranscriptValue($input: StudentTranscriptNodeValueInput!) {
+  documentation {
+    upsertStudentTranscriptNodeValue(input: $input) {
+      id
+      termId
+      nodeId
+      value
+      dataType
+    }
+  }
+}

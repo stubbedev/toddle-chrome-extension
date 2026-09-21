@@ -1,0 +1,10 @@
+mutation createOrganizationRequestForUser($input: AddUsersRequestForMultiAccessIdentityInput) {
+  platform {
+    addRequestForUsersMultiAccessIdentity(input: $input) {
+      isSuccess
+      warning
+      __typename
+    }
+    __typename
+  }
+}

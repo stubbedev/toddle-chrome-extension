@@ -1,0 +1,28 @@
+mutation studentTransferUpdate($input: StudentTransferUpdateInput!) {
+  platform {
+    studentTransferUpdate(input: $input) {
+      isSuccess
+      warning {
+        code
+        message
+        duplicates
+        missing
+        driftedIds
+        failures {
+          key
+          message
+        }
+        offendingIds {
+          id
+          status
+        }
+        transferRequestId
+      }
+      studentTransferRequests {
+        id
+        uid
+        status
+      }
+    }
+  }
+}

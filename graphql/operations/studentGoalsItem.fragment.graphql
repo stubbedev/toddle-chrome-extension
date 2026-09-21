@@ -1,0 +1,37 @@
+fragment studentGoalsItem on Student {
+  studentGoalsV2(last: $last, after: $after, filters: $filters) {
+    totalCount
+    edges {
+      cursor
+      node {
+        ...goalItem
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    count {
+      ongoing
+      completed
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

@@ -1,0 +1,13 @@
+query getLearningOutcomesPosts($id: ID!, $filters: fieldPlannerElementAssociatedNodesInput!) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      fieldPlannerElementAssociatedNodes(filters: $filters) {
+        parentId
+        associatedProjectEvidences {
+          id
+        }
+      }
+    }
+  }
+}

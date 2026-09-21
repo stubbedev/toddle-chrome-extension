@@ -1,0 +1,21 @@
+query getOutgoingTransferFeed($cpId: ID!, $type: ENTITY_TYPE_ENUM!, $input: StudentTransferRequestsInput!) {
+  node(id: $cpId, type: $type) {
+    ... on CurriculumProgram {
+      id
+      label
+      outgoingStudentTransferRequestsFeed(input: $input) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            ...studentTransferRequest
+          }
+        }
+      }
+    }
+  }
+}

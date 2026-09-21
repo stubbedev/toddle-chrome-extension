@@ -1,0 +1,25 @@
+query getProjectStudentAllocationStatus($projectGroupId: ID!, $filters: ProjectGroupStudentAllocationFilters) {
+  node(id: $projectGroupId, type: PROJECT_GROUP) {
+    ... on ProjectGroup {
+      id
+      projectStudentAllocationStatus(filters: $filters) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            student {
+              ...userItem
+              alertTypes {
+                ...alertTypeFields
+              }
+            }
+            allocated
+          }
+        }
+      }
+    }
+  }
+}

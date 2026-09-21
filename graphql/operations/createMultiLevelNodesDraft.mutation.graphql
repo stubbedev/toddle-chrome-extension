@@ -1,0 +1,9 @@
+mutation createMultiLevelNodesDraft($subjectId: ID, $nodeType: MULTI_LEVEL_NODE_TYPE!, $rootNodes: [ID!], $nodes: [JSON!] = [], $parentId: ID, $parentType: NODE_DRAFT_PARENT_TYPE_ENUM) {
+  organizationManagement {
+    createMultiLevelNodesDraft(input: {subjectId: $subjectId, type: $nodeType, rootNodes: $rootNodes, nodes: $nodes, parentId: $parentId, parentType: $parentType}) {
+      draft {
+        id
+      }
+    }
+  }
+}

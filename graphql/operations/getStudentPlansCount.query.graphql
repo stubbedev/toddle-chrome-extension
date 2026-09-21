@@ -1,0 +1,11 @@
+query getStudentPlansCount($studentId: ID!, $filters: StudentPlansFeedFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      studentPlans(filters: $filters) {
+        id
+      }
+    }
+  }
+}

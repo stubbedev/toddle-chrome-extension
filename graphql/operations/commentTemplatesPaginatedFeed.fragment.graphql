@@ -1,0 +1,13 @@
+fragment commentTemplatesPaginatedFeed on GradingCommentTemplateConnection {
+  ...commentTemplatesWithoutPaginatedFeed
+  pageInfo {
+    hasNextPage
+    startCursor
+    endCursor
+  }
+  edges {
+    node {
+      ...commentTemplates
+    }
+  }
+}

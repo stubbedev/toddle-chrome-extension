@@ -1,0 +1,16 @@
+query getOrganizationStudents($id: ID!, $studentFilters: OrgConnectionFilterInput) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      students(orderBy: FIRST_NAME, orderByDirection: ASC, filters: $studentFilters) {
+        edges {
+          node {
+            ...userNameFields
+            profileImage
+          }
+        }
+      }
+    }
+  }
+}

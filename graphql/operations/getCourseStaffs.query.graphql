@@ -1,0 +1,33 @@
+query getCourseStaffs($learningCourseId: ID!, $collaboratorFilters: LearningCourseCollaboratorFilters, $rnpRoleContextFilters: RnPRoleContextDetailFilterInput!) {
+  node(id: $learningCourseId, type: LEARNING_COURSE) {
+    ... on LearningCourse {
+      id
+      collaborators(filters: $collaboratorFilters) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            preferredName
+            prefix
+            suffix
+            pronouns
+            profileImage
+            email
+            rnpRoleContextDetail(filters: $rnpRoleContextFilters) {
+              id
+              role {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

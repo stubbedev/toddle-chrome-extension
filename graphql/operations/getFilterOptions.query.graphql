@@ -1,0 +1,65 @@
+query getFilterOptions($entityType: FACET_ENTITY_TYPE_ENUM!, $options: JSON, $id: ID!, $filters: PlannerElementFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      genericFacets(entityType: $entityType, options: $options) {
+        mainFacets {
+          ... on UnitPlan {
+            ...unitItem
+          }
+          ... on PlannerATL {
+            ...atlItem
+          }
+          ... on PlannerConcept {
+            ...conceptItem
+          }
+          ... on PlannerLearnerProfile {
+            ...lpaItem
+          }
+          ... on Subject {
+            ...subjectItem
+          }
+          ... on AcademicYear {
+            ...academicYearItem
+          }
+          ... on Folder {
+            ...folderItem
+          }
+          ... on ActivityTypeFacet {
+            ...activityItem
+          }
+          ... on Grade {
+            ...gradeItem
+          }
+          ... on UnitPlanTypeFacet {
+            ...unitPlanTypeItem
+          }
+          ... on Theme {
+            ...themeItem
+          }
+          ... on ProgressReportTaskGroup {
+            ...reportSetItem
+          }
+          ... on SubjectGroup {
+            ...subjectGroupItem
+          }
+          ... on PlannerElementSet {
+            ...plannerElementItem
+          }
+          ... on Student {
+            ...studentItem
+          }
+        }
+        nestedFacets {
+          id
+          label
+          mainFacets {
+            ... on Course {
+              ...courseItem
+            }
+          }
+        }
+      }
+    }
+  }
+}

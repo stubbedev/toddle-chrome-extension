@@ -1,0 +1,30 @@
+query getThirdPartyCardsConfiguration($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      globalConstants(filter: {names: ["THIRD_PARTY_REDIRECT_URL_CONFIG"]}) {
+        id
+        name
+        value
+        curriculumProgram {
+          id
+          label
+          acronym
+        }
+        academicYear {
+          id
+          label
+        }
+      }
+      curriculumPrograms {
+        id
+        label
+        acronym
+      }
+      academicYears {
+        id
+        label
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation resetProductUpdateReadCount($input: ProductUpdateInputV2!) {
+  cms {
+    resetUserProductUpdateNewCountV2(input: $input)
+  }
+}

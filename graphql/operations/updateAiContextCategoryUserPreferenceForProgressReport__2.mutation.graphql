@@ -1,0 +1,18 @@
+query getStaffVoiceTone($id: ID!, $filters: StaffAIVoiceToneFilters) {
+  node(id: $id, type: STAFF) {
+    id
+    ... on Staff {
+      aiVoiceTone(filters: $filters) {
+        ...aiVoiceTone
+      }
+    }
+  }
+}
+
+mutation updateAiContextCategoryUserPreferenceForProgressReport($input: UpdateAiContextCategoryUserPreferenceInputs!) {
+  documentation {
+    updateAiContextCategoryUserPreferenceForProgressReport(input: $input) {
+      isSuccess
+    }
+  }
+}

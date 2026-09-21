@@ -1,0 +1,74 @@
+fragment announcementItem on Circular {
+  id
+  title
+  bannerV2 {
+    id
+    url
+    name
+    type
+    mimeType
+    metadata
+  }
+  description
+  isPublished
+  isArchived
+  publishedAt
+  isRead
+  isNew
+  updatedAt
+  archivedAt
+  createdBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+    email
+    profileImage
+    preferredName
+    pronouns
+    prefix
+    suffix
+  }
+  publishedBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+    email
+    profileImage
+    preferredName
+    pronouns
+    prefix
+    suffix
+  }
+  updatedBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+    email
+    profileImage
+    preferredName
+    pronouns
+    prefix
+    suffix
+  }
+  archivedBy {
+    id
+    firstName
+    middleName
+    lastName
+    type
+    email
+    profileImage
+    preferredName
+    pronouns
+    prefix
+    suffix
+  }
+  state
+  isV2
+}

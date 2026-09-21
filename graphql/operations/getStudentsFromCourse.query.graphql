@@ -1,0 +1,26 @@
+query getStudentsFromCourse($ids: [ID!], $after: String, $filters: CourseFilter, $userMapFilters: CourseUserMapFilter, $fetchUserMap: Boolean = false, $academicYearId: ID) {
+  platform {
+    course(ids: $ids) {
+      id
+      students(first: 10, after: $after, filters: $filters) @skip(if: $fetchUserMap) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            profileImage
+            isArchived
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+      userMap(filters: $userMapFilters) @include(if: $fetchUserMap) {
+        ...userMapItem
+      }
+    }
+  }
+}

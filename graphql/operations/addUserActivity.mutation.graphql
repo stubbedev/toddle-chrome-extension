@@ -1,0 +1,5 @@
+mutation addUserActivity($input: AddUserActivityInput!) {
+  platform {
+    addUserActivity(input: $input)
+  }
+}

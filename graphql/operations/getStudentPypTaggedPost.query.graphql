@@ -1,0 +1,8 @@
+query getStudentPypTaggedPost($studentId: ID!, $after: String, $filters: PostFilterInput, $uids: [String!], $translationFilter: TranslatedLabelFilter, $isDP: Boolean!, $aclControlParameterFilter: ACLControlParameterFilter) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      ...studentPostItem
+    }
+  }
+}

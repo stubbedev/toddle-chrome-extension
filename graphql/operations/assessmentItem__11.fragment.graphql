@@ -1,0 +1,21 @@
+fragment assessmentItem on Assessment {
+  id
+  title {
+    id
+    value
+  }
+  image {
+    id
+    value
+  }
+  allFields {
+    id
+    uid
+    value
+  }
+  assessmentType {
+    id
+    uid
+    value
+  }
+}

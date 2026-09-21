@@ -1,0 +1,7 @@
+mutation tagSnpPractices($input: TagSnPPracticeInput!) {
+  platform {
+    handleSnPPracticeTagging(input: $input) {
+      id
+    }
+  }
+}

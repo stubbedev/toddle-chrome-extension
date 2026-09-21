@@ -1,0 +1,15 @@
+query getSyllabusContentTopics($id: ID!) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      associatedChildPlannerElementNodes(filters: {types: DP_SYLLABUS}) {
+        id
+        displaySequence
+        label
+        depth
+        parent
+      }
+    }
+  }
+}

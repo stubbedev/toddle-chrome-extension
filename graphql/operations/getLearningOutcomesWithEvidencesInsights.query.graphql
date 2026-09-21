@@ -1,0 +1,73 @@
+query getLearningOutcomesWithEvidencesInsights($id: ID!, $plannerElementEvidenceFilters: PlannerElementsEvidenceFilter!, $isServiceAsAction: Boolean!) {
+  node(id: $id, type: STUDENT_PROJECT_PORTFOLIO) {
+    ... on StudentProjectPortfolio {
+      id
+      student {
+        ...studentInfo
+      }
+      plannerElementEvidences(filters: $plannerElementEvidenceFilters) {
+        id
+        ibPYPElementRatings(filters: {orderBy: CREATED_AT, orderByDirection: DESC}) {
+          id
+          createdByV2 {
+            ...userNameFields
+            profileImage
+          }
+          academicCriteriaSet {
+            id
+            label
+            criteriaType
+          }
+          createdAt
+          academicCriteriaValue {
+            id
+            label
+            abbreviation
+            color
+          }
+        }
+        projects {
+          totalCount
+          edges {
+            node {
+              ...portfolioProjectInfo
+            }
+          }
+        }
+        plannerElementNode {
+          id
+          label
+          subText
+          metadata
+        }
+        evidence {
+          totalCount
+        }
+        isAchieved
+        academicYear @include(if: $isServiceAsAction) {
+          id
+        }
+        grade {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

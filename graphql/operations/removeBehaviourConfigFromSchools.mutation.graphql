@@ -1,0 +1,14 @@
+mutation removeBehaviourConfigFromSchools($input: RemoveBehaviourConfigFromSchoolsInput!) {
+  platform {
+    removeBehaviourConfigFromSchools(input: $input) {
+      isSuccess
+      errors {
+        entityId
+        code
+        message
+        incidentCount
+        schoolCurriculumProgramId
+      }
+    }
+  }
+}

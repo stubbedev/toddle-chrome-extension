@@ -1,0 +1,12 @@
+fragment subjectStandardCountFragmentPYP on PlannerElementNodeSetConnection {
+  edges {
+    node {
+      id
+      standardSetWrapper {
+        publishedBenchmarks {
+          totalCount
+        }
+      }
+    }
+  }
+}

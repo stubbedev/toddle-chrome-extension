@@ -1,0 +1,7 @@
+fragment subjectGroupItem on SubjectGroup {
+  id
+  name
+  subjects {
+    id
+  }
+}

@@ -1,0 +1,26 @@
+query getLevelsDraft($id: ID!, $curriculumIds: [ID!], $academicYearId: ID!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        levelDrafts(filters: {academicYearId: $academicYearId}) {
+          key
+          label
+          abbreviation
+          reportDisplayName
+          associatedSubjects {
+            key
+            name
+          }
+          associatedStudents {
+            id
+            firstName
+          }
+          isExisting
+        }
+      }
+    }
+  }
+}

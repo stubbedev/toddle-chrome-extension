@@ -1,0 +1,21 @@
+fragment organizationStudentFeedEdgeItem on Organization {
+  id
+  students(filters: $filters) {
+    totalCount
+    edges {
+      node {
+        ...studentItem
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment studentItem on Student {
+  id
+  sourceId
+  __typename
+}

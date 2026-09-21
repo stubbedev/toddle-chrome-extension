@@ -1,0 +1,4 @@
+fragment reportSetItem on ProgressReportTaskGroup {
+  id
+  title
+}

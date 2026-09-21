@@ -1,0 +1,4 @@
+fragment mockExamSavedByNodeItem on MockExam {
+  id
+  isSavedForLibrary
+}

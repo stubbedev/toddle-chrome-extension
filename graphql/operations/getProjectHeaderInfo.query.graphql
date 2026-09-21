@@ -1,0 +1,75 @@
+query getProjectHeaderInfo($projectId: ID!, $projectFieldFilters: PlannerFieldFilter, $studentProjectPortfolioFilter: StudentProjectPortfolioFilter, $shouldFetchPortfolioStudents: Boolean!, $shouldFetchFields: Boolean!, $academicYearId: ID!, $completionStatusFilters: CompletionStatusFilter, $supervisorArchivedFilters: UserArchivedFilters) {
+  node(id: $projectId, type: PROJECT) {
+    ... on Project {
+      ...projectInfoItem
+      fields(filters: $projectFieldFilters) @include(if: $shouldFetchFields) {
+        id
+        uid
+        value
+        pseudoFieldUid
+      }
+      academicYear {
+        id
+      }
+      type
+      isCasExternalPortingDone
+      createdBy {
+        id
+      }
+      isDeleted
+      deletedBy {
+        ...userNameFields
+      }
+      deletedAt
+      isArchived
+      archivedBy {
+        ...userNameFields
+      }
+      archivedAt
+      markedCompletedBy {
+        ...userNameFields
+      }
+      markedCompletedAt
+      updatedAt
+      updatedBy {
+        ...userNameFields
+      }
+      students @include(if: $shouldFetchPortfolioStudents) {
+        id
+        studentProjectPortfolio(filters: $studentProjectPortfolioFilter) {
+          id
+          completionStatus(filters: $completionStatusFilters) {
+            isComplete
+            markedCompletedAt
+            markedCompletedBy {
+              ...userNameFields
+            }
+          }
+        }
+      }
+      markedCompletedBy {
+        ...userNameFields
+      }
+      markedCompletedAt
+      ibPYPElementRatings(filters: {academicCriteriaSetTypes: [PROJECT_OVERALL_PROGRESS]}) {
+        id
+        value
+        academicCriteriaSet {
+          id
+          criteriaType
+        }
+        createdByV2 {
+          ...userNameFields
+          profileImage
+        }
+        createdAt
+        academicCriteriaValue {
+          id
+          label
+          abbreviation
+          color
+        }
+      }
+    }
+  }
+}

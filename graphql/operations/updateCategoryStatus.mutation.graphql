@@ -1,0 +1,7 @@
+mutation updateCategoryStatus($input: SnpDocumentCategoryUpdateInput!) {
+  platform {
+    updateSnpDocumentCategoryV2(input: $input) {
+      ...statusDetailsItem
+    }
+  }
+}

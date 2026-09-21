@@ -1,0 +1,19 @@
+mutation createWorkrampFoundation($input: CreateWorkrampFoundationInput!) {
+  platform {
+    createWorkrampFoundation(input: $input) {
+      foundation {
+        id
+        name
+        curriculum
+        trainings {
+          id
+          name
+        }
+        workrampFoundationId
+        tags
+      }
+      isSuccess
+      warning
+    }
+  }
+}

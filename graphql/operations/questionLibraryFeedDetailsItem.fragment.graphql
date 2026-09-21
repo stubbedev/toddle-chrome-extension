@@ -1,0 +1,30 @@
+fragment questionLibraryFeedDetailsItem on Question {
+  id
+  questionType {
+    id
+    uid
+  }
+  questionScore
+  questionTitle {
+    id
+    uid
+    value
+  }
+  difficulty
+  librarySubjects {
+    id
+    label
+  }
+  associatedEntities {
+    id
+    ... on GenericTag {
+      id
+      label
+    }
+    ... on PlannerElementNode {
+      id
+      label
+      depth
+    }
+  }
+}

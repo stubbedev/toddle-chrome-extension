@@ -1,0 +1,27 @@
+query getAttachmentModality($id: ID!) {
+  node(id: $id, type: ATTACHMENT) {
+    id
+    ... on Attachment {
+      id
+      name
+      type
+      metadata
+      modalityAttachment {
+        ...modalityAttachmentItem
+      }
+    }
+  }
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

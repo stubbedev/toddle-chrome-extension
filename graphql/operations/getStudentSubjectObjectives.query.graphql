@@ -1,0 +1,27 @@
+query getStudentSubjectObjectives($id: ID!, $filters: SubjectFilter, $parentTypes: [OBJECTIVE_RATINGS_SOURCE!], $associatedChildPlannerElementFilters: AssociatedChildPlannerElementNodesFilters!) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      subjects(filters: $filters) {
+        ...subjectObjectivesItem
+      }
+    }
+  }
+}
+
+fragment learnerPortfolioItem on LearnerPortfolio {
+  id
+  isArchived
+  yearGroup {
+    id
+    name
+    grade {
+      id
+      name
+    }
+  }
+  studentLearnerPortfolios {
+    totalCount
+  }
+}

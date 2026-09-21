@@ -1,0 +1,8 @@
+query getLearningCoursesByIds($ids: [ID!], $gradeFilters: LearningCourseGradeFilters) {
+  multiNode(ids: $ids, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      ...learningCourseItem
+    }
+  }
+}

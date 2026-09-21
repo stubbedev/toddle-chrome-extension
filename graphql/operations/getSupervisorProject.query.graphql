@@ -1,0 +1,10 @@
+query getSupervisorProject($staffId: ID!, $projectGroupIds: [ID!], $searchText: String, $skipCourseDetails: Boolean!) {
+  node(id: $staffId, type: STAFF) {
+    ... on Staff {
+      ...userItem
+      projects(filters: {projectGroupIds: $projectGroupIds, searchText: $searchText}) {
+        ...projectInfo
+      }
+    }
+  }
+}

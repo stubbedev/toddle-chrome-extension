@@ -1,0 +1,11 @@
+query getNodePost($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: PostFilterInput, $after: String) {
+  node(id: $id, type: $type) {
+    id
+    ... on Organization {
+      ...organizationPostItem
+    }
+    ... on Student {
+      ...studentPostItem
+    }
+  }
+}

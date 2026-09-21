@@ -1,0 +1,24 @@
+query getGradesModuleSetting($organizationId: ID!, $gradeFilters: GradeFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...gradesModuleSettings
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment modalityAttachmentItem on ModalityAttachmentInterface {
+  id
+  ... on ToddleDoc {
+    id
+    value
+  }
+  ... on ModalityFile {
+    id
+    content
+    metadata
+  }
+}

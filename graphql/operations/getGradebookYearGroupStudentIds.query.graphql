@@ -1,0 +1,14 @@
+query getGradebookYearGroupStudentIds($id: ID!, $studentFilters: GroupStudentFilter) {
+  node(id: $id, type: YEAR_GROUP) {
+    ... on YearGroup {
+      id
+      students(filters: $studentFilters) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+}

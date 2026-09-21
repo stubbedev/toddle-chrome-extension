@@ -1,0 +1,43 @@
+query getSubjectGroupPoiV2($id: ID!, $filters: SubjectGroupPOIFilterInput) {
+  node(id: $id, type: SUBJECT_GROUP) {
+    id
+    ... on SubjectGroup {
+      id
+      plannerElementNodeVerticalInsight(filters: $filters) {
+        plannerNode {
+          ...plannerElementNodeItem
+        }
+        edges {
+          subject {
+            id
+            name
+          }
+          grade {
+            id
+          }
+          unitPlanData {
+            unitPlans {
+              id
+            }
+            totalCount
+          }
+          assessmentData {
+            assessments {
+              id
+            }
+            totalCount
+          }
+          questionsData {
+            questions {
+              id
+              assessmentDataV2 {
+                id
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

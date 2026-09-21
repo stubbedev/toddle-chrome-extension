@@ -1,0 +1,11 @@
+query getCourseCalendarDetails($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: CourseFilter, $enabledModulesFilters: EnabledModulesFiltersInput, $aclControlParameterFilter: ACLControlParameterFilter) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      ...staffItem
+    }
+    ... on Student {
+      ...studentItem
+    }
+  }
+}

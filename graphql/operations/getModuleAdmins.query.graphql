@@ -1,0 +1,25 @@
+query getModuleAdmins($id: ID!, $input: ModuleLvlAccessStaffsInput, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on IbMypCurriculumProgram {
+      id
+      type
+      moduleLvlAccessStaffs(input: $input) {
+        moduleName
+        staffs {
+          ...staffItem
+        }
+      }
+    }
+    ... on IbDpCurriculumProgram {
+      id
+      type
+      moduleLvlAccessStaffs(input: $input) {
+        moduleName
+        staffs {
+          ...staffItem
+        }
+      }
+    }
+  }
+}

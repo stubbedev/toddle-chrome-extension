@@ -1,0 +1,10 @@
+mutation resetCourseInviteCode($courseIds: [NumericId!]!) {
+  platform {
+    resetClassQRCode(input: {classIds: $courseIds}) {
+      isSuccess
+      warning
+      affectedCount
+      activityLogId
+    }
+  }
+}

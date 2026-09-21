@@ -1,0 +1,23 @@
+fragment selectedPeriodItemV2 on TimetableSlot {
+  date
+  isSelected
+  day
+  rotationDay {
+    id
+    label
+  }
+  location
+  course {
+    ...courseItem
+  }
+  period {
+    ...periodItem
+    abbreviation
+  }
+  teachers {
+    ...staffItem
+  }
+  subject
+  startTime
+  endTime
+}

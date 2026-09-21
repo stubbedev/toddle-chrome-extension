@@ -1,0 +1,12 @@
+mutation UpdateComplianceReportSidebarRecords($input: UpdateComplianceReportSidebarRecordsInput!) {
+  complianceReport {
+    updateComplianceReportSidebarRecords(input: $input) {
+      isSuccess
+      warning
+      report {
+        id
+        dataStatus
+      }
+    }
+  }
+}

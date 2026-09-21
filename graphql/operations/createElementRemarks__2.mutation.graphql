@@ -1,0 +1,13 @@
+mutation createElementRemarks($input: [IBPYPElementRemarkInput!]) {
+  planner {
+    createElementRemarks(input: $input) {
+      response {
+        id
+        createdBy {
+          ...staffItem
+        }
+        createdAt
+      }
+    }
+  }
+}

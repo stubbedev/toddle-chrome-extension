@@ -1,0 +1,13 @@
+fragment progressReportTemplateItem on ProgressReportTemplate {
+  id
+  name
+  grades {
+    ...gradeItem
+  }
+  updatedAt
+  gradingPeriodType
+  locale
+  academicYear {
+    ...academicYearItem
+  }
+}

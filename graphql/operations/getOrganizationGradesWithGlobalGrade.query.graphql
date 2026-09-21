@@ -1,0 +1,33 @@
+query getOrganizationGradesWithGlobalGrade($gradeIds: [ID!], $filters: GradeStudentsFilters) {
+  multiNode(ids: $gradeIds, type: GRADE) {
+    ... on Grade {
+      id
+      name
+      globalGrade {
+        id
+      }
+      students(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            profileImage
+            registrationCategory
+            prefix
+            yearGroup {
+              id
+              grade {
+                id
+                globalGrade {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

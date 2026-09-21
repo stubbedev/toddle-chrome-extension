@@ -1,0 +1,8 @@
+query getOrganizationAssignmentsProgressSummary($organizationId: ID!, $courseIds: [ID!], $contentTypes: [ASSIGNMENT_CONTENT_TYPE_ENUM!], $isTeacherEvaluationEnabled: Boolean, $assessmentTypes: [String!], $assessmentToolTypes: [ASSESSMENT_EVALUATION_TYPE_ENUM!], $isAssessmentScoringEnabled: Boolean, $searchText: String, $excludedAssessmentTypes: [String!], $academicTermIds: [ID!], $categoryIds: [ID!], $groupTypes: [ASSESSMENT_TYPE_ENUM!], $first: Int, $after: String, $subjectIds: [ID!], $courseMapFilters: UserCourseMapFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      ...organizationAssignmentItem
+    }
+  }
+}

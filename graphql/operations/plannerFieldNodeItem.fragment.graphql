@@ -1,0 +1,5 @@
+fragment plannerFieldNodeItem on PlannerField {
+  id
+  uid
+  value
+}

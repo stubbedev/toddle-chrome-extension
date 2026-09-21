@@ -1,0 +1,12 @@
+fragment outlineWithChildrenItem on OrganizationResource {
+  childrenV2(orderBy: $orderBy, filters: $filters) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+  parentResource {
+    id
+  }
+}

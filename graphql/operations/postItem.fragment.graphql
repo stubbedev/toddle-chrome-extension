@@ -1,0 +1,17 @@
+fragment postItem on Post {
+  id
+  title
+  attachments {
+    ...attachmentItem
+  }
+  createdBy {
+    ...userItem
+  }
+  items {
+    item {
+      id
+      ...studentResponseItem
+    }
+    itemType
+  }
+}

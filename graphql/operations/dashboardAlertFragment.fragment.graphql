@@ -1,0 +1,10 @@
+fragment dashboardAlertFragment on DashboardAlert {
+  id
+  insightDashboardId
+  alertFrequency
+  alertSchedule
+  weekDay
+  subscribers {
+    id
+  }
+}

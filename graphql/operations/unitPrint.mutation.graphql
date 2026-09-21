@@ -1,0 +1,9 @@
+mutation unitPrint($input: UnitPlanPrintInput!) {
+  planner {
+    unitPlanPrint(input: $input) {
+      isSuccess
+      __typename
+    }
+    __typename
+  }
+}

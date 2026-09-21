@@ -1,0 +1,62 @@
+fragment organizationItem on Organization {
+  id
+  name
+  logo
+  code
+  toddleBuddy
+  isPaid
+  attachments {
+    ...attachmentBasicDetailsItem
+  }
+  currentAcademicYear {
+    startDate
+    endDate
+  }
+  academicYears {
+    id
+    startDate
+    endDate
+    isCurrentAcademicYear
+  }
+  constants {
+    examSessionMonth
+    scheduler
+    additionalData
+  }
+  courses {
+    totalCount
+  }
+  staff {
+    totalCount
+  }
+  students {
+    totalCount
+  }
+  tier {
+    plan
+  }
+  curriculumPrograms {
+    id
+    type
+    rosteringMethod
+    label
+    acronym
+    dealId
+    platformId
+    buddy {
+      firstName
+      lastName
+      id
+    }
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+    ...subscriptionPlanDetailsItem
+    onboardingSteps {
+      step
+      status
+    }
+    programDataLanguages
+    ...curriculumProgramBasicDetailsItem
+  }
+}

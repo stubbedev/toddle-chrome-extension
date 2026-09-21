@@ -1,0 +1,5 @@
+fragment studentProgressReportStatusItem on StudentProgressReport {
+  id
+  status
+  isSubjectObjectivesSelected
+}

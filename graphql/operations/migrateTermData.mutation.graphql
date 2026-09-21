@@ -1,0 +1,10 @@
+mutation migrateTermData($input: ResolveProgressReportIssueInput!) {
+  documentation {
+    resolveProgressReportIssue(input: $input) {
+      isSuccess
+      errors
+      __typename
+    }
+    __typename
+  }
+}

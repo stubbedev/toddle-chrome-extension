@@ -1,0 +1,10 @@
+query getStudentNotes($studentId: ID!, $filters: StudentNoteFilters) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      studentNotes(filters: $filters) {
+        ...studentNoteItem
+      }
+    }
+  }
+}

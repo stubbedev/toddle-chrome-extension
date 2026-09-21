@@ -1,0 +1,8 @@
+query getJobStatus($id: ID!) {
+  node(id: $id, type: INTEGRATION_JOB) {
+    id
+    ... on IntegrationJob {
+      status
+    }
+  }
+}

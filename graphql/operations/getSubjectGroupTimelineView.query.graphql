@@ -1,0 +1,38 @@
+query getSubjectGroupTimelineView($id: ID!, $uids: [String!], $filters: SubjectGroupOverviewFilterInput) {
+  node(id: $id, type: SUBJECT_GROUP) {
+    id
+    ... on SubjectGroup {
+      id
+      name
+      subjectGroupOverview(filters: $filters) {
+        grade {
+          id
+          name
+        }
+        subject {
+          id
+          name
+          isArchived
+        }
+        unitPlans {
+          id
+          title {
+            id
+            uid
+            value
+          }
+          image {
+            ...mediaFieldNodeItem
+          }
+          startDate
+          endDate
+          fields(uids: $uids) {
+            id
+            uid
+            value
+          }
+        }
+      }
+    }
+  }
+}

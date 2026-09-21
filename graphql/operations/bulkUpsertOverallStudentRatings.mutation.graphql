@@ -1,0 +1,8 @@
+mutation bulkUpsertOverallStudentRatings($input: [BulkUpsertOverallStudentRatingsInput!]) {
+  planner {
+    bulkUpsertOverallStudentRatings(input: $input) {
+      isSuccess
+      warning
+    }
+  }
+}

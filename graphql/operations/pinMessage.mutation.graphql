@@ -1,0 +1,7 @@
+mutation pinMessage($input: CreatePinnedChartInput!) {
+  platform {
+    createPinnedChart(input: $input) {
+      isSuccess
+    }
+  }
+}

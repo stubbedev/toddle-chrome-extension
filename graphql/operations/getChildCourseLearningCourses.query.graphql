@@ -1,0 +1,30 @@
+query getChildCourseLearningCourses($id: ID!, $learningCourseFilters: LearningCourseAcademicCourseFilter) {
+  node(id: $id, type: ACADEMIC_COURSE) {
+    ... on AcademicCourse {
+      id
+      childAcademicCourses {
+        id
+        curriculumProgram {
+          id
+          label
+          acronym
+        }
+        learningCourses(filters: $learningCourseFilters) {
+          edges {
+            node {
+              id
+              title
+              type
+              displayMetadata
+              isArchived
+              academicYears {
+                id
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

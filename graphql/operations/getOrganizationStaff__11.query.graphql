@@ -1,0 +1,25 @@
+query getOrganizationStaff($organizationId: ID!, $filters: OrgConnectionFilterInput!, $courseFilters: CourseFilter!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      staff(filters: $filters) {
+        edges {
+          node {
+            id
+            email
+            firstName
+            middleName
+            lastName
+            profileImage
+            roles
+            isArchived
+            courses(filters: $courseFilters) {
+              id
+            }
+            type
+          }
+        }
+      }
+    }
+  }
+}

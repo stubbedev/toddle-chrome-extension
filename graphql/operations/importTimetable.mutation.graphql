@@ -1,0 +1,11 @@
+mutation importTimetable($input: ImportTimetableInput!) {
+  integration {
+    importTimetable(input: $input) {
+      uploadStatus
+      errorData
+      successData {
+        added
+      }
+    }
+  }
+}

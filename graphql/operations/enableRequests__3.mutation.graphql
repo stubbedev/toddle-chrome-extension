@@ -1,0 +1,26 @@
+query getProductUpdatesFeedDetails($filters: ProductUpdatesFilterV2, $orderBy: ORDERBY_FIELD_ENUM_CMS, $onlyNewContent: Boolean) {
+  cms {
+    productUpdatesFeedV2(filters: $filters, orderBy: $orderBy, onlyNewContent: $onlyNewContent) {
+      edges {
+        node {
+          ...productUpdateItem
+          __typename
+        }
+      }
+    }
+    __typename
+  }
+}
+
+mutation enableRequests($input: EnableProductRequestInput!) {
+  platform {
+    enableProductRequestV2(input: $input) {
+      productRequestId
+      isSuccess
+      warning
+      status
+      failureReason
+      __typename
+    }
+  }
+}

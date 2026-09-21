@@ -1,0 +1,10 @@
+query getExamRegistrationPermission($id: ID!) {
+  node(id: $id, type: EXAM_REGISTRATION) {
+    ... on ExamRegistration {
+      id
+      studentShowExamDetailsPerm
+      canStudentEditCandidateInfo
+      canStudentEditDpSubjects
+    }
+  }
+}

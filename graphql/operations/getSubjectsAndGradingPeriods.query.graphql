@@ -1,0 +1,56 @@
+query getSubjectsAndGradingPeriods($id: ID!, $subjectFilters: SubjectFilterInput, $curriculumIds: [ID!], $gradingPeriodsFilters: TermFilters!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      subjects(filters: $subjectFilters) {
+        id
+        name
+        icon
+        ibOfferedSubject {
+          id
+          contentSubject {
+            id
+            assessmentYearTitle
+          }
+        }
+        grades {
+          id
+          name
+        }
+        curriculumProgram {
+          id
+          label
+          type
+          nodeInterfaceType
+        }
+        associatedLevels {
+          id
+          label
+          type
+        }
+      }
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        gradingPeriods(filters: $gradingPeriodsFilters) {
+          edges {
+            node {
+              id
+              label
+              startDate
+              endDate
+              academicYear {
+                id
+              }
+              curriculumProgram {
+                id
+                label
+                type
+                nodeInterfaceType
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

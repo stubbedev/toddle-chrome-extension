@@ -1,0 +1,34 @@
+query getStudentBehaviourOverview($id: ID!, $behaviourOverviewInput: BehaviourOverviewInput) {
+  node(id: $id, type: STUDENT) {
+    ... on Student {
+      id
+      firstName
+      middleName
+      lastName
+      email
+      type
+      behaviourOverview(input: $behaviourOverviewInput) {
+        monthWiseCount {
+          year
+          month
+          categoryWiseCount {
+            count
+            category {
+              id
+              name
+              color
+            }
+          }
+        }
+        categoryWiseCount {
+          category {
+            id
+            name
+            color
+          }
+          count
+        }
+      }
+    }
+  }
+}

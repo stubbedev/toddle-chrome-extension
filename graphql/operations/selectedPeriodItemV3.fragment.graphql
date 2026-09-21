@@ -1,0 +1,49 @@
+fragment selectedPeriodItemV3 on TimetableSlotV2 {
+  date
+  isSelected
+  day
+  timetableSlotId
+  rotationEntity {
+    id
+    label
+  }
+  location
+  locationV2 {
+    id
+    label
+  }
+  course {
+    ...courseItem
+  }
+  period {
+    ...periodItem
+    abbreviation
+  }
+  teachers {
+    staff {
+      ...staffItem
+    }
+    type
+  }
+  items(filters: $itemFilter) {
+    ...slotItem
+  }
+  permissions {
+    isClassAccessible
+    canMarkAttendance(filters: $permissionFilters)
+    canEditCoursePlanner(filters: $permissionFilters)
+    canShareCoursePlannerWithStudents(filters: $permissionFilters)
+    canAddAndOrganiseInTimetable(filters: $permissionFilters)
+    isTimetableForClassEnabled(filters: $permissionFilters)
+  }
+  subject
+  startTime
+  endTime
+  groupKey
+  attendance(filters: $attendanceFilters) {
+    attendanceMarkedStatus
+    unmarkedStudents {
+      id
+    }
+  }
+}

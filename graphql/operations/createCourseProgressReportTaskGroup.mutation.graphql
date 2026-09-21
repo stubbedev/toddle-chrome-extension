@@ -1,0 +1,7 @@
+mutation createCourseProgressReportTaskGroup($input: ProgressReportTaskGroupInput!) {
+  documentation {
+    createProgressReportGroup(input: $input) {
+      ...progressReportTaskGroupItem
+    }
+  }
+}

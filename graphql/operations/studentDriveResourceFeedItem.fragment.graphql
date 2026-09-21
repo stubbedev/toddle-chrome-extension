@@ -1,0 +1,20 @@
+fragment studentDriveResourceFeedItem on Course {
+  id
+  studentDriveV2(filters: {types: $types, states: $states, visibleTo: $visibleTo, searchText: $searchText, showOnlyRecentlyShared: $showOnlyRecentlyShared, searchParentResourceId: $searchParentResourceId, searchParentResourceType: $searchParentResourceType}, orderBy: $orderBy, orderByDirection: $orderByDirection, first: $first, after: $after) {
+    resourceTypeBasedCount {
+      folderCount
+      fileCount
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        ...organizationResourceItem
+      }
+    }
+  }
+}

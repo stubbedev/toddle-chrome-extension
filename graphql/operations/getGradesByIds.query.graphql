@@ -1,0 +1,9 @@
+query getGradesByIds($ids: [ID!]) {
+  multiNode(ids: $ids, type: GRADE) {
+    ... on Grade {
+      id
+      name
+      displaySequence
+    }
+  }
+}

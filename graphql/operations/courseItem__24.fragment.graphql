@@ -1,0 +1,15 @@
+fragment courseItem on Course {
+  id
+  title
+  profileImage
+  collaborator {
+    totalCount
+    edges {
+      node {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation editInsightDataSource($input: EditInsightDataSourceInput!) {
+  platform {
+    editInsightDataSource(input: $input) {
+      uploadStatus
+      resourceId
+      successData
+      errorCount
+      errorData
+    }
+  }
+}

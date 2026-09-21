@@ -1,0 +1,23 @@
+query getOrganizationApprovalRequestFeed($searchText: String) {
+  organizationManagement {
+    organizationApprovalRequestFeed(filters: {searchText: $searchText}) {
+      id
+      name
+      type
+      ibCode
+      city
+      state
+      country
+      firstName
+      lastName
+      email
+      role
+      url
+      webUrl
+      createdAt
+      designation {
+        ...designationItem
+      }
+    }
+  }
+}

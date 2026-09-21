@@ -1,0 +1,17 @@
+query getSchoolAcademicCourseCodes($id: ID!, $academicCourseFilters: AcademicCourseFilters) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      academicCourses(filters: $academicCourseFilters) {
+        id
+        code
+        curriculumProgram {
+          id
+        }
+        parentAcademicCourse {
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+query getCalendarEvents($id: ID!, $type: ENTITY_TYPE_ENUM!, $filters: UserCoursesCalendarFilter!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Staff {
+      id
+      calendarEvents(filters: $filters) {
+        id
+        startTime
+        endTime
+        itemType
+        attendanceTakers {
+          id
+        }
+        sessions {
+          id
+          startDateTime
+          endDateTime
+        }
+        item {
+          id
+          ... on CalendarEventItem {
+            id
+            label
+            eventType
+            isFullDayEvent
+            startDateTime
+            recurringSetting {
+              frequency
+            }
+            eventTag {
+              id
+              label
+              colorCode
+              uid
+            }
+          }
+          ... on CalendarEvent {
+            id
+            title
+            startDate
+            endDate
+            tag {
+              id
+              label
+              colorCode
+              uid
+            }
+          }
+        }
+      }
+    }
+    ... on Student {
+      id
+      calendarEvents(filters: $filters) {
+        id
+        startTime
+        endTime
+        itemType
+        item {
+          id
+          ... on CalendarEventItem {
+            id
+            label
+            isFullDayEvent
+            eventTag {
+              id
+              label
+              colorCode
+              uid
+            }
+          }
+          ... on CalendarEvent {
+            id
+            title
+            startDate
+            endDate
+            tag {
+              id
+              label
+              colorCode
+              uid
+            }
+          }
+        }
+      }
+    }
+  }
+}

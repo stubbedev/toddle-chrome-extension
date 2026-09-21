@@ -1,0 +1,23 @@
+query getCoursePeriodsV3($id: ID!, $periodsFilters: PeriodFilterOptions) {
+  node(id: $id, type: COURSE) {
+    id
+    ... on Course {
+      periodsV3(filters: $periodsFilters) {
+        edges {
+          node {
+            isSelected
+            rotationDay {
+              id
+              label
+            }
+            day
+            period {
+              id
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}

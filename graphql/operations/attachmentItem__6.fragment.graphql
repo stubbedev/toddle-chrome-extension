@@ -1,0 +1,20 @@
+fragment attachmentItem on Attachment {
+  id
+  name
+  type
+  mimeType
+  url
+  signedUrl
+  thumbUrl
+  title
+  metadata
+  streamUrl
+  parentType
+  presetAttachment {
+    id
+  }
+  createdBy {
+    id
+    type
+  }
+}

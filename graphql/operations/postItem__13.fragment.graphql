@@ -1,0 +1,55 @@
+fragment postItem on Post {
+  id
+  title
+  state
+  description
+  students {
+    totalCount
+  }
+  attachments {
+    ...attachmentItem
+  }
+  elementPYP {
+    id
+    fieldUID
+    value
+    parentType
+    subject {
+      id
+      name
+    }
+    resolvedMinimalTree {
+      ...resolvedMinimalTreeItem
+    }
+  }
+  unitPlan {
+    ...unitPlanItem
+  }
+  resourceItem {
+    ... on Assessment {
+      ...assessmentItem
+    }
+    ... on LearningEngagement {
+      ...leItem
+    }
+  }
+  postTaggedEntity {
+    id
+    entityType
+    entity {
+      ... on UnitPlan {
+        ...unitPlanItem
+      }
+      ... on Assessment {
+        ...assessmentItem
+        unitPlan {
+          ...unitPlanItem
+        }
+      }
+    }
+  }
+  resourceType
+  updatedAt
+  publishedAt
+  createdAt
+}

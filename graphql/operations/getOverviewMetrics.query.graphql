@@ -1,0 +1,16 @@
+query getOverviewMetrics($id: ID!, $overViewMetricFilters: OverviewMetricsFilterInput!) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      analytics {
+        overviewMetrics(filter: $overViewMetricFilters) {
+          field
+          stringField
+          value
+          metaData
+        }
+      }
+    }
+  }
+}

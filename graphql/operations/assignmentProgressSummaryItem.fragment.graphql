@@ -1,0 +1,174 @@
+fragment assignmentProgressSummaryItem on StudentAssignment {
+  id
+  isEvaluated
+  isSharedWithStudent
+  isEvaluationApplicable
+  submission {
+    id
+    statusV2
+    submittedAt
+  }
+  toolResponsesV2(filters: {userFilter: ALL}) {
+    id
+    toolId
+    toolType
+    toolResponses {
+      ...toolResponseItem
+    }
+  }
+  ibPYPElementRatings {
+    creatorType
+    id
+    value
+    ibPYPElementId
+    ibPYPElementType
+    academicCriteriaSet {
+      id
+      label
+      criteriaType
+      subType
+      isArchived
+    }
+    academicCriteriaValue {
+      id
+      label
+      abbreviation
+      description
+      color
+    }
+    isDeleted
+    evaluationJustification {
+      id
+      message
+    }
+  }
+  elementRemarks(filters: {creatorTypes: [STAFF]}) {
+    id
+    message
+    ibPYPElementId
+    ibPYPElementType
+  }
+  assignment {
+    id
+    contentType
+    createdAt
+    deadline
+    isTeacherEvaluationEnabled
+    isStudentEvaluationEnabled
+    isExcludedFromFinalGradeCalculation
+    content {
+      id
+      ... on Assessment {
+        id
+        title {
+          id
+          value
+        }
+        assessmentTools {
+          edges {
+            node {
+              id
+              assessmentToolType
+              assessmentToolItem {
+                id
+                ... on MypObjectiveRubric {
+                  id
+                  criteria {
+                    id
+                    highestMark
+                  }
+                }
+                ... on ScoreAssessmentTool {
+                  id
+                  scoreToolData {
+                    id
+                    maxScore
+                  }
+                }
+                ... on StandardRubric {
+                  id
+                  associateScoreTool {
+                    id
+                    scoreToolData {
+                      id
+                      maxScore
+                    }
+                  }
+                }
+                ... on GenericRubric {
+                  id
+                  associateScoreTool {
+                    scoreTool {
+                      id
+                      scoreToolData {
+                        id
+                        maxScore
+                      }
+                    }
+                  }
+                }
+                ... on GradeScaleAssessmentTool {
+                  id
+                  gradeScaleToolData {
+                    id
+                    gradeScaleEntityDetail {
+                      id
+                    }
+                  }
+                }
+              }
+              isTeacherEvaluationEnable
+              isStudentEvaluationEnable
+            }
+          }
+        }
+        templateId
+        fields(uids: ["objectivesMYP", "interdisciplinaryCriteriaMYP", "subjects", "atls", "benchmarks", "concepts", "lp", "learningStandardUBD", "atlsUBD", "learningStandardMYP", "atlsMYP", "subjectStandardDP", "atlDP", "learnerProfileDP", "syllabusContentDP", "unitPlan", "lois", "inquiryQuestions", "conceptsMYP", "relatedConceptsMYP", "lpMYP"]) {
+          id
+          uid
+          value
+          resolvedMinimalTree {
+            ...resolvedMinimalTreeItem
+          }
+        }
+        category {
+          id
+          label
+          colorCode
+        }
+        academicTerm {
+          id
+          label
+        }
+        assessmentType {
+          id
+          value
+        }
+        taskType {
+          id
+          type
+          label
+        }
+        weightage
+        gradingConfigurations {
+          id
+          settings {
+            id
+            uid
+            value
+          }
+        }
+        isLearningGoalsEvaluationEnabled
+      }
+    }
+    course {
+      id
+      learningCourse {
+        id
+      }
+      subjects {
+        id
+      }
+    }
+  }
+}

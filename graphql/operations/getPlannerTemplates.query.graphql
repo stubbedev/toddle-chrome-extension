@@ -1,0 +1,10 @@
+query getPlannerTemplates($ids: [ID!]!) {
+  multiNode(ids: $ids, type: PLANNER_TEMPLATE) {
+    ... on PlannerTemplate {
+      id
+      body
+      unitType
+      isGlobal
+    }
+  }
+}

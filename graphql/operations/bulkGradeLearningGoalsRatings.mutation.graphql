@@ -1,0 +1,9 @@
+mutation bulkGradeLearningGoalsRatings($input: BulkGradeLearningGoalsRatingsInput!) {
+  planner {
+    bulkGradeLearningGoalsRatings(input: $input) {
+      isSuccess
+      warning
+    }
+    __typename
+  }
+}

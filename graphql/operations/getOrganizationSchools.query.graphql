@@ -1,0 +1,21 @@
+query getOrganizationSchools($organizationId: ID!) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      curriculumPrograms(filters: {programType: SCHOOL}) {
+        id
+        label
+        acronym
+        logo
+        programType
+        type
+        academicSetupType
+        academicProgram {
+          id
+          label
+          acronym
+        }
+      }
+    }
+  }
+}

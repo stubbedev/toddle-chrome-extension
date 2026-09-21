@@ -1,0 +1,48 @@
+query getOrganizationPointSet($id: ID!, $filters: PointAssessmentSetFilter, $assignmentFeedFilters: AssignmentFeedFilters, $skipAssignments: Boolean = true) {
+  node(id: $id, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      pointAssessmentSets(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            label
+            type
+            subType
+            isShowGradeBoundaries
+            associatedEntities {
+              id
+              ... on Course {
+                id
+                title
+              }
+              ... on Subject {
+                id
+                name
+              }
+              ... on Grade {
+                ...gradeItem
+              }
+              ... on AcademicTerm {
+                id
+                label
+              }
+            }
+            categories {
+              ...categoryItem
+            }
+            updatedAt
+            updatedBy {
+              ...basicStaffDetails
+            }
+            createdBy {
+              ...basicStaffDetails
+            }
+          }
+        }
+      }
+    }
+  }
+}

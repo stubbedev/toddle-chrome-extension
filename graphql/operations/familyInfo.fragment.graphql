@@ -1,0 +1,13 @@
+fragment familyInfo on FamilyMember {
+  id
+  firstName
+  middleName
+  lastName
+  prefix
+  suffix
+  preferredName
+  pronouns
+  email
+  status
+  isCreatedByOrg
+}

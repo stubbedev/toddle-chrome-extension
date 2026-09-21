@@ -1,0 +1,16 @@
+query getConfiguration($configurationEntityGroupFilters: [ConfigurationEntityGroupFilter!]) {
+  platform {
+    configuration(filters: {configurationEntityGroupFilters: $configurationEntityGroupFilters}) {
+      configurations {
+        id
+        uidV2
+        configuration
+        valueType
+        value
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}

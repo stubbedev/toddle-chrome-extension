@@ -1,0 +1,34 @@
+query getCourseStudentProgressReportStudentDetails($reportId: ID!, $filters: TaskStudentProgressReportFilter, $orderBy: ORDER_BY_ENUM, $orderByDirection: ORDER_BY_DIRECTION, $isSubjectObjectivesSelectedFilter: IsSubjectObjectivesSelectedFilter) {
+  node(id: $reportId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      id
+      studentProgressReport(filters: $filters, orderBy: $orderBy, orderByDirection: $orderByDirection) {
+        id
+        student {
+          ...studentItem
+          alertTypes {
+            ...alertTypeFields
+          }
+          prefix
+        }
+        completedSections
+        status
+        isSubjectObjectivesSelected(filters: $isSubjectObjectivesSelectedFilter)
+      }
+      progressReportTaskGroup {
+        id
+        academicTerm {
+          id
+        }
+      }
+      parentEntity {
+        id
+        ... on Grade {
+          id
+          name
+        }
+      }
+    }
+  }
+}

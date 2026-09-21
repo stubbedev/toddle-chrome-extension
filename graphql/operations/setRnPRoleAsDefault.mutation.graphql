@@ -1,0 +1,9 @@
+mutation setRnPRoleAsDefault($input: SetRnPRoleAsDefaultInput!) {
+  acl {
+    setRnPRoleAsDefault(input: $input) {
+      isSuccess
+      warning
+      response
+    }
+  }
+}

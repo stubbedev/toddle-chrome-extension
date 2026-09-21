@@ -1,0 +1,13 @@
+query getTemplateRecordSets($id: ID!) {
+  node(id: $id, type: EXTERNAL_ASSESSMENT_TEMPLATE) {
+    id
+    ... on ExternalAssessmentTemplate {
+      associatedRecordSets {
+        edges {
+          id
+          name
+        }
+      }
+    }
+  }
+}

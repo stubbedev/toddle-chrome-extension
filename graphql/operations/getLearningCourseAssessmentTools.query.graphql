@@ -1,0 +1,34 @@
+query getLearningCourseAssessmentTools($id: ID!, $filters: AssessmentToolFilters) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      assessmentTools(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            assessmentToolType
+            lockingInfo {
+              isLocked
+            }
+            assessmentToolItem {
+              id
+              ... on Rubric {
+                ...rubricItem
+              }
+              ... on Checklist {
+                ...checklist
+              }
+              ... on SinglePointRubric {
+                ...singlePointRubricItem
+              }
+              ... on StandardRubric {
+                ...standardRubricItem
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

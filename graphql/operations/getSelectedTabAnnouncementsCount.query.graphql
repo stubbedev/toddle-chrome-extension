@@ -1,0 +1,12 @@
+query getSelectedTabAnnouncementsCount($organizationId: ID!, $createdAfter: String, $createdBefore: String, $academicYearId: ID, $studentIds: [ID!], $states: [CIRCULAR_STATE_ENUM!], $curriculumProgramIds: [ID!], $isInboxTab: Boolean!, $createdIn: CIRCULAR_ANNOUNCEMENT_TYPE_ENUM, $courseIds: [ID!], $getToReviewCount: Boolean = false, $createdBy: CIRCULAR_CREATED_BY_FILTER_ENUM = OTHERS) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      circularFeedV3 {
+        totalCount(input: {createdAfter: $createdAfter, createdBefore: $createdBefore, states: $states, createdBy: $createdBy, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds, createdIn: $createdIn, courseIds: $courseIds})
+        ...unreadAnnouncementsCountItem @include(if: $isInboxTab)
+        totalCount(input: {createdAfter: $createdAfter, createdBefore: $createdBefore, states: [REVIEW_PENDING], createdBy: OTHERS, curriculumProgramIds: $curriculumProgramIds, academicYearId: $academicYearId, studentIds: $studentIds}) @include(if: $getToReviewCount)
+      }
+    }
+  }
+}

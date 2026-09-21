@@ -1,0 +1,27 @@
+query ComplianceReportExports($id: ID!, $filters: ComplianceReportExportFilters) {
+  complianceReport {
+    complianceReport(id: $id) {
+      id
+      exports(filters: $filters) {
+        id
+        format
+        status
+        downloadUrl
+        failureReason
+        exportedAt
+        createdAt
+        exportedBy {
+          id
+          firstName
+          lastName
+          profileImage
+          email
+        }
+        fieldValues {
+          fieldUid
+          values
+        }
+      }
+    }
+  }
+}

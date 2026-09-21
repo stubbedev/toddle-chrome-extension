@@ -1,0 +1,15 @@
+fragment organizationCourseFeedEdgeItem on Organization {
+  id
+  jobFeed(first: $first, after: $after, filters: {status: $filters}, latest: $latest, curriculum: $curriculum, curriculumProgramId: $curriculumProgramId) {
+    totalCount
+    edges {
+      node {
+        ...jobData
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

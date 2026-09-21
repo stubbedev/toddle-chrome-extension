@@ -1,0 +1,16 @@
+query getSchoolPointSystemConfig($id: ID!) {
+  node(id: $id, type: CURRICULUM_PROGRAM) {
+    ... on CurriculumProgram {
+      id
+      pointSystemConfiguration {
+        id
+        isEnabled
+        isStudentBalanceEnabled
+        resetSchedule
+        canAddPoints
+        visibleToStudent
+        visibleToFamily
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+query getCourseUnitV2($id: ID!, $filters: LearningCourseUnitPlanFilter, $uids: [String!], $first: Int, $after: String) {
+  node(id: $id, type: LEARNING_COURSE) {
+    id
+    ... on LearningCourse {
+      id
+      unitPlans(filters: $filters, first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...unitPlanItem
+          }
+        }
+      }
+    }
+  }
+}

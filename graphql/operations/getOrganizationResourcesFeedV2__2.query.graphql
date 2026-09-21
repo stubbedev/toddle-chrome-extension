@@ -1,0 +1,8 @@
+query getOrganizationResourcesFeedV2($parentId: ID!, $searchText: String, $parentType: ENTITY_TYPE_ENUM!, $after: String, $isUnitFlow: Boolean! = false) {
+  node(id: $parentId, type: $parentType) {
+    id
+    ... on UnitPlan {
+      ...unitPlanResourceFeedItem
+    }
+  }
+}

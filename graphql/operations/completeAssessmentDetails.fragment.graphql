@@ -1,0 +1,25 @@
+fragment completeAssessmentDetails on Assessment {
+  id
+  type
+  title {
+    id
+    value
+  }
+  assessmentType {
+    id
+    value
+  }
+  taskType {
+    id
+    type
+    label
+  }
+  image {
+    id
+    value
+  }
+  category {
+    id
+    label
+  }
+}

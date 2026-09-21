@@ -1,0 +1,5 @@
+mutation addViewCountForEntity($input: LibraryEntityEventInput!) {
+  library {
+    addLibraryEntityEvent(input: $input)
+  }
+}

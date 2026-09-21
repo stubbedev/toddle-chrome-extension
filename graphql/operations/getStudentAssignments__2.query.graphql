@@ -1,0 +1,65 @@
+query getStudentAssignments($id: ID!, $filters: StudentAssignmentFeedFilters) {
+  node(id: $id, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      assignments(filters: $filters) {
+        edges {
+          node {
+            id
+            assignment {
+              id
+              isExcludedFromFinalGradeCalculation
+              content {
+                ... on Assessment {
+                  id
+                  title {
+                    id
+                    value
+                  }
+                  category {
+                    id
+                    label
+                  }
+                  assessmentType {
+                    id
+                    value
+                  }
+                  taskType {
+                    id
+                    type
+                    label
+                    color
+                    displaySequence
+                    metaData
+                  }
+                  assessmentTools(filters: {assessmentToolType: SCORE}) {
+                    edges {
+                      node {
+                        id
+                        assessmentToolItem {
+                          ... on ScoreAssessmentTool {
+                            id
+                            scoreToolData {
+                              id
+                              maxScore
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            ibPYPElementRatings {
+              id
+              value
+              ibPYPElementType
+            }
+          }
+        }
+      }
+    }
+  }
+}

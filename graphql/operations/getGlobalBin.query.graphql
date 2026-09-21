@@ -1,0 +1,22 @@
+query getGlobalBin($organizationId: ID!, $filters: GlobalBinFilterInput) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      globalBin(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            ...globalBinItemInfo
+          }
+          cursor
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+      }
+    }
+  }
+}

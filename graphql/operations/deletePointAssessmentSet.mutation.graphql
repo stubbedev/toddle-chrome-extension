@@ -1,0 +1,5 @@
+mutation deletePointAssessmentSet($input: DeletePointAssessmentSetInput!) {
+  planner {
+    deletePointAssessmentSet(input: $input)
+  }
+}

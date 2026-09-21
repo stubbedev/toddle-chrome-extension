@@ -1,0 +1,7 @@
+mutation updateConcept($id: ID!, $label: String, $subText: String) {
+  planner {
+    updateConcept(input: {label: $label, subText: $subText, id: $id}) {
+      id
+    }
+  }
+}

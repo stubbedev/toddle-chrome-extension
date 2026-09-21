@@ -1,0 +1,51 @@
+query getGradingEnabledDatasets($curriculumProgramId: ID!, $nodeSetConfigFilters: PlannerElementNodeSetConfigFilters) {
+  node(id: $curriculumProgramId, type: CURRICULUM_PROGRAM) {
+    id
+    ... on GenericCurriculumProgram {
+      id
+      plannerElementNodeSets(filters: {isGradingEnabled: true}, orderBy: CREATED_AT, orderByDirection: ASC) {
+        edges {
+          node {
+            id
+            title
+            config(filters: $nodeSetConfigFilters) {
+              id
+              value
+              globalProperty {
+                id
+                property
+              }
+            }
+            plannerElementSet {
+              id
+              label
+              type
+            }
+            gradeScales {
+              id
+              displayName
+              description
+              type
+              gradingType
+              isArchived
+              isUseForMastery
+              minValue
+              maxValue
+              calculateStandardGradesUsing
+              gradeScaleEntityDetails {
+                id
+                gradeScaleValues {
+                  id
+                  abbreviation
+                  label
+                  description
+                  color
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

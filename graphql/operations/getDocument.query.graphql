@@ -1,0 +1,17 @@
+query getDocument($organizationId: ID!, $documentFilter: DocumentFilterInput, $first: Int) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      documents(filters: $documentFilter, first: $first) {
+        edges {
+          node {
+            ...documentItem
+          }
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+}

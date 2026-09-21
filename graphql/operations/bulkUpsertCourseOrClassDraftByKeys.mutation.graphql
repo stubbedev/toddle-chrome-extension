@@ -1,0 +1,9 @@
+mutation bulkUpsertCourseOrClassDraftByKeys($input: BulkUpsertCourseOrClassDraftByKeysInput!) {
+  planner {
+    bulkUpsertCourseOrClassDraftByKeys(input: $input) {
+      isSuccess
+      warning
+    }
+    __typename
+  }
+}

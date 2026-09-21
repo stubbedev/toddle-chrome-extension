@@ -1,0 +1,14 @@
+mutation upsertLoginOption($input: LoginOptionInput!) {
+  organizationManagement {
+    upsertLoginOption(input: $input) {
+      isSuccess
+      data {
+        id
+        type
+        metadata
+        service
+      }
+      message
+    }
+  }
+}

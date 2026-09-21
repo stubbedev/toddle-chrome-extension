@@ -1,0 +1,24 @@
+mutation validateCalendarImport($input: SchoolCalendarSheetValidationActionInput!) {
+  platform {
+    schoolCalendarSheetValidationAction(input: $input) {
+      uploadStatus
+      validEvents {
+        eventTitle
+        eventType {
+          id
+          label
+          color
+        }
+        startDateTime
+        endDateTime
+        isFullDayEvent
+        location
+        participants
+      }
+      errorData
+      totalEventsCount
+      validEventsCount
+      invalidEventsCount
+    }
+  }
+}

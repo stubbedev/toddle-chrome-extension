@@ -1,0 +1,11 @@
+query getSubjectGradeScaleDetails($id: ID!, $filters: SubjectGradeScalesFilters, $gradeScaleEntityDetailsFilters: GradingSetupEntityFilters) {
+  node(id: $id, type: SUBJECT) {
+    id
+    ... on Subject {
+      id
+      gradeScales(filters: $filters) {
+        ...GradeScaleFragment
+      }
+    }
+  }
+}

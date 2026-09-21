@@ -1,0 +1,83 @@
+query getCourseDetails($id: ID!, $type: ENTITY_TYPE_ENUM!) {
+  node(id: $id, type: $type) {
+    id
+    ... on Course {
+      id
+      title
+      subjects {
+        ...subjectWithSubjectGroupItem
+        recommendedPhase {
+          gradeId
+          phaseId
+        }
+      }
+      grades {
+        id
+        name
+        subjects {
+          id
+          name
+          isArchived
+          subjectGroup {
+            id
+            name
+          }
+        }
+        yearGroup {
+          id
+          name
+          examSession {
+            id
+            year
+          }
+        }
+        displaySequence
+        globalGrade {
+          id
+          uid
+          name
+          constants
+        }
+      }
+    }
+    ... on LearningCourse {
+      id
+      title
+      subjects {
+        ...subjectWithSubjectGroupItem
+        recommendedPhase {
+          gradeId
+          phaseId
+        }
+      }
+      grades {
+        id
+        name
+        subjects {
+          id
+          name
+          isArchived
+          subjectGroup {
+            id
+            name
+          }
+        }
+        yearGroup {
+          id
+          name
+          examSession {
+            id
+            year
+          }
+        }
+        displaySequence
+        globalGrade {
+          id
+          uid
+          name
+          constants
+        }
+      }
+    }
+  }
+}

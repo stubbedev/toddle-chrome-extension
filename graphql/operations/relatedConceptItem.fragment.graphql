@@ -1,0 +1,8 @@
+fragment relatedConceptItem on PlannerRelatedConcept {
+  id
+  label
+  elementId
+  elementType
+  parent
+  children
+}

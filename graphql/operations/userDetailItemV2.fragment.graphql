@@ -1,0 +1,82 @@
+fragment userDetailItemV2 on User {
+  id
+  firstName
+  lastName
+  middleName
+  type
+  profileImage
+  email
+  ... on Student {
+    isArchived
+    isDeleted
+    preferredName
+    prefix
+    pronouns
+    suffix
+    sourceId
+    yearGroup {
+      id
+      grade {
+        id
+        name
+      }
+      curriculumProgram @include(if: $includeCurriculumPrograms) {
+        id
+        label
+      }
+    }
+    alertTypes {
+      ...alertTypeFields
+    }
+  }
+  ... on Staff {
+    isArchived
+    isDeleted
+    displayRole
+    role
+    preferredName
+    prefix
+    suffix
+    pronouns
+    curriculumPrograms(filters: {programTypes: [SCHOOL]}) @include(if: $includeCurriculumPrograms) {
+      id
+      label
+    }
+  }
+  ... on FamilyMember {
+    preferredName
+    prefix
+    pronouns
+    suffix
+    children(organizationId: $organizationId) {
+      id
+      firstName
+      lastName
+      middleName
+      preferredName
+      prefix
+      pronouns
+      suffix
+      sourceId
+      email
+    }
+  }
+  ... on Parent {
+    preferredName
+    prefix
+    pronouns
+    suffix
+    children {
+      id
+      firstName
+      lastName
+      middleName
+      preferredName
+      prefix
+      pronouns
+      suffix
+      sourceId
+      email
+    }
+  }
+}

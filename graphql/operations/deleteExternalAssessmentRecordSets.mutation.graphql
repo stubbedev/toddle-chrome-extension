@@ -1,0 +1,7 @@
+mutation deleteExternalAssessmentRecordSets($input: [DeleteExternalAssessmentRecordSetInput!]!) {
+  externalAssessment {
+    deleteExternalAssessmentRecordSets(input: $input) {
+      isSuccess
+    }
+  }
+}

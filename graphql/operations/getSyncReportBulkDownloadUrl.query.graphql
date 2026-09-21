@@ -1,0 +1,5 @@
+query getSyncReportBulkDownloadUrl($input: GetSyncReportBulkDownloadUrlInput!) {
+  integration {
+    getSyncReportBulkDownloadUrl(input: $input)
+  }
+}

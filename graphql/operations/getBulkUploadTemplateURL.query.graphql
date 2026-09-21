@@ -1,0 +1,9 @@
+query getBulkUploadTemplateURL($organizationId: ID!, $curriculumProgramId: ID!, $subType: String, $filters: bulkDataDownloadFilters) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      name
+      organizationDataBulkDownload(type: "BLANK_ROSTER", subType: $subType, curriculumProgramId: $curriculumProgramId, filters: $filters)
+    }
+  }
+}

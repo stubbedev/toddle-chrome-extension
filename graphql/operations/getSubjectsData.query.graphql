@@ -1,0 +1,8 @@
+query getSubjectsData($reportTaskId: ID!, $param: Boolean!, $filters: ProgressReportCourseWiseMetricsFilter, $isCourseBased: Boolean!, $isSubjectBased: Boolean!) {
+  node(id: $reportTaskId, type: COURSE_PROGRESS_REPORT_TASK) {
+    id
+    ... on CourseProgressReportTask {
+      ...courseStudentProgressReportItem
+    }
+  }
+}

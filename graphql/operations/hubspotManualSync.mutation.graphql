@@ -1,0 +1,8 @@
+mutation hubspotManualSync {
+  platform {
+    syncCrmProgramData {
+      isSuccess
+      warning
+    }
+  }
+}

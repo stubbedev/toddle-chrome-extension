@@ -1,0 +1,15 @@
+query getAcademicHonestyList($id: ID!, $filters: ProjectAcademicHonestyFilters) {
+  node(id: $id, type: PROJECT) {
+    id
+    ... on Project {
+      id
+      isAcademicHonestyLocked
+      academicHonesty(filters: $filters) {
+        ...academicHonestyItem
+      }
+      academicHonestyRemarks {
+        ...remarksDetailsItem
+      }
+    }
+  }
+}

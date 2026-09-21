@@ -1,0 +1,10 @@
+mutation createVideoMeeting($label: String!, $description: String, $durationInMin: Int, $recurrenceSetting: RecurrenceSettingInput, $metadata: CalendarEventItemMetadataInput, $meeting: MeetingInput, $startDateTime: String, $endDateTime: String, $entityIds: [ID!], $eventType: CALENDAR_EVENT_ITEM_TYPE_ENUM, $entityType: CALENDAR_EVENT_ITEM_ENTITY_TYPE_ENUM, $attachments: [AttachmentInput!], $sharedWith: [CALENDAR_EVENT_ITEM_SHARED_WITH_ENUM!], $eventReminders: [EventReminderInput!], $shouldNotifyParticipants: Boolean, $shouldUseNewMeetingInfra: Boolean) {
+  platform {
+    createPlatformCalendarEvent(input: {label: $label, description: $description, durationInMin: $durationInMin, recurrenceSetting: $recurrenceSetting, meeting: $meeting, startDateTime: $startDateTime, endDateTime: $endDateTime, entityIds: $entityIds, eventType: $eventType, entityType: $entityType, attachments: $attachments, sharedWith: $sharedWith, eventReminders: $eventReminders, shouldNotifyParticipants: $shouldNotifyParticipants, metadata: $metadata, shouldUseNewMeetingInfra: $shouldUseNewMeetingInfra}) {
+      response {
+        ...videoMeetingItem
+      }
+      warning
+    }
+  }
+}

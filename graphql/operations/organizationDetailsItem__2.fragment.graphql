@@ -1,0 +1,22 @@
+fragment organizationDetailsItem on Organization {
+  id
+  academicYears {
+    id
+    startDate
+    endDate
+    isCurrentAcademicYear
+  }
+  constants {
+    examSessionMonth
+    scheduler
+  }
+  curriculumPrograms {
+    rosteringMethod
+    id
+    programDataLanguages
+    dealId
+    ... on IbDpCurriculumProgram {
+      examSessionMonth
+    }
+  }
+}

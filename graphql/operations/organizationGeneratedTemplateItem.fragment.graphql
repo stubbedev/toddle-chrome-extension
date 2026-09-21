@@ -1,0 +1,4 @@
+fragment organizationGeneratedTemplateItem on Organization {
+  id
+  progressReportGeneratedTemplate(grades: $grades, curriculumType: $curriculumType, curriculumProgramId: $curriculumProgramId, type: $type, baseTemplate: $baseTemplate, gradingPeriodType: $gradingPeriodType, baseTemplateId: $baseTemplateId, locale: $locale, createdAt: $createdAt, academicYearId: $academicYearId)
+}

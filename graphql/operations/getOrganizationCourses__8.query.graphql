@@ -1,0 +1,17 @@
+query getOrganizationCourses($organizationId: ID!, $filters: CourseFilterInput, $orderBy: ORDER_BY_ENUM = TITLE, $orderByDirection: ORDER_BY_DIRECTION = ASC) {
+  node(id: $organizationId, type: ORGANIZATION) {
+    id
+    ... on Organization {
+      id
+      courses(orderBy: $orderBy, orderByDirection: $orderByDirection, filters: $filters) {
+        edges {
+          node {
+            id
+            title
+            isArchived
+          }
+        }
+      }
+    }
+  }
+}

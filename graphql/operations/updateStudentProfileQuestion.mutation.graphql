@@ -1,0 +1,7 @@
+mutation updateStudentProfileQuestion($title: String, $id: ID!) {
+  platform {
+    updateStudentProfileQuestion(input: {title: $title, id: $id}) {
+      id
+    }
+  }
+}
