@@ -33,21 +33,21 @@ export const OPS = {
  * from getStudentOverallPresenceCount.
  */
 const BATCH_SELECTION = `
-        attendanceV2(filters: $lateFilters) {
+        late: attendanceV2(filters: $lateFilters) {
           edgeInfo {
             totalCount
             categoryFilteredCount
             percentage
           }
         }
-        attendanceV2(filters: $absentFilters) {
+        absent: attendanceV2(filters: $absentFilters) {
           edgeInfo {
             totalCount
             categoryFilteredCount
             percentage
           }
         }
-        attendanceV2(filters: $filters) {
+        overview: attendanceV2(filters: $filters) {
           presenceOverview {
             totalCount
             presencePercentage

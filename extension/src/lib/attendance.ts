@@ -155,7 +155,9 @@ interface PresenceOverview {
 
 interface BatchStudentNode {
   id: string;
-  attendanceV2: { edgeInfo: EdgeInfo; presenceOverview: PresenceOverview }[];
+  late: { edgeInfo: EdgeInfo } | null;
+  absent: { edgeInfo: EdgeInfo } | null;
+  overview: { presenceOverview: PresenceOverview } | null;
 }
 
 const BATCH_CHUNK = 40;
@@ -182,8 +184,7 @@ export async function fetchAttendanceRows(
     );
     chunk.forEach((student, index) => {
       const node = data[`s${index}`];
-      const [late, absent, overall] = node?.attendanceV2 ?? [];
-      const overview = overall?.presenceOverview;
+      const overview = node?.overview?.presenceOverview;
       rows.push({
         student,
         totalSessions: overview?.totalCount ?? null,
@@ -191,10 +192,10 @@ export async function fetchAttendanceRows(
         absenceNumber: overview?.absenceNumber ?? null,
         presencePercentage: num(overview?.presencePercentage),
         absencePercentage: num(overview?.absencePercentage),
-        lateCount: late?.edgeInfo?.categoryFilteredCount ?? null,
-        latePercentage: late?.edgeInfo?.percentage ?? null,
-        absentCount: absent?.edgeInfo?.categoryFilteredCount ?? null,
-        absentPercentage: absent?.edgeInfo?.percentage ?? null,
+        lateCount: node?.late?.edgeInfo?.categoryFilteredCount ?? null,
+        latePercentage: node?.late?.edgeInfo?.percentage ?? null,
+        absentCount: node?.absent?.edgeInfo?.categoryFilteredCount ?? null,
+        absentPercentage: node?.absent?.edgeInfo?.percentage ?? null,
       });
     });
   }
