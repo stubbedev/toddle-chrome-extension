@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc -b && vite build",
-    "pack": "npm run build && cd dist && rm -f ../toddle-companion-*.zip && zip -qr ../toddle-companion-$(node -p \"require('../package.json').version\").zip . && echo packed: toddle-companion-$(node -p \"require('../package.json').version\").zip",
     "preview": "vite preview"
   },
   "dependencies": {

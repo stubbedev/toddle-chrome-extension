@@ -14,7 +14,9 @@ npm run dev           # rebuild on change (no HMR into the panel; reload ext)
 ```
 
 Load it: `chrome://extensions` → Developer mode → **Load unpacked** →
-select `extension/dist`.
+select `extension/dist`. `just pack` (repo root) builds the
+Chrome-installable zip; `just release-patch`/`-minor`/`-major` bump the
+version, tag, push and attach the zip to a GitHub release.
 
 ## Behaviour
 
