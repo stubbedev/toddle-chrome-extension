@@ -91,8 +91,6 @@ function DetailCards(props: { stats: StudentDetailStats; range: DateRange }) {
           {studentDisplayName(stats.student)}
         </CardTitle>
         <CardDescription>
-          {stats.student.email ?? ""}
-          <br />
           {range.startDate} → {range.endDate}
         </CardDescription>
       </CardHeader>
@@ -118,7 +116,6 @@ function DetailCards(props: { stats: StudentDetailStats; range: DateRange }) {
                 : undefined
             }
           />
-          <Stat label="Attended %" value={stats.percentage} suffix="%" />
         </dl>
         {stats.categoryItems.length > 0 && (
           <>
@@ -126,6 +123,13 @@ function DetailCards(props: { stats: StudentDetailStats; range: DateRange }) {
             <div className="flex flex-wrap gap-1">
               {stats.categoryItems.map((item) => (
                 <Badge key={item.id} variant="secondary">
+                  {item.color && (
+                    <span
+                      className="mr-1 inline-block size-2 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                      aria-hidden
+                    />
+                  )}
                   {item.label}: {Math.round(item.percentage)}%
                 </Badge>
               ))}
@@ -165,7 +169,7 @@ function RecordsCard(props: { records: AttendanceRecord[] }) {
       <CardContent className="space-y-1.5">
         {sorted.slice(0, 40).map((record, index) => (
           <div
-            key={`${record.date}-${record.period?.label ?? record.period?.startTime ?? "day"}-${index}`}
+            key={`${record.date}-${record.period?.label ?? "day"}-${index}`}
             className="flex items-center justify-between gap-2 text-xs"
           >
             <span className="text-muted-foreground">{record.date}</span>
@@ -178,7 +182,7 @@ function RecordsCard(props: { records: AttendanceRecord[] }) {
                 />
               )}
               <span className="truncate">
-                {record.value?.label ?? record.status}
+                {record.value?.label ?? "—"}
                 {record.course && (
                   <span className="text-muted-foreground">
                     {" · "}
@@ -188,7 +192,7 @@ function RecordsCard(props: { records: AttendanceRecord[] }) {
                 {record.period && (
                   <span className="text-muted-foreground">
                     {" · "}
-                    {record.period.label ?? record.period.startTime}
+                    {record.period.label}
                   </span>
                 )}
               </span>

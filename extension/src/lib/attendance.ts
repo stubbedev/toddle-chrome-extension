@@ -1,19 +1,17 @@
 /**
- * Typed toddle attendance data access. Queries live in ./graphql/documents.ts.
+ * Typed toddle attendance data access on top of the verbatim web-client
+ * operations (see ./graphql/ops/). Variable names below match the operation
+ * signatures exactly — that is the contract.
  */
 import { gql, type GqlResponse } from "@/lib/api";
 import {
-  ATTENDANCE_CATEGORIES_QUERY,
-  STUDENT_DETAIL_STATS_QUERY,
-  STUDENT_RECORDS_QUERY,
-  YEAR_GROUP_STUDENTS_QUERY,
-  YEAR_GROUPS_QUERY,
+  OPS,
   buildBatchStatsQuery,
   type StudentRef,
   type YearGroup,
 } from "@/lib/graphql/documents";
 
-export type { YearGroup, StudentRef } from "@/lib/graphql/documents";
+export type { StudentRef, YearGroup } from "@/lib/graphql/documents";
 
 /** yyyy-mm-dd in local time — the format toddle's filters expect. */
 export function toDateInput(date: Date): string {
@@ -26,8 +24,11 @@ export interface DateRange {
   endDate: string;
 }
 
-/** Filters shape as built by the web client's attendance-summary page. */
-function baseFilters(range: DateRange): Record<string, unknown> {
+/**
+ * StudentAttendanceFilters exactly as the web client's attendance pages
+ * build it (getStudentAttendanceStatisticsV2 / records filters).
+ */
+function rangeFilters(range: DateRange): Record<string, unknown> {
   return {
     startDate: range.startDate,
     endDate: range.endDate,
@@ -35,21 +36,11 @@ function baseFilters(range: DateRange): Record<string, unknown> {
   };
 }
 
-/**
- * Category ids to filter by. The web client sends one of categoryIds /
- * categoryV2Ids / optionIds depending on feature flags; the server input
- * accepts all three keys, so we send the same ids everywhere.
- */
-function categoryFilters(
+function withCategoryIds(
   range: DateRange,
-  ids: string[],
+  categoryV2Ids: string[],
 ): Record<string, unknown> {
-  return {
-    ...baseFilters(range),
-    categoryIds: ids,
-    categoryV2Ids: ids,
-    optionIds: ids,
-  };
+  return { ...rangeFilters(range), categoryV2Ids };
 }
 
 function requireData<T>(res: GqlResponse<T>): T {
@@ -71,8 +62,8 @@ export async function fetchYearGroups(
   const data = requireData(
     await gql<{ node?: { yearGroups?: YearGroup[] } }>(
       token,
-      YEAR_GROUPS_QUERY,
-      { orgId },
+      OPS.yearGroups,
+      { id: orgId },
     ),
   );
   return data.node?.yearGroups ?? [];
@@ -85,73 +76,52 @@ export async function fetchYearGroupStudents(
   const data = requireData(
     await gql<{
       node?: { students?: { edges?: { node: StudentRef }[] } };
-    }>(token, YEAR_GROUP_STUDENTS_QUERY, { yearGroupId }),
+    }>(token, OPS.yearGroupStudents, { id: yearGroupId }),
   );
   return data.node?.students?.edges?.map((e) => e.node) ?? [];
 }
 
 // ---------- categories ----------
 
-export interface AttendanceOptionInfo {
-  id: string;
-  label: string;
-  status: string;
-}
-
 export interface ResolvedCategories {
-  /** Option/category ids whose status or label says "late". */
   lateIds: string[];
   absentIds: string[];
-  options: AttendanceOptionInfo[];
+  all: { id: string; label: string }[];
 }
 
 const LATE_RE = /late|tard/i;
 const ABSENT_RE = /absent/i;
 
+/**
+ * Late/absent category ids from the org's attendance categories, matched by
+ * label. toddle orgs name these e.g. "Late"/"Absent"; the ids feed
+ * categoryV2Ids filters for edgeInfo.categoryFilteredCount.
+ */
 export async function fetchResolvedCategories(
   token: string,
   orgId: string,
 ): Promise<ResolvedCategories> {
-  interface CategoryWithOptions {
-    id: string;
-    label: string;
-    attendanceOptions?: AttendanceOptionInfo[];
-  }
   const data = requireData(
     await gql<{
       node?: {
         attendanceV2?: {
           attendanceOptionSet?: {
-            attendanceCategories?: CategoryWithOptions[];
+            attendanceCategories?: { id: string; label: string }[];
           };
         };
       };
-    }>(token, ATTENDANCE_CATEGORIES_QUERY, { orgId, filters: {} }),
+    }>(token, OPS.attendanceCategories, {
+      id: orgId,
+      organizationAttendanceFilters: {},
+    }),
   );
-  const categories =
+  const all =
     data.node?.attendanceV2?.attendanceOptionSet?.attendanceCategories ?? [];
-  const lateIds: string[] = [];
-  const absentIds: string[] = [];
-  const options: AttendanceOptionInfo[] = [];
-  for (const category of categories) {
-    const opts = category.attendanceOptions ?? [];
-    if (opts.length) {
-      for (const opt of opts) {
-        options.push(opt);
-        if (LATE_RE.test(opt.status) || LATE_RE.test(opt.label)) {
-          lateIds.push(opt.id);
-        }
-        if (ABSENT_RE.test(opt.status) || ABSENT_RE.test(opt.label)) {
-          absentIds.push(opt.id);
-        }
-      }
-    } else {
-      options.push({ id: category.id, label: category.label, status: "" });
-      if (LATE_RE.test(category.label)) lateIds.push(category.id);
-      if (ABSENT_RE.test(category.label)) absentIds.push(category.id);
-    }
-  }
-  return { lateIds, absentIds, options };
+  return {
+    lateIds: all.filter((c) => LATE_RE.test(c.label)).map((c) => c.id),
+    absentIds: all.filter((c) => ABSENT_RE.test(c.label)).map((c) => c.id),
+    all,
+  };
 }
 
 // ---------- batched stats ----------
@@ -185,13 +155,7 @@ interface PresenceOverview {
 
 interface BatchStudentNode {
   id: string;
-  firstName: string;
-  middleName: string | null;
-  lastName: string | null;
-  preferredName: string | null;
-  stats: { edgeInfo: { totalCount: number }; presenceOverview: PresenceOverview };
-  late: { edgeInfo: EdgeInfo } | null;
-  absent: { edgeInfo: EdgeInfo } | null;
+  attendanceV2: { edgeInfo: EdgeInfo; presenceOverview: PresenceOverview }[];
 }
 
 const BATCH_CHUNK = 40;
@@ -210,48 +174,43 @@ export async function fetchAttendanceRows(
         token,
         buildBatchStatsQuery(chunk.map((s) => s.id)),
         {
-          filters: baseFilters(range),
-          lateFilters: categoryFilters(range, categories.lateIds),
-          absentFilters: categoryFilters(range, categories.absentIds),
+          filters: rangeFilters(range),
+          lateFilters: withCategoryIds(range, categories.lateIds),
+          absentFilters: withCategoryIds(range, categories.absentIds),
         },
       ),
     );
     chunk.forEach((student, index) => {
       const node = data[`s${index}`];
-      const overview = node?.stats?.presenceOverview;
-      const num = (v: string | number | null | undefined): number | null => {
-        if (v === null || v === undefined) return null;
-        const parsed = typeof v === "number" ? v : Number.parseFloat(v);
-        return Number.isFinite(parsed) ? parsed : null;
-      };
+      const [late, absent, overall] = node?.attendanceV2 ?? [];
+      const overview = overall?.presenceOverview;
       rows.push({
-        student: node ?? student,
-        totalSessions: node?.stats.edgeInfo.totalCount ?? null,
+        student,
+        totalSessions: overview?.totalCount ?? null,
         presenceNumber: overview?.presenceNumber ?? null,
         absenceNumber: overview?.absenceNumber ?? null,
         presencePercentage: num(overview?.presencePercentage),
         absencePercentage: num(overview?.absencePercentage),
-        lateCount: node?.late?.edgeInfo?.categoryFilteredCount ?? null,
-        latePercentage: node?.late?.edgeInfo?.percentage ?? null,
-        absentCount: node?.absent?.edgeInfo?.categoryFilteredCount ?? null,
-        absentPercentage: node?.absent?.edgeInfo?.percentage ?? null,
+        lateCount: late?.edgeInfo?.categoryFilteredCount ?? null,
+        latePercentage: late?.edgeInfo?.percentage ?? null,
+        absentCount: absent?.edgeInfo?.categoryFilteredCount ?? null,
+        absentPercentage: absent?.edgeInfo?.percentage ?? null,
       });
     });
   }
   return rows;
 }
 
-// ---------- student detail ----------
+// ---------- student detail (getStudentAttendanceStatisticsV2) ----------
 
 export interface StudentDetailStats {
-  student: StudentRef & { email: string | null };
+  student: StudentRef;
   totalCount: number;
-  percentage: number | null;
   presenceNumber: number | null;
   absenceNumber: number | null;
   presencePercentage: number | null;
   absencePercentage: number | null;
-  categoryItems: { id: string; label: string; percentage: number }[];
+  categoryItems: { id: string; label: string; color: string; percentage: number }[];
 }
 
 export async function fetchStudentDetailStats(
@@ -266,25 +225,31 @@ export async function fetchStudentDetailStats(
         middleName: string | null;
         lastName: string | null;
         preferredName: string | null;
-        email: string | null;
         attendanceV2?: {
-          edgeInfo: { totalCount: number; percentage: number };
-          presenceOverview: PresenceOverview;
+          presenceOverview?: PresenceOverview;
           statistics?: {
-            categoryItems?: {
-              percentage: number;
-              item: { id: string; label: string };
-            }[];
+            categorySummary?: {
+              percentageItems?: {
+                percentage: number;
+                category: { id: string; label: string; color: string };
+              }[];
+            };
           };
-        };
+        }[];
       };
-    }>(token, STUDENT_DETAIL_STATS_QUERY, {
+    }>(token, OPS.studentStatsV2, {
       studentId,
-      filters: baseFilters(range),
+      filters: rangeFilters(range),
+      overAllPresenceFilter: rangeFilters(range),
+      isAttendanceLayersEnabled: false,
     }),
   );
   const node = data.node;
-  const v2 = node?.attendanceV2;
+  const v2 = node?.attendanceV2?.find((entry) => entry.statistics);
+  const overviewEntry = node?.attendanceV2?.find(
+    (entry) => entry.presenceOverview,
+  );
+  const overview = overviewEntry?.presenceOverview;
   return {
     student: {
       id: studentId,
@@ -292,37 +257,35 @@ export async function fetchStudentDetailStats(
       middleName: node?.middleName ?? null,
       lastName: node?.lastName ?? null,
       preferredName: node?.preferredName ?? null,
-      email: node?.email ?? null,
     },
-    totalCount: v2?.edgeInfo.totalCount ?? 0,
-    percentage: v2?.edgeInfo.percentage ?? null,
-    presenceNumber: v2?.presenceOverview?.presenceNumber ?? null,
-    absenceNumber: v2?.presenceOverview?.absenceNumber ?? null,
-    presencePercentage: v2 ? num(v2.presenceOverview?.presencePercentage) : null,
-    absencePercentage: v2 ? num(v2.presenceOverview?.absencePercentage) : null,
+    totalCount: overview?.totalCount ?? 0,
+    presenceNumber: overview?.presenceNumber ?? null,
+    absenceNumber: overview?.absenceNumber ?? null,
+    presencePercentage: num(overview?.presencePercentage),
+    absencePercentage: num(overview?.absencePercentage),
     categoryItems:
-      v2?.statistics?.categoryItems?.map((c) => ({
-        id: c.item.id,
-        label: c.item.label,
-        percentage: c.percentage,
+      v2?.statistics?.categorySummary?.percentageItems?.map((item) => ({
+        id: item.category.id,
+        label: item.category.label,
+        color: item.category.color,
+        percentage: item.percentage,
       })) ?? [],
   };
 }
 
-function num(v: string | number | null | undefined): number | null {
-  if (v === null || v === undefined) return null;
-  const parsed = typeof v === "number" ? v : Number.parseFloat(v);
-  return Number.isFinite(parsed) ? parsed : null;
-}
+// ---------- records (geSingletStudentAttendanceRecord) ----------
 
 export interface AttendanceRecord {
   date: string;
-  status: string;
   remark: string | null;
-  isHomeroomAttendance: boolean;
-  value: { label: string; status: string; color: string } | null;
-  course: { title: string } | null;
-  period: { label: string; startTime: string } | null;
+  value: {
+    id: string;
+    label: string;
+    color: string;
+    status: string;
+  } | null;
+  course: { id: string; title: string } | null;
+  period: { id: string; label: string } | null;
 }
 
 export async function fetchStudentRecords(
@@ -336,16 +299,22 @@ export async function fetchStudentRecords(
       node?: {
         attendanceV2?: { edges?: { node: AttendanceRecord }[] };
       };
-    }>(token, STUDENT_RECORDS_QUERY, {
-      studentId,
+    }>(token, OPS.studentRecords, {
+      id: studentId,
       first,
-      filters: baseFilters(range),
+      filters: rangeFilters(range),
     }),
   );
   return data.node?.attendanceV2?.edges?.map((e) => e.node) ?? [];
 }
 
-// ---------- display helpers ----------
+// ---------- helpers ----------
+
+function num(v: string | number | null | undefined): number | null {
+  if (v === null || v === undefined) return null;
+  const parsed = typeof v === "number" ? v : Number.parseFloat(v);
+  return Number.isFinite(parsed) ? parsed : null;
+}
 
 export function studentDisplayName(s: StudentRef): string {
   return (

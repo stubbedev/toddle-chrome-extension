@@ -1,0 +1,24 @@
+query getStudentOverallPresenceCount($studentId: ID!, $overAllPresenceFilter: StudentAttendanceFilters, $isAttendanceLayersEnabled: Boolean! = false) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      attendanceV2(filters: $overAllPresenceFilter) {
+        presenceOverview @skip(if: $isAttendanceLayersEnabled) {
+          totalCount
+          presencePercentage
+          absencePercentage
+          presenceNumber
+          absenceNumber
+        }
+        attendanceMetric(type: OVERALL) @include(if: $isAttendanceLayersEnabled) {
+          totalCount
+          presencePercentage
+          absencePercentage
+          presenceNumber
+          absenceNumber
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,27 @@
+query getAllStudentOfYearGroupQuery($id: ID!, $filters: GroupStudentFilter) {
+  node(id: $id, type: YEAR_GROUP) {
+    id
+    ... on YearGroup {
+      id
+      name
+      students(filters: $filters) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            middleName
+            lastName
+            profileImage
+            email
+            preferredName
+            suffix
+            pronouns
+            type
+          }
+        }
+      }
+    }
+  }
+}
+

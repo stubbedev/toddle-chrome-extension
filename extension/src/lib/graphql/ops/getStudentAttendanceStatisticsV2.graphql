@@ -1,0 +1,105 @@
+query getStudentAttendanceStatisticsV2($studentId: ID!, $filters: StudentAttendanceFilters, $overAllPresenceFilter: StudentAttendanceFilters, $isAttendanceLayersEnabled: Boolean! = false) {
+  node(id: $studentId, type: STUDENT) {
+    id
+    ... on Student {
+      id
+      ...studentNameFields
+      attendanceV2(filters: $overAllPresenceFilter) {
+        presenceOverview @skip(if: $isAttendanceLayersEnabled) {
+          totalCount
+          presencePercentage
+          absencePercentage
+          presenceNumber
+          absenceNumber
+          tier {
+            id
+            label
+            color
+          }
+        }
+        attendanceMetric(type: OVERALL) @include(if: $isAttendanceLayersEnabled) {
+          totalCount
+          presencePercentage
+          absencePercentage
+          presenceNumber
+          absenceNumber
+          tier {
+            id
+            label
+            color
+            minPercentage
+            maxPercentage
+          }
+        }
+      }
+      attendanceV2(filters: $filters) {
+        statistics {
+          courseItems {
+            ...attendanceStatisticCourseItem
+          }
+          activityItems {
+            item {
+              id
+              name
+            }
+            percentage
+          }
+        }
+        categorySummary {
+          percentageItems {
+            category {
+              id
+              label
+              color
+            }
+            percentage
+          }
+        }
+      }
+    }
+  }
+}
+fragment studentNameFields on Student {
+  firstName
+  middleName
+  lastName
+  preferredName
+  prefix
+  suffix
+  pronouns
+  type
+}
+
+fragment attendanceStatisticCourseItem on AttendanceStatisticCourseItem {
+  percentage
+  item {
+    ...courseItem
+  }
+}
+
+fragment courseItem on Course {
+  id
+  title
+  isArchived
+  learningCourse {
+    id
+    title
+    academicCourse {
+      id
+      label
+    }
+  }
+  curriculumProgram {
+    id
+  }
+  primaryGrade {
+    id
+    curriculumProgram {
+      id
+      type
+    }
+  }
+  grades {
+    id
+  }
+}
