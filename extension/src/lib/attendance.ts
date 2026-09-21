@@ -68,9 +68,37 @@ function presenceFilters(
   };
 }
 
+/** Records feed filter — the records resolver wants ARRAYS (this exact
+ * shape demonstrably returns data; the scalar variant breaks it). */
+function recordsFilters(
+  range: DateRange,
+  year: AcademicYear | null,
+  layers: boolean,
+): Record<string, unknown> {
+  return {
+    startDate: range.startDate,
+    endDate: range.endDate,
+    isPeriodByAttendance: false,
+    courseIds: [],
+    showFullDateAttendance: true,
+    academicYearIds: year ? [year.id] : null,
+    curriculumProgramIds: [],
+    ...(layers ? { layerTypes: ["DERIVED"] } : {}),
+  };
+}
+
 function requireData<T>(res: GqlResponse<T>): T {
   if (res.errors?.length) {
-    throw new Error(res.errors.map((e) => e.message).join("; "));
+    throw new Error(
+      res.errors
+        .map(
+          (e) =>
+            `${e.message}${e.path ? ` @ ${e.path.join(".")}` : ""}${
+              e.extensions?.code ? ` [${e.extensions.code}]` : ""
+            }`,
+        )
+        .join("; "),
+    );
   }
   if (!res.data) {
     throw new Error("empty response");
@@ -406,6 +434,12 @@ async function loadAttendanceRows(
       },
     );
     const data = res.data ?? {};
+    if (res.errors?.length) {
+      console.warn(
+        "batch stats errors:",
+        res.errors.map((e) => `${e.message} @ ${(e.path ?? []).join(".")}`),
+      );
+    }
     chunk.forEach((student, index) => {
       const node = data[`s${index}`];
       const presence =
@@ -574,7 +608,7 @@ async function loadStudentRecords(
     }>(token, OPS.studentRecords, {
       id: studentId,
       first,
-      filters: rangeFilters(range, year, layers),
+      filters: recordsFilters(range, year, layers),
     }),
   );
   return data.node?.attendanceV2?.edges?.map((e) => e.node) ?? [];

@@ -39,7 +39,11 @@ function regionFromToken(token: string): string | null {
 
 export interface GqlResponse<T> {
   data?: T;
-  errors?: { message: string }[];
+  errors?: {
+    message: string;
+    path?: (string | number)[];
+    extensions?: { code?: string };
+  }[];
 }
 
 /**
