@@ -1,6 +1,7 @@
 import nodeFs from "node:fs";
 import path from "node:path";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, type Plugin } from "vite";
 
 /**
@@ -40,7 +41,7 @@ function inlineSidepanelCss(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), inlineSidepanelCss()],
+  plugins: [react(), tailwindcss(), inlineSidepanelCss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
