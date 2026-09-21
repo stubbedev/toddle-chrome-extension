@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Toddle Educator Companion",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Power tools for toddle educators: attendance, absences and overviews.",
   "minimum_chrome_version": "116",
   "icons": {
