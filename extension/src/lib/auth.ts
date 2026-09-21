@@ -4,11 +4,11 @@ export interface ToddleAuth {
   detail: string;
   expiresAt: number | null;
   orgRegion: string | null;
+  orgId: string | null;
   userId: string | null;
   name: string | null;
   email: string | null;
 }
-
 const TODDLE_COOKIE_DOMAINS = ["toddleapp.com", "toddleapp.cn"];
 const TODDLE_WEB_URLS = [
   "https://web.toddleapp.com/*",
@@ -57,6 +57,7 @@ function isUsableJwt(value: string): JwtPayload | null {
 interface UserInfo {
   jwt: string | null;
   orgRegion: string | null;
+  orgId: string | null;
   userId: string | null;
   name: string | null;
   email: string | null;
@@ -72,6 +73,7 @@ function parseUserInfo(raw: string | null): UserInfo | null {
     return {
       jwt: token,
       orgRegion: str(info.orgRegion),
+      orgId: str(info.org_id) ?? str(info.organizationId) ?? str(info.orgId),
       userId: str(info.id) ?? str(info.identityId),
       name: str(info.name) ?? str(info.userName),
       email: str(info.email),
@@ -118,6 +120,7 @@ async function fromUserInfo(): Promise<ToddleAuth | null> {
         detail: `localStorage.userInfo @ ${new URL(tab.url!).host}`,
         expiresAt: typeof payload.exp === "number" ? payload.exp : null,
         orgRegion: strField(payload, ["region"]) ?? info.orgRegion,
+        orgId: info.orgId ?? strField(payload, ["org_id", "organizationId", "orgId"]),
         userId: info.userId ?? strField(payload, ["sub", "id"]),
         name: info.name ?? strField(payload, ["name"]),
         email: info.email ?? strField(payload, ["email"]),
@@ -164,6 +167,7 @@ async function fromSplitCookies(): Promise<ToddleAuth | null> {
           detail: `${SPLIT_COOKIE_LEFT}+${SPLIT_COOKIE_RIGHT} @ ${domain}`,
           expiresAt: typeof payload.exp === "number" ? payload.exp : null,
           orgRegion: strField(payload, ["region"]),
+          orgId: strField(payload, ["org_id", "organizationId", "orgId"]),
           userId: strField(payload, ["sub", "id"]),
           name: strField(payload, ["name"]),
           email: strField(payload, ["email"]),
