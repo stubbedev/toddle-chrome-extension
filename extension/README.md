@@ -21,11 +21,14 @@ select `extension/dist`.
 - Toolbar icon toggles the side panel
   (`chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true })`
   in `src/background/background.ts`).
-- The panel gates on toddle auth:
-  - looks for a valid JWT in the toddle cookie jar (`chrome.cookies`), then
-  - falls back to reading `localStorage.userInfo` (`.token`/`.parentToken`)
-    from an open `web.toddleapp.com` tab via `chrome.scripting`.
-  - If nothing valid is found, the panel shows a **Log in to toddle** button.
+- The panel gates on toddle auth. The web client sends
+  `Authorization: Bearer <jwt>` with the token living in
+  `localStorage.userInfo` (key `jwt`, alongside `orgRegion` etc.). We source it:
+  1. from `localStorage.userInfo` on an open `web.toddleapp.com` tab
+     (chrome.scripting) — also captures orgRegion and identity;
+  2. by reassembling toddle's split cookies — `lhst` = `<header>.<payload>`,
+     `rhst` = `<payload>.<signature>` → `lhst + "." + rhst.signature`.
+  If nothing valid is found, the panel shows a **Log in to toddle** button.
 - GraphQL calls (`src/lib/api.ts`) mirror the web client:
   `Authorization: Bearer <jwt>` + `X-Tod-Source: WEB` + `X-Tod-Lang` against
   `https://apigw.toddleapp.com/graphql` (`.cn` endpoint selectable).

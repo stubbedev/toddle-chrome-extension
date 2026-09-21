@@ -56,18 +56,22 @@ export function App() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-sm">
-              Signed in
-              <Badge variant="secondary">{state.auth.source}</Badge>
-            </CardTitle>
+              {state.auth.name ?? "Signed in"}
+                {state.auth.orgRegion && (
+                  <Badge variant="outline">{state.auth.orgRegion}</Badge>
+                )}
+                <Badge variant="secondary">via {state.auth.source}</Badge>
+              </CardTitle>
             <CardDescription>
-              {state.auth.detail}
+              {[state.auth.email, state.auth.userId].filter(Boolean).join(" · ")}
               {state.auth.expiresAt
-                ? ` · valid until ${new Date(state.auth.expiresAt * 1000).toLocaleString()}`
+                ? ` · token valid until ${new Date(state.auth.expiresAt * 1000).toLocaleString()}`
                 : ""}
             </CardDescription>
           </CardHeader>
           <Separator />
-          <CardContent className="pt-3 text-xs text-muted-foreground">
+          <CardContent className="space-y-1 pt-3 text-xs text-muted-foreground">
+            <p>{state.auth.detail}</p>
             <p>API: {endpoint}</p>
             <p className="mt-2">
               Attendance tools will land here. The queries live in
