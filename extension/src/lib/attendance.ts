@@ -126,7 +126,7 @@ export async function fetchResolvedCategories(
           };
         };
       };
-    }>(token, ATTENDANCE_CATEGORIES_QUERY, { orgId }),
+    }>(token, ATTENDANCE_CATEGORIES_QUERY, { orgId, filters: {} }),
   );
   const categories =
     data.node?.attendanceV2?.attendanceOptionSet?.attendanceCategories ?? [];

@@ -75,11 +75,11 @@ export interface AttendanceCategory {
 }
 
 export const ATTENDANCE_CATEGORIES_QUERY = /* GraphQL */ `
-  query companionAttendanceCategories($orgId: ID!) {
+  query companionAttendanceCategories($orgId: ID!, $filters: OrganizationAttendanceFilters) {
     node(id: $orgId, type: ORGANIZATION) {
       id
       ... on Organization {
-        attendanceV2 {
+        attendanceV2(filters: $filters) {
           attendanceOptionSet {
             id
             attendanceCategories {
