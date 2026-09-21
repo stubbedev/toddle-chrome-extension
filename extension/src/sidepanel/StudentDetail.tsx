@@ -24,10 +24,11 @@ interface Props {
   auth: ToddleAuth;
   studentId: string;
   range: DateRange;
+  academicYearIds: string[] | null;
   onBack: () => void;
 }
 
-export function StudentDetail({ auth, studentId, range, onBack }: Props) {
+export function StudentDetail({ auth, studentId, range, academicYearIds, onBack }: Props) {
   const [stats, setStats] = useState<StudentDetailStats | null>(null);
   const [records, setRecords] = useState<AttendanceRecord[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -38,8 +39,8 @@ export function StudentDetail({ auth, studentId, range, onBack }: Props) {
     setStats(null);
     setRecords(null);
     Promise.all([
-      fetchStudentDetailStats(auth.token, studentId, range),
-      fetchStudentRecords(auth.token, studentId, range),
+      fetchStudentDetailStats(auth.token, studentId, range, academicYearIds),
+      fetchStudentRecords(auth.token, studentId, range, academicYearIds),
     ])
       .then(([s, r]) => {
         if (cancelled) return;
@@ -50,7 +51,7 @@ export function StudentDetail({ auth, studentId, range, onBack }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [auth.token, studentId, range]);
+  }, [auth.token, studentId, range, academicYearIds]);
 
   return (
     <div className="space-y-3">

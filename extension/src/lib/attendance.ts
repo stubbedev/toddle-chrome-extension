@@ -25,22 +25,32 @@ export interface DateRange {
 }
 
 /**
- * StudentAttendanceFilters exactly as the web client's attendance pages
- * build it (getStudentAttendanceStatisticsV2 / records filters).
+ * StudentAttendanceFilters with the full key set the web client sends —
+ * the server resolvers destructure these fields unconditionally.
  */
-function rangeFilters(range: DateRange): Record<string, unknown> {
+function rangeFilters(
+  range: DateRange,
+  academicYearIds: string[] | null,
+): Record<string, unknown> {
   return {
     startDate: range.startDate,
     endDate: range.endDate,
+    isPeriodByAttendance: false,
+    courseIds: null,
+    periodIds: null,
     showFullDateAttendance: true,
+    academicYearIds,
+    curriculumProgramIds: null,
+    onlyHomeroomAttendance: false,
   };
 }
 
 function withCategoryIds(
   range: DateRange,
+  academicYearIds: string[] | null,
   categoryV2Ids: string[],
 ): Record<string, unknown> {
-  return { ...rangeFilters(range), categoryV2Ids };
+  return { ...rangeFilters(range, academicYearIds), categoryV2Ids };
 }
 
 function requireData<T>(res: GqlResponse<T>): T {
@@ -124,6 +134,48 @@ export async function fetchResolvedCategories(
   };
 }
 
+// ---------- academic years ----------
+
+export interface AcademicYear {
+  id: string;
+  startDate: string;
+  endDate: string;
+  isCurrentAcademicYear: boolean;
+  isPreviousAcademicYear: boolean;
+}
+
+export async function fetchAcademicYears(
+  token: string,
+  orgId: string,
+): Promise<AcademicYear[]> {
+  const data = requireData(
+    await gql<{
+      node?: {
+        curriculumPrograms?: { academicYears?: AcademicYear[] }[];
+      };
+    }>(token, OPS.academicYears, { id: orgId, curriculumIds: null }),
+  );
+  const seen = new Map<string, AcademicYear>();
+  for (const program of data.node?.curriculumPrograms ?? []) {
+    for (const year of program.academicYears ?? []) {
+      if (!seen.has(year.id)) seen.set(year.id, year);
+    }
+  }
+  return [...seen.values()];
+}
+
+/** Current academic year, else the one covering today, else latest. */
+export function pickAcademicYear(years: AcademicYear[]): AcademicYear | null {
+  return (
+    years.find((y) => y.isCurrentAcademicYear) ??
+    years.find(
+      (y) => y.startDate <= toDateInput(new Date()) && y.endDate >= toDateInput(new Date()),
+    ) ??
+    years.slice().sort((a, b) => b.startDate.localeCompare(a.startDate))[0] ??
+    null
+  );
+}
+
 // ---------- batched stats ----------
 
 export interface StudentAttendanceRow {
@@ -167,21 +219,21 @@ export async function fetchAttendanceRows(
   students: StudentRef[],
   range: DateRange,
   categories: ResolvedCategories,
+  academicYearIds: string[] | null,
 ): Promise<StudentAttendanceRow[]> {
   const rows: StudentAttendanceRow[] = [];
   for (let offset = 0; offset < students.length; offset += BATCH_CHUNK) {
     const chunk = students.slice(offset, offset + BATCH_CHUNK);
-    const data = requireData(
-      await gql<Record<string, BatchStudentNode | undefined>>(
-        token,
-        buildBatchStatsQuery(chunk.map((s) => s.id)),
-        {
-          filters: rangeFilters(range),
-          lateFilters: withCategoryIds(range, categories.lateIds),
-          absentFilters: withCategoryIds(range, categories.absentIds),
-        },
-      ),
+    const res = await gql<Record<string, BatchStudentNode | undefined>>(
+      token,
+      buildBatchStatsQuery(chunk.map((s) => s.id)),
+      {
+        filters: rangeFilters(range, academicYearIds),
+        lateFilters: withCategoryIds(range, academicYearIds, categories.lateIds),
+        absentFilters: withCategoryIds(range, academicYearIds, categories.absentIds),
+      },
     );
+    const data = res.data ?? {};
     chunk.forEach((student, index) => {
       const node = data[`s${index}`];
       const overview = node?.overview?.presenceOverview;
@@ -218,6 +270,7 @@ export async function fetchStudentDetailStats(
   token: string,
   studentId: string,
   range: DateRange,
+  academicYearIds: string[] | null,
 ): Promise<StudentDetailStats> {
   const data = requireData(
     await gql<{
@@ -240,8 +293,8 @@ export async function fetchStudentDetailStats(
       };
     }>(token, OPS.studentStatsV2, {
       studentId,
-      filters: rangeFilters(range),
-      overAllPresenceFilter: rangeFilters(range),
+      filters: rangeFilters(range, academicYearIds),
+      overAllPresenceFilter: rangeFilters(range, academicYearIds),
       isAttendanceLayersEnabled: false,
     }),
   );
@@ -293,6 +346,7 @@ export async function fetchStudentRecords(
   token: string,
   studentId: string,
   range: DateRange,
+  academicYearIds: string[] | null,
   first = 100,
 ): Promise<AttendanceRecord[]> {
   const data = requireData(
@@ -303,7 +357,7 @@ export async function fetchStudentRecords(
     }>(token, OPS.studentRecords, {
       id: studentId,
       first,
-      filters: rangeFilters(range),
+      filters: rangeFilters(range, academicYearIds),
     }),
   );
   return data.node?.attendanceV2?.edges?.map((e) => e.node) ?? [];

@@ -43,6 +43,7 @@ def main() -> int:
         "getStudentOverallPresenceCount",
         "getStudentAttendanceStatisticsV2",
         "geSingletStudentAttendanceRecord",
+        "getSchoolAcademicYears",
     }
 
     def variables_of(node):

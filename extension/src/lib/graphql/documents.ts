@@ -17,6 +17,7 @@ import getOrganizationYearGroups from "./ops/getOrganizationYearGroups.graphql?r
 import getStudentAttendanceStatisticsV2 from "./ops/getStudentAttendanceStatisticsV2.graphql?raw";
 import getStudentOverallPresenceCount from "./ops/getStudentOverallPresenceCount.graphql?raw";
 import geSingletStudentAttendanceRecord from "./ops/geSingletStudentAttendanceRecord.graphql?raw";
+import getSchoolAcademicYears from "./ops/getSchoolAcademicYears.graphql?raw";
 
 export const OPS = {
   yearGroups: getOrganizationYearGroups,
@@ -25,6 +26,7 @@ export const OPS = {
   overallPresenceCount: getStudentOverallPresenceCount,
   studentStatsV2: getStudentAttendanceStatisticsV2,
   studentRecords: geSingletStudentAttendanceRecord,
+  academicYears: getSchoolAcademicYears,
 } as const;
 
 /**

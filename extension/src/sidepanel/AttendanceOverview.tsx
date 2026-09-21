@@ -27,12 +27,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
+  fetchAcademicYears,
   fetchAttendanceRows,
   fetchResolvedCategories,
   fetchYearGroupStudents,
   fetchYearGroups,
+  pickAcademicYear,
   studentDisplayName,
   toDateInput,
+  type AcademicYear,
   type DateRange,
   type ResolvedCategories,
   type StudentAttendanceRow,
@@ -44,7 +47,7 @@ type SortKey = "name" | "late" | "absent" | "presence";
 
 interface Props {
   auth: ToddleAuth;
-  onSelectStudent: (studentId: string, range: DateRange) => void;
+  onSelectStudent: (studentId: string, range: DateRange, academicYearIds: string[] | null) => void;
 }
 
 function defaultRange(): DateRange {
@@ -58,6 +61,7 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
   const [yearGroupId, setYearGroupId] = useState<string>("");
   const [range, setRange] = useState<DateRange>(defaultRange);
   const [rows, setRows] = useState<StudentAttendanceRow[] | null>(null);
+  const [academicYearIds, setAcademicYearIds] = useState<string[] | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>("late");
   const [error, setError] = useState<string | null>(null);
 
@@ -87,12 +91,16 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
         auth.token,
         auth.orgId ?? "",
       );
+      const years: AcademicYear[] = await fetchAcademicYears(auth.token, auth.orgId ?? "");
+      const year = pickAcademicYear(years);
+      setAcademicYearIds(year ? [year.id] : null);
       const students = await fetchYearGroupStudents(auth.token, yearGroupId);
       const data = await fetchAttendanceRows(
         auth.token,
         students,
         range,
         categories,
+        year ? [year.id] : null,
       );
       if (!cancelled) setRows(data);
     })().catch((e: unknown) => !cancelled && setError(String(e)));
@@ -128,7 +136,9 @@ export function AttendanceOverview({ auth, onSelectStudent }: Props) {
       {rows !== null && (
         <StudentTable
           rows={sorted}
-          onSelectStudent={(studentId) => onSelectStudent(studentId, range)}
+          onSelectStudent={(studentId) =>
+            onSelectStudent(studentId, range, academicYearIds)
+          }
         />
       )}
     </div>

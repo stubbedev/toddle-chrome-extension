@@ -23,7 +23,7 @@ type AuthState =
 
 type View =
   | { name: "overview" }
-  | { name: "student"; studentId: string; range: DateRange };
+  | { name: "student"; studentId: string; range: DateRange; academicYearIds: string[] | null };
 
 export function App() {
   const [state, setState] = useState<AuthState>({ status: "checking" });
@@ -60,8 +60,8 @@ export function App() {
         (view.name === "overview" ? (
           <AttendanceOverview
             auth={state.auth}
-            onSelectStudent={(studentId, range) =>
-              setView({ name: "student", studentId, range })
+            onSelectStudent={(studentId, range, academicYearIds) =>
+              setView({ name: "student", studentId, range, academicYearIds })
             }
           />
         ) : (
@@ -69,6 +69,7 @@ export function App() {
             auth={state.auth}
             studentId={view.studentId}
             range={view.range}
+            academicYearIds={view.academicYearIds}
             onBack={() => setView({ name: "overview" })}
           />
         ))}

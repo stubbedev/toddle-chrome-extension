@@ -1,0 +1,23 @@
+query getSchoolAcademicYears($id: ID!, $curriculumIds: [ID]) {
+  node(id: $id, type: ORGANIZATION) {
+    ... on Organization {
+      id
+      curriculumPrograms(curriculumIds: $curriculumIds) {
+        id
+        academicYears {
+          id
+          startDate
+          endDate
+          isCurrentAcademicYear
+          isPreviousAcademicYear
+          academicYearGroup {
+            id
+            name
+            acronym
+          }
+        }
+      }
+    }
+  }
+}
+
