@@ -34,8 +34,8 @@ export const OPS = {
  * statisticsV2/overallPresenceCount ops: presence lives in presenceOverview
  * (classic orgs) or attendanceMetric(type: OVERALL) (attendance-layers
  * orgs) — select both, coalesce client-side. Late/absent percentages come
- * from statistics.categorySummary.percentageItems, exactly as the layered
- * client reads them.
+ * from categorySummary.percentageItems (a sibling of statistics on the
+ * attendanceV2 payload), exactly as the layered client reads them.
  */
 const BATCH_SELECTION = `
         overallPresence: attendanceV2(filters: $overAllPresenceFilter) {
@@ -58,14 +58,12 @@ const BATCH_SELECTION = `
           edgeInfo {
             totalCount
           }
-          statistics {
-            categorySummary {
-              percentageItems {
-                percentage
-                category {
-                  id
-                  label
-                }
+          categorySummary {
+            percentageItems {
+              percentage
+              category {
+                id
+                label
               }
             }
           }

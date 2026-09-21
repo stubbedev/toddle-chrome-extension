@@ -270,13 +270,11 @@ interface BatchStudentNode {
   } | null;
   stats: {
     edgeInfo: { totalCount: number };
-    statistics?: {
-      categorySummary?: {
-        percentageItems?: {
-          percentage: number;
-          category: { id: string; label: string };
-        }[];
-      };
+    categorySummary?: {
+      percentageItems?: {
+        percentage: number;
+        category: { id: string; label: string };
+      }[];
     };
   } | null;
 }
@@ -314,8 +312,7 @@ export async function fetchAttendanceRows(
       const presence =
         node?.overallPresence?.presenceOverview ??
         node?.overallPresence?.attendanceMetric;
-      const items =
-        node?.stats?.statistics?.categorySummary?.percentageItems ?? [];
+      const items = node?.stats?.categorySummary?.percentageItems ?? [];
       const catPct = (ids: string[]): number | null => {
         const item = items.find((i) => ids.includes(i.category.id));
         return item ? item.percentage : null;
@@ -376,12 +373,14 @@ export async function fetchStudentDetailStats(
         };
         attendanceV2?: {
           statistics?: {
-            categorySummary?: {
-              percentageItems?: {
-                percentage: number;
-                category: { id: string; label: string; color: string };
-              }[];
-            };
+            courseItems?: unknown[];
+            activityItems?: unknown[];
+          };
+          categorySummary?: {
+            percentageItems?: {
+              percentage: number;
+              category: { id: string; label: string; color: string };
+            }[];
           };
         };
       };
@@ -396,7 +395,7 @@ export async function fetchStudentDetailStats(
   const overview =
     node?.overallPresence?.presenceOverview ??
     node?.overallPresence?.attendanceMetric;
-  const stats = node?.attendanceV2?.statistics;
+  const items = node?.attendanceV2?.categorySummary?.percentageItems ?? [];
   return {
     student: {
       id: studentId,
@@ -411,7 +410,7 @@ export async function fetchStudentDetailStats(
     presencePercentage: num(overview?.presencePercentage),
     absencePercentage: num(overview?.absencePercentage),
     categoryItems:
-      stats?.categorySummary?.percentageItems?.map((item) => ({
+      items.map((item) => ({
         id: item.category.id,
         label: item.category.label,
         color: item.category.color,
