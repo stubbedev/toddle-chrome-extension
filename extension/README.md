@@ -29,9 +29,12 @@ select `extension/dist`.
   2. by reassembling toddle's split cookies — `lhst` = `<header>.<payload>`,
      `rhst` = `<payload>.<signature>` → `lhst + "." + rhst.signature`.
   If nothing valid is found, the panel shows a **Log in to toddle** button.
-- GraphQL calls (`src/lib/api.ts`) mirror the web client:
-  `Authorization: Bearer <jwt>` + `X-Tod-Source: WEB` + `X-Tod-Lang` against
-  `https://apigw.toddleapp.com/graphql` (`.cn` endpoint selectable).
+- GraphQL calls (`src/lib/api.ts`) mirror the web client's `getBackendUrl`:
+  the gateway is `https://<region>-production-apis.toddleapp.com/graphql`
+  where `<region>` is the JWT payload's `region` claim (fallback
+  `eu-west-1`; `me-central-1` → `eu-central-1`; cn-* regions use
+  `apis.toddleapp.cn`). Requests send `Authorization: Bearer <jwt>` +
+  `X-Tod-Source: WEB` + `X-Tod-Lang`.
 - Queries to use live in `../graphql/operations/` — copy them in as needed.
 
 ## Structure

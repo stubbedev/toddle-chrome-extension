@@ -1,20 +1,40 @@
-export const API_ENDPOINTS = {
-  production: "https://apigw.toddleapp.com/graphql",
-  china: "https://apigw.toddleapp.cn/graphql",
-} as const;
+/**
+ * toddle gateway URLs, built the way the web client's getBackendUrl does:
+ *   https://<region>-<env>-apis.toddleapp.com<path>
+ * where <region> is read from the JWT payload's `region` claim (falling back
+ * to eu-west-1, cn-north-1 for China), and cn-* regions use toddleapp.cn.
+ */
 
-export type ApiEndpointKey = keyof typeof API_ENDPOINTS;
+const API_ENV = "production";
+const CHINA_HOST = "apis.toddleapp.cn";
+const DEFAULT_REGIONS = { com: "eu-west-1", cn: "cn-north-1" };
+const CHINA_REGIONS = new Set(["cn-north-1", "cn-northwest-1"]);
+const REGION_REMAPS: Record<string, string> = { "me-central-1": "eu-central-1" };
 
-const ENDPOINT_STORAGE_KEY = "toddleApiEndpoint";
-
-export async function getApiEndpoint(): Promise<string> {
-  const stored = await chrome.storage.local.get(ENDPOINT_STORAGE_KEY);
-  const key = stored[ENDPOINT_STORAGE_KEY] as ApiEndpointKey | undefined;
-  return API_ENDPOINTS[key ?? "production"];
+function hostForRegion(region: string): string {
+  return CHINA_REGIONS.has(region) ? CHINA_HOST : "apis.toddleapp.com";
 }
 
-export async function setApiEndpoint(key: ApiEndpointKey): Promise<void> {
-  await chrome.storage.local.set({ [ENDPOINT_STORAGE_KEY]: key });
+export function apiEndpointForRegion(
+  region: string | null | undefined,
+  path = "/graphql",
+): string {
+  const fallback = DEFAULT_REGIONS.com;
+  const raw = region?.trim() || fallback;
+  const mapped = REGION_REMAPS[raw] ?? raw;
+  return `https://${mapped}-${API_ENV}-${hostForRegion(mapped)}${path}`;
+}
+
+function regionFromToken(token: string): string | null {
+  const part = token.split(".")[1];
+  if (!part) return null;
+  try {
+    const json = atob(part.replace(/-/g, "+").replace(/_/g, "/"));
+    const region = (JSON.parse(json) as { region?: unknown }).region;
+    return typeof region === "string" && region ? region : null;
+  } catch {
+    return null;
+  }
 }
 
 export interface GqlResponse<T> {
@@ -24,14 +44,15 @@ export interface GqlResponse<T> {
 
 /**
  * Run a GraphQL operation against the toddle API, mirroring the web client:
- * `Authorization: Bearer <jwt>` plus the X-Tod-* headers it sends.
+ * `Authorization: Bearer <jwt>` plus the X-Tod-* headers it sends. The
+ * gateway is picked from the token's `region` claim, like getBackendUrl.
  */
 export async function gql<T>(
   token: string,
   query: string,
   variables: Record<string, unknown> = {},
 ): Promise<GqlResponse<T>> {
-  const endpoint = await getApiEndpoint();
+  const endpoint = apiEndpointForRegion(regionFromToken(token));
   const res = await fetch(endpoint, {
     method: "POST",
     credentials: "include",

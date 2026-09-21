@@ -29,6 +29,7 @@ interface JwtPayload {
   id?: string;
   name?: string;
   email?: string;
+  region?: string;
   [key: string]: unknown;
 }
 
@@ -116,7 +117,7 @@ async function fromUserInfo(): Promise<ToddleAuth | null> {
         source: "userInfo",
         detail: `localStorage.userInfo @ ${new URL(tab.url!).host}`,
         expiresAt: typeof payload.exp === "number" ? payload.exp : null,
-        orgRegion: info.orgRegion,
+        orgRegion: strField(payload, ["region"]) ?? info.orgRegion,
         userId: info.userId ?? strField(payload, ["sub", "id"]),
         name: info.name ?? strField(payload, ["name"]),
         email: info.email ?? strField(payload, ["email"]),
@@ -162,7 +163,7 @@ async function fromSplitCookies(): Promise<ToddleAuth | null> {
           source: "cookies",
           detail: `${SPLIT_COOKIE_LEFT}+${SPLIT_COOKIE_RIGHT} @ ${domain}`,
           expiresAt: typeof payload.exp === "number" ? payload.exp : null,
-          orgRegion: null,
+          orgRegion: strField(payload, ["region"]),
           userId: strField(payload, ["sub", "id"]),
           name: strField(payload, ["name"]),
           email: strField(payload, ["email"]),

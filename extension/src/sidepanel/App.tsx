@@ -11,7 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getToddleAuth, TODDLE_LOGIN_URL, type ToddleAuth } from "@/lib/auth";
-import { getApiEndpoint } from "@/lib/api";
+import { apiEndpointForRegion } from "@/lib/api";
 
 type AuthState =
   | { status: "checking" }
@@ -20,12 +20,10 @@ type AuthState =
 
 export function App() {
   const [state, setState] = useState<AuthState>({ status: "checking" });
-  const [endpoint, setEndpoint] = useState<string>("");
 
   const refresh = async () => {
     setState({ status: "checking" });
-    const [auth, ep] = await Promise.all([getToddleAuth(), getApiEndpoint()]);
-    setEndpoint(ep);
+    const auth = await getToddleAuth();
     setState(auth ? { status: "logged-in", auth } : { status: "logged-out" });
   };
 
@@ -72,7 +70,7 @@ export function App() {
           <Separator />
           <CardContent className="space-y-1 pt-3 text-xs text-muted-foreground">
             <p>{state.auth.detail}</p>
-            <p>API: {endpoint}</p>
+            <p>API: {apiEndpointForRegion(state.auth.orgRegion)}</p>
             <p className="mt-2">
               Attendance tools will land here. The queries live in
               <code className="mx-1 rounded bg-muted px-1 py-0.5">graphql/operations/</code>
