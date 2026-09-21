@@ -31,22 +31,23 @@ export const OPS = {
 
 /**
  * Per-student stats batched with aliases. Mirrors the web client's
- * statisticsV2/overallPresenceCount ops: presence lives in presenceOverview
- * (classic orgs) or attendanceMetric(type: OVERALL) (attendance-layers
- * orgs) — select both, coalesce client-side. Late/absent percentages come
- * from categorySummary.percentageItems (a sibling of statistics on the
- * attendanceV2 payload), exactly as the layered client reads them.
+ * statisticsV2/overallPresenceCount ops exactly: presenceOverview with
+ * @skip(if: layers) vs attendanceMetric(type: OVERALL) with
+ * @include(if: layers) — layered orgs zero/null the classic field and vice
+ * versa, so both must never be read in the wrong mode. Late/absent
+ * percentages come from categorySummary.percentageItems (a sibling of
+ * statistics on the attendanceV2 payload).
  */
 const BATCH_SELECTION = `
         overallPresence: attendanceV2(filters: $overAllPresenceFilter) {
-          presenceOverview {
+          presenceOverview @skip(if: $layers) {
             totalCount
             presencePercentage
             absencePercentage
             presenceNumber
             absenceNumber
           }
-          attendanceMetric(type: OVERALL) {
+          attendanceMetric(type: OVERALL) @include(if: $layers) {
             totalCount
             presencePercentage
             absencePercentage
@@ -78,7 +79,7 @@ ${BATCH_SELECTION}
       }
     }`)
     .join("\n");
-  return `query companionBatchStats($filters: StudentAttendanceFilters, $overAllPresenceFilter: StudentAttendanceFilters) {
+  return `query companionBatchStats($filters: StudentAttendanceFilters, $overAllPresenceFilter: StudentAttendanceFilters, $layers: Boolean!) {
 ${selections}
 }`;
 }

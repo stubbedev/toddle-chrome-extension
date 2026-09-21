@@ -186,21 +186,34 @@ export function pickAcademicYear(years: AcademicYear[]): AcademicYear | null {
 // ---------- attendance-layers mode probe ----------
 
 /**
- * Orgs with "attendance layers" skip presenceOverview and compute
- * attendanceMetric(type: OVERALL) instead (the web client branches on the
- * isAttendanceLayersEnabled flag). Probe once per session: classic first,
- * then layers (which also adds layerTypes: ["DERIVED"] to filters).
+ * Orgs with "attendance layers" (feature flag FeatureFlag:AttendanceLayers)
+ * compute attendanceMetric(type: OVERALL) instead of presenceOverview, and
+ * add layerTypes: ["DERIVED"] to filters. Probe one field per variant so a
+ * classic org never queries attendanceMetric (which 500s without layer
+ * context) and a layered org's null presenceOverview falls through to the
+ * layers probe.
  */
 let cachedLayersMode: boolean | null = null;
 
-const MODE_PROBE_QUERY = /* GraphQL */ `
-  query companionModeProbe($id: ID!, $f: StudentAttendanceFilters) {
+const PROBE_CLASSIC = /* GraphQL */ `
+  query companionProbeClassic($id: ID!, $f: StudentAttendanceFilters) {
     node(id: $id, type: STUDENT) {
       ... on Student {
         attendanceV2(filters: $f) {
           presenceOverview {
             totalCount
           }
+        }
+      }
+    }
+  }
+`;
+
+const PROBE_LAYERS = /* GraphQL */ `
+  query companionProbeLayers($id: ID!, $f: StudentAttendanceFilters) {
+    node(id: $id, type: STUDENT) {
+      ... on Student {
+        attendanceV2(filters: $f) {
           attendanceMetric(type: OVERALL) {
             totalCount
           }
@@ -217,23 +230,30 @@ async function detectLayersMode(
   academicYearIds: string[] | null,
 ): Promise<boolean> {
   if (cachedLayersMode !== null) return cachedLayersMode;
-  for (const layers of [false, true]) {
-    try {
-      const res = await gql<{ node?: { attendanceV2?: {
-        presenceOverview?: { totalCount: number } | null;
-        attendanceMetric?: { totalCount: number } | null;
-      } } }>(token, MODE_PROBE_QUERY, {
-        id: studentId,
-        f: presenceFilters(range, academicYearIds, layers),
-      });
-      const v2 = res.data?.node?.attendanceV2;
-      if (v2 && (v2.presenceOverview || v2.attendanceMetric)) {
-        cachedLayersMode = layers;
-        return layers;
-      }
-    } catch {
-      // try next variant
+  const ok = async (query: string, pick: (v2: Record<string, unknown>) => unknown, layers: boolean) => {
+    const res = await gql<{ node?: { attendanceV2?: Record<string, unknown> | null } }>(
+      token,
+      query,
+      { id: studentId, f: presenceFilters(range, academicYearIds, layers) },
+    );
+    if (res.errors?.length) return false;
+    return pick(res.data?.node?.attendanceV2 ?? {}) !== null;
+  };
+  try {
+    if (await ok(PROBE_CLASSIC, (v2) => v2.presenceOverview ?? null, false)) {
+      cachedLayersMode = false;
+      return false;
     }
+  } catch {
+    // classic probe crashed; try layers
+  }
+  try {
+    if (await ok(PROBE_LAYERS, (v2) => v2.attendanceMetric ?? null, true)) {
+      cachedLayersMode = true;
+      return true;
+    }
+  } catch {
+    // layers probe crashed too
   }
   cachedLayersMode = false;
   return false;
@@ -304,6 +324,7 @@ export async function fetchAttendanceRows(
       {
         filters: rangeFilters(range, academicYearIds, layers),
         overAllPresenceFilter: presenceFilters(range, academicYearIds, layers),
+        layers,
       },
     );
     const data = res.data ?? {};
