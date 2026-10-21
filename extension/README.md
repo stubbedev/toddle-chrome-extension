@@ -6,7 +6,7 @@ overviews). Built with Vite + React + Tailwind + shadcn/ui.
 ## Develop
 
 ```
-devenv shell          # from repo root
+nix develop           # from repo root (or let direnv load .envrc)
 cd extension
 npm install
 npm run build         # -> extension/dist (load this unpacked)

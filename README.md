@@ -14,7 +14,7 @@ its webpack chunks, which is what we mined.
 - `graphql/docnode_manifest.json` — which chunk each document came from.
 - `graphql/schema.graphql` — a *synthesized, structural approximation* of the
   server schema (see caveats below).
-- `scripts/` — the extraction pipeline (nix/devenv provided, see `devenv.nix`).
+- `scripts/` — the extraction pipeline (nix provided, see the devShell in `flake.nix`).
 
 ## Endpoint
 
@@ -81,7 +81,7 @@ console snippet.
 ## Pipeline (reproducible)
 
 ```
-devenv shell
+nix develop       # or let direnv load .envrc
 # 1. download all current web chunks
 curl -s https://web.toddleapp.com/ -o out/web/index.html          # chunk URLs
 curl -s https://web.toddleapp.com/runtime-main.<hash>.js -o ...    # chunk map
@@ -95,7 +95,7 @@ python scripts/extract_docnodes.py out/web/docnodes.jsonl out/web
 python scripts/build_schema.py out/web/graphql graphql/schema.graphql
 ```
 
-Scripts also available as devenv commands: `extract-strings`,
+Scripts also available as devShell commands: `extract-strings`,
 `extract-graphql`, `extract-docnodes`, `build-schema`.
 
 For the APK side: `extract-strings resources/assets/index.android.bundle

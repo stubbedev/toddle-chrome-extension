@@ -1,6 +1,5 @@
-.devenv/
-devenv.local.nix
 .direnv/
+.venv/
 out/
 __pycache__/
 
