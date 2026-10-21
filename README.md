@@ -14,7 +14,7 @@ its webpack chunks, which is what we mined.
 - `graphql/docnode_manifest.json` — which chunk each document came from.
 - `graphql/schema.graphql` — a *synthesized, structural approximation* of the
   server schema (see caveats below).
-- `scripts/` — the extraction pipeline (nix provided, see the devShell in `flake.nix`).
+- `scripts/` — the extraction pipeline (nix provided, see the devShell in `nix/shell.nix`).
 
 ## Endpoint
 
